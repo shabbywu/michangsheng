@@ -1,142 +1,181 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000498 RID: 1176
 public class CameraFollow2D_new : MonoBehaviour
 {
-	// Token: 0x0600251A RID: 9498 RVA: 0x00101DB8 File Offset: 0x000FFFB8
-	private void Awake()
-	{
-		this.cameraBottomLimit_y = this.cameraBottomLimit.position.y;
-		this.thisTransform = base.transform;
-		this.limitY = Camera.main.ViewportToWorldPoint(Vector3.one * 0.7f).y;
-		this.cameraTarget.transform.position = new Vector3(this.cameraTarget.transform.position.x, Camera.main.transform.position.y, this.cameraTarget.transform.position.z);
-		this.playerController = this.player.GetComponent<MonkeyController2D>();
-		this.borderY = Camera.main.ScreenToWorldPoint(new Vector3((float)Screen.width, (float)Screen.height, 0f)).y * 0.8f;
-	}
-
-	// Token: 0x0600251B RID: 9499 RVA: 0x00101EA0 File Offset: 0x001000A0
-	private void Start()
-	{
-		if (Camera.main.aspect < 1.5f)
-		{
-			Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, 7.5f, Camera.main.transform.position.z);
-			this.cameraTarget.transform.position = new Vector3(this.cameraTarget.transform.position.x, Camera.main.transform.position.y, this.cameraTarget.transform.position.z);
-			this.borderY = Camera.main.ScreenToWorldPoint(new Vector3((float)Screen.width, (float)Screen.height, 0f)).y * 0.75f;
-			return;
-		}
-		Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, 8.5f, Camera.main.transform.position.z);
-		this.cameraTarget.transform.position = new Vector3(this.cameraTarget.transform.position.x, Camera.main.transform.position.y, this.cameraTarget.transform.position.z);
-	}
-
-	// Token: 0x0600251C RID: 9500 RVA: 0x0010201C File Offset: 0x0010021C
-	private void Update()
-	{
-		if (!this.stopFollow)
-		{
-			if (this.cameraFollowX)
-			{
-				this.thisTransform.position = Vector3.Lerp(this.thisTransform.position, new Vector3(this.cameraTarget.transform.position.x, this.thisTransform.position.y, this.thisTransform.position.z), 5f * Time.deltaTime);
-			}
-			if (this.cameraFollowY)
-			{
-				this.thisTransform.position = Vector3.SmoothDamp(this.thisTransform.position, new Vector3(this.thisTransform.position.x, this.cameraTarget.transform.position.y, this.thisTransform.position.z), ref this.velocity, this.smoothTime);
-			}
-			if (!this.cameraFollowY && this.cameraFollowHeight)
-			{
-				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, this.cameraHeight, Camera.main.transform.position.z);
-			}
-			if ((this.playerController.state == MonkeyController2D.State.jumped && this.player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector3(0f, (float)Screen.height * this.upperLimit, 0f)).y) || (this.playerController.state != MonkeyController2D.State.jumped && this.player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector3(0f, (float)Screen.height * 0.25f, 0f)).y))
-			{
-				this.moveUp = true;
-			}
-			if (this.moveUp && this.playerController.heCanJump)
-			{
-				this.thisTransform.position = Vector3.SmoothDamp(this.thisTransform.position, new Vector3(this.thisTransform.position.x, this.cameraTarget.transform.position.y, this.thisTransform.position.z), ref this.velocity, this.smoothTime, 2000f * Time.deltaTime, Time.smoothDeltaTime);
-			}
-			if (this.playerController.state == MonkeyController2D.State.jumped && Mathf.Abs(this.cameraTarget.transform.position.y - Camera.main.transform.position.y) <= 0.1f && this.moveUp)
-			{
-				this.moveUp = false;
-			}
-			if (this.cameraTarget.transform.position.y <= Camera.main.transform.position.y)
-			{
-				this.moveDown = true;
-			}
-			if (this.moveDown && !this.transition)
-			{
-				this.thisTransform.position = new Vector3(this.thisTransform.position.x, this.cameraTarget.transform.position.y, this.thisTransform.position.z);
-			}
-			if (this.cameraTarget.transform.position.y >= Camera.main.transform.position.y)
-			{
-				this.moveDown = false;
-			}
-		}
-	}
-
-	// Token: 0x04001DED RID: 7661
 	public GameObject cameraTarget;
 
-	// Token: 0x04001DEE RID: 7662
 	public GameObject player;
 
-	// Token: 0x04001DEF RID: 7663
 	public float smoothTime = 0.01f;
 
-	// Token: 0x04001DF0 RID: 7664
 	public bool cameraFollowX = true;
 
-	// Token: 0x04001DF1 RID: 7665
 	public bool cameraFollowY;
 
-	// Token: 0x04001DF2 RID: 7666
 	public bool cameraFollowHeight;
 
-	// Token: 0x04001DF3 RID: 7667
 	public float cameraHeight = 2.5f;
 
-	// Token: 0x04001DF4 RID: 7668
 	public Vector3 velocity;
 
-	// Token: 0x04001DF5 RID: 7669
 	private Transform thisTransform;
 
-	// Token: 0x04001DF6 RID: 7670
 	public float borderY;
 
-	// Token: 0x04001DF7 RID: 7671
 	public bool moveUp;
 
-	// Token: 0x04001DF8 RID: 7672
 	public bool moveDown;
 
-	// Token: 0x04001DF9 RID: 7673
 	public bool grounded;
 
-	// Token: 0x04001DFA RID: 7674
 	public float limitY;
 
-	// Token: 0x04001DFB RID: 7675
 	public Transform cameraBottomLimit;
 
-	// Token: 0x04001DFC RID: 7676
 	private float cameraBottomLimit_y = 2.1f;
 
-	// Token: 0x04001DFD RID: 7677
 	[HideInInspector]
 	public Transform rotatingPlayer;
 
-	// Token: 0x04001DFE RID: 7678
 	[HideInInspector]
 	public bool stopFollow;
 
-	// Token: 0x04001DFF RID: 7679
 	private MonkeyController2D playerController;
 
-	// Token: 0x04001E00 RID: 7680
 	[HideInInspector]
 	public bool transition;
 
-	// Token: 0x04001E01 RID: 7681
 	[HideInInspector]
 	public float upperLimit = 0.7f;
+
+	private void Awake()
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+		cameraBottomLimit_y = cameraBottomLimit.position.y;
+		thisTransform = ((Component)this).transform;
+		limitY = Camera.main.ViewportToWorldPoint(Vector3.one * 0.7f).y;
+		cameraTarget.transform.position = new Vector3(cameraTarget.transform.position.x, ((Component)Camera.main).transform.position.y, cameraTarget.transform.position.z);
+		playerController = player.GetComponent<MonkeyController2D>();
+		borderY = Camera.main.ScreenToWorldPoint(new Vector3((float)Screen.width, (float)Screen.height, 0f)).y * 0.8f;
+	}
+
+	private void Start()
+	{
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		if (Camera.main.aspect < 1.5f)
+		{
+			((Component)Camera.main).transform.position = new Vector3(((Component)Camera.main).transform.position.x, 7.5f, ((Component)Camera.main).transform.position.z);
+			cameraTarget.transform.position = new Vector3(cameraTarget.transform.position.x, ((Component)Camera.main).transform.position.y, cameraTarget.transform.position.z);
+			borderY = Camera.main.ScreenToWorldPoint(new Vector3((float)Screen.width, (float)Screen.height, 0f)).y * 0.75f;
+		}
+		else
+		{
+			((Component)Camera.main).transform.position = new Vector3(((Component)Camera.main).transform.position.x, 8.5f, ((Component)Camera.main).transform.position.z);
+			cameraTarget.transform.position = new Vector3(cameraTarget.transform.position.x, ((Component)Camera.main).transform.position.y, cameraTarget.transform.position.z);
+		}
+	}
+
+	private void Update()
+	{
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0197: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0273: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0287: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0200: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0353: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0310: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0320: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032a: Unknown result type (might be due to invalid IL or missing references)
+		if (!stopFollow)
+		{
+			if (cameraFollowX)
+			{
+				thisTransform.position = Vector3.Lerp(thisTransform.position, new Vector3(cameraTarget.transform.position.x, thisTransform.position.y, thisTransform.position.z), 5f * Time.deltaTime);
+			}
+			if (cameraFollowY)
+			{
+				thisTransform.position = Vector3.SmoothDamp(thisTransform.position, new Vector3(thisTransform.position.x, cameraTarget.transform.position.y, thisTransform.position.z), ref velocity, smoothTime);
+			}
+			if (!cameraFollowY && cameraFollowHeight)
+			{
+				((Component)Camera.main).transform.position = new Vector3(((Component)Camera.main).transform.position.x, cameraHeight, ((Component)Camera.main).transform.position.z);
+			}
+			if ((playerController.state == MonkeyController2D.State.jumped && player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector3(0f, (float)Screen.height * upperLimit, 0f)).y) || (playerController.state != MonkeyController2D.State.jumped && player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector3(0f, (float)Screen.height * 0.25f, 0f)).y))
+			{
+				moveUp = true;
+			}
+			if (moveUp && playerController.heCanJump)
+			{
+				thisTransform.position = Vector3.SmoothDamp(thisTransform.position, new Vector3(thisTransform.position.x, cameraTarget.transform.position.y, thisTransform.position.z), ref velocity, smoothTime, 2000f * Time.deltaTime, Time.smoothDeltaTime);
+			}
+			if (playerController.state == MonkeyController2D.State.jumped && Mathf.Abs(cameraTarget.transform.position.y - ((Component)Camera.main).transform.position.y) <= 0.1f && moveUp)
+			{
+				moveUp = false;
+			}
+			if (cameraTarget.transform.position.y <= ((Component)Camera.main).transform.position.y)
+			{
+				moveDown = true;
+			}
+			if (moveDown && !transition)
+			{
+				thisTransform.position = new Vector3(thisTransform.position.x, cameraTarget.transform.position.y, thisTransform.position.z);
+			}
+			if (cameraTarget.transform.position.y >= ((Component)Camera.main).transform.position.y)
+			{
+				moveDown = false;
+			}
+		}
+	}
 }

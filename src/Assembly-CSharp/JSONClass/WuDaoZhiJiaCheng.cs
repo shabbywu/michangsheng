@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class WuDaoZhiJiaCheng : IJSONClass
 {
-	// Token: 0x0200098B RID: 2443
-	public class WuDaoZhiJiaCheng : IJSONClass
+	public static Dictionary<int, WuDaoZhiJiaCheng> DataDict = new Dictionary<int, WuDaoZhiJiaCheng>();
+
+	public static List<WuDaoZhiJiaCheng> DataList = new List<WuDaoZhiJiaCheng>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int JiaCheng;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004440 RID: 17472 RVA: 0x001D1044 File Offset: 0x001CF244
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.WuDaoZhiJiaCheng.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.WuDaoZhiJiaCheng.list)
+			try
 			{
-				try
+				WuDaoZhiJiaCheng wuDaoZhiJiaCheng = new WuDaoZhiJiaCheng();
+				wuDaoZhiJiaCheng.id = item["id"].I;
+				wuDaoZhiJiaCheng.JiaCheng = item["JiaCheng"].I;
+				if (DataDict.ContainsKey(wuDaoZhiJiaCheng.id))
 				{
-					WuDaoZhiJiaCheng wuDaoZhiJiaCheng = new WuDaoZhiJiaCheng();
-					wuDaoZhiJiaCheng.id = jsonobject["id"].I;
-					wuDaoZhiJiaCheng.JiaCheng = jsonobject["JiaCheng"].I;
-					if (WuDaoZhiJiaCheng.DataDict.ContainsKey(wuDaoZhiJiaCheng.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典WuDaoZhiJiaCheng.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", wuDaoZhiJiaCheng.id));
-					}
-					else
-					{
-						WuDaoZhiJiaCheng.DataDict.Add(wuDaoZhiJiaCheng.id, wuDaoZhiJiaCheng);
-						WuDaoZhiJiaCheng.DataList.Add(wuDaoZhiJiaCheng);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典WuDaoZhiJiaCheng.DataDict添加数据时出现重复的键，Key:{wuDaoZhiJiaCheng.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典WuDaoZhiJiaCheng.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(wuDaoZhiJiaCheng.id, wuDaoZhiJiaCheng);
+				DataList.Add(wuDaoZhiJiaCheng);
 			}
-			if (WuDaoZhiJiaCheng.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				WuDaoZhiJiaCheng.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典WuDaoZhiJiaCheng.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004441 RID: 17473 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040045DD RID: 17885
-		public static Dictionary<int, WuDaoZhiJiaCheng> DataDict = new Dictionary<int, WuDaoZhiJiaCheng>();
-
-		// Token: 0x040045DE RID: 17886
-		public static List<WuDaoZhiJiaCheng> DataList = new List<WuDaoZhiJiaCheng>();
-
-		// Token: 0x040045DF RID: 17887
-		public static Action OnInitFinishAction = new Action(WuDaoZhiJiaCheng.OnInitFinish);
-
-		// Token: 0x040045E0 RID: 17888
-		public int id;
-
-		// Token: 0x040045E1 RID: 17889
-		public int JiaCheng;
+	private static void OnInitFinish()
+	{
 	}
 }

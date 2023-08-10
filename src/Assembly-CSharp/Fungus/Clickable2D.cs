@@ -1,196 +1,160 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Fungus
+namespace Fungus;
+
+public class Clickable2D : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler
 {
-	// Token: 0x02000E66 RID: 3686
-	public class Clickable2D : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler
+	[Tooltip("Is object clicking enabled")]
+	[SerializeField]
+	protected bool clickEnabled = true;
+
+	[Tooltip("Mouse texture to use when hovering mouse over object")]
+	[SerializeField]
+	protected Texture2D hoverCursor;
+
+	[Tooltip("Use the UI Event System to check for clicks. Clicks that hit an overlapping UI object will be ignored. Camera must have a PhysicsRaycaster component, or a Physics2DRaycaster for 2D colliders.")]
+	[SerializeField]
+	protected bool useEventSystem;
+
+	public bool ShouldScale = true;
+
+	private List<string> btnName = new List<string>
 	{
-		// Token: 0x060067A7 RID: 26535 RVA: 0x0028AF2E File Offset: 0x0028912E
-		protected virtual void ChangeCursor(Texture2D cursorTexture)
+		"likai", "caiji", "xiuxi", "biguan", "tupo", "shop", "kefang", "ui8", "yaofang", "shenbingge",
+		"wudao", "chuhai", "shanglou", "liexi"
+	};
+
+	private bool isIn;
+
+	private bool isCanDo = true;
+
+	private Vector3 oriScale;
+
+	public bool ClickEnabled
+	{
+		set
 		{
-			if (!this.clickEnabled)
-			{
-				return;
-			}
-			Cursor.SetCursor(cursorTexture, Vector2.zero, 0);
+			clickEnabled = value;
 		}
+	}
 
-		// Token: 0x060067A8 RID: 26536 RVA: 0x0028AF45 File Offset: 0x00289145
-		protected virtual void DoPointerClick()
+	protected virtual void ChangeCursor(Texture2D cursorTexture)
+	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		if (clickEnabled)
 		{
-			if (!this.clickEnabled)
-			{
-				return;
-			}
-			if (!Tools.instance.canClick(false, true))
-			{
-				return;
-			}
-			FungusManager.Instance.EventDispatcher.Raise<ObjectClicked.ObjectClickedEvent>(new ObjectClicked.ObjectClickedEvent(this));
+			Cursor.SetCursor(cursorTexture, Vector2.zero, (CursorMode)0);
 		}
+	}
 
-		// Token: 0x060067A9 RID: 26537 RVA: 0x0028AF74 File Offset: 0x00289174
-		protected virtual void DoPointerEnter()
+	protected virtual void DoPointerClick()
+	{
+		if (clickEnabled && Tools.instance.canClick())
 		{
-			MapComponent component = base.GetComponent<MapComponent>();
-			bool flag = true;
-			if (component != null && component.getAvatarNowMapIndex() == component.NodeIndex)
-			{
-				flag = false;
-			}
-			if (Tools.instance.canClick(false, true) && this.ShouldScale && flag)
-			{
-				this.ChangeCursor(this.hoverCursor);
-				this.isIn = true;
-			}
-			if (this.ShouldScale)
-			{
-				this.oriScale = base.transform.localScale;
-				base.transform.localScale = this.oriScale * 1.1f;
-			}
+			FungusManager.Instance.EventDispatcher.Raise(new ObjectClicked.ObjectClickedEvent(this));
 		}
+	}
 
-		// Token: 0x060067AA RID: 26538 RVA: 0x0028B008 File Offset: 0x00289208
-		protected virtual void DoPointerExit()
+	protected virtual void DoPointerEnter()
+	{
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		MapComponent component = ((Component)this).GetComponent<MapComponent>();
+		bool flag = true;
+		if ((Object)(object)component != (Object)null && component.getAvatarNowMapIndex() == component.NodeIndex)
 		{
-			MapComponent component = base.GetComponent<MapComponent>();
-			bool flag = true;
-			if (component != null && component.getAvatarNowMapIndex() == component.NodeIndex)
-			{
-				flag = false;
-			}
-			if ((Tools.instance.canClick(false, true) && this.ShouldScale && flag) || this.isIn)
-			{
-				SetMouseCursor.ResetMouseCursor();
-				this.isIn = false;
-			}
-			if (this.ShouldScale)
-			{
-				base.transform.localScale = this.oriScale;
-			}
+			flag = false;
 		}
-
-		// Token: 0x060067AB RID: 26539 RVA: 0x0028B07F File Offset: 0x0028927F
-		private void OnMouseDown()
+		if (Tools.instance.canClick() && ShouldScale && flag)
 		{
-			if (!this.useEventSystem)
-			{
-				this.isCanDo = true;
-			}
+			ChangeCursor(hoverCursor);
+			isIn = true;
 		}
-
-		// Token: 0x060067AC RID: 26540 RVA: 0x0028B090 File Offset: 0x00289290
-		protected virtual void OnMouseUp()
+		if (ShouldScale)
 		{
-			if (!this.useEventSystem && this.isCanDo)
-			{
-				this.DoPointerClick();
-			}
+			oriScale = ((Component)this).transform.localScale;
+			((Component)this).transform.localScale = oriScale * 1.1f;
 		}
+	}
 
-		// Token: 0x060067AD RID: 26541 RVA: 0x0028B0A8 File Offset: 0x002892A8
-		protected virtual void OnMouseEnter()
+	protected virtual void DoPointerExit()
+	{
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		MapComponent component = ((Component)this).GetComponent<MapComponent>();
+		bool flag = true;
+		if ((Object)(object)component != (Object)null && component.getAvatarNowMapIndex() == component.NodeIndex)
 		{
-			if (!this.useEventSystem)
-			{
-				this.DoPointerEnter();
-			}
+			flag = false;
 		}
-
-		// Token: 0x060067AE RID: 26542 RVA: 0x0028B0B8 File Offset: 0x002892B8
-		protected virtual void OnMouseExit()
+		if ((Tools.instance.canClick() && ShouldScale && flag) || isIn)
 		{
-			if (!this.useEventSystem)
-			{
-				this.DoPointerExit();
-				this.isCanDo = false;
-			}
+			SetMouseCursor.ResetMouseCursor();
+			isIn = false;
 		}
-
-		// Token: 0x17000836 RID: 2102
-		// (set) Token: 0x060067AF RID: 26543 RVA: 0x0028B0CF File Offset: 0x002892CF
-		public bool ClickEnabled
+		if (ShouldScale)
 		{
-			set
-			{
-				this.clickEnabled = value;
-			}
+			((Component)this).transform.localScale = oriScale;
 		}
+	}
 
-		// Token: 0x060067B0 RID: 26544 RVA: 0x0028B0D8 File Offset: 0x002892D8
-		public void OnPointerClick(PointerEventData eventData)
+	private void OnMouseDown()
+	{
+		if (!useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoPointerClick();
-			}
+			isCanDo = true;
 		}
+	}
 
-		// Token: 0x060067B1 RID: 26545 RVA: 0x0028B0E8 File Offset: 0x002892E8
-		public void OnPointerEnter(PointerEventData eventData)
+	protected virtual void OnMouseUp()
+	{
+		if (!useEventSystem && isCanDo)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoPointerEnter();
-			}
+			DoPointerClick();
 		}
+	}
 
-		// Token: 0x060067B2 RID: 26546 RVA: 0x0028B0F8 File Offset: 0x002892F8
-		public void OnPointerExit(PointerEventData eventData)
+	protected virtual void OnMouseEnter()
+	{
+		if (!useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoPointerExit();
-			}
+			DoPointerEnter();
 		}
+	}
 
-		// Token: 0x0400588F RID: 22671
-		[Tooltip("Is object clicking enabled")]
-		[SerializeField]
-		protected bool clickEnabled = true;
-
-		// Token: 0x04005890 RID: 22672
-		[Tooltip("Mouse texture to use when hovering mouse over object")]
-		[SerializeField]
-		protected Texture2D hoverCursor;
-
-		// Token: 0x04005891 RID: 22673
-		[Tooltip("Use the UI Event System to check for clicks. Clicks that hit an overlapping UI object will be ignored. Camera must have a PhysicsRaycaster component, or a Physics2DRaycaster for 2D colliders.")]
-		[SerializeField]
-		protected bool useEventSystem;
-
-		// Token: 0x04005892 RID: 22674
-		public bool ShouldScale = true;
-
-		// Token: 0x04005893 RID: 22675
-		private List<string> btnName = new List<string>
+	protected virtual void OnMouseExit()
+	{
+		if (!useEventSystem)
 		{
-			"likai",
-			"caiji",
-			"xiuxi",
-			"biguan",
-			"tupo",
-			"shop",
-			"kefang",
-			"ui8",
-			"yaofang",
-			"shenbingge",
-			"wudao",
-			"chuhai",
-			"shanglou",
-			"liexi"
-		};
+			DoPointerExit();
+			isCanDo = false;
+		}
+	}
 
-		// Token: 0x04005894 RID: 22676
-		private bool isIn;
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		if (useEventSystem)
+		{
+			DoPointerClick();
+		}
+	}
 
-		// Token: 0x04005895 RID: 22677
-		private bool isCanDo = true;
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		if (useEventSystem)
+		{
+			DoPointerEnter();
+		}
+	}
 
-		// Token: 0x04005896 RID: 22678
-		private Vector3 oriScale;
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		if (useEventSystem)
+		{
+			DoPointerExit();
+		}
 	}
 }

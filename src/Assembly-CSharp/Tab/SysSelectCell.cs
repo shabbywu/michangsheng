@@ -1,69 +1,65 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using YSGame;
 
-namespace Tab
+namespace Tab;
+
+[Serializable]
+public class SysSelectCell : UIBase
 {
-	// Token: 0x020006FE RID: 1790
-	[Serializable]
-	public class SysSelectCell : UIBase
+	private bool _isActive;
+
+	private GameObject _unSelect;
+
+	private GameObject _select;
+
+	private ISysPanelBase _panel;
+
+	public SysSelectCell(GameObject go, ISysPanelBase panel)
 	{
-		// Token: 0x06003976 RID: 14710 RVA: 0x001896B4 File Offset: 0x001878B4
-		public SysSelectCell(GameObject go, ISysPanelBase panel)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Expected O, but got Unknown
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Expected O, but got Unknown
+		_go = go;
+		_isActive = false;
+		Get<FpBtn>("UnSelect").mouseUpEvent.AddListener(new UnityAction(Click));
+		Get<FpBtn>("Select").mouseUpEvent.AddListener(new UnityAction(Click));
+		_unSelect = Get("UnSelect");
+		_select = Get("Select");
+		_select.gameObject.SetActive(false);
+		_panel = panel;
+	}
+
+	public void SetIsSelect(bool flag)
+	{
+		_isActive = flag;
+		UpdateUI();
+	}
+
+	private void UpdateUI()
+	{
+		if (_isActive)
 		{
-			this._go = go;
-			this._isActive = false;
-			base.Get<FpBtn>("UnSelect").mouseUpEvent.AddListener(new UnityAction(this.Click));
-			base.Get<FpBtn>("Select").mouseUpEvent.AddListener(new UnityAction(this.Click));
-			this._unSelect = base.Get("UnSelect", true);
-			this._select = base.Get("Select", true);
-			this._select.gameObject.SetActive(false);
-			this._panel = panel;
+			_select.SetActive(true);
+			_unSelect.SetActive(false);
+			_panel.Show();
 		}
-
-		// Token: 0x06003977 RID: 14711 RVA: 0x00189753 File Offset: 0x00187953
-		public void SetIsSelect(bool flag)
+		else
 		{
-			this._isActive = flag;
-			this.UpdateUI();
+			_unSelect.SetActive(true);
+			_select.SetActive(false);
+			_panel.Hide();
 		}
+	}
 
-		// Token: 0x06003978 RID: 14712 RVA: 0x00189764 File Offset: 0x00187964
-		private void UpdateUI()
+	public void Click()
+	{
+		if (!_isActive)
 		{
-			if (this._isActive)
-			{
-				this._select.SetActive(true);
-				this._unSelect.SetActive(false);
-				this._panel.Show();
-				return;
-			}
-			this._unSelect.SetActive(true);
-			this._select.SetActive(false);
-			this._panel.Hide();
+			SingletonMono<TabUIMag>.Instance.SystemPanel.SelectMag.UpdateAll(this);
+			MusicMag.instance.PlayEffectMusic(13);
 		}
-
-		// Token: 0x06003979 RID: 14713 RVA: 0x001897C0 File Offset: 0x001879C0
-		public void Click()
-		{
-			if (!this._isActive)
-			{
-				SingletonMono<TabUIMag>.Instance.SystemPanel.SelectMag.UpdateAll(this);
-				MusicMag.instance.PlayEffectMusic(13, 1f);
-			}
-		}
-
-		// Token: 0x04003191 RID: 12689
-		private bool _isActive;
-
-		// Token: 0x04003192 RID: 12690
-		private GameObject _unSelect;
-
-		// Token: 0x04003193 RID: 12691
-		private GameObject _select;
-
-		// Token: 0x04003194 RID: 12692
-		private ISysPanelBase _panel;
 	}
 }

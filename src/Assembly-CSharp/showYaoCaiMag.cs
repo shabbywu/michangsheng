@@ -1,27 +1,31 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000471 RID: 1137
 public class showYaoCaiMag : MonoBehaviour
 {
-	// Token: 0x06002391 RID: 9105 RVA: 0x00004095 File Offset: 0x00002295
+	public GameObject InstantObj;
+
+	public UIPopupList mList;
+
+	public GameObject content;
+
+	public UIToggle caoYaoUIToggle;
+
 	private void Awake()
 	{
 	}
 
-	// Token: 0x06002392 RID: 9106 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002393 RID: 9107 RVA: 0x000F3790 File Offset: 0x000F1990
 	public void open()
 	{
-		this.AddItems();
-		foreach (object obj in this.content.transform)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		AddItems();
+		foreach (Transform item in content.transform)
 		{
-			showCaiLiaoImage component = ((Transform)obj).GetComponent<showCaiLiaoImage>();
-			if (component != null && component.ItemID != -1 && component.gameObject.activeSelf)
+			showCaiLiaoImage component = ((Component)item).GetComponent<showCaiLiaoImage>();
+			if ((Object)(object)component != (Object)null && component.ItemID != -1 && ((Component)component).gameObject.activeSelf)
 			{
 				component.Click();
 				break;
@@ -29,16 +33,16 @@ public class showYaoCaiMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002394 RID: 9108 RVA: 0x000F381C File Offset: 0x000F1A1C
 	public void AddItems()
 	{
-		foreach (JSONObject jsonobject in Tools.instance.getPlayer().YaoCaiIsGet.list)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		foreach (JSONObject item in Tools.instance.getPlayer().YaoCaiIsGet.list)
 		{
 			bool flag = true;
-			foreach (object obj in this.content.transform)
+			foreach (Transform item2 in content.transform)
 			{
-				showCaiLiaoImage component = ((Transform)obj).GetComponent<showCaiLiaoImage>();
-				if (component != null && component.ItemID == jsonobject.I)
+				showCaiLiaoImage component = ((Component)item2).GetComponent<showCaiLiaoImage>();
+				if ((Object)(object)component != (Object)null && component.ItemID == item.I)
 				{
 					flag = false;
 					break;
@@ -46,50 +50,51 @@ public class showYaoCaiMag : MonoBehaviour
 			}
 			if (flag)
 			{
-				GameObject gameObject = Tools.InstantiateGameObject(this.InstantObj, this.InstantObj.transform.parent);
-				gameObject.GetComponent<showCaiLiaoImage>().ItemID = jsonobject.I;
-				gameObject.GetComponent<showCaiLiaoImage>().TextName.text = Tools.Code64(jsonData.instance.ItemJsonData[jsonobject.I.ToString()]["name"].str);
+				GameObject obj = Tools.InstantiateGameObject(InstantObj, InstantObj.transform.parent);
+				obj.GetComponent<showCaiLiaoImage>().ItemID = item.I;
+				obj.GetComponent<showCaiLiaoImage>().TextName.text = Tools.Code64(jsonData.instance.ItemJsonData[item.I.ToString()]["name"].str);
 			}
 		}
 	}
 
-	// Token: 0x06002395 RID: 9109 RVA: 0x000F395C File Offset: 0x000F1B5C
 	public void setShowType()
 	{
-		int inputID = this.getInputID(this.mList.value);
-		foreach (object obj in this.content.transform)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Expected O, but got Unknown
+		int inputID = getInputID(mList.value);
+		foreach (Transform item in content.transform)
 		{
-			Transform transform = (Transform)obj;
-			showCaiLiaoImage component = transform.GetComponent<showCaiLiaoImage>();
-			if (component != null && component.ItemID != -1)
+			Transform val = item;
+			showCaiLiaoImage component = ((Component)val).GetComponent<showCaiLiaoImage>();
+			if (!((Object)(object)component != (Object)null) || component.ItemID == -1)
 			{
-				int i = jsonData.instance.ItemJsonData[component.ItemID.ToString()]["quality"].I;
-				if (inputID != 0)
+				continue;
+			}
+			int i = jsonData.instance.ItemJsonData[component.ItemID.ToString()]["quality"].I;
+			if (inputID != 0)
+			{
+				if (i == inputID)
 				{
-					if (i == inputID)
-					{
-						transform.gameObject.SetActive(true);
-					}
-					else
-					{
-						transform.gameObject.SetActive(false);
-					}
+					((Component)val).gameObject.SetActive(true);
 				}
 				else
 				{
-					transform.gameObject.SetActive(true);
+					((Component)val).gameObject.SetActive(false);
 				}
+			}
+			else
+			{
+				((Component)val).gameObject.SetActive(true);
 			}
 		}
 	}
 
-	// Token: 0x06002396 RID: 9110 RVA: 0x000F3A44 File Offset: 0x000F1C44
 	public int getInputID(string name)
 	{
 		int num = 0;
-		foreach (string b in this.mList.items)
+		foreach (string item in mList.items)
 		{
-			if (name == b)
+			if (name == item)
 			{
 				break;
 			}
@@ -98,20 +103,7 @@ public class showYaoCaiMag : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06002397 RID: 9111 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
-
-	// Token: 0x04001C7F RID: 7295
-	public GameObject InstantObj;
-
-	// Token: 0x04001C80 RID: 7296
-	public UIPopupList mList;
-
-	// Token: 0x04001C81 RID: 7297
-	public GameObject content;
-
-	// Token: 0x04001C82 RID: 7298
-	public UIToggle caoYaoUIToggle;
 }

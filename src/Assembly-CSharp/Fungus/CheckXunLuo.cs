@@ -1,54 +1,47 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTools", "CheckXunLuo", "检查是否巡逻到玩家", 0)]
+[AddComponentMenu("")]
+public class CheckXunLuo : Command
 {
-	// Token: 0x02000F7F RID: 3967
-	[CommandInfo("YSTools", "CheckXunLuo", "检查是否巡逻到玩家", 0)]
-	[AddComponentMenu("")]
-	public class CheckXunLuo : Command
+	[Tooltip("npcId")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable npcId;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006F32 RID: 28466 RVA: 0x002A68E4 File Offset: 0x002A4AE4
-		public override void OnEnter()
+		if (NpcJieSuanManager.inst.isCanJieSuan)
 		{
-			if (NpcJieSuanManager.inst.isCanJieSuan)
+			List<int> xunLuoNpcList = NpcJieSuanManager.inst.GetXunLuoNpcList(Tools.getScreenName(), Tools.instance.getPlayer().fubenContorl[Tools.getScreenName()].NowIndex);
+			if (xunLuoNpcList.Count > 0)
 			{
-				List<int> xunLuoNpcList = NpcJieSuanManager.inst.GetXunLuoNpcList(Tools.getScreenName(), Tools.instance.getPlayer().fubenContorl[Tools.getScreenName()].NowIndex);
-				if (xunLuoNpcList.Count > 0)
-				{
-					this.npcId.Value = xunLuoNpcList[NpcJieSuanManager.inst.getRandomInt(0, xunLuoNpcList.Count - 1)];
-				}
-				else
-				{
-					this.npcId.Value = 0;
-				}
+				npcId.Value = xunLuoNpcList[NpcJieSuanManager.inst.getRandomInt(0, xunLuoNpcList.Count - 1)];
 			}
 			else
 			{
-				this.npcId.Value = 0;
+				npcId.Value = 0;
 			}
-			this.Continue();
 		}
-
-		// Token: 0x06006F33 RID: 28467 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			npcId.Value = 0;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006F34 RID: 28468 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005BF6 RID: 23542
-		[Tooltip("npcId")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable npcId;
+	public override void OnReset()
+	{
 	}
 }

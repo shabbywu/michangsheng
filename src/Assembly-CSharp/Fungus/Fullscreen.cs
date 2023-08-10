@@ -1,45 +1,40 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Camera", "Fullscreen", "Sets the application to fullscreen, windowed or toggles the current state.", 0)]
+[AddComponentMenu("")]
+public class Fullscreen : Command
 {
-	// Token: 0x02000DD4 RID: 3540
-	[CommandInfo("Camera", "Fullscreen", "Sets the application to fullscreen, windowed or toggles the current state.", 0)]
-	[AddComponentMenu("")]
-	public class Fullscreen : Command
+	[SerializeField]
+	protected FullscreenMode fullscreenMode;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006491 RID: 25745 RVA: 0x0027F710 File Offset: 0x0027D910
-		public override void OnEnter()
+		switch (fullscreenMode)
 		{
-			switch (this.fullscreenMode)
-			{
-			case FullscreenMode.Toggle:
-				Screen.fullScreen = !Screen.fullScreen;
-				break;
-			case FullscreenMode.Fullscreen:
-				Screen.fullScreen = true;
-				break;
-			case FullscreenMode.Windowed:
-				Screen.fullScreen = false;
-				break;
-			}
-			this.Continue();
+		case FullscreenMode.Toggle:
+			Screen.fullScreen = !Screen.fullScreen;
+			break;
+		case FullscreenMode.Fullscreen:
+			Screen.fullScreen = true;
+			break;
+		case FullscreenMode.Windowed:
+			Screen.fullScreen = false;
+			break;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006492 RID: 25746 RVA: 0x0027F75B File Offset: 0x0027D95B
-		public override string GetSummary()
-		{
-			return this.fullscreenMode.ToString();
-		}
+	public override string GetSummary()
+	{
+		return fullscreenMode.ToString();
+	}
 
-		// Token: 0x06006493 RID: 25747 RVA: 0x0027EC04 File Offset: 0x0027CE04
-		public override Color GetButtonColor()
-		{
-			return new Color32(216, 228, 170, byte.MaxValue);
-		}
-
-		// Token: 0x0400566C RID: 22124
-		[SerializeField]
-		protected FullscreenMode fullscreenMode;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)216, (byte)228, (byte)170, byte.MaxValue));
 	}
 }

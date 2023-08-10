@@ -1,37 +1,34 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F2 RID: 242
 public class DamageSkill : MonoBehaviour
 {
-	// Token: 0x06000B8A RID: 2954 RVA: 0x000466E4 File Offset: 0x000448E4
+	public int Force;
+
+	public string TagDamage;
+
+	public int Damage;
+
+	public float Radius;
+
 	private void Start()
 	{
-		foreach (Collider collider in Physics.OverlapSphere(base.transform.position, this.Radius))
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		Collider[] array = Physics.OverlapSphere(((Component)this).transform.position, Radius);
+		foreach (Collider val in array)
 		{
-			if (collider)
+			if (Object.op_Implicit((Object)(object)val))
 			{
-				if (collider.tag == this.TagDamage && collider.gameObject.GetComponent<CharacterStatus>())
+				if (((Component)val).tag == TagDamage && Object.op_Implicit((Object)(object)((Component)val).gameObject.GetComponent<CharacterStatus>()))
 				{
-					collider.gameObject.GetComponent<CharacterStatus>().ApplayDamage(this.Damage, Vector3.zero);
+					((Component)val).gameObject.GetComponent<CharacterStatus>().ApplayDamage(Damage, Vector3.zero);
 				}
-				if (collider.GetComponent<Rigidbody>())
+				if (Object.op_Implicit((Object)(object)((Component)val).GetComponent<Rigidbody>()))
 				{
-					collider.GetComponent<Rigidbody>().AddExplosionForce((float)this.Force, base.transform.position, this.Radius, 3f);
+					((Component)val).GetComponent<Rigidbody>().AddExplosionForce((float)Force, ((Component)this).transform.position, Radius, 3f);
 				}
 			}
 		}
 	}
-
-	// Token: 0x040007BF RID: 1983
-	public int Force;
-
-	// Token: 0x040007C0 RID: 1984
-	public string TagDamage;
-
-	// Token: 0x040007C1 RID: 1985
-	public int Damage;
-
-	// Token: 0x040007C2 RID: 1986
-	public float Radius;
 }

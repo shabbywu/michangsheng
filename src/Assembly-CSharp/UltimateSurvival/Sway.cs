@@ -1,45 +1,40 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[Serializable]
+public class Sway
 {
-	// Token: 0x02000622 RID: 1570
-	[Serializable]
-	public class Sway
+	[SerializeField]
+	private bool Enabled;
+
+	[SerializeField]
+	private Vector2 Magnitude;
+
+	[SerializeField]
+	private float LerpSpeed;
+
+	public Vector2 Value { get; private set; }
+
+	public Sway GetClone()
 	{
-		// Token: 0x17000456 RID: 1110
-		// (get) Token: 0x060031F0 RID: 12784 RVA: 0x00161DA5 File Offset: 0x0015FFA5
-		// (set) Token: 0x060031F1 RID: 12785 RVA: 0x00161DAD File Offset: 0x0015FFAD
-		public Vector2 Value { get; private set; }
+		return (Sway)MemberwiseClone();
+	}
 
-		// Token: 0x060031F2 RID: 12786 RVA: 0x00161DB6 File Offset: 0x0015FFB6
-		public Sway GetClone()
+	public void CalculateSway(Vector2 input, float deltaTime)
+	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		if (Enabled)
 		{
-			return (Sway)base.MemberwiseClone();
+			Vector2 magnitude = Magnitude;
+			((Vector2)(ref magnitude)).Scale(input);
+			Value = Vector2.Lerp(Value, magnitude, deltaTime * LerpSpeed);
 		}
-
-		// Token: 0x060031F3 RID: 12787 RVA: 0x00161DC4 File Offset: 0x0015FFC4
-		public void CalculateSway(Vector2 input, float deltaTime)
-		{
-			if (!this.Enabled)
-			{
-				return;
-			}
-			Vector2 magnitude = this.Magnitude;
-			magnitude.Scale(input);
-			this.Value = Vector2.Lerp(this.Value, magnitude, deltaTime * this.LerpSpeed);
-		}
-
-		// Token: 0x04002C3F RID: 11327
-		[SerializeField]
-		private bool Enabled;
-
-		// Token: 0x04002C40 RID: 11328
-		[SerializeField]
-		private Vector2 Magnitude;
-
-		// Token: 0x04002C41 RID: 11329
-		[SerializeField]
-		private float LerpSpeed;
 	}
 }

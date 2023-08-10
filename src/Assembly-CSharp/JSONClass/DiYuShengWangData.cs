@@ -1,74 +1,60 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class DiYuShengWangData : IJSONClass
 {
-	// Token: 0x0200082F RID: 2095
-	public class DiYuShengWangData : IJSONClass
+	public static Dictionary<int, DiYuShengWangData> DataDict = new Dictionary<int, DiYuShengWangData>();
+
+	public static List<DiYuShengWangData> DataList = new List<DiYuShengWangData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int ShiLi;
+
+	public int ShengWangLV;
+
+	public int ShenFen;
+
+	public string TeQuan;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003ECE RID: 16078 RVA: 0x001AD524 File Offset: 0x001AB724
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.DiYuShengWangData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.DiYuShengWangData.list)
+			try
 			{
-				try
+				DiYuShengWangData diYuShengWangData = new DiYuShengWangData();
+				diYuShengWangData.id = item["id"].I;
+				diYuShengWangData.ShiLi = item["ShiLi"].I;
+				diYuShengWangData.ShengWangLV = item["ShengWangLV"].I;
+				diYuShengWangData.ShenFen = item["ShenFen"].I;
+				diYuShengWangData.TeQuan = item["TeQuan"].Str;
+				if (DataDict.ContainsKey(diYuShengWangData.id))
 				{
-					DiYuShengWangData diYuShengWangData = new DiYuShengWangData();
-					diYuShengWangData.id = jsonobject["id"].I;
-					diYuShengWangData.ShiLi = jsonobject["ShiLi"].I;
-					diYuShengWangData.ShengWangLV = jsonobject["ShengWangLV"].I;
-					diYuShengWangData.ShenFen = jsonobject["ShenFen"].I;
-					diYuShengWangData.TeQuan = jsonobject["TeQuan"].Str;
-					if (DiYuShengWangData.DataDict.ContainsKey(diYuShengWangData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典DiYuShengWangData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", diYuShengWangData.id));
-					}
-					else
-					{
-						DiYuShengWangData.DataDict.Add(diYuShengWangData.id, diYuShengWangData);
-						DiYuShengWangData.DataList.Add(diYuShengWangData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典DiYuShengWangData.DataDict添加数据时出现重复的键，Key:{diYuShengWangData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典DiYuShengWangData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(diYuShengWangData.id, diYuShengWangData);
+				DataList.Add(diYuShengWangData);
 			}
-			if (DiYuShengWangData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				DiYuShengWangData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典DiYuShengWangData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003ECF RID: 16079 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003A85 RID: 14981
-		public static Dictionary<int, DiYuShengWangData> DataDict = new Dictionary<int, DiYuShengWangData>();
-
-		// Token: 0x04003A86 RID: 14982
-		public static List<DiYuShengWangData> DataList = new List<DiYuShengWangData>();
-
-		// Token: 0x04003A87 RID: 14983
-		public static Action OnInitFinishAction = new Action(DiYuShengWangData.OnInitFinish);
-
-		// Token: 0x04003A88 RID: 14984
-		public int id;
-
-		// Token: 0x04003A89 RID: 14985
-		public int ShiLi;
-
-		// Token: 0x04003A8A RID: 14986
-		public int ShengWangLV;
-
-		// Token: 0x04003A8B RID: 14987
-		public int ShenFen;
-
-		// Token: 0x04003A8C RID: 14988
-		public string TeQuan;
+	private static void OnInitFinish()
+	{
 	}
 }

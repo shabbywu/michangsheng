@@ -1,467 +1,731 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x0200008C RID: 140
 public abstract class UIBasicSprite : UIWidget
 {
-	// Token: 0x170000D4 RID: 212
-	// (get) Token: 0x0600075F RID: 1887 RVA: 0x0002B887 File Offset: 0x00029A87
-	// (set) Token: 0x06000760 RID: 1888 RVA: 0x0002B88F File Offset: 0x00029A8F
-	public virtual UIBasicSprite.Type type
+	public enum Type
+	{
+		Simple,
+		Sliced,
+		Tiled,
+		Filled,
+		Advanced
+	}
+
+	public enum FillDirection
+	{
+		Horizontal,
+		Vertical,
+		Radial90,
+		Radial180,
+		Radial360
+	}
+
+	public enum AdvancedType
+	{
+		Invisible,
+		Sliced,
+		Tiled
+	}
+
+	public enum Flip
+	{
+		Nothing,
+		Horizontally,
+		Vertically,
+		Both
+	}
+
+	[HideInInspector]
+	[SerializeField]
+	protected Type mType;
+
+	[HideInInspector]
+	[SerializeField]
+	protected FillDirection mFillDirection = FillDirection.Radial360;
+
+	[Range(0f, 1f)]
+	[HideInInspector]
+	[SerializeField]
+	protected float mFillAmount = 1f;
+
+	[HideInInspector]
+	[SerializeField]
+	protected bool mInvert;
+
+	[HideInInspector]
+	[SerializeField]
+	protected Flip mFlip;
+
+	[NonSerialized]
+	private Rect mInnerUV;
+
+	[NonSerialized]
+	private Rect mOuterUV;
+
+	public AdvancedType centerType = AdvancedType.Sliced;
+
+	public AdvancedType leftType = AdvancedType.Sliced;
+
+	public AdvancedType rightType = AdvancedType.Sliced;
+
+	public AdvancedType bottomType = AdvancedType.Sliced;
+
+	public AdvancedType topType = AdvancedType.Sliced;
+
+	protected static Vector2[] mTempPos = (Vector2[])(object)new Vector2[4];
+
+	protected static Vector2[] mTempUVs = (Vector2[])(object)new Vector2[4];
+
+	public virtual Type type
 	{
 		get
 		{
-			return this.mType;
+			return mType;
 		}
 		set
 		{
-			if (this.mType != value)
+			if (mType != value)
 			{
-				this.mType = value;
-				this.MarkAsChanged();
+				mType = value;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170000D5 RID: 213
-	// (get) Token: 0x06000761 RID: 1889 RVA: 0x0002B8A7 File Offset: 0x00029AA7
-	// (set) Token: 0x06000762 RID: 1890 RVA: 0x0002B8AF File Offset: 0x00029AAF
-	public UIBasicSprite.Flip flip
+	public Flip flip
 	{
 		get
 		{
-			return this.mFlip;
+			return mFlip;
 		}
 		set
 		{
-			if (this.mFlip != value)
+			if (mFlip != value)
 			{
-				this.mFlip = value;
-				this.MarkAsChanged();
+				mFlip = value;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170000D6 RID: 214
-	// (get) Token: 0x06000763 RID: 1891 RVA: 0x0002B8C7 File Offset: 0x00029AC7
-	// (set) Token: 0x06000764 RID: 1892 RVA: 0x0002B8CF File Offset: 0x00029ACF
-	public UIBasicSprite.FillDirection fillDirection
+	public FillDirection fillDirection
 	{
 		get
 		{
-			return this.mFillDirection;
+			return mFillDirection;
 		}
 		set
 		{
-			if (this.mFillDirection != value)
+			if (mFillDirection != value)
 			{
-				this.mFillDirection = value;
-				this.mChanged = true;
+				mFillDirection = value;
+				mChanged = true;
 			}
 		}
 	}
 
-	// Token: 0x170000D7 RID: 215
-	// (get) Token: 0x06000765 RID: 1893 RVA: 0x0002B8E8 File Offset: 0x00029AE8
-	// (set) Token: 0x06000766 RID: 1894 RVA: 0x0002B8F0 File Offset: 0x00029AF0
 	public float fillAmount
 	{
 		get
 		{
-			return this.mFillAmount;
+			return mFillAmount;
 		}
 		set
 		{
 			float num = Mathf.Clamp01(value);
-			if (this.mFillAmount != num)
+			if (mFillAmount != num)
 			{
-				this.mFillAmount = num;
-				this.mChanged = true;
+				mFillAmount = num;
+				mChanged = true;
 			}
 		}
 	}
 
-	// Token: 0x170000D8 RID: 216
-	// (get) Token: 0x06000767 RID: 1895 RVA: 0x0002B91C File Offset: 0x00029B1C
 	public override int minWidth
 	{
 		get
 		{
-			if (this.type == UIBasicSprite.Type.Sliced || this.type == UIBasicSprite.Type.Advanced)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+			if (type == Type.Sliced || type == Type.Advanced)
 			{
-				Vector4 vector = this.border * this.pixelSize;
-				int num = Mathf.RoundToInt(vector.x + vector.z);
+				Vector4 val = border * pixelSize;
+				int num = Mathf.RoundToInt(val.x + val.z);
 				return Mathf.Max(base.minWidth, ((num & 1) == 1) ? (num + 1) : num);
 			}
 			return base.minWidth;
 		}
 	}
 
-	// Token: 0x170000D9 RID: 217
-	// (get) Token: 0x06000768 RID: 1896 RVA: 0x0002B980 File Offset: 0x00029B80
 	public override int minHeight
 	{
 		get
 		{
-			if (this.type == UIBasicSprite.Type.Sliced || this.type == UIBasicSprite.Type.Advanced)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+			if (type == Type.Sliced || type == Type.Advanced)
 			{
-				Vector4 vector = this.border * this.pixelSize;
-				int num = Mathf.RoundToInt(vector.y + vector.w);
+				Vector4 val = border * pixelSize;
+				int num = Mathf.RoundToInt(val.y + val.w);
 				return Mathf.Max(base.minHeight, ((num & 1) == 1) ? (num + 1) : num);
 			}
 			return base.minHeight;
 		}
 	}
 
-	// Token: 0x170000DA RID: 218
-	// (get) Token: 0x06000769 RID: 1897 RVA: 0x0002B9E2 File Offset: 0x00029BE2
-	// (set) Token: 0x0600076A RID: 1898 RVA: 0x0002B9EA File Offset: 0x00029BEA
 	public bool invert
 	{
 		get
 		{
-			return this.mInvert;
+			return mInvert;
 		}
 		set
 		{
-			if (this.mInvert != value)
+			if (mInvert != value)
 			{
-				this.mInvert = value;
-				this.mChanged = true;
+				mInvert = value;
+				mChanged = true;
 			}
 		}
 	}
 
-	// Token: 0x170000DB RID: 219
-	// (get) Token: 0x0600076B RID: 1899 RVA: 0x0002BA04 File Offset: 0x00029C04
 	public bool hasBorder
 	{
 		get
 		{
-			Vector4 border = this.border;
-			return border.x != 0f || border.y != 0f || border.z != 0f || border.w != 0f;
-		}
-	}
-
-	// Token: 0x170000DC RID: 220
-	// (get) Token: 0x0600076C RID: 1900 RVA: 0x0000280F File Offset: 0x00000A0F
-	public virtual bool premultipliedAlpha
-	{
-		get
-		{
-			return false;
-		}
-	}
-
-	// Token: 0x170000DD RID: 221
-	// (get) Token: 0x0600076D RID: 1901 RVA: 0x0002BA51 File Offset: 0x00029C51
-	public virtual float pixelSize
-	{
-		get
-		{
-			return 1f;
-		}
-	}
-
-	// Token: 0x170000DE RID: 222
-	// (get) Token: 0x0600076E RID: 1902 RVA: 0x0002BA58 File Offset: 0x00029C58
-	private Vector4 drawingUVs
-	{
-		get
-		{
-			switch (this.mFlip)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+			Vector4 val = border;
+			if (val.x == 0f && val.y == 0f && val.z == 0f)
 			{
-			case UIBasicSprite.Flip.Horizontally:
-				return new Vector4(this.mOuterUV.xMax, this.mOuterUV.yMin, this.mOuterUV.xMin, this.mOuterUV.yMax);
-			case UIBasicSprite.Flip.Vertically:
-				return new Vector4(this.mOuterUV.xMin, this.mOuterUV.yMax, this.mOuterUV.xMax, this.mOuterUV.yMin);
-			case UIBasicSprite.Flip.Both:
-				return new Vector4(this.mOuterUV.xMax, this.mOuterUV.yMax, this.mOuterUV.xMin, this.mOuterUV.yMin);
-			default:
-				return new Vector4(this.mOuterUV.xMin, this.mOuterUV.yMin, this.mOuterUV.xMax, this.mOuterUV.yMax);
+				return val.w != 0f;
 			}
+			return true;
 		}
 	}
 
-	// Token: 0x170000DF RID: 223
-	// (get) Token: 0x0600076F RID: 1903 RVA: 0x0002BB4C File Offset: 0x00029D4C
+	public virtual bool premultipliedAlpha => false;
+
+	public virtual float pixelSize => 1f;
+
+	private Vector4 drawingUVs => (Vector4)(mFlip switch
+	{
+		Flip.Horizontally => new Vector4(((Rect)(ref mOuterUV)).xMax, ((Rect)(ref mOuterUV)).yMin, ((Rect)(ref mOuterUV)).xMin, ((Rect)(ref mOuterUV)).yMax), 
+		Flip.Vertically => new Vector4(((Rect)(ref mOuterUV)).xMin, ((Rect)(ref mOuterUV)).yMax, ((Rect)(ref mOuterUV)).xMax, ((Rect)(ref mOuterUV)).yMin), 
+		Flip.Both => new Vector4(((Rect)(ref mOuterUV)).xMax, ((Rect)(ref mOuterUV)).yMax, ((Rect)(ref mOuterUV)).xMin, ((Rect)(ref mOuterUV)).yMin), 
+		_ => new Vector4(((Rect)(ref mOuterUV)).xMin, ((Rect)(ref mOuterUV)).yMin, ((Rect)(ref mOuterUV)).xMax, ((Rect)(ref mOuterUV)).yMax), 
+	});
+
 	private Color32 drawingColor
 	{
 		get
 		{
-			Color color = base.color;
-			color.a = this.finalAlpha;
-			return this.premultipliedAlpha ? NGUITools.ApplyPMA(color) : color;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+			Color val = base.color;
+			val.a = finalAlpha;
+			return Color32.op_Implicit(premultipliedAlpha ? NGUITools.ApplyPMA(val) : val);
 		}
 	}
 
-	// Token: 0x06000770 RID: 1904 RVA: 0x0002BB84 File Offset: 0x00029D84
 	protected void Fill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols, Rect outer, Rect inner)
 	{
-		this.mOuterUV = outer;
-		this.mInnerUV = inner;
-		switch (this.type)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		mOuterUV = outer;
+		mInnerUV = inner;
+		switch (type)
 		{
-		case UIBasicSprite.Type.Simple:
-			this.SimpleFill(verts, uvs, cols);
-			return;
-		case UIBasicSprite.Type.Sliced:
-			this.SlicedFill(verts, uvs, cols);
-			return;
-		case UIBasicSprite.Type.Tiled:
-			this.TiledFill(verts, uvs, cols);
-			return;
-		case UIBasicSprite.Type.Filled:
-			this.FilledFill(verts, uvs, cols);
-			return;
-		case UIBasicSprite.Type.Advanced:
-			this.AdvancedFill(verts, uvs, cols);
-			return;
-		default:
-			return;
+		case Type.Simple:
+			SimpleFill(verts, uvs, cols);
+			break;
+		case Type.Sliced:
+			SlicedFill(verts, uvs, cols);
+			break;
+		case Type.Filled:
+			FilledFill(verts, uvs, cols);
+			break;
+		case Type.Tiled:
+			TiledFill(verts, uvs, cols);
+			break;
+		case Type.Advanced:
+			AdvancedFill(verts, uvs, cols);
+			break;
 		}
 	}
 
-	// Token: 0x06000771 RID: 1905 RVA: 0x0002BBF4 File Offset: 0x00029DF4
 	private void SimpleFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Vector4 drawingDimensions = this.drawingDimensions;
-		Vector4 drawingUVs = this.drawingUVs;
-		Color32 drawingColor = this.drawingColor;
-		verts.Add(new Vector3(drawingDimensions.x, drawingDimensions.y));
-		verts.Add(new Vector3(drawingDimensions.x, drawingDimensions.w));
-		verts.Add(new Vector3(drawingDimensions.z, drawingDimensions.w));
-		verts.Add(new Vector3(drawingDimensions.z, drawingDimensions.y));
-		uvs.Add(new Vector2(drawingUVs.x, drawingUVs.y));
-		uvs.Add(new Vector2(drawingUVs.x, drawingUVs.w));
-		uvs.Add(new Vector2(drawingUVs.z, drawingUVs.w));
-		uvs.Add(new Vector2(drawingUVs.z, drawingUVs.y));
-		cols.Add(drawingColor);
-		cols.Add(drawingColor);
-		cols.Add(drawingColor);
-		cols.Add(drawingColor);
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		Vector4 val = drawingDimensions;
+		Vector4 val2 = drawingUVs;
+		Color32 item = drawingColor;
+		verts.Add(new Vector3(val.x, val.y));
+		verts.Add(new Vector3(val.x, val.w));
+		verts.Add(new Vector3(val.z, val.w));
+		verts.Add(new Vector3(val.z, val.y));
+		uvs.Add(new Vector2(val2.x, val2.y));
+		uvs.Add(new Vector2(val2.x, val2.w));
+		uvs.Add(new Vector2(val2.z, val2.w));
+		uvs.Add(new Vector2(val2.z, val2.y));
+		cols.Add(item);
+		cols.Add(item);
+		cols.Add(item);
+		cols.Add(item);
 	}
 
-	// Token: 0x06000772 RID: 1906 RVA: 0x0002BCEC File Offset: 0x00029EEC
 	private void SlicedFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Vector4 vector = this.border * this.pixelSize;
-		if (vector.x == 0f && vector.y == 0f && vector.z == 0f && vector.w == 0f)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0274: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0333: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0422: Unknown result type (might be due to invalid IL or missing references)
+		//IL_044e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_047b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0500: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_055a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0565: Unknown result type (might be due to invalid IL or missing references)
+		//IL_056c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0573: Unknown result type (might be due to invalid IL or missing references)
+		//IL_057a: Unknown result type (might be due to invalid IL or missing references)
+		Vector4 val = border * pixelSize;
+		if (val.x == 0f && val.y == 0f && val.z == 0f && val.w == 0f)
 		{
-			this.SimpleFill(verts, uvs, cols);
+			SimpleFill(verts, uvs, cols);
 			return;
 		}
-		Color32 drawingColor = this.drawingColor;
-		Vector4 drawingDimensions = this.drawingDimensions;
-		UIBasicSprite.mTempPos[0].x = drawingDimensions.x;
-		UIBasicSprite.mTempPos[0].y = drawingDimensions.y;
-		UIBasicSprite.mTempPos[3].x = drawingDimensions.z;
-		UIBasicSprite.mTempPos[3].y = drawingDimensions.w;
-		if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+		Color32 item = drawingColor;
+		Vector4 val2 = drawingDimensions;
+		mTempPos[0].x = val2.x;
+		mTempPos[0].y = val2.y;
+		mTempPos[3].x = val2.z;
+		mTempPos[3].y = val2.w;
+		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
 		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.z;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.x;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMax;
+			mTempPos[1].x = mTempPos[0].x + val.z;
+			mTempPos[2].x = mTempPos[3].x - val.x;
+			mTempUVs[3].x = ((Rect)(ref mOuterUV)).xMin;
+			mTempUVs[2].x = ((Rect)(ref mInnerUV)).xMin;
+			mTempUVs[1].x = ((Rect)(ref mInnerUV)).xMax;
+			mTempUVs[0].x = ((Rect)(ref mOuterUV)).xMax;
 		}
 		else
 		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.x;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.z;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMax;
+			mTempPos[1].x = mTempPos[0].x + val.x;
+			mTempPos[2].x = mTempPos[3].x - val.z;
+			mTempUVs[0].x = ((Rect)(ref mOuterUV)).xMin;
+			mTempUVs[1].x = ((Rect)(ref mInnerUV)).xMin;
+			mTempUVs[2].x = ((Rect)(ref mInnerUV)).xMax;
+			mTempUVs[3].x = ((Rect)(ref mOuterUV)).xMax;
 		}
-		if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+		if (mFlip == Flip.Vertically || mFlip == Flip.Both)
 		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.w;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.y;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMax;
+			mTempPos[1].y = mTempPos[0].y + val.w;
+			mTempPos[2].y = mTempPos[3].y - val.y;
+			mTempUVs[3].y = ((Rect)(ref mOuterUV)).yMin;
+			mTempUVs[2].y = ((Rect)(ref mInnerUV)).yMin;
+			mTempUVs[1].y = ((Rect)(ref mInnerUV)).yMax;
+			mTempUVs[0].y = ((Rect)(ref mOuterUV)).yMax;
 		}
 		else
 		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.y;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.w;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMax;
+			mTempPos[1].y = mTempPos[0].y + val.y;
+			mTempPos[2].y = mTempPos[3].y - val.w;
+			mTempUVs[0].y = ((Rect)(ref mOuterUV)).yMin;
+			mTempUVs[1].y = ((Rect)(ref mInnerUV)).yMin;
+			mTempUVs[2].y = ((Rect)(ref mInnerUV)).yMax;
+			mTempUVs[3].y = ((Rect)(ref mOuterUV)).yMax;
 		}
 		for (int i = 0; i < 3; i++)
 		{
 			int num = i + 1;
 			for (int j = 0; j < 3; j++)
 			{
-				if (this.centerType != UIBasicSprite.AdvancedType.Invisible || i != 1 || j != 1)
+				if (centerType != 0 || i != 1 || j != 1)
 				{
 					int num2 = j + 1;
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[j].y));
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num2].y));
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[num2].y));
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[j].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num2].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[num2].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y));
-					cols.Add(drawingColor);
-					cols.Add(drawingColor);
-					cols.Add(drawingColor);
-					cols.Add(drawingColor);
+					verts.Add(new Vector3(mTempPos[i].x, mTempPos[j].y));
+					verts.Add(new Vector3(mTempPos[i].x, mTempPos[num2].y));
+					verts.Add(new Vector3(mTempPos[num].x, mTempPos[num2].y));
+					verts.Add(new Vector3(mTempPos[num].x, mTempPos[j].y));
+					uvs.Add(new Vector2(mTempUVs[i].x, mTempUVs[j].y));
+					uvs.Add(new Vector2(mTempUVs[i].x, mTempUVs[num2].y));
+					uvs.Add(new Vector2(mTempUVs[num].x, mTempUVs[num2].y));
+					uvs.Add(new Vector2(mTempUVs[num].x, mTempUVs[j].y));
+					cols.Add(item);
+					cols.Add(item);
+					cols.Add(item);
+					cols.Add(item);
 				}
 			}
 		}
 	}
 
-	// Token: 0x06000773 RID: 1907 RVA: 0x0002C294 File Offset: 0x0002A494
 	private void TiledFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0135: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0193: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0207: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0216: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0234: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0243: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0261: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0270: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0282: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0289: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0290: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0298: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fa: Unknown result type (might be due to invalid IL or missing references)
+		Texture val = mainTexture;
+		if ((Object)(object)val == (Object)null)
 		{
 			return;
 		}
-		Vector2 vector;
-		vector..ctor(this.mInnerUV.width * (float)mainTexture.width, this.mInnerUV.height * (float)mainTexture.height);
-		vector *= this.pixelSize;
-		if (mainTexture == null || vector.x < 2f || vector.y < 2f)
+		Vector2 val2 = default(Vector2);
+		((Vector2)(ref val2))._002Ector(((Rect)(ref mInnerUV)).width * (float)val.width, ((Rect)(ref mInnerUV)).height * (float)val.height);
+		val2 *= pixelSize;
+		if ((Object)(object)val == (Object)null || val2.x < 2f || val2.y < 2f)
 		{
 			return;
 		}
-		Color32 drawingColor = this.drawingColor;
-		Vector4 drawingDimensions = this.drawingDimensions;
-		Vector4 vector2;
-		if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+		Color32 item = drawingColor;
+		Vector4 val3 = drawingDimensions;
+		Vector4 val4 = default(Vector4);
+		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
 		{
-			vector2.x = this.mInnerUV.xMax;
-			vector2.z = this.mInnerUV.xMin;
+			val4.x = ((Rect)(ref mInnerUV)).xMax;
+			val4.z = ((Rect)(ref mInnerUV)).xMin;
 		}
 		else
 		{
-			vector2.x = this.mInnerUV.xMin;
-			vector2.z = this.mInnerUV.xMax;
+			val4.x = ((Rect)(ref mInnerUV)).xMin;
+			val4.z = ((Rect)(ref mInnerUV)).xMax;
 		}
-		if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+		if (mFlip == Flip.Vertically || mFlip == Flip.Both)
 		{
-			vector2.y = this.mInnerUV.yMax;
-			vector2.w = this.mInnerUV.yMin;
+			val4.y = ((Rect)(ref mInnerUV)).yMax;
+			val4.w = ((Rect)(ref mInnerUV)).yMin;
 		}
 		else
 		{
-			vector2.y = this.mInnerUV.yMin;
-			vector2.w = this.mInnerUV.yMax;
+			val4.y = ((Rect)(ref mInnerUV)).yMin;
+			val4.w = ((Rect)(ref mInnerUV)).yMax;
 		}
-		float num = drawingDimensions.x;
-		float num2 = drawingDimensions.y;
-		float x = vector2.x;
-		float y = vector2.y;
-		while (num2 < drawingDimensions.w)
+		float x = val3.x;
+		float num = val3.y;
+		float x2 = val4.x;
+		float y = val4.y;
+		for (; num < val3.w; num += val2.y)
 		{
-			num = drawingDimensions.x;
-			float num3 = num2 + vector.y;
-			float num4 = vector2.w;
-			if (num3 > drawingDimensions.w)
+			x = val3.x;
+			float num2 = num + val2.y;
+			float num3 = val4.w;
+			if (num2 > val3.w)
 			{
-				num4 = Mathf.Lerp(vector2.y, vector2.w, (drawingDimensions.w - num2) / vector.y);
-				num3 = drawingDimensions.w;
+				num3 = Mathf.Lerp(val4.y, val4.w, (val3.w - num) / val2.y);
+				num2 = val3.w;
 			}
-			while (num < drawingDimensions.z)
+			for (; x < val3.z; x += val2.x)
 			{
-				float num5 = num + vector.x;
-				float num6 = vector2.z;
-				if (num5 > drawingDimensions.z)
+				float num4 = x + val2.x;
+				float num5 = val4.z;
+				if (num4 > val3.z)
 				{
-					num6 = Mathf.Lerp(vector2.x, vector2.z, (drawingDimensions.z - num) / vector.x);
-					num5 = drawingDimensions.z;
+					num5 = Mathf.Lerp(val4.x, val4.z, (val3.z - x) / val2.x);
+					num4 = val3.z;
 				}
-				verts.Add(new Vector3(num, num2));
-				verts.Add(new Vector3(num, num3));
-				verts.Add(new Vector3(num5, num3));
-				verts.Add(new Vector3(num5, num2));
-				uvs.Add(new Vector2(x, y));
-				uvs.Add(new Vector2(x, num4));
-				uvs.Add(new Vector2(num6, num4));
-				uvs.Add(new Vector2(num6, y));
-				cols.Add(drawingColor);
-				cols.Add(drawingColor);
-				cols.Add(drawingColor);
-				cols.Add(drawingColor);
-				num += vector.x;
+				verts.Add(new Vector3(x, num));
+				verts.Add(new Vector3(x, num2));
+				verts.Add(new Vector3(num4, num2));
+				verts.Add(new Vector3(num4, num));
+				uvs.Add(new Vector2(x2, y));
+				uvs.Add(new Vector2(x2, num3));
+				uvs.Add(new Vector2(num5, num3));
+				uvs.Add(new Vector2(num5, y));
+				cols.Add(item);
+				cols.Add(item);
+				cols.Add(item);
+				cols.Add(item);
 			}
-			num2 += vector.y;
 		}
 	}
 
-	// Token: 0x06000774 RID: 1908 RVA: 0x0002C568 File Offset: 0x0002A768
 	private void FilledFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		if (this.mFillAmount < 0.001f)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0161: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0199: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0209: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0231: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0236: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0103: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0906: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0911: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0284: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0296: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0302: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0308: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0345: Unknown result type (might be due to invalid IL or missing references)
+		//IL_034b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0388: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0414: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0451: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0457: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0494: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0620: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0626: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0663: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0669: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_072c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0732: Unknown result type (might be due to invalid IL or missing references)
+		//IL_076f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0775: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0575: Unknown result type (might be due to invalid IL or missing references)
+		//IL_057a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_058c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0597: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08c2: Unknown result type (might be due to invalid IL or missing references)
+		if (mFillAmount < 0.001f)
 		{
 			return;
 		}
-		Vector4 drawingDimensions = this.drawingDimensions;
-		Vector4 drawingUVs = this.drawingUVs;
-		Color32 drawingColor = this.drawingColor;
-		if (this.mFillDirection == UIBasicSprite.FillDirection.Horizontal || this.mFillDirection == UIBasicSprite.FillDirection.Vertical)
+		Vector4 val = drawingDimensions;
+		Vector4 val2 = drawingUVs;
+		Color32 item = drawingColor;
+		if (mFillDirection == FillDirection.Horizontal || mFillDirection == FillDirection.Vertical)
 		{
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Horizontal)
+			if (mFillDirection == FillDirection.Horizontal)
 			{
-				float num = (drawingUVs.z - drawingUVs.x) * this.mFillAmount;
-				if (this.mInvert)
+				float num = (val2.z - val2.x) * mFillAmount;
+				if (mInvert)
 				{
-					drawingDimensions.x = drawingDimensions.z - (drawingDimensions.z - drawingDimensions.x) * this.mFillAmount;
-					drawingUVs.x = drawingUVs.z - num;
+					val.x = val.z - (val.z - val.x) * mFillAmount;
+					val2.x = val2.z - num;
 				}
 				else
 				{
-					drawingDimensions.z = drawingDimensions.x + (drawingDimensions.z - drawingDimensions.x) * this.mFillAmount;
-					drawingUVs.z = drawingUVs.x + num;
+					val.z = val.x + (val.z - val.x) * mFillAmount;
+					val2.z = val2.x + num;
 				}
 			}
-			else if (this.mFillDirection == UIBasicSprite.FillDirection.Vertical)
+			else if (mFillDirection == FillDirection.Vertical)
 			{
-				float num2 = (drawingUVs.w - drawingUVs.y) * this.mFillAmount;
-				if (this.mInvert)
+				float num2 = (val2.w - val2.y) * mFillAmount;
+				if (mInvert)
 				{
-					drawingDimensions.y = drawingDimensions.w - (drawingDimensions.w - drawingDimensions.y) * this.mFillAmount;
-					drawingUVs.y = drawingUVs.w - num2;
+					val.y = val.w - (val.w - val.y) * mFillAmount;
+					val2.y = val2.w - num2;
 				}
 				else
 				{
-					drawingDimensions.w = drawingDimensions.y + (drawingDimensions.w - drawingDimensions.y) * this.mFillAmount;
-					drawingUVs.w = drawingUVs.y + num2;
+					val.w = val.y + (val.w - val.y) * mFillAmount;
+					val2.w = val2.y + num2;
 				}
 			}
 		}
-		UIBasicSprite.mTempPos[0] = new Vector2(drawingDimensions.x, drawingDimensions.y);
-		UIBasicSprite.mTempPos[1] = new Vector2(drawingDimensions.x, drawingDimensions.w);
-		UIBasicSprite.mTempPos[2] = new Vector2(drawingDimensions.z, drawingDimensions.w);
-		UIBasicSprite.mTempPos[3] = new Vector2(drawingDimensions.z, drawingDimensions.y);
-		UIBasicSprite.mTempUVs[0] = new Vector2(drawingUVs.x, drawingUVs.y);
-		UIBasicSprite.mTempUVs[1] = new Vector2(drawingUVs.x, drawingUVs.w);
-		UIBasicSprite.mTempUVs[2] = new Vector2(drawingUVs.z, drawingUVs.w);
-		UIBasicSprite.mTempUVs[3] = new Vector2(drawingUVs.z, drawingUVs.y);
-		if (this.mFillAmount < 1f)
+		mTempPos[0] = new Vector2(val.x, val.y);
+		mTempPos[1] = new Vector2(val.x, val.w);
+		mTempPos[2] = new Vector2(val.z, val.w);
+		mTempPos[3] = new Vector2(val.z, val.y);
+		mTempUVs[0] = new Vector2(val2.x, val2.y);
+		mTempUVs[1] = new Vector2(val2.x, val2.w);
+		mTempUVs[2] = new Vector2(val2.z, val2.w);
+		mTempUVs[3] = new Vector2(val2.z, val2.y);
+		if (mFillAmount < 1f)
 		{
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Radial90)
+			if (mFillDirection == FillDirection.Radial90)
 			{
-				if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, this.mFillAmount, this.mInvert, 0))
+				if (RadialCut(mTempPos, mTempUVs, mFillAmount, mInvert, 0))
 				{
 					for (int i = 0; i < 4; i++)
 					{
-						verts.Add(UIBasicSprite.mTempPos[i]);
-						uvs.Add(UIBasicSprite.mTempUVs[i]);
-						cols.Add(drawingColor);
+						verts.Add(Vector2.op_Implicit(mTempPos[i]));
+						uvs.Add(mTempUVs[i]);
+						cols.Add(item);
 					}
 				}
 				return;
 			}
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Radial180)
+			if (mFillDirection == FillDirection.Radial180)
 			{
 				for (int j = 0; j < 2; j++)
 				{
@@ -479,36 +743,36 @@ public abstract class UIBasicSprite : UIWidget
 						num5 = 0.5f;
 						num6 = 1f;
 					}
-					UIBasicSprite.mTempPos[0].x = Mathf.Lerp(drawingDimensions.x, drawingDimensions.z, num5);
-					UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x;
-					UIBasicSprite.mTempPos[2].x = Mathf.Lerp(drawingDimensions.x, drawingDimensions.z, num6);
-					UIBasicSprite.mTempPos[3].x = UIBasicSprite.mTempPos[2].x;
-					UIBasicSprite.mTempPos[0].y = Mathf.Lerp(drawingDimensions.y, drawingDimensions.w, num3);
-					UIBasicSprite.mTempPos[1].y = Mathf.Lerp(drawingDimensions.y, drawingDimensions.w, num4);
-					UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[1].y;
-					UIBasicSprite.mTempPos[3].y = UIBasicSprite.mTempPos[0].y;
-					UIBasicSprite.mTempUVs[0].x = Mathf.Lerp(drawingUVs.x, drawingUVs.z, num5);
-					UIBasicSprite.mTempUVs[1].x = UIBasicSprite.mTempUVs[0].x;
-					UIBasicSprite.mTempUVs[2].x = Mathf.Lerp(drawingUVs.x, drawingUVs.z, num6);
-					UIBasicSprite.mTempUVs[3].x = UIBasicSprite.mTempUVs[2].x;
-					UIBasicSprite.mTempUVs[0].y = Mathf.Lerp(drawingUVs.y, drawingUVs.w, num3);
-					UIBasicSprite.mTempUVs[1].y = Mathf.Lerp(drawingUVs.y, drawingUVs.w, num4);
-					UIBasicSprite.mTempUVs[2].y = UIBasicSprite.mTempUVs[1].y;
-					UIBasicSprite.mTempUVs[3].y = UIBasicSprite.mTempUVs[0].y;
-					float num7 = (!this.mInvert) ? (this.fillAmount * 2f - (float)j) : (this.mFillAmount * 2f - (float)(1 - j));
-					if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, Mathf.Clamp01(num7), !this.mInvert, NGUIMath.RepeatIndex(j + 3, 4)))
+					mTempPos[0].x = Mathf.Lerp(val.x, val.z, num5);
+					mTempPos[1].x = mTempPos[0].x;
+					mTempPos[2].x = Mathf.Lerp(val.x, val.z, num6);
+					mTempPos[3].x = mTempPos[2].x;
+					mTempPos[0].y = Mathf.Lerp(val.y, val.w, num3);
+					mTempPos[1].y = Mathf.Lerp(val.y, val.w, num4);
+					mTempPos[2].y = mTempPos[1].y;
+					mTempPos[3].y = mTempPos[0].y;
+					mTempUVs[0].x = Mathf.Lerp(val2.x, val2.z, num5);
+					mTempUVs[1].x = mTempUVs[0].x;
+					mTempUVs[2].x = Mathf.Lerp(val2.x, val2.z, num6);
+					mTempUVs[3].x = mTempUVs[2].x;
+					mTempUVs[0].y = Mathf.Lerp(val2.y, val2.w, num3);
+					mTempUVs[1].y = Mathf.Lerp(val2.y, val2.w, num4);
+					mTempUVs[2].y = mTempUVs[1].y;
+					mTempUVs[3].y = mTempUVs[0].y;
+					float num7 = ((!mInvert) ? (fillAmount * 2f - (float)j) : (mFillAmount * 2f - (float)(1 - j)));
+					if (RadialCut(mTempPos, mTempUVs, Mathf.Clamp01(num7), !mInvert, NGUIMath.RepeatIndex(j + 3, 4)))
 					{
 						for (int k = 0; k < 4; k++)
 						{
-							verts.Add(UIBasicSprite.mTempPos[k]);
-							uvs.Add(UIBasicSprite.mTempUVs[k]);
-							cols.Add(drawingColor);
+							verts.Add(Vector2.op_Implicit(mTempPos[k]));
+							uvs.Add(mTempUVs[k]);
+							cols.Add(item);
 						}
 					}
 				}
 				return;
 			}
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Radial360)
+			if (mFillDirection == FillDirection.Radial360)
 			{
 				for (int l = 0; l < 4; l++)
 				{
@@ -536,30 +800,30 @@ public abstract class UIBasicSprite : UIWidget
 						num10 = 0.5f;
 						num11 = 1f;
 					}
-					UIBasicSprite.mTempPos[0].x = Mathf.Lerp(drawingDimensions.x, drawingDimensions.z, num8);
-					UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x;
-					UIBasicSprite.mTempPos[2].x = Mathf.Lerp(drawingDimensions.x, drawingDimensions.z, num9);
-					UIBasicSprite.mTempPos[3].x = UIBasicSprite.mTempPos[2].x;
-					UIBasicSprite.mTempPos[0].y = Mathf.Lerp(drawingDimensions.y, drawingDimensions.w, num10);
-					UIBasicSprite.mTempPos[1].y = Mathf.Lerp(drawingDimensions.y, drawingDimensions.w, num11);
-					UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[1].y;
-					UIBasicSprite.mTempPos[3].y = UIBasicSprite.mTempPos[0].y;
-					UIBasicSprite.mTempUVs[0].x = Mathf.Lerp(drawingUVs.x, drawingUVs.z, num8);
-					UIBasicSprite.mTempUVs[1].x = UIBasicSprite.mTempUVs[0].x;
-					UIBasicSprite.mTempUVs[2].x = Mathf.Lerp(drawingUVs.x, drawingUVs.z, num9);
-					UIBasicSprite.mTempUVs[3].x = UIBasicSprite.mTempUVs[2].x;
-					UIBasicSprite.mTempUVs[0].y = Mathf.Lerp(drawingUVs.y, drawingUVs.w, num10);
-					UIBasicSprite.mTempUVs[1].y = Mathf.Lerp(drawingUVs.y, drawingUVs.w, num11);
-					UIBasicSprite.mTempUVs[2].y = UIBasicSprite.mTempUVs[1].y;
-					UIBasicSprite.mTempUVs[3].y = UIBasicSprite.mTempUVs[0].y;
-					float num12 = this.mInvert ? (this.mFillAmount * 4f - (float)NGUIMath.RepeatIndex(l + 2, 4)) : (this.mFillAmount * 4f - (float)(3 - NGUIMath.RepeatIndex(l + 2, 4)));
-					if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, Mathf.Clamp01(num12), this.mInvert, NGUIMath.RepeatIndex(l + 2, 4)))
+					mTempPos[0].x = Mathf.Lerp(val.x, val.z, num8);
+					mTempPos[1].x = mTempPos[0].x;
+					mTempPos[2].x = Mathf.Lerp(val.x, val.z, num9);
+					mTempPos[3].x = mTempPos[2].x;
+					mTempPos[0].y = Mathf.Lerp(val.y, val.w, num10);
+					mTempPos[1].y = Mathf.Lerp(val.y, val.w, num11);
+					mTempPos[2].y = mTempPos[1].y;
+					mTempPos[3].y = mTempPos[0].y;
+					mTempUVs[0].x = Mathf.Lerp(val2.x, val2.z, num8);
+					mTempUVs[1].x = mTempUVs[0].x;
+					mTempUVs[2].x = Mathf.Lerp(val2.x, val2.z, num9);
+					mTempUVs[3].x = mTempUVs[2].x;
+					mTempUVs[0].y = Mathf.Lerp(val2.y, val2.w, num10);
+					mTempUVs[1].y = Mathf.Lerp(val2.y, val2.w, num11);
+					mTempUVs[2].y = mTempUVs[1].y;
+					mTempUVs[3].y = mTempUVs[0].y;
+					float num12 = (mInvert ? (mFillAmount * 4f - (float)NGUIMath.RepeatIndex(l + 2, 4)) : (mFillAmount * 4f - (float)(3 - NGUIMath.RepeatIndex(l + 2, 4))));
+					if (RadialCut(mTempPos, mTempUVs, Mathf.Clamp01(num12), mInvert, NGUIMath.RepeatIndex(l + 2, 4)))
 					{
 						for (int m = 0; m < 4; m++)
 						{
-							verts.Add(UIBasicSprite.mTempPos[m]);
-							uvs.Add(UIBasicSprite.mTempUVs[m]);
-							cols.Add(drawingColor);
+							verts.Add(Vector2.op_Implicit(mTempPos[m]));
+							uvs.Add(mTempUVs[m]);
+							cols.Add(item);
 						}
 					}
 				}
@@ -568,192 +832,244 @@ public abstract class UIBasicSprite : UIWidget
 		}
 		for (int n = 0; n < 4; n++)
 		{
-			verts.Add(UIBasicSprite.mTempPos[n]);
-			uvs.Add(UIBasicSprite.mTempUVs[n]);
-			cols.Add(drawingColor);
+			verts.Add(Vector2.op_Implicit(mTempPos[n]));
+			uvs.Add(mTempUVs[n]);
+			cols.Add(item);
 		}
 	}
 
-	// Token: 0x06000775 RID: 1909 RVA: 0x0002CE98 File Offset: 0x0002B098
 	private void AdvancedFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ae2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ae3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0683: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0684: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0530: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0865: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0866: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0745: Unknown result type (might be due to invalid IL or missing references)
+		//IL_054c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a47: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a48: Unknown result type (might be due to invalid IL or missing references)
+		//IL_093a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0797: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0798: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0771: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0563: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0979: Unknown result type (might be due to invalid IL or missing references)
+		//IL_097a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0986: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0953: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_058f: Unknown result type (might be due to invalid IL or missing references)
+		Texture val = mainTexture;
+		if ((Object)(object)val == (Object)null)
 		{
 			return;
 		}
-		Vector4 vector = this.border * this.pixelSize;
-		if (vector.x == 0f && vector.y == 0f && vector.z == 0f && vector.w == 0f)
+		Vector4 val2 = border * pixelSize;
+		if (val2.x == 0f && val2.y == 0f && val2.z == 0f && val2.w == 0f)
 		{
-			this.SimpleFill(verts, uvs, cols);
+			SimpleFill(verts, uvs, cols);
 			return;
 		}
-		Color32 drawingColor = this.drawingColor;
-		Vector4 drawingDimensions = this.drawingDimensions;
-		Vector2 vector2;
-		vector2..ctor(this.mInnerUV.width * (float)mainTexture.width, this.mInnerUV.height * (float)mainTexture.height);
-		vector2 *= this.pixelSize;
-		if (vector2.x < 1f)
+		Color32 val3 = drawingColor;
+		Vector4 val4 = drawingDimensions;
+		Vector2 val5 = default(Vector2);
+		((Vector2)(ref val5))._002Ector(((Rect)(ref mInnerUV)).width * (float)val.width, ((Rect)(ref mInnerUV)).height * (float)val.height);
+		val5 *= pixelSize;
+		if (val5.x < 1f)
 		{
-			vector2.x = 1f;
+			val5.x = 1f;
 		}
-		if (vector2.y < 1f)
+		if (val5.y < 1f)
 		{
-			vector2.y = 1f;
+			val5.y = 1f;
 		}
-		UIBasicSprite.mTempPos[0].x = drawingDimensions.x;
-		UIBasicSprite.mTempPos[0].y = drawingDimensions.y;
-		UIBasicSprite.mTempPos[3].x = drawingDimensions.z;
-		UIBasicSprite.mTempPos[3].y = drawingDimensions.w;
-		if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+		mTempPos[0].x = val4.x;
+		mTempPos[0].y = val4.y;
+		mTempPos[3].x = val4.z;
+		mTempPos[3].y = val4.w;
+		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
 		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.z;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.x;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMax;
-		}
-		else
-		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.x;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.z;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMax;
-		}
-		if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.w;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.y;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMax;
+			mTempPos[1].x = mTempPos[0].x + val2.z;
+			mTempPos[2].x = mTempPos[3].x - val2.x;
+			mTempUVs[3].x = ((Rect)(ref mOuterUV)).xMin;
+			mTempUVs[2].x = ((Rect)(ref mInnerUV)).xMin;
+			mTempUVs[1].x = ((Rect)(ref mInnerUV)).xMax;
+			mTempUVs[0].x = ((Rect)(ref mOuterUV)).xMax;
 		}
 		else
 		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.y;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.w;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMax;
+			mTempPos[1].x = mTempPos[0].x + val2.x;
+			mTempPos[2].x = mTempPos[3].x - val2.z;
+			mTempUVs[0].x = ((Rect)(ref mOuterUV)).xMin;
+			mTempUVs[1].x = ((Rect)(ref mInnerUV)).xMin;
+			mTempUVs[2].x = ((Rect)(ref mInnerUV)).xMax;
+			mTempUVs[3].x = ((Rect)(ref mOuterUV)).xMax;
+		}
+		if (mFlip == Flip.Vertically || mFlip == Flip.Both)
+		{
+			mTempPos[1].y = mTempPos[0].y + val2.w;
+			mTempPos[2].y = mTempPos[3].y - val2.y;
+			mTempUVs[3].y = ((Rect)(ref mOuterUV)).yMin;
+			mTempUVs[2].y = ((Rect)(ref mInnerUV)).yMin;
+			mTempUVs[1].y = ((Rect)(ref mInnerUV)).yMax;
+			mTempUVs[0].y = ((Rect)(ref mOuterUV)).yMax;
+		}
+		else
+		{
+			mTempPos[1].y = mTempPos[0].y + val2.y;
+			mTempPos[2].y = mTempPos[3].y - val2.w;
+			mTempUVs[0].y = ((Rect)(ref mOuterUV)).yMin;
+			mTempUVs[1].y = ((Rect)(ref mInnerUV)).yMin;
+			mTempUVs[2].y = ((Rect)(ref mInnerUV)).yMax;
+			mTempUVs[3].y = ((Rect)(ref mOuterUV)).yMax;
 		}
 		for (int i = 0; i < 3; i++)
 		{
 			int num = i + 1;
 			for (int j = 0; j < 3; j++)
 			{
-				if (this.centerType != UIBasicSprite.AdvancedType.Invisible || i != 1 || j != 1)
+				if (centerType == AdvancedType.Invisible && i == 1 && j == 1)
 				{
-					int num2 = j + 1;
-					if (i == 1 && j == 1)
+					continue;
+				}
+				int num2 = j + 1;
+				if (i == 1 && j == 1)
+				{
+					if (centerType == AdvancedType.Tiled)
 					{
-						if (this.centerType == UIBasicSprite.AdvancedType.Tiled)
+						float x = mTempPos[i].x;
+						float x2 = mTempPos[num].x;
+						float y = mTempPos[j].y;
+						float y2 = mTempPos[num2].y;
+						float x3 = mTempUVs[i].x;
+						float y3 = mTempUVs[j].y;
+						for (float num3 = y; num3 < y2; num3 += val5.y)
 						{
-							float x = UIBasicSprite.mTempPos[i].x;
-							float x2 = UIBasicSprite.mTempPos[num].x;
-							float y = UIBasicSprite.mTempPos[j].y;
-							float y2 = UIBasicSprite.mTempPos[num2].y;
-							float x3 = UIBasicSprite.mTempUVs[i].x;
-							float y3 = UIBasicSprite.mTempUVs[j].y;
-							for (float num3 = y; num3 < y2; num3 += vector2.y)
+							float num4 = x;
+							float num5 = mTempUVs[num2].y;
+							float num6 = num3 + val5.y;
+							if (num6 > y2)
 							{
-								float num4 = x;
-								float num5 = UIBasicSprite.mTempUVs[num2].y;
-								float num6 = num3 + vector2.y;
-								if (num6 > y2)
+								num5 = Mathf.Lerp(y3, num5, (y2 - num3) / val5.y);
+								num6 = y2;
+							}
+							for (; num4 < x2; num4 += val5.x)
+							{
+								float num7 = num4 + val5.x;
+								float num8 = mTempUVs[num].x;
+								if (num7 > x2)
 								{
-									num5 = Mathf.Lerp(y3, num5, (y2 - num3) / vector2.y);
-									num6 = y2;
+									num8 = Mathf.Lerp(x3, num8, (x2 - num4) / val5.x);
+									num7 = x2;
 								}
-								while (num4 < x2)
-								{
-									float num7 = num4 + vector2.x;
-									float num8 = UIBasicSprite.mTempUVs[num].x;
-									if (num7 > x2)
-									{
-										num8 = Mathf.Lerp(x3, num8, (x2 - num4) / vector2.x);
-										num7 = x2;
-									}
-									UIBasicSprite.Fill(verts, uvs, cols, num4, num7, num3, num6, x3, num8, y3, num5, drawingColor);
-									num4 += vector2.x;
-								}
+								Fill(verts, uvs, cols, num4, num7, num3, num6, x3, num8, y3, num5, Color32.op_Implicit(val3));
 							}
 						}
-						else if (this.centerType == UIBasicSprite.AdvancedType.Sliced)
-						{
-							UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, drawingColor);
-						}
 					}
-					else if (i == 1)
+					else if (centerType == AdvancedType.Sliced)
 					{
-						if ((j == 0 && this.bottomType == UIBasicSprite.AdvancedType.Tiled) || (j == 2 && this.topType == UIBasicSprite.AdvancedType.Tiled))
+						Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, Color32.op_Implicit(val3));
+					}
+				}
+				else if (i == 1)
+				{
+					if ((j == 0 && bottomType == AdvancedType.Tiled) || (j == 2 && topType == AdvancedType.Tiled))
+					{
+						float x4 = mTempPos[i].x;
+						float x5 = mTempPos[num].x;
+						float y4 = mTempPos[j].y;
+						float y5 = mTempPos[num2].y;
+						float x6 = mTempUVs[i].x;
+						float y6 = mTempUVs[j].y;
+						float y7 = mTempUVs[num2].y;
+						for (float num9 = x4; num9 < x5; num9 += val5.x)
 						{
-							float x4 = UIBasicSprite.mTempPos[i].x;
-							float x5 = UIBasicSprite.mTempPos[num].x;
-							float y4 = UIBasicSprite.mTempPos[j].y;
-							float y5 = UIBasicSprite.mTempPos[num2].y;
-							float x6 = UIBasicSprite.mTempUVs[i].x;
-							float y6 = UIBasicSprite.mTempUVs[j].y;
-							float y7 = UIBasicSprite.mTempUVs[num2].y;
-							for (float num9 = x4; num9 < x5; num9 += vector2.x)
+							float num10 = num9 + val5.x;
+							float num11 = mTempUVs[num].x;
+							if (num10 > x5)
 							{
-								float num10 = num9 + vector2.x;
-								float num11 = UIBasicSprite.mTempUVs[num].x;
-								if (num10 > x5)
-								{
-									num11 = Mathf.Lerp(x6, num11, (x5 - num9) / vector2.x);
-									num10 = x5;
-								}
-								UIBasicSprite.Fill(verts, uvs, cols, num9, num10, y4, y5, x6, num11, y6, y7, drawingColor);
+								num11 = Mathf.Lerp(x6, num11, (x5 - num9) / val5.x);
+								num10 = x5;
 							}
-						}
-						else if ((j == 0 && this.bottomType == UIBasicSprite.AdvancedType.Sliced) || (j == 2 && this.topType == UIBasicSprite.AdvancedType.Sliced))
-						{
-							UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, drawingColor);
+							Fill(verts, uvs, cols, num9, num10, y4, y5, x6, num11, y6, y7, Color32.op_Implicit(val3));
 						}
 					}
-					else if (j == 1)
+					else if ((j == 0 && bottomType == AdvancedType.Sliced) || (j == 2 && topType == AdvancedType.Sliced))
 					{
-						if ((i == 0 && this.leftType == UIBasicSprite.AdvancedType.Tiled) || (i == 2 && this.rightType == UIBasicSprite.AdvancedType.Tiled))
+						Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, Color32.op_Implicit(val3));
+					}
+				}
+				else if (j == 1)
+				{
+					if ((i == 0 && leftType == AdvancedType.Tiled) || (i == 2 && rightType == AdvancedType.Tiled))
+					{
+						float x7 = mTempPos[i].x;
+						float x8 = mTempPos[num].x;
+						float y8 = mTempPos[j].y;
+						float y9 = mTempPos[num2].y;
+						float x9 = mTempUVs[i].x;
+						float x10 = mTempUVs[num].x;
+						float y10 = mTempUVs[j].y;
+						for (float num12 = y8; num12 < y9; num12 += val5.y)
 						{
-							float x7 = UIBasicSprite.mTempPos[i].x;
-							float x8 = UIBasicSprite.mTempPos[num].x;
-							float y8 = UIBasicSprite.mTempPos[j].y;
-							float y9 = UIBasicSprite.mTempPos[num2].y;
-							float x9 = UIBasicSprite.mTempUVs[i].x;
-							float x10 = UIBasicSprite.mTempUVs[num].x;
-							float y10 = UIBasicSprite.mTempUVs[j].y;
-							for (float num12 = y8; num12 < y9; num12 += vector2.y)
+							float num13 = mTempUVs[num2].y;
+							float num14 = num12 + val5.y;
+							if (num14 > y9)
 							{
-								float num13 = UIBasicSprite.mTempUVs[num2].y;
-								float num14 = num12 + vector2.y;
-								if (num14 > y9)
-								{
-									num13 = Mathf.Lerp(y10, num13, (y9 - num12) / vector2.y);
-									num14 = y9;
-								}
-								UIBasicSprite.Fill(verts, uvs, cols, x7, x8, num12, num14, x9, x10, y10, num13, drawingColor);
+								num13 = Mathf.Lerp(y10, num13, (y9 - num12) / val5.y);
+								num14 = y9;
 							}
-						}
-						else if ((i == 0 && this.leftType == UIBasicSprite.AdvancedType.Sliced) || (i == 2 && this.rightType == UIBasicSprite.AdvancedType.Sliced))
-						{
-							UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, drawingColor);
+							Fill(verts, uvs, cols, x7, x8, num12, num14, x9, x10, y10, num13, Color32.op_Implicit(val3));
 						}
 					}
-					else
+					else if ((i == 0 && leftType == AdvancedType.Sliced) || (i == 2 && rightType == AdvancedType.Sliced))
 					{
-						UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, drawingColor);
+						Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, Color32.op_Implicit(val3));
 					}
+				}
+				else
+				{
+					Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, Color32.op_Implicit(val3));
 				}
 			}
 		}
 	}
 
-	// Token: 0x06000776 RID: 1910 RVA: 0x0002D9B0 File Offset: 0x0002BBB0
 	private static bool RadialCut(Vector2[] xy, Vector2[] uv, float fill, bool invert, int corner)
 	{
 		if (fill < 0.001f)
@@ -773,15 +1089,14 @@ public abstract class UIBasicSprite : UIWidget
 		{
 			num = 1f - num;
 		}
-		num *= 1.5707964f;
+		num *= (float)Math.PI / 2f;
 		float cos = Mathf.Cos(num);
 		float sin = Mathf.Sin(num);
-		UIBasicSprite.RadialCut(xy, cos, sin, invert, corner);
-		UIBasicSprite.RadialCut(uv, cos, sin, invert, corner);
+		RadialCut(xy, cos, sin, invert, corner);
+		RadialCut(uv, cos, sin, invert, corner);
 		return true;
 	}
 
-	// Token: 0x06000777 RID: 1911 RVA: 0x0002DA20 File Offset: 0x0002BC20
 	private static void RadialCut(Vector2[] xy, float cos, float sin, bool invert, int corner)
 	{
 		int num = NGUIMath.RepeatIndex(corner + 1, 4);
@@ -817,51 +1132,66 @@ public abstract class UIBasicSprite : UIWidget
 			if (!invert)
 			{
 				xy[num3].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-				return;
-			}
-			xy[num].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-			return;
-		}
-		else
-		{
-			if (cos > sin)
-			{
-				sin /= cos;
-				cos = 1f;
-				if (!invert)
-				{
-					xy[num].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-					xy[num2].y = xy[num].y;
-				}
-			}
-			else if (sin > cos)
-			{
-				cos /= sin;
-				sin = 1f;
-				if (invert)
-				{
-					xy[num2].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-					xy[num3].x = xy[num2].x;
-				}
 			}
 			else
 			{
-				cos = 1f;
-				sin = 1f;
+				xy[num].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
 			}
+			return;
+		}
+		if (cos > sin)
+		{
+			sin /= cos;
+			cos = 1f;
+			if (!invert)
+			{
+				xy[num].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
+				xy[num2].y = xy[num].y;
+			}
+		}
+		else if (sin > cos)
+		{
+			cos /= sin;
+			sin = 1f;
 			if (invert)
 			{
-				xy[num3].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-				return;
+				xy[num2].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
+				xy[num3].x = xy[num2].x;
 			}
+		}
+		else
+		{
+			cos = 1f;
+			sin = 1f;
+		}
+		if (invert)
+		{
+			xy[num3].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
+		}
+		else
+		{
 			xy[num].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-			return;
 		}
 	}
 
-	// Token: 0x06000778 RID: 1912 RVA: 0x0002DC8C File Offset: 0x0002BE8C
 	private static void Fill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols, float v0x, float v1x, float v0y, float v1y, float u0x, float u1x, float u0y, float u1y, Color col)
 	{
+		//IL_0004: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
 		verts.Add(new Vector3(v0x, v0y));
 		verts.Add(new Vector3(v0x, v1y));
 		verts.Add(new Vector3(v1x, v1y));
@@ -870,118 +1200,9 @@ public abstract class UIBasicSprite : UIWidget
 		uvs.Add(new Vector2(u0x, u1y));
 		uvs.Add(new Vector2(u1x, u1y));
 		uvs.Add(new Vector2(u1x, u0y));
-		cols.Add(col);
-		cols.Add(col);
-		cols.Add(col);
-		cols.Add(col);
-	}
-
-	// Token: 0x04000491 RID: 1169
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite.Type mType;
-
-	// Token: 0x04000492 RID: 1170
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite.FillDirection mFillDirection = UIBasicSprite.FillDirection.Radial360;
-
-	// Token: 0x04000493 RID: 1171
-	[Range(0f, 1f)]
-	[HideInInspector]
-	[SerializeField]
-	protected float mFillAmount = 1f;
-
-	// Token: 0x04000494 RID: 1172
-	[HideInInspector]
-	[SerializeField]
-	protected bool mInvert;
-
-	// Token: 0x04000495 RID: 1173
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite.Flip mFlip;
-
-	// Token: 0x04000496 RID: 1174
-	[NonSerialized]
-	private Rect mInnerUV;
-
-	// Token: 0x04000497 RID: 1175
-	[NonSerialized]
-	private Rect mOuterUV;
-
-	// Token: 0x04000498 RID: 1176
-	public UIBasicSprite.AdvancedType centerType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x04000499 RID: 1177
-	public UIBasicSprite.AdvancedType leftType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x0400049A RID: 1178
-	public UIBasicSprite.AdvancedType rightType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x0400049B RID: 1179
-	public UIBasicSprite.AdvancedType bottomType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x0400049C RID: 1180
-	public UIBasicSprite.AdvancedType topType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x0400049D RID: 1181
-	protected static Vector2[] mTempPos = new Vector2[4];
-
-	// Token: 0x0400049E RID: 1182
-	protected static Vector2[] mTempUVs = new Vector2[4];
-
-	// Token: 0x02001202 RID: 4610
-	public enum Type
-	{
-		// Token: 0x04006444 RID: 25668
-		Simple,
-		// Token: 0x04006445 RID: 25669
-		Sliced,
-		// Token: 0x04006446 RID: 25670
-		Tiled,
-		// Token: 0x04006447 RID: 25671
-		Filled,
-		// Token: 0x04006448 RID: 25672
-		Advanced
-	}
-
-	// Token: 0x02001203 RID: 4611
-	public enum FillDirection
-	{
-		// Token: 0x0400644A RID: 25674
-		Horizontal,
-		// Token: 0x0400644B RID: 25675
-		Vertical,
-		// Token: 0x0400644C RID: 25676
-		Radial90,
-		// Token: 0x0400644D RID: 25677
-		Radial180,
-		// Token: 0x0400644E RID: 25678
-		Radial360
-	}
-
-	// Token: 0x02001204 RID: 4612
-	public enum AdvancedType
-	{
-		// Token: 0x04006450 RID: 25680
-		Invisible,
-		// Token: 0x04006451 RID: 25681
-		Sliced,
-		// Token: 0x04006452 RID: 25682
-		Tiled
-	}
-
-	// Token: 0x02001205 RID: 4613
-	public enum Flip
-	{
-		// Token: 0x04006454 RID: 25684
-		Nothing,
-		// Token: 0x04006455 RID: 25685
-		Horizontally,
-		// Token: 0x04006456 RID: 25686
-		Vertically,
-		// Token: 0x04006457 RID: 25687
-		Both
+		cols.Add(Color32.op_Implicit(col));
+		cols.Add(Color32.op_Implicit(col));
+		cols.Add(Color32.op_Implicit(col));
+		cols.Add(Color32.op_Implicit(col));
 	}
 }

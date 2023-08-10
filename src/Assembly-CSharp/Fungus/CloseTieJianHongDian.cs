@@ -1,40 +1,36 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Set", "CloseTieJianHongDian", "关闭铁剑红点", 0)]
+[AddComponentMenu("")]
+public class CloseTieJianHongDian : Command
 {
-	// Token: 0x02000F58 RID: 3928
-	[CommandInfo("YSNew/Set", "CloseTieJianHongDian", "关闭铁剑红点", 0)]
-	[AddComponentMenu("")]
-	public class CloseTieJianHongDian : Command
+	[Tooltip("红点ID")]
+	[SerializeField]
+	protected int HongDianID;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006EA3 RID: 28323 RVA: 0x002A53A4 File Offset: 0x002A35A4
-		public override void OnEnter()
+		try
 		{
-			try
-			{
-				Tools.instance.getPlayer().TieJianHongDianList.RemoveField(this.HongDianID.ToString());
-			}
-			catch (Exception)
-			{
-			}
-			this.Continue();
+			Tools.instance.getPlayer().TieJianHongDianList.RemoveField(HongDianID.ToString());
 		}
-
-		// Token: 0x06006EA4 RID: 28324 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x06006EA5 RID: 28325 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
+		catch (Exception)
 		{
 		}
+		Continue();
+	}
 
-		// Token: 0x04005BBB RID: 23483
-		[Tooltip("红点ID")]
-		[SerializeField]
-		protected int HongDianID;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
+
+	public override void OnReset()
+	{
 	}
 }

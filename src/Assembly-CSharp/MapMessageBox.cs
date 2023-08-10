@@ -1,156 +1,169 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200015C RID: 348
 public class MapMessageBox : ModalBox
 {
-	// Token: 0x06000F20 RID: 3872 RVA: 0x0005B7E0 File Offset: 0x000599E0
+	[Tooltip("Set this to the name of the prefab that should be loaded when a menu box is shown.")]
+	public static string PrefabResourceName = "MapMessageBox";
+
+	[Tooltip("Set this to a custom function that will be used to localize the button texts.")]
+	public static Func<string, string> Localize = (string sourceString) => sourceString;
+
+	[Tooltip("Set to true to send the title and message of message boxes and menus thru the Localize function.")]
+	public static bool LocalizeTitleAndMessage = false;
+
+	private DialogResult result;
+
+	private Action<DialogResult> onFinish;
+
 	public static MapMessageBox Show(string message, Action<DialogResult> onFinished, MessageBoxButtons buttons = MessageBoxButtons.OK)
 	{
-		return MapMessageBox.Show(message, null, onFinished, buttons);
+		return Show(message, null, onFinished, buttons);
 	}
 
-	// Token: 0x06000F21 RID: 3873 RVA: 0x0005B7EB File Offset: 0x000599EB
 	public static MapMessageBox Show(string message, string title = null, Action<DialogResult> onFinished = null, MessageBoxButtons buttons = MessageBoxButtons.OK)
 	{
-		MapMessageBox component = Object.Instantiate<GameObject>(Resources.Load<GameObject>(MapMessageBox.PrefabResourceName)).GetComponent<MapMessageBox>();
+		MapMessageBox component = Object.Instantiate<GameObject>(Resources.Load<GameObject>(PrefabResourceName)).GetComponent<MapMessageBox>();
 		component.onFinish = onFinished;
 		component.SetUpButtons(buttons);
 		component.SetText(message, title);
 		return component;
 	}
 
-	// Token: 0x06000F22 RID: 3874 RVA: 0x0005B818 File Offset: 0x00059A18
 	private void SetUpButtons(MessageBoxButtons buttons)
 	{
-		GameObject gameObject = this.Button.gameObject;
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Expected O, but got Unknown
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Expected O, but got Unknown
+		//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Expected O, but got Unknown
+		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f2: Expected O, but got Unknown
+		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Expected O, but got Unknown
+		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a6: Expected O, but got Unknown
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c8: Expected O, but got Unknown
+		//IL_01e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01eb: Expected O, but got Unknown
+		//IL_0142: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014c: Expected O, but got Unknown
+		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016e: Expected O, but got Unknown
+		//IL_0219: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0223: Expected O, but got Unknown
+		//IL_023b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0245: Expected O, but got Unknown
+		//IL_025e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0268: Expected O, but got Unknown
+		GameObject gameObject = ((Component)Button).gameObject;
 		switch (buttons)
 		{
 		case MessageBoxButtons.OK:
-			gameObject.GetComponentInChildren<Text>().text = MapMessageBox.Localize("OK");
-			gameObject.GetComponent<Button>().onClick.AddListener(delegate()
+			gameObject.GetComponentInChildren<Text>().text = Localize("OK");
+			((UnityEvent)gameObject.GetComponent<Button>().onClick).AddListener((UnityAction)delegate
 			{
-				this.result = DialogResult.OK;
-				this.Close();
+				result = DialogResult.OK;
+				Close();
 			});
-			return;
+			break;
 		case MessageBoxButtons.OKCancel:
-			gameObject.GetComponentInChildren<Text>().text = MapMessageBox.Localize("OK");
-			gameObject.GetComponent<Button>().onClick.AddListener(delegate()
+			gameObject.GetComponentInChildren<Text>().text = Localize("OK");
+			((UnityEvent)gameObject.GetComponent<Button>().onClick).AddListener((UnityAction)delegate
 			{
-				this.result = DialogResult.OK;
-				this.Close();
+				result = DialogResult.OK;
+				Close();
 			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("Cancel"), delegate
+			CreateButton(gameObject, Localize("Cancel"), (UnityAction)delegate
 			{
-				this.result = DialogResult.Cancel;
-				this.Close();
+				result = DialogResult.Cancel;
+				Close();
 			});
-			return;
+			break;
 		case MessageBoxButtons.YesNo:
-			gameObject.GetComponentInChildren<Text>().text = MapMessageBox.Localize("Yes");
-			gameObject.GetComponent<Button>().onClick.AddListener(delegate()
+			gameObject.GetComponentInChildren<Text>().text = Localize("Yes");
+			((UnityEvent)gameObject.GetComponent<Button>().onClick).AddListener((UnityAction)delegate
 			{
-				this.result = DialogResult.Yes;
-				this.Close();
+				result = DialogResult.Yes;
+				Close();
 			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("No"), delegate
+			CreateButton(gameObject, Localize("No"), (UnityAction)delegate
 			{
-				this.result = DialogResult.No;
-				this.Close();
+				result = DialogResult.No;
+				Close();
 			});
-			return;
-		case MessageBoxButtons.YesNoCancel:
-			gameObject.GetComponentInChildren<Text>().text = MapMessageBox.Localize("Yes");
-			gameObject.GetComponent<Button>().onClick.AddListener(delegate()
-			{
-				this.result = DialogResult.Yes;
-				this.Close();
-			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("No"), delegate
-			{
-				this.result = DialogResult.No;
-				this.Close();
-			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("Cancel"), delegate
-			{
-				this.result = DialogResult.Cancel;
-				this.Close();
-			});
-			return;
+			break;
 		case MessageBoxButtons.RetryCancel:
-			gameObject.GetComponentInChildren<Text>().text = MapMessageBox.Localize("Retry");
-			gameObject.GetComponent<Button>().onClick.AddListener(delegate()
+			gameObject.GetComponentInChildren<Text>().text = Localize("Retry");
+			((UnityEvent)gameObject.GetComponent<Button>().onClick).AddListener((UnityAction)delegate
 			{
-				this.result = DialogResult.Retry;
-				this.Close();
+				result = DialogResult.Retry;
+				Close();
 			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("Cancel"), delegate
+			CreateButton(gameObject, Localize("Cancel"), (UnityAction)delegate
 			{
-				this.result = DialogResult.Cancel;
-				this.Close();
+				result = DialogResult.Cancel;
+				Close();
 			});
-			return;
+			break;
+		case MessageBoxButtons.YesNoCancel:
+			gameObject.GetComponentInChildren<Text>().text = Localize("Yes");
+			((UnityEvent)gameObject.GetComponent<Button>().onClick).AddListener((UnityAction)delegate
+			{
+				result = DialogResult.Yes;
+				Close();
+			});
+			CreateButton(gameObject, Localize("No"), (UnityAction)delegate
+			{
+				result = DialogResult.No;
+				Close();
+			});
+			CreateButton(gameObject, Localize("Cancel"), (UnityAction)delegate
+			{
+				result = DialogResult.Cancel;
+				Close();
+			});
+			break;
 		case MessageBoxButtons.AbortRetryIgnore:
-			gameObject.GetComponentInChildren<Text>().text = MapMessageBox.Localize("Abort");
-			gameObject.GetComponent<Button>().onClick.AddListener(delegate()
+			gameObject.GetComponentInChildren<Text>().text = Localize("Abort");
+			((UnityEvent)gameObject.GetComponent<Button>().onClick).AddListener((UnityAction)delegate
 			{
-				this.result = DialogResult.Abort;
-				this.Close();
+				result = DialogResult.Abort;
+				Close();
 			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("Retry"), delegate
+			CreateButton(gameObject, Localize("Retry"), (UnityAction)delegate
 			{
-				this.result = DialogResult.Retry;
-				this.Close();
+				result = DialogResult.Retry;
+				Close();
 			});
-			this.CreateButton(gameObject, MapMessageBox.Localize("Ignore"), delegate
+			CreateButton(gameObject, Localize("Ignore"), (UnityAction)delegate
 			{
-				this.result = DialogResult.Ignore;
-				this.Close();
+				result = DialogResult.Ignore;
+				Close();
 			});
-			return;
-		default:
-			return;
+			break;
 		}
 	}
 
-	// Token: 0x06000F23 RID: 3875 RVA: 0x0005BA8E File Offset: 0x00059C8E
 	private GameObject CreateButton(GameObject buttonToClone, string label, UnityAction target)
 	{
-		GameObject gameObject = Object.Instantiate<GameObject>(buttonToClone);
-		gameObject.transform.SetParent(buttonToClone.transform.parent, false);
-		gameObject.GetComponentInChildren<Text>().text = label;
-		gameObject.GetComponent<Button>().onClick.AddListener(target);
-		return gameObject;
+		GameObject obj = Object.Instantiate<GameObject>(buttonToClone);
+		obj.transform.SetParent(buttonToClone.transform.parent, false);
+		obj.GetComponentInChildren<Text>().text = label;
+		((UnityEvent)obj.GetComponent<Button>().onClick).AddListener(target);
+		return obj;
 	}
 
-	// Token: 0x06000F24 RID: 3876 RVA: 0x0005BACA File Offset: 0x00059CCA
 	public override void Close()
 	{
-		if (this.onFinish != null)
+		if (onFinish != null)
 		{
-			this.onFinish(this.result);
+			onFinish(result);
 		}
 		base.Close();
 	}
-
-	// Token: 0x04000B64 RID: 2916
-	[Tooltip("Set this to the name of the prefab that should be loaded when a menu box is shown.")]
-	public static string PrefabResourceName = "MapMessageBox";
-
-	// Token: 0x04000B65 RID: 2917
-	[Tooltip("Set this to a custom function that will be used to localize the button texts.")]
-	public static Func<string, string> Localize = (string sourceString) => sourceString;
-
-	// Token: 0x04000B66 RID: 2918
-	[Tooltip("Set to true to send the title and message of message boxes and menus thru the Localize function.")]
-	public static bool LocalizeTitleAndMessage = false;
-
-	// Token: 0x04000B67 RID: 2919
-	private DialogResult result;
-
-	// Token: 0x04000B68 RID: 2920
-	private Action<DialogResult> onFinish;
 }

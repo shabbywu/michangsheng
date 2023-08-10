@@ -1,58 +1,51 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EIU
+namespace EIU;
+
+public class EIU_DebugWindow : MonoBehaviour
 {
-	// Token: 0x02000B2C RID: 2860
-	public class EIU_DebugWindow : MonoBehaviour
+	public bool debug = true;
+
+	public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();
+
+	[Header("UI References")]
+	public Transform DebugWindow;
+
+	public GameObject DebugItemPrefab;
+
+	private void Start()
 	{
-		// Token: 0x06004FBC RID: 20412 RVA: 0x0021AA8D File Offset: 0x00218C8D
-		private void Start()
+		if (debug && Object.op_Implicit((Object)(object)EasyInputUtility.instance))
 		{
-			if (this.debug && EasyInputUtility.instance)
+			populateDebugWindow();
+		}
+		if ((Object)(object)EasyInputUtility.instance == (Object)null)
+		{
+			((Component)this).gameObject.SetActive(false);
+		}
+	}
+
+	private void populateDebugWindow()
+	{
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+		Axes = EasyInputUtility.instance.Axes;
+		foreach (EIU_AxisBase axis in Axes)
+		{
+			GameObject obj = Object.Instantiate<GameObject>(DebugItemPrefab);
+			((Object)obj).name = "positiveAxis";
+			obj.transform.SetParent(DebugWindow);
+			obj.transform.localScale = Vector3.one;
+			obj.GetComponent<EIU_DebugItem>().Init(axis.pKeyDescription, ((object)(KeyCode)(ref axis.positiveKey)).ToString());
+			if (axis.nKeyDescription != "")
 			{
-				this.populateDebugWindow();
-			}
-			if (EasyInputUtility.instance == null)
-			{
-				base.gameObject.SetActive(false);
+				GameObject obj2 = Object.Instantiate<GameObject>(DebugItemPrefab);
+				((Object)obj2).name = "negativeAxis";
+				obj2.transform.SetParent(DebugWindow);
+				obj2.transform.localScale = Vector3.one;
+				obj2.GetComponent<EIU_DebugItem>().Init(axis.nKeyDescription, ((object)(KeyCode)(ref axis.negativeKey)).ToString());
 			}
 		}
-
-		// Token: 0x06004FBD RID: 20413 RVA: 0x0021AAC4 File Offset: 0x00218CC4
-		private void populateDebugWindow()
-		{
-			this.Axes = EasyInputUtility.instance.Axes;
-			foreach (EIU_AxisBase eiu_AxisBase in this.Axes)
-			{
-				GameObject gameObject = Object.Instantiate<GameObject>(this.DebugItemPrefab);
-				gameObject.name = "positiveAxis";
-				gameObject.transform.SetParent(this.DebugWindow);
-				gameObject.transform.localScale = Vector3.one;
-				gameObject.GetComponent<EIU_DebugItem>().Init(eiu_AxisBase.pKeyDescription, eiu_AxisBase.positiveKey.ToString());
-				if (eiu_AxisBase.nKeyDescription != "")
-				{
-					GameObject gameObject2 = Object.Instantiate<GameObject>(this.DebugItemPrefab);
-					gameObject2.name = "negativeAxis";
-					gameObject2.transform.SetParent(this.DebugWindow);
-					gameObject2.transform.localScale = Vector3.one;
-					gameObject2.GetComponent<EIU_DebugItem>().Init(eiu_AxisBase.nKeyDescription, eiu_AxisBase.negativeKey.ToString());
-				}
-			}
-		}
-
-		// Token: 0x04004EB4 RID: 20148
-		public bool debug = true;
-
-		// Token: 0x04004EB5 RID: 20149
-		public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();
-
-		// Token: 0x04004EB6 RID: 20150
-		[Header("UI References")]
-		public Transform DebugWindow;
-
-		// Token: 0x04004EB7 RID: 20151
-		public GameObject DebugItemPrefab;
 	}
 }

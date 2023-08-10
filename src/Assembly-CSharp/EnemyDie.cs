@@ -1,54 +1,62 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E1 RID: 225
 public class EnemyDie : MonoBehaviour
 {
-	// Token: 0x06000B5B RID: 2907 RVA: 0x00045264 File Offset: 0x00043464
-	private void OnDestroy()
-	{
-		if (!this.isShuttingDown)
-		{
-			this.DropItem();
-			GameManager gameManager = (GameManager)Object.FindObjectOfType(typeof(GameManager));
-			if (gameManager)
-			{
-				gameManager.Score += this.score;
-			}
-		}
-	}
-
-	// Token: 0x06000B5C RID: 2908 RVA: 0x000452AF File Offset: 0x000434AF
-	private void OnApplicationQuit()
-	{
-		this.isShuttingDown = true;
-	}
-
-	// Token: 0x06000B5D RID: 2909 RVA: 0x000452B8 File Offset: 0x000434B8
-	private void DropItem()
-	{
-		if (this.ItemDropAfterDead.Length != 0)
-		{
-			int num = Random.Range(0, this.ItemDropAfterDead.Length);
-			if (this.ItemDropAfterDead[num] != null)
-			{
-				GameObject gameObject = Object.Instantiate<GameObject>(this.ItemDropAfterDead[num], base.gameObject.transform.position + Vector3.up * 2f, base.gameObject.transform.rotation);
-				if (gameObject.GetComponent<Rigidbody>())
-				{
-					gameObject.GetComponent<Rigidbody>().AddForce((-base.transform.forward + Vector3.up) * 100f);
-					gameObject.GetComponent<Rigidbody>().AddTorque((-base.transform.forward + Vector3.up) * 100f);
-				}
-				Object.Destroy(gameObject, 5f);
-			}
-		}
-	}
-
-	// Token: 0x0400078A RID: 1930
 	public GameObject[] ItemDropAfterDead;
 
-	// Token: 0x0400078B RID: 1931
 	public int score = 1;
 
-	// Token: 0x0400078C RID: 1932
 	private bool isShuttingDown;
+
+	private void OnDestroy()
+	{
+		if (!isShuttingDown)
+		{
+			DropItem();
+			GameManager gameManager = (GameManager)(object)Object.FindObjectOfType(typeof(GameManager));
+			if (Object.op_Implicit((Object)(object)gameManager))
+			{
+				gameManager.Score += score;
+			}
+		}
+	}
+
+	private void OnApplicationQuit()
+	{
+		isShuttingDown = true;
+	}
+
+	private void DropItem()
+	{
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		if (ItemDropAfterDead.Length == 0)
+		{
+			return;
+		}
+		int num = Random.Range(0, ItemDropAfterDead.Length);
+		if ((Object)(object)ItemDropAfterDead[num] != (Object)null)
+		{
+			GameObject val = Object.Instantiate<GameObject>(ItemDropAfterDead[num], ((Component)this).gameObject.transform.position + Vector3.up * 2f, ((Component)this).gameObject.transform.rotation);
+			if (Object.op_Implicit((Object)(object)val.GetComponent<Rigidbody>()))
+			{
+				val.GetComponent<Rigidbody>().AddForce((-((Component)this).transform.forward + Vector3.up) * 100f);
+				val.GetComponent<Rigidbody>().AddTorque((-((Component)this).transform.forward + Vector3.up) * 100f);
+			}
+			Object.Destroy((Object)(object)val, 5f);
+		}
+	}
 }

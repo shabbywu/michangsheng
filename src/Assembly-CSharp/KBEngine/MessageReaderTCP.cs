@@ -1,137 +1,124 @@
-﻿using System;
+using System;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class MessageReaderTCP : MessageReaderBase
 {
-	// Token: 0x02000BDD RID: 3037
-	public class MessageReaderTCP : MessageReaderBase
+	private enum READ_STATE
 	{
-		// Token: 0x06005474 RID: 21620 RVA: 0x002353BC File Offset: 0x002335BC
-		public override void process(byte[] datas, uint offset, uint length)
+		READ_STATE_MSGID,
+		READ_STATE_MSGLEN,
+		READ_STATE_MSGLEN_EX,
+		READ_STATE_BODY
+	}
+
+	private ushort msgid;
+
+	private ushort msglen;
+
+	private uint expectSize = 2u;
+
+	private READ_STATE state;
+
+	private MemoryStream stream = new MemoryStream();
+
+	public override void process(byte[] datas, uint offset, uint length)
+	{
+		uint num = offset;
+		while (length != 0 && expectSize != 0)
 		{
-			uint num = offset;
-			while (length > 0U && this.expectSize > 0U)
+			if (state == READ_STATE.READ_STATE_MSGID)
 			{
-				if (this.state == MessageReaderTCP.READ_STATE.READ_STATE_MSGID)
+				if (length < expectSize)
 				{
-					if (length < this.expectSize)
-					{
-						Array.Copy(datas, (long)((ulong)num), this.stream.data(), (long)this.stream.wpos, (long)((ulong)length));
-						this.stream.wpos += (int)length;
-						this.expectSize -= length;
-						return;
-					}
-					Array.Copy(datas, (long)((ulong)num), this.stream.data(), (long)this.stream.wpos, (long)((ulong)this.expectSize));
-					num += this.expectSize;
-					this.stream.wpos += (int)this.expectSize;
-					length -= this.expectSize;
-					this.msgid = this.stream.readUint16();
-					this.stream.clear();
-					Message message = Messages.clientMessages[this.msgid];
-					if (message.msglen == -1)
-					{
-						this.state = MessageReaderTCP.READ_STATE.READ_STATE_MSGLEN;
-						this.expectSize = 2U;
-					}
-					else if (message.msglen == 0)
-					{
-						message.handleMessage(this.stream);
-						this.state = MessageReaderTCP.READ_STATE.READ_STATE_MSGID;
-						this.expectSize = 2U;
-					}
-					else
-					{
-						this.expectSize = (uint)message.msglen;
-						this.state = MessageReaderTCP.READ_STATE.READ_STATE_BODY;
-					}
+					Array.Copy(datas, num, stream.data(), stream.wpos, length);
+					stream.wpos += (int)length;
+					expectSize -= length;
+					break;
 				}
-				else if (this.state == MessageReaderTCP.READ_STATE.READ_STATE_MSGLEN)
+				Array.Copy(datas, num, stream.data(), stream.wpos, expectSize);
+				num += expectSize;
+				stream.wpos += (int)expectSize;
+				length -= expectSize;
+				msgid = stream.readUint16();
+				stream.clear();
+				Message message = Messages.clientMessages[msgid];
+				if (message.msglen == -1)
 				{
-					if (length < this.expectSize)
-					{
-						Array.Copy(datas, (long)((ulong)num), this.stream.data(), (long)this.stream.wpos, (long)((ulong)length));
-						this.stream.wpos += (int)length;
-						this.expectSize -= length;
-						return;
-					}
-					Array.Copy(datas, (long)((ulong)num), this.stream.data(), (long)this.stream.wpos, (long)((ulong)this.expectSize));
-					num += this.expectSize;
-					this.stream.wpos += (int)this.expectSize;
-					length -= this.expectSize;
-					this.msglen = this.stream.readUint16();
-					this.stream.clear();
-					if (this.msglen >= 65535)
-					{
-						this.state = MessageReaderTCP.READ_STATE.READ_STATE_MSGLEN_EX;
-						this.expectSize = 4U;
-					}
-					else
-					{
-						this.state = MessageReaderTCP.READ_STATE.READ_STATE_BODY;
-						this.expectSize = (uint)this.msglen;
-					}
+					state = READ_STATE.READ_STATE_MSGLEN;
+					expectSize = 2u;
 				}
-				else if (this.state == MessageReaderTCP.READ_STATE.READ_STATE_MSGLEN_EX)
+				else if (message.msglen == 0)
 				{
-					if (length < this.expectSize)
-					{
-						Array.Copy(datas, (long)((ulong)num), this.stream.data(), (long)this.stream.wpos, (long)((ulong)length));
-						this.stream.wpos += (int)length;
-						this.expectSize -= length;
-						return;
-					}
-					Array.Copy(datas, (long)((ulong)num), this.stream.data(), (long)this.stream.wpos, (long)((ulong)this.expectSize));
-					num += this.expectSize;
-					this.stream.wpos += (int)this.expectSize;
-					length -= this.expectSize;
-					this.expectSize = this.stream.readUint32();
-					this.stream.clear();
-					this.state = MessageReaderTCP.READ_STATE.READ_STATE_BODY;
+					message.handleMessage(stream);
+					state = READ_STATE.READ_STATE_MSGID;
+					expectSize = 2u;
 				}
-				else if (this.state == MessageReaderTCP.READ_STATE.READ_STATE_BODY)
+				else
 				{
-					if (length < this.expectSize)
-					{
-						this.stream.append(datas, num, length);
-						this.expectSize -= length;
-						return;
-					}
-					this.stream.append(datas, num, this.expectSize);
-					num += this.expectSize;
-					length -= this.expectSize;
-					Messages.clientMessages[this.msgid].handleMessage(this.stream);
-					this.stream.clear();
-					this.state = MessageReaderTCP.READ_STATE.READ_STATE_MSGID;
-					this.expectSize = 2U;
+					expectSize = (uint)message.msglen;
+					state = READ_STATE.READ_STATE_BODY;
 				}
 			}
-		}
-
-		// Token: 0x04005082 RID: 20610
-		private ushort msgid;
-
-		// Token: 0x04005083 RID: 20611
-		private ushort msglen;
-
-		// Token: 0x04005084 RID: 20612
-		private uint expectSize = 2U;
-
-		// Token: 0x04005085 RID: 20613
-		private MessageReaderTCP.READ_STATE state;
-
-		// Token: 0x04005086 RID: 20614
-		private MemoryStream stream = new MemoryStream();
-
-		// Token: 0x020015FA RID: 5626
-		private enum READ_STATE
-		{
-			// Token: 0x040070FC RID: 28924
-			READ_STATE_MSGID,
-			// Token: 0x040070FD RID: 28925
-			READ_STATE_MSGLEN,
-			// Token: 0x040070FE RID: 28926
-			READ_STATE_MSGLEN_EX,
-			// Token: 0x040070FF RID: 28927
-			READ_STATE_BODY
+			else if (state == READ_STATE.READ_STATE_MSGLEN)
+			{
+				if (length < expectSize)
+				{
+					Array.Copy(datas, num, stream.data(), stream.wpos, length);
+					stream.wpos += (int)length;
+					expectSize -= length;
+					break;
+				}
+				Array.Copy(datas, num, stream.data(), stream.wpos, expectSize);
+				num += expectSize;
+				stream.wpos += (int)expectSize;
+				length -= expectSize;
+				msglen = stream.readUint16();
+				stream.clear();
+				if (msglen >= ushort.MaxValue)
+				{
+					state = READ_STATE.READ_STATE_MSGLEN_EX;
+					expectSize = 4u;
+				}
+				else
+				{
+					state = READ_STATE.READ_STATE_BODY;
+					expectSize = msglen;
+				}
+			}
+			else if (state == READ_STATE.READ_STATE_MSGLEN_EX)
+			{
+				if (length < expectSize)
+				{
+					Array.Copy(datas, num, stream.data(), stream.wpos, length);
+					stream.wpos += (int)length;
+					expectSize -= length;
+					break;
+				}
+				Array.Copy(datas, num, stream.data(), stream.wpos, expectSize);
+				num += expectSize;
+				stream.wpos += (int)expectSize;
+				length -= expectSize;
+				expectSize = stream.readUint32();
+				stream.clear();
+				state = READ_STATE.READ_STATE_BODY;
+			}
+			else if (state == READ_STATE.READ_STATE_BODY)
+			{
+				if (length < expectSize)
+				{
+					stream.append(datas, num, length);
+					expectSize -= length;
+					break;
+				}
+				stream.append(datas, num, expectSize);
+				num += expectSize;
+				length -= expectSize;
+				Messages.clientMessages[msgid].handleMessage(stream);
+				stream.clear();
+				state = READ_STATE.READ_STATE_MSGID;
+				expectSize = 2u;
+			}
 		}
 	}
 }

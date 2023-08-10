@@ -1,59 +1,78 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000033 RID: 51
 [RequireComponent(typeof(UISprite))]
 [AddComponentMenu("NGUI/Examples/UI Cursor")]
 public class UICursor : MonoBehaviour
 {
-	// Token: 0x06000406 RID: 1030 RVA: 0x0001677B File Offset: 0x0001497B
+	public static UICursor instance;
+
+	public Camera uiCamera;
+
+	private Transform mTrans;
+
+	private UISprite mSprite;
+
+	private UIAtlas mAtlas;
+
+	private string mSpriteName;
+
 	private void Awake()
 	{
-		UICursor.instance = this;
+		instance = this;
 	}
 
-	// Token: 0x06000407 RID: 1031 RVA: 0x00016783 File Offset: 0x00014983
 	private void OnDestroy()
 	{
-		UICursor.instance = null;
+		instance = null;
 	}
 
-	// Token: 0x06000408 RID: 1032 RVA: 0x0001678C File Offset: 0x0001498C
 	private void Start()
 	{
-		this.mTrans = base.transform;
-		this.mSprite = base.GetComponentInChildren<UISprite>();
-		if (this.uiCamera == null)
+		mTrans = ((Component)this).transform;
+		mSprite = ((Component)this).GetComponentInChildren<UISprite>();
+		if ((Object)(object)uiCamera == (Object)null)
 		{
-			this.uiCamera = NGUITools.FindCameraForLayer(base.gameObject.layer);
+			uiCamera = NGUITools.FindCameraForLayer(((Component)this).gameObject.layer);
 		}
-		if (this.mSprite != null)
+		if ((Object)(object)mSprite != (Object)null)
 		{
-			this.mAtlas = this.mSprite.atlas;
-			this.mSpriteName = this.mSprite.spriteName;
-			if (this.mSprite.depth < 100)
+			mAtlas = mSprite.atlas;
+			mSpriteName = mSprite.spriteName;
+			if (mSprite.depth < 100)
 			{
-				this.mSprite.depth = 100;
+				mSprite.depth = 100;
 			}
 		}
 	}
 
-	// Token: 0x06000409 RID: 1033 RVA: 0x00016824 File Offset: 0x00014A24
 	private void Update()
 	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0105: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 mousePosition = Input.mousePosition;
-		if (this.uiCamera != null)
+		if ((Object)(object)uiCamera != (Object)null)
 		{
 			mousePosition.x = Mathf.Clamp01(mousePosition.x / (float)Screen.width);
 			mousePosition.y = Mathf.Clamp01(mousePosition.y / (float)Screen.height);
-			this.mTrans.position = this.uiCamera.ViewportToWorldPoint(mousePosition);
-			if (this.uiCamera.orthographic)
+			mTrans.position = uiCamera.ViewportToWorldPoint(mousePosition);
+			if (uiCamera.orthographic)
 			{
-				Vector3 localPosition = this.mTrans.localPosition;
+				Vector3 localPosition = mTrans.localPosition;
 				localPosition.x = Mathf.Round(localPosition.x);
 				localPosition.y = Mathf.Round(localPosition.y);
-				this.mTrans.localPosition = localPosition;
-				return;
+				mTrans.localPosition = localPosition;
 			}
 		}
 		else
@@ -62,46 +81,26 @@ public class UICursor : MonoBehaviour
 			mousePosition.y -= (float)Screen.height * 0.5f;
 			mousePosition.x = Mathf.Round(mousePosition.x);
 			mousePosition.y = Mathf.Round(mousePosition.y);
-			this.mTrans.localPosition = mousePosition;
+			mTrans.localPosition = mousePosition;
 		}
 	}
 
-	// Token: 0x0600040A RID: 1034 RVA: 0x0001693C File Offset: 0x00014B3C
 	public static void Clear()
 	{
-		if (UICursor.instance != null && UICursor.instance.mSprite != null)
+		if ((Object)(object)instance != (Object)null && (Object)(object)instance.mSprite != (Object)null)
 		{
-			UICursor.Set(UICursor.instance.mAtlas, UICursor.instance.mSpriteName);
+			Set(instance.mAtlas, instance.mSpriteName);
 		}
 	}
 
-	// Token: 0x0600040B RID: 1035 RVA: 0x00016978 File Offset: 0x00014B78
 	public static void Set(UIAtlas atlas, string sprite)
 	{
-		if (UICursor.instance != null && UICursor.instance.mSprite)
+		if ((Object)(object)instance != (Object)null && Object.op_Implicit((Object)(object)instance.mSprite))
 		{
-			UICursor.instance.mSprite.atlas = atlas;
-			UICursor.instance.mSprite.spriteName = sprite;
-			UICursor.instance.mSprite.MakePixelPerfect();
-			UICursor.instance.Update();
+			instance.mSprite.atlas = atlas;
+			instance.mSprite.spriteName = sprite;
+			instance.mSprite.MakePixelPerfect();
+			instance.Update();
 		}
 	}
-
-	// Token: 0x04000232 RID: 562
-	public static UICursor instance;
-
-	// Token: 0x04000233 RID: 563
-	public Camera uiCamera;
-
-	// Token: 0x04000234 RID: 564
-	private Transform mTrans;
-
-	// Token: 0x04000235 RID: 565
-	private UISprite mSprite;
-
-	// Token: 0x04000236 RID: 566
-	private UIAtlas mAtlas;
-
-	// Token: 0x04000237 RID: 567
-	private string mSpriteName;
 }

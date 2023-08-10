@@ -1,53 +1,45 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Add", "发送第一代传音符", "发送第一代传音符", 0)]
+[AddComponentMenu("")]
+public class SendChuanYingFu : Command
 {
-	// Token: 0x02000F3B RID: 3899
-	[CommandInfo("YSNew/Add", "发送第一代传音符", "发送第一代传音符", 0)]
-	[AddComponentMenu("")]
-	public class SendChuanYingFu : Command
+	[Tooltip("传音符的ID")]
+	[SerializeField]
+	protected int ID;
+
+	[Tooltip("传音符的ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable ChuanYingID;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006E2E RID: 28206 RVA: 0x002A468C File Offset: 0x002A288C
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		if (ID != 0)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			if (this.ID != 0)
-			{
-				player.chuanYingManager.addChuanYingFu(this.ID);
-			}
-			else
-			{
-				player.chuanYingManager.addChuanYingFu(this.ChuanYingID.Value);
-			}
-			player.updateChuanYingFu();
-			this.Continue();
+			player.chuanYingManager.addChuanYingFu(ID);
 		}
-
-		// Token: 0x06006E2F RID: 28207 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			player.chuanYingManager.addChuanYingFu(ChuanYingID.Value);
 		}
+		player.updateChuanYingFu();
+		Continue();
+	}
 
-		// Token: 0x06006E30 RID: 28208 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005B87 RID: 23431
-		[Tooltip("传音符的ID")]
-		[SerializeField]
-		protected int ID;
-
-		// Token: 0x04005B88 RID: 23432
-		[Tooltip("传音符的ID")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable ChuanYingID;
+	public override void OnReset()
+	{
 	}
 }

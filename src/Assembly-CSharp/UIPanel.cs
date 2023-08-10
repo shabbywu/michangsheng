@@ -1,23 +1,128 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x020000AC RID: 172
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/NGUI Panel")]
 public class UIPanel : UIRect
 {
-	// Token: 0x17000191 RID: 401
-	// (get) Token: 0x060009E2 RID: 2530 RVA: 0x0003B480 File Offset: 0x00039680
+	public enum RenderQueue
+	{
+		Automatic,
+		StartAt,
+		Explicit
+	}
+
+	public delegate void OnGeometryUpdated();
+
+	public delegate void OnClippingMoved(UIPanel panel);
+
+	public static BetterList<UIPanel> list = new BetterList<UIPanel>();
+
+	public OnGeometryUpdated onGeometryUpdated;
+
+	public bool showInPanelTool = true;
+
+	public bool generateNormals;
+
+	public bool widgetsAreStatic;
+
+	public bool cullWhileDragging;
+
+	public bool alwaysOnScreen;
+
+	public bool anchorOffset;
+
+	public RenderQueue renderQueue;
+
+	public int startingRenderQueue = 3000;
+
+	[NonSerialized]
+	public BetterList<UIWidget> widgets = new BetterList<UIWidget>();
+
+	[NonSerialized]
+	public BetterList<UIDrawCall> drawCalls = new BetterList<UIDrawCall>();
+
+	[NonSerialized]
+	public Matrix4x4 worldToLocal = Matrix4x4.identity;
+
+	[NonSerialized]
+	public Vector4 drawCallClipRange = new Vector4(0f, 0f, 1f, 1f);
+
+	public OnClippingMoved onClipMove;
+
+	[HideInInspector]
+	[SerializeField]
+	private float mAlpha = 1f;
+
+	[HideInInspector]
+	[SerializeField]
+	private UIDrawCall.Clipping mClipping;
+
+	[HideInInspector]
+	[SerializeField]
+	private Vector4 mClipRange = new Vector4(0f, 0f, 300f, 200f);
+
+	[HideInInspector]
+	[SerializeField]
+	private Vector2 mClipSoftness = new Vector2(4f, 4f);
+
+	[HideInInspector]
+	[SerializeField]
+	private int mDepth;
+
+	[HideInInspector]
+	[SerializeField]
+	private int mSortingOrder;
+
+	private bool mRebuild;
+
+	private bool mResized;
+
+	private Camera mCam;
+
+	[SerializeField]
+	private Vector2 mClipOffset = Vector2.zero;
+
+	private float mCullTime;
+
+	private float mUpdateTime;
+
+	private int mMatrixFrame = -1;
+
+	private int mAlphaFrameID;
+
+	private int mLayer = -1;
+
+	private static float[] mTemp = new float[4];
+
+	private Vector2 mMin = Vector2.zero;
+
+	private Vector2 mMax = Vector2.zero;
+
+	private bool mHalfPixelOffset;
+
+	private bool mSortWidgets;
+
+	private bool mUpdateScroll;
+
+	private UIPanel mParentPanel;
+
+	private static Vector3[] mCorners = (Vector3[])(object)new Vector3[4];
+
+	private static int mUpdateFrame = -1;
+
+	private bool mForced;
+
 	public static int nextUnusedDepth
 	{
 		get
 		{
 			int num = int.MinValue;
-			for (int i = 0; i < UIPanel.list.size; i++)
+			for (int i = 0; i < list.size; i++)
 			{
-				num = Mathf.Max(num, UIPanel.list[i].depth);
+				num = Mathf.Max(num, list[i].depth);
 			}
-			if (num != -2147483648)
+			if (num != int.MinValue)
 			{
 				return num + 1;
 			}
@@ -25,508 +130,531 @@ public class UIPanel : UIRect
 		}
 	}
 
-	// Token: 0x17000192 RID: 402
-	// (get) Token: 0x060009E3 RID: 2531 RVA: 0x0003B4CC File Offset: 0x000396CC
-	public override bool canBeAnchored
-	{
-		get
-		{
-			return this.mClipping > UIDrawCall.Clipping.None;
-		}
-	}
+	public override bool canBeAnchored => mClipping != UIDrawCall.Clipping.None;
 
-	// Token: 0x17000193 RID: 403
-	// (get) Token: 0x060009E4 RID: 2532 RVA: 0x0003B4D7 File Offset: 0x000396D7
-	// (set) Token: 0x060009E5 RID: 2533 RVA: 0x0003B4E0 File Offset: 0x000396E0
 	public override float alpha
 	{
 		get
 		{
-			return this.mAlpha;
+			return mAlpha;
 		}
 		set
 		{
 			float num = Mathf.Clamp01(value);
-			if (this.mAlpha != num)
+			if (mAlpha != num)
 			{
-				this.mAlphaFrameID = -1;
-				this.mResized = true;
-				this.mAlpha = num;
-				this.SetDirty();
+				mAlphaFrameID = -1;
+				mResized = true;
+				mAlpha = num;
+				SetDirty();
 			}
 		}
 	}
 
-	// Token: 0x17000194 RID: 404
-	// (get) Token: 0x060009E6 RID: 2534 RVA: 0x0003B518 File Offset: 0x00039718
-	// (set) Token: 0x060009E7 RID: 2535 RVA: 0x0003B520 File Offset: 0x00039720
 	public int depth
 	{
 		get
 		{
-			return this.mDepth;
+			return mDepth;
 		}
 		set
 		{
-			if (this.mDepth != value)
+			if (mDepth != value)
 			{
-				this.mDepth = value;
-				UIPanel.list.Sort(new BetterList<UIPanel>.CompareFunc(UIPanel.CompareFunc));
+				mDepth = value;
+				list.Sort(CompareFunc);
 			}
 		}
 	}
 
-	// Token: 0x17000195 RID: 405
-	// (get) Token: 0x060009E8 RID: 2536 RVA: 0x0003B548 File Offset: 0x00039748
-	// (set) Token: 0x060009E9 RID: 2537 RVA: 0x0003B550 File Offset: 0x00039750
 	public int sortingOrder
 	{
 		get
 		{
-			return this.mSortingOrder;
+			return mSortingOrder;
 		}
 		set
 		{
-			if (this.mSortingOrder != value)
+			if (mSortingOrder != value)
 			{
-				this.mSortingOrder = value;
-				this.UpdateDrawCalls();
+				mSortingOrder = value;
+				UpdateDrawCalls();
 			}
 		}
 	}
 
-	// Token: 0x060009EA RID: 2538 RVA: 0x0003B568 File Offset: 0x00039768
-	public static int CompareFunc(UIPanel a, UIPanel b)
-	{
-		if (!(a != b) || !(a != null) || !(b != null))
-		{
-			return 0;
-		}
-		if (a.mDepth < b.mDepth)
-		{
-			return -1;
-		}
-		if (a.mDepth > b.mDepth)
-		{
-			return 1;
-		}
-		if (a.GetInstanceID() >= b.GetInstanceID())
-		{
-			return 1;
-		}
-		return -1;
-	}
+	public float width => GetViewSize().x;
 
-	// Token: 0x17000196 RID: 406
-	// (get) Token: 0x060009EB RID: 2539 RVA: 0x0003B5C3 File Offset: 0x000397C3
-	public float width
-	{
-		get
-		{
-			return this.GetViewSize().x;
-		}
-	}
+	public float height => GetViewSize().y;
 
-	// Token: 0x17000197 RID: 407
-	// (get) Token: 0x060009EC RID: 2540 RVA: 0x0003B5D0 File Offset: 0x000397D0
-	public float height
-	{
-		get
-		{
-			return this.GetViewSize().y;
-		}
-	}
+	public bool halfPixelOffset => mHalfPixelOffset;
 
-	// Token: 0x17000198 RID: 408
-	// (get) Token: 0x060009ED RID: 2541 RVA: 0x0003B5DD File Offset: 0x000397DD
-	public bool halfPixelOffset
-	{
-		get
-		{
-			return this.mHalfPixelOffset;
-		}
-	}
-
-	// Token: 0x17000199 RID: 409
-	// (get) Token: 0x060009EE RID: 2542 RVA: 0x0003B5E5 File Offset: 0x000397E5
 	public bool usedForUI
 	{
 		get
 		{
-			return this.mCam != null && this.mCam.orthographic;
+			if ((Object)(object)mCam != (Object)null)
+			{
+				return mCam.orthographic;
+			}
+			return false;
 		}
 	}
 
-	// Token: 0x1700019A RID: 410
-	// (get) Token: 0x060009EF RID: 2543 RVA: 0x0003B604 File Offset: 0x00039804
 	public Vector3 drawCallOffset
 	{
 		get
 		{
-			if (this.mHalfPixelOffset && this.mCam != null && this.mCam.orthographic)
+			//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+			if (mHalfPixelOffset && (Object)(object)mCam != (Object)null && mCam.orthographic)
 			{
-				Vector2 windowSize = this.GetWindowSize();
-				float num = 1f / windowSize.y / this.mCam.orthographicSize;
-				return new Vector3(-num, num);
+				Vector2 windowSize = GetWindowSize();
+				float num = 1f / windowSize.y / mCam.orthographicSize;
+				return new Vector3(0f - num, num);
 			}
 			return Vector3.zero;
 		}
 	}
 
-	// Token: 0x1700019B RID: 411
-	// (get) Token: 0x060009F0 RID: 2544 RVA: 0x0003B662 File Offset: 0x00039862
-	// (set) Token: 0x060009F1 RID: 2545 RVA: 0x0003B66A File Offset: 0x0003986A
 	public UIDrawCall.Clipping clipping
 	{
 		get
 		{
-			return this.mClipping;
+			return mClipping;
 		}
 		set
 		{
-			if (this.mClipping != value)
+			if (mClipping != value)
 			{
-				this.mResized = true;
-				this.mClipping = value;
-				this.mMatrixFrame = -1;
+				mResized = true;
+				mClipping = value;
+				mMatrixFrame = -1;
 			}
 		}
 	}
 
-	// Token: 0x1700019C RID: 412
-	// (get) Token: 0x060009F2 RID: 2546 RVA: 0x0003B68A File Offset: 0x0003988A
-	public UIPanel parentPanel
-	{
-		get
-		{
-			return this.mParentPanel;
-		}
-	}
+	public UIPanel parentPanel => mParentPanel;
 
-	// Token: 0x1700019D RID: 413
-	// (get) Token: 0x060009F3 RID: 2547 RVA: 0x0003B694 File Offset: 0x00039894
 	public int clipCount
 	{
 		get
 		{
 			int num = 0;
-			UIPanel uipanel = this;
-			while (uipanel != null)
+			UIPanel uIPanel = this;
+			while ((Object)(object)uIPanel != (Object)null)
 			{
-				if (uipanel.mClipping == UIDrawCall.Clipping.SoftClip)
+				if (uIPanel.mClipping == UIDrawCall.Clipping.SoftClip)
 				{
 					num++;
 				}
-				uipanel = uipanel.mParentPanel;
+				uIPanel = uIPanel.mParentPanel;
 			}
 			return num;
 		}
 	}
 
-	// Token: 0x1700019E RID: 414
-	// (get) Token: 0x060009F4 RID: 2548 RVA: 0x0003B6C5 File Offset: 0x000398C5
-	public bool hasClipping
-	{
-		get
-		{
-			return this.mClipping == UIDrawCall.Clipping.SoftClip;
-		}
-	}
+	public bool hasClipping => mClipping == UIDrawCall.Clipping.SoftClip;
 
-	// Token: 0x1700019F RID: 415
-	// (get) Token: 0x060009F5 RID: 2549 RVA: 0x0003B6D0 File Offset: 0x000398D0
-	public bool hasCumulativeClipping
-	{
-		get
-		{
-			return this.clipCount != 0;
-		}
-	}
+	public bool hasCumulativeClipping => clipCount != 0;
 
-	// Token: 0x170001A0 RID: 416
-	// (get) Token: 0x060009F6 RID: 2550 RVA: 0x0003B6DB File Offset: 0x000398DB
 	[Obsolete("Use 'hasClipping' or 'hasCumulativeClipping' instead")]
-	public bool clipsChildren
-	{
-		get
-		{
-			return this.hasCumulativeClipping;
-		}
-	}
+	public bool clipsChildren => hasCumulativeClipping;
 
-	// Token: 0x170001A1 RID: 417
-	// (get) Token: 0x060009F7 RID: 2551 RVA: 0x0003B6E3 File Offset: 0x000398E3
-	// (set) Token: 0x060009F8 RID: 2552 RVA: 0x0003B6EC File Offset: 0x000398EC
 	public Vector2 clipOffset
 	{
 		get
 		{
-			return this.mClipOffset;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mClipOffset;
 		}
 		set
 		{
-			if (Mathf.Abs(this.mClipOffset.x - value.x) > 0.001f || Mathf.Abs(this.mClipOffset.y - value.y) > 0.001f)
+			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+			if (Mathf.Abs(mClipOffset.x - value.x) > 0.001f || Mathf.Abs(mClipOffset.y - value.y) > 0.001f)
 			{
-				this.mClipOffset = value;
-				this.InvalidateClipping();
-				if (this.onClipMove != null)
+				mClipOffset = value;
+				InvalidateClipping();
+				if (onClipMove != null)
 				{
-					this.onClipMove(this);
+					onClipMove(this);
 				}
 			}
 		}
 	}
 
-	// Token: 0x060009F9 RID: 2553 RVA: 0x0003B758 File Offset: 0x00039958
-	private void InvalidateClipping()
-	{
-		this.mResized = true;
-		this.mMatrixFrame = -1;
-		this.mCullTime = ((this.mCullTime == 0f) ? 0.001f : (RealTime.time + 0.15f));
-		for (int i = 0; i < UIPanel.list.size; i++)
-		{
-			UIPanel uipanel = UIPanel.list[i];
-			if (uipanel != this && uipanel.parentPanel == this)
-			{
-				uipanel.InvalidateClipping();
-			}
-		}
-	}
-
-	// Token: 0x170001A2 RID: 418
-	// (get) Token: 0x060009FA RID: 2554 RVA: 0x0003B7D6 File Offset: 0x000399D6
-	// (set) Token: 0x060009FB RID: 2555 RVA: 0x0003B7DE File Offset: 0x000399DE
 	[Obsolete("Use 'finalClipRegion' or 'baseClipRegion' instead")]
 	public Vector4 clipRange
 	{
 		get
 		{
-			return this.baseClipRegion;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return baseClipRegion;
 		}
 		set
 		{
-			this.baseClipRegion = value;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			baseClipRegion = value;
 		}
 	}
 
-	// Token: 0x170001A3 RID: 419
-	// (get) Token: 0x060009FC RID: 2556 RVA: 0x0003B7E7 File Offset: 0x000399E7
-	// (set) Token: 0x060009FD RID: 2557 RVA: 0x0003B7F0 File Offset: 0x000399F0
 	public Vector4 baseClipRegion
 	{
 		get
 		{
-			return this.mClipRange;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mClipRange;
 		}
 		set
 		{
-			if (Mathf.Abs(this.mClipRange.x - value.x) > 0.001f || Mathf.Abs(this.mClipRange.y - value.y) > 0.001f || Mathf.Abs(this.mClipRange.z - value.z) > 0.001f || Mathf.Abs(this.mClipRange.w - value.w) > 0.001f)
+			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+			if (Mathf.Abs(mClipRange.x - value.x) > 0.001f || Mathf.Abs(mClipRange.y - value.y) > 0.001f || Mathf.Abs(mClipRange.z - value.z) > 0.001f || Mathf.Abs(mClipRange.w - value.w) > 0.001f)
 			{
-				this.mResized = true;
-				this.mCullTime = ((this.mCullTime == 0f) ? 0.001f : (RealTime.time + 0.15f));
-				this.mClipRange = value;
-				this.mMatrixFrame = -1;
-				UIScrollView component = base.GetComponent<UIScrollView>();
-				if (component != null)
+				mResized = true;
+				mCullTime = ((mCullTime == 0f) ? 0.001f : (RealTime.time + 0.15f));
+				mClipRange = value;
+				mMatrixFrame = -1;
+				UIScrollView component = ((Component)this).GetComponent<UIScrollView>();
+				if ((Object)(object)component != (Object)null)
 				{
 					component.UpdatePosition();
 				}
-				if (this.onClipMove != null)
+				if (onClipMove != null)
 				{
-					this.onClipMove(this);
+					onClipMove(this);
 				}
 			}
 		}
 	}
 
-	// Token: 0x170001A4 RID: 420
-	// (get) Token: 0x060009FE RID: 2558 RVA: 0x0003B8DC File Offset: 0x00039ADC
 	public Vector4 finalClipRegion
 	{
 		get
 		{
-			Vector2 viewSize = this.GetViewSize();
-			if (this.mClipping != UIDrawCall.Clipping.None)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 viewSize = GetViewSize();
+			if (mClipping != 0)
 			{
-				return new Vector4(this.mClipRange.x + this.mClipOffset.x, this.mClipRange.y + this.mClipOffset.y, viewSize.x, viewSize.y);
+				return new Vector4(mClipRange.x + mClipOffset.x, mClipRange.y + mClipOffset.y, viewSize.x, viewSize.y);
 			}
 			return new Vector4(0f, 0f, viewSize.x, viewSize.y);
 		}
 	}
 
-	// Token: 0x170001A5 RID: 421
-	// (get) Token: 0x060009FF RID: 2559 RVA: 0x0003B953 File Offset: 0x00039B53
-	// (set) Token: 0x06000A00 RID: 2560 RVA: 0x0003B95B File Offset: 0x00039B5B
 	public Vector2 clipSoftness
 	{
 		get
 		{
-			return this.mClipSoftness;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mClipSoftness;
 		}
 		set
 		{
-			if (this.mClipSoftness != value)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			if (mClipSoftness != value)
 			{
-				this.mClipSoftness = value;
+				mClipSoftness = value;
 			}
 		}
 	}
 
-	// Token: 0x170001A6 RID: 422
-	// (get) Token: 0x06000A01 RID: 2561 RVA: 0x0003B974 File Offset: 0x00039B74
 	public override Vector3[] localCorners
 	{
 		get
 		{
-			if (this.mClipping == UIDrawCall.Clipping.None)
+			//IL_01db: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01ef: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0203: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0208: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0217: Unknown result type (might be due to invalid IL or missing references)
+			//IL_021c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_013a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_013f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_014c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0151: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+			if (mClipping == UIDrawCall.Clipping.None)
 			{
-				Vector2 viewSize = this.GetViewSize();
+				Vector2 viewSize = GetViewSize();
 				float num = -0.5f * viewSize.x;
 				float num2 = -0.5f * viewSize.y;
 				float num3 = num + viewSize.x;
 				float num4 = num2 + viewSize.y;
-				Transform transform = (this.mCam != null) ? this.mCam.transform : null;
-				if (transform != null)
+				Transform val = (((Object)(object)mCam != (Object)null) ? ((Component)mCam).transform : null);
+				if ((Object)(object)val != (Object)null)
 				{
-					UIPanel.mCorners[0] = transform.TransformPoint(num, num2, 0f);
-					UIPanel.mCorners[1] = transform.TransformPoint(num, num4, 0f);
-					UIPanel.mCorners[2] = transform.TransformPoint(num3, num4, 0f);
-					UIPanel.mCorners[3] = transform.TransformPoint(num3, num2, 0f);
-					transform = base.cachedTransform;
+					mCorners[0] = val.TransformPoint(num, num2, 0f);
+					mCorners[1] = val.TransformPoint(num, num4, 0f);
+					mCorners[2] = val.TransformPoint(num3, num4, 0f);
+					mCorners[3] = val.TransformPoint(num3, num2, 0f);
+					val = base.cachedTransform;
 					for (int i = 0; i < 4; i++)
 					{
-						UIPanel.mCorners[i] = transform.InverseTransformPoint(UIPanel.mCorners[i]);
+						mCorners[i] = val.InverseTransformPoint(mCorners[i]);
 					}
 				}
 				else
 				{
-					UIPanel.mCorners[0] = new Vector3(num, num2);
-					UIPanel.mCorners[1] = new Vector3(num, num4);
-					UIPanel.mCorners[2] = new Vector3(num3, num4);
-					UIPanel.mCorners[3] = new Vector3(num3, num2);
+					mCorners[0] = new Vector3(num, num2);
+					mCorners[1] = new Vector3(num, num4);
+					mCorners[2] = new Vector3(num3, num4);
+					mCorners[3] = new Vector3(num3, num2);
 				}
 			}
 			else
 			{
-				float num5 = this.mClipOffset.x + this.mClipRange.x - 0.5f * this.mClipRange.z;
-				float num6 = this.mClipOffset.y + this.mClipRange.y - 0.5f * this.mClipRange.w;
-				float num7 = num5 + this.mClipRange.z;
-				float num8 = num6 + this.mClipRange.w;
-				UIPanel.mCorners[0] = new Vector3(num5, num6);
-				UIPanel.mCorners[1] = new Vector3(num5, num8);
-				UIPanel.mCorners[2] = new Vector3(num7, num8);
-				UIPanel.mCorners[3] = new Vector3(num7, num6);
+				float num5 = mClipOffset.x + mClipRange.x - 0.5f * mClipRange.z;
+				float num6 = mClipOffset.y + mClipRange.y - 0.5f * mClipRange.w;
+				float num7 = num5 + mClipRange.z;
+				float num8 = num6 + mClipRange.w;
+				mCorners[0] = new Vector3(num5, num6);
+				mCorners[1] = new Vector3(num5, num8);
+				mCorners[2] = new Vector3(num7, num8);
+				mCorners[3] = new Vector3(num7, num6);
 			}
-			return UIPanel.mCorners;
+			return mCorners;
 		}
 	}
 
-	// Token: 0x170001A7 RID: 423
-	// (get) Token: 0x06000A02 RID: 2562 RVA: 0x0003BBA8 File Offset: 0x00039DA8
 	public override Vector3[] worldCorners
 	{
 		get
 		{
-			if (this.mClipping == UIDrawCall.Clipping.None)
+			//IL_0195: Unknown result type (might be due to invalid IL or missing references)
+			//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01b5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01cb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01e6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01eb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+			if (mClipping == UIDrawCall.Clipping.None)
 			{
-				if (this.mCam != null)
+				if ((Object)(object)mCam != (Object)null)
 				{
-					Vector3[] worldCorners = this.mCam.GetWorldCorners();
-					UIRoot root = base.root;
-					if (root != null)
+					Vector3[] array = mCam.GetWorldCorners();
+					UIRoot uIRoot = base.root;
+					if ((Object)(object)uIRoot != (Object)null)
 					{
-						float pixelSizeAdjustment = root.pixelSizeAdjustment;
+						float pixelSizeAdjustment = uIRoot.pixelSizeAdjustment;
 						for (int i = 0; i < 4; i++)
 						{
-							worldCorners[i] *= pixelSizeAdjustment;
+							ref Vector3 reference = ref array[i];
+							reference *= pixelSizeAdjustment;
 						}
 					}
-					return worldCorners;
+					return array;
 				}
-				Vector2 viewSize = this.GetViewSize();
+				Vector2 viewSize = GetViewSize();
 				float num = -0.5f * viewSize.x;
 				float num2 = -0.5f * viewSize.y;
 				float num3 = num + viewSize.x;
 				float num4 = num2 + viewSize.y;
-				UIPanel.mCorners[0] = new Vector3(num, num2, 0f);
-				UIPanel.mCorners[1] = new Vector3(num, num4, 0f);
-				UIPanel.mCorners[2] = new Vector3(num3, num4, 0f);
-				UIPanel.mCorners[3] = new Vector3(num3, num2, 0f);
+				mCorners[0] = new Vector3(num, num2, 0f);
+				mCorners[1] = new Vector3(num, num4, 0f);
+				mCorners[2] = new Vector3(num3, num4, 0f);
+				mCorners[3] = new Vector3(num3, num2, 0f);
 			}
 			else
 			{
-				float num5 = this.mClipOffset.x + this.mClipRange.x - 0.5f * this.mClipRange.z;
-				float num6 = this.mClipOffset.y + this.mClipRange.y - 0.5f * this.mClipRange.w;
-				float num7 = num5 + this.mClipRange.z;
-				float num8 = num6 + this.mClipRange.w;
-				Transform cachedTransform = base.cachedTransform;
-				UIPanel.mCorners[0] = cachedTransform.TransformPoint(num5, num6, 0f);
-				UIPanel.mCorners[1] = cachedTransform.TransformPoint(num5, num8, 0f);
-				UIPanel.mCorners[2] = cachedTransform.TransformPoint(num7, num8, 0f);
-				UIPanel.mCorners[3] = cachedTransform.TransformPoint(num7, num6, 0f);
+				float num5 = mClipOffset.x + mClipRange.x - 0.5f * mClipRange.z;
+				float num6 = mClipOffset.y + mClipRange.y - 0.5f * mClipRange.w;
+				float num7 = num5 + mClipRange.z;
+				float num8 = num6 + mClipRange.w;
+				Transform val = base.cachedTransform;
+				mCorners[0] = val.TransformPoint(num5, num6, 0f);
+				mCorners[1] = val.TransformPoint(num5, num8, 0f);
+				mCorners[2] = val.TransformPoint(num7, num8, 0f);
+				mCorners[3] = val.TransformPoint(num7, num6, 0f);
 			}
-			return UIPanel.mCorners;
+			return mCorners;
 		}
 	}
 
-	// Token: 0x06000A03 RID: 2563 RVA: 0x0003BDAC File Offset: 0x00039FAC
+	public static int CompareFunc(UIPanel a, UIPanel b)
+	{
+		if ((Object)(object)a != (Object)(object)b && (Object)(object)a != (Object)null && (Object)(object)b != (Object)null)
+		{
+			if (a.mDepth < b.mDepth)
+			{
+				return -1;
+			}
+			if (a.mDepth > b.mDepth)
+			{
+				return 1;
+			}
+			if (((Object)a).GetInstanceID() >= ((Object)b).GetInstanceID())
+			{
+				return 1;
+			}
+			return -1;
+		}
+		return 0;
+	}
+
+	private void InvalidateClipping()
+	{
+		mResized = true;
+		mMatrixFrame = -1;
+		mCullTime = ((mCullTime == 0f) ? 0.001f : (RealTime.time + 0.15f));
+		for (int i = 0; i < list.size; i++)
+		{
+			UIPanel uIPanel = list[i];
+			if ((Object)(object)uIPanel != (Object)(object)this && (Object)(object)uIPanel.parentPanel == (Object)(object)this)
+			{
+				uIPanel.InvalidateClipping();
+			}
+		}
+	}
+
 	public override Vector3[] GetSides(Transform relativeTo)
 	{
-		if (this.mClipping != UIDrawCall.Clipping.None || this.anchorOffset)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012d: Unknown result type (might be due to invalid IL or missing references)
+		if (mClipping != 0 || anchorOffset)
 		{
-			Vector2 viewSize = this.GetViewSize();
-			Vector2 vector = (this.mClipping != UIDrawCall.Clipping.None) ? (this.mClipRange + this.mClipOffset) : Vector2.zero;
-			float num = vector.x - 0.5f * viewSize.x;
-			float num2 = vector.y - 0.5f * viewSize.y;
+			Vector2 viewSize = GetViewSize();
+			Vector2 val = ((mClipping != 0) ? (Vector4.op_Implicit(mClipRange) + mClipOffset) : Vector2.zero);
+			float num = val.x - 0.5f * viewSize.x;
+			float num2 = val.y - 0.5f * viewSize.y;
 			float num3 = num + viewSize.x;
 			float num4 = num2 + viewSize.y;
 			float num5 = (num + num3) * 0.5f;
 			float num6 = (num2 + num4) * 0.5f;
 			Matrix4x4 localToWorldMatrix = base.cachedTransform.localToWorldMatrix;
-			UIPanel.mCorners[0] = localToWorldMatrix.MultiplyPoint3x4(new Vector3(num, num6));
-			UIPanel.mCorners[1] = localToWorldMatrix.MultiplyPoint3x4(new Vector3(num5, num4));
-			UIPanel.mCorners[2] = localToWorldMatrix.MultiplyPoint3x4(new Vector3(num3, num6));
-			UIPanel.mCorners[3] = localToWorldMatrix.MultiplyPoint3x4(new Vector3(num5, num2));
-			if (relativeTo != null)
+			mCorners[0] = ((Matrix4x4)(ref localToWorldMatrix)).MultiplyPoint3x4(new Vector3(num, num6));
+			mCorners[1] = ((Matrix4x4)(ref localToWorldMatrix)).MultiplyPoint3x4(new Vector3(num5, num4));
+			mCorners[2] = ((Matrix4x4)(ref localToWorldMatrix)).MultiplyPoint3x4(new Vector3(num3, num6));
+			mCorners[3] = ((Matrix4x4)(ref localToWorldMatrix)).MultiplyPoint3x4(new Vector3(num5, num2));
+			if ((Object)(object)relativeTo != (Object)null)
 			{
 				for (int i = 0; i < 4; i++)
 				{
-					UIPanel.mCorners[i] = relativeTo.InverseTransformPoint(UIPanel.mCorners[i]);
+					mCorners[i] = relativeTo.InverseTransformPoint(mCorners[i]);
 				}
 			}
-			return UIPanel.mCorners;
+			return mCorners;
 		}
 		return base.GetSides(relativeTo);
 	}
 
-	// Token: 0x06000A04 RID: 2564 RVA: 0x0003BF03 File Offset: 0x0003A103
 	public override void Invalidate(bool includeChildren)
 	{
-		this.mAlphaFrameID = -1;
+		mAlphaFrameID = -1;
 		base.Invalidate(includeChildren);
 	}
 
-	// Token: 0x06000A05 RID: 2565 RVA: 0x0003BF14 File Offset: 0x0003A114
 	public override float CalculateFinalAlpha(int frameID)
 	{
-		if (this.mAlphaFrameID != frameID)
+		if (mAlphaFrameID != frameID)
 		{
-			this.mAlphaFrameID = frameID;
-			UIRect parent = base.parent;
-			this.finalAlpha = ((base.parent != null) ? (parent.CalculateFinalAlpha(frameID) * this.mAlpha) : this.mAlpha);
+			mAlphaFrameID = frameID;
+			UIRect uIRect = base.parent;
+			finalAlpha = (((Object)(object)base.parent != (Object)null) ? (uIRect.CalculateFinalAlpha(frameID) * mAlpha) : mAlpha);
 		}
-		return this.finalAlpha;
+		return finalAlpha;
 	}
 
-	// Token: 0x06000A06 RID: 2566 RVA: 0x0003BF68 File Offset: 0x0003A168
 	public override void SetRect(float x, float y, float width, float height)
 	{
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
 		int num = Mathf.FloorToInt(width + 0.5f);
 		int num2 = Mathf.FloorToInt(height + 0.5f);
 		num = num >> 1 << 1;
 		num2 = num2 >> 1 << 1;
-		Transform transform = base.cachedTransform;
-		Vector3 localPosition = transform.localPosition;
+		Transform val = base.cachedTransform;
+		Vector3 localPosition = val.localPosition;
 		localPosition.x = Mathf.Floor(x + 0.5f);
 		localPosition.y = Mathf.Floor(y + 0.5f);
 		if (num < 2)
@@ -537,358 +665,414 @@ public class UIPanel : UIRect
 		{
 			num2 = 2;
 		}
-		this.baseClipRegion = new Vector4(localPosition.x, localPosition.y, (float)num, (float)num2);
+		baseClipRegion = new Vector4(localPosition.x, localPosition.y, (float)num, (float)num2);
 		if (base.isAnchored)
 		{
-			transform = transform.parent;
-			if (this.leftAnchor.target)
+			val = val.parent;
+			if (Object.op_Implicit((Object)(object)leftAnchor.target))
 			{
-				this.leftAnchor.SetHorizontal(transform, x);
+				leftAnchor.SetHorizontal(val, x);
 			}
-			if (this.rightAnchor.target)
+			if (Object.op_Implicit((Object)(object)rightAnchor.target))
 			{
-				this.rightAnchor.SetHorizontal(transform, x + width);
+				rightAnchor.SetHorizontal(val, x + width);
 			}
-			if (this.bottomAnchor.target)
+			if (Object.op_Implicit((Object)(object)bottomAnchor.target))
 			{
-				this.bottomAnchor.SetVertical(transform, y);
+				bottomAnchor.SetVertical(val, y);
 			}
-			if (this.topAnchor.target)
+			if (Object.op_Implicit((Object)(object)topAnchor.target))
 			{
-				this.topAnchor.SetVertical(transform, y + height);
+				topAnchor.SetVertical(val, y + height);
 			}
 		}
 	}
 
-	// Token: 0x06000A07 RID: 2567 RVA: 0x0003C08C File Offset: 0x0003A28C
 	public bool IsVisible(Vector3 a, Vector3 b, Vector3 c, Vector3 d)
 	{
-		this.UpdateTransformMatrix();
-		a = this.worldToLocal.MultiplyPoint3x4(a);
-		b = this.worldToLocal.MultiplyPoint3x4(b);
-		c = this.worldToLocal.MultiplyPoint3x4(c);
-		d = this.worldToLocal.MultiplyPoint3x4(d);
-		UIPanel.mTemp[0] = a.x;
-		UIPanel.mTemp[1] = b.x;
-		UIPanel.mTemp[2] = c.x;
-		UIPanel.mTemp[3] = d.x;
-		float num = Mathf.Min(UIPanel.mTemp);
-		float num2 = Mathf.Max(UIPanel.mTemp);
-		UIPanel.mTemp[0] = a.y;
-		UIPanel.mTemp[1] = b.y;
-		UIPanel.mTemp[2] = c.y;
-		UIPanel.mTemp[3] = d.y;
-		float num3 = Mathf.Min(UIPanel.mTemp);
-		float num4 = Mathf.Max(UIPanel.mTemp);
-		return num2 >= this.mMin.x && num4 >= this.mMin.y && num <= this.mMax.x && num3 <= this.mMax.y;
-	}
-
-	// Token: 0x06000A08 RID: 2568 RVA: 0x0003C1B0 File Offset: 0x0003A3B0
-	public bool IsVisible(Vector3 worldPos)
-	{
-		if (this.mAlpha < 0.001f)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		UpdateTransformMatrix();
+		a = ((Matrix4x4)(ref worldToLocal)).MultiplyPoint3x4(a);
+		b = ((Matrix4x4)(ref worldToLocal)).MultiplyPoint3x4(b);
+		c = ((Matrix4x4)(ref worldToLocal)).MultiplyPoint3x4(c);
+		d = ((Matrix4x4)(ref worldToLocal)).MultiplyPoint3x4(d);
+		mTemp[0] = a.x;
+		mTemp[1] = b.x;
+		mTemp[2] = c.x;
+		mTemp[3] = d.x;
+		float num = Mathf.Min(mTemp);
+		float num2 = Mathf.Max(mTemp);
+		mTemp[0] = a.y;
+		mTemp[1] = b.y;
+		mTemp[2] = c.y;
+		mTemp[3] = d.y;
+		float num3 = Mathf.Min(mTemp);
+		float num4 = Mathf.Max(mTemp);
+		if (num2 < mMin.x)
 		{
 			return false;
 		}
-		if (this.mClipping == UIDrawCall.Clipping.None || this.mClipping == UIDrawCall.Clipping.ConstrainButDontClip)
+		if (num4 < mMin.y)
 		{
-			return true;
+			return false;
 		}
-		this.UpdateTransformMatrix();
-		Vector3 vector = this.worldToLocal.MultiplyPoint3x4(worldPos);
-		return vector.x >= this.mMin.x && vector.y >= this.mMin.y && vector.x <= this.mMax.x && vector.y <= this.mMax.y;
-	}
-
-	// Token: 0x06000A09 RID: 2569 RVA: 0x0003C248 File Offset: 0x0003A448
-	public bool IsVisible(UIWidget w)
-	{
-		UIPanel uipanel = this;
-		Vector3[] array = null;
-		while (uipanel != null)
+		if (num > mMax.x)
 		{
-			if ((uipanel.mClipping == UIDrawCall.Clipping.None || uipanel.mClipping == UIDrawCall.Clipping.ConstrainButDontClip) && !w.hideIfOffScreen)
-			{
-				uipanel = uipanel.mParentPanel;
-			}
-			else
-			{
-				if (array == null)
-				{
-					array = w.worldCorners;
-				}
-				if (!uipanel.IsVisible(array[0], array[1], array[2], array[3]))
-				{
-					return false;
-				}
-				uipanel = uipanel.mParentPanel;
-			}
+			return false;
+		}
+		if (num3 > mMax.y)
+		{
+			return false;
 		}
 		return true;
 	}
 
-	// Token: 0x06000A0A RID: 2570 RVA: 0x0003C2C0 File Offset: 0x0003A4C0
+	public bool IsVisible(Vector3 worldPos)
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		if (mAlpha < 0.001f)
+		{
+			return false;
+		}
+		if (mClipping == UIDrawCall.Clipping.None || mClipping == UIDrawCall.Clipping.ConstrainButDontClip)
+		{
+			return true;
+		}
+		UpdateTransformMatrix();
+		Vector3 val = ((Matrix4x4)(ref worldToLocal)).MultiplyPoint3x4(worldPos);
+		if (val.x < mMin.x)
+		{
+			return false;
+		}
+		if (val.y < mMin.y)
+		{
+			return false;
+		}
+		if (val.x > mMax.x)
+		{
+			return false;
+		}
+		if (val.y > mMax.y)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public bool IsVisible(UIWidget w)
+	{
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		UIPanel uIPanel = this;
+		Vector3[] array = null;
+		while ((Object)(object)uIPanel != (Object)null)
+		{
+			if ((uIPanel.mClipping == UIDrawCall.Clipping.None || uIPanel.mClipping == UIDrawCall.Clipping.ConstrainButDontClip) && !w.hideIfOffScreen)
+			{
+				uIPanel = uIPanel.mParentPanel;
+				continue;
+			}
+			if (array == null)
+			{
+				array = w.worldCorners;
+			}
+			if (!uIPanel.IsVisible(array[0], array[1], array[2], array[3]))
+			{
+				return false;
+			}
+			uIPanel = uIPanel.mParentPanel;
+		}
+		return true;
+	}
+
 	public bool Affects(UIWidget w)
 	{
-		if (w == null)
+		if ((Object)(object)w == (Object)null)
 		{
 			return false;
 		}
 		UIPanel panel = w.panel;
-		if (panel == null)
+		if ((Object)(object)panel == (Object)null)
 		{
 			return false;
 		}
-		UIPanel uipanel = this;
-		while (uipanel != null)
+		UIPanel uIPanel = this;
+		while ((Object)(object)uIPanel != (Object)null)
 		{
-			if (uipanel == panel)
+			if ((Object)(object)uIPanel == (Object)(object)panel)
 			{
 				return true;
 			}
-			if (!uipanel.hasCumulativeClipping)
+			if (!uIPanel.hasCumulativeClipping)
 			{
 				return false;
 			}
-			uipanel = uipanel.mParentPanel;
+			uIPanel = uIPanel.mParentPanel;
 		}
 		return false;
 	}
 
-	// Token: 0x06000A0B RID: 2571 RVA: 0x0003C314 File Offset: 0x0003A514
 	[ContextMenu("Force Refresh")]
 	public void RebuildAllDrawCalls()
 	{
-		this.mRebuild = true;
+		mRebuild = true;
 	}
 
-	// Token: 0x06000A0C RID: 2572 RVA: 0x0003C320 File Offset: 0x0003A520
 	public void SetDirty()
 	{
-		for (int i = 0; i < this.drawCalls.size; i++)
+		for (int i = 0; i < drawCalls.size; i++)
 		{
-			this.drawCalls.buffer[i].isDirty = true;
+			drawCalls.buffer[i].isDirty = true;
 		}
-		this.Invalidate(true);
+		Invalidate(includeChildren: true);
 	}
 
-	// Token: 0x06000A0D RID: 2573 RVA: 0x0003C360 File Offset: 0x0003A560
 	private void Awake()
 	{
-		this.mGo = base.gameObject;
-		this.mTrans = base.transform;
-		this.mHalfPixelOffset = (Application.platform == 2 || Application.platform == 10 || Application.platform == 7);
-		if (this.mHalfPixelOffset)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Invalid comparison between Unknown and I4
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Invalid comparison between Unknown and I4
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Invalid comparison between Unknown and I4
+		mGo = ((Component)this).gameObject;
+		mTrans = ((Component)this).transform;
+		mHalfPixelOffset = (int)Application.platform == 2 || (int)Application.platform == 10 || (int)Application.platform == 7;
+		if (mHalfPixelOffset)
 		{
-			this.mHalfPixelOffset = (SystemInfo.graphicsShaderLevel < 40);
+			mHalfPixelOffset = SystemInfo.graphicsShaderLevel < 40;
 		}
 	}
 
-	// Token: 0x06000A0E RID: 2574 RVA: 0x0003C3C0 File Offset: 0x0003A5C0
 	private void FindParent()
 	{
-		Transform parent = base.cachedTransform.parent;
-		this.mParentPanel = ((parent != null) ? NGUITools.FindInParents<UIPanel>(parent.gameObject) : null);
+		Transform val = base.cachedTransform.parent;
+		mParentPanel = (((Object)(object)val != (Object)null) ? NGUITools.FindInParents<UIPanel>(((Component)val).gameObject) : null);
 	}
 
-	// Token: 0x06000A0F RID: 2575 RVA: 0x0003C3F6 File Offset: 0x0003A5F6
 	public override void ParentHasChanged()
 	{
 		base.ParentHasChanged();
-		this.FindParent();
+		FindParent();
 	}
 
-	// Token: 0x06000A10 RID: 2576 RVA: 0x0003C404 File Offset: 0x0003A604
 	protected override void OnStart()
 	{
-		this.mLayer = this.mGo.layer;
-		UICamera uicamera = UICamera.FindCameraForLayer(this.mLayer);
-		this.mCam = ((uicamera != null) ? uicamera.cachedCamera : NGUITools.FindCameraForLayer(this.mLayer));
+		mLayer = mGo.layer;
+		UICamera uICamera = UICamera.FindCameraForLayer(mLayer);
+		mCam = (((Object)(object)uICamera != (Object)null) ? uICamera.cachedCamera : NGUITools.FindCameraForLayer(mLayer));
 	}
 
-	// Token: 0x06000A11 RID: 2577 RVA: 0x0003C450 File Offset: 0x0003A650
 	protected override void OnEnable()
 	{
-		this.mRebuild = true;
-		this.mAlphaFrameID = -1;
-		this.mMatrixFrame = -1;
+		mRebuild = true;
+		mAlphaFrameID = -1;
+		mMatrixFrame = -1;
 		base.OnEnable();
-		this.mMatrixFrame = -1;
+		mMatrixFrame = -1;
 	}
 
-	// Token: 0x06000A12 RID: 2578 RVA: 0x0003C474 File Offset: 0x0003A674
 	protected override void OnInit()
 	{
 		base.OnInit();
-		if (base.GetComponent<Rigidbody>() == null)
+		if ((Object)(object)((Component)this).GetComponent<Rigidbody>() == (Object)null)
 		{
-			UICamera uicamera = (this.mCam != null) ? this.mCam.GetComponent<UICamera>() : null;
-			if (uicamera != null && (uicamera.eventType == UICamera.EventType.UI_3D || uicamera.eventType == UICamera.EventType.World_3D))
+			UICamera uICamera = (((Object)(object)mCam != (Object)null) ? ((Component)mCam).GetComponent<UICamera>() : null);
+			if ((Object)(object)uICamera != (Object)null && (uICamera.eventType == UICamera.EventType.UI_3D || uICamera.eventType == UICamera.EventType.World_3D))
 			{
-				Rigidbody rigidbody = base.gameObject.AddComponent<Rigidbody>();
-				rigidbody.isKinematic = true;
-				rigidbody.useGravity = false;
+				Rigidbody obj = ((Component)this).gameObject.AddComponent<Rigidbody>();
+				obj.isKinematic = true;
+				obj.useGravity = false;
 			}
 		}
-		this.FindParent();
-		this.mRebuild = true;
-		this.mAlphaFrameID = -1;
-		this.mMatrixFrame = -1;
-		UIPanel.list.Add(this);
-		UIPanel.list.Sort(new BetterList<UIPanel>.CompareFunc(UIPanel.CompareFunc));
+		FindParent();
+		mRebuild = true;
+		mAlphaFrameID = -1;
+		mMatrixFrame = -1;
+		list.Add(this);
+		list.Sort(CompareFunc);
 	}
 
-	// Token: 0x06000A13 RID: 2579 RVA: 0x0003C520 File Offset: 0x0003A720
 	protected override void OnDisable()
 	{
-		for (int i = 0; i < this.drawCalls.size; i++)
+		for (int i = 0; i < drawCalls.size; i++)
 		{
-			UIDrawCall uidrawCall = this.drawCalls.buffer[i];
-			if (uidrawCall != null)
+			UIDrawCall uIDrawCall = drawCalls.buffer[i];
+			if ((Object)(object)uIDrawCall != (Object)null)
 			{
-				UIDrawCall.Destroy(uidrawCall);
+				UIDrawCall.Destroy(uIDrawCall);
 			}
 		}
-		this.drawCalls.Clear();
-		UIPanel.list.Remove(this);
-		this.mAlphaFrameID = -1;
-		this.mMatrixFrame = -1;
-		if (UIPanel.list.size == 0)
+		drawCalls.Clear();
+		list.Remove(this);
+		mAlphaFrameID = -1;
+		mMatrixFrame = -1;
+		if (list.size == 0)
 		{
 			UIDrawCall.ReleaseAll();
-			UIPanel.mUpdateFrame = -1;
+			mUpdateFrame = -1;
 		}
 		base.OnDisable();
 	}
 
-	// Token: 0x06000A14 RID: 2580 RVA: 0x0003C5A4 File Offset: 0x0003A7A4
 	private void UpdateTransformMatrix()
 	{
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
 		int frameCount = Time.frameCount;
-		if (this.mMatrixFrame != frameCount)
+		if (mMatrixFrame != frameCount)
 		{
-			this.mMatrixFrame = frameCount;
-			this.worldToLocal = base.cachedTransform.worldToLocalMatrix;
-			Vector2 vector = this.GetViewSize() * 0.5f;
-			float num = this.mClipOffset.x + this.mClipRange.x;
-			float num2 = this.mClipOffset.y + this.mClipRange.y;
-			this.mMin.x = num - vector.x;
-			this.mMin.y = num2 - vector.y;
-			this.mMax.x = num + vector.x;
-			this.mMax.y = num2 + vector.y;
+			mMatrixFrame = frameCount;
+			worldToLocal = base.cachedTransform.worldToLocalMatrix;
+			Vector2 val = GetViewSize() * 0.5f;
+			float num = mClipOffset.x + mClipRange.x;
+			float num2 = mClipOffset.y + mClipRange.y;
+			mMin.x = num - val.x;
+			mMin.y = num2 - val.y;
+			mMax.x = num + val.x;
+			mMax.y = num2 + val.y;
 		}
 	}
 
-	// Token: 0x06000A15 RID: 2581 RVA: 0x0003C668 File Offset: 0x0003A868
 	protected override void OnAnchor()
 	{
-		if (this.mClipping == UIDrawCall.Clipping.None)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0254: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0319: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0192: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0197: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0472: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0489: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0451: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0426: Unknown result type (might be due to invalid IL or missing references)
+		if (mClipping == UIDrawCall.Clipping.None)
 		{
 			return;
 		}
-		Transform cachedTransform = base.cachedTransform;
-		Transform parent = cachedTransform.parent;
-		Vector2 viewSize = this.GetViewSize();
-		Vector2 vector = cachedTransform.localPosition;
+		Transform obj = base.cachedTransform;
+		Transform val = obj.parent;
+		Vector2 viewSize = GetViewSize();
+		Vector2 val2 = Vector2.op_Implicit(obj.localPosition);
 		float num;
 		float num2;
 		float num3;
 		float num4;
-		if (this.leftAnchor.target == this.bottomAnchor.target && this.leftAnchor.target == this.rightAnchor.target && this.leftAnchor.target == this.topAnchor.target)
+		if ((Object)(object)leftAnchor.target == (Object)(object)bottomAnchor.target && (Object)(object)leftAnchor.target == (Object)(object)rightAnchor.target && (Object)(object)leftAnchor.target == (Object)(object)topAnchor.target)
 		{
-			Vector3[] sides = this.leftAnchor.GetSides(parent);
+			Vector3[] sides = leftAnchor.GetSides(val);
 			if (sides != null)
 			{
-				num = NGUIMath.Lerp(sides[0].x, sides[2].x, this.leftAnchor.relative) + (float)this.leftAnchor.absolute;
-				num2 = NGUIMath.Lerp(sides[0].x, sides[2].x, this.rightAnchor.relative) + (float)this.rightAnchor.absolute;
-				num3 = NGUIMath.Lerp(sides[3].y, sides[1].y, this.bottomAnchor.relative) + (float)this.bottomAnchor.absolute;
-				num4 = NGUIMath.Lerp(sides[3].y, sides[1].y, this.topAnchor.relative) + (float)this.topAnchor.absolute;
+				num = NGUIMath.Lerp(sides[0].x, sides[2].x, leftAnchor.relative) + (float)leftAnchor.absolute;
+				num2 = NGUIMath.Lerp(sides[0].x, sides[2].x, rightAnchor.relative) + (float)rightAnchor.absolute;
+				num3 = NGUIMath.Lerp(sides[3].y, sides[1].y, bottomAnchor.relative) + (float)bottomAnchor.absolute;
+				num4 = NGUIMath.Lerp(sides[3].y, sides[1].y, topAnchor.relative) + (float)topAnchor.absolute;
 			}
 			else
 			{
-				Vector2 vector2 = base.GetLocalPos(this.leftAnchor, parent);
-				num = vector2.x + (float)this.leftAnchor.absolute;
-				num3 = vector2.y + (float)this.bottomAnchor.absolute;
-				num2 = vector2.x + (float)this.rightAnchor.absolute;
-				num4 = vector2.y + (float)this.topAnchor.absolute;
+				Vector2 val3 = Vector2.op_Implicit(GetLocalPos(leftAnchor, val));
+				num = val3.x + (float)leftAnchor.absolute;
+				num3 = val3.y + (float)bottomAnchor.absolute;
+				num2 = val3.x + (float)rightAnchor.absolute;
+				num4 = val3.y + (float)topAnchor.absolute;
 			}
 		}
 		else
 		{
-			if (this.leftAnchor.target)
+			if (Object.op_Implicit((Object)(object)leftAnchor.target))
 			{
-				Vector3[] sides2 = this.leftAnchor.GetSides(parent);
-				if (sides2 != null)
-				{
-					num = NGUIMath.Lerp(sides2[0].x, sides2[2].x, this.leftAnchor.relative) + (float)this.leftAnchor.absolute;
-				}
-				else
-				{
-					num = base.GetLocalPos(this.leftAnchor, parent).x + (float)this.leftAnchor.absolute;
-				}
+				Vector3[] sides2 = leftAnchor.GetSides(val);
+				num = ((sides2 == null) ? (GetLocalPos(leftAnchor, val).x + (float)leftAnchor.absolute) : (NGUIMath.Lerp(sides2[0].x, sides2[2].x, leftAnchor.relative) + (float)leftAnchor.absolute));
 			}
 			else
 			{
-				num = this.mClipRange.x - 0.5f * viewSize.x;
+				num = mClipRange.x - 0.5f * viewSize.x;
 			}
-			if (this.rightAnchor.target)
+			if (Object.op_Implicit((Object)(object)rightAnchor.target))
 			{
-				Vector3[] sides3 = this.rightAnchor.GetSides(parent);
-				if (sides3 != null)
-				{
-					num2 = NGUIMath.Lerp(sides3[0].x, sides3[2].x, this.rightAnchor.relative) + (float)this.rightAnchor.absolute;
-				}
-				else
-				{
-					num2 = base.GetLocalPos(this.rightAnchor, parent).x + (float)this.rightAnchor.absolute;
-				}
+				Vector3[] sides3 = rightAnchor.GetSides(val);
+				num2 = ((sides3 == null) ? (GetLocalPos(rightAnchor, val).x + (float)rightAnchor.absolute) : (NGUIMath.Lerp(sides3[0].x, sides3[2].x, rightAnchor.relative) + (float)rightAnchor.absolute));
 			}
 			else
 			{
-				num2 = this.mClipRange.x + 0.5f * viewSize.x;
+				num2 = mClipRange.x + 0.5f * viewSize.x;
 			}
-			if (this.bottomAnchor.target)
+			if (Object.op_Implicit((Object)(object)bottomAnchor.target))
 			{
-				Vector3[] sides4 = this.bottomAnchor.GetSides(parent);
-				if (sides4 != null)
-				{
-					num3 = NGUIMath.Lerp(sides4[3].y, sides4[1].y, this.bottomAnchor.relative) + (float)this.bottomAnchor.absolute;
-				}
-				else
-				{
-					num3 = base.GetLocalPos(this.bottomAnchor, parent).y + (float)this.bottomAnchor.absolute;
-				}
+				Vector3[] sides4 = bottomAnchor.GetSides(val);
+				num3 = ((sides4 == null) ? (GetLocalPos(bottomAnchor, val).y + (float)bottomAnchor.absolute) : (NGUIMath.Lerp(sides4[3].y, sides4[1].y, bottomAnchor.relative) + (float)bottomAnchor.absolute));
 			}
 			else
 			{
-				num3 = this.mClipRange.y - 0.5f * viewSize.y;
+				num3 = mClipRange.y - 0.5f * viewSize.y;
 			}
-			if (this.topAnchor.target)
+			if (Object.op_Implicit((Object)(object)topAnchor.target))
 			{
-				Vector3[] sides5 = this.topAnchor.GetSides(parent);
-				if (sides5 != null)
-				{
-					num4 = NGUIMath.Lerp(sides5[3].y, sides5[1].y, this.topAnchor.relative) + (float)this.topAnchor.absolute;
-				}
-				else
-				{
-					num4 = base.GetLocalPos(this.topAnchor, parent).y + (float)this.topAnchor.absolute;
-				}
+				Vector3[] sides5 = topAnchor.GetSides(val);
+				num4 = ((sides5 == null) ? (GetLocalPos(topAnchor, val).y + (float)topAnchor.absolute) : (NGUIMath.Lerp(sides5[3].y, sides5[1].y, topAnchor.relative) + (float)topAnchor.absolute));
 			}
 			else
 			{
-				num4 = this.mClipRange.y + 0.5f * viewSize.y;
+				num4 = mClipRange.y + 0.5f * viewSize.y;
 			}
 		}
-		num -= vector.x + this.mClipOffset.x;
-		num2 -= vector.x + this.mClipOffset.x;
-		num3 -= vector.y + this.mClipOffset.y;
-		num4 -= vector.y + this.mClipOffset.y;
+		num -= val2.x + mClipOffset.x;
+		num2 -= val2.x + mClipOffset.x;
+		num3 -= val2.y + mClipOffset.y;
+		num4 -= val2.y + mClipOffset.y;
 		float num5 = Mathf.Lerp(num, num2, 0.5f);
 		float num6 = Mathf.Lerp(num3, num4, 0.5f);
 		float num7 = num2 - num;
 		float num8 = num4 - num3;
-		float num9 = Mathf.Max(2f, this.mClipSoftness.x);
-		float num10 = Mathf.Max(2f, this.mClipSoftness.y);
+		float num9 = Mathf.Max(2f, mClipSoftness.x);
+		float num10 = Mathf.Max(2f, mClipSoftness.y);
 		if (num7 < num9)
 		{
 			num7 = num9;
@@ -897,212 +1081,207 @@ public class UIPanel : UIRect
 		{
 			num8 = num10;
 		}
-		this.baseClipRegion = new Vector4(num5, num6, num7, num8);
+		baseClipRegion = new Vector4(num5, num6, num7, num8);
 	}
 
-	// Token: 0x06000A16 RID: 2582 RVA: 0x0003CBAC File Offset: 0x0003ADAC
 	private void LateUpdate()
 	{
-		if (UIPanel.mUpdateFrame != Time.frameCount)
+		if (mUpdateFrame == Time.frameCount)
 		{
-			UIPanel.mUpdateFrame = Time.frameCount;
-			for (int i = 0; i < UIPanel.list.size; i++)
+			return;
+		}
+		mUpdateFrame = Time.frameCount;
+		for (int i = 0; i < list.size; i++)
+		{
+			list[i].UpdateSelf();
+		}
+		int num = 3000;
+		for (int j = 0; j < list.size; j++)
+		{
+			UIPanel uIPanel = list.buffer[j];
+			if (uIPanel.renderQueue == RenderQueue.Automatic)
 			{
-				UIPanel.list[i].UpdateSelf();
+				uIPanel.startingRenderQueue = num;
+				uIPanel.UpdateDrawCalls();
+				num += uIPanel.drawCalls.size;
 			}
-			int num = 3000;
-			for (int j = 0; j < UIPanel.list.size; j++)
+			else if (uIPanel.renderQueue == RenderQueue.StartAt)
 			{
-				UIPanel uipanel = UIPanel.list.buffer[j];
-				if (uipanel.renderQueue == UIPanel.RenderQueue.Automatic)
+				uIPanel.UpdateDrawCalls();
+				if (uIPanel.drawCalls.size != 0)
 				{
-					uipanel.startingRenderQueue = num;
-					uipanel.UpdateDrawCalls();
-					num += uipanel.drawCalls.size;
+					num = Mathf.Max(num, uIPanel.startingRenderQueue + uIPanel.drawCalls.size);
 				}
-				else if (uipanel.renderQueue == UIPanel.RenderQueue.StartAt)
+			}
+			else
+			{
+				uIPanel.UpdateDrawCalls();
+				if (uIPanel.drawCalls.size != 0)
 				{
-					uipanel.UpdateDrawCalls();
-					if (uipanel.drawCalls.size != 0)
-					{
-						num = Mathf.Max(num, uipanel.startingRenderQueue + uipanel.drawCalls.size);
-					}
-				}
-				else
-				{
-					uipanel.UpdateDrawCalls();
-					if (uipanel.drawCalls.size != 0)
-					{
-						num = Mathf.Max(num, uipanel.startingRenderQueue + 1);
-					}
+					num = Mathf.Max(num, uIPanel.startingRenderQueue + 1);
 				}
 			}
 		}
 	}
 
-	// Token: 0x06000A17 RID: 2583 RVA: 0x0003CCA4 File Offset: 0x0003AEA4
 	private void UpdateSelf()
 	{
-		this.mUpdateTime = RealTime.time;
-		this.UpdateTransformMatrix();
-		this.UpdateLayers();
-		this.UpdateWidgets();
-		if (this.mRebuild)
+		mUpdateTime = RealTime.time;
+		UpdateTransformMatrix();
+		UpdateLayers();
+		UpdateWidgets();
+		if (mRebuild)
 		{
-			this.mRebuild = false;
-			this.FillAllDrawCalls();
+			mRebuild = false;
+			FillAllDrawCalls();
 		}
 		else
 		{
-			int i = 0;
-			while (i < this.drawCalls.size)
+			int num = 0;
+			while (num < drawCalls.size)
 			{
-				UIDrawCall uidrawCall = this.drawCalls.buffer[i];
-				if (uidrawCall.isDirty && !this.FillDrawCall(uidrawCall))
+				UIDrawCall uIDrawCall = drawCalls.buffer[num];
+				if (uIDrawCall.isDirty && !FillDrawCall(uIDrawCall))
 				{
-					UIDrawCall.Destroy(uidrawCall);
-					this.drawCalls.RemoveAt(i);
+					UIDrawCall.Destroy(uIDrawCall);
+					drawCalls.RemoveAt(num);
 				}
 				else
 				{
-					i++;
+					num++;
 				}
 			}
 		}
-		if (this.mUpdateScroll)
+		if (mUpdateScroll)
 		{
-			this.mUpdateScroll = false;
-			UIScrollView component = base.GetComponent<UIScrollView>();
-			if (component != null)
+			mUpdateScroll = false;
+			UIScrollView component = ((Component)this).GetComponent<UIScrollView>();
+			if ((Object)(object)component != (Object)null)
 			{
 				component.UpdateScrollbars();
 			}
 		}
 	}
 
-	// Token: 0x06000A18 RID: 2584 RVA: 0x0003CD53 File Offset: 0x0003AF53
 	public void SortWidgets()
 	{
-		this.mSortWidgets = false;
-		this.widgets.Sort(new BetterList<UIWidget>.CompareFunc(UIWidget.PanelCompareFunc));
+		mSortWidgets = false;
+		widgets.Sort(UIWidget.PanelCompareFunc);
 	}
 
-	// Token: 0x06000A19 RID: 2585 RVA: 0x0003CD74 File Offset: 0x0003AF74
 	private void FillAllDrawCalls()
 	{
-		for (int i = 0; i < this.drawCalls.size; i++)
+		for (int i = 0; i < drawCalls.size; i++)
 		{
-			UIDrawCall.Destroy(this.drawCalls.buffer[i]);
+			UIDrawCall.Destroy(drawCalls.buffer[i]);
 		}
-		this.drawCalls.Clear();
-		Material material = null;
-		Texture texture = null;
-		Shader shader = null;
-		UIDrawCall uidrawCall = null;
-		if (this.mSortWidgets)
+		drawCalls.Clear();
+		Material val = null;
+		Texture val2 = null;
+		Shader val3 = null;
+		UIDrawCall uIDrawCall = null;
+		if (mSortWidgets)
 		{
-			this.SortWidgets();
+			SortWidgets();
 		}
-		for (int j = 0; j < this.widgets.size; j++)
+		for (int j = 0; j < widgets.size; j++)
 		{
-			UIWidget uiwidget = this.widgets.buffer[j];
-			if (uiwidget.isVisible && uiwidget.hasVertices)
+			UIWidget uIWidget = widgets.buffer[j];
+			if (uIWidget.isVisible && uIWidget.hasVertices)
 			{
-				Material material2 = uiwidget.material;
-				Texture mainTexture = uiwidget.mainTexture;
-				Shader shader2 = uiwidget.shader;
-				if (material != material2 || texture != mainTexture || shader != shader2)
+				Material material = uIWidget.material;
+				Texture mainTexture = uIWidget.mainTexture;
+				Shader shader = uIWidget.shader;
+				if ((Object)(object)val != (Object)(object)material || (Object)(object)val2 != (Object)(object)mainTexture || (Object)(object)val3 != (Object)(object)shader)
 				{
-					if (uidrawCall != null && uidrawCall.verts.size != 0)
+					if ((Object)(object)uIDrawCall != (Object)null && uIDrawCall.verts.size != 0)
 					{
-						this.drawCalls.Add(uidrawCall);
-						uidrawCall.UpdateGeometry();
-						uidrawCall = null;
+						drawCalls.Add(uIDrawCall);
+						uIDrawCall.UpdateGeometry();
+						uIDrawCall = null;
 					}
-					material = material2;
-					texture = mainTexture;
-					shader = shader2;
+					val = material;
+					val2 = mainTexture;
+					val3 = shader;
 				}
-				if (material != null || shader != null || texture != null)
+				if (!((Object)(object)val != (Object)null) && !((Object)(object)val3 != (Object)null) && !((Object)(object)val2 != (Object)null))
 				{
-					if (uidrawCall == null)
+					continue;
+				}
+				if ((Object)(object)uIDrawCall == (Object)null)
+				{
+					uIDrawCall = UIDrawCall.Create(this, val, val2, val3);
+					uIDrawCall.depthStart = uIWidget.depth;
+					uIDrawCall.depthEnd = uIDrawCall.depthStart;
+					uIDrawCall.panel = this;
+				}
+				else
+				{
+					int num = uIWidget.depth;
+					if (num < uIDrawCall.depthStart)
 					{
-						uidrawCall = UIDrawCall.Create(this, material, texture, shader);
-						uidrawCall.depthStart = uiwidget.depth;
-						uidrawCall.depthEnd = uidrawCall.depthStart;
-						uidrawCall.panel = this;
+						uIDrawCall.depthStart = num;
 					}
-					else
+					if (num > uIDrawCall.depthEnd)
 					{
-						int depth = uiwidget.depth;
-						if (depth < uidrawCall.depthStart)
-						{
-							uidrawCall.depthStart = depth;
-						}
-						if (depth > uidrawCall.depthEnd)
-						{
-							uidrawCall.depthEnd = depth;
-						}
+						uIDrawCall.depthEnd = num;
 					}
-					uiwidget.drawCall = uidrawCall;
-					if (this.generateNormals)
-					{
-						uiwidget.WriteToBuffers(uidrawCall.verts, uidrawCall.uvs, uidrawCall.cols, uidrawCall.norms, uidrawCall.tans);
-					}
-					else
-					{
-						uiwidget.WriteToBuffers(uidrawCall.verts, uidrawCall.uvs, uidrawCall.cols, null, null);
-					}
+				}
+				uIWidget.drawCall = uIDrawCall;
+				if (generateNormals)
+				{
+					uIWidget.WriteToBuffers(uIDrawCall.verts, uIDrawCall.uvs, uIDrawCall.cols, uIDrawCall.norms, uIDrawCall.tans);
+				}
+				else
+				{
+					uIWidget.WriteToBuffers(uIDrawCall.verts, uIDrawCall.uvs, uIDrawCall.cols, null, null);
 				}
 			}
 			else
 			{
-				uiwidget.drawCall = null;
+				uIWidget.drawCall = null;
 			}
 		}
-		if (uidrawCall != null && uidrawCall.verts.size != 0)
+		if ((Object)(object)uIDrawCall != (Object)null && uIDrawCall.verts.size != 0)
 		{
-			this.drawCalls.Add(uidrawCall);
-			uidrawCall.UpdateGeometry();
+			drawCalls.Add(uIDrawCall);
+			uIDrawCall.UpdateGeometry();
 		}
 	}
 
-	// Token: 0x06000A1A RID: 2586 RVA: 0x0003CF88 File Offset: 0x0003B188
 	private bool FillDrawCall(UIDrawCall dc)
 	{
-		if (dc != null)
+		if ((Object)(object)dc != (Object)null)
 		{
 			dc.isDirty = false;
-			int i = 0;
-			while (i < this.widgets.size)
+			int num = 0;
+			while (num < widgets.size)
 			{
-				UIWidget uiwidget = this.widgets[i];
-				if (uiwidget == null)
+				UIWidget uIWidget = widgets[num];
+				if ((Object)(object)uIWidget == (Object)null)
 				{
-					this.widgets.RemoveAt(i);
+					widgets.RemoveAt(num);
+					continue;
 				}
-				else
+				if ((Object)(object)uIWidget.drawCall == (Object)(object)dc)
 				{
-					if (uiwidget.drawCall == dc)
+					if (uIWidget.isVisible && uIWidget.hasVertices)
 					{
-						if (uiwidget.isVisible && uiwidget.hasVertices)
+						if (generateNormals)
 						{
-							if (this.generateNormals)
-							{
-								uiwidget.WriteToBuffers(dc.verts, dc.uvs, dc.cols, dc.norms, dc.tans);
-							}
-							else
-							{
-								uiwidget.WriteToBuffers(dc.verts, dc.uvs, dc.cols, null, null);
-							}
+							uIWidget.WriteToBuffers(dc.verts, dc.uvs, dc.cols, dc.norms, dc.tans);
 						}
 						else
 						{
-							uiwidget.drawCall = null;
+							uIWidget.WriteToBuffers(dc.verts, dc.uvs, dc.cols, null, null);
 						}
 					}
-					i++;
+					else
+					{
+						uIWidget.drawCall = null;
+					}
 				}
+				num++;
 			}
 			if (dc.verts.size != 0)
 			{
@@ -1113,270 +1292,325 @@ public class UIPanel : UIRect
 		return false;
 	}
 
-	// Token: 0x06000A1B RID: 2587 RVA: 0x0003D070 File Offset: 0x0003B270
 	private void UpdateDrawCalls()
 	{
-		Transform cachedTransform = base.cachedTransform;
-		bool usedForUI = this.usedForUI;
-		if (this.clipping != UIDrawCall.Clipping.None)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0165: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
+		Transform val = base.cachedTransform;
+		bool num = usedForUI;
+		if (clipping != 0)
 		{
-			this.drawCallClipRange = this.finalClipRegion;
-			this.drawCallClipRange.z = this.drawCallClipRange.z * 0.5f;
-			this.drawCallClipRange.w = this.drawCallClipRange.w * 0.5f;
+			drawCallClipRange = finalClipRegion;
+			drawCallClipRange.z *= 0.5f;
+			drawCallClipRange.w *= 0.5f;
 		}
 		else
 		{
-			this.drawCallClipRange = Vector4.zero;
+			drawCallClipRange = Vector4.zero;
 		}
-		if (this.drawCallClipRange.z == 0f)
+		if (drawCallClipRange.z == 0f)
 		{
-			this.drawCallClipRange.z = (float)Screen.width * 0.5f;
+			drawCallClipRange.z = (float)Screen.width * 0.5f;
 		}
-		if (this.drawCallClipRange.w == 0f)
+		if (drawCallClipRange.w == 0f)
 		{
-			this.drawCallClipRange.w = (float)Screen.height * 0.5f;
+			drawCallClipRange.w = (float)Screen.height * 0.5f;
 		}
-		if (this.halfPixelOffset)
+		if (halfPixelOffset)
 		{
-			this.drawCallClipRange.x = this.drawCallClipRange.x - 0.5f;
-			this.drawCallClipRange.y = this.drawCallClipRange.y + 0.5f;
+			drawCallClipRange.x -= 0.5f;
+			drawCallClipRange.y += 0.5f;
 		}
-		Vector3 vector;
-		if (usedForUI)
+		Vector3 val3;
+		if (num)
 		{
-			Transform parent = base.cachedTransform.parent;
-			vector = base.cachedTransform.localPosition;
-			if (parent != null)
+			Transform val2 = base.cachedTransform.parent;
+			val3 = base.cachedTransform.localPosition;
+			if ((Object)(object)val2 != (Object)null)
 			{
-				float num = Mathf.Round(vector.x);
-				float num2 = Mathf.Round(vector.y);
-				this.drawCallClipRange.x = this.drawCallClipRange.x + (vector.x - num);
-				this.drawCallClipRange.y = this.drawCallClipRange.y + (vector.y - num2);
-				vector.x = num;
-				vector.y = num2;
-				vector = parent.TransformPoint(vector);
+				float num2 = Mathf.Round(val3.x);
+				float num3 = Mathf.Round(val3.y);
+				drawCallClipRange.x += val3.x - num2;
+				drawCallClipRange.y += val3.y - num3;
+				val3.x = num2;
+				val3.y = num3;
+				val3 = val2.TransformPoint(val3);
 			}
-			vector += this.drawCallOffset;
+			val3 += drawCallOffset;
 		}
 		else
 		{
-			vector = cachedTransform.position;
+			val3 = val.position;
 		}
-		Quaternion rotation = cachedTransform.rotation;
-		Vector3 lossyScale = cachedTransform.lossyScale;
-		for (int i = 0; i < this.drawCalls.size; i++)
+		Quaternion rotation = val.rotation;
+		Vector3 lossyScale = val.lossyScale;
+		for (int i = 0; i < drawCalls.size; i++)
 		{
-			UIDrawCall uidrawCall = this.drawCalls.buffer[i];
-			Transform cachedTransform2 = uidrawCall.cachedTransform;
-			cachedTransform2.position = vector;
-			cachedTransform2.rotation = rotation;
-			cachedTransform2.localScale = lossyScale;
-			uidrawCall.renderQueue = ((this.renderQueue == UIPanel.RenderQueue.Explicit) ? this.startingRenderQueue : (this.startingRenderQueue + i));
-			uidrawCall.alwaysOnScreen = (this.alwaysOnScreen && (this.mClipping == UIDrawCall.Clipping.None || this.mClipping == UIDrawCall.Clipping.ConstrainButDontClip));
-			uidrawCall.sortingOrder = this.mSortingOrder;
+			UIDrawCall obj = drawCalls.buffer[i];
+			Transform obj2 = obj.cachedTransform;
+			obj2.position = val3;
+			obj2.rotation = rotation;
+			obj2.localScale = lossyScale;
+			obj.renderQueue = ((renderQueue == RenderQueue.Explicit) ? startingRenderQueue : (startingRenderQueue + i));
+			obj.alwaysOnScreen = alwaysOnScreen && (mClipping == UIDrawCall.Clipping.None || mClipping == UIDrawCall.Clipping.ConstrainButDontClip);
+			obj.sortingOrder = mSortingOrder;
 		}
 	}
 
-	// Token: 0x06000A1C RID: 2588 RVA: 0x0003D29C File Offset: 0x0003B49C
 	private void UpdateLayers()
 	{
-		if (this.mLayer != base.cachedGameObject.layer)
+		if (mLayer != base.cachedGameObject.layer)
 		{
-			this.mLayer = this.mGo.layer;
-			UICamera uicamera = UICamera.FindCameraForLayer(this.mLayer);
-			this.mCam = ((uicamera != null) ? uicamera.cachedCamera : NGUITools.FindCameraForLayer(this.mLayer));
-			NGUITools.SetChildLayer(base.cachedTransform, this.mLayer);
-			for (int i = 0; i < this.drawCalls.size; i++)
+			mLayer = mGo.layer;
+			UICamera uICamera = UICamera.FindCameraForLayer(mLayer);
+			mCam = (((Object)(object)uICamera != (Object)null) ? uICamera.cachedCamera : NGUITools.FindCameraForLayer(mLayer));
+			NGUITools.SetChildLayer(base.cachedTransform, mLayer);
+			for (int i = 0; i < drawCalls.size; i++)
 			{
-				this.drawCalls.buffer[i].gameObject.layer = this.mLayer;
+				((Component)drawCalls.buffer[i]).gameObject.layer = mLayer;
 			}
 		}
 	}
 
-	// Token: 0x06000A1D RID: 2589 RVA: 0x0003D344 File Offset: 0x0003B544
 	private void UpdateWidgets()
 	{
-		bool flag = !this.cullWhileDragging && this.mCullTime > this.mUpdateTime;
+		bool flag = !cullWhileDragging && mCullTime > mUpdateTime;
 		bool flag2 = false;
-		if (this.mForced != flag)
+		if (mForced != flag)
 		{
-			this.mForced = flag;
-			this.mResized = true;
+			mForced = flag;
+			mResized = true;
 		}
-		bool hasCumulativeClipping = this.hasCumulativeClipping;
+		bool flag3 = hasCumulativeClipping;
 		int i = 0;
-		int size = this.widgets.size;
-		while (i < size)
+		for (int size = widgets.size; i < size; i++)
 		{
-			UIWidget uiwidget = this.widgets.buffer[i];
-			if (uiwidget.panel == this && uiwidget.enabled)
+			UIWidget uIWidget = widgets.buffer[i];
+			if (!((Object)(object)uIWidget.panel == (Object)(object)this) || !((Behaviour)uIWidget).enabled)
 			{
-				int frameCount = Time.frameCount;
-				if (uiwidget.UpdateTransform(frameCount) || this.mResized)
+				continue;
+			}
+			int frameCount = Time.frameCount;
+			if (uIWidget.UpdateTransform(frameCount) || mResized)
+			{
+				bool visibleByAlpha = flag || uIWidget.CalculateCumulativeAlpha(frameCount) > 0.001f;
+				uIWidget.UpdateVisibility(visibleByAlpha, flag || (!flag3 && !uIWidget.hideIfOffScreen) || IsVisible(uIWidget));
+			}
+			if (!uIWidget.UpdateGeometry(frameCount))
+			{
+				continue;
+			}
+			flag2 = true;
+			if (!mRebuild)
+			{
+				if ((Object)(object)uIWidget.drawCall != (Object)null)
 				{
-					bool visibleByAlpha = flag || uiwidget.CalculateCumulativeAlpha(frameCount) > 0.001f;
-					uiwidget.UpdateVisibility(visibleByAlpha, flag || (!hasCumulativeClipping && !uiwidget.hideIfOffScreen) || this.IsVisible(uiwidget));
+					uIWidget.drawCall.isDirty = true;
 				}
-				if (uiwidget.UpdateGeometry(frameCount))
+				else
 				{
-					flag2 = true;
-					if (!this.mRebuild)
-					{
-						if (uiwidget.drawCall != null)
-						{
-							uiwidget.drawCall.isDirty = true;
-						}
-						else
-						{
-							this.FindDrawCall(uiwidget);
-						}
-					}
+					FindDrawCall(uIWidget);
 				}
 			}
-			i++;
 		}
-		if (flag2 && this.onGeometryUpdated != null)
+		if (flag2 && onGeometryUpdated != null)
 		{
-			this.onGeometryUpdated();
+			onGeometryUpdated();
 		}
-		this.mResized = false;
+		mResized = false;
 	}
 
-	// Token: 0x06000A1E RID: 2590 RVA: 0x0003D48C File Offset: 0x0003B68C
 	public UIDrawCall FindDrawCall(UIWidget w)
 	{
 		Material material = w.material;
 		Texture mainTexture = w.mainTexture;
-		int depth = w.depth;
-		for (int i = 0; i < this.drawCalls.size; i++)
+		int num = w.depth;
+		for (int i = 0; i < drawCalls.size; i++)
 		{
-			UIDrawCall uidrawCall = this.drawCalls.buffer[i];
-			int num = (i == 0) ? int.MinValue : (this.drawCalls.buffer[i - 1].depthEnd + 1);
-			int num2 = (i + 1 == this.drawCalls.size) ? int.MaxValue : (this.drawCalls.buffer[i + 1].depthStart - 1);
-			if (num <= depth && num2 >= depth)
+			UIDrawCall uIDrawCall = drawCalls.buffer[i];
+			int num2 = ((i == 0) ? int.MinValue : (drawCalls.buffer[i - 1].depthEnd + 1));
+			int num3 = ((i + 1 == drawCalls.size) ? int.MaxValue : (drawCalls.buffer[i + 1].depthStart - 1));
+			if (num2 > num || num3 < num)
 			{
-				if (uidrawCall.baseMaterial == material && uidrawCall.mainTexture == mainTexture)
-				{
-					if (w.isVisible)
-					{
-						w.drawCall = uidrawCall;
-						if (w.hasVertices)
-						{
-							uidrawCall.isDirty = true;
-						}
-						return uidrawCall;
-					}
-				}
-				else
-				{
-					this.mRebuild = true;
-				}
-				return null;
+				continue;
 			}
+			if ((Object)(object)uIDrawCall.baseMaterial == (Object)(object)material && (Object)(object)uIDrawCall.mainTexture == (Object)(object)mainTexture)
+			{
+				if (w.isVisible)
+				{
+					w.drawCall = uIDrawCall;
+					if (w.hasVertices)
+					{
+						uIDrawCall.isDirty = true;
+					}
+					return uIDrawCall;
+				}
+			}
+			else
+			{
+				mRebuild = true;
+			}
+			return null;
 		}
-		this.mRebuild = true;
+		mRebuild = true;
 		return null;
 	}
 
-	// Token: 0x06000A1F RID: 2591 RVA: 0x0003D584 File Offset: 0x0003B784
 	public void AddWidget(UIWidget w)
 	{
-		this.mUpdateScroll = true;
-		if (this.widgets.size == 0)
+		mUpdateScroll = true;
+		if (widgets.size == 0)
 		{
-			this.widgets.Add(w);
+			widgets.Add(w);
 		}
-		else if (this.mSortWidgets)
+		else if (mSortWidgets)
 		{
-			this.widgets.Add(w);
-			this.SortWidgets();
+			widgets.Add(w);
+			SortWidgets();
 		}
-		else if (UIWidget.PanelCompareFunc(w, this.widgets[0]) == -1)
+		else if (UIWidget.PanelCompareFunc(w, widgets[0]) == -1)
 		{
-			this.widgets.Insert(0, w);
+			widgets.Insert(0, w);
 		}
 		else
 		{
-			int i = this.widgets.size;
-			while (i > 0)
+			int num = widgets.size;
+			while (num > 0)
 			{
-				if (UIWidget.PanelCompareFunc(w, this.widgets[--i]) != -1)
+				if (UIWidget.PanelCompareFunc(w, widgets[--num]) != -1)
 				{
-					this.widgets.Insert(i + 1, w);
+					widgets.Insert(num + 1, w);
 					break;
 				}
 			}
 		}
-		this.FindDrawCall(w);
+		FindDrawCall(w);
 	}
 
-	// Token: 0x06000A20 RID: 2592 RVA: 0x0003D638 File Offset: 0x0003B838
 	public void RemoveWidget(UIWidget w)
 	{
-		if (this.widgets.Remove(w) && w.drawCall != null)
+		if (widgets.Remove(w) && (Object)(object)w.drawCall != (Object)null)
 		{
-			int depth = w.depth;
-			if (depth == w.drawCall.depthStart || depth == w.drawCall.depthEnd)
+			int num = w.depth;
+			if (num == w.drawCall.depthStart || num == w.drawCall.depthEnd)
 			{
-				this.mRebuild = true;
+				mRebuild = true;
 			}
 			w.drawCall.isDirty = true;
 			w.drawCall = null;
 		}
 	}
 
-	// Token: 0x06000A21 RID: 2593 RVA: 0x0003D69E File Offset: 0x0003B89E
 	public void Refresh()
 	{
-		this.mRebuild = true;
-		if (UIPanel.list.size > 0)
+		mRebuild = true;
+		if (list.size > 0)
 		{
-			UIPanel.list[0].LateUpdate();
+			list[0].LateUpdate();
 		}
 	}
 
-	// Token: 0x06000A22 RID: 2594 RVA: 0x0003D6C4 File Offset: 0x0003B8C4
 	public virtual Vector3 CalculateConstrainOffset(Vector2 min, Vector2 max)
 	{
-		Vector4 finalClipRegion = this.finalClipRegion;
-		float num = finalClipRegion.z * 0.5f;
-		float num2 = finalClipRegion.w * 0.5f;
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		Vector4 val = finalClipRegion;
+		float num = val.z * 0.5f;
+		float num2 = val.w * 0.5f;
 		Vector2 minRect = new Vector2(min.x, min.y);
-		Vector2 maxRect;
-		maxRect..ctor(max.x, max.y);
-		Vector2 minArea;
-		minArea..ctor(finalClipRegion.x - num, finalClipRegion.y - num2);
-		Vector2 maxArea;
-		maxArea..ctor(finalClipRegion.x + num, finalClipRegion.y + num2);
-		if (this.clipping == UIDrawCall.Clipping.SoftClip)
+		Vector2 maxRect = default(Vector2);
+		((Vector2)(ref maxRect))._002Ector(max.x, max.y);
+		Vector2 minArea = default(Vector2);
+		((Vector2)(ref minArea))._002Ector(val.x - num, val.y - num2);
+		Vector2 maxArea = default(Vector2);
+		((Vector2)(ref maxArea))._002Ector(val.x + num, val.y + num2);
+		if (clipping == UIDrawCall.Clipping.SoftClip)
 		{
-			minArea.x += this.clipSoftness.x;
-			minArea.y += this.clipSoftness.y;
-			maxArea.x -= this.clipSoftness.x;
-			maxArea.y -= this.clipSoftness.y;
+			minArea.x += clipSoftness.x;
+			minArea.y += clipSoftness.y;
+			maxArea.x -= clipSoftness.x;
+			maxArea.y -= clipSoftness.y;
 		}
-		return NGUIMath.ConstrainRect(minRect, maxRect, minArea, maxArea);
+		return Vector2.op_Implicit(NGUIMath.ConstrainRect(minRect, maxRect, minArea, maxArea));
 	}
 
-	// Token: 0x06000A23 RID: 2595 RVA: 0x0003D7B4 File Offset: 0x0003B9B4
 	public bool ConstrainTargetToBounds(Transform target, ref Bounds targetBounds, bool immediate)
 	{
-		Vector3 vector = this.CalculateConstrainOffset(targetBounds.min, targetBounds.max);
-		if (vector.sqrMagnitude > 0f)
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = CalculateConstrainOffset(Vector2.op_Implicit(((Bounds)(ref targetBounds)).min), Vector2.op_Implicit(((Bounds)(ref targetBounds)).max));
+		if (((Vector3)(ref val)).sqrMagnitude > 0f)
 		{
 			if (immediate)
 			{
-				target.localPosition += vector;
-				targetBounds.center += vector;
-				SpringPosition component = target.GetComponent<SpringPosition>();
-				if (component != null)
+				target.localPosition += val;
+				((Bounds)(ref targetBounds)).center = ((Bounds)(ref targetBounds)).center + val;
+				SpringPosition component = ((Component)target).GetComponent<SpringPosition>();
+				if ((Object)(object)component != (Object)null)
 				{
-					component.enabled = false;
+					((Behaviour)component).enabled = false;
 				}
 			}
 			else
 			{
-				SpringPosition springPosition = SpringPosition.Begin(target.gameObject, target.localPosition + vector, 13f);
+				SpringPosition springPosition = SpringPosition.Begin(((Component)target).gameObject, target.localPosition + val, 13f);
 				springPosition.ignoreTimeScale = true;
 				springPosition.worldSpace = false;
 			}
@@ -1385,37 +1619,35 @@ public class UIPanel : UIRect
 		return false;
 	}
 
-	// Token: 0x06000A24 RID: 2596 RVA: 0x0003D858 File Offset: 0x0003BA58
 	public bool ConstrainTargetToBounds(Transform target, bool immediate)
 	{
-		Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(base.cachedTransform, target);
-		return this.ConstrainTargetToBounds(target, ref bounds, immediate);
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		Bounds targetBounds = NGUIMath.CalculateRelativeWidgetBounds(base.cachedTransform, target);
+		return ConstrainTargetToBounds(target, ref targetBounds, immediate);
 	}
 
-	// Token: 0x06000A25 RID: 2597 RVA: 0x0003D87C File Offset: 0x0003BA7C
 	public static UIPanel Find(Transform trans)
 	{
-		return UIPanel.Find(trans, false, -1);
+		return Find(trans, createIfMissing: false, -1);
 	}
 
-	// Token: 0x06000A26 RID: 2598 RVA: 0x0003D886 File Offset: 0x0003BA86
 	public static UIPanel Find(Transform trans, bool createIfMissing)
 	{
-		return UIPanel.Find(trans, createIfMissing, -1);
+		return Find(trans, createIfMissing, -1);
 	}
 
-	// Token: 0x06000A27 RID: 2599 RVA: 0x0003D890 File Offset: 0x0003BA90
 	public static UIPanel Find(Transform trans, bool createIfMissing, int layer)
 	{
-		UIPanel uipanel = null;
-		while (uipanel == null && trans != null)
+		UIPanel uIPanel = null;
+		while ((Object)(object)uIPanel == (Object)null && (Object)(object)trans != (Object)null)
 		{
-			uipanel = trans.GetComponent<UIPanel>();
-			if (uipanel != null)
+			uIPanel = ((Component)trans).GetComponent<UIPanel>();
+			if ((Object)(object)uIPanel != (Object)null)
 			{
-				return uipanel;
+				return uIPanel;
 			}
-			if (trans.parent == null)
+			if ((Object)(object)trans.parent == (Object)null)
 			{
 				break;
 			}
@@ -1425,190 +1657,46 @@ public class UIPanel : UIRect
 		{
 			return null;
 		}
-		return NGUITools.CreateUI(trans, false, layer);
+		return NGUITools.CreateUI(trans, advanced3D: false, layer);
 	}
 
-	// Token: 0x06000A28 RID: 2600 RVA: 0x0003D8E8 File Offset: 0x0003BAE8
 	private Vector2 GetWindowSize()
 	{
-		UIRoot root = base.root;
-		Vector2 vector = NGUITools.screenSize;
-		if (root != null)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		UIRoot uIRoot = base.root;
+		Vector2 val = NGUITools.screenSize;
+		if ((Object)(object)uIRoot != (Object)null)
 		{
-			vector *= root.GetPixelSizeAdjustment(Mathf.RoundToInt(vector.y));
+			val *= uIRoot.GetPixelSizeAdjustment(Mathf.RoundToInt(val.y));
 		}
-		return vector;
+		return val;
 	}
 
-	// Token: 0x06000A29 RID: 2601 RVA: 0x0003D924 File Offset: 0x0003BB24
 	public Vector2 GetViewSize()
 	{
-		if (this.mClipping != UIDrawCall.Clipping.None)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		if (mClipping != 0)
 		{
-			return new Vector2(this.mClipRange.z, this.mClipRange.w);
+			return new Vector2(mClipRange.z, mClipRange.w);
 		}
-		Vector2 vector = NGUITools.screenSize;
-		UIRoot root = base.root;
-		if (root != null)
+		Vector2 val = NGUITools.screenSize;
+		UIRoot uIRoot = base.root;
+		if ((Object)(object)uIRoot != (Object)null)
 		{
-			vector *= root.pixelSizeAdjustment;
+			val *= uIRoot.pixelSizeAdjustment;
 		}
-		return vector;
+		return val;
 	}
-
-	// Token: 0x0400060F RID: 1551
-	public static BetterList<UIPanel> list = new BetterList<UIPanel>();
-
-	// Token: 0x04000610 RID: 1552
-	public UIPanel.OnGeometryUpdated onGeometryUpdated;
-
-	// Token: 0x04000611 RID: 1553
-	public bool showInPanelTool = true;
-
-	// Token: 0x04000612 RID: 1554
-	public bool generateNormals;
-
-	// Token: 0x04000613 RID: 1555
-	public bool widgetsAreStatic;
-
-	// Token: 0x04000614 RID: 1556
-	public bool cullWhileDragging;
-
-	// Token: 0x04000615 RID: 1557
-	public bool alwaysOnScreen;
-
-	// Token: 0x04000616 RID: 1558
-	public bool anchorOffset;
-
-	// Token: 0x04000617 RID: 1559
-	public UIPanel.RenderQueue renderQueue;
-
-	// Token: 0x04000618 RID: 1560
-	public int startingRenderQueue = 3000;
-
-	// Token: 0x04000619 RID: 1561
-	[NonSerialized]
-	public BetterList<UIWidget> widgets = new BetterList<UIWidget>();
-
-	// Token: 0x0400061A RID: 1562
-	[NonSerialized]
-	public BetterList<UIDrawCall> drawCalls = new BetterList<UIDrawCall>();
-
-	// Token: 0x0400061B RID: 1563
-	[NonSerialized]
-	public Matrix4x4 worldToLocal = Matrix4x4.identity;
-
-	// Token: 0x0400061C RID: 1564
-	[NonSerialized]
-	public Vector4 drawCallClipRange = new Vector4(0f, 0f, 1f, 1f);
-
-	// Token: 0x0400061D RID: 1565
-	public UIPanel.OnClippingMoved onClipMove;
-
-	// Token: 0x0400061E RID: 1566
-	[HideInInspector]
-	[SerializeField]
-	private float mAlpha = 1f;
-
-	// Token: 0x0400061F RID: 1567
-	[HideInInspector]
-	[SerializeField]
-	private UIDrawCall.Clipping mClipping;
-
-	// Token: 0x04000620 RID: 1568
-	[HideInInspector]
-	[SerializeField]
-	private Vector4 mClipRange = new Vector4(0f, 0f, 300f, 200f);
-
-	// Token: 0x04000621 RID: 1569
-	[HideInInspector]
-	[SerializeField]
-	private Vector2 mClipSoftness = new Vector2(4f, 4f);
-
-	// Token: 0x04000622 RID: 1570
-	[HideInInspector]
-	[SerializeField]
-	private int mDepth;
-
-	// Token: 0x04000623 RID: 1571
-	[HideInInspector]
-	[SerializeField]
-	private int mSortingOrder;
-
-	// Token: 0x04000624 RID: 1572
-	private bool mRebuild;
-
-	// Token: 0x04000625 RID: 1573
-	private bool mResized;
-
-	// Token: 0x04000626 RID: 1574
-	private Camera mCam;
-
-	// Token: 0x04000627 RID: 1575
-	[SerializeField]
-	private Vector2 mClipOffset = Vector2.zero;
-
-	// Token: 0x04000628 RID: 1576
-	private float mCullTime;
-
-	// Token: 0x04000629 RID: 1577
-	private float mUpdateTime;
-
-	// Token: 0x0400062A RID: 1578
-	private int mMatrixFrame = -1;
-
-	// Token: 0x0400062B RID: 1579
-	private int mAlphaFrameID;
-
-	// Token: 0x0400062C RID: 1580
-	private int mLayer = -1;
-
-	// Token: 0x0400062D RID: 1581
-	private static float[] mTemp = new float[4];
-
-	// Token: 0x0400062E RID: 1582
-	private Vector2 mMin = Vector2.zero;
-
-	// Token: 0x0400062F RID: 1583
-	private Vector2 mMax = Vector2.zero;
-
-	// Token: 0x04000630 RID: 1584
-	private bool mHalfPixelOffset;
-
-	// Token: 0x04000631 RID: 1585
-	private bool mSortWidgets;
-
-	// Token: 0x04000632 RID: 1586
-	private bool mUpdateScroll;
-
-	// Token: 0x04000633 RID: 1587
-	private UIPanel mParentPanel;
-
-	// Token: 0x04000634 RID: 1588
-	private static Vector3[] mCorners = new Vector3[4];
-
-	// Token: 0x04000635 RID: 1589
-	private static int mUpdateFrame = -1;
-
-	// Token: 0x04000636 RID: 1590
-	private bool mForced;
-
-	// Token: 0x0200122C RID: 4652
-	public enum RenderQueue
-	{
-		// Token: 0x040064DF RID: 25823
-		Automatic,
-		// Token: 0x040064E0 RID: 25824
-		StartAt,
-		// Token: 0x040064E1 RID: 25825
-		Explicit
-	}
-
-	// Token: 0x0200122D RID: 4653
-	// (Invoke) Token: 0x0600788B RID: 30859
-	public delegate void OnGeometryUpdated();
-
-	// Token: 0x0200122E RID: 4654
-	// (Invoke) Token: 0x0600788F RID: 30863
-	public delegate void OnClippingMoved(UIPanel panel);
 }

@@ -1,9 +1,5 @@
-﻿using System;
+namespace UltimateSurvival;
 
-namespace UltimateSurvival
+public class PieceVitals : GenericVitals
 {
-	// Token: 0x020005BE RID: 1470
-	public class PieceVitals : GenericVitals
-	{
-	}
 }

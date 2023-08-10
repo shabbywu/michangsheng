@@ -1,143 +1,370 @@
-﻿using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-// Token: 0x020004F9 RID: 1273
 internal static class TextMeshExtensions
 {
-	// Token: 0x0600293D RID: 10557 RVA: 0x0013A4B8 File Offset: 0x001386B8
+	public static bool outLine;
+
+	public static bool shadow;
+
+	public static bool singleOutline;
+
 	public static void AdjustFontSize(this TextMesh toAdjust, bool rowSplit, bool hasWhiteSpaces, bool increaseFont)
 	{
-		if (toAdjust.GetComponent<Collider>() != null)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0232: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0341: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0344: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0362: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0264: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0269: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0281: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0284: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0374: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0379: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0392: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
+		//IL_039a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0303: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0306: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0595: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0598: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0440: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0443: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0453: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0458: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_046d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0472: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0475: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0485: Unknown result type (might be due to invalid IL or missing references)
+		//IL_048a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_048d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0510: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0513: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0525: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0542: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0545: Unknown result type (might be due to invalid IL or missing references)
+		if (!((Object)(object)((Component)toAdjust).GetComponent<Collider>() != (Object)null))
 		{
-			if (toAdjust.GetComponent<Collider>().bounds.size.x == 0f || toAdjust.GetComponent<Collider>().bounds.size.y == 0f)
+			return;
+		}
+		Bounds bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+		if (((Bounds)(ref bounds)).size.x == 0f)
+		{
+			return;
+		}
+		bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+		if (((Bounds)(ref bounds)).size.y == 0f)
+		{
+			return;
+		}
+		string text = toAdjust.text;
+		if (increaseFont)
+		{
+			while (true)
 			{
-				return;
-			}
-			string text = toAdjust.text;
-			if (increaseFont)
-			{
-				while (toAdjust.GetComponent<Renderer>().bounds.size.x * 1.1f < toAdjust.GetComponent<Collider>().bounds.size.x)
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float num = ((Bounds)(ref bounds)).size.x * 1.1f;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (!(num < ((Bounds)(ref bounds)).size.x))
 				{
-					if (toAdjust.GetComponent<Renderer>().bounds.size.y * 1.1f >= toAdjust.GetComponent<Collider>().bounds.size.y)
+					break;
+				}
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float num2 = ((Bounds)(ref bounds)).size.y * 1.1f;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (num2 < ((Bounds)(ref bounds)).size.y)
+				{
+					toAdjust.characterSize *= 1.1f;
+					continue;
+				}
+				break;
+			}
+		}
+		else
+		{
+			bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+			float x = ((Bounds)(ref bounds)).size.x;
+			bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+			if (x < ((Bounds)(ref bounds)).size.x)
+			{
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float y = ((Bounds)(ref bounds)).size.y;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (y < ((Bounds)(ref bounds)).size.y)
+				{
+					return;
+				}
+			}
+		}
+		if (!rowSplit)
+		{
+			while (true)
+			{
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float x2 = ((Bounds)(ref bounds)).size.x;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (!(x2 > ((Bounds)(ref bounds)).size.x))
+				{
+					bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+					float y2 = ((Bounds)(ref bounds)).size.y;
+					bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+					if (!(y2 > ((Bounds)(ref bounds)).size.y))
 					{
 						break;
 					}
-					toAdjust.characterSize *= 1.1f;
 				}
+				toAdjust.characterSize *= 0.9f;
 			}
-			else if (toAdjust.GetComponent<Renderer>().bounds.size.x < toAdjust.GetComponent<Collider>().bounds.size.x && toAdjust.GetComponent<Renderer>().bounds.size.y < toAdjust.GetComponent<Collider>().bounds.size.y)
+			return;
+		}
+		string[] array = text.Split(new char[1] { ' ' });
+		if (!hasWhiteSpaces)
+		{
+			char[] array2 = text.ToCharArray();
+			array = new string[array2.Length];
+			for (int i = 0; i < array.Length; i++)
 			{
-				return;
+				array[i] = array2[i].ToString();
 			}
-			if (!rowSplit)
+		}
+		if (array.Length == 1)
+		{
+			while (true)
 			{
-				while (toAdjust.GetComponent<Renderer>().bounds.size.x > toAdjust.GetComponent<Collider>().bounds.size.x || toAdjust.GetComponent<Renderer>().bounds.size.y > toAdjust.GetComponent<Collider>().bounds.size.y)
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float x3 = ((Bounds)(ref bounds)).size.x;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (!(x3 > ((Bounds)(ref bounds)).size.x))
 				{
-					toAdjust.characterSize *= 0.9f;
-				}
-				return;
-			}
-			string[] array = text.Split(new char[]
-			{
-				' '
-			});
-			if (!hasWhiteSpaces)
-			{
-				char[] array2 = text.ToCharArray();
-				array = new string[array2.Length];
-				for (int i = 0; i < array.Length; i++)
-				{
-					array[i] = array2[i].ToString();
-				}
-			}
-			if (array.Length == 1)
-			{
-				while (toAdjust.GetComponent<Renderer>().bounds.size.x > toAdjust.GetComponent<Collider>().bounds.size.x || toAdjust.GetComponent<Renderer>().bounds.size.y > toAdjust.GetComponent<Collider>().bounds.size.y)
-				{
-					toAdjust.characterSize *= 0.9f;
-				}
-				return;
-			}
-			if (array.Length == 1)
-			{
-				while (toAdjust.GetComponent<Renderer>().bounds.size.x > toAdjust.GetComponent<Collider>().bounds.size.x)
-				{
-					if (toAdjust.GetComponent<Renderer>().bounds.size.y <= toAdjust.GetComponent<Collider>().bounds.size.y)
+					bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+					float y3 = ((Bounds)(ref bounds)).size.y;
+					bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+					if (!(y3 > ((Bounds)(ref bounds)).size.y))
 					{
-						return;
+						break;
 					}
-					toAdjust.characterSize *= 0.9f;
 				}
+				toAdjust.characterSize *= 0.9f;
+			}
+			return;
+		}
+		if (array.Length == 1)
+		{
+			while (true)
+			{
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float x4 = ((Bounds)(ref bounds)).size.x;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (x4 > ((Bounds)(ref bounds)).size.x)
+				{
+					bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+					float y4 = ((Bounds)(ref bounds)).size.y;
+					bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+					if (y4 > ((Bounds)(ref bounds)).size.y)
+					{
+						toAdjust.characterSize *= 0.9f;
+						continue;
+					}
+					break;
+				}
+				break;
+			}
+			return;
+		}
+		bool flag = false;
+		toAdjust.text = array[0];
+		int num3 = 1;
+		while (true)
+		{
+			bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+			float num4 = ((Bounds)(ref bounds)).size.x * 1.1f;
+			bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+			if (!(num4 < ((Bounds)(ref bounds)).size.x))
+			{
+				break;
+			}
+			bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+			float num5 = ((Bounds)(ref bounds)).size.y * 1.1f;
+			bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+			if (!(num5 < ((Bounds)(ref bounds)).size.y))
+			{
+				break;
+			}
+			toAdjust.characterSize *= 1.1f;
+		}
+		int count = Regex.Matches(toAdjust.text, "\n").Count;
+		while (num3 < array.Length)
+		{
+			count = Regex.Matches(toAdjust.text, "\n").Count;
+			if (!flag)
+			{
+				toAdjust.text = toAdjust.text + "\n" + array[num3++];
 			}
 			else
 			{
-				bool flag = false;
-				toAdjust.text = array[0];
-				int j = 1;
-				while (toAdjust.GetComponent<Renderer>().bounds.size.x * 1.1f < toAdjust.GetComponent<Collider>().bounds.size.x && toAdjust.GetComponent<Renderer>().bounds.size.y * 1.1f < toAdjust.GetComponent<Collider>().bounds.size.y)
+				string text2 = toAdjust.text;
+				toAdjust.text = toAdjust.text + (hasWhiteSpaces ? " " : "") + array[num3++];
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float y5 = ((Bounds)(ref bounds)).size.y;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (!(y5 > ((Bounds)(ref bounds)).size.y))
 				{
-					toAdjust.characterSize *= 1.1f;
-				}
-				int count = Regex.Matches(toAdjust.text, "\n").Count;
-				while (j < array.Length)
-				{
-					count = Regex.Matches(toAdjust.text, "\n").Count;
-					if (!flag)
+					bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+					float x5 = ((Bounds)(ref bounds)).size.x;
+					bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+					if (!(x5 > ((Bounds)(ref bounds)).size.x))
 					{
-						toAdjust.text = toAdjust.text + "\n" + array[j++];
-					}
-					else
-					{
-						string text2 = toAdjust.text;
-						toAdjust.text = toAdjust.text + (hasWhiteSpaces ? " " : "") + array[j++];
-						if (toAdjust.GetComponent<Renderer>().bounds.size.y > toAdjust.GetComponent<Collider>().bounds.size.y || toAdjust.GetComponent<Renderer>().bounds.size.x > toAdjust.GetComponent<Collider>().bounds.size.x)
-						{
-							toAdjust.text = text2 + "\n" + array[j - 1];
-						}
-					}
-					while (toAdjust.GetComponent<Renderer>().bounds.size.y > toAdjust.GetComponent<Collider>().bounds.size.y || toAdjust.GetComponent<Renderer>().bounds.size.x > toAdjust.GetComponent<Collider>().bounds.size.x)
-					{
-						string text3 = toAdjust.text;
-						toAdjust.text = TextMeshExtensions.ReplaceNextOccurence(toAdjust.text, "\n", hasWhiteSpaces ? " " : "", count++);
-						if (toAdjust.GetComponent<Renderer>().bounds.size.x < toAdjust.GetComponent<Collider>().bounds.size.x && toAdjust.GetComponent<Renderer>().bounds.size.y < toAdjust.GetComponent<Collider>().bounds.size.y)
-						{
-							flag = true;
-							break;
-						}
-						count = Regex.Matches(toAdjust.text, "\n").Count;
-						toAdjust.characterSize *= 0.96f;
-						toAdjust.text = text3;
+						goto IL_058a;
 					}
 				}
+				toAdjust.text = text2 + "\n" + array[num3 - 1];
+			}
+			goto IL_058a;
+			IL_058a:
+			while (true)
+			{
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float y6 = ((Bounds)(ref bounds)).size.y;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (!(y6 > ((Bounds)(ref bounds)).size.y))
+				{
+					bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+					float x6 = ((Bounds)(ref bounds)).size.x;
+					bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+					if (!(x6 > ((Bounds)(ref bounds)).size.x))
+					{
+						break;
+					}
+				}
+				string text3 = toAdjust.text;
+				toAdjust.text = ReplaceNextOccurence(toAdjust.text, "\n", hasWhiteSpaces ? " " : "", count++);
+				bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+				float x7 = ((Bounds)(ref bounds)).size.x;
+				bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+				if (x7 < ((Bounds)(ref bounds)).size.x)
+				{
+					bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+					float y7 = ((Bounds)(ref bounds)).size.y;
+					bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+					if (y7 < ((Bounds)(ref bounds)).size.y)
+					{
+						flag = true;
+						break;
+					}
+				}
+				count = Regex.Matches(toAdjust.text, "\n").Count;
+				toAdjust.characterSize *= 0.96f;
+				toAdjust.text = text3;
 			}
 		}
 	}
 
-	// Token: 0x0600293E RID: 10558 RVA: 0x0013AAC4 File Offset: 0x00138CC4
 	public static string ReplaceLastOccurrence(string Source, string Find, string Replace)
 	{
 		int startIndex = Source.LastIndexOf(Find);
 		return Source.Remove(startIndex, Find.Length).Insert(startIndex, Replace);
 	}
 
-	// Token: 0x0600293F RID: 10559 RVA: 0x0013AAF0 File Offset: 0x00138CF0
 	public static int IndexOfOccurence(this string s, string match, int occurence)
 	{
-		int num = 1;
-		int num2 = 0;
-		while (num <= occurence && (num2 = s.IndexOf(match, num2 + 1)) != -1)
+		int i = 1;
+		int num = 0;
+		for (; i <= occurence; i++)
 		{
-			if (num == occurence)
+			if ((num = s.IndexOf(match, num + 1)) == -1)
 			{
-				return num2;
+				break;
 			}
-			num++;
+			if (i == occurence)
+			{
+				return num;
+			}
 		}
 		return -1;
 	}
 
-	// Token: 0x06002940 RID: 10560 RVA: 0x0013AB24 File Offset: 0x00138D24
 	public static string ReplaceNextOccurence(string Source, string Find, string Replace, int n)
 	{
 		int num = Source.IndexOfOccurence(Find, n);
@@ -149,250 +376,305 @@ internal static class TextMeshExtensions
 		return result;
 	}
 
-	// Token: 0x06002941 RID: 10561 RVA: 0x0013AB58 File Offset: 0x00138D58
 	public static void SetEffectsTexts(this TextMesh toAdjust, bool otherChildren)
 	{
-		if (TextMeshExtensions.outLine)
+		if (outLine)
 		{
-			if (toAdjust != null && toAdjust.transform.childCount == 8)
+			if ((Object)(object)toAdjust != (Object)null && ((Component)toAdjust).transform.childCount == 8)
 			{
 				if (otherChildren)
 				{
-					toAdjust.transform.Find(toAdjust.name + "RightOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "LeftOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "UpOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "DownOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "LeftUpOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "RightUpOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "LeftDownOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					toAdjust.transform.Find(toAdjust.name + "RightDownOutline").GetComponent<TextMesh>().text = toAdjust.text;
-					return;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "RightOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "LeftOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "UpOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "DownOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "LeftUpOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "RightUpOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "LeftDownOutline")).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "RightDownOutline")).GetComponent<TextMesh>().text = toAdjust.text;
 				}
-				toAdjust.transform.GetChild(0).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(1).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(2).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(3).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(4).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(5).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(6).GetComponent<TextMesh>().text = toAdjust.text;
-				toAdjust.transform.GetChild(7).GetComponent<TextMesh>().text = toAdjust.text;
-				return;
+				else
+				{
+					((Component)((Component)toAdjust).transform.GetChild(0)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(1)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(2)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(3)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(4)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(5)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(6)).GetComponent<TextMesh>().text = toAdjust.text;
+					((Component)((Component)toAdjust).transform.GetChild(7)).GetComponent<TextMesh>().text = toAdjust.text;
+				}
 			}
 		}
-		else if (!TextMeshExtensions.shadow && TextMeshExtensions.singleOutline)
+		else if (!shadow && singleOutline)
 		{
 			if (otherChildren)
 			{
-				toAdjust.transform.Find(toAdjust.name + "Outline").GetComponent<TextMesh>().text = toAdjust.text;
-				return;
+				((Component)((Component)toAdjust).transform.Find(((Object)toAdjust).name + "Outline")).GetComponent<TextMesh>().text = toAdjust.text;
 			}
-			toAdjust.transform.GetChild(0).GetComponent<TextMesh>().text = toAdjust.text;
+			else
+			{
+				((Component)((Component)toAdjust).transform.GetChild(0)).GetComponent<TextMesh>().text = toAdjust.text;
+			}
 		}
 	}
 
-	// Token: 0x06002942 RID: 10562 RVA: 0x0013AE28 File Offset: 0x00139028
 	public static void AddSingleOutline(this TextMesh toAdjust, Color shadowColor, float offset)
 	{
-		if (toAdjust.transform.childCount == 0)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0246: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0280: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02af: Unknown result type (might be due to invalid IL or missing references)
+		if (((Component)toAdjust).transform.childCount == 0)
 		{
-			Object.DestroyImmediate(toAdjust.GetComponent<TextMeshPlugin>());
-			GameObject gameObject = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			GameObject gameObject2 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			GameObject gameObject3 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			GameObject gameObject4 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			gameObject.name = toAdjust.name + "Outline";
-			TextMesh component = gameObject.GetComponent<TextMesh>();
+			Object.DestroyImmediate((Object)(object)((Component)toAdjust).GetComponent<TextMeshPlugin>());
+			GameObject obj = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			GameObject val = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			GameObject val2 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			GameObject val3 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			((Object)obj).name = ((Object)toAdjust).name + "Outline";
+			TextMesh component = obj.GetComponent<TextMesh>();
 			component.color = shadowColor;
 			component.characterSize *= offset;
 			component.offsetZ = toAdjust.offsetZ + 0.1f;
-			gameObject.GetComponent<Renderer>().enabled = true;
-			gameObject.transform.parent = toAdjust.transform;
-			gameObject.transform.localRotation = Quaternion.identity;
-			gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
-			gameObject.transform.localScale = Vector3.one;
-			gameObject2.name = toAdjust.name + "Outline2";
-			TextMesh component2 = gameObject2.GetComponent<TextMesh>();
+			obj.GetComponent<Renderer>().enabled = true;
+			obj.transform.parent = ((Component)toAdjust).transform;
+			obj.transform.localRotation = Quaternion.identity;
+			obj.transform.localPosition = new Vector3(0f, 0f, 0f);
+			obj.transform.localScale = Vector3.one;
+			((Object)val).name = ((Object)toAdjust).name + "Outline2";
+			TextMesh component2 = val.GetComponent<TextMesh>();
 			component2.color = shadowColor;
 			component2.characterSize /= offset;
 			component2.offsetZ = toAdjust.offsetZ + 0.1f;
-			gameObject2.GetComponent<Renderer>().enabled = true;
-			gameObject2.transform.parent = toAdjust.transform;
-			gameObject2.transform.localRotation = Quaternion.identity;
-			gameObject2.transform.localPosition = new Vector3(0f, 0f, 0f);
-			gameObject2.transform.localScale = Vector3.one;
-			gameObject3.name = toAdjust.name + "Outline3";
-			TextMesh component3 = gameObject3.GetComponent<TextMesh>();
+			val.GetComponent<Renderer>().enabled = true;
+			val.transform.parent = ((Component)toAdjust).transform;
+			val.transform.localRotation = Quaternion.identity;
+			val.transform.localPosition = new Vector3(0f, 0f, 0f);
+			val.transform.localScale = Vector3.one;
+			((Object)val2).name = ((Object)toAdjust).name + "Outline3";
+			TextMesh component3 = val2.GetComponent<TextMesh>();
 			component3.color = shadowColor;
 			component3.characterSize /= offset + 0.01f;
 			component3.offsetZ = toAdjust.offsetZ + 0.1f;
-			gameObject3.GetComponent<Renderer>().enabled = true;
-			gameObject3.transform.parent = toAdjust.transform;
-			gameObject3.transform.localRotation = Quaternion.identity;
-			gameObject3.transform.localPosition = new Vector3(-0.017f, 0f, 0f);
-			gameObject3.transform.localScale = Vector3.one;
-			gameObject4.name = toAdjust.name + "Outline4";
-			TextMesh component4 = gameObject4.GetComponent<TextMesh>();
+			val2.GetComponent<Renderer>().enabled = true;
+			val2.transform.parent = ((Component)toAdjust).transform;
+			val2.transform.localRotation = Quaternion.identity;
+			val2.transform.localPosition = new Vector3(-0.017f, 0f, 0f);
+			val2.transform.localScale = Vector3.one;
+			((Object)val3).name = ((Object)toAdjust).name + "Outline4";
+			TextMesh component4 = val3.GetComponent<TextMesh>();
 			component4.color = shadowColor;
 			component4.offsetZ = toAdjust.offsetZ + 0.1f;
-			gameObject4.GetComponent<Renderer>().enabled = true;
-			gameObject4.transform.parent = toAdjust.transform;
-			gameObject4.transform.localRotation = Quaternion.identity;
-			gameObject4.transform.localPosition = new Vector3(0.04f, 0f, 0f);
-			gameObject4.transform.localScale = Vector3.one;
-			TextMeshExtensions.singleOutline = true;
+			val3.GetComponent<Renderer>().enabled = true;
+			val3.transform.parent = ((Component)toAdjust).transform;
+			val3.transform.localRotation = Quaternion.identity;
+			val3.transform.localPosition = new Vector3(0.04f, 0f, 0f);
+			val3.transform.localScale = Vector3.one;
+			singleOutline = true;
 		}
 	}
 
-	// Token: 0x06002943 RID: 10563 RVA: 0x0013B0F4 File Offset: 0x001392F4
 	public static void AddShadow(this TextMesh toAdjust, Color shadowColor, Vector2 offset)
 	{
-		if (toAdjust.transform.childCount == 0)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		if (((Component)toAdjust).transform.childCount == 0)
 		{
-			Object.DestroyImmediate(toAdjust.GetComponent<TextMeshPlugin>());
-			GameObject gameObject = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			gameObject.name = toAdjust.name + "Shadow";
-			TextMesh component = gameObject.GetComponent<TextMesh>();
+			Object.DestroyImmediate((Object)(object)((Component)toAdjust).GetComponent<TextMeshPlugin>());
+			GameObject obj = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			((Object)obj).name = ((Object)toAdjust).name + "Shadow";
+			TextMesh component = obj.GetComponent<TextMesh>();
 			component.color = shadowColor;
 			component.offsetZ = toAdjust.offsetZ + 0.1f;
-			gameObject.GetComponent<Renderer>().enabled = true;
-			gameObject.transform.parent = toAdjust.transform;
-			gameObject.transform.localRotation = Quaternion.identity;
-			gameObject.transform.localPosition = new Vector3(offset.x, offset.y, 0f);
-			gameObject.transform.localScale = Vector3.one;
-			TextMeshExtensions.shadow = true;
+			obj.GetComponent<Renderer>().enabled = true;
+			obj.transform.parent = ((Component)toAdjust).transform;
+			obj.transform.localRotation = Quaternion.identity;
+			obj.transform.localPosition = new Vector3(offset.x, offset.y, 0f);
+			obj.transform.localScale = Vector3.one;
+			shadow = true;
 		}
 	}
 
-	// Token: 0x06002944 RID: 10564 RVA: 0x0013B1C0 File Offset: 0x001393C0
 	public static void AddOutline(this TextMesh toAdjust, Color outlineColor, float offset)
 	{
-		if (toAdjust.transform.childCount != 8)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0110: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0169: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0283: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0336: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0346: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0373: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_039f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0424: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0440: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0450: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0480: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_051b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_054b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0565: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0576: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d0: Unknown result type (might be due to invalid IL or missing references)
+		if (((Component)toAdjust).transform.childCount != 8)
 		{
-			Object.DestroyImmediate(toAdjust.GetComponent<TextMeshPlugin>());
-			GameObject gameObject = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject.GetComponent<Collider>() != null)
+			Object.DestroyImmediate((Object)(object)((Component)toAdjust).GetComponent<TextMeshPlugin>());
+			GameObject val = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val.GetComponent<Collider>());
 			}
-			gameObject.name = toAdjust.name + "RightOutline";
-			TextMesh component = gameObject.GetComponent<TextMesh>();
+			((Object)val).name = ((Object)toAdjust).name + "RightOutline";
+			TextMesh component = val.GetComponent<TextMesh>();
 			component.color = outlineColor;
 			component.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject2 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject2.GetComponent<Collider>() != null)
+			GameObject val2 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val2.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject2.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val2.GetComponent<Collider>());
 			}
-			gameObject2.name = toAdjust.name + "LeftOutline";
-			TextMesh component2 = gameObject2.GetComponent<TextMesh>();
+			((Object)val2).name = ((Object)toAdjust).name + "LeftOutline";
+			TextMesh component2 = val2.GetComponent<TextMesh>();
 			component2.color = outlineColor;
 			component2.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject3 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject3.GetComponent<Collider>() != null)
+			GameObject val3 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val3.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject3.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val3.GetComponent<Collider>());
 			}
-			gameObject3.name = toAdjust.name + "UpOutline";
-			TextMesh component3 = gameObject3.GetComponent<TextMesh>();
+			((Object)val3).name = ((Object)toAdjust).name + "UpOutline";
+			TextMesh component3 = val3.GetComponent<TextMesh>();
 			component3.color = outlineColor;
 			component3.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject4 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject4.GetComponent<Collider>() != null)
+			GameObject val4 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val4.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject4.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val4.GetComponent<Collider>());
 			}
-			gameObject4.name = toAdjust.name + "DownOutline";
-			TextMesh component4 = gameObject4.GetComponent<TextMesh>();
+			((Object)val4).name = ((Object)toAdjust).name + "DownOutline";
+			TextMesh component4 = val4.GetComponent<TextMesh>();
 			component4.color = outlineColor;
 			component4.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject5 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject5.GetComponent<Collider>() != null)
+			GameObject val5 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val5.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject5.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val5.GetComponent<Collider>());
 			}
-			gameObject5.name = toAdjust.name + "LeftUpOutline";
-			TextMesh component5 = gameObject5.GetComponent<TextMesh>();
+			((Object)val5).name = ((Object)toAdjust).name + "LeftUpOutline";
+			TextMesh component5 = val5.GetComponent<TextMesh>();
 			component5.color = outlineColor;
 			component5.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject6 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject6.GetComponent<Collider>() != null)
+			GameObject val6 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val6.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject6.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val6.GetComponent<Collider>());
 			}
-			gameObject6.name = toAdjust.name + "RightUpOutline";
-			TextMesh component6 = gameObject6.GetComponent<TextMesh>();
+			((Object)val6).name = ((Object)toAdjust).name + "RightUpOutline";
+			TextMesh component6 = val6.GetComponent<TextMesh>();
 			component6.color = outlineColor;
 			component6.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject7 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject7.GetComponent<Collider>() != null)
+			GameObject val7 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val7.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject7.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val7.GetComponent<Collider>());
 			}
-			gameObject7.name = toAdjust.name + "LeftDownOutline";
-			TextMesh component7 = gameObject7.GetComponent<TextMesh>();
+			((Object)val7).name = ((Object)toAdjust).name + "LeftDownOutline";
+			TextMesh component7 = val7.GetComponent<TextMesh>();
 			component7.color = outlineColor;
 			component7.offsetZ = toAdjust.offsetZ + 0.1f;
-			GameObject gameObject8 = Object.Instantiate<GameObject>(toAdjust.gameObject);
-			if (gameObject8.GetComponent<Collider>() != null)
+			GameObject val8 = Object.Instantiate<GameObject>(((Component)toAdjust).gameObject);
+			if ((Object)(object)val8.GetComponent<Collider>() != (Object)null)
 			{
-				Object.Destroy(gameObject8.GetComponent<Collider>());
+				Object.Destroy((Object)(object)val8.GetComponent<Collider>());
 			}
-			gameObject8.name = toAdjust.name + "RightDownOutline";
-			TextMesh component8 = gameObject8.GetComponent<TextMesh>();
+			((Object)val8).name = ((Object)toAdjust).name + "RightDownOutline";
+			TextMesh component8 = val8.GetComponent<TextMesh>();
 			component8.color = outlineColor;
 			component8.offsetZ = toAdjust.offsetZ + 0.1f;
-			gameObject.GetComponent<Renderer>().enabled = true;
-			gameObject.transform.parent = toAdjust.transform;
-			gameObject.transform.localRotation = Quaternion.identity;
-			gameObject.transform.localPosition = new Vector3(offset, 0f, 0f);
-			gameObject.transform.localScale = Vector3.one;
-			gameObject2.GetComponent<Renderer>().enabled = true;
-			gameObject2.transform.parent = toAdjust.transform;
-			gameObject2.transform.localRotation = Quaternion.identity;
-			gameObject2.transform.localPosition = new Vector3(-offset, 0f, 0f);
-			gameObject2.transform.localScale = Vector3.one;
-			gameObject3.GetComponent<Renderer>().enabled = true;
-			gameObject3.transform.parent = toAdjust.transform;
-			gameObject3.transform.localRotation = Quaternion.identity;
-			gameObject3.transform.localPosition = new Vector3(0f, offset, 0f);
-			gameObject3.transform.localScale = Vector3.one;
-			gameObject4.GetComponent<Renderer>().enabled = true;
-			gameObject4.transform.parent = toAdjust.transform;
-			gameObject4.transform.localRotation = Quaternion.identity;
-			gameObject4.transform.localPosition = new Vector3(0f, -offset, 0f);
-			gameObject4.transform.localScale = Vector3.one;
-			gameObject5.GetComponent<Renderer>().enabled = true;
-			gameObject5.transform.parent = toAdjust.transform;
-			gameObject5.transform.localRotation = Quaternion.identity;
-			gameObject5.transform.localPosition = new Vector3(-offset, 3f * offset / 3f, 0f);
-			gameObject5.transform.localScale = Vector3.one;
-			gameObject6.GetComponent<Renderer>().enabled = true;
-			gameObject6.transform.parent = toAdjust.transform;
-			gameObject6.transform.localRotation = Quaternion.identity;
-			gameObject6.transform.localPosition = new Vector3(offset, 3f * offset / 3f, 0f);
-			gameObject6.transform.localScale = Vector3.one;
-			gameObject7.GetComponent<Renderer>().enabled = true;
-			gameObject7.transform.parent = toAdjust.transform;
-			gameObject7.transform.localRotation = Quaternion.identity;
-			gameObject7.transform.localPosition = new Vector3(-offset, -offset, 0f);
-			gameObject7.transform.localScale = Vector3.one;
-			gameObject8.GetComponent<Renderer>().enabled = true;
-			gameObject8.transform.parent = toAdjust.transform;
-			gameObject8.transform.localRotation = Quaternion.identity;
-			gameObject8.transform.localPosition = new Vector3(offset, -offset, 0f);
-			gameObject8.transform.localScale = Vector3.one;
-			TextMeshExtensions.outLine = true;
+			val.GetComponent<Renderer>().enabled = true;
+			val.transform.parent = ((Component)toAdjust).transform;
+			val.transform.localRotation = Quaternion.identity;
+			val.transform.localPosition = new Vector3(offset, 0f, 0f);
+			val.transform.localScale = Vector3.one;
+			val2.GetComponent<Renderer>().enabled = true;
+			val2.transform.parent = ((Component)toAdjust).transform;
+			val2.transform.localRotation = Quaternion.identity;
+			val2.transform.localPosition = new Vector3(0f - offset, 0f, 0f);
+			val2.transform.localScale = Vector3.one;
+			val3.GetComponent<Renderer>().enabled = true;
+			val3.transform.parent = ((Component)toAdjust).transform;
+			val3.transform.localRotation = Quaternion.identity;
+			val3.transform.localPosition = new Vector3(0f, offset, 0f);
+			val3.transform.localScale = Vector3.one;
+			val4.GetComponent<Renderer>().enabled = true;
+			val4.transform.parent = ((Component)toAdjust).transform;
+			val4.transform.localRotation = Quaternion.identity;
+			val4.transform.localPosition = new Vector3(0f, 0f - offset, 0f);
+			val4.transform.localScale = Vector3.one;
+			val5.GetComponent<Renderer>().enabled = true;
+			val5.transform.parent = ((Component)toAdjust).transform;
+			val5.transform.localRotation = Quaternion.identity;
+			val5.transform.localPosition = new Vector3(0f - offset, 3f * offset / 3f, 0f);
+			val5.transform.localScale = Vector3.one;
+			val6.GetComponent<Renderer>().enabled = true;
+			val6.transform.parent = ((Component)toAdjust).transform;
+			val6.transform.localRotation = Quaternion.identity;
+			val6.transform.localPosition = new Vector3(offset, 3f * offset / 3f, 0f);
+			val6.transform.localScale = Vector3.one;
+			val7.GetComponent<Renderer>().enabled = true;
+			val7.transform.parent = ((Component)toAdjust).transform;
+			val7.transform.localRotation = Quaternion.identity;
+			val7.transform.localPosition = new Vector3(0f - offset, 0f - offset, 0f);
+			val7.transform.localScale = Vector3.one;
+			val8.GetComponent<Renderer>().enabled = true;
+			val8.transform.parent = ((Component)toAdjust).transform;
+			val8.transform.localRotation = Quaternion.identity;
+			val8.transform.localPosition = new Vector3(offset, 0f - offset, 0f);
+			val8.transform.localScale = Vector3.one;
+			outLine = true;
 		}
 	}
 
-	// Token: 0x06002945 RID: 10565 RVA: 0x0013B7B0 File Offset: 0x001399B0
 	public static void AdjustFontSplitRows(this TextMesh toAdjust, bool hasWhiteSpaces)
 	{
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
 		string text = toAdjust.text;
-		string[] array = text.Split(new char[]
-		{
-			' '
-		});
+		string[] array = text.Split(new char[1] { ' ' });
 		if (!hasWhiteSpaces)
 		{
 			char[] array2 = text.ToCharArray();
@@ -409,24 +691,17 @@ internal static class TextMeshExtensions
 		int j = 1;
 		toAdjust.text = array[0];
 		string text2 = toAdjust.text;
-		while (j < array.Length)
+		for (; j < array.Length; j++)
 		{
 			text2 = toAdjust.text;
 			toAdjust.text = toAdjust.text + ((!hasWhiteSpaces) ? "" : " ") + array[j];
-			if (toAdjust.GetComponent<Renderer>().bounds.size.x > toAdjust.GetComponent<Collider>().bounds.size.x)
+			Bounds bounds = ((Component)toAdjust).GetComponent<Renderer>().bounds;
+			float x = ((Bounds)(ref bounds)).size.x;
+			bounds = ((Component)toAdjust).GetComponent<Collider>().bounds;
+			if (x > ((Bounds)(ref bounds)).size.x)
 			{
 				toAdjust.text = text2 + "\n" + array[j];
 			}
-			j++;
 		}
 	}
-
-	// Token: 0x0400256E RID: 9582
-	public static bool outLine;
-
-	// Token: 0x0400256F RID: 9583
-	public static bool shadow;
-
-	// Token: 0x04002570 RID: 9584
-	public static bool singleOutline;
 }

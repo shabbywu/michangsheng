@@ -1,94 +1,75 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class AllMapReset : IJSONClass
 {
-	// Token: 0x0200074E RID: 1870
-	public class AllMapReset : IJSONClass
+	public static Dictionary<int, AllMapReset> DataDict = new Dictionary<int, AllMapReset>();
+
+	public static List<AllMapReset> DataList = new List<AllMapReset>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int Type;
+
+	public int resetTiem;
+
+	public int CanSame;
+
+	public int percent;
+
+	public int max;
+
+	public string name;
+
+	public string Icon;
+
+	public string Act;
+
+	public List<int> qujian = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003B4C RID: 15180 RVA: 0x00198080 File Offset: 0x00196280
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.AllMapReset.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.AllMapReset.list)
+			try
 			{
-				try
+				AllMapReset allMapReset = new AllMapReset();
+				allMapReset.id = item["id"].I;
+				allMapReset.Type = item["Type"].I;
+				allMapReset.resetTiem = item["resetTiem"].I;
+				allMapReset.CanSame = item["CanSame"].I;
+				allMapReset.percent = item["percent"].I;
+				allMapReset.max = item["max"].I;
+				allMapReset.name = item["name"].Str;
+				allMapReset.Icon = item["Icon"].Str;
+				allMapReset.Act = item["Act"].Str;
+				allMapReset.qujian = item["qujian"].ToList();
+				if (DataDict.ContainsKey(allMapReset.id))
 				{
-					AllMapReset allMapReset = new AllMapReset();
-					allMapReset.id = jsonobject["id"].I;
-					allMapReset.Type = jsonobject["Type"].I;
-					allMapReset.resetTiem = jsonobject["resetTiem"].I;
-					allMapReset.CanSame = jsonobject["CanSame"].I;
-					allMapReset.percent = jsonobject["percent"].I;
-					allMapReset.max = jsonobject["max"].I;
-					allMapReset.name = jsonobject["name"].Str;
-					allMapReset.Icon = jsonobject["Icon"].Str;
-					allMapReset.Act = jsonobject["Act"].Str;
-					allMapReset.qujian = jsonobject["qujian"].ToList();
-					if (AllMapReset.DataDict.ContainsKey(allMapReset.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典AllMapReset.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", allMapReset.id));
-					}
-					else
-					{
-						AllMapReset.DataDict.Add(allMapReset.id, allMapReset);
-						AllMapReset.DataList.Add(allMapReset);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典AllMapReset.DataDict添加数据时出现重复的键，Key:{allMapReset.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典AllMapReset.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(allMapReset.id, allMapReset);
+				DataList.Add(allMapReset);
 			}
-			if (AllMapReset.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				AllMapReset.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典AllMapReset.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003B4D RID: 15181 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040033F1 RID: 13297
-		public static Dictionary<int, AllMapReset> DataDict = new Dictionary<int, AllMapReset>();
-
-		// Token: 0x040033F2 RID: 13298
-		public static List<AllMapReset> DataList = new List<AllMapReset>();
-
-		// Token: 0x040033F3 RID: 13299
-		public static Action OnInitFinishAction = new Action(AllMapReset.OnInitFinish);
-
-		// Token: 0x040033F4 RID: 13300
-		public int id;
-
-		// Token: 0x040033F5 RID: 13301
-		public int Type;
-
-		// Token: 0x040033F6 RID: 13302
-		public int resetTiem;
-
-		// Token: 0x040033F7 RID: 13303
-		public int CanSame;
-
-		// Token: 0x040033F8 RID: 13304
-		public int percent;
-
-		// Token: 0x040033F9 RID: 13305
-		public int max;
-
-		// Token: 0x040033FA RID: 13306
-		public string name;
-
-		// Token: 0x040033FB RID: 13307
-		public string Icon;
-
-		// Token: 0x040033FC RID: 13308
-		public string Act;
-
-		// Token: 0x040033FD RID: 13309
-		public List<int> qujian = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

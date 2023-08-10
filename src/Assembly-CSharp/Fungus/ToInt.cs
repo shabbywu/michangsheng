@@ -1,80 +1,65 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Math", "ToInt", "Command to execute and store the result of a float to int conversion", 0)]
+[AddComponentMenu("")]
+public class ToInt : Command
 {
-	// Token: 0x02000E00 RID: 3584
-	[CommandInfo("Math", "ToInt", "Command to execute and store the result of a float to int conversion", 0)]
-	[AddComponentMenu("")]
-	public class ToInt : Command
+	public enum Mode
 	{
-		// Token: 0x06006547 RID: 25927 RVA: 0x00282804 File Offset: 0x00280A04
-		public override void OnEnter()
+		RoundToInt,
+		FloorToInt,
+		CeilToInt
+	}
+
+	[Tooltip("To integer mode; round, floor or ceil.")]
+	[SerializeField]
+	protected Mode function;
+
+	[Tooltip("Value to be passed in to the function.")]
+	[SerializeField]
+	protected FloatData inValue;
+
+	[Tooltip("Where the result of the function is stored.")]
+	[SerializeField]
+	protected IntegerData outValue;
+
+	public override void OnEnter()
+	{
+		switch (function)
 		{
-			switch (this.function)
-			{
-			case ToInt.Mode.RoundToInt:
-				this.outValue.Value = Mathf.RoundToInt(this.inValue.Value);
-				break;
-			case ToInt.Mode.FloorToInt:
-				this.outValue.Value = Mathf.FloorToInt(this.inValue.Value);
-				break;
-			case ToInt.Mode.CeilToInt:
-				this.outValue.Value = Mathf.CeilToInt(this.inValue.Value);
-				break;
-			}
-			this.Continue();
+		case Mode.RoundToInt:
+			outValue.Value = Mathf.RoundToInt(inValue.Value);
+			break;
+		case Mode.FloorToInt:
+			outValue.Value = Mathf.FloorToInt(inValue.Value);
+			break;
+		case Mode.CeilToInt:
+			outValue.Value = Mathf.CeilToInt(inValue.Value);
+			break;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006548 RID: 25928 RVA: 0x00282888 File Offset: 0x00280A88
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		return function.ToString() + " in: " + (((Object)(object)inValue.floatRef != (Object)null) ? inValue.floatRef.Key : inValue.Value.ToString()) + ", out: " + (((Object)(object)outValue.integerRef != (Object)null) ? outValue.integerRef.Key : outValue.Value.ToString());
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)variable == (Object)(object)inValue.floatRef))
 		{
-			return string.Concat(new string[]
-			{
-				this.function.ToString(),
-				" in: ",
-				(this.inValue.floatRef != null) ? this.inValue.floatRef.Key : this.inValue.Value.ToString(),
-				", out: ",
-				(this.outValue.integerRef != null) ? this.outValue.integerRef.Key : this.outValue.Value.ToString()
-			});
+			return (Object)(object)variable == (Object)(object)outValue.integerRef;
 		}
-
-		// Token: 0x06006549 RID: 25929 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
-		{
-			return new Color32(235, 191, 217, byte.MaxValue);
-		}
-
-		// Token: 0x0600654A RID: 25930 RVA: 0x0028293A File Offset: 0x00280B3A
-		public override bool HasReference(Variable variable)
-		{
-			return variable == this.inValue.floatRef || variable == this.outValue.integerRef;
-		}
-
-		// Token: 0x0400570B RID: 22283
-		[Tooltip("To integer mode; round, floor or ceil.")]
-		[SerializeField]
-		protected ToInt.Mode function;
-
-		// Token: 0x0400570C RID: 22284
-		[Tooltip("Value to be passed in to the function.")]
-		[SerializeField]
-		protected FloatData inValue;
-
-		// Token: 0x0400570D RID: 22285
-		[Tooltip("Where the result of the function is stored.")]
-		[SerializeField]
-		protected IntegerData outValue;
-
-		// Token: 0x020016BE RID: 5822
-		public enum Mode
-		{
-			// Token: 0x04007381 RID: 29569
-			RoundToInt,
-			// Token: 0x04007382 RID: 29570
-			FloorToInt,
-			// Token: 0x04007383 RID: 29571
-			CeilToInt
-		}
+		return true;
 	}
 }

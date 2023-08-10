@@ -1,69 +1,61 @@
-﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-// Token: 0x02000313 RID: 787
 public class LunTiMag
 {
-	// Token: 0x06001B61 RID: 7009 RVA: 0x000C318F File Offset: 0x000C138F
+	public Dictionary<int, List<int>> targetLunTiDictionary;
+
+	public List<LunDaoQiu> curLunDianList;
+
 	public LunTiMag()
 	{
-		this.curLunDianList = new List<LunDaoQiu>();
+		curLunDianList = new List<LunDaoQiu>();
 	}
 
-	// Token: 0x06001B62 RID: 7010 RVA: 0x000C31A4 File Offset: 0x000C13A4
 	public void CreateLunTi(List<int> lunTiList, int npcId)
 	{
-		this.targetLunTiDictionary = new Dictionary<int, List<int>>();
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"];
-		foreach (int num in lunTiList)
+		targetLunTiDictionary = new Dictionary<int, List<int>>();
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"];
+		int num = 0;
+		int num2 = 0;
+		foreach (int lunTi in lunTiList)
 		{
-			int num2 = jsonobject[num.ToString()]["level"].I + 1;
-			int num3 = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(num) + 1;
-			if (num2 == num3)
+			num = jSONObject[lunTi.ToString()]["level"].I + 1;
+			num2 = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(lunTi) + 1;
+			if (num == num2)
 			{
-				this.targetLunTiDictionary.Add(num, new List<int>
-				{
-					num2 + 1
-				});
+				targetLunTiDictionary.Add(lunTi, new List<int> { num + 1 });
 			}
-			else if (num2 > num3)
+			else if (num > num2)
 			{
-				this.targetLunTiDictionary.Add(num, new List<int>
-				{
-					num2,
-					num3
-				});
+				targetLunTiDictionary.Add(lunTi, new List<int> { num, num2 });
 			}
 			else
 			{
-				this.targetLunTiDictionary.Add(num, new List<int>
-				{
-					num3,
-					num2
-				});
+				targetLunTiDictionary.Add(lunTi, new List<int> { num2, num });
 			}
 		}
 	}
 
-	// Token: 0x06001B63 RID: 7011 RVA: 0x000C32C4 File Offset: 0x000C14C4
 	public bool CheckCanHeCheng(ref int minIndex, ref int bigIndex)
 	{
-		if (this.curLunDianList.Count < 1)
+		if (curLunDianList.Count < 1)
 		{
 			return false;
 		}
-		for (int i = 0; i < this.curLunDianList.Count; i++)
+		for (int i = 0; i < curLunDianList.Count; i++)
 		{
-			if (!this.curLunDianList[i].isNull)
+			if (curLunDianList[i].isNull)
 			{
-				for (int j = this.curLunDianList.Count - 1; j > i; j--)
+				continue;
+			}
+			for (int num = curLunDianList.Count - 1; num > i; num--)
+			{
+				if (curLunDianList[i].wudaoId == curLunDianList[num].wudaoId && curLunDianList[i].level == curLunDianList[num].level)
 				{
-					if (this.curLunDianList[i].wudaoId == this.curLunDianList[j].wudaoId && this.curLunDianList[i].level == this.curLunDianList[j].level)
-					{
-						minIndex = i;
-						bigIndex = j;
-						return true;
-					}
+					minIndex = i;
+					bigIndex = num;
+					return true;
 				}
 			}
 		}
@@ -72,26 +64,25 @@ public class LunTiMag
 		return false;
 	}
 
-	// Token: 0x06001B64 RID: 7012 RVA: 0x000C337C File Offset: 0x000C157C
 	private bool CheckIsTargetLunTi(ref int wuDaoId)
 	{
-		foreach (int num in this.targetLunTiDictionary.Keys)
+		foreach (int key in targetLunTiDictionary.Keys)
 		{
-			int num2 = 0;
-			foreach (int num3 in this.targetLunTiDictionary[num])
+			int num = 0;
+			foreach (int item in targetLunTiDictionary[key])
 			{
-				foreach (LunDaoQiu lunDaoQiu in this.curLunDianList)
+				foreach (LunDaoQiu curLunDian in curLunDianList)
 				{
-					if (!lunDaoQiu.isNull && lunDaoQiu.wudaoId == num && lunDaoQiu.level == num3)
+					if (!curLunDian.isNull && curLunDian.wudaoId == key && curLunDian.level == item)
 					{
-						num2++;
+						num++;
 						break;
 					}
 				}
 			}
-			if (num2 == this.targetLunTiDictionary[num].Count)
+			if (num == targetLunTiDictionary[key].Count)
 			{
-				wuDaoId = num;
+				wuDaoId = key;
 				return true;
 			}
 		}
@@ -99,60 +90,56 @@ public class LunTiMag
 		return false;
 	}
 
-	// Token: 0x06001B65 RID: 7013 RVA: 0x000C349C File Offset: 0x000C169C
 	public bool CheckIsTargetLunTi()
 	{
-		int num = -1;
-		return this.CheckIsTargetLunTi(ref num);
+		int wuDaoId = -1;
+		return CheckIsTargetLunTi(ref wuDaoId);
 	}
 
-	// Token: 0x06001B66 RID: 7014 RVA: 0x000C34B4 File Offset: 0x000C16B4
 	public void CompleteLunTi()
 	{
-		int num = 0;
-		if (this.CheckIsTargetLunTi(ref num))
+		int wuDaoId = 0;
+		if (CheckIsTargetLunTi(ref wuDaoId))
 		{
-			LunDaoManager.inst.hasCompleteLunTi.Add(num);
-			LunDaoManager.inst.AddWuDaoExp(num);
-			int num2 = 0;
-			foreach (int num3 in this.targetLunTiDictionary[num])
+			LunDaoManager.inst.hasCompleteLunTi.Add(wuDaoId);
+			LunDaoManager.inst.AddWuDaoExp(wuDaoId);
+			int num = 0;
+			foreach (int item in targetLunTiDictionary[wuDaoId])
 			{
-				num2 += jsonData.instance.WuDaoZhiJiaCheng[num3.ToString()]["JiaCheng"].I;
+				num += jsonData.instance.WuDaoZhiJiaCheng[item.ToString()]["JiaCheng"].I;
 			}
-			LunDaoManager.inst.AddWuDaoZhi(num, num2);
-			this.targetLunTiDictionary.Remove(num);
-			LunDaoManager.inst.lunDaoAmrMag.AddCompleteLunTi(LunDaoManager.inst.lunDaoPanel.lunTiCtrDictionary[num].finshIBg, LunDaoManager.inst.lunDaoPanel.lunTiCtrDictionary[num].finshImage);
+			LunDaoManager.inst.AddWuDaoZhi(wuDaoId, num);
+			targetLunTiDictionary.Remove(wuDaoId);
+			LunDaoManager.inst.lunDaoAmrMag.AddCompleteLunTi(LunDaoManager.inst.lunDaoPanel.lunTiCtrDictionary[wuDaoId].finshIBg, LunDaoManager.inst.lunDaoPanel.lunTiCtrDictionary[wuDaoId].finshImage);
 		}
-		if (this.targetLunTiDictionary.Keys.Count < 1)
+		if (targetLunTiDictionary.Keys.Count < 1)
 		{
 			LunDaoManager.inst.gameState = LunDaoManager.GameState.论道结束;
 			LunDaoManager.inst.GameOver();
 		}
 	}
 
-	// Token: 0x06001B67 RID: 7015 RVA: 0x000C35E0 File Offset: 0x000C17E0
 	public void LunDianHeCheng()
 	{
-		int index = -1;
-		int index2 = -1;
-		while (this.CheckCanHeCheng(ref index, ref index2))
+		int minIndex = -1;
+		int bigIndex = -1;
+		while (CheckCanHeCheng(ref minIndex, ref bigIndex))
 		{
-			this.curLunDianList[index].LevelUp();
-			int i = jsonData.instance.LunDaoShouYiData[this.curLunDianList[index].level.ToString()]["WuDaoZhi"].I;
-			LunDaoManager.inst.AddWuDaoZhi(this.curLunDianList[index].wudaoId, i);
-			this.curLunDianList[index2].SetNull();
-			LunDaoManager.inst.lunDaoAmrMag.AddHeCheng(this.curLunDianList[index].transform);
-			this.CompleteLunTi();
+			curLunDianList[minIndex].LevelUp();
+			int i = jsonData.instance.LunDaoShouYiData[curLunDianList[minIndex].level.ToString()]["WuDaoZhi"].I;
+			LunDaoManager.inst.AddWuDaoZhi(curLunDianList[minIndex].wudaoId, i);
+			curLunDianList[bigIndex].SetNull();
+			LunDaoManager.inst.lunDaoAmrMag.AddHeCheng(((Component)curLunDianList[minIndex]).transform);
+			CompleteLunTi();
 		}
 	}
 
-	// Token: 0x06001B68 RID: 7016 RVA: 0x000C36A0 File Offset: 0x000C18A0
 	public int GetNullSlot()
 	{
 		int result = -1;
-		for (int i = 0; i < this.curLunDianList.Count; i++)
+		for (int i = 0; i < curLunDianList.Count; i++)
 		{
-			if (this.curLunDianList[i].isNull)
+			if (curLunDianList[i].isNull)
 			{
 				return i;
 			}
@@ -160,38 +147,31 @@ public class LunTiMag
 		return result;
 	}
 
-	// Token: 0x06001B69 RID: 7017 RVA: 0x000C36DC File Offset: 0x000C18DC
 	public List<LunDaoCard> GetShengYuLunDian()
 	{
 		List<LunDaoCard> list = new List<LunDaoCard>();
-		foreach (int num in this.targetLunTiDictionary.Keys)
+		foreach (int key in targetLunTiDictionary.Keys)
 		{
-			foreach (int level in this.targetLunTiDictionary[num])
+			foreach (int item in targetLunTiDictionary[key])
 			{
-				list.Add(new LunDaoCard(num, level));
+				list.Add(new LunDaoCard(key, item));
 			}
 		}
 		List<LunDaoCard> list2 = new List<LunDaoCard>();
-		foreach (LunDaoQiu lunDaoQiu in this.curLunDianList)
+		foreach (LunDaoQiu curLunDian in curLunDianList)
 		{
-			foreach (LunDaoCard lunDaoCard in list)
+			foreach (LunDaoCard item2 in list)
 			{
-				if (lunDaoQiu.wudaoId == lunDaoCard.wudaoId && lunDaoQiu.level == lunDaoCard.level)
+				if (curLunDian.wudaoId == item2.wudaoId && curLunDian.level == item2.level)
 				{
-					list2.Add(lunDaoCard);
+					list2.Add(item2);
 				}
 			}
 		}
-		foreach (LunDaoCard item in list2)
+		foreach (LunDaoCard item3 in list2)
 		{
-			list.Remove(item);
+			list.Remove(item3);
 		}
 		return list;
 	}
-
-	// Token: 0x040015E6 RID: 5606
-	public Dictionary<int, List<int>> targetLunTiDictionary;
-
-	// Token: 0x040015E7 RID: 5607
-	public List<LunDaoQiu> curLunDianList;
 }

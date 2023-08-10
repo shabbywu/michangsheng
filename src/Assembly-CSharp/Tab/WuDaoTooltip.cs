@@ -1,113 +1,96 @@
-﻿using System;
 using JSONClass;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Tab
+namespace Tab;
+
+public class WuDaoTooltip : UIBase, IESCClose
 {
-	// Token: 0x020006F4 RID: 1780
-	public class WuDaoTooltip : UIBase, IESCClose
+	private Image _icon;
+
+	private Text _name;
+
+	private Text _xiaoGuo;
+
+	private Text _cost;
+
+	private Text _tiaoJian;
+
+	private Text _desc;
+
+	private RectTransform _bgRect;
+
+	private RectTransform _upRect;
+
+	private RectTransform _centerRect;
+
+	private RectTransform _downRect;
+
+	private FpBtn _btn;
+
+	public WuDaoTooltip(GameObject go)
 	{
-		// Token: 0x06003930 RID: 14640 RVA: 0x00186924 File Offset: 0x00184B24
-		public WuDaoTooltip(GameObject go)
-		{
-			this._go = go;
-			this._icon = base.Get<Image>("Bg/Up/Bg/Mask/Icon");
-			this._name = base.Get<Text>("Bg/Up/Bg/Name");
-			this._xiaoGuo = base.Get<Text>("Bg/Up/XiaoGuo");
-			this._cost = base.Get<Text>("Bg/Center/Cost");
-			this._tiaoJian = base.Get<Text>("Bg/Center/TiaoJian");
-			this._desc = base.Get<Text>("Bg/Down/Desc");
-			this._bgRect = base.Get<RectTransform>("Bg");
-			this._upRect = base.Get<RectTransform>("Bg/Up");
-			this._centerRect = base.Get<RectTransform>("Bg/Center");
-			this._downRect = base.Get<RectTransform>("Bg/Down");
-			this._btn = base.Get<FpBtn>("Bg/Down/Line/Btn");
-			base.Get<Button>("Mask").onClick.AddListener(new UnityAction(this.Close));
-		}
+		//IL_00df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e9: Expected O, but got Unknown
+		_go = go;
+		_icon = Get<Image>("Bg/Up/Bg/Mask/Icon");
+		_name = Get<Text>("Bg/Up/Bg/Name");
+		_xiaoGuo = Get<Text>("Bg/Up/XiaoGuo");
+		_cost = Get<Text>("Bg/Center/Cost");
+		_tiaoJian = Get<Text>("Bg/Center/TiaoJian");
+		_desc = Get<Text>("Bg/Down/Desc");
+		_bgRect = Get<RectTransform>("Bg");
+		_upRect = Get<RectTransform>("Bg/Up");
+		_centerRect = Get<RectTransform>("Bg/Center");
+		_downRect = Get<RectTransform>("Bg/Down");
+		_btn = Get<FpBtn>("Bg/Down/Line/Btn");
+		((UnityEvent)Get<Button>("Mask").onClick).AddListener(new UnityAction(Close));
+	}
 
-		// Token: 0x06003931 RID: 14641 RVA: 0x00186A1C File Offset: 0x00184C1C
-		public void Show(Sprite sprite, int wudaoId, UnityAction action)
+	public void Show(Sprite sprite, int wudaoId, UnityAction action)
+	{
+		ESCCloseManager.Inst.RegisterClose(this);
+		WuDaoJson wuDaoJson = WuDaoJson.DataDict[wudaoId];
+		_icon.sprite = sprite;
+		_name.text = wuDaoJson.name;
+		_xiaoGuo.text = wuDaoJson.xiaoguo;
+		_cost.text = "<color=#ffb143>【需求点数】</color>" + wuDaoJson.Cast;
+		string text = "";
+		for (int i = 0; i < wuDaoJson.Type.Count; i++)
 		{
-			ESCCloseManager.Inst.RegisterClose(this);
-			WuDaoJson wuDaoJson = WuDaoJson.DataDict[wudaoId];
-			this._icon.sprite = sprite;
-			this._name.text = wuDaoJson.name;
-			this._xiaoGuo.text = wuDaoJson.xiaoguo;
-			this._cost.text = "<color=#ffb143>【需求点数】</color>" + wuDaoJson.Cast;
-			string text = "";
-			for (int i = 0; i < wuDaoJson.Type.Count; i++)
+			text += WuDaoAllTypeJson.DataDict[wuDaoJson.Type[i]].name;
+			if (i < wuDaoJson.Type.Count - 1)
 			{
-				text += WuDaoAllTypeJson.DataDict[wuDaoJson.Type[i]].name;
-				if (i < wuDaoJson.Type.Count - 1)
-				{
-					text += ",";
-				}
+				text += ",";
 			}
-			string text2 = WuDaoJinJieJson.DataDict[wuDaoJson.Lv].Text;
-			this._tiaoJian.text = "<color=#ffb143>【领悟条件】</color>对" + text + "之道的感悟达到" + text2;
-			this._desc.text = "\u00a0\u00a0\u00a0\u00a0\u00a0" + wuDaoJson.desc;
-			this._btn.mouseUpEvent.RemoveAllListeners();
-			this._btn.mouseUpEvent.AddListener(action);
-			this._go.SetActive(true);
-			this.UpdateSize();
 		}
+		string text2 = WuDaoJinJieJson.DataDict[wuDaoJson.Lv].Text;
+		_tiaoJian.text = "<color=#ffb143>【领悟条件】</color>对" + text + "之道的感悟达到" + text2;
+		_desc.text = "\u00a0\u00a0\u00a0\u00a0\u00a0" + wuDaoJson.desc;
+		((UnityEventBase)_btn.mouseUpEvent).RemoveAllListeners();
+		_btn.mouseUpEvent.AddListener(action);
+		_go.SetActive(true);
+		UpdateSize();
+	}
 
-		// Token: 0x06003932 RID: 14642 RVA: 0x00186B68 File Offset: 0x00184D68
-		private void UpdateSize()
-		{
-			LayoutRebuilder.ForceRebuildLayoutImmediate(this._downRect);
-			LayoutRebuilder.ForceRebuildLayoutImmediate(this._centerRect);
-			LayoutRebuilder.ForceRebuildLayoutImmediate(this._upRect);
-			LayoutRebuilder.ForceRebuildLayoutImmediate(this._bgRect);
-		}
+	private void UpdateSize()
+	{
+		LayoutRebuilder.ForceRebuildLayoutImmediate(_downRect);
+		LayoutRebuilder.ForceRebuildLayoutImmediate(_centerRect);
+		LayoutRebuilder.ForceRebuildLayoutImmediate(_upRect);
+		LayoutRebuilder.ForceRebuildLayoutImmediate(_bgRect);
+	}
 
-		// Token: 0x06003933 RID: 14643 RVA: 0x00186B96 File Offset: 0x00184D96
-		public void Close()
-		{
-			this._go.SetActive(false);
-			ESCCloseManager.Inst.UnRegisterClose(this);
-		}
+	public void Close()
+	{
+		_go.SetActive(false);
+		ESCCloseManager.Inst.UnRegisterClose(this);
+	}
 
-		// Token: 0x06003934 RID: 14644 RVA: 0x00186BAF File Offset: 0x00184DAF
-		public bool TryEscClose()
-		{
-			this.Close();
-			return true;
-		}
-
-		// Token: 0x04003138 RID: 12600
-		private Image _icon;
-
-		// Token: 0x04003139 RID: 12601
-		private Text _name;
-
-		// Token: 0x0400313A RID: 12602
-		private Text _xiaoGuo;
-
-		// Token: 0x0400313B RID: 12603
-		private Text _cost;
-
-		// Token: 0x0400313C RID: 12604
-		private Text _tiaoJian;
-
-		// Token: 0x0400313D RID: 12605
-		private Text _desc;
-
-		// Token: 0x0400313E RID: 12606
-		private RectTransform _bgRect;
-
-		// Token: 0x0400313F RID: 12607
-		private RectTransform _upRect;
-
-		// Token: 0x04003140 RID: 12608
-		private RectTransform _centerRect;
-
-		// Token: 0x04003141 RID: 12609
-		private RectTransform _downRect;
-
-		// Token: 0x04003142 RID: 12610
-		private FpBtn _btn;
+	public bool TryEscClose()
+	{
+		Close();
+		return true;
 	}
 }

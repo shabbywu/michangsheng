@@ -1,50 +1,48 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Flow", "While", "Continuously loop through a block of commands while the condition is true. Use the Break command to force the loop to terminate immediately.", 0)]
+[AddComponentMenu("")]
+public class While : If
 {
-	// Token: 0x02000E5F RID: 3679
-	[CommandInfo("Flow", "While", "Continuously loop through a block of commands while the condition is true. Use the Break command to force the loop to terminate immediately.", 0)]
-	[AddComponentMenu("")]
-	public class While : If
+	public override void OnEnter()
 	{
-		// Token: 0x0600674E RID: 26446 RVA: 0x00289F44 File Offset: 0x00288144
-		public override void OnEnter()
+		bool flag = true;
+		if ((Object)(object)variable != (Object)null)
 		{
-			bool flag = true;
-			if (this.variable != null)
-			{
-				flag = this.EvaluateCondition();
-			}
-			End end = null;
-			for (int i = this.CommandIndex + 1; i < this.ParentBlock.CommandList.Count; i++)
-			{
-				End end2 = this.ParentBlock.CommandList[i] as End;
-				if (end2 != null && end2.IndentLevel == this.indentLevel)
-				{
-					end = end2;
-					break;
-				}
-			}
-			if (flag)
-			{
-				end.Loop = true;
-				this.Continue();
-				return;
-			}
-			this.Continue(end.CommandIndex + 1);
+			flag = EvaluateCondition();
 		}
+		End end = null;
+		for (int i = CommandIndex + 1; i < ParentBlock.CommandList.Count; i++)
+		{
+			End end2 = ParentBlock.CommandList[i] as End;
+			if ((Object)(object)end2 != (Object)null && end2.IndentLevel == indentLevel)
+			{
+				end = end2;
+				break;
+			}
+		}
+		if (flag)
+		{
+			end.Loop = true;
+			Continue();
+		}
+		else
+		{
+			Continue(end.CommandIndex + 1);
+		}
+	}
 
-		// Token: 0x0600674F RID: 26447 RVA: 0x00024C5F File Offset: 0x00022E5F
-		public override bool OpenBlock()
-		{
-			return true;
-		}
+	public override bool OpenBlock()
+	{
+		return true;
+	}
 
-		// Token: 0x06006750 RID: 26448 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
-		public override Color GetButtonColor()
-		{
-			return new Color32(253, 253, 150, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)253, (byte)253, (byte)150, byte.MaxValue));
 	}
 }

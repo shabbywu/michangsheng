@@ -1,47 +1,45 @@
-﻿using System;
 using KBEngine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003D9 RID: 985
 public class Friendinfo : MonoBehaviour
 {
-	// Token: 0x06001FF7 RID: 8183 RVA: 0x000E1620 File Offset: 0x000DF820
+	public ulong friendDbid;
+
+	public string friendName;
+
+	public int friendLeval;
+
 	private void Start()
 	{
-		base.transform.Find("talk").GetComponent<Button>().onClick.AddListener(new UnityAction(this.OpenTalkingUI));
-		base.transform.Find("join").GetComponent<Button>().onClick.AddListener(new UnityAction(this.receiveFriend));
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Expected O, but got Unknown
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Expected O, but got Unknown
+		((UnityEvent)((Component)((Component)this).transform.Find("talk")).GetComponent<Button>().onClick).AddListener(new UnityAction(OpenTalkingUI));
+		((UnityEvent)((Component)((Component)this).transform.Find("join")).GetComponent<Button>().onClick).AddListener(new UnityAction(receiveFriend));
 	}
 
-	// Token: 0x06001FF8 RID: 8184 RVA: 0x000E1683 File Offset: 0x000DF883
 	public void OpenTalkingUI()
 	{
 		GameObject talkingUI = UI_HOMESCENE.instense.talkingUI;
 		talkingUI.SetActive(true);
-		talkingUI.GetComponent<FriendTalkingInfo>().friendDbid = this.friendDbid;
-		talkingUI.GetComponent<FriendTalkingInfo>().friendName = this.friendName;
+		talkingUI.GetComponent<FriendTalkingInfo>().friendDbid = friendDbid;
+		talkingUI.GetComponent<FriendTalkingInfo>().friendName = friendName;
 	}
 
-	// Token: 0x06001FF9 RID: 8185 RVA: 0x000E16B8 File Offset: 0x000DF8B8
 	public void receiveFriend()
 	{
-		Account account = (Account)KBEngineApp.app.player();
+		_ = (Account)KBEngineApp.app.player();
 		TeamInfo component = UI_HOMESCENE.instense.TeamUI.GetComponent<TeamInfo>();
-		if (component.teamuuid == 0UL)
+		if (component.teamuuid == 0L)
 		{
-			component.creatTeam(this.friendDbid);
-			return;
+			component.creatTeam(friendDbid);
 		}
-		component.requestJoinTeam(this.friendDbid);
+		else
+		{
+			component.requestJoinTeam(friendDbid);
+		}
 	}
-
-	// Token: 0x040019F9 RID: 6649
-	public ulong friendDbid;
-
-	// Token: 0x040019FA RID: 6650
-	public string friendName;
-
-	// Token: 0x040019FB RID: 6651
-	public int friendLeval;
 }

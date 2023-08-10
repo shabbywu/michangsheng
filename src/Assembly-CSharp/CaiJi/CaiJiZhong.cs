@@ -1,89 +1,87 @@
-﻿using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CaiJi
+namespace CaiJi;
+
+public class CaiJiZhong : MonoBehaviour
 {
-	// Token: 0x02000737 RID: 1847
-	public class CaiJiZhong : MonoBehaviour
+	[SerializeField]
+	private Image Fill;
+
+	private TweenerCore<float, float, FloatOptions> obj1;
+
+	private TweenerCore<float, float, FloatOptions> obj2;
+
+	private void Awake()
 	{
-		// Token: 0x06003AE8 RID: 15080 RVA: 0x001952B9 File Offset: 0x001934B9
-		private void Awake()
-		{
-			MessageMag.Instance.Register("MSG_Npc_JieSuan_COMPLETE", new Action<MessageData>(this.Complete));
-		}
+		MessageMag.Instance.Register("MSG_Npc_JieSuan_COMPLETE", Complete);
+	}
 
-		// Token: 0x06003AE9 RID: 15081 RVA: 0x001952D8 File Offset: 0x001934D8
-		public void ShowSlider()
+	public void ShowSlider()
+	{
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Expected O, but got Unknown
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Expected O, but got Unknown
+		((Component)this).gameObject.SetActive(true);
+		if (jsonData.instance.saveState == 1)
 		{
-			base.gameObject.SetActive(true);
-			if (jsonData.instance.saveState == 1)
+			Debug.Log((object)"正在存档中播放假进度");
+			TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(Fill, 1f, 2.5f), (TweenCallback)delegate
 			{
-				Debug.Log("正在存档中播放假进度");
-				TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(this.Fill, 1f, 2.5f), delegate()
-				{
-					base.gameObject.SetActive(false);
-					this.Fill.fillAmount = 0f;
-					if (CaiJiUIMag.inst != null)
-					{
-						CaiJiUIMag.inst.CaiJiComplete();
-					}
-					if (LingHeCaiJiUIMag.inst != null)
-					{
-						LingHeCaiJiUIMag.inst.CaiJiComplete();
-					}
-				}));
-				return;
-			}
-			this.obj1 = TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(this.Fill, 0.8f, 1f), delegate()
-			{
-				this.obj2 = TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(this.Fill, 0.95f, 20f));
-			}));
-		}
-
-		// Token: 0x06003AEA RID: 15082 RVA: 0x00195368 File Offset: 0x00193568
-		private void Complete(MessageData data)
-		{
-			if (this.obj1 != null)
-			{
-				TweenExtensions.Kill(this.obj1, false);
-			}
-			if (this.obj2 != null)
-			{
-				TweenExtensions.Kill(this.obj2, false);
-			}
-			TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(this.Fill, 1f, 0.3f), delegate()
-			{
-				base.gameObject.SetActive(false);
-				this.Fill.fillAmount = 0f;
-				if (CaiJiUIMag.inst != null)
+				((Component)this).gameObject.SetActive(false);
+				Fill.fillAmount = 0f;
+				if ((Object)(object)CaiJiUIMag.inst != (Object)null)
 				{
 					CaiJiUIMag.inst.CaiJiComplete();
 				}
-				if (LingHeCaiJiUIMag.inst != null)
+				if ((Object)(object)LingHeCaiJiUIMag.inst != (Object)null)
 				{
 					LingHeCaiJiUIMag.inst.CaiJiComplete();
 				}
 			}));
 		}
-
-		// Token: 0x06003AEB RID: 15083 RVA: 0x001953C9 File Offset: 0x001935C9
-		private void OnDestroy()
+		else
 		{
-			MessageMag.Instance.Remove("MSG_Npc_JieSuan_COMPLETE", new Action<MessageData>(this.Complete));
+			obj1 = TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(Fill, 0.8f, 1f), (TweenCallback)delegate
+			{
+				obj2 = TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(Fill, 0.95f, 20f));
+			}));
 		}
+	}
 
-		// Token: 0x04003313 RID: 13075
-		[SerializeField]
-		private Image Fill;
+	private void Complete(MessageData data)
+	{
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Expected O, but got Unknown
+		if (obj1 != null)
+		{
+			TweenExtensions.Kill((Tween)(object)obj1, false);
+		}
+		if (obj2 != null)
+		{
+			TweenExtensions.Kill((Tween)(object)obj2, false);
+		}
+		TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(Fill, 1f, 0.3f), (TweenCallback)delegate
+		{
+			((Component)this).gameObject.SetActive(false);
+			Fill.fillAmount = 0f;
+			if ((Object)(object)CaiJiUIMag.inst != (Object)null)
+			{
+				CaiJiUIMag.inst.CaiJiComplete();
+			}
+			if ((Object)(object)LingHeCaiJiUIMag.inst != (Object)null)
+			{
+				LingHeCaiJiUIMag.inst.CaiJiComplete();
+			}
+		}));
+	}
 
-		// Token: 0x04003314 RID: 13076
-		private TweenerCore<float, float, FloatOptions> obj1;
-
-		// Token: 0x04003315 RID: 13077
-		private TweenerCore<float, float, FloatOptions> obj2;
+	private void OnDestroy()
+	{
+		MessageMag.Instance.Remove("MSG_Npc_JieSuan_COMPLETE", Complete);
 	}
 }

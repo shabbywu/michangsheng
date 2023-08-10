@@ -1,929 +1,1246 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000110 RID: 272
 [ExecuteInEditMode]
 public class EasyJoystick : MonoBehaviour
 {
-	// Token: 0x14000004 RID: 4
-	// (add) Token: 0x06000C92 RID: 3218 RVA: 0x0004B1FC File Offset: 0x000493FC
-	// (remove) Token: 0x06000C93 RID: 3219 RVA: 0x0004B230 File Offset: 0x00049430
-	public static event EasyJoystick.JoystickMoveStartHandler On_JoystickMoveStart;
+	public delegate void JoystickMoveStartHandler(MovingJoystick move);
 
-	// Token: 0x14000005 RID: 5
-	// (add) Token: 0x06000C94 RID: 3220 RVA: 0x0004B264 File Offset: 0x00049464
-	// (remove) Token: 0x06000C95 RID: 3221 RVA: 0x0004B298 File Offset: 0x00049498
-	public static event EasyJoystick.JoystickMoveHandler On_JoystickMove;
+	public delegate void JoystickMoveHandler(MovingJoystick move);
 
-	// Token: 0x14000006 RID: 6
-	// (add) Token: 0x06000C96 RID: 3222 RVA: 0x0004B2CC File Offset: 0x000494CC
-	// (remove) Token: 0x06000C97 RID: 3223 RVA: 0x0004B300 File Offset: 0x00049500
-	public static event EasyJoystick.JoystickMoveEndHandler On_JoystickMoveEnd;
+	public delegate void JoystickMoveEndHandler(MovingJoystick move);
 
-	// Token: 0x14000007 RID: 7
-	// (add) Token: 0x06000C98 RID: 3224 RVA: 0x0004B334 File Offset: 0x00049534
-	// (remove) Token: 0x06000C99 RID: 3225 RVA: 0x0004B368 File Offset: 0x00049568
-	public static event EasyJoystick.JoystickTouchStartHandler On_JoystickTouchStart;
+	public delegate void JoystickTouchStartHandler(MovingJoystick move);
 
-	// Token: 0x14000008 RID: 8
-	// (add) Token: 0x06000C9A RID: 3226 RVA: 0x0004B39C File Offset: 0x0004959C
-	// (remove) Token: 0x06000C9B RID: 3227 RVA: 0x0004B3D0 File Offset: 0x000495D0
-	public static event EasyJoystick.JoystickTapHandler On_JoystickTap;
+	public delegate void JoystickTapHandler(MovingJoystick move);
 
-	// Token: 0x14000009 RID: 9
-	// (add) Token: 0x06000C9C RID: 3228 RVA: 0x0004B404 File Offset: 0x00049604
-	// (remove) Token: 0x06000C9D RID: 3229 RVA: 0x0004B438 File Offset: 0x00049638
-	public static event EasyJoystick.JoystickDoubleTapHandler On_JoystickDoubleTap;
+	public delegate void JoystickDoubleTapHandler(MovingJoystick move);
 
-	// Token: 0x1400000A RID: 10
-	// (add) Token: 0x06000C9E RID: 3230 RVA: 0x0004B46C File Offset: 0x0004966C
-	// (remove) Token: 0x06000C9F RID: 3231 RVA: 0x0004B4A0 File Offset: 0x000496A0
-	public static event EasyJoystick.JoystickTouchUpHandler On_JoystickTouchUp;
+	public delegate void JoystickTouchUpHandler(MovingJoystick move);
 
-	// Token: 0x170001DA RID: 474
-	// (get) Token: 0x06000CA0 RID: 3232 RVA: 0x0004B4D3 File Offset: 0x000496D3
-	public Vector2 JoystickAxis
+	public enum JoystickAnchor
 	{
-		get
-		{
-			return this.joystickAxis;
-		}
+		None,
+		UpperLeft,
+		UpperCenter,
+		UpperRight,
+		MiddleLeft,
+		MiddleCenter,
+		MiddleRight,
+		LowerLeft,
+		LowerCenter,
+		LowerRight
 	}
 
-	// Token: 0x170001DB RID: 475
-	// (get) Token: 0x06000CA1 RID: 3233 RVA: 0x0004B4DB File Offset: 0x000496DB
-	// (set) Token: 0x06000CA2 RID: 3234 RVA: 0x0004B508 File Offset: 0x00049708
+	public enum PropertiesInfluenced
+	{
+		Rotate,
+		RotateLocal,
+		Translate,
+		TranslateLocal,
+		Scale
+	}
+
+	public enum AxisInfluenced
+	{
+		X,
+		Y,
+		Z,
+		XYZ
+	}
+
+	public enum DynamicArea
+	{
+		FullScreen,
+		Left,
+		Right,
+		Top,
+		Bottom,
+		TopLeft,
+		TopRight,
+		BottomLeft,
+		BottomRight
+	}
+
+	public enum InteractionType
+	{
+		Direct,
+		Include,
+		EventNotification,
+		DirectAndEvent
+	}
+
+	public enum Broadcast
+	{
+		SendMessage,
+		SendMessageUpwards,
+		BroadcastMessage
+	}
+
+	private enum MessageName
+	{
+		On_JoystickMoveStart,
+		On_JoystickTouchStart,
+		On_JoystickTouchUp,
+		On_JoystickMove,
+		On_JoystickMoveEnd,
+		On_JoystickTap,
+		On_JoystickDoubleTap
+	}
+
+	private Vector2 joystickAxis;
+
+	private Vector2 joystickTouch;
+
+	private Vector2 joystickValue;
+
+	public bool enable = true;
+
+	public bool isActivated = true;
+
+	public bool showDebugRadius;
+
+	public bool useFixedUpdate;
+
+	public bool isUseGuiLayout = true;
+
+	[SerializeField]
+	private bool dynamicJoystick;
+
+	public DynamicArea area;
+
+	[SerializeField]
+	private JoystickAnchor joyAnchor = JoystickAnchor.LowerLeft;
+
+	[SerializeField]
+	private Vector2 joystickPositionOffset = Vector2.zero;
+
+	[SerializeField]
+	private float zoneRadius = 100f;
+
+	[SerializeField]
+	private float touchSize = 30f;
+
+	public float deadZone = 20f;
+
+	[SerializeField]
+	private bool restrictArea;
+
+	public bool resetFingerExit;
+
+	[SerializeField]
+	private InteractionType interaction;
+
+	public bool useBroadcast;
+
+	public Broadcast messageMode;
+
+	public GameObject receiverGameObject;
+
+	public Vector2 speed;
+
+	public bool enableXaxis = true;
+
+	[SerializeField]
+	private Transform xAxisTransform;
+
+	public CharacterController xAxisCharacterController;
+
+	public float xAxisGravity;
+
+	[SerializeField]
+	private PropertiesInfluenced xTI;
+
+	public AxisInfluenced xAI;
+
+	public bool inverseXAxis;
+
+	public bool enableXClamp;
+
+	public float clampXMax;
+
+	public float clampXMin;
+
+	public bool enableXAutoStab;
+
+	[SerializeField]
+	private float thresholdX = 0.01f;
+
+	[SerializeField]
+	private float stabSpeedX = 20f;
+
+	public bool enableYaxis = true;
+
+	[SerializeField]
+	private Transform yAxisTransform;
+
+	public CharacterController yAxisCharacterController;
+
+	public float yAxisGravity;
+
+	[SerializeField]
+	private PropertiesInfluenced yTI;
+
+	public AxisInfluenced yAI;
+
+	public bool inverseYAxis;
+
+	public bool enableYClamp;
+
+	public float clampYMax;
+
+	public float clampYMin;
+
+	public bool enableYAutoStab;
+
+	[SerializeField]
+	private float thresholdY = 0.01f;
+
+	[SerializeField]
+	private float stabSpeedY = 20f;
+
+	public bool enableSmoothing;
+
+	[SerializeField]
+	public Vector2 smoothing = new Vector2(2f, 2f);
+
+	public bool enableInertia;
+
+	[SerializeField]
+	public Vector2 inertia = new Vector2(100f, 100f);
+
+	public int guiDepth;
+
+	public bool showZone = true;
+
+	public bool showTouch = true;
+
+	public bool showDeadZone = true;
+
+	public Texture areaTexture;
+
+	public Color areaColor = Color.white;
+
+	public Texture touchTexture;
+
+	public Color touchColor = Color.white;
+
+	public Texture deadTexture;
+
+	public bool showProperties = true;
+
+	public bool showInteraction;
+
+	public bool showAppearance;
+
+	public bool showPosition = true;
+
+	private Vector2 joystickCenter;
+
+	private Rect areaRect;
+
+	private Rect deadRect;
+
+	private Vector2 anchorPosition = Vector2.zero;
+
+	private bool virtualJoystick = true;
+
+	private int joystickIndex = -1;
+
+	private float touchSizeCoef;
+
+	private bool sendEnd = true;
+
+	private float startXLocalAngle;
+
+	private float startYLocalAngle;
+
+	public Vector2 JoystickAxis => joystickAxis;
+
 	public Vector2 JoystickTouch
 	{
 		get
 		{
-			return new Vector2(this.joystickTouch.x / this.zoneRadius, this.joystickTouch.y / this.zoneRadius);
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector2(joystickTouch.x / zoneRadius, joystickTouch.y / zoneRadius);
 		}
 		set
 		{
-			float num = Mathf.Clamp(value.x, -1f, 1f) * this.zoneRadius;
-			float num2 = Mathf.Clamp(value.y, -1f, 1f) * this.zoneRadius;
-			this.joystickTouch = new Vector2(num, num2);
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+			float num = Mathf.Clamp(value.x, -1f, 1f) * zoneRadius;
+			float num2 = Mathf.Clamp(value.y, -1f, 1f) * zoneRadius;
+			joystickTouch = new Vector2(num, num2);
 		}
 	}
 
-	// Token: 0x170001DC RID: 476
-	// (get) Token: 0x06000CA3 RID: 3235 RVA: 0x0004B55C File Offset: 0x0004975C
-	public Vector2 JoystickValue
-	{
-		get
-		{
-			return this.joystickValue;
-		}
-	}
+	public Vector2 JoystickValue => joystickValue;
 
-	// Token: 0x170001DD RID: 477
-	// (get) Token: 0x06000CA4 RID: 3236 RVA: 0x0004B564 File Offset: 0x00049764
-	// (set) Token: 0x06000CA5 RID: 3237 RVA: 0x0004B56C File Offset: 0x0004976C
 	public bool DynamicJoystick
 	{
 		get
 		{
-			return this.dynamicJoystick;
+			return dynamicJoystick;
 		}
 		set
 		{
+			//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0033: Unknown result type (might be due to invalid IL or missing references)
 			if (!Application.isPlaying)
 			{
-				this.joystickIndex = -1;
-				this.dynamicJoystick = value;
-				if (this.dynamicJoystick)
+				joystickIndex = -1;
+				dynamicJoystick = value;
+				if (dynamicJoystick)
 				{
-					this.virtualJoystick = false;
+					virtualJoystick = false;
 					return;
 				}
-				this.virtualJoystick = true;
-				this.joystickCenter = this.joystickPositionOffset;
+				virtualJoystick = true;
+				joystickCenter = joystickPositionOffset;
 			}
 		}
 	}
 
-	// Token: 0x170001DE RID: 478
-	// (get) Token: 0x06000CA6 RID: 3238 RVA: 0x0004B5A6 File Offset: 0x000497A6
-	// (set) Token: 0x06000CA7 RID: 3239 RVA: 0x0004B5AE File Offset: 0x000497AE
-	public EasyJoystick.JoystickAnchor JoyAnchor
+	public JoystickAnchor JoyAnchor
 	{
 		get
 		{
-			return this.joyAnchor;
+			return joyAnchor;
 		}
 		set
 		{
-			this.joyAnchor = value;
-			this.ComputeJoystickAnchor(this.joyAnchor);
+			joyAnchor = value;
+			ComputeJoystickAnchor(joyAnchor);
 		}
 	}
 
-	// Token: 0x170001DF RID: 479
-	// (get) Token: 0x06000CA8 RID: 3240 RVA: 0x0004B5C3 File Offset: 0x000497C3
-	// (set) Token: 0x06000CA9 RID: 3241 RVA: 0x0004B5CB File Offset: 0x000497CB
 	public Vector2 JoystickPositionOffset
 	{
 		get
 		{
-			return this.joystickPositionOffset;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return joystickPositionOffset;
 		}
 		set
 		{
-			this.joystickPositionOffset = value;
-			this.ComputeJoystickAnchor(this.joyAnchor);
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+			joystickPositionOffset = value;
+			ComputeJoystickAnchor(joyAnchor);
 		}
 	}
 
-	// Token: 0x170001E0 RID: 480
-	// (get) Token: 0x06000CAA RID: 3242 RVA: 0x0004B5E0 File Offset: 0x000497E0
-	// (set) Token: 0x06000CAB RID: 3243 RVA: 0x0004B5E8 File Offset: 0x000497E8
 	public float ZoneRadius
 	{
 		get
 		{
-			return this.zoneRadius;
+			return zoneRadius;
 		}
 		set
 		{
-			this.zoneRadius = value;
-			this.ComputeJoystickAnchor(this.joyAnchor);
+			zoneRadius = value;
+			ComputeJoystickAnchor(joyAnchor);
 		}
 	}
 
-	// Token: 0x170001E1 RID: 481
-	// (get) Token: 0x06000CAC RID: 3244 RVA: 0x0004B5FD File Offset: 0x000497FD
-	// (set) Token: 0x06000CAD RID: 3245 RVA: 0x0004B608 File Offset: 0x00049808
 	public float TouchSize
 	{
 		get
 		{
-			return this.touchSize;
+			return touchSize;
 		}
 		set
 		{
-			this.touchSize = value;
-			if (this.touchSize > this.zoneRadius / 2f && this.restrictArea)
+			touchSize = value;
+			if (touchSize > zoneRadius / 2f && restrictArea)
 			{
-				this.touchSize = this.zoneRadius / 2f;
+				touchSize = zoneRadius / 2f;
 			}
-			this.ComputeJoystickAnchor(this.joyAnchor);
+			ComputeJoystickAnchor(joyAnchor);
 		}
 	}
 
-	// Token: 0x170001E2 RID: 482
-	// (get) Token: 0x06000CAE RID: 3246 RVA: 0x0004B656 File Offset: 0x00049856
-	// (set) Token: 0x06000CAF RID: 3247 RVA: 0x0004B65E File Offset: 0x0004985E
 	public bool RestrictArea
 	{
 		get
 		{
-			return this.restrictArea;
+			return restrictArea;
 		}
 		set
 		{
-			this.restrictArea = value;
-			if (this.restrictArea)
+			restrictArea = value;
+			if (restrictArea)
 			{
-				this.touchSizeCoef = this.touchSize;
+				touchSizeCoef = touchSize;
 			}
 			else
 			{
-				this.touchSizeCoef = 0f;
+				touchSizeCoef = 0f;
 			}
-			this.ComputeJoystickAnchor(this.joyAnchor);
+			ComputeJoystickAnchor(joyAnchor);
 		}
 	}
 
-	// Token: 0x170001E3 RID: 483
-	// (get) Token: 0x06000CB0 RID: 3248 RVA: 0x0004B694 File Offset: 0x00049894
-	// (set) Token: 0x06000CB1 RID: 3249 RVA: 0x0004B69C File Offset: 0x0004989C
-	public EasyJoystick.InteractionType Interaction
+	public InteractionType Interaction
 	{
 		get
 		{
-			return this.interaction;
+			return interaction;
 		}
 		set
 		{
-			this.interaction = value;
-			if (this.interaction == EasyJoystick.InteractionType.Direct || this.interaction == EasyJoystick.InteractionType.Include)
+			interaction = value;
+			if (interaction == InteractionType.Direct || interaction == InteractionType.Include)
 			{
-				this.useBroadcast = false;
+				useBroadcast = false;
 			}
 		}
 	}
 
-	// Token: 0x170001E4 RID: 484
-	// (get) Token: 0x06000CB2 RID: 3250 RVA: 0x0004B6BD File Offset: 0x000498BD
-	// (set) Token: 0x06000CB3 RID: 3251 RVA: 0x0004B6C5 File Offset: 0x000498C5
 	public Transform XAxisTransform
 	{
 		get
 		{
-			return this.xAxisTransform;
+			return xAxisTransform;
 		}
 		set
 		{
-			this.xAxisTransform = value;
-			if (this.xAxisTransform != null)
+			xAxisTransform = value;
+			if ((Object)(object)xAxisTransform != (Object)null)
 			{
-				this.xAxisCharacterController = this.xAxisTransform.GetComponent<CharacterController>();
+				xAxisCharacterController = ((Component)xAxisTransform).GetComponent<CharacterController>();
 				return;
 			}
-			this.xAxisCharacterController = null;
-			this.xAxisGravity = 0f;
+			xAxisCharacterController = null;
+			xAxisGravity = 0f;
 		}
 	}
 
-	// Token: 0x170001E5 RID: 485
-	// (get) Token: 0x06000CB4 RID: 3252 RVA: 0x0004B700 File Offset: 0x00049900
-	// (set) Token: 0x06000CB5 RID: 3253 RVA: 0x0004B708 File Offset: 0x00049908
-	public EasyJoystick.PropertiesInfluenced XTI
+	public PropertiesInfluenced XTI
 	{
 		get
 		{
-			return this.xTI;
+			return xTI;
 		}
 		set
 		{
-			this.xTI = value;
-			if (this.xTI != EasyJoystick.PropertiesInfluenced.RotateLocal)
+			xTI = value;
+			if (xTI != PropertiesInfluenced.RotateLocal)
 			{
-				this.enableXAutoStab = false;
-				this.enableXClamp = false;
+				enableXAutoStab = false;
+				enableXClamp = false;
 			}
 		}
 	}
 
-	// Token: 0x170001E6 RID: 486
-	// (get) Token: 0x06000CB6 RID: 3254 RVA: 0x0004B728 File Offset: 0x00049928
-	// (set) Token: 0x06000CB7 RID: 3255 RVA: 0x0004B730 File Offset: 0x00049930
 	public float ThresholdX
 	{
 		get
 		{
-			return this.thresholdX;
+			return thresholdX;
 		}
 		set
 		{
 			if (value <= 0f)
 			{
-				this.thresholdX = value * -1f;
-				return;
+				thresholdX = value * -1f;
 			}
-			this.thresholdX = value;
+			else
+			{
+				thresholdX = value;
+			}
 		}
 	}
 
-	// Token: 0x170001E7 RID: 487
-	// (get) Token: 0x06000CB8 RID: 3256 RVA: 0x0004B74F File Offset: 0x0004994F
-	// (set) Token: 0x06000CB9 RID: 3257 RVA: 0x0004B757 File Offset: 0x00049957
 	public float StabSpeedX
 	{
 		get
 		{
-			return this.stabSpeedX;
+			return stabSpeedX;
 		}
 		set
 		{
 			if (value <= 0f)
 			{
-				this.stabSpeedX = value * -1f;
-				return;
+				stabSpeedX = value * -1f;
 			}
-			this.stabSpeedX = value;
+			else
+			{
+				stabSpeedX = value;
+			}
 		}
 	}
 
-	// Token: 0x170001E8 RID: 488
-	// (get) Token: 0x06000CBA RID: 3258 RVA: 0x0004B776 File Offset: 0x00049976
-	// (set) Token: 0x06000CBB RID: 3259 RVA: 0x0004B77E File Offset: 0x0004997E
 	public Transform YAxisTransform
 	{
 		get
 		{
-			return this.yAxisTransform;
+			return yAxisTransform;
 		}
 		set
 		{
-			this.yAxisTransform = value;
-			if (this.yAxisTransform != null)
+			yAxisTransform = value;
+			if ((Object)(object)yAxisTransform != (Object)null)
 			{
-				this.yAxisCharacterController = this.yAxisTransform.GetComponent<CharacterController>();
+				yAxisCharacterController = ((Component)yAxisTransform).GetComponent<CharacterController>();
 				return;
 			}
-			this.yAxisCharacterController = null;
-			this.yAxisGravity = 0f;
+			yAxisCharacterController = null;
+			yAxisGravity = 0f;
 		}
 	}
 
-	// Token: 0x170001E9 RID: 489
-	// (get) Token: 0x06000CBC RID: 3260 RVA: 0x0004B7B9 File Offset: 0x000499B9
-	// (set) Token: 0x06000CBD RID: 3261 RVA: 0x0004B7C1 File Offset: 0x000499C1
-	public EasyJoystick.PropertiesInfluenced YTI
+	public PropertiesInfluenced YTI
 	{
 		get
 		{
-			return this.yTI;
+			return yTI;
 		}
 		set
 		{
-			this.yTI = value;
-			if (this.yTI != EasyJoystick.PropertiesInfluenced.RotateLocal)
+			yTI = value;
+			if (yTI != PropertiesInfluenced.RotateLocal)
 			{
-				this.enableYAutoStab = false;
-				this.enableYClamp = false;
+				enableYAutoStab = false;
+				enableYClamp = false;
 			}
 		}
 	}
 
-	// Token: 0x170001EA RID: 490
-	// (get) Token: 0x06000CBE RID: 3262 RVA: 0x0004B7E1 File Offset: 0x000499E1
-	// (set) Token: 0x06000CBF RID: 3263 RVA: 0x0004B7E9 File Offset: 0x000499E9
 	public float ThresholdY
 	{
 		get
 		{
-			return this.thresholdY;
+			return thresholdY;
 		}
 		set
 		{
 			if (value <= 0f)
 			{
-				this.thresholdY = value * -1f;
-				return;
+				thresholdY = value * -1f;
 			}
-			this.thresholdY = value;
+			else
+			{
+				thresholdY = value;
+			}
 		}
 	}
 
-	// Token: 0x170001EB RID: 491
-	// (get) Token: 0x06000CC0 RID: 3264 RVA: 0x0004B808 File Offset: 0x00049A08
-	// (set) Token: 0x06000CC1 RID: 3265 RVA: 0x0004B810 File Offset: 0x00049A10
 	public float StabSpeedY
 	{
 		get
 		{
-			return this.stabSpeedY;
+			return stabSpeedY;
 		}
 		set
 		{
 			if (value <= 0f)
 			{
-				this.stabSpeedY = value * -1f;
-				return;
+				stabSpeedY = value * -1f;
 			}
-			this.stabSpeedY = value;
+			else
+			{
+				stabSpeedY = value;
+			}
 		}
 	}
 
-	// Token: 0x170001EC RID: 492
-	// (get) Token: 0x06000CC2 RID: 3266 RVA: 0x0004B82F File Offset: 0x00049A2F
-	// (set) Token: 0x06000CC3 RID: 3267 RVA: 0x0004B838 File Offset: 0x00049A38
 	public Vector2 Smoothing
 	{
 		get
 		{
-			return this.smoothing;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return smoothing;
 		}
 		set
 		{
-			this.smoothing = value;
-			if (this.smoothing.x < 0f)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+			smoothing = value;
+			if (smoothing.x < 0f)
 			{
-				this.smoothing.x = 0f;
+				smoothing.x = 0f;
 			}
-			if (this.smoothing.y < 0f)
+			if (smoothing.y < 0f)
 			{
-				this.smoothing.y = 0f;
+				smoothing.y = 0f;
 			}
 		}
 	}
 
-	// Token: 0x170001ED RID: 493
-	// (get) Token: 0x06000CC4 RID: 3268 RVA: 0x0004B890 File Offset: 0x00049A90
-	// (set) Token: 0x06000CC5 RID: 3269 RVA: 0x0004B898 File Offset: 0x00049A98
 	public Vector2 Inertia
 	{
 		get
 		{
-			return this.inertia;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return inertia;
 		}
 		set
 		{
-			this.inertia = value;
-			if (this.inertia.x <= 0f)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+			inertia = value;
+			if (inertia.x <= 0f)
 			{
-				this.inertia.x = 1f;
+				inertia.x = 1f;
 			}
-			if (this.inertia.y <= 0f)
+			if (inertia.y <= 0f)
 			{
-				this.inertia.y = 1f;
+				inertia.y = 1f;
 			}
 		}
 	}
 
-	// Token: 0x06000CC6 RID: 3270 RVA: 0x0004B8F0 File Offset: 0x00049AF0
+	public static event JoystickMoveStartHandler On_JoystickMoveStart;
+
+	public static event JoystickMoveHandler On_JoystickMove;
+
+	public static event JoystickMoveEndHandler On_JoystickMoveEnd;
+
+	public static event JoystickTouchStartHandler On_JoystickTouchStart;
+
+	public static event JoystickTapHandler On_JoystickTap;
+
+	public static event JoystickDoubleTapHandler On_JoystickDoubleTap;
+
+	public static event JoystickTouchUpHandler On_JoystickTouchUp;
+
 	private void OnEnable()
 	{
-		EasyTouch.On_TouchStart += this.On_TouchStart;
-		EasyTouch.On_TouchUp += this.On_TouchUp;
-		EasyTouch.On_TouchDown += this.On_TouchDown;
-		EasyTouch.On_SimpleTap += this.On_SimpleTap;
-		EasyTouch.On_DoubleTap += this.On_DoubleTap;
+		EasyTouch.On_TouchStart += On_TouchStart;
+		EasyTouch.On_TouchUp += On_TouchUp;
+		EasyTouch.On_TouchDown += On_TouchDown;
+		EasyTouch.On_SimpleTap += On_SimpleTap;
+		EasyTouch.On_DoubleTap += On_DoubleTap;
 	}
 
-	// Token: 0x06000CC7 RID: 3271 RVA: 0x0004B954 File Offset: 0x00049B54
 	private void OnDisable()
 	{
-		EasyTouch.On_TouchStart -= this.On_TouchStart;
-		EasyTouch.On_TouchUp -= this.On_TouchUp;
-		EasyTouch.On_TouchDown -= this.On_TouchDown;
-		EasyTouch.On_SimpleTap -= this.On_SimpleTap;
-		EasyTouch.On_DoubleTap -= this.On_DoubleTap;
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		EasyTouch.On_TouchStart -= On_TouchStart;
+		EasyTouch.On_TouchUp -= On_TouchUp;
+		EasyTouch.On_TouchDown -= On_TouchDown;
+		EasyTouch.On_SimpleTap -= On_SimpleTap;
+		EasyTouch.On_DoubleTap -= On_DoubleTap;
 		if (Application.isPlaying)
 		{
-			EasyTouch.RemoveReservedArea(this.areaRect);
+			EasyTouch.RemoveReservedArea(areaRect);
 		}
 	}
 
-	// Token: 0x06000CC8 RID: 3272 RVA: 0x0004B9C8 File Offset: 0x00049BC8
 	private void OnDestroy()
 	{
-		EasyTouch.On_TouchStart -= this.On_TouchStart;
-		EasyTouch.On_TouchUp -= this.On_TouchUp;
-		EasyTouch.On_TouchDown -= this.On_TouchDown;
-		EasyTouch.On_SimpleTap -= this.On_SimpleTap;
-		EasyTouch.On_DoubleTap -= this.On_DoubleTap;
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		EasyTouch.On_TouchStart -= On_TouchStart;
+		EasyTouch.On_TouchUp -= On_TouchUp;
+		EasyTouch.On_TouchDown -= On_TouchDown;
+		EasyTouch.On_SimpleTap -= On_SimpleTap;
+		EasyTouch.On_DoubleTap -= On_DoubleTap;
 		if (Application.isPlaying)
 		{
-			EasyTouch.RemoveReservedArea(this.areaRect);
+			EasyTouch.RemoveReservedArea(areaRect);
 		}
 	}
 
-	// Token: 0x06000CC9 RID: 3273 RVA: 0x0004BA3C File Offset: 0x00049C3C
 	private void Start()
 	{
-		if (!this.dynamicJoystick)
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		if (!dynamicJoystick)
 		{
-			this.joystickCenter = this.joystickPositionOffset;
-			this.ComputeJoystickAnchor(this.joyAnchor);
-			this.virtualJoystick = true;
+			joystickCenter = joystickPositionOffset;
+			ComputeJoystickAnchor(joyAnchor);
+			virtualJoystick = true;
 		}
 		else
 		{
-			this.virtualJoystick = false;
+			virtualJoystick = false;
 		}
 		VirtualScreen.ComputeVirtualScreen();
-		this.startXLocalAngle = this.GetStartAutoStabAngle(this.xAxisTransform, this.xAI);
-		this.startYLocalAngle = this.GetStartAutoStabAngle(this.yAxisTransform, this.yAI);
+		startXLocalAngle = GetStartAutoStabAngle(xAxisTransform, xAI);
+		startYLocalAngle = GetStartAutoStabAngle(yAxisTransform, yAI);
 	}
 
-	// Token: 0x06000CCA RID: 3274 RVA: 0x0004BAAE File Offset: 0x00049CAE
 	private void Update()
 	{
-		if (!this.useFixedUpdate && this.enable)
+		if (!useFixedUpdate && enable)
 		{
-			this.UpdateJoystick();
+			UpdateJoystick();
 		}
 	}
 
-	// Token: 0x06000CCB RID: 3275 RVA: 0x0004BAC6 File Offset: 0x00049CC6
 	private void FixedUpdate()
 	{
-		if (this.useFixedUpdate && this.enable)
+		if (useFixedUpdate && enable)
 		{
-			this.UpdateJoystick();
+			UpdateJoystick();
 		}
 	}
 
-	// Token: 0x06000CCC RID: 3276 RVA: 0x0004BAE0 File Offset: 0x00049CE0
 	private void UpdateJoystick()
 	{
-		if (Application.isPlaying && this.isActivated)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0160: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0138: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0254: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0255: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0206: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0208: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0212: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0241: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0246: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0247: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0297: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0267: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026c: Unknown result type (might be due to invalid IL or missing references)
+		if (!Application.isPlaying || !isActivated)
 		{
-			if (this.joystickIndex == -1 || (this.joystickAxis == Vector2.zero && this.joystickIndex > -1))
+			return;
+		}
+		if (joystickIndex == -1 || (joystickAxis == Vector2.zero && joystickIndex > -1))
+		{
+			if (enableXAutoStab)
 			{
-				if (this.enableXAutoStab)
-				{
-					this.DoAutoStabilisation(this.xAxisTransform, this.xAI, this.thresholdX, this.stabSpeedX, this.startXLocalAngle);
-				}
-				if (this.enableYAutoStab)
-				{
-					this.DoAutoStabilisation(this.yAxisTransform, this.yAI, this.thresholdY, this.stabSpeedY, this.startYLocalAngle);
-				}
+				DoAutoStabilisation(xAxisTransform, xAI, thresholdX, stabSpeedX, startXLocalAngle);
 			}
-			if (!this.dynamicJoystick)
+			if (enableYAutoStab)
 			{
-				this.joystickCenter = this.joystickPositionOffset;
+				DoAutoStabilisation(yAxisTransform, yAI, thresholdY, stabSpeedY, startYLocalAngle);
 			}
-			if (this.joystickIndex == -1)
+		}
+		if (!dynamicJoystick)
+		{
+			joystickCenter = joystickPositionOffset;
+		}
+		if (joystickIndex == -1)
+		{
+			if (!enableSmoothing)
 			{
-				if (!this.enableSmoothing)
-				{
-					this.joystickTouch = Vector2.zero;
-				}
-				else if ((double)this.joystickTouch.sqrMagnitude > 0.0001)
-				{
-					this.joystickTouch = new Vector2(this.joystickTouch.x - this.joystickTouch.x * this.smoothing.x * Time.deltaTime, this.joystickTouch.y - this.joystickTouch.y * this.smoothing.y * Time.deltaTime);
-				}
-				else
-				{
-					this.joystickTouch = Vector2.zero;
-				}
+				joystickTouch = Vector2.zero;
 			}
-			Vector2 vector = new Vector2(this.joystickAxis.x, this.joystickAxis.y);
-			float num = this.ComputeDeadZone();
-			this.joystickAxis = new Vector2(this.joystickTouch.x * num, this.joystickTouch.y * num);
-			if (this.inverseXAxis)
+			else if ((double)((Vector2)(ref joystickTouch)).sqrMagnitude > 0.0001)
 			{
-				this.joystickAxis.x = this.joystickAxis.x * -1f;
-			}
-			if (this.inverseYAxis)
-			{
-				this.joystickAxis.y = this.joystickAxis.y * -1f;
-			}
-			Vector2 vector2;
-			vector2..ctor(this.speed.x * this.joystickAxis.x, this.speed.y * this.joystickAxis.y);
-			if (this.enableInertia)
-			{
-				Vector2 vector3 = vector2 - this.joystickValue;
-				vector3.x /= this.inertia.x;
-				vector3.y /= this.inertia.y;
-				this.joystickValue += vector3;
+				joystickTouch = new Vector2(joystickTouch.x - joystickTouch.x * smoothing.x * Time.deltaTime, joystickTouch.y - joystickTouch.y * smoothing.y * Time.deltaTime);
 			}
 			else
 			{
-				this.joystickValue = vector2;
+				joystickTouch = Vector2.zero;
 			}
-			if (vector == Vector2.zero && this.joystickAxis != Vector2.zero && this.interaction != EasyJoystick.InteractionType.Direct && this.interaction != EasyJoystick.InteractionType.Include)
+		}
+		Vector2 val = new Vector2(joystickAxis.x, joystickAxis.y);
+		float num = ComputeDeadZone();
+		joystickAxis = new Vector2(joystickTouch.x * num, joystickTouch.y * num);
+		if (inverseXAxis)
+		{
+			joystickAxis.x *= -1f;
+		}
+		if (inverseYAxis)
+		{
+			joystickAxis.y *= -1f;
+		}
+		Vector2 val2 = default(Vector2);
+		((Vector2)(ref val2))._002Ector(speed.x * joystickAxis.x, speed.y * joystickAxis.y);
+		if (enableInertia)
+		{
+			Vector2 val3 = val2 - joystickValue;
+			val3.x /= inertia.x;
+			val3.y /= inertia.y;
+			joystickValue += val3;
+		}
+		else
+		{
+			joystickValue = val2;
+		}
+		if (val == Vector2.zero && joystickAxis != Vector2.zero && interaction != 0 && interaction != InteractionType.Include)
+		{
+			CreateEvent(MessageName.On_JoystickMoveStart);
+		}
+		UpdateGravity();
+		if (joystickAxis != Vector2.zero)
+		{
+			sendEnd = false;
+			switch (interaction)
 			{
-				this.CreateEvent(EasyJoystick.MessageName.On_JoystickMoveStart);
+			case InteractionType.Direct:
+				UpdateDirect();
+				break;
+			case InteractionType.EventNotification:
+				CreateEvent(MessageName.On_JoystickMove);
+				break;
+			case InteractionType.DirectAndEvent:
+				UpdateDirect();
+				CreateEvent(MessageName.On_JoystickMove);
+				break;
+			case InteractionType.Include:
+				break;
 			}
-			this.UpdateGravity();
-			if (this.joystickAxis != Vector2.zero)
-			{
-				this.sendEnd = false;
-				switch (this.interaction)
-				{
-				case EasyJoystick.InteractionType.Direct:
-					this.UpdateDirect();
-					return;
-				case EasyJoystick.InteractionType.Include:
-					break;
-				case EasyJoystick.InteractionType.EventNotification:
-					this.CreateEvent(EasyJoystick.MessageName.On_JoystickMove);
-					return;
-				case EasyJoystick.InteractionType.DirectAndEvent:
-					this.UpdateDirect();
-					this.CreateEvent(EasyJoystick.MessageName.On_JoystickMove);
-					return;
-				default:
-					return;
-				}
-			}
-			else if (!this.sendEnd)
-			{
-				this.CreateEvent(EasyJoystick.MessageName.On_JoystickMoveEnd);
-				this.sendEnd = true;
-			}
+		}
+		else if (!sendEnd)
+		{
+			CreateEvent(MessageName.On_JoystickMoveEnd);
+			sendEnd = true;
 		}
 	}
 
-	// Token: 0x06000CCD RID: 3277 RVA: 0x0004BDF0 File Offset: 0x00049FF0
 	private void OnGUI()
 	{
-		if (this.enable)
+		//IL_03a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0154: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0179: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0315: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0394: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0382: Unknown result type (might be due to invalid IL or missing references)
+		if (enable)
 		{
-			GUI.depth = this.guiDepth;
-			base.useGUILayout = this.isUseGuiLayout;
-			if (this.dynamicJoystick && Application.isEditor && !Application.isPlaying)
+			GUI.depth = guiDepth;
+			((MonoBehaviour)this).useGUILayout = isUseGuiLayout;
+			if (dynamicJoystick && Application.isEditor && !Application.isPlaying)
 			{
-				switch (this.area)
+				switch (area)
 				{
-				case EasyJoystick.DynamicArea.FullScreen:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.MiddleCenter);
+				case DynamicArea.Bottom:
+					ComputeJoystickAnchor(JoystickAnchor.LowerCenter);
 					break;
-				case EasyJoystick.DynamicArea.Left:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.MiddleLeft);
+				case DynamicArea.BottomLeft:
+					ComputeJoystickAnchor(JoystickAnchor.LowerLeft);
 					break;
-				case EasyJoystick.DynamicArea.Right:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.MiddleRight);
+				case DynamicArea.BottomRight:
+					ComputeJoystickAnchor(JoystickAnchor.LowerRight);
 					break;
-				case EasyJoystick.DynamicArea.Top:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.UpperCenter);
+				case DynamicArea.FullScreen:
+					ComputeJoystickAnchor(JoystickAnchor.MiddleCenter);
 					break;
-				case EasyJoystick.DynamicArea.Bottom:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.LowerCenter);
+				case DynamicArea.Left:
+					ComputeJoystickAnchor(JoystickAnchor.MiddleLeft);
 					break;
-				case EasyJoystick.DynamicArea.TopLeft:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.UpperLeft);
+				case DynamicArea.Right:
+					ComputeJoystickAnchor(JoystickAnchor.MiddleRight);
 					break;
-				case EasyJoystick.DynamicArea.TopRight:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.UpperRight);
+				case DynamicArea.Top:
+					ComputeJoystickAnchor(JoystickAnchor.UpperCenter);
 					break;
-				case EasyJoystick.DynamicArea.BottomLeft:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.LowerLeft);
+				case DynamicArea.TopLeft:
+					ComputeJoystickAnchor(JoystickAnchor.UpperLeft);
 					break;
-				case EasyJoystick.DynamicArea.BottomRight:
-					this.ComputeJoystickAnchor(EasyJoystick.JoystickAnchor.LowerRight);
+				case DynamicArea.TopRight:
+					ComputeJoystickAnchor(JoystickAnchor.UpperRight);
 					break;
 				}
 			}
 			if (Application.isEditor && !Application.isPlaying)
 			{
 				VirtualScreen.ComputeVirtualScreen();
-				this.ComputeJoystickAnchor(this.joyAnchor);
+				ComputeJoystickAnchor(joyAnchor);
 			}
 			VirtualScreen.SetGuiScaleMatrix();
-			if ((this.showZone && this.areaTexture != null && !this.dynamicJoystick) || (this.showZone && this.dynamicJoystick && this.virtualJoystick && this.areaTexture != null) || (this.dynamicJoystick && Application.isEditor && !Application.isPlaying))
+			if ((showZone && (Object)(object)areaTexture != (Object)null && !dynamicJoystick) || (showZone && dynamicJoystick && virtualJoystick && (Object)(object)areaTexture != (Object)null) || (dynamicJoystick && Application.isEditor && !Application.isPlaying))
 			{
-				if (this.isActivated)
+				if (isActivated)
 				{
-					GUI.color = this.areaColor;
-					if (Application.isPlaying && !this.dynamicJoystick)
+					GUI.color = areaColor;
+					if (Application.isPlaying && !dynamicJoystick)
 					{
-						EasyTouch.RemoveReservedArea(this.areaRect);
-						EasyTouch.AddReservedArea(this.areaRect);
+						EasyTouch.RemoveReservedArea(areaRect);
+						EasyTouch.AddReservedArea(areaRect);
 					}
 				}
 				else
 				{
-					GUI.color = new Color(this.areaColor.r, this.areaColor.g, this.areaColor.b, 0.2f);
-					if (Application.isPlaying && !this.dynamicJoystick)
+					GUI.color = new Color(areaColor.r, areaColor.g, areaColor.b, 0.2f);
+					if (Application.isPlaying && !dynamicJoystick)
 					{
-						EasyTouch.RemoveReservedArea(this.areaRect);
+						EasyTouch.RemoveReservedArea(areaRect);
 					}
 				}
-				if (this.showDebugRadius && Application.isEditor)
+				if (showDebugRadius && Application.isEditor)
 				{
-					GUI.Box(this.areaRect, "");
+					GUI.Box(areaRect, "");
 				}
-				GUI.DrawTexture(this.areaRect, this.areaTexture, 0, true);
+				GUI.DrawTexture(areaRect, areaTexture, (ScaleMode)0, true);
 			}
-			if ((this.showTouch && this.touchTexture != null && !this.dynamicJoystick) || (this.showTouch && this.dynamicJoystick && this.virtualJoystick && this.touchTexture != null) || (this.dynamicJoystick && Application.isEditor && !Application.isPlaying))
+			if ((showTouch && (Object)(object)touchTexture != (Object)null && !dynamicJoystick) || (showTouch && dynamicJoystick && virtualJoystick && (Object)(object)touchTexture != (Object)null) || (dynamicJoystick && Application.isEditor && !Application.isPlaying))
 			{
-				if (this.isActivated)
+				if (isActivated)
 				{
-					GUI.color = this.touchColor;
+					GUI.color = touchColor;
 				}
 				else
 				{
-					GUI.color = new Color(this.touchColor.r, this.touchColor.g, this.touchColor.b, 0.2f);
+					GUI.color = new Color(touchColor.r, touchColor.g, touchColor.b, 0.2f);
 				}
-				GUI.DrawTexture(new Rect(this.anchorPosition.x + this.joystickCenter.x + (this.joystickTouch.x - this.touchSize), this.anchorPosition.y + this.joystickCenter.y - (this.joystickTouch.y + this.touchSize), this.touchSize * 2f, this.touchSize * 2f), this.touchTexture, 2, true);
+				GUI.DrawTexture(new Rect(anchorPosition.x + joystickCenter.x + (joystickTouch.x - touchSize), anchorPosition.y + joystickCenter.y - (joystickTouch.y + touchSize), touchSize * 2f, touchSize * 2f), touchTexture, (ScaleMode)2, true);
 			}
-			if ((this.showDeadZone && this.deadTexture != null && !this.dynamicJoystick) || (this.showDeadZone && this.dynamicJoystick && this.virtualJoystick && this.deadTexture != null) || (this.dynamicJoystick && Application.isEditor && !Application.isPlaying))
+			if ((showDeadZone && (Object)(object)deadTexture != (Object)null && !dynamicJoystick) || (showDeadZone && dynamicJoystick && virtualJoystick && (Object)(object)deadTexture != (Object)null) || (dynamicJoystick && Application.isEditor && !Application.isPlaying))
 			{
-				GUI.DrawTexture(this.deadRect, this.deadTexture, 2, true);
+				GUI.DrawTexture(deadRect, deadTexture, (ScaleMode)2, true);
 			}
 			GUI.color = Color.white;
-			return;
 		}
-		EasyTouch.RemoveReservedArea(this.areaRect);
+		else
+		{
+			EasyTouch.RemoveReservedArea(areaRect);
+		}
 	}
 
-	// Token: 0x06000CCE RID: 3278 RVA: 0x00004095 File Offset: 0x00002295
 	private void OnDrawGizmos()
 	{
 	}
 
-	// Token: 0x06000CCF RID: 3279 RVA: 0x0004C1A8 File Offset: 0x0004A3A8
-	private void CreateEvent(EasyJoystick.MessageName message)
+	private void CreateEvent(MessageName message)
 	{
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
 		MovingJoystick movingJoystick = new MovingJoystick();
-		movingJoystick.joystickName = base.gameObject.name;
-		movingJoystick.joystickAxis = this.joystickAxis;
-		movingJoystick.joystickValue = this.joystickValue;
+		movingJoystick.joystickName = ((Object)((Component)this).gameObject).name;
+		movingJoystick.joystickAxis = joystickAxis;
+		movingJoystick.joystickValue = joystickValue;
 		movingJoystick.joystick = this;
-		if (!this.useBroadcast)
+		if (!useBroadcast)
 		{
 			switch (message)
 			{
-			case EasyJoystick.MessageName.On_JoystickMoveStart:
+			case MessageName.On_JoystickMoveStart:
 				if (EasyJoystick.On_JoystickMoveStart != null)
 				{
 					EasyJoystick.On_JoystickMoveStart(movingJoystick);
-					return;
 				}
 				break;
-			case EasyJoystick.MessageName.On_JoystickTouchStart:
-				if (EasyJoystick.On_JoystickTouchStart != null)
-				{
-					EasyJoystick.On_JoystickTouchStart(movingJoystick);
-					return;
-				}
-				break;
-			case EasyJoystick.MessageName.On_JoystickTouchUp:
-				if (EasyJoystick.On_JoystickTouchUp != null)
-				{
-					EasyJoystick.On_JoystickTouchUp(movingJoystick);
-					return;
-				}
-				break;
-			case EasyJoystick.MessageName.On_JoystickMove:
+			case MessageName.On_JoystickMove:
 				if (EasyJoystick.On_JoystickMove != null)
 				{
 					EasyJoystick.On_JoystickMove(movingJoystick);
-					return;
 				}
 				break;
-			case EasyJoystick.MessageName.On_JoystickMoveEnd:
+			case MessageName.On_JoystickMoveEnd:
 				if (EasyJoystick.On_JoystickMoveEnd != null)
 				{
 					EasyJoystick.On_JoystickMoveEnd(movingJoystick);
-					return;
 				}
 				break;
-			case EasyJoystick.MessageName.On_JoystickTap:
+			case MessageName.On_JoystickTouchStart:
+				if (EasyJoystick.On_JoystickTouchStart != null)
+				{
+					EasyJoystick.On_JoystickTouchStart(movingJoystick);
+				}
+				break;
+			case MessageName.On_JoystickTap:
 				if (EasyJoystick.On_JoystickTap != null)
 				{
 					EasyJoystick.On_JoystickTap(movingJoystick);
-					return;
 				}
 				break;
-			case EasyJoystick.MessageName.On_JoystickDoubleTap:
+			case MessageName.On_JoystickDoubleTap:
 				if (EasyJoystick.On_JoystickDoubleTap != null)
 				{
 					EasyJoystick.On_JoystickDoubleTap(movingJoystick);
-					return;
 				}
 				break;
-			default:
-				return;
+			case MessageName.On_JoystickTouchUp:
+				if (EasyJoystick.On_JoystickTouchUp != null)
+				{
+					EasyJoystick.On_JoystickTouchUp(movingJoystick);
+				}
+				break;
 			}
 		}
-		else if (this.useBroadcast)
+		else
 		{
-			if (this.receiverGameObject != null)
+			if (!useBroadcast)
 			{
-				switch (this.messageMode)
+				return;
+			}
+			if ((Object)(object)receiverGameObject != (Object)null)
+			{
+				switch (messageMode)
 				{
-				case EasyJoystick.Broadcast.SendMessage:
-					this.receiverGameObject.SendMessage(message.ToString(), movingJoystick, 1);
-					return;
-				case EasyJoystick.Broadcast.SendMessageUpwards:
-					this.receiverGameObject.SendMessageUpwards(message.ToString(), movingJoystick, 1);
-					return;
-				case EasyJoystick.Broadcast.BroadcastMessage:
-					this.receiverGameObject.BroadcastMessage(message.ToString(), movingJoystick, 1);
-					return;
-				default:
-					return;
+				case Broadcast.BroadcastMessage:
+					receiverGameObject.BroadcastMessage(message.ToString(), (object)movingJoystick, (SendMessageOptions)1);
+					break;
+				case Broadcast.SendMessage:
+					receiverGameObject.SendMessage(message.ToString(), (object)movingJoystick, (SendMessageOptions)1);
+					break;
+				case Broadcast.SendMessageUpwards:
+					receiverGameObject.SendMessageUpwards(message.ToString(), (object)movingJoystick, (SendMessageOptions)1);
+					break;
 				}
 			}
 			else
 			{
-				Debug.LogError("Joystick : " + base.gameObject.name + " : you must setup receiver gameobject");
+				Debug.LogError((object)("Joystick : " + ((Object)((Component)this).gameObject).name + " : you must setup receiver gameobject"));
 			}
 		}
 	}
 
-	// Token: 0x06000CD0 RID: 3280 RVA: 0x0004C358 File Offset: 0x0004A558
 	private void UpdateDirect()
 	{
-		if (this.xAxisTransform != null)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)xAxisTransform != (Object)null)
 		{
-			Vector3 influencedAxis = this.GetInfluencedAxis(this.xAI);
-			this.DoActionDirect(this.xAxisTransform, this.xTI, influencedAxis, this.joystickValue.x, this.xAxisCharacterController);
-			if (this.enableXClamp && this.xTI == EasyJoystick.PropertiesInfluenced.RotateLocal)
+			Vector3 influencedAxis = GetInfluencedAxis(xAI);
+			DoActionDirect(xAxisTransform, xTI, influencedAxis, joystickValue.x, xAxisCharacterController);
+			if (enableXClamp && xTI == PropertiesInfluenced.RotateLocal)
 			{
-				this.DoAngleLimitation(this.xAxisTransform, this.xAI, this.clampXMin, this.clampXMax, this.startXLocalAngle);
+				DoAngleLimitation(xAxisTransform, xAI, clampXMin, clampXMax, startXLocalAngle);
 			}
 		}
-		if (this.YAxisTransform != null)
+		if ((Object)(object)YAxisTransform != (Object)null)
 		{
-			Vector3 influencedAxis2 = this.GetInfluencedAxis(this.yAI);
-			this.DoActionDirect(this.yAxisTransform, this.yTI, influencedAxis2, this.joystickValue.y, this.yAxisCharacterController);
-			if (this.enableYClamp && this.yTI == EasyJoystick.PropertiesInfluenced.RotateLocal)
+			Vector3 influencedAxis2 = GetInfluencedAxis(yAI);
+			DoActionDirect(yAxisTransform, yTI, influencedAxis2, joystickValue.y, yAxisCharacterController);
+			if (enableYClamp && yTI == PropertiesInfluenced.RotateLocal)
 			{
-				this.DoAngleLimitation(this.yAxisTransform, this.yAI, this.clampYMin, this.clampYMax, this.startYLocalAngle);
+				DoAngleLimitation(yAxisTransform, yAI, clampYMin, clampYMax, startYLocalAngle);
 			}
 		}
 	}
 
-	// Token: 0x06000CD1 RID: 3281 RVA: 0x0004C450 File Offset: 0x0004A650
 	private void UpdateGravity()
 	{
-		if (this.xAxisCharacterController != null && this.xAxisGravity > 0f)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)xAxisCharacterController != (Object)null && xAxisGravity > 0f)
 		{
-			this.xAxisCharacterController.Move(Vector3.down * this.xAxisGravity * Time.deltaTime);
+			xAxisCharacterController.Move(Vector3.down * xAxisGravity * Time.deltaTime);
 		}
-		if (this.yAxisCharacterController != null && this.yAxisGravity > 0f)
+		if ((Object)(object)yAxisCharacterController != (Object)null && yAxisGravity > 0f)
 		{
-			this.yAxisCharacterController.Move(Vector3.down * this.yAxisGravity * Time.deltaTime);
+			yAxisCharacterController.Move(Vector3.down * yAxisGravity * Time.deltaTime);
 		}
 	}
 
-	// Token: 0x06000CD2 RID: 3282 RVA: 0x0004C4E0 File Offset: 0x0004A6E0
-	private Vector3 GetInfluencedAxis(EasyJoystick.AxisInfluenced axisInfluenced)
+	private Vector3 GetInfluencedAxis(AxisInfluenced axisInfluenced)
 	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 result = Vector3.zero;
 		switch (axisInfluenced)
 		{
-		case EasyJoystick.AxisInfluenced.X:
+		case AxisInfluenced.X:
 			result = Vector3.right;
 			break;
-		case EasyJoystick.AxisInfluenced.Y:
+		case AxisInfluenced.Y:
 			result = Vector3.up;
 			break;
-		case EasyJoystick.AxisInfluenced.Z:
+		case AxisInfluenced.Z:
 			result = Vector3.forward;
 			break;
-		case EasyJoystick.AxisInfluenced.XYZ:
+		case AxisInfluenced.XYZ:
 			result = Vector3.one;
 			break;
 		}
 		return result;
 	}
 
-	// Token: 0x06000CD3 RID: 3283 RVA: 0x0004C52C File Offset: 0x0004A72C
-	private void DoActionDirect(Transform axisTransform, EasyJoystick.PropertiesInfluenced inlfuencedProperty, Vector3 axis, float sensibility, CharacterController charact)
+	private void DoActionDirect(Transform axisTransform, PropertiesInfluenced inlfuencedProperty, Vector3 axis, float sensibility, CharacterController charact)
 	{
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0099: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
 		switch (inlfuencedProperty)
 		{
-		case EasyJoystick.PropertiesInfluenced.Rotate:
-			axisTransform.Rotate(axis * sensibility * Time.deltaTime, 0);
-			return;
-		case EasyJoystick.PropertiesInfluenced.RotateLocal:
-			axisTransform.Rotate(axis * sensibility * Time.deltaTime, 1);
-			return;
-		case EasyJoystick.PropertiesInfluenced.Translate:
-			if (charact == null)
+		case PropertiesInfluenced.Rotate:
+			axisTransform.Rotate(axis * sensibility * Time.deltaTime, (Space)0);
+			break;
+		case PropertiesInfluenced.RotateLocal:
+			axisTransform.Rotate(axis * sensibility * Time.deltaTime, (Space)1);
+			break;
+		case PropertiesInfluenced.Translate:
+			if ((Object)(object)charact == (Object)null)
 			{
-				axisTransform.Translate(axis * sensibility * Time.deltaTime, 0);
-				return;
+				axisTransform.Translate(axis * sensibility * Time.deltaTime, (Space)0);
 			}
-			charact.Move(axis * sensibility * Time.deltaTime);
-			return;
-		case EasyJoystick.PropertiesInfluenced.TranslateLocal:
-			if (charact == null)
+			else
 			{
-				axisTransform.Translate(axis * sensibility * Time.deltaTime, 1);
-				return;
+				charact.Move(axis * sensibility * Time.deltaTime);
 			}
-			charact.Move(charact.transform.TransformDirection(axis) * sensibility * Time.deltaTime);
-			return;
-		case EasyJoystick.PropertiesInfluenced.Scale:
+			break;
+		case PropertiesInfluenced.TranslateLocal:
+			if ((Object)(object)charact == (Object)null)
+			{
+				axisTransform.Translate(axis * sensibility * Time.deltaTime, (Space)1);
+			}
+			else
+			{
+				charact.Move(((Component)charact).transform.TransformDirection(axis) * sensibility * Time.deltaTime);
+			}
+			break;
+		case PropertiesInfluenced.Scale:
 			axisTransform.localScale += axis * sensibility * Time.deltaTime;
-			return;
-		default:
-			return;
+			break;
 		}
 	}
 
-	// Token: 0x06000CD4 RID: 3284 RVA: 0x0004C638 File Offset: 0x0004A838
-	private void DoAngleLimitation(Transform axisTransform, EasyJoystick.AxisInfluenced axisInfluenced, float clampMin, float clampMax, float startAngle)
+	private void DoAngleLimitation(Transform axisTransform, AxisInfluenced axisInfluenced, float clampMin, float clampMax, float startAngle)
 	{
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
 		float num = 0f;
+		Quaternion localRotation;
 		switch (axisInfluenced)
 		{
-		case EasyJoystick.AxisInfluenced.X:
-			num = axisTransform.localRotation.eulerAngles.x;
+		case AxisInfluenced.X:
+			localRotation = axisTransform.localRotation;
+			num = ((Quaternion)(ref localRotation)).eulerAngles.x;
 			break;
-		case EasyJoystick.AxisInfluenced.Y:
-			num = axisTransform.localRotation.eulerAngles.y;
+		case AxisInfluenced.Y:
+			localRotation = axisTransform.localRotation;
+			num = ((Quaternion)(ref localRotation)).eulerAngles.y;
 			break;
-		case EasyJoystick.AxisInfluenced.Z:
-			num = axisTransform.localRotation.eulerAngles.z;
+		case AxisInfluenced.Z:
+			localRotation = axisTransform.localRotation;
+			num = ((Quaternion)(ref localRotation)).eulerAngles.z;
 			break;
 		}
 		if (num <= 360f && num >= 180f)
 		{
 			num -= 360f;
 		}
-		num = Mathf.Clamp(num, -clampMax, clampMin);
+		num = Mathf.Clamp(num, 0f - clampMax, clampMin);
 		switch (axisInfluenced)
 		{
-		case EasyJoystick.AxisInfluenced.X:
+		case AxisInfluenced.X:
 			axisTransform.localEulerAngles = new Vector3(num, axisTransform.localEulerAngles.y, axisTransform.localEulerAngles.z);
-			return;
-		case EasyJoystick.AxisInfluenced.Y:
+			break;
+		case AxisInfluenced.Y:
 			axisTransform.localEulerAngles = new Vector3(axisTransform.localEulerAngles.x, num, axisTransform.localEulerAngles.z);
-			return;
-		case EasyJoystick.AxisInfluenced.Z:
+			break;
+		case AxisInfluenced.Z:
 			axisTransform.localEulerAngles = new Vector3(axisTransform.localEulerAngles.x, axisTransform.localEulerAngles.y, num);
-			return;
-		default:
-			return;
+			break;
 		}
 	}
 
-	// Token: 0x06000CD5 RID: 3285 RVA: 0x0004C740 File Offset: 0x0004A940
-	private void DoAutoStabilisation(Transform axisTransform, EasyJoystick.AxisInfluenced axisInfluenced, float threshold, float speed, float startAngle)
+	private void DoAutoStabilisation(Transform axisTransform, AxisInfluenced axisInfluenced, float threshold, float speed, float startAngle)
 	{
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0158: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0180: Unknown result type (might be due to invalid IL or missing references)
 		float num = 0f;
+		Quaternion localRotation;
 		switch (axisInfluenced)
 		{
-		case EasyJoystick.AxisInfluenced.X:
-			num = axisTransform.localRotation.eulerAngles.x;
+		case AxisInfluenced.X:
+			localRotation = axisTransform.localRotation;
+			num = ((Quaternion)(ref localRotation)).eulerAngles.x;
 			break;
-		case EasyJoystick.AxisInfluenced.Y:
-			num = axisTransform.localRotation.eulerAngles.y;
+		case AxisInfluenced.Y:
+			localRotation = axisTransform.localRotation;
+			num = ((Quaternion)(ref localRotation)).eulerAngles.y;
 			break;
-		case EasyJoystick.AxisInfluenced.Z:
-			num = axisTransform.localRotation.eulerAngles.z;
+		case AxisInfluenced.Z:
+			localRotation = axisTransform.localRotation;
+			num = ((Quaternion)(ref localRotation)).eulerAngles.z;
 			break;
 		}
 		if (num <= 360f && num >= 180f)
@@ -944,36 +1261,65 @@ public class EasyJoystick : MonoBehaviour
 			}
 			switch (axisInfluenced)
 			{
-			case EasyJoystick.AxisInfluenced.X:
-				zero..ctor(num2, axisTransform.localRotation.eulerAngles.y, axisTransform.localRotation.eulerAngles.z);
+			case AxisInfluenced.X:
+			{
+				float num4 = num2;
+				localRotation = axisTransform.localRotation;
+				float y = ((Quaternion)(ref localRotation)).eulerAngles.y;
+				localRotation = axisTransform.localRotation;
+				((Vector3)(ref zero))._002Ector(num4, y, ((Quaternion)(ref localRotation)).eulerAngles.z);
 				break;
-			case EasyJoystick.AxisInfluenced.Y:
-				zero..ctor(axisTransform.localRotation.eulerAngles.x, num2, axisTransform.localRotation.eulerAngles.z);
+			}
+			case AxisInfluenced.Y:
+			{
+				localRotation = axisTransform.localRotation;
+				float x2 = ((Quaternion)(ref localRotation)).eulerAngles.x;
+				float num3 = num2;
+				localRotation = axisTransform.localRotation;
+				((Vector3)(ref zero))._002Ector(x2, num3, ((Quaternion)(ref localRotation)).eulerAngles.z);
 				break;
-			case EasyJoystick.AxisInfluenced.Z:
-				zero..ctor(axisTransform.localRotation.eulerAngles.x, axisTransform.localRotation.eulerAngles.y, num2);
+			}
+			case AxisInfluenced.Z:
+			{
+				localRotation = axisTransform.localRotation;
+				float x = ((Quaternion)(ref localRotation)).eulerAngles.x;
+				localRotation = axisTransform.localRotation;
+				((Vector3)(ref zero))._002Ector(x, ((Quaternion)(ref localRotation)).eulerAngles.y, num2);
 				break;
+			}
 			}
 			axisTransform.localRotation = Quaternion.Euler(zero);
 		}
 	}
 
-	// Token: 0x06000CD6 RID: 3286 RVA: 0x0004C8D8 File Offset: 0x0004AAD8
-	private float GetStartAutoStabAngle(Transform axisTransform, EasyJoystick.AxisInfluenced axisInfluenced)
+	private float GetStartAutoStabAngle(Transform axisTransform, AxisInfluenced axisInfluenced)
 	{
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
 		float num = 0f;
-		if (axisTransform != null)
+		if ((Object)(object)axisTransform != (Object)null)
 		{
+			Quaternion localRotation;
 			switch (axisInfluenced)
 			{
-			case EasyJoystick.AxisInfluenced.X:
-				num = axisTransform.localRotation.eulerAngles.x;
+			case AxisInfluenced.X:
+				localRotation = axisTransform.localRotation;
+				num = ((Quaternion)(ref localRotation)).eulerAngles.x;
 				break;
-			case EasyJoystick.AxisInfluenced.Y:
-				num = axisTransform.localRotation.eulerAngles.y;
+			case AxisInfluenced.Y:
+				localRotation = axisTransform.localRotation;
+				num = ((Quaternion)(ref localRotation)).eulerAngles.y;
 				break;
-			case EasyJoystick.AxisInfluenced.Z:
-				num = axisTransform.localRotation.eulerAngles.z;
+			case AxisInfluenced.Z:
+				localRotation = axisTransform.localRotation;
+				num = ((Quaternion)(ref localRotation)).eulerAngles.z;
 				break;
 			}
 			if (num <= 360f && num >= 180f)
@@ -984,603 +1330,257 @@ public class EasyJoystick : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06000CD7 RID: 3287 RVA: 0x0004C964 File Offset: 0x0004AB64
 	private float ComputeDeadZone()
 	{
-		float num = Mathf.Max(this.joystickTouch.magnitude, 0.1f);
-		float result;
-		if (this.restrictArea)
+		float num = 0f;
+		float num2 = Mathf.Max(((Vector2)(ref joystickTouch)).magnitude, 0.1f);
+		if (restrictArea)
 		{
-			result = Mathf.Max(num - this.deadZone, 0f) / (this.zoneRadius - this.touchSize - this.deadZone) / num;
+			return Mathf.Max(num2 - deadZone, 0f) / (zoneRadius - touchSize - deadZone) / num2;
 		}
-		else
-		{
-			result = Mathf.Max(num - this.deadZone, 0f) / (this.zoneRadius - this.deadZone) / num;
-		}
-		return result;
+		return Mathf.Max(num2 - deadZone, 0f) / (zoneRadius - deadZone) / num2;
 	}
 
-	// Token: 0x06000CD8 RID: 3288 RVA: 0x0004C9E8 File Offset: 0x0004ABE8
-	private void ComputeJoystickAnchor(EasyJoystick.JoystickAnchor anchor)
+	private void ComputeJoystickAnchor(JoystickAnchor anchor)
 	{
+		//IL_0193: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0162: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0186: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0251: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0256: Unknown result type (might be due to invalid IL or missing references)
 		float num = 0f;
-		if (!this.restrictArea)
+		if (!restrictArea)
 		{
-			num = this.touchSize;
+			num = touchSize;
 		}
 		switch (anchor)
 		{
-		case EasyJoystick.JoystickAnchor.None:
-			this.anchorPosition = Vector2.zero;
+		case JoystickAnchor.UpperLeft:
+			anchorPosition = new Vector2(zoneRadius + num, zoneRadius + num);
 			break;
-		case EasyJoystick.JoystickAnchor.UpperLeft:
-			this.anchorPosition = new Vector2(this.zoneRadius + num, this.zoneRadius + num);
+		case JoystickAnchor.UpperCenter:
+			anchorPosition = new Vector2(VirtualScreen.width / 2f, zoneRadius + num);
 			break;
-		case EasyJoystick.JoystickAnchor.UpperCenter:
-			this.anchorPosition = new Vector2(VirtualScreen.width / 2f, this.zoneRadius + num);
+		case JoystickAnchor.UpperRight:
+			anchorPosition = new Vector2(VirtualScreen.width - zoneRadius - num, zoneRadius + num);
 			break;
-		case EasyJoystick.JoystickAnchor.UpperRight:
-			this.anchorPosition = new Vector2(VirtualScreen.width - this.zoneRadius - num, this.zoneRadius + num);
+		case JoystickAnchor.MiddleLeft:
+			anchorPosition = new Vector2(zoneRadius + num, VirtualScreen.height / 2f);
 			break;
-		case EasyJoystick.JoystickAnchor.MiddleLeft:
-			this.anchorPosition = new Vector2(this.zoneRadius + num, VirtualScreen.height / 2f);
+		case JoystickAnchor.MiddleCenter:
+			anchorPosition = new Vector2(VirtualScreen.width / 2f, VirtualScreen.height / 2f);
 			break;
-		case EasyJoystick.JoystickAnchor.MiddleCenter:
-			this.anchorPosition = new Vector2(VirtualScreen.width / 2f, VirtualScreen.height / 2f);
+		case JoystickAnchor.MiddleRight:
+			anchorPosition = new Vector2(VirtualScreen.width - zoneRadius - num, VirtualScreen.height / 2f);
 			break;
-		case EasyJoystick.JoystickAnchor.MiddleRight:
-			this.anchorPosition = new Vector2(VirtualScreen.width - this.zoneRadius - num, VirtualScreen.height / 2f);
+		case JoystickAnchor.LowerLeft:
+			anchorPosition = new Vector2(zoneRadius + num, VirtualScreen.height - zoneRadius - num);
 			break;
-		case EasyJoystick.JoystickAnchor.LowerLeft:
-			this.anchorPosition = new Vector2(this.zoneRadius + num, VirtualScreen.height - this.zoneRadius - num);
+		case JoystickAnchor.LowerCenter:
+			anchorPosition = new Vector2(VirtualScreen.width / 2f, VirtualScreen.height - zoneRadius - num);
 			break;
-		case EasyJoystick.JoystickAnchor.LowerCenter:
-			this.anchorPosition = new Vector2(VirtualScreen.width / 2f, VirtualScreen.height - this.zoneRadius - num);
+		case JoystickAnchor.LowerRight:
+			anchorPosition = new Vector2(VirtualScreen.width - zoneRadius - num, VirtualScreen.height - zoneRadius - num);
 			break;
-		case EasyJoystick.JoystickAnchor.LowerRight:
-			this.anchorPosition = new Vector2(VirtualScreen.width - this.zoneRadius - num, VirtualScreen.height - this.zoneRadius - num);
+		case JoystickAnchor.None:
+			anchorPosition = Vector2.zero;
 			break;
 		}
-		this.areaRect = new Rect(this.anchorPosition.x + this.joystickCenter.x - this.zoneRadius, this.anchorPosition.y + this.joystickCenter.y - this.zoneRadius, this.zoneRadius * 2f, this.zoneRadius * 2f);
-		this.deadRect = new Rect(this.anchorPosition.x + this.joystickCenter.x - this.deadZone, this.anchorPosition.y + this.joystickCenter.y - this.deadZone, this.deadZone * 2f, this.deadZone * 2f);
+		areaRect = new Rect(anchorPosition.x + joystickCenter.x - zoneRadius, anchorPosition.y + joystickCenter.y - zoneRadius, zoneRadius * 2f, zoneRadius * 2f);
+		deadRect = new Rect(anchorPosition.x + joystickCenter.x - deadZone, anchorPosition.y + joystickCenter.y - deadZone, deadZone * 2f, deadZone * 2f);
 	}
 
-	// Token: 0x06000CD9 RID: 3289 RVA: 0x0004CC50 File Offset: 0x0004AE50
 	private void On_TouchStart(Gesture gesture)
 	{
-		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a7: Unknown result type (might be due to invalid IL or missing references)
+		if (((gesture.isHoverReservedArea || !dynamicJoystick) && dynamicJoystick) || !isActivated)
 		{
-			if (!this.dynamicJoystick)
+			return;
+		}
+		if (!dynamicJoystick)
+		{
+			Vector2 val = default(Vector2);
+			((Vector2)(ref val))._002Ector((anchorPosition.x + joystickCenter.x) * VirtualScreen.xRatio, (VirtualScreen.height - anchorPosition.y - joystickCenter.y) * VirtualScreen.yRatio);
+			Vector2 val2 = gesture.position - val;
+			if (((Vector2)(ref val2)).sqrMagnitude < zoneRadius * VirtualScreen.xRatio * (zoneRadius * VirtualScreen.xRatio))
 			{
-				Vector2 vector;
-				vector..ctor((this.anchorPosition.x + this.joystickCenter.x) * VirtualScreen.xRatio, (VirtualScreen.height - this.anchorPosition.y - this.joystickCenter.y) * VirtualScreen.yRatio);
-				if ((gesture.position - vector).sqrMagnitude < this.zoneRadius * VirtualScreen.xRatio * (this.zoneRadius * VirtualScreen.xRatio))
-				{
-					this.joystickIndex = gesture.fingerIndex;
-					this.CreateEvent(EasyJoystick.MessageName.On_JoystickTouchStart);
-					return;
-				}
+				joystickIndex = gesture.fingerIndex;
+				CreateEvent(MessageName.On_JoystickTouchStart);
 			}
-			else if (!this.virtualJoystick)
+		}
+		else
+		{
+			if (virtualJoystick)
 			{
-				switch (this.area)
+				return;
+			}
+			switch (area)
+			{
+			case DynamicArea.FullScreen:
+				virtualJoystick = true;
+				break;
+			case DynamicArea.Bottom:
+				if (gesture.position.y < (float)(Screen.height / 2))
 				{
-				case EasyJoystick.DynamicArea.FullScreen:
-					this.virtualJoystick = true;
-					break;
-				case EasyJoystick.DynamicArea.Left:
-					if (gesture.position.x < (float)(Screen.width / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.Right:
-					if (gesture.position.x > (float)(Screen.width / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.Top:
-					if (gesture.position.y > (float)(Screen.height / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.Bottom:
-					if (gesture.position.y < (float)(Screen.height / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.TopLeft:
-					if (gesture.position.y > (float)(Screen.height / 2) && gesture.position.x < (float)(Screen.width / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.TopRight:
-					if (gesture.position.y > (float)(Screen.height / 2) && gesture.position.x > (float)(Screen.width / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.BottomLeft:
-					if (gesture.position.y < (float)(Screen.height / 2) && gesture.position.x < (float)(Screen.width / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
-				case EasyJoystick.DynamicArea.BottomRight:
-					if (gesture.position.y < (float)(Screen.height / 2) && gesture.position.x > (float)(Screen.width / 2))
-					{
-						this.virtualJoystick = true;
-					}
-					break;
+					virtualJoystick = true;
 				}
-				if (this.virtualJoystick)
+				break;
+			case DynamicArea.Top:
+				if (gesture.position.y > (float)(Screen.height / 2))
 				{
-					this.joystickCenter = new Vector2(gesture.position.x / VirtualScreen.xRatio, VirtualScreen.height - gesture.position.y / VirtualScreen.yRatio);
-					this.JoyAnchor = EasyJoystick.JoystickAnchor.None;
-					this.joystickIndex = gesture.fingerIndex;
+					virtualJoystick = true;
 				}
+				break;
+			case DynamicArea.Right:
+				if (gesture.position.x > (float)(Screen.width / 2))
+				{
+					virtualJoystick = true;
+				}
+				break;
+			case DynamicArea.Left:
+				if (gesture.position.x < (float)(Screen.width / 2))
+				{
+					virtualJoystick = true;
+				}
+				break;
+			case DynamicArea.TopRight:
+				if (gesture.position.y > (float)(Screen.height / 2) && gesture.position.x > (float)(Screen.width / 2))
+				{
+					virtualJoystick = true;
+				}
+				break;
+			case DynamicArea.TopLeft:
+				if (gesture.position.y > (float)(Screen.height / 2) && gesture.position.x < (float)(Screen.width / 2))
+				{
+					virtualJoystick = true;
+				}
+				break;
+			case DynamicArea.BottomRight:
+				if (gesture.position.y < (float)(Screen.height / 2) && gesture.position.x > (float)(Screen.width / 2))
+				{
+					virtualJoystick = true;
+				}
+				break;
+			case DynamicArea.BottomLeft:
+				if (gesture.position.y < (float)(Screen.height / 2) && gesture.position.x < (float)(Screen.width / 2))
+				{
+					virtualJoystick = true;
+				}
+				break;
+			}
+			if (virtualJoystick)
+			{
+				joystickCenter = new Vector2(gesture.position.x / VirtualScreen.xRatio, VirtualScreen.height - gesture.position.y / VirtualScreen.yRatio);
+				JoyAnchor = JoystickAnchor.None;
+				joystickIndex = gesture.fingerIndex;
 			}
 		}
 	}
 
-	// Token: 0x06000CDA RID: 3290 RVA: 0x0004CF1C File Offset: 0x0004B11C
 	private void On_SimpleTap(Gesture gesture)
 	{
-		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated && gesture.fingerIndex == this.joystickIndex)
+		if (((!gesture.isHoverReservedArea && dynamicJoystick) || !dynamicJoystick) && isActivated && gesture.fingerIndex == joystickIndex)
 		{
-			this.CreateEvent(EasyJoystick.MessageName.On_JoystickTap);
+			CreateEvent(MessageName.On_JoystickTap);
 		}
 	}
 
-	// Token: 0x06000CDB RID: 3291 RVA: 0x0004CF53 File Offset: 0x0004B153
 	private void On_DoubleTap(Gesture gesture)
 	{
-		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated && gesture.fingerIndex == this.joystickIndex)
+		if (((!gesture.isHoverReservedArea && dynamicJoystick) || !dynamicJoystick) && isActivated && gesture.fingerIndex == joystickIndex)
 		{
-			this.CreateEvent(EasyJoystick.MessageName.On_JoystickDoubleTap);
+			CreateEvent(MessageName.On_JoystickDoubleTap);
 		}
 	}
 
-	// Token: 0x06000CDC RID: 3292 RVA: 0x0004CF8C File Offset: 0x0004B18C
 	private void On_TouchDown(Gesture gesture)
 	{
-		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+		if (((gesture.isHoverReservedArea || !dynamicJoystick) && dynamicJoystick) || !isActivated)
 		{
-			Vector2 vector;
-			vector..ctor((this.anchorPosition.x + this.joystickCenter.x) * VirtualScreen.xRatio, (VirtualScreen.height - (this.anchorPosition.y + this.joystickCenter.y)) * VirtualScreen.yRatio);
-			if (gesture.fingerIndex == this.joystickIndex)
+			return;
+		}
+		Vector2 val = default(Vector2);
+		((Vector2)(ref val))._002Ector((anchorPosition.x + joystickCenter.x) * VirtualScreen.xRatio, (VirtualScreen.height - (anchorPosition.y + joystickCenter.y)) * VirtualScreen.yRatio);
+		if (gesture.fingerIndex != joystickIndex)
+		{
+			return;
+		}
+		Vector2 val2 = gesture.position - val;
+		if ((((Vector2)(ref val2)).sqrMagnitude < zoneRadius * VirtualScreen.xRatio * (zoneRadius * VirtualScreen.xRatio) && resetFingerExit) || !resetFingerExit)
+		{
+			joystickTouch = new Vector2(gesture.position.x, gesture.position.y) - val;
+			joystickTouch = new Vector2(joystickTouch.x / VirtualScreen.xRatio, joystickTouch.y / VirtualScreen.yRatio);
+			if (!enableXaxis)
 			{
-				if (((gesture.position - vector).sqrMagnitude < this.zoneRadius * VirtualScreen.xRatio * (this.zoneRadius * VirtualScreen.xRatio) && this.resetFingerExit) || !this.resetFingerExit)
-				{
-					this.joystickTouch = new Vector2(gesture.position.x, gesture.position.y) - vector;
-					this.joystickTouch = new Vector2(this.joystickTouch.x / VirtualScreen.xRatio, this.joystickTouch.y / VirtualScreen.yRatio);
-					if (!this.enableXaxis)
-					{
-						this.joystickTouch.x = 0f;
-					}
-					if (!this.enableYaxis)
-					{
-						this.joystickTouch.y = 0f;
-					}
-					if ((this.joystickTouch / (this.zoneRadius - this.touchSizeCoef)).sqrMagnitude > 1f)
-					{
-						this.joystickTouch.Normalize();
-						this.joystickTouch *= this.zoneRadius - this.touchSizeCoef;
-						return;
-					}
-				}
-				else
-				{
-					this.On_TouchUp(gesture);
-				}
+				joystickTouch.x = 0f;
 			}
+			if (!enableYaxis)
+			{
+				joystickTouch.y = 0f;
+			}
+			val2 = joystickTouch / (zoneRadius - touchSizeCoef);
+			if (((Vector2)(ref val2)).sqrMagnitude > 1f)
+			{
+				((Vector2)(ref joystickTouch)).Normalize();
+				joystickTouch *= zoneRadius - touchSizeCoef;
+			}
+		}
+		else
+		{
+			On_TouchUp(gesture);
 		}
 	}
 
-	// Token: 0x06000CDD RID: 3293 RVA: 0x0004D138 File Offset: 0x0004B338
 	private void On_TouchUp(Gesture gesture)
 	{
-		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated && gesture.fingerIndex == this.joystickIndex)
+		if (((!gesture.isHoverReservedArea && dynamicJoystick) || !dynamicJoystick) && isActivated && gesture.fingerIndex == joystickIndex)
 		{
-			this.joystickIndex = -1;
-			if (this.dynamicJoystick)
+			joystickIndex = -1;
+			if (dynamicJoystick)
 			{
-				this.virtualJoystick = false;
+				virtualJoystick = false;
 			}
-			this.CreateEvent(EasyJoystick.MessageName.On_JoystickTouchUp);
+			CreateEvent(MessageName.On_JoystickTouchUp);
 		}
-	}
-
-	// Token: 0x040008B4 RID: 2228
-	private Vector2 joystickAxis;
-
-	// Token: 0x040008B5 RID: 2229
-	private Vector2 joystickTouch;
-
-	// Token: 0x040008B6 RID: 2230
-	private Vector2 joystickValue;
-
-	// Token: 0x040008B7 RID: 2231
-	public bool enable = true;
-
-	// Token: 0x040008B8 RID: 2232
-	public bool isActivated = true;
-
-	// Token: 0x040008B9 RID: 2233
-	public bool showDebugRadius;
-
-	// Token: 0x040008BA RID: 2234
-	public bool useFixedUpdate;
-
-	// Token: 0x040008BB RID: 2235
-	public bool isUseGuiLayout = true;
-
-	// Token: 0x040008BC RID: 2236
-	[SerializeField]
-	private bool dynamicJoystick;
-
-	// Token: 0x040008BD RID: 2237
-	public EasyJoystick.DynamicArea area;
-
-	// Token: 0x040008BE RID: 2238
-	[SerializeField]
-	private EasyJoystick.JoystickAnchor joyAnchor = EasyJoystick.JoystickAnchor.LowerLeft;
-
-	// Token: 0x040008BF RID: 2239
-	[SerializeField]
-	private Vector2 joystickPositionOffset = Vector2.zero;
-
-	// Token: 0x040008C0 RID: 2240
-	[SerializeField]
-	private float zoneRadius = 100f;
-
-	// Token: 0x040008C1 RID: 2241
-	[SerializeField]
-	private float touchSize = 30f;
-
-	// Token: 0x040008C2 RID: 2242
-	public float deadZone = 20f;
-
-	// Token: 0x040008C3 RID: 2243
-	[SerializeField]
-	private bool restrictArea;
-
-	// Token: 0x040008C4 RID: 2244
-	public bool resetFingerExit;
-
-	// Token: 0x040008C5 RID: 2245
-	[SerializeField]
-	private EasyJoystick.InteractionType interaction;
-
-	// Token: 0x040008C6 RID: 2246
-	public bool useBroadcast;
-
-	// Token: 0x040008C7 RID: 2247
-	public EasyJoystick.Broadcast messageMode;
-
-	// Token: 0x040008C8 RID: 2248
-	public GameObject receiverGameObject;
-
-	// Token: 0x040008C9 RID: 2249
-	public Vector2 speed;
-
-	// Token: 0x040008CA RID: 2250
-	public bool enableXaxis = true;
-
-	// Token: 0x040008CB RID: 2251
-	[SerializeField]
-	private Transform xAxisTransform;
-
-	// Token: 0x040008CC RID: 2252
-	public CharacterController xAxisCharacterController;
-
-	// Token: 0x040008CD RID: 2253
-	public float xAxisGravity;
-
-	// Token: 0x040008CE RID: 2254
-	[SerializeField]
-	private EasyJoystick.PropertiesInfluenced xTI;
-
-	// Token: 0x040008CF RID: 2255
-	public EasyJoystick.AxisInfluenced xAI;
-
-	// Token: 0x040008D0 RID: 2256
-	public bool inverseXAxis;
-
-	// Token: 0x040008D1 RID: 2257
-	public bool enableXClamp;
-
-	// Token: 0x040008D2 RID: 2258
-	public float clampXMax;
-
-	// Token: 0x040008D3 RID: 2259
-	public float clampXMin;
-
-	// Token: 0x040008D4 RID: 2260
-	public bool enableXAutoStab;
-
-	// Token: 0x040008D5 RID: 2261
-	[SerializeField]
-	private float thresholdX = 0.01f;
-
-	// Token: 0x040008D6 RID: 2262
-	[SerializeField]
-	private float stabSpeedX = 20f;
-
-	// Token: 0x040008D7 RID: 2263
-	public bool enableYaxis = true;
-
-	// Token: 0x040008D8 RID: 2264
-	[SerializeField]
-	private Transform yAxisTransform;
-
-	// Token: 0x040008D9 RID: 2265
-	public CharacterController yAxisCharacterController;
-
-	// Token: 0x040008DA RID: 2266
-	public float yAxisGravity;
-
-	// Token: 0x040008DB RID: 2267
-	[SerializeField]
-	private EasyJoystick.PropertiesInfluenced yTI;
-
-	// Token: 0x040008DC RID: 2268
-	public EasyJoystick.AxisInfluenced yAI;
-
-	// Token: 0x040008DD RID: 2269
-	public bool inverseYAxis;
-
-	// Token: 0x040008DE RID: 2270
-	public bool enableYClamp;
-
-	// Token: 0x040008DF RID: 2271
-	public float clampYMax;
-
-	// Token: 0x040008E0 RID: 2272
-	public float clampYMin;
-
-	// Token: 0x040008E1 RID: 2273
-	public bool enableYAutoStab;
-
-	// Token: 0x040008E2 RID: 2274
-	[SerializeField]
-	private float thresholdY = 0.01f;
-
-	// Token: 0x040008E3 RID: 2275
-	[SerializeField]
-	private float stabSpeedY = 20f;
-
-	// Token: 0x040008E4 RID: 2276
-	public bool enableSmoothing;
-
-	// Token: 0x040008E5 RID: 2277
-	[SerializeField]
-	public Vector2 smoothing = new Vector2(2f, 2f);
-
-	// Token: 0x040008E6 RID: 2278
-	public bool enableInertia;
-
-	// Token: 0x040008E7 RID: 2279
-	[SerializeField]
-	public Vector2 inertia = new Vector2(100f, 100f);
-
-	// Token: 0x040008E8 RID: 2280
-	public int guiDepth;
-
-	// Token: 0x040008E9 RID: 2281
-	public bool showZone = true;
-
-	// Token: 0x040008EA RID: 2282
-	public bool showTouch = true;
-
-	// Token: 0x040008EB RID: 2283
-	public bool showDeadZone = true;
-
-	// Token: 0x040008EC RID: 2284
-	public Texture areaTexture;
-
-	// Token: 0x040008ED RID: 2285
-	public Color areaColor = Color.white;
-
-	// Token: 0x040008EE RID: 2286
-	public Texture touchTexture;
-
-	// Token: 0x040008EF RID: 2287
-	public Color touchColor = Color.white;
-
-	// Token: 0x040008F0 RID: 2288
-	public Texture deadTexture;
-
-	// Token: 0x040008F1 RID: 2289
-	public bool showProperties = true;
-
-	// Token: 0x040008F2 RID: 2290
-	public bool showInteraction;
-
-	// Token: 0x040008F3 RID: 2291
-	public bool showAppearance;
-
-	// Token: 0x040008F4 RID: 2292
-	public bool showPosition = true;
-
-	// Token: 0x040008F5 RID: 2293
-	private Vector2 joystickCenter;
-
-	// Token: 0x040008F6 RID: 2294
-	private Rect areaRect;
-
-	// Token: 0x040008F7 RID: 2295
-	private Rect deadRect;
-
-	// Token: 0x040008F8 RID: 2296
-	private Vector2 anchorPosition = Vector2.zero;
-
-	// Token: 0x040008F9 RID: 2297
-	private bool virtualJoystick = true;
-
-	// Token: 0x040008FA RID: 2298
-	private int joystickIndex = -1;
-
-	// Token: 0x040008FB RID: 2299
-	private float touchSizeCoef;
-
-	// Token: 0x040008FC RID: 2300
-	private bool sendEnd = true;
-
-	// Token: 0x040008FD RID: 2301
-	private float startXLocalAngle;
-
-	// Token: 0x040008FE RID: 2302
-	private float startYLocalAngle;
-
-	// Token: 0x02001250 RID: 4688
-	// (Invoke) Token: 0x060078E4 RID: 30948
-	public delegate void JoystickMoveStartHandler(MovingJoystick move);
-
-	// Token: 0x02001251 RID: 4689
-	// (Invoke) Token: 0x060078E8 RID: 30952
-	public delegate void JoystickMoveHandler(MovingJoystick move);
-
-	// Token: 0x02001252 RID: 4690
-	// (Invoke) Token: 0x060078EC RID: 30956
-	public delegate void JoystickMoveEndHandler(MovingJoystick move);
-
-	// Token: 0x02001253 RID: 4691
-	// (Invoke) Token: 0x060078F0 RID: 30960
-	public delegate void JoystickTouchStartHandler(MovingJoystick move);
-
-	// Token: 0x02001254 RID: 4692
-	// (Invoke) Token: 0x060078F4 RID: 30964
-	public delegate void JoystickTapHandler(MovingJoystick move);
-
-	// Token: 0x02001255 RID: 4693
-	// (Invoke) Token: 0x060078F8 RID: 30968
-	public delegate void JoystickDoubleTapHandler(MovingJoystick move);
-
-	// Token: 0x02001256 RID: 4694
-	// (Invoke) Token: 0x060078FC RID: 30972
-	public delegate void JoystickTouchUpHandler(MovingJoystick move);
-
-	// Token: 0x02001257 RID: 4695
-	public enum JoystickAnchor
-	{
-		// Token: 0x04006566 RID: 25958
-		None,
-		// Token: 0x04006567 RID: 25959
-		UpperLeft,
-		// Token: 0x04006568 RID: 25960
-		UpperCenter,
-		// Token: 0x04006569 RID: 25961
-		UpperRight,
-		// Token: 0x0400656A RID: 25962
-		MiddleLeft,
-		// Token: 0x0400656B RID: 25963
-		MiddleCenter,
-		// Token: 0x0400656C RID: 25964
-		MiddleRight,
-		// Token: 0x0400656D RID: 25965
-		LowerLeft,
-		// Token: 0x0400656E RID: 25966
-		LowerCenter,
-		// Token: 0x0400656F RID: 25967
-		LowerRight
-	}
-
-	// Token: 0x02001258 RID: 4696
-	public enum PropertiesInfluenced
-	{
-		// Token: 0x04006571 RID: 25969
-		Rotate,
-		// Token: 0x04006572 RID: 25970
-		RotateLocal,
-		// Token: 0x04006573 RID: 25971
-		Translate,
-		// Token: 0x04006574 RID: 25972
-		TranslateLocal,
-		// Token: 0x04006575 RID: 25973
-		Scale
-	}
-
-	// Token: 0x02001259 RID: 4697
-	public enum AxisInfluenced
-	{
-		// Token: 0x04006577 RID: 25975
-		X,
-		// Token: 0x04006578 RID: 25976
-		Y,
-		// Token: 0x04006579 RID: 25977
-		Z,
-		// Token: 0x0400657A RID: 25978
-		XYZ
-	}
-
-	// Token: 0x0200125A RID: 4698
-	public enum DynamicArea
-	{
-		// Token: 0x0400657C RID: 25980
-		FullScreen,
-		// Token: 0x0400657D RID: 25981
-		Left,
-		// Token: 0x0400657E RID: 25982
-		Right,
-		// Token: 0x0400657F RID: 25983
-		Top,
-		// Token: 0x04006580 RID: 25984
-		Bottom,
-		// Token: 0x04006581 RID: 25985
-		TopLeft,
-		// Token: 0x04006582 RID: 25986
-		TopRight,
-		// Token: 0x04006583 RID: 25987
-		BottomLeft,
-		// Token: 0x04006584 RID: 25988
-		BottomRight
-	}
-
-	// Token: 0x0200125B RID: 4699
-	public enum InteractionType
-	{
-		// Token: 0x04006586 RID: 25990
-		Direct,
-		// Token: 0x04006587 RID: 25991
-		Include,
-		// Token: 0x04006588 RID: 25992
-		EventNotification,
-		// Token: 0x04006589 RID: 25993
-		DirectAndEvent
-	}
-
-	// Token: 0x0200125C RID: 4700
-	public enum Broadcast
-	{
-		// Token: 0x0400658B RID: 25995
-		SendMessage,
-		// Token: 0x0400658C RID: 25996
-		SendMessageUpwards,
-		// Token: 0x0400658D RID: 25997
-		BroadcastMessage
-	}
-
-	// Token: 0x0200125D RID: 4701
-	private enum MessageName
-	{
-		// Token: 0x0400658F RID: 25999
-		On_JoystickMoveStart,
-		// Token: 0x04006590 RID: 26000
-		On_JoystickTouchStart,
-		// Token: 0x04006591 RID: 26001
-		On_JoystickTouchUp,
-		// Token: 0x04006592 RID: 26002
-		On_JoystickMove,
-		// Token: 0x04006593 RID: 26003
-		On_JoystickMoveEnd,
-		// Token: 0x04006594 RID: 26004
-		On_JoystickTap,
-		// Token: 0x04006595 RID: 26005
-		On_JoystickDoubleTap
 	}
 }

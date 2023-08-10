@@ -1,18 +1,36 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000112 RID: 274
 public class EasyTouchInput
 {
-	// Token: 0x06000D60 RID: 3424 RVA: 0x000502F6 File Offset: 0x0004E4F6
+	private Vector2[] oldMousePosition = (Vector2[])(object)new Vector2[2];
+
+	private int[] tapCount = new int[2];
+
+	private float[] startActionTime = new float[2];
+
+	private float[] deltaTime = new float[2];
+
+	private float[] tapeTime = new float[2];
+
+	private bool bComplex;
+
+	private Vector2 deltaFingerPosition;
+
+	private Vector2 oldFinger2Position;
+
+	private Vector2 complexCenter;
+
 	public int TouchCount()
 	{
-		return this.getTouchCount(false);
+		return getTouchCount(realTouch: false);
 	}
 
-	// Token: 0x06000D61 RID: 3425 RVA: 0x00050300 File Offset: 0x0004E500
 	private int getTouchCount(bool realTouch)
 	{
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
 		int result = 0;
 		if (realTouch || EasyTouch.instance.enableRemote)
 		{
@@ -21,11 +39,11 @@ public class EasyTouchInput
 		else if (Input.GetMouseButton(0) || Input.GetMouseButtonUp(0))
 		{
 			result = 1;
-			if (Input.GetKey(308) || Input.GetKey(EasyTouch.instance.twistKey) || Input.GetKey(306) || Input.GetKey(EasyTouch.instance.swipeKey))
+			if (Input.GetKey((KeyCode)308) || Input.GetKey(EasyTouch.instance.twistKey) || Input.GetKey((KeyCode)306) || Input.GetKey(EasyTouch.instance.swipeKey))
 			{
 				result = 2;
 			}
-			if (Input.GetKeyUp(308) || Input.GetKeyUp(EasyTouch.instance.twistKey) || Input.GetKeyUp(306) || Input.GetKeyUp(EasyTouch.instance.swipeKey))
+			if (Input.GetKeyUp((KeyCode)308) || Input.GetKeyUp(EasyTouch.instance.twistKey) || Input.GetKeyUp((KeyCode)306) || Input.GetKeyUp(EasyTouch.instance.swipeKey))
 			{
 				result = 2;
 			}
@@ -33,9 +51,47 @@ public class EasyTouchInput
 		return result;
 	}
 
-	// Token: 0x06000D62 RID: 3426 RVA: 0x000503B4 File Offset: 0x0004E5B4
 	public Finger GetMouseTouch(int fingerIndex, Finger myFinger)
 	{
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0271: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0276: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0289: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0293: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0239: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0230: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0246: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
 		Finger finger;
 		if (myFinger != null)
 		{
@@ -46,173 +102,181 @@ public class EasyTouchInput
 			finger = new Finger();
 			finger.gesture = EasyTouch.GestureType.None;
 		}
-		if (fingerIndex == 1 && (Input.GetKeyUp(308) || Input.GetKeyUp(EasyTouch.instance.twistKey) || Input.GetKeyUp(306) || Input.GetKeyUp(EasyTouch.instance.swipeKey)))
+		if (fingerIndex == 1 && (Input.GetKeyUp((KeyCode)308) || Input.GetKeyUp(EasyTouch.instance.twistKey) || Input.GetKeyUp((KeyCode)306) || Input.GetKeyUp(EasyTouch.instance.swipeKey)))
 		{
 			finger.fingerIndex = fingerIndex;
-			finger.position = this.oldFinger2Position;
-			finger.deltaPosition = finger.position - this.oldFinger2Position;
-			finger.tapCount = this.tapCount[fingerIndex];
-			finger.deltaTime = Time.realtimeSinceStartup - this.deltaTime[fingerIndex];
-			finger.phase = 3;
+			finger.position = oldFinger2Position;
+			finger.deltaPosition = finger.position - oldFinger2Position;
+			finger.tapCount = tapCount[fingerIndex];
+			finger.deltaTime = Time.realtimeSinceStartup - deltaTime[fingerIndex];
+			finger.phase = (TouchPhase)3;
 			return finger;
 		}
 		if (Input.GetMouseButton(0))
 		{
 			finger.fingerIndex = fingerIndex;
-			finger.position = this.GetPointerPosition(fingerIndex);
-			if ((double)(Time.realtimeSinceStartup - this.tapeTime[fingerIndex]) > 0.5)
+			finger.position = GetPointerPosition(fingerIndex);
+			if ((double)(Time.realtimeSinceStartup - tapeTime[fingerIndex]) > 0.5)
 			{
-				this.tapCount[fingerIndex] = 0;
+				tapCount[fingerIndex] = 0;
 			}
-			if (Input.GetMouseButtonDown(0) || (fingerIndex == 1 && (Input.GetKeyDown(308) || Input.GetKeyDown(EasyTouch.instance.twistKey) || Input.GetKeyDown(306) || Input.GetKeyDown(EasyTouch.instance.swipeKey))))
+			if (Input.GetMouseButtonDown(0) || (fingerIndex == 1 && (Input.GetKeyDown((KeyCode)308) || Input.GetKeyDown(EasyTouch.instance.twistKey) || Input.GetKeyDown((KeyCode)306) || Input.GetKeyDown(EasyTouch.instance.swipeKey))))
 			{
-				finger.position = this.GetPointerPosition(fingerIndex);
+				finger.position = GetPointerPosition(fingerIndex);
 				finger.deltaPosition = Vector2.zero;
-				this.tapCount[fingerIndex] = this.tapCount[fingerIndex] + 1;
-				finger.tapCount = this.tapCount[fingerIndex];
-				this.startActionTime[fingerIndex] = Time.realtimeSinceStartup;
-				this.deltaTime[fingerIndex] = this.startActionTime[fingerIndex];
+				tapCount[fingerIndex]++;
+				finger.tapCount = tapCount[fingerIndex];
+				startActionTime[fingerIndex] = Time.realtimeSinceStartup;
+				deltaTime[fingerIndex] = startActionTime[fingerIndex];
 				finger.deltaTime = 0f;
-				finger.phase = 0;
+				finger.phase = (TouchPhase)0;
 				if (fingerIndex == 1)
 				{
-					this.oldFinger2Position = finger.position;
+					oldFinger2Position = finger.position;
 				}
 				else
 				{
-					this.oldMousePosition[fingerIndex] = finger.position;
+					oldMousePosition[fingerIndex] = finger.position;
 				}
-				if (this.tapCount[fingerIndex] == 1)
+				if (tapCount[fingerIndex] == 1)
 				{
-					this.tapeTime[fingerIndex] = Time.realtimeSinceStartup;
+					tapeTime[fingerIndex] = Time.realtimeSinceStartup;
 				}
 				return finger;
 			}
-			finger.deltaPosition = finger.position - this.oldMousePosition[fingerIndex];
-			finger.tapCount = this.tapCount[fingerIndex];
-			finger.deltaTime = Time.realtimeSinceStartup - this.deltaTime[fingerIndex];
-			if (finger.deltaPosition.sqrMagnitude < 1f)
+			finger.deltaPosition = finger.position - oldMousePosition[fingerIndex];
+			finger.tapCount = tapCount[fingerIndex];
+			finger.deltaTime = Time.realtimeSinceStartup - deltaTime[fingerIndex];
+			if (((Vector2)(ref finger.deltaPosition)).sqrMagnitude < 1f)
 			{
-				finger.phase = 2;
+				finger.phase = (TouchPhase)2;
 			}
 			else
 			{
-				finger.phase = 1;
+				finger.phase = (TouchPhase)1;
 			}
-			this.oldMousePosition[fingerIndex] = finger.position;
-			this.deltaTime[fingerIndex] = Time.realtimeSinceStartup;
+			oldMousePosition[fingerIndex] = finger.position;
+			deltaTime[fingerIndex] = Time.realtimeSinceStartup;
 			return finger;
 		}
-		else
+		if (Input.GetMouseButtonUp(0))
 		{
-			if (Input.GetMouseButtonUp(0))
-			{
-				finger.fingerIndex = fingerIndex;
-				finger.position = this.GetPointerPosition(fingerIndex);
-				finger.deltaPosition = finger.position - this.oldMousePosition[fingerIndex];
-				finger.tapCount = this.tapCount[fingerIndex];
-				finger.deltaTime = Time.realtimeSinceStartup - this.deltaTime[fingerIndex];
-				finger.phase = 3;
-				this.oldMousePosition[fingerIndex] = finger.position;
-				return finger;
-			}
-			return null;
+			finger.fingerIndex = fingerIndex;
+			finger.position = GetPointerPosition(fingerIndex);
+			finger.deltaPosition = finger.position - oldMousePosition[fingerIndex];
+			finger.tapCount = tapCount[fingerIndex];
+			finger.deltaTime = Time.realtimeSinceStartup - deltaTime[fingerIndex];
+			finger.phase = (TouchPhase)3;
+			oldMousePosition[fingerIndex] = finger.position;
+			return finger;
 		}
+		return null;
 	}
 
-	// Token: 0x06000D63 RID: 3427 RVA: 0x00050698 File Offset: 0x0004E898
 	public Vector2 GetSecondFingerPosition()
 	{
-		Vector2 result;
-		result..ctor(-1f, -1f);
-		if ((Input.GetKey(308) || Input.GetKey(EasyTouch.instance.twistKey)) && (Input.GetKey(306) || Input.GetKey(EasyTouch.instance.swipeKey)))
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 result = default(Vector2);
+		((Vector2)(ref result))._002Ector(-1f, -1f);
+		if ((Input.GetKey((KeyCode)308) || Input.GetKey(EasyTouch.instance.twistKey)) && (Input.GetKey((KeyCode)306) || Input.GetKey(EasyTouch.instance.swipeKey)))
 		{
-			if (!this.bComplex)
+			if (!bComplex)
 			{
-				this.bComplex = true;
-				this.deltaFingerPosition = Input.mousePosition - this.oldFinger2Position;
+				bComplex = true;
+				deltaFingerPosition = Vector2.op_Implicit(Input.mousePosition) - oldFinger2Position;
 			}
-			result = this.GetComplex2finger();
+			result = GetComplex2finger();
 			return result;
 		}
-		if (Input.GetKey(308) || Input.GetKey(EasyTouch.instance.twistKey))
+		if (Input.GetKey((KeyCode)308) || Input.GetKey(EasyTouch.instance.twistKey))
 		{
-			result = this.GetPinchTwist2Finger();
-			this.bComplex = false;
+			result = GetPinchTwist2Finger();
+			bComplex = false;
 			return result;
 		}
-		if (Input.GetKey(306) || Input.GetKey(EasyTouch.instance.swipeKey))
+		if (Input.GetKey((KeyCode)306) || Input.GetKey(EasyTouch.instance.swipeKey))
 		{
-			result = this.GetComplex2finger();
-			this.bComplex = false;
+			result = GetComplex2finger();
+			bComplex = false;
 			return result;
 		}
 		return result;
 	}
 
-	// Token: 0x06000D64 RID: 3428 RVA: 0x0005077E File Offset: 0x0004E97E
 	private Vector2 GetPointerPosition(int index)
 	{
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 		if (index == 0)
 		{
-			return Input.mousePosition;
+			return Vector2.op_Implicit(Input.mousePosition);
 		}
-		return this.GetSecondFingerPosition();
+		return GetSecondFingerPosition();
 	}
 
-	// Token: 0x06000D65 RID: 3429 RVA: 0x00050794 File Offset: 0x0004E994
 	private Vector2 GetPinchTwist2Finger()
 	{
-		Vector2 result;
-		if (this.complexCenter == Vector2.zero)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 result = default(Vector2);
+		if (complexCenter == Vector2.zero)
 		{
 			result.x = (float)Screen.width / 2f - (Input.mousePosition.x - (float)Screen.width / 2f);
 			result.y = (float)Screen.height / 2f - (Input.mousePosition.y - (float)Screen.height / 2f);
 		}
 		else
 		{
-			result.x = this.complexCenter.x - (Input.mousePosition.x - this.complexCenter.x);
-			result.y = this.complexCenter.y - (Input.mousePosition.y - this.complexCenter.y);
+			result.x = complexCenter.x - (Input.mousePosition.x - complexCenter.x);
+			result.y = complexCenter.y - (Input.mousePosition.y - complexCenter.y);
 		}
-		this.oldFinger2Position = result;
+		oldFinger2Position = result;
 		return result;
 	}
 
-	// Token: 0x06000D66 RID: 3430 RVA: 0x00050868 File Offset: 0x0004EA68
 	private Vector2 GetComplex2finger()
 	{
-		Vector2 vector;
-		vector.x = Input.mousePosition.x - this.deltaFingerPosition.x;
-		vector.y = Input.mousePosition.y - this.deltaFingerPosition.y;
-		this.complexCenter = new Vector2((Input.mousePosition.x + vector.x) / 2f, (Input.mousePosition.y + vector.y) / 2f);
-		this.oldFinger2Position = vector;
-		return vector;
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = default(Vector2);
+		val.x = Input.mousePosition.x - deltaFingerPosition.x;
+		val.y = Input.mousePosition.y - deltaFingerPosition.y;
+		complexCenter = new Vector2((Input.mousePosition.x + val.x) / 2f, (Input.mousePosition.y + val.y) / 2f);
+		oldFinger2Position = val;
+		return val;
 	}
-
-	// Token: 0x04000950 RID: 2384
-	private Vector2[] oldMousePosition = new Vector2[2];
-
-	// Token: 0x04000951 RID: 2385
-	private int[] tapCount = new int[2];
-
-	// Token: 0x04000952 RID: 2386
-	private float[] startActionTime = new float[2];
-
-	// Token: 0x04000953 RID: 2387
-	private float[] deltaTime = new float[2];
-
-	// Token: 0x04000954 RID: 2388
-	private float[] tapeTime = new float[2];
-
-	// Token: 0x04000955 RID: 2389
-	private bool bComplex;
-
-	// Token: 0x04000956 RID: 2390
-	private Vector2 deltaFingerPosition;
-
-	// Token: 0x04000957 RID: 2391
-	private Vector2 oldFinger2Position;
-
-	// Token: 0x04000958 RID: 2392
-	private Vector2 complexCenter;
 }

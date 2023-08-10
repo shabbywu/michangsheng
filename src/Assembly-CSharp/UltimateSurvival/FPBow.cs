@@ -1,118 +1,127 @@
-﻿using System;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public class FPBow : FPWeaponBase
 {
-	// Token: 0x020005E6 RID: 1510
-	public class FPBow : FPWeaponBase
+	[Header("Bow Setup")]
+	[SerializeField]
+	private LayerMask m_Mask;
+
+	[SerializeField]
+	private float m_MaxDistance = 50f;
+
+	[Header("Bow Settings")]
+	[SerializeField]
+	private float m_MinTimeBetweenShots = 1f;
+
+	[Header("Arrow")]
+	[SerializeField]
+	private ShaftedProjectile m_ArrowPrefab;
+
+	[SerializeField]
+	private Vector3 m_SpawnOffset;
+
+	[Header("Audio")]
+	[SerializeField]
+	private AudioSource m_AudioSource;
+
+	[SerializeField]
+	private SoundPlayer m_ReleaseAudio;
+
+	[SerializeField]
+	private SoundPlayer m_StretchAudio;
+
+	private float m_NextTimeCanShoot;
+
+	public override bool TryAttackOnce(Camera camera)
 	{
-		// Token: 0x06003096 RID: 12438 RVA: 0x0015BB58 File Offset: 0x00159D58
-		public override bool TryAttackOnce(Camera camera)
+		if (!base.Player.Aim.Active || Time.time < m_NextTimeCanShoot)
 		{
-			if (!base.Player.Aim.Active || Time.time < this.m_NextTimeCanShoot)
-			{
-				return false;
-			}
-			this.m_ReleaseAudio.Play(ItemSelectionMethod.Randomly, this.m_AudioSource, 1f);
-			this.SpawnArrow(camera);
-			this.m_NextTimeCanShoot = Time.time + this.m_MinTimeBetweenShots;
-			base.Player.Aim.ForceStop();
-			base.Attack.Send();
-			return true;
+			return false;
 		}
+		m_ReleaseAudio.Play(ItemSelectionMethod.Randomly, m_AudioSource);
+		SpawnArrow(camera);
+		m_NextTimeCanShoot = Time.time + m_MinTimeBetweenShots;
+		base.Player.Aim.ForceStop();
+		base.Attack.Send();
+		return true;
+	}
 
-		// Token: 0x06003097 RID: 12439 RVA: 0x0015BBD2 File Offset: 0x00159DD2
-		protected override void Awake()
-		{
-			base.Awake();
-			base.Player.Aim.AddStartTryer(new TryerDelegate(this.OnTryStart_Aim));
-		}
+	protected override void Awake()
+	{
+		base.Awake();
+		base.Player.Aim.AddStartTryer(OnTryStart_Aim);
+	}
 
-		// Token: 0x06003098 RID: 12440 RVA: 0x0015BBF6 File Offset: 0x00159DF6
-		private bool OnTryStart_Aim()
+	private bool OnTryStart_Aim()
+	{
+		int num;
+		if (!(Time.time > m_NextTimeCanShoot))
 		{
-			bool flag = Time.time > this.m_NextTimeCanShoot || !base.IsEnabled;
-			if (flag && base.IsEnabled)
+			num = ((!base.IsEnabled) ? 1 : 0);
+			if (num == 0)
 			{
-				this.m_StretchAudio.Play(ItemSelectionMethod.Randomly, this.m_AudioSource, 1f);
-			}
-			return flag;
-		}
-
-		// Token: 0x06003099 RID: 12441 RVA: 0x0015BC34 File Offset: 0x00159E34
-		private void SpawnArrow(Camera camera)
-		{
-			if (!this.m_ArrowPrefab)
-			{
-				Debug.LogErrorFormat("[{0}.FPBow] - No arrow prefab assigned in the inspector! Please assign one.", new object[]
-				{
-					base.name
-				});
-				return;
-			}
-			RaycastHit raycastHit;
-			Vector3 vector;
-			if (Physics.Raycast(camera.ViewportPointToRay(Vector3.one * 0.5f), ref raycastHit, this.m_MaxDistance, this.m_Mask, 1))
-			{
-				vector = raycastHit.point;
-			}
-			else
-			{
-				vector = camera.transform.position + camera.transform.forward * this.m_MaxDistance;
-			}
-			Vector3 vector2 = base.transform.position + camera.transform.TransformVector(this.m_SpawnOffset);
-			Quaternion quaternion = Quaternion.LookRotation(vector - vector2);
-			Object.Instantiate<GameObject>(this.m_ArrowPrefab.gameObject, vector2, quaternion).GetComponent<ShaftedProjectile>().Launch(base.Player);
-			if (this.m_Durability != null)
-			{
-				ItemProperty.Float @float = this.m_Durability.Float;
-				float num = @float.Current;
-				@float.Current = num - 1f;
-				this.m_Durability.SetValue(ItemProperty.Type.Float, @float);
-				if (@float.Current == 0f)
-				{
-					base.Player.DestroyEquippedItem.Try();
-				}
+				goto IL_003b;
 			}
 		}
+		else
+		{
+			num = 1;
+		}
+		if (base.IsEnabled)
+		{
+			m_StretchAudio.Play(ItemSelectionMethod.Randomly, m_AudioSource);
+		}
+		goto IL_003b;
+		IL_003b:
+		return (byte)num != 0;
+	}
 
-		// Token: 0x04002AB6 RID: 10934
-		[Header("Bow Setup")]
-		[SerializeField]
-		private LayerMask m_Mask;
-
-		// Token: 0x04002AB7 RID: 10935
-		[SerializeField]
-		private float m_MaxDistance = 50f;
-
-		// Token: 0x04002AB8 RID: 10936
-		[Header("Bow Settings")]
-		[SerializeField]
-		private float m_MinTimeBetweenShots = 1f;
-
-		// Token: 0x04002AB9 RID: 10937
-		[Header("Arrow")]
-		[SerializeField]
-		private ShaftedProjectile m_ArrowPrefab;
-
-		// Token: 0x04002ABA RID: 10938
-		[SerializeField]
-		private Vector3 m_SpawnOffset;
-
-		// Token: 0x04002ABB RID: 10939
-		[Header("Audio")]
-		[SerializeField]
-		private AudioSource m_AudioSource;
-
-		// Token: 0x04002ABC RID: 10940
-		[SerializeField]
-		private SoundPlayer m_ReleaseAudio;
-
-		// Token: 0x04002ABD RID: 10941
-		[SerializeField]
-		private SoundPlayer m_StretchAudio;
-
-		// Token: 0x04002ABE RID: 10942
-		private float m_NextTimeCanShoot;
+	private void SpawnArrow(Camera camera)
+	{
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		if (!Object.op_Implicit((Object)(object)m_ArrowPrefab))
+		{
+			Debug.LogErrorFormat("[{0}.FPBow] - No arrow prefab assigned in the inspector! Please assign one.", new object[1] { ((Object)this).name });
+			return;
+		}
+		RaycastHit val = default(RaycastHit);
+		Vector3 val2 = ((!Physics.Raycast(camera.ViewportPointToRay(Vector3.one * 0.5f), ref val, m_MaxDistance, LayerMask.op_Implicit(m_Mask), (QueryTriggerInteraction)1)) ? (((Component)camera).transform.position + ((Component)camera).transform.forward * m_MaxDistance) : ((RaycastHit)(ref val)).point);
+		Vector3 val3 = ((Component)this).transform.position + ((Component)camera).transform.TransformVector(m_SpawnOffset);
+		Quaternion val4 = Quaternion.LookRotation(val2 - val3);
+		Object.Instantiate<GameObject>(((Component)m_ArrowPrefab).gameObject, val3, val4).GetComponent<ShaftedProjectile>().Launch(base.Player);
+		if (m_Durability != null)
+		{
+			ItemProperty.Float @float = m_Durability.Float;
+			@float.Current--;
+			m_Durability.SetValue(ItemProperty.Type.Float, @float);
+			if (@float.Current == 0f)
+			{
+				base.Player.DestroyEquippedItem.Try();
+			}
+		}
 	}
 }

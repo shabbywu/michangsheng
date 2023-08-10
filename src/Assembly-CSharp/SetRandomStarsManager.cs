@@ -1,34 +1,36 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DC RID: 1244
 public class SetRandomStarsManager : MonoBehaviour
 {
-	// Token: 0x06002852 RID: 10322 RVA: 0x00130DB8 File Offset: 0x0012EFB8
+	private int currSet;
+
+	private int currStage;
+
+	private int prevoiousSetIndex;
+
+	private Manage gameManager;
+
+	private bool uslovNivo;
+
+	private bool uslovZvezdice;
+
 	private void Start()
 	{
 		StagesParser.NemaRequiredStars_VratiULevele = false;
-		this.currSet = StagesParser.currSetIndex;
-		this.currStage = StagesParser.currStageIndex;
-		this.gameManager = base.GetComponent<Manage>();
+		currSet = StagesParser.currSetIndex;
+		currStage = StagesParser.currStageIndex;
+		gameManager = ((Component)this).GetComponent<Manage>();
 	}
 
-	// Token: 0x06002853 RID: 10323 RVA: 0x00130DE4 File Offset: 0x0012EFE4
 	public void GoBack()
 	{
-		this.prevoiousSetIndex = StagesParser.currSetIndex;
-		int starsGained = this.gameManager.starsGained;
+		prevoiousSetIndex = StagesParser.currSetIndex;
+		int starsGained = gameManager.starsGained;
 		if (StagesParser.bonusLevel)
 		{
-			string[] array = PlayerPrefs.GetString("BonusLevel").Split(new char[]
-			{
-				'_'
-			});
+			string[] array = PlayerPrefs.GetString("BonusLevel").Split(new char[1] { '_' });
 			string text = array[StagesParser.currSetIndex];
-			string[] array2 = text.Split(new char[]
-			{
-				'#'
-			});
+			string[] array2 = text.Split(new char[1] { '#' });
 			array2[StagesParser.bonusID - 1] = "1";
 			string text2 = string.Empty;
 			text = string.Empty;
@@ -50,21 +52,11 @@ public class SetRandomStarsManager : MonoBehaviour
 		}
 		else
 		{
-			int num = int.Parse(StagesParser.allLevels[this.currSet * 20 + this.currStage].Split(new char[]
-			{
-				'#'
-			})[2]);
+			int num = int.Parse(StagesParser.allLevels[currSet * 20 + currStage].Split(new char[1] { '#' })[2]);
 			if (Manage.points > num)
 			{
 				string text3 = string.Empty;
-				StagesParser.allLevels[this.currSet * 20 + this.currStage] = string.Concat(new object[]
-				{
-					(this.currSet * 20 + this.currStage + 1).ToString(),
-					"#",
-					starsGained,
-					"#",
-					Manage.points
-				});
+				StagesParser.allLevels[currSet * 20 + currStage] = (currSet * 20 + currStage + 1).ToString() + "#" + starsGained + "#" + Manage.points;
 				for (int k = 0; k < StagesParser.allLevels.Length; k++)
 				{
 					text3 += StagesParser.allLevels[k];
@@ -75,14 +67,11 @@ public class SetRandomStarsManager : MonoBehaviour
 				PlayerPrefs.Save();
 				if (StagesParser.currSetIndex != 5 || StagesParser.currStageIndex != 19)
 				{
-					string[] array3 = StagesParser.allLevels[this.currSet * 20 + this.currStage + 1].Split(new char[]
-					{
-						'#'
-					});
-					if (this.currStage < 19 && int.Parse(array3[1]) == -1)
+					string[] array3 = StagesParser.allLevels[currSet * 20 + currStage + 1].Split(new char[1] { '#' });
+					if (currStage < 19 && int.Parse(array3[1]) == -1)
 					{
 						text3 = string.Empty;
-						StagesParser.allLevels[this.currSet * 20 + this.currStage + 1] = (this.currSet * 20 + this.currStage + 2).ToString() + "#0#0";
+						StagesParser.allLevels[currSet * 20 + currStage + 1] = currSet * 20 + currStage + 2 + "#0#0";
 						for (int l = 0; l < StagesParser.allLevels.Length; l++)
 						{
 							text3 += StagesParser.allLevels[l];
@@ -91,25 +80,22 @@ public class SetRandomStarsManager : MonoBehaviour
 						text3 = text3.Remove(text3.Length - 1);
 						PlayerPrefs.SetString("AllLevels", text3);
 						PlayerPrefs.Save();
-						StagesParser.zadnjiOtkljucanNivo = this.currStage + 2;
+						StagesParser.zadnjiOtkljucanNivo = currStage + 2;
 					}
-					if (StagesParser.maxLevel < this.currSet * 20 + this.currStage + 1)
+					if (StagesParser.maxLevel < currSet * 20 + currStage + 1)
 					{
-						StagesParser.maxLevel = this.currSet * 20 + this.currStage + 1;
+						StagesParser.maxLevel = currSet * 20 + currStage + 1;
 					}
 				}
 			}
 			StagesParser.trenutniNivoNaOstrvu[StagesParser.currSetIndex] = StagesParser.currStageIndex + 1;
-			PlayerPrefs.SetInt("TrenutniNivoNaOstrvu" + StagesParser.currSetIndex.ToString(), StagesParser.trenutniNivoNaOstrvu[StagesParser.currSetIndex]);
+			PlayerPrefs.SetInt("TrenutniNivoNaOstrvu" + StagesParser.currSetIndex, StagesParser.trenutniNivoNaOstrvu[StagesParser.currSetIndex]);
 			PlayerPrefs.Save();
-			string[] array4 = StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex * 20 + 19].Split(new char[]
-			{
-				'#'
-			});
-			Debug.Log("ISPRED USLOV ZA NIVO: " + StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex * 20 + 19]);
+			string[] array4 = StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex * 20 + 19].Split(new char[1] { '#' });
+			Debug.Log((object)("ISPRED USLOV ZA NIVO: " + StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex * 20 + 19]));
 			if (int.Parse(array4[1]) > 0)
 			{
-				this.uslovNivo = true;
+				uslovNivo = true;
 			}
 			StagesParser.RecountTotalStars();
 			float num2 = 0f;
@@ -118,43 +104,21 @@ public class SetRandomStarsManager : MonoBehaviour
 			{
 				if (m < totalSets)
 				{
-					num2 = (float)StagesParser.SetsInGame[m].StarRequirement;
+					num2 = StagesParser.SetsInGame[m].StarRequirement;
 				}
 			}
 			PlayerPrefs.SetInt("CurrentStars", StagesParser.currentStarsNEW);
 			PlayerPrefs.Save();
-			Debug.Log(string.Concat(new object[]
-			{
-				"potrebne zvezdice: ",
-				num2,
-				", a ima gi: ",
-				StagesParser.currentStarsNEW,
-				", last unlocked world index: ",
-				StagesParser.lastUnlockedWorldIndex
-			}));
-			Debug.Log(string.Concat(new string[]
-			{
-				"Unlocked worlds: ",
-				StagesParser.unlockedWorlds[0].ToString(),
-				", ",
-				StagesParser.unlockedWorlds[1].ToString(),
-				", ",
-				StagesParser.unlockedWorlds[2].ToString(),
-				", ",
-				StagesParser.unlockedWorlds[3].ToString(),
-				", ",
-				StagesParser.unlockedWorlds[4].ToString(),
-				", ",
-				StagesParser.unlockedWorlds[5].ToString()
-			}));
+			Debug.Log((object)("potrebne zvezdice: " + num2 + ", a ima gi: " + StagesParser.currentStarsNEW + ", last unlocked world index: " + StagesParser.lastUnlockedWorldIndex));
+			Debug.Log((object)("Unlocked worlds: " + StagesParser.unlockedWorlds[0] + ", " + StagesParser.unlockedWorlds[1] + ", " + StagesParser.unlockedWorlds[2] + ", " + StagesParser.unlockedWorlds[3] + ", " + StagesParser.unlockedWorlds[4] + ", " + StagesParser.unlockedWorlds[5]));
 			if (num2 <= (float)StagesParser.currentStarsNEW && StagesParser.lastUnlockedWorldIndex + 1 < StagesParser.totalSets && !StagesParser.unlockedWorlds[StagesParser.lastUnlockedWorldIndex + 1])
 			{
-				this.uslovZvezdice = true;
+				uslovZvezdice = true;
 			}
-			Debug.Log("uslov nivo: " + this.uslovNivo.ToString() + ", uslov zvezdice: " + this.uslovZvezdice.ToString());
-			if (this.uslovNivo && this.uslovZvezdice)
+			Debug.Log((object)("uslov nivo: " + uslovNivo + ", uslov zvezdice: " + uslovZvezdice));
+			if (uslovNivo && uslovZvezdice)
 			{
-				Debug.Log("ULETEO OVDE: IMA USLOVE ZA NIVO I ZVEZDICE");
+				Debug.Log((object)"ULETEO OVDE: IMA USLOVE ZA NIVO I ZVEZDICE");
 				StagesParser.unlockedWorlds[StagesParser.lastUnlockedWorldIndex + 1] = true;
 				StagesParser.openedButNotPlayed[StagesParser.lastUnlockedWorldIndex + 1] = true;
 				StagesParser.lastUnlockedWorldIndex++;
@@ -183,15 +147,8 @@ public class SetRandomStarsManager : MonoBehaviour
 				text4 = text4.Remove(text4.Length - 1);
 				PlayerPrefs.SetString("AllLevels", text4);
 				PlayerPrefs.Save();
-				Debug.Log(string.Concat(new object[]
-				{
-					"StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex*20] = ",
-					StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex * 20],
-					", treba upisat': ",
-					StagesParser.lastUnlockedWorldIndex * 20 + 1,
-					"#0#0"
-				}));
-				Debug.Log("svi nivoji: " + text4);
+				Debug.Log((object)("StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex*20] = " + StagesParser.allLevels[StagesParser.lastUnlockedWorldIndex * 20] + ", treba upisat': " + (StagesParser.lastUnlockedWorldIndex * 20 + 1) + "#0#0"));
+				Debug.Log((object)("svi nivoji: " + text4));
 			}
 			else
 			{
@@ -200,22 +157,4 @@ public class SetRandomStarsManager : MonoBehaviour
 		}
 		StagesParser.saving = true;
 	}
-
-	// Token: 0x0400235A RID: 9050
-	private int currSet;
-
-	// Token: 0x0400235B RID: 9051
-	private int currStage;
-
-	// Token: 0x0400235C RID: 9052
-	private int prevoiousSetIndex;
-
-	// Token: 0x0400235D RID: 9053
-	private Manage gameManager;
-
-	// Token: 0x0400235E RID: 9054
-	private bool uslovNivo;
-
-	// Token: 0x0400235F RID: 9055
-	private bool uslovZvezdice;
 }

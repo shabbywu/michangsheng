@@ -1,61 +1,56 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("UI", "Get Toggle State", "Gets the state of a toggle UI object and stores it in a boolean variable.", 0)]
+public class GetToggleState : Command
 {
-	// Token: 0x02000DD6 RID: 3542
-	[CommandInfo("UI", "Get Toggle State", "Gets the state of a toggle UI object and stores it in a boolean variable.", 0)]
-	public class GetToggleState : Command
+	[Tooltip("Target toggle object to get the value from")]
+	[SerializeField]
+	protected Toggle toggle;
+
+	[Tooltip("Boolean variable to store the state of the toggle value in.")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable toggleState;
+
+	public override void OnEnter()
 	{
-		// Token: 0x0600649B RID: 25755 RVA: 0x0027F853 File Offset: 0x0027DA53
-		public override void OnEnter()
+		if ((Object)(object)toggle != (Object)null && (Object)(object)toggleState != (Object)null)
 		{
-			if (this.toggle != null && this.toggleState != null)
-			{
-				this.toggleState.Value = this.toggle.isOn;
-			}
-			this.Continue();
+			toggleState.Value = toggle.isOn;
 		}
+		Continue();
+	}
 
-		// Token: 0x0600649C RID: 25756 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override string GetSummary()
+	{
+		if ((Object)(object)toggle == (Object)null)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return "Error: Toggle object not selected";
 		}
-
-		// Token: 0x0600649D RID: 25757 RVA: 0x0027F88D File Offset: 0x0027DA8D
-		public override string GetSummary()
+		if ((Object)(object)toggleState == (Object)null)
 		{
-			if (this.toggle == null)
-			{
-				return "Error: Toggle object not selected";
-			}
-			if (this.toggleState == null)
-			{
-				return "Error: Toggle state variable not selected";
-			}
-			return this.toggle.name;
+			return "Error: Toggle state variable not selected";
 		}
+		return ((Object)toggle).name;
+	}
 
-		// Token: 0x0600649E RID: 25758 RVA: 0x0027F8C2 File Offset: 0x0027DAC2
-		public override bool HasReference(Variable variable)
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)toggleState == (Object)(object)variable))
 		{
-			return this.toggleState == variable || base.HasReference(variable);
+			return base.HasReference(variable);
 		}
-
-		// Token: 0x04005670 RID: 22128
-		[Tooltip("Target toggle object to get the value from")]
-		[SerializeField]
-		protected Toggle toggle;
-
-		// Token: 0x04005671 RID: 22129
-		[Tooltip("Boolean variable to store the state of the toggle value in.")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable toggleState;
+		return true;
 	}
 }

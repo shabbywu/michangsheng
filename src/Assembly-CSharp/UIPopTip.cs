@@ -1,135 +1,118 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x02000362 RID: 866
 public class UIPopTip : MonoBehaviour
 {
-	// Token: 0x06001D24 RID: 7460 RVA: 0x000CEC12 File Offset: 0x000CCE12
+	public static UIPopTip Inst;
+
+	[SerializeField]
+	private RectTransform TipItemRoot;
+
+	[SerializeField]
+	private GameObject TipPrefab;
+
+	[SerializeField]
+	private List<Sprite> Icon;
+
+	[SerializeField]
+	private List<AudioClip> PopEffectSounds;
+
+	private List<UIPopTipItem> Tips = new List<UIPopTipItem>();
+
+	private Queue<PopTipData> WaitForShow = new Queue<PopTipData>();
+
+	private float minCD;
+
+	private float tweenDestoryCD;
+
+	private Dictionary<string, int> addItemMergeMsgDict = new Dictionary<string, int>();
+
+	private float addItemMergeCD;
+
 	private void Awake()
 	{
-		UIPopTip.Inst = this;
+		Inst = this;
 	}
 
-	// Token: 0x06001D25 RID: 7461 RVA: 0x000CEC1C File Offset: 0x000CCE1C
 	private void Update()
 	{
-		if (this.minCD > 0f)
+		if (minCD > 0f)
 		{
-			this.minCD -= Time.deltaTime;
+			minCD -= Time.deltaTime;
 		}
-		if (this.addItemMergeCD > 0f)
+		if (addItemMergeCD > 0f)
 		{
-			this.addItemMergeCD -= Time.deltaTime;
+			addItemMergeCD -= Time.deltaTime;
 		}
-		if (this.addItemMergeCD <= 0f)
+		if (addItemMergeCD <= 0f)
 		{
-			this.addItemMergeCD = 0.5f;
-			foreach (KeyValuePair<string, int> keyValuePair in this.addItemMergeMsgDict)
+			addItemMergeCD = 0.5f;
+			foreach (KeyValuePair<string, int> item2 in addItemMergeMsgDict)
 			{
-				this.Pop(string.Format("获得{0}x{1}", keyValuePair.Key, keyValuePair.Value), PopTipIconType.包裹);
+				Pop($"获得{item2.Key}x{item2.Value}", PopTipIconType.包裹);
 			}
-			this.addItemMergeMsgDict.Clear();
+			addItemMergeMsgDict.Clear();
 		}
-		if (this.minCD <= 0f && this.WaitForShow.Count > 0)
+		if (minCD <= 0f && WaitForShow.Count > 0)
 		{
-			this.minCD = 0.8f;
-			PopTipData data = this.WaitForShow.Dequeue();
-			UIPopTipItem item = this.CreateTipObject(data);
-			this.Tips.Insert(0, item);
-			for (int i = this.Tips.Count - 1; i >= 0; i--)
+			minCD = 0.8f;
+			PopTipData data = WaitForShow.Dequeue();
+			UIPopTipItem item = CreateTipObject(data);
+			Tips.Insert(0, item);
+			for (int num = Tips.Count - 1; num >= 0; num--)
 			{
-				this.Tips[i].MsgIndex = i;
-				if (i >= 9)
+				Tips[num].MsgIndex = num;
+				if (num >= 9)
 				{
-					this.Tips.RemoveAt(i);
+					Tips.RemoveAt(num);
 				}
 			}
-			this.tweenDestoryCD = (float)this.Tips.Count * 0.2f + 2f;
+			tweenDestoryCD = (float)Tips.Count * 0.2f + 2f;
 		}
-		if (this.tweenDestoryCD > 0f)
+		if (tweenDestoryCD > 0f)
 		{
-			this.tweenDestoryCD -= Time.deltaTime;
+			tweenDestoryCD -= Time.deltaTime;
 		}
-		if (this.Tips.Count > 0 && (int)(this.tweenDestoryCD / 0.2f) < this.Tips.Count)
+		if (Tips.Count > 0 && (int)(tweenDestoryCD / 0.2f) < Tips.Count)
 		{
-			UIPopTipItem uipopTipItem = this.Tips[this.Tips.Count - 1];
-			this.Tips.Remove(uipopTipItem);
-			uipopTipItem.TweenDestory();
+			UIPopTipItem uIPopTipItem = Tips[Tips.Count - 1];
+			Tips.Remove(uIPopTipItem);
+			uIPopTipItem.TweenDestory();
 		}
 	}
 
-	// Token: 0x06001D26 RID: 7462 RVA: 0x000CEE14 File Offset: 0x000CD014
 	public void Pop(string msg, PopTipIconType iconType = PopTipIconType.叹号)
 	{
 		PopTipData popTipData = new PopTipData();
 		popTipData.IconType = iconType;
 		popTipData.Msg = msg;
-		this.WaitForShow.Enqueue(popTipData);
+		WaitForShow.Enqueue(popTipData);
 	}
 
-	// Token: 0x06001D27 RID: 7463 RVA: 0x000CEE44 File Offset: 0x000CD044
 	public void PopAddItem(string itemName, int itemCount)
 	{
-		if (!this.addItemMergeMsgDict.ContainsKey(itemName))
+		if (!addItemMergeMsgDict.ContainsKey(itemName))
 		{
-			this.addItemMergeMsgDict.Add(itemName, 0);
+			addItemMergeMsgDict.Add(itemName, 0);
 		}
-		Dictionary<string, int> dictionary = this.addItemMergeMsgDict;
-		dictionary[itemName] += itemCount;
+		addItemMergeMsgDict[itemName] += itemCount;
 	}
 
-	// Token: 0x06001D28 RID: 7464 RVA: 0x000CEE88 File Offset: 0x000CD088
 	private UIPopTipItem CreateTipObject(PopTipData data)
 	{
-		GameObject gameObject = Object.Instantiate<GameObject>(this.TipPrefab, this.TipItemRoot);
-		(gameObject.transform as RectTransform).anchoredPosition = new Vector2(500f, 0f);
-		UIPopTipItem component = gameObject.GetComponent<UIPopTipItem>();
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		GameObject obj = Object.Instantiate<GameObject>(TipPrefab, (Transform)(object)TipItemRoot);
+		Transform transform = obj.transform;
+		((RectTransform)((transform is RectTransform) ? transform : null)).anchoredPosition = new Vector2(500f, 0f);
+		UIPopTipItem component = obj.GetComponent<UIPopTipItem>();
 		int iconType = (int)data.IconType;
-		component.IconImage.sprite = this.Icon[iconType];
+		component.IconImage.sprite = Icon[iconType];
 		component.MsgText.text = data.Msg;
-		if (this.PopEffectSounds.Count > iconType && this.PopEffectSounds[iconType] != null)
+		if (PopEffectSounds.Count > iconType && (Object)(object)PopEffectSounds[iconType] != (Object)null)
 		{
-			MusicMag.instance.PlayEffectMusic(this.PopEffectSounds[iconType], 1f);
+			MusicMag.instance.PlayEffectMusic(PopEffectSounds[iconType]);
 		}
 		return component;
 	}
-
-	// Token: 0x040017AD RID: 6061
-	public static UIPopTip Inst;
-
-	// Token: 0x040017AE RID: 6062
-	[SerializeField]
-	private RectTransform TipItemRoot;
-
-	// Token: 0x040017AF RID: 6063
-	[SerializeField]
-	private GameObject TipPrefab;
-
-	// Token: 0x040017B0 RID: 6064
-	[SerializeField]
-	private List<Sprite> Icon;
-
-	// Token: 0x040017B1 RID: 6065
-	[SerializeField]
-	private List<AudioClip> PopEffectSounds;
-
-	// Token: 0x040017B2 RID: 6066
-	private List<UIPopTipItem> Tips = new List<UIPopTipItem>();
-
-	// Token: 0x040017B3 RID: 6067
-	private Queue<PopTipData> WaitForShow = new Queue<PopTipData>();
-
-	// Token: 0x040017B4 RID: 6068
-	private float minCD;
-
-	// Token: 0x040017B5 RID: 6069
-	private float tweenDestoryCD;
-
-	// Token: 0x040017B6 RID: 6070
-	private Dictionary<string, int> addItemMergeMsgDict = new Dictionary<string, int>();
-
-	// Token: 0x040017B7 RID: 6071
-	private float addItemMergeCD;
 }

@@ -1,100 +1,111 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200008F RID: 143
 public class UIGeometry
 {
-	// Token: 0x170000ED RID: 237
-	// (get) Token: 0x060007AF RID: 1967 RVA: 0x0002F0AD File Offset: 0x0002D2AD
-	public bool hasVertices
-	{
-		get
-		{
-			return this.verts.size > 0;
-		}
-	}
+	public BetterList<Vector3> verts = new BetterList<Vector3>();
 
-	// Token: 0x170000EE RID: 238
-	// (get) Token: 0x060007B0 RID: 1968 RVA: 0x0002F0BD File Offset: 0x0002D2BD
+	public BetterList<Vector2> uvs = new BetterList<Vector2>();
+
+	public BetterList<Color32> cols = new BetterList<Color32>();
+
+	private BetterList<Vector3> mRtpVerts = new BetterList<Vector3>();
+
+	private Vector3 mRtpNormal;
+
+	private Vector4 mRtpTan;
+
+	public bool hasVertices => verts.size > 0;
+
 	public bool hasTransformed
 	{
 		get
 		{
-			return this.mRtpVerts != null && this.mRtpVerts.size > 0 && this.mRtpVerts.size == this.verts.size;
+			if (mRtpVerts != null && mRtpVerts.size > 0)
+			{
+				return mRtpVerts.size == verts.size;
+			}
+			return false;
 		}
 	}
 
-	// Token: 0x060007B1 RID: 1969 RVA: 0x0002F0EF File Offset: 0x0002D2EF
 	public void Clear()
 	{
-		this.verts.Clear();
-		this.uvs.Clear();
-		this.cols.Clear();
-		this.mRtpVerts.Clear();
+		verts.Clear();
+		uvs.Clear();
+		cols.Clear();
+		mRtpVerts.Clear();
 	}
 
-	// Token: 0x060007B2 RID: 1970 RVA: 0x0002F120 File Offset: 0x0002D320
 	public void ApplyTransform(Matrix4x4 widgetToPanel)
 	{
-		if (this.verts.size > 0)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0099: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		if (verts.size > 0)
 		{
-			this.mRtpVerts.Clear();
+			mRtpVerts.Clear();
 			int i = 0;
-			int size = this.verts.size;
-			while (i < size)
+			for (int size = verts.size; i < size; i++)
 			{
-				this.mRtpVerts.Add(widgetToPanel.MultiplyPoint3x4(this.verts[i]));
-				i++;
+				mRtpVerts.Add(((Matrix4x4)(ref widgetToPanel)).MultiplyPoint3x4(verts[i]));
 			}
-			this.mRtpNormal = widgetToPanel.MultiplyVector(Vector3.back).normalized;
-			Vector3 normalized = widgetToPanel.MultiplyVector(Vector3.right).normalized;
-			this.mRtpTan = new Vector4(normalized.x, normalized.y, normalized.z, -1f);
-			return;
+			Vector3 val = ((Matrix4x4)(ref widgetToPanel)).MultiplyVector(Vector3.back);
+			mRtpNormal = ((Vector3)(ref val)).normalized;
+			val = ((Matrix4x4)(ref widgetToPanel)).MultiplyVector(Vector3.right);
+			Vector3 normalized = ((Vector3)(ref val)).normalized;
+			mRtpTan = new Vector4(normalized.x, normalized.y, normalized.z, -1f);
 		}
-		this.mRtpVerts.Clear();
+		else
+		{
+			mRtpVerts.Clear();
+		}
 	}
 
-	// Token: 0x060007B3 RID: 1971 RVA: 0x0002F1DC File Offset: 0x0002D3DC
 	public void WriteToBuffers(BetterList<Vector3> v, BetterList<Vector2> u, BetterList<Color32> c, BetterList<Vector3> n, BetterList<Vector4> t)
 	{
-		if (this.mRtpVerts != null && this.mRtpVerts.size > 0)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		if (mRtpVerts == null || mRtpVerts.size <= 0)
 		{
-			if (n == null)
+			return;
+		}
+		if (n == null)
+		{
+			for (int i = 0; i < mRtpVerts.size; i++)
 			{
-				for (int i = 0; i < this.mRtpVerts.size; i++)
-				{
-					v.Add(this.mRtpVerts.buffer[i]);
-					u.Add(this.uvs.buffer[i]);
-					c.Add(this.cols.buffer[i]);
-				}
-				return;
+				v.Add(mRtpVerts.buffer[i]);
+				u.Add(uvs.buffer[i]);
+				c.Add(cols.buffer[i]);
 			}
-			for (int j = 0; j < this.mRtpVerts.size; j++)
-			{
-				v.Add(this.mRtpVerts.buffer[j]);
-				u.Add(this.uvs.buffer[j]);
-				c.Add(this.cols.buffer[j]);
-				n.Add(this.mRtpNormal);
-				t.Add(this.mRtpTan);
-			}
+			return;
+		}
+		for (int j = 0; j < mRtpVerts.size; j++)
+		{
+			v.Add(mRtpVerts.buffer[j]);
+			u.Add(uvs.buffer[j]);
+			c.Add(cols.buffer[j]);
+			n.Add(mRtpNormal);
+			t.Add(mRtpTan);
 		}
 	}
-
-	// Token: 0x040004CB RID: 1227
-	public BetterList<Vector3> verts = new BetterList<Vector3>();
-
-	// Token: 0x040004CC RID: 1228
-	public BetterList<Vector2> uvs = new BetterList<Vector2>();
-
-	// Token: 0x040004CD RID: 1229
-	public BetterList<Color32> cols = new BetterList<Color32>();
-
-	// Token: 0x040004CE RID: 1230
-	private BetterList<Vector3> mRtpVerts = new BetterList<Vector3>();
-
-	// Token: 0x040004CF RID: 1231
-	private Vector3 mRtpNormal;
-
-	// Token: 0x040004D0 RID: 1232
-	private Vector4 mRtpTan;
 }

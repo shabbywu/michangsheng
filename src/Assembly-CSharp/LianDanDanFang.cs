@@ -1,93 +1,106 @@
-﻿using System;
-using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000460 RID: 1120
 public class LianDanDanFang : MonoBehaviour
 {
-	// Token: 0x06002318 RID: 8984 RVA: 0x000EFB68 File Offset: 0x000EDD68
+	public GameObject DanFangItem;
+
+	public GameObject DanFang;
+
+	public UIPopupList mList;
+
+	public int showtype;
+
 	public void InitDanFang()
 	{
-		foreach (JSONObject jsonobject in Tools.instance.getPlayer().DanFang.list)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Expected O, but got Unknown
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0174: Expected O, but got Unknown
+		//IL_034d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0368: Unknown result type (might be due to invalid IL or missing references)
+		foreach (JSONObject item in Tools.instance.getPlayer().DanFang.list)
 		{
-			if (jsonobject["ID"].I > 0)
+			if (item["ID"].I <= 0)
 			{
-				bool flag = true;
-				Transform transform = null;
-				foreach (object obj in base.transform)
+				continue;
+			}
+			bool flag = true;
+			Transform val = null;
+			foreach (Transform item2 in ((Component)this).transform)
+			{
+				Transform val2 = item2;
+				if (item["ID"].I == ((Component)val2).GetComponent<DanFang_UI>().ItemID)
 				{
-					Transform transform2 = (Transform)obj;
-					if (jsonobject["ID"].I == transform2.GetComponent<DanFang_UI>().ItemID)
-					{
-						flag = false;
-						transform = transform2;
-					}
-				}
-				if (flag)
-				{
-					GameObject gameObject = Object.Instantiate<GameObject>(this.DanFangItem);
-					gameObject.GetComponent<DanFang_UI>().ItemID = jsonobject["ID"].I;
-					gameObject.GetComponent<DanFang_UI>().text.text = Tools.Code64(jsonData.instance.ItemJsonData[jsonobject["ID"].I.ToString()]["name"].str);
-					gameObject.transform.parent = base.transform;
-					gameObject.SetActive(true);
-					gameObject.transform.localScale = Vector3.one;
-					transform = gameObject.transform;
-				}
-				bool flag2 = true;
-				foreach (object obj2 in transform.GetComponent<DanFang_UI>().content.transform)
-				{
-					Transform transform3 = (Transform)obj2;
-					if (transform3.gameObject.activeSelf)
-					{
-						bool flag3 = true;
-						for (int i = 0; i < jsonobject["Type"].list.Count; i++)
-						{
-							if ((int)jsonobject["Type"][i].n != transform3.GetComponent<DanGeDanFang_UI>().danyao[i])
-							{
-								flag3 = false;
-							}
-						}
-						for (int j = 0; j < jsonobject["Num"].list.Count; j++)
-						{
-							if ((int)jsonobject["Num"][j].n != transform3.GetComponent<DanGeDanFang_UI>().num[j])
-							{
-								flag3 = false;
-							}
-						}
-						if (flag3)
-						{
-							flag2 = false;
-						}
-					}
-				}
-				if (flag2)
-				{
-					GameObject gameObject2 = Object.Instantiate<GameObject>(this.DanFang);
-					foreach (JSONObject jsonobject2 in jsonobject["Type"].list)
-					{
-						gameObject2.GetComponent<DanGeDanFang_UI>().danyao.Add((int)jsonobject2.n);
-					}
-					foreach (JSONObject jsonobject3 in jsonobject["Num"].list)
-					{
-						gameObject2.GetComponent<DanGeDanFang_UI>().num.Add((int)jsonobject3.n);
-					}
-					gameObject2.GetComponent<DanGeDanFang_UI>().init();
-					gameObject2.transform.parent = transform.GetComponent<DanFang_UI>().content.transform;
-					gameObject2.SetActive(true);
-					gameObject2.transform.localScale = Vector3.one;
-					gameObject2.transform.localPosition = new Vector3(50f, -30f);
+					flag = false;
+					val = val2;
 				}
 			}
+			if (flag)
+			{
+				GameObject obj = Object.Instantiate<GameObject>(DanFangItem);
+				obj.GetComponent<DanFang_UI>().ItemID = item["ID"].I;
+				obj.GetComponent<DanFang_UI>().text.text = Tools.Code64(jsonData.instance.ItemJsonData[item["ID"].I.ToString()]["name"].str);
+				obj.transform.parent = ((Component)this).transform;
+				obj.SetActive(true);
+				obj.transform.localScale = Vector3.one;
+				val = obj.transform;
+			}
+			bool flag2 = true;
+			foreach (Transform item3 in ((Component)val).GetComponent<DanFang_UI>().content.transform)
+			{
+				Transform val3 = item3;
+				if (!((Component)val3).gameObject.activeSelf)
+				{
+					continue;
+				}
+				bool flag3 = true;
+				for (int i = 0; i < item["Type"].list.Count; i++)
+				{
+					if ((int)item["Type"][i].n != ((Component)val3).GetComponent<DanGeDanFang_UI>().danyao[i])
+					{
+						flag3 = false;
+					}
+				}
+				for (int j = 0; j < item["Num"].list.Count; j++)
+				{
+					if ((int)item["Num"][j].n != ((Component)val3).GetComponent<DanGeDanFang_UI>().num[j])
+					{
+						flag3 = false;
+					}
+				}
+				if (flag3)
+				{
+					flag2 = false;
+				}
+			}
+			if (!flag2)
+			{
+				continue;
+			}
+			GameObject val4 = Object.Instantiate<GameObject>(DanFang);
+			foreach (JSONObject item4 in item["Type"].list)
+			{
+				val4.GetComponent<DanGeDanFang_UI>().danyao.Add((int)item4.n);
+			}
+			foreach (JSONObject item5 in item["Num"].list)
+			{
+				val4.GetComponent<DanGeDanFang_UI>().num.Add((int)item5.n);
+			}
+			val4.GetComponent<DanGeDanFang_UI>().init();
+			val4.transform.parent = ((Component)val).GetComponent<DanFang_UI>().content.transform;
+			val4.SetActive(true);
+			val4.transform.localScale = Vector3.one;
+			val4.transform.localPosition = new Vector3(50f, -30f);
 		}
 	}
 
-	// Token: 0x06002319 RID: 8985 RVA: 0x000EFF80 File Offset: 0x000EE180
 	public int getInputID(string name)
 	{
 		int num = 0;
-		foreach (string b in this.mList.items)
+		foreach (string item in mList.items)
 		{
-			if (name == b)
+			if (name == item)
 			{
 				break;
 			}
@@ -96,66 +109,51 @@ public class LianDanDanFang : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x0600231A RID: 8986 RVA: 0x000EFFE4 File Offset: 0x000EE1E4
 	private void Start()
 	{
-		this.InitDanFang();
+		InitDanFang();
 	}
 
-	// Token: 0x0600231B RID: 8987 RVA: 0x000EFFEC File Offset: 0x000EE1EC
 	public void setShowType()
 	{
-		this.showtype = this.getInputID(this.mList.value);
+		showtype = getInputID(mList.value);
 	}
 
-	// Token: 0x0600231C RID: 8988 RVA: 0x000F0008 File Offset: 0x000EE208
 	private void Update()
 	{
-		if (this.showtype != 0)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c6: Expected O, but got Unknown
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Expected O, but got Unknown
+		if (showtype != 0)
 		{
-			using (IEnumerator enumerator = base.transform.GetEnumerator())
+			foreach (Transform item in ((Component)this).transform)
 			{
-				while (enumerator.MoveNext())
+				Transform val = item;
+				if (((Component)val).GetComponent<DanFang_UI>().ItemID > 0)
 				{
-					object obj = enumerator.Current;
-					Transform transform = (Transform)obj;
-					if (transform.GetComponent<DanFang_UI>().ItemID > 0)
+					if ((int)jsonData.instance.ItemJsonData[((Component)val).GetComponent<DanFang_UI>().ItemID.ToString()]["quality"].n == showtype)
 					{
-						if ((int)jsonData.instance.ItemJsonData[transform.GetComponent<DanFang_UI>().ItemID.ToString()]["quality"].n == this.showtype)
+						if (!((Component)val).gameObject.activeSelf)
 						{
-							if (!transform.gameObject.activeSelf)
-							{
-								transform.gameObject.SetActive(true);
-							}
-						}
-						else
-						{
-							transform.gameObject.SetActive(false);
+							((Component)val).gameObject.SetActive(true);
 						}
 					}
+					else
+					{
+						((Component)val).gameObject.SetActive(false);
+					}
 				}
-				return;
 			}
+			return;
 		}
-		foreach (object obj2 in base.transform)
+		foreach (Transform item2 in ((Component)this).transform)
 		{
-			Transform transform2 = (Transform)obj2;
-			if (transform2.GetComponent<DanFang_UI>().ItemID > 0)
+			Transform val2 = item2;
+			if (((Component)val2).GetComponent<DanFang_UI>().ItemID > 0)
 			{
-				transform2.gameObject.SetActive(true);
+				((Component)val2).gameObject.SetActive(true);
 			}
 		}
 	}
-
-	// Token: 0x04001C45 RID: 7237
-	public GameObject DanFangItem;
-
-	// Token: 0x04001C46 RID: 7238
-	public GameObject DanFang;
-
-	// Token: 0x04001C47 RID: 7239
-	public UIPopupList mList;
-
-	// Token: 0x04001C48 RID: 7240
-	public int showtype;
 }

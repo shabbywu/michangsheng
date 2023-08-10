@@ -1,38 +1,31 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Set", "SetRandomTalkNotClick", "设置指定随机事件不再触发", 0)]
+[AddComponentMenu("")]
+public class SetRandomTalkClick : Command
 {
-	// Token: 0x02000F62 RID: 3938
-	[CommandInfo("YSNew/Set", "SetRandomTalkNotClick", "设置指定随机事件不再触发", 0)]
-	[AddComponentMenu("")]
-	public class SetRandomTalkClick : Command
+	[Tooltip("事件ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable TaskID;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006EC5 RID: 28357 RVA: 0x002A574F File Offset: 0x002A394F
-		public override void OnEnter()
-		{
-			AllMapManage.instance.RandomFlag[this.TaskID.Value] = 1;
-			this.Continue();
-		}
+		AllMapManage.instance.RandomFlag[TaskID.Value] = 1;
+		Continue();
+	}
 
-		// Token: 0x06006EC6 RID: 28358 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006EC7 RID: 28359 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005BC9 RID: 23497
-		[Tooltip("事件ID")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable TaskID;
+	public override void OnReset()
+	{
 	}
 }

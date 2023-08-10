@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ItemTypeExchangeData : IJSONClass
 {
-	// Token: 0x02000869 RID: 2153
-	public class ItemTypeExchangeData : IJSONClass
+	public static Dictionary<int, ItemTypeExchangeData> DataDict = new Dictionary<int, ItemTypeExchangeData>();
+
+	public static List<ItemTypeExchangeData> DataList = new List<ItemTypeExchangeData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int type;
+
+	public List<int> quality = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003FB6 RID: 16310 RVA: 0x001B2D68 File Offset: 0x001B0F68
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ItemTypeExchangeData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ItemTypeExchangeData.list)
+			try
 			{
-				try
+				ItemTypeExchangeData itemTypeExchangeData = new ItemTypeExchangeData();
+				itemTypeExchangeData.type = item["type"].I;
+				itemTypeExchangeData.quality = item["quality"].ToList();
+				if (DataDict.ContainsKey(itemTypeExchangeData.type))
 				{
-					ItemTypeExchangeData itemTypeExchangeData = new ItemTypeExchangeData();
-					itemTypeExchangeData.type = jsonobject["type"].I;
-					itemTypeExchangeData.quality = jsonobject["quality"].ToList();
-					if (ItemTypeExchangeData.DataDict.ContainsKey(itemTypeExchangeData.type))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ItemTypeExchangeData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", itemTypeExchangeData.type));
-					}
-					else
-					{
-						ItemTypeExchangeData.DataDict.Add(itemTypeExchangeData.type, itemTypeExchangeData);
-						ItemTypeExchangeData.DataList.Add(itemTypeExchangeData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ItemTypeExchangeData.DataDict添加数据时出现重复的键，Key:{itemTypeExchangeData.type}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ItemTypeExchangeData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(itemTypeExchangeData.type, itemTypeExchangeData);
+				DataList.Add(itemTypeExchangeData);
 			}
-			if (ItemTypeExchangeData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ItemTypeExchangeData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ItemTypeExchangeData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003FB7 RID: 16311 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003C32 RID: 15410
-		public static Dictionary<int, ItemTypeExchangeData> DataDict = new Dictionary<int, ItemTypeExchangeData>();
-
-		// Token: 0x04003C33 RID: 15411
-		public static List<ItemTypeExchangeData> DataList = new List<ItemTypeExchangeData>();
-
-		// Token: 0x04003C34 RID: 15412
-		public static Action OnInitFinishAction = new Action(ItemTypeExchangeData.OnInitFinish);
-
-		// Token: 0x04003C35 RID: 15413
-		public int type;
-
-		// Token: 0x04003C36 RID: 15414
-		public List<int> quality = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

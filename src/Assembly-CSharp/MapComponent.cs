@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fungus;
@@ -11,76 +10,101 @@ using UnityEngine;
 using UnityEngine.Events;
 using YSGame;
 
-// Token: 0x0200018E RID: 398
 public class MapComponent : BaseMapCompont
 {
-	// Token: 0x060010F8 RID: 4344 RVA: 0x0006543E File Offset: 0x0006363E
+	private float MoveBaseSpeed = 4f;
+
+	private float MoveBaseSpeedMin = 1.5f;
+
+	public SkeletonRenderer TaskSpine;
+
+	public SkeletonAnimation attackerSpineboy;
+
+	private string AnimationName = "";
+
+	private string oldName = "";
+
+	public int NodeGroup;
+
+	private bool isInit;
+
 	private new void Awake()
 	{
-		this.isInit = false;
+		isInit = false;
 		base.Awake();
 	}
 
-	// Token: 0x060010F9 RID: 4345 RVA: 0x00065450 File Offset: 0x00063650
 	public override void AvatarMoveToThis()
 	{
-		GameObject gameObject = GameObject.Find("MapMoveNode");
-		if (gameObject == null)
+		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f7: Expected O, but got Unknown
+		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0236: Expected O, but got Unknown
+		GameObject val = GameObject.Find("MapMoveNode");
+		if ((Object)(object)val == (Object)null)
 		{
-			UIPopTip.Inst.Pop("找不到移动路径跟节点", PopTipIconType.叹号);
+			UIPopTip.Inst.Pop("找不到移动路径跟节点");
 			return;
 		}
-		Avatar player = PlayerEx.Player;
+		_ = PlayerEx.Player;
 		MapPlayerController playerController = AllMapManage.instance.MapPlayerController;
 		playerController.SetSpeed(1);
 		AllMapManage.instance.isPlayMove = true;
-		MapMoveNode[] componentsInChildren = gameObject.GetComponentsInChildren<MapMoveNode>();
+		MapMoveNode[] componentsInChildren = val.GetComponentsInChildren<MapMoveNode>();
 		List<GameObject> Nodes = new List<GameObject>();
-		Nodes.Add(playerController.gameObject);
+		Nodes.Add(((Component)playerController).gameObject);
 		List<GameObject> list = new List<GameObject>();
 		if (playerController.ShowType != MapPlayerShowType.遁术)
 		{
-			foreach (MapMoveNode mapMoveNode in componentsInChildren)
+			MapMoveNode[] array = componentsInChildren;
+			foreach (MapMoveNode mapMoveNode in array)
 			{
-				if ((mapMoveNode.StartNode == this.NodeIndex && this.ComAvatar.NowMapIndex == mapMoveNode.EndNode) || (mapMoveNode.EndNode == this.NodeIndex && this.ComAvatar.NowMapIndex == mapMoveNode.StartNode))
+				if ((mapMoveNode.StartNode == NodeIndex && ComAvatar.NowMapIndex == mapMoveNode.EndNode) || (mapMoveNode.EndNode == NodeIndex && ComAvatar.NowMapIndex == mapMoveNode.StartNode))
 				{
-					list.Add(mapMoveNode.gameObject);
+					list.Add(((Component)mapMoveNode).gameObject);
 				}
 			}
-			if (list.Count > 0 && this.ComAvatar.NowMapIndex == list[0].GetComponent<MapMoveNode>().EndNode)
+			if (list.Count > 0 && ComAvatar.NowMapIndex == list[0].GetComponent<MapMoveNode>().EndNode)
 			{
 				list.Reverse();
 			}
-			foreach (GameObject item in list)
+			foreach (GameObject item3 in list)
 			{
-				Nodes.Add(item);
+				Nodes.Add(item3);
 			}
 		}
-		Transform transform = base.transform.Find("PlayerPosition");
-		Nodes.Add((transform != null) ? transform.gameObject : AllMapManage.instance.mapIndex[this.NodeIndex].gameObject);
-		int count = Nodes.Count;
+		Transform val2 = ((Component)this).transform.Find("PlayerPosition");
+		Nodes.Add(((Object)(object)val2 != (Object)null) ? ((Component)val2).gameObject : ((Component)AllMapManage.instance.mapIndex[NodeIndex]).gameObject);
+		_ = Nodes.Count;
 		for (int j = 1; j < Nodes.Count; j++)
 		{
 			int nodeIndex = j;
 			Queue<UnityAction> queue = new Queue<UnityAction>();
-			UnityAction item2 = delegate()
+			UnityAction item = (UnityAction)delegate
 			{
+				//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+				//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+				//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+				//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+				//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+				//IL_0160: Unknown result type (might be due to invalid IL or missing references)
+				//IL_018a: Unknown result type (might be due to invalid IL or missing references)
 				playerController.SetSpeed(1);
-				float num = Vector2.Distance(Nodes[nodeIndex - 1].transform.position, Nodes[nodeIndex].transform.position);
-				float num2 = (Tools.instance.getPlayer().dunSu > 100) ? (this.MoveBaseSpeedMin + this.MoveBaseSpeed) : (this.MoveBaseSpeedMin + this.MoveBaseSpeed * ((float)Tools.instance.getPlayer().dunSu / 100f));
+				float num = Vector2.Distance(Vector2.op_Implicit(Nodes[nodeIndex - 1].transform.position), Vector2.op_Implicit(Nodes[nodeIndex].transform.position));
+				float num2 = ((Tools.instance.getPlayer().dunSu > 100) ? (MoveBaseSpeedMin + MoveBaseSpeed) : (MoveBaseSpeedMin + MoveBaseSpeed * ((float)Tools.instance.getPlayer().dunSu / 100f)));
 				if (playerController.ShowType == MapPlayerShowType.遁术)
 				{
 					num2 *= 2f;
 				}
 				float num3 = num / num2;
-				iTween.MoveTo(playerController.gameObject, iTween.Hash(new object[]
+				iTween.MoveTo(((Component)playerController).gameObject, iTween.Hash(new object[12]
 				{
 					"x",
 					Nodes[nodeIndex].transform.position.x,
 					"y",
 					Nodes[nodeIndex].transform.position.y,
 					"z",
-					playerController.transform.position.z,
+					((Component)playerController).transform.position.z,
 					"time",
 					num3,
 					"islocal",
@@ -90,47 +114,47 @@ public class MapComponent : BaseMapCompont
 				}));
 				WASDMove.waitTime = num3;
 				WASDMove.needWait = true;
-				this.Invoke("callContinue", num3);
+				((MonoBehaviour)this).Invoke("callContinue", num3);
 			};
-			queue.Enqueue(item2);
+			queue.Enqueue(item);
 			YSFuncList.Ints.AddFunc(queue);
 		}
 		Queue<UnityAction> queue2 = new Queue<UnityAction>();
-		UnityAction item3 = delegate()
+		UnityAction item2 = (UnityAction)delegate
 		{
-			this.setAvatarNowMapIndex();
-			this.showLuDian();
+			setAvatarNowMapIndex();
+			showLuDian();
 			playerController.SetSpeed(0);
 			AllMapManage.instance.isPlayMove = false;
 			YSFuncList.Ints.Continue();
-			int nowMapIndex = Tools.instance.getPlayer().NowMapIndex;
-			this.updateSedNode();
+			_ = Tools.instance.getPlayer().NowMapIndex;
+			updateSedNode();
 			if (MapGetWay.Inst.CurTalk > 0)
 			{
-				Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + MapGetWay.Inst.CurTalk).Inst(null);
+				Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + MapGetWay.Inst.CurTalk).Inst();
 				MapGetWay.Inst.CurTalk = 0;
 			}
 		};
-		queue2.Enqueue(item3);
+		queue2.Enqueue(item2);
 		YSFuncList.Ints.AddFunc(queue2);
 	}
 
-	// Token: 0x060010FA RID: 4346 RVA: 0x000656B8 File Offset: 0x000638B8
 	private void callContinue()
 	{
 		YSFuncList.Ints.Continue();
 	}
 
-	// Token: 0x060010FB RID: 4347 RVA: 0x000656C4 File Offset: 0x000638C4
 	public override void BaseAddTime()
 	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Expected O, but got Unknown
 		Queue<UnityAction> queue = new Queue<UnityAction>();
-		UnityAction item = delegate()
+		UnityAction item = (UnityAction)delegate
 		{
-			JSONObject jsonobject = this.AllMapCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= this.ComAvatar.dunSu);
-			if (jsonobject != null)
+			JSONObject jSONObject = AllMapCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= ComAvatar.dunSu);
+			if (jSONObject != null)
 			{
-				this.ComAvatar.AddTime((int)jsonobject["XiaoHao"].n, 0, 0);
+				ComAvatar.AddTime((int)jSONObject["XiaoHao"].n);
 			}
 			YSFuncList.Ints.Continue();
 		};
@@ -138,151 +162,148 @@ public class MapComponent : BaseMapCompont
 		YSFuncList.Ints.AddFunc(queue);
 	}
 
-	// Token: 0x060010FC RID: 4348 RVA: 0x000656F6 File Offset: 0x000638F6
 	public override void EventRandom()
 	{
-		if (Tools.instance.getPlayer().NowMapIndex == this.NodeIndex)
+		if (Tools.instance.getPlayer().NowMapIndex != NodeIndex)
 		{
-			return;
+			if (AllMapManage.instance.MapPlayerController.ShowType == MapPlayerShowType.遁术)
+			{
+				NewEventRandom();
+			}
+			else
+			{
+				((MonoBehaviour)this).StartCoroutine(Move());
+			}
 		}
-		if (AllMapManage.instance.MapPlayerController.ShowType == MapPlayerShowType.遁术)
-		{
-			this.NewEventRandom();
-			return;
-		}
-		base.StartCoroutine(this.Move());
 	}
 
-	// Token: 0x060010FD RID: 4349 RVA: 0x00065738 File Offset: 0x00063938
 	public void NewEventRandom()
 	{
-		if (!base.CanClick())
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Expected O, but got Unknown
+		if (!CanClick())
 		{
 			return;
 		}
-		this.fuBenSetClick();
-		this.NewMovaAvatar();
-		if (this.IsStatic)
+		fuBenSetClick();
+		NewMovaAvatar();
+		if (IsStatic)
 		{
 			return;
 		}
 		Queue<UnityAction> queue = new Queue<UnityAction>();
-		UnityAction item = delegate()
+		UnityAction item = (UnityAction)delegate
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
-			int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int>
-			{
-				this.NodeIndex
-			});
+			int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int> { NodeIndex });
 			if (num != -1)
 			{
-				JSONObject jsonobject = avatar.nomelTaskMag.IsNTaskZiXiangInLuJin(num, new List<int>
-				{
-					this.NodeIndex
-				});
+				JSONObject jSONObject = avatar.nomelTaskMag.IsNTaskZiXiangInLuJin(num, new List<int> { NodeIndex });
 				JSONObject nowChildIDSuiJiJson = avatar.nomelTaskMag.GetNowChildIDSuiJiJson(num);
-				if (jsonobject["type"].I == 5)
+				if (jSONObject["type"].I == 5)
 				{
-					avatar.randomFuBenMag.GetInRandomFuBen(this.NodeIndex, -1);
+					avatar.randomFuBenMag.GetInRandomFuBen(NodeIndex);
 				}
 				else
 				{
-					GlobalValue.Set(401, nowChildIDSuiJiJson["Value"].I, base.GetType().Name + ".EventRandom");
-					GlobalValue.Set(402, num, base.GetType().Name + ".EventRandom");
-					Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + jsonobject["talkID"].str));
+					GlobalValue.Set(401, nowChildIDSuiJiJson["Value"].I, ((object)this).GetType().Name + ".EventRandom");
+					GlobalValue.Set(402, num, ((object)this).GetType().Name + ".EventRandom");
+					Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + jSONObject["talkID"].str));
 				}
 				YSFuncList.Ints.Continue();
-				return;
 			}
-			int i = avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I;
-			int num2 = (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["Type"].n;
-			if (num2 == 2 || num2 == 5 || avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I == 0)
+			else
 			{
-				if (FungusManager.Instance.jieShaBlock == null)
+				int i = avatar.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I;
+				int num2 = (int)avatar.AllMapRandomNode[NodeIndex.ToString()]["Type"].n;
+				if (num2 == 2 || num2 == 5 || avatar.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I == 0)
 				{
-					GameObject gameObject = Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk4010"));
-					FungusManager.Instance.jieShaBlock = gameObject.GetComponentInChildren<Flowchart>();
-				}
-				else if (GlobalValue.Get(171, base.GetType().Name + ".EventRandom") == 1)
-				{
-					GlobalValue.Set(171, 0, base.GetType().Name + ".EventRandom");
+					if ((Object)(object)FungusManager.Instance.jieShaBlock == (Object)null)
+					{
+						GameObject val = Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk4010"));
+						FungusManager.Instance.jieShaBlock = val.GetComponentInChildren<Flowchart>();
+					}
+					else if (GlobalValue.Get(171, ((object)this).GetType().Name + ".EventRandom") == 1)
+					{
+						GlobalValue.Set(171, 0, ((object)this).GetType().Name + ".EventRandom");
+					}
+					else
+					{
+						FungusManager.Instance.jieShaBlock.Reset(resetCommands: false, resetVariables: true);
+						FungusManager.Instance.jieShaBlock.ExecuteBlock("Splash");
+					}
+					ResteAllMapNode();
+					Tools.instance.getPlayer().AllMapSetNode();
+					YSFuncList.Ints.Continue();
 				}
 				else
 				{
-					FungusManager.Instance.jieShaBlock.Reset(false, true);
-					FungusManager.Instance.jieShaBlock.ExecuteBlock("Splash");
+					int i2 = MapRandomJsonData[string.Concat(i)]["EventData"].I;
+					int i3 = MapRandomJsonData[string.Concat(i)]["MosterID"].I;
+					if (MapRandomJsonData[string.Concat(i)]["once"].I != 0)
+					{
+						if (!avatar.SuiJiShiJian.HasField(Tools.getScreenName()))
+						{
+							avatar.SuiJiShiJian.AddField(Tools.getScreenName(), new JSONObject(JSONObject.Type.ARRAY));
+						}
+						avatar.SuiJiShiJian[Tools.getScreenName()].Add(i);
+					}
+					switch ((int)MapRandomJsonData[string.Concat(i)]["EventList"].n)
+					{
+					case 0:
+						Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + i2));
+						break;
+					case 1:
+						addOption(i2);
+						break;
+					case 2:
+						Tools.instance.MonstarID = i3;
+						Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + i2));
+						break;
+					case 3:
+						OpenDadituCaiJi();
+						break;
+					}
+					ResteAllMapNode();
+					Tools.instance.getPlayer().AllMapSetNode();
+					YSFuncList.Ints.Continue();
 				}
-				this.ResteAllMapNode();
-				Tools.instance.getPlayer().AllMapSetNode();
-				YSFuncList.Ints.Continue();
-				return;
 			}
-			int i2 = this.MapRandomJsonData[string.Concat(i)]["EventData"].I;
-			int i3 = this.MapRandomJsonData[string.Concat(i)]["MosterID"].I;
-			if (this.MapRandomJsonData[string.Concat(i)]["once"].I != 0)
-			{
-				if (!avatar.SuiJiShiJian.HasField(Tools.getScreenName()))
-				{
-					avatar.SuiJiShiJian.AddField(Tools.getScreenName(), new JSONObject(JSONObject.Type.ARRAY));
-				}
-				avatar.SuiJiShiJian[Tools.getScreenName()].Add(i);
-			}
-			switch ((int)this.MapRandomJsonData[string.Concat(i)]["EventList"].n)
-			{
-			case 0:
-				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + i2));
-				break;
-			case 1:
-				this.addOption(i2);
-				break;
-			case 2:
-				Tools.instance.MonstarID = i3;
-				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + i2));
-				break;
-			case 3:
-				base.OpenDadituCaiJi();
-				break;
-			}
-			this.ResteAllMapNode();
-			Tools.instance.getPlayer().AllMapSetNode();
-			YSFuncList.Ints.Continue();
 		};
 		queue.Enqueue(item);
 		YSFuncList.Ints.AddFunc(queue);
 	}
 
-	// Token: 0x060010FE RID: 4350 RVA: 0x00065788 File Offset: 0x00063988
 	public void NewMovaAvatar()
 	{
 		base.movaAvatar();
 	}
 
-	// Token: 0x060010FF RID: 4351 RVA: 0x00065790 File Offset: 0x00063990
 	public override void movaAvatar()
 	{
-		if (Tools.instance.getPlayer().NowMapIndex == this.NodeIndex)
+		if (Tools.instance.getPlayer().NowMapIndex != NodeIndex)
 		{
-			return;
+			if (AllMapManage.instance.MapPlayerController.ShowType == MapPlayerShowType.遁术)
+			{
+				base.movaAvatar();
+			}
+			else
+			{
+				((MonoBehaviour)this).StartCoroutine(Move());
+			}
 		}
-		if (AllMapManage.instance.MapPlayerController.ShowType == MapPlayerShowType.遁术)
-		{
-			base.movaAvatar();
-			return;
-		}
-		base.StartCoroutine(this.Move());
 	}
 
-	// Token: 0x06001100 RID: 4352 RVA: 0x000657D0 File Offset: 0x000639D0
 	private IEnumerator Move()
 	{
 		List<int> list = new List<int>();
-		if (MapGetWay.Inst.IsNearly(Tools.instance.getPlayer().NowMapIndex, this.NodeIndex))
+		if (MapGetWay.Inst.IsNearly(Tools.instance.getPlayer().NowMapIndex, NodeIndex))
 		{
-			list.Add(this.NodeIndex);
+			list.Add(NodeIndex);
 		}
 		else
 		{
-			list = MapGetWay.Inst.GetBestList(Tools.instance.getPlayer().NowMapIndex, this.NodeIndex);
+			list = MapGetWay.Inst.GetBestList(Tools.instance.getPlayer().NowMapIndex, NodeIndex);
 		}
 		if (list != null)
 		{
@@ -293,10 +314,10 @@ public class MapComponent : BaseMapCompont
 			{
 				MapMoveTips.Show();
 			}
-			while (index < list.Count)
+			for (; index < list.Count; index++)
 			{
 				int num = list[index];
-				if (AllMapManage.instance != null && AllMapManage.instance.mapIndex.ContainsKey(num))
+				if ((Object)(object)AllMapManage.instance != (Object)null && AllMapManage.instance.mapIndex.ContainsKey(num))
 				{
 					MapGetWay.Inst.CurTalk = 0;
 					if (BigMapLoadTalk.DataDict.ContainsKey(num) && BigMapLoadTalk.DataDict[num].Talk > 0)
@@ -315,31 +336,27 @@ public class MapComponent : BaseMapCompont
 				}
 				while (AllMapManage.instance.isPlayMove)
 				{
-					yield return new WaitForSeconds(0.2f);
+					yield return (object)new WaitForSeconds(0.2f);
 				}
-				yield return new WaitForSeconds(0.3f);
-				if (!Tools.instance.canClick(false, true) || MapGetWay.Inst.IsStop)
+				yield return (object)new WaitForSeconds(0.3f);
+				if (!Tools.instance.canClick() || MapGetWay.Inst.IsStop)
 				{
 					break;
 				}
-				int num2 = index;
-				index = num2 + 1;
 			}
 		}
 		MapGetWay.Inst.StopAuToMove();
-		yield break;
 	}
 
-	// Token: 0x06001101 RID: 4353 RVA: 0x000657E0 File Offset: 0x000639E0
 	public override bool YuJianFeiXing()
 	{
-		if (this.ComAvatar.NowMapIndex == this.NodeIndex)
+		if (ComAvatar.NowMapIndex == NodeIndex)
 		{
 			return false;
 		}
-		foreach (SkillItem skillItem in ((Avatar)KBEngineApp.app.player()).equipStaticSkillList)
+		foreach (SkillItem equipStaticSkill in ((Avatar)KBEngineApp.app.player()).equipStaticSkillList)
 		{
-			if (jsonData.instance.StaticSkillJsonData[string.Concat(Tools.instance.getStaticSkillKeyByID(skillItem.itemId))]["seid"].list.Find((JSONObject aa) => (int)aa.n == 9) != null)
+			if (jsonData.instance.StaticSkillJsonData[string.Concat(Tools.instance.getStaticSkillKeyByID(equipStaticSkill.itemId))]["seid"].list.Find((JSONObject aa) => (int)aa.n == 9) != null)
 			{
 				return true;
 			}
@@ -347,306 +364,237 @@ public class MapComponent : BaseMapCompont
 		return false;
 	}
 
-	// Token: 0x06001102 RID: 4354 RVA: 0x000658B4 File Offset: 0x00063AB4
 	public override void Update()
 	{
-		if (!this.isInit)
+		if (!isInit)
 		{
-			this.isInit = true;
-			this.updateSedNode();
+			isInit = true;
+			updateSedNode();
 		}
 	}
 
-	// Token: 0x06001103 RID: 4355 RVA: 0x000658CC File Offset: 0x00063ACC
 	public void updateSedNode()
 	{
+		//IL_022d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0207: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
 		base.Update();
 		Avatar player = Tools.instance.getPlayer();
-		int num = int.Parse(base.gameObject.name);
-		foreach (JSONObject jsonobject in jsonData.instance.DaDiTuYinCangJsonData.list)
+		int num = int.Parse(((Object)((Component)this).gameObject).name);
+		foreach (JSONObject item in jsonData.instance.DaDiTuYinCangJsonData.list)
 		{
-			if (jsonobject["id"].I == num)
+			if (item["id"].I != num)
 			{
-				bool flag = false;
-				bool flag2 = false;
-				if (jsonobject["StartTime"].str != "")
-				{
-					if (Tools.instance.IsInTime(player.worldTimeMag.nowTime, jsonobject["StartTime"].str, jsonobject["EndTime"].str))
-					{
-						flag = true;
-					}
-				}
-				else
+				continue;
+			}
+			bool flag = false;
+			bool flag2 = false;
+			if (item["StartTime"].str != "")
+			{
+				if (Tools.instance.IsInTime(player.worldTimeMag.nowTime, item["StartTime"].str, item["EndTime"].str))
 				{
 					flag = true;
 				}
-				if (jsonobject["EventValue"].list.Count > 0)
+			}
+			else
+			{
+				flag = true;
+			}
+			if (item["EventValue"].list.Count > 0)
+			{
+				int num2 = GlobalValue.Get(item["EventValue"][0].I, "MapComponent.updateSedNode 判断地图隐藏点");
+				int i = item["EventValue"][1].I;
+				string str = item["fuhao"].str;
+				switch (str)
 				{
-					int num2 = GlobalValue.Get(jsonobject["EventValue"][0].I, "MapComponent.updateSedNode 判断地图隐藏点");
-					int i = jsonobject["EventValue"][1].I;
-					string str = jsonobject["fuhao"].str;
-					if (str == "=")
+				case "=":
+					if (num2 == i)
 					{
-						if (num2 == i)
-						{
-							flag2 = true;
-						}
+						flag2 = true;
 					}
-					else if (str == ">")
-					{
-						if (num2 > i)
-						{
-							flag2 = true;
-						}
-					}
-					else if (str == "<")
-					{
-						if (num2 < i)
-						{
-							flag2 = true;
-						}
-					}
-					else
-					{
-						Debug.LogError("意外的地图隐藏点符号:" + str);
-					}
-				}
-				else
-				{
-					flag2 = true;
-				}
-				if (flag && flag2)
-				{
-					if (jsonobject["Type"].I == 1)
-					{
-						base.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-						break;
-					}
-					base.gameObject.transform.localScale = Vector3.zero;
 					break;
-				}
-				else
-				{
-					if (jsonobject["Type"].I == 1)
+				case ">":
+					if (num2 > i)
 					{
-						base.gameObject.transform.localScale = Vector3.zero;
-						break;
+						flag2 = true;
 					}
-					base.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+					break;
+				case "<":
+					if (num2 < i)
+					{
+						flag2 = true;
+					}
+					break;
+				default:
+					Debug.LogError((object)("意外的地图隐藏点符号:" + str));
 					break;
 				}
 			}
+			else
+			{
+				flag2 = true;
+			}
+			if (flag && flag2)
+			{
+				if (item["Type"].I == 1)
+				{
+					((Component)this).gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+				}
+				else
+				{
+					((Component)this).gameObject.transform.localScale = Vector3.zero;
+				}
+			}
+			else if (item["Type"].I == 1)
+			{
+				((Component)this).gameObject.transform.localScale = Vector3.zero;
+			}
+			else
+			{
+				((Component)this).gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+			}
+			break;
 		}
 		bool flag3 = false;
-		int num3 = player.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int>
-		{
-			this.NodeIndex
-		});
+		int num3 = player.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int> { NodeIndex });
 		if (num3 != -1)
 		{
 			flag3 = true;
 		}
-		if (this.TaskSpine != null && player.AllMapRandomNode.HasField(this.NodeIndex.ToString()))
-		{
-			int num4 = (int)player.AllMapRandomNode[this.NodeIndex.ToString()]["Type"].n;
-			if (flag3)
-			{
-				num4 = 7;
-			}
-			JSONObject jsonobject2 = jsonData.instance.AllMapReset[num4.ToString()];
-			if (jsonobject2["Icon"].str == "")
-			{
-				this.TaskSpine.initialSkinName = "default";
-				if (this.oldName != "default")
-				{
-					this.oldName = this.TaskSpine.initialSkinName;
-					this.TaskSpine.Initialize(true);
-				}
-				return;
-			}
-			if (jsonData.instance.MapRandomJsonData.HasField(player.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I.ToString()) && jsonData.instance.MapRandomJsonData[player.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I.ToString()]["Icon"].str != "")
-			{
-				this.TaskSpine.initialSkinName = jsonData.instance.MapRandomJsonData[player.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I.ToString()]["Icon"].str;
-			}
-			else
-			{
-				this.TaskSpine.initialSkinName = jsonobject2["Icon"].str;
-				this.AnimationName = jsonobject2["Act"].str;
-				if (num3 != -1 && player.nomelTaskMag.IsNTaskZiXiangInLuJin(num3, new List<int>
-				{
-					this.NodeIndex
-				})["type"].I == 5)
-				{
-					this.TaskSpine.initialSkinName = "Icon4";
-				}
-			}
-			if (this.oldName != this.TaskSpine.initialSkinName)
-			{
-				this.oldName = this.TaskSpine.initialSkinName;
-				this.TaskSpine.Initialize(true);
-				this.attackerSpineboy.AnimationState.SetAnimation(0, "appear", true);
-				this.attackerSpineboy.AnimationState.AddAnimation(0, (this.AnimationName == "") ? "Act1" : this.AnimationName, true, 0.3f);
-			}
-		}
-	}
-
-	// Token: 0x06001104 RID: 4356 RVA: 0x00065E2C File Offset: 0x0006402C
-	public void Complete(TrackEntry trackEntry)
-	{
-		this.attackerSpineboy.AnimationState.SetAnimation(0, this.AnimationName, true);
-	}
-
-	// Token: 0x06001105 RID: 4357 RVA: 0x00065E47 File Offset: 0x00064047
-	public void CompleteTrigger(TrackEntry trackEntry)
-	{
-		this.TaskSpine.initialSkinName = "default";
-		this.TaskSpine.Initialize(true);
-	}
-
-	// Token: 0x06001106 RID: 4358 RVA: 0x00065E68 File Offset: 0x00064068
-	public override void showLuDian()
-	{
-		Avatar player = Tools.instance.getPlayer();
-		float shenShiArea = player.GetShenShiArea();
-		List<int> list = new List<int>();
-		foreach (KeyValuePair<int, BaseMapCompont> keyValuePair in AllMapManage.instance.mapIndex)
-		{
-			MapComponent mapComponent = (MapComponent)keyValuePair.Value;
-			if (AllMapLuDainType.DataDict.ContainsKey(mapComponent.NodeIndex) && AllMapLuDainType.DataDict[mapComponent.NodeIndex].MapType == 1 && mapComponent.NodeGroup != 0)
-			{
-				float num = Vector3.Distance(MapPlayerController.Inst.transform.position, mapComponent.transform.position);
-				if (mapComponent.NodeGroup == ((MapComponent)AllMapManage.instance.mapIndex[player.NowMapIndex]).NodeGroup || num <= shenShiArea)
-				{
-					list.Add(mapComponent.NodeGroup);
-					mapComponent.gameObject.SetActive(true);
-					iTween.FadeTo(mapComponent.transform.Find("Level1Move").gameObject, iTween.Hash(new object[]
-					{
-						"alpha",
-						1f,
-						"time",
-						0.6f,
-						"EaseType",
-						"linear",
-						"includechildren",
-						false
-					}));
-				}
-				else if (mapComponent.gameObject.activeSelf)
-				{
-					base.StartCoroutine(this.setGameobjectActive(mapComponent.gameObject, false, 1f));
-					iTween.FadeTo(mapComponent.transform.Find("Level1Move").gameObject, iTween.Hash(new object[]
-					{
-						"alpha",
-						0f,
-						"time",
-						0.6f,
-						"EaseType",
-						"linear",
-						"includechildren",
-						false
-					}));
-				}
-			}
-		}
-		foreach (AllMapsLuXian allMapsLuXian in AllMapManage.instance.LuXianGroup.GetComponentsInChildren<AllMapsLuXian>(true))
-		{
-			if (allMapsLuXian.NodeGroup == ((MapComponent)AllMapManage.instance.mapIndex[player.NowMapIndex]).NodeGroup || list.Contains(allMapsLuXian.NodeGroup))
-			{
-				allMapsLuXian.gameObject.SetActive(true);
-				iTween.FadeTo(allMapsLuXian.gameObject, iTween.Hash(new object[]
-				{
-					"alpha",
-					1f,
-					"time",
-					0.6f,
-					"EaseType",
-					"linear"
-				}));
-			}
-			else if (allMapsLuXian.gameObject.activeSelf)
-			{
-				base.StartCoroutine(this.setGameobjectActive(allMapsLuXian.gameObject, false, 1f));
-				iTween.FadeTo(allMapsLuXian.gameObject, iTween.Hash(new object[]
-				{
-					"alpha",
-					0f,
-					"time",
-					0.6f,
-					"EaseType",
-					"linear"
-				}));
-			}
-		}
-	}
-
-	// Token: 0x06001107 RID: 4359 RVA: 0x000661F0 File Offset: 0x000643F0
-	public override void ResteAllMapNode()
-	{
-		Avatar avatar = (Avatar)KBEngineApp.app.player();
-		if (!avatar.AllMapRandomNode.HasField(this.NodeIndex.ToString()))
-		{
-			avatar.AllMapSetNode();
-		}
-		int num = (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["Type"].n;
-		if ((num == 2 || num == 5) && avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I == 0)
+		if (!((Object)(object)TaskSpine != (Object)null) || !player.AllMapRandomNode.HasField(NodeIndex.ToString()))
 		{
 			return;
 		}
-		if ((int)jsonData.instance.AllMapLuDainType[this.NodeIndex.ToString()]["MapType"].n == 0)
+		int num4 = (int)player.AllMapRandomNode[NodeIndex.ToString()]["Type"].n;
+		if (flag3)
 		{
-			avatar.AllMapRandomNode[this.NodeIndex.ToString()].SetField("Type", 2);
+			num4 = 7;
+		}
+		JSONObject jSONObject = jsonData.instance.AllMapReset[num4.ToString()];
+		if (jSONObject["Icon"].str == "")
+		{
+			TaskSpine.initialSkinName = "default";
+			if (oldName != "default")
+			{
+				oldName = TaskSpine.initialSkinName;
+				TaskSpine.Initialize(true);
+			}
+			return;
+		}
+		if (jsonData.instance.MapRandomJsonData.HasField(player.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I.ToString()) && jsonData.instance.MapRandomJsonData[player.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I.ToString()]["Icon"].str != "")
+		{
+			TaskSpine.initialSkinName = jsonData.instance.MapRandomJsonData[player.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I.ToString()]["Icon"].str;
 		}
 		else
 		{
-			avatar.AllMapRandomNode[this.NodeIndex.ToString()].SetField("Type", 5);
+			TaskSpine.initialSkinName = jSONObject["Icon"].str;
+			AnimationName = jSONObject["Act"].str;
+			if (num3 != -1 && player.nomelTaskMag.IsNTaskZiXiangInLuJin(num3, new List<int> { NodeIndex })["type"].I == 5)
+			{
+				TaskSpine.initialSkinName = "Icon4";
+			}
 		}
-		avatar.AllMapRandomNode[this.NodeIndex.ToString()].SetField("EventId", 0);
-		avatar.AllMapRandomNode[this.NodeIndex.ToString()].SetField("resetTime", avatar.worldTimeMag.nowTime);
+		if (oldName != TaskSpine.initialSkinName)
+		{
+			oldName = TaskSpine.initialSkinName;
+			TaskSpine.Initialize(true);
+			attackerSpineboy.AnimationState.SetAnimation(0, "appear", true);
+			attackerSpineboy.AnimationState.AddAnimation(0, (AnimationName == "") ? "Act1" : AnimationName, true, 0.3f);
+		}
 	}
 
-	// Token: 0x06001108 RID: 4360 RVA: 0x0006633E File Offset: 0x0006453E
+	public void Complete(TrackEntry trackEntry)
+	{
+		attackerSpineboy.AnimationState.SetAnimation(0, AnimationName, true);
+	}
+
+	public void CompleteTrigger(TrackEntry trackEntry)
+	{
+		TaskSpine.initialSkinName = "default";
+		TaskSpine.Initialize(true);
+	}
+
+	public override void showLuDian()
+	{
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		Avatar player = Tools.instance.getPlayer();
+		float shenShiArea = player.GetShenShiArea();
+		List<int> list = new List<int>();
+		foreach (KeyValuePair<int, BaseMapCompont> item in AllMapManage.instance.mapIndex)
+		{
+			MapComponent mapComponent = (MapComponent)item.Value;
+			if (AllMapLuDainType.DataDict.ContainsKey(mapComponent.NodeIndex) && AllMapLuDainType.DataDict[mapComponent.NodeIndex].MapType == 1 && mapComponent.NodeGroup != 0)
+			{
+				float num = Vector3.Distance(((Component)MapPlayerController.Inst).transform.position, ((Component)mapComponent).transform.position);
+				if (mapComponent.NodeGroup == ((MapComponent)AllMapManage.instance.mapIndex[player.NowMapIndex]).NodeGroup || num <= shenShiArea)
+				{
+					list.Add(mapComponent.NodeGroup);
+					((Component)mapComponent).gameObject.SetActive(true);
+					iTween.FadeTo(((Component)((Component)mapComponent).transform.Find("Level1Move")).gameObject, iTween.Hash(new object[8] { "alpha", 1f, "time", 0.6f, "EaseType", "linear", "includechildren", false }));
+				}
+				else if (((Component)mapComponent).gameObject.activeSelf)
+				{
+					((MonoBehaviour)this).StartCoroutine(setGameobjectActive(((Component)mapComponent).gameObject, act: false, 1f));
+					iTween.FadeTo(((Component)((Component)mapComponent).transform.Find("Level1Move")).gameObject, iTween.Hash(new object[8] { "alpha", 0f, "time", 0.6f, "EaseType", "linear", "includechildren", false }));
+				}
+			}
+		}
+		AllMapsLuXian[] componentsInChildren = AllMapManage.instance.LuXianGroup.GetComponentsInChildren<AllMapsLuXian>(true);
+		foreach (AllMapsLuXian allMapsLuXian in componentsInChildren)
+		{
+			if (allMapsLuXian.NodeGroup == ((MapComponent)AllMapManage.instance.mapIndex[player.NowMapIndex]).NodeGroup || list.Contains(allMapsLuXian.NodeGroup))
+			{
+				((Component)allMapsLuXian).gameObject.SetActive(true);
+				iTween.FadeTo(((Component)allMapsLuXian).gameObject, iTween.Hash(new object[6] { "alpha", 1f, "time", 0.6f, "EaseType", "linear" }));
+			}
+			else if (((Component)allMapsLuXian).gameObject.activeSelf)
+			{
+				((MonoBehaviour)this).StartCoroutine(setGameobjectActive(((Component)allMapsLuXian).gameObject, act: false, 1f));
+				iTween.FadeTo(((Component)allMapsLuXian).gameObject, iTween.Hash(new object[6] { "alpha", 0f, "time", 0.6f, "EaseType", "linear" }));
+			}
+		}
+	}
+
+	public override void ResteAllMapNode()
+	{
+		Avatar avatar = (Avatar)KBEngineApp.app.player();
+		if (!avatar.AllMapRandomNode.HasField(NodeIndex.ToString()))
+		{
+			avatar.AllMapSetNode();
+		}
+		int num = (int)avatar.AllMapRandomNode[NodeIndex.ToString()]["Type"].n;
+		if ((num != 2 && num != 5) || avatar.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I != 0)
+		{
+			if ((int)jsonData.instance.AllMapLuDainType[NodeIndex.ToString()]["MapType"].n == 0)
+			{
+				avatar.AllMapRandomNode[NodeIndex.ToString()].SetField("Type", 2);
+			}
+			else
+			{
+				avatar.AllMapRandomNode[NodeIndex.ToString()].SetField("Type", 5);
+			}
+			avatar.AllMapRandomNode[NodeIndex.ToString()].SetField("EventId", 0);
+			avatar.AllMapRandomNode[NodeIndex.ToString()].SetField("resetTime", avatar.worldTimeMag.nowTime);
+		}
+	}
+
 	public IEnumerator setGameobjectActive(GameObject obj, bool act, float time)
 	{
-		yield return new WaitForSeconds(time);
+		yield return (object)new WaitForSeconds(time);
 		obj.SetActive(act);
-		yield break;
 	}
 
-	// Token: 0x06001109 RID: 4361 RVA: 0x0006635B File Offset: 0x0006455B
 	private void OnDestroy()
 	{
-		if (MapMoveTips.Inst != null)
+		if ((Object)(object)MapMoveTips.Inst != (Object)null)
 		{
 			MapMoveTips.Hide();
 		}
 	}
 
-	// Token: 0x0600110A RID: 4362 RVA: 0x00004095 File Offset: 0x00002295
 	public override void CloseLuDian()
 	{
 	}
-
-	// Token: 0x04000C2F RID: 3119
-	private float MoveBaseSpeed = 4f;
-
-	// Token: 0x04000C30 RID: 3120
-	private float MoveBaseSpeedMin = 1.5f;
-
-	// Token: 0x04000C31 RID: 3121
-	public SkeletonRenderer TaskSpine;
-
-	// Token: 0x04000C32 RID: 3122
-	public SkeletonAnimation attackerSpineboy;
-
-	// Token: 0x04000C33 RID: 3123
-	private string AnimationName = "";
-
-	// Token: 0x04000C34 RID: 3124
-	private string oldName = "";
-
-	// Token: 0x04000C35 RID: 3125
-	public int NodeGroup;
-
-	// Token: 0x04000C36 RID: 3126
-	private bool isInit;
 }

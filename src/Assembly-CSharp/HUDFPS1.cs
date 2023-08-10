@@ -1,57 +1,51 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B2 RID: 1202
 public class HUDFPS1 : MonoBehaviour
 {
-	// Token: 0x06002613 RID: 9747 RVA: 0x00107B3E File Offset: 0x00105D3E
+	public float updateInterval = 0.5f;
+
+	private float accum;
+
+	private int frames;
+
+	private float timeleft;
+
+	private TextMesh guiText1;
+
 	private void Start()
 	{
-		this.timeleft = this.updateInterval;
-		this.guiText1 = base.transform.GetComponent<TextMesh>();
+		timeleft = updateInterval;
+		guiText1 = ((Component)((Component)this).transform).GetComponent<TextMesh>();
 	}
 
-	// Token: 0x06002614 RID: 9748 RVA: 0x00107B60 File Offset: 0x00105D60
 	private void Update()
 	{
-		this.timeleft -= Time.deltaTime;
-		this.accum += Time.timeScale / Time.deltaTime;
-		this.frames++;
-		if ((double)this.timeleft <= 0.0)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		timeleft -= Time.deltaTime;
+		accum += Time.timeScale / Time.deltaTime;
+		frames++;
+		if ((double)timeleft <= 0.0)
 		{
-			float num = this.accum / (float)this.frames;
-			string text = string.Format("{0:F2} FPS", num);
-			this.guiText1.text = text;
+			float num = accum / (float)frames;
+			string text = $"{num:F2} FPS";
+			guiText1.text = text;
 			if (num < 25f)
 			{
-				this.guiText1.color = Color.yellow;
+				guiText1.color = Color.yellow;
 			}
 			else if (num < 15f)
 			{
-				this.guiText1.color = Color.red;
+				guiText1.color = Color.red;
 			}
 			else
 			{
-				this.guiText1.color = Color.green;
+				guiText1.color = Color.green;
 			}
-			this.timeleft = this.updateInterval;
-			this.accum = 0f;
-			this.frames = 0;
+			timeleft = updateInterval;
+			accum = 0f;
+			frames = 0;
 		}
 	}
-
-	// Token: 0x04001EC8 RID: 7880
-	public float updateInterval = 0.5f;
-
-	// Token: 0x04001EC9 RID: 7881
-	private float accum;
-
-	// Token: 0x04001ECA RID: 7882
-	private int frames;
-
-	// Token: 0x04001ECB RID: 7883
-	private float timeleft;
-
-	// Token: 0x04001ECC RID: 7884
-	private TextMesh guiText1;
 }

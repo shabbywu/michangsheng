@@ -1,53 +1,47 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public class ParticleDestroyer : MonoBehaviour
 {
-	// Token: 0x02000597 RID: 1431
-	public class ParticleDestroyer : MonoBehaviour
+	[SerializeField]
+	private float m_MinDuration = 8f;
+
+	[SerializeField]
+	private float m_MaxDuration = 10f;
+
+	private float m_MaxLifetime;
+
+	private bool m_EarlyStop;
+
+	private IEnumerator Start()
 	{
-		// Token: 0x06002F10 RID: 12048 RVA: 0x0015618A File Offset: 0x0015438A
-		private IEnumerator Start()
+		ParticleSystem[] systems = ((Component)this).GetComponentsInChildren<ParticleSystem>();
+		ParticleSystem[] array = systems;
+		foreach (ParticleSystem val in array)
 		{
-			ParticleSystem[] systems = base.GetComponentsInChildren<ParticleSystem>();
-			foreach (ParticleSystem particleSystem in systems)
-			{
-				this.m_MaxLifetime = Mathf.Max(particleSystem.main.startLifetimeMultiplier, this.m_MaxLifetime);
-			}
-			float stopTime = Time.time + Random.Range(this.m_MinDuration, this.m_MaxDuration);
-			while (Time.time < stopTime || this.m_EarlyStop)
-			{
-				yield return null;
-			}
-			ParticleSystem[] array = systems;
-			for (int i = 0; i < array.Length; i++)
-			{
-				array[i].emission.enabled = false;
-			}
-			yield return new WaitForSeconds(this.m_MaxLifetime);
-			Object.Destroy(base.gameObject);
-			yield break;
+			ParticleDestroyer particleDestroyer = this;
+			MainModule main = val.main;
+			particleDestroyer.m_MaxLifetime = Mathf.Max(((MainModule)(ref main)).startLifetimeMultiplier, m_MaxLifetime);
 		}
-
-		// Token: 0x06002F11 RID: 12049 RVA: 0x00156199 File Offset: 0x00154399
-		public void Stop()
+		float stopTime = Time.time + Random.Range(m_MinDuration, m_MaxDuration);
+		while (Time.time < stopTime || m_EarlyStop)
 		{
-			this.m_EarlyStop = true;
+			yield return null;
 		}
+		array = systems;
+		for (int i = 0; i < array.Length; i++)
+		{
+			EmissionModule emission = array[i].emission;
+			((EmissionModule)(ref emission)).enabled = false;
+		}
+		yield return (object)new WaitForSeconds(m_MaxLifetime);
+		Object.Destroy((Object)(object)((Component)this).gameObject);
+	}
 
-		// Token: 0x0400295A RID: 10586
-		[SerializeField]
-		private float m_MinDuration = 8f;
-
-		// Token: 0x0400295B RID: 10587
-		[SerializeField]
-		private float m_MaxDuration = 10f;
-
-		// Token: 0x0400295C RID: 10588
-		private float m_MaxLifetime;
-
-		// Token: 0x0400295D RID: 10589
-		private bool m_EarlyStop;
+	public void Stop()
+	{
+		m_EarlyStop = true;
 	}
 }

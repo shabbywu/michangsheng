@@ -1,378 +1,367 @@
-﻿using System;
 using System.Collections.Generic;
 using Fungus;
 using JiaoYi;
-using script.ExchangeMeeting.UI.Interface;
-using script.MenPaiTask.ZhangLao.UI;
 using Tab;
 using UnityEngine;
 using YSGame.TianJiDaBi;
 using YSGame.TuJian;
+using script.ExchangeMeeting.UI.Interface;
+using script.MenPaiTask.ZhangLao.UI;
 
-// Token: 0x020001B8 RID: 440
 public class CanClickManager : MonoBehaviour
 {
-	// Token: 0x17000225 RID: 549
-	// (get) Token: 0x0600125F RID: 4703 RVA: 0x0006F4B0 File Offset: 0x0006D6B0
+	private static CanClickManager inst;
+
+	public bool IsFinshed;
+
+	public bool Result;
+
+	public bool[] ResultCache = new bool[CacheCount];
+
+	public int ResultCount;
+
+	public List<MenuDialog> MenuDialogCache = new List<MenuDialog>();
+
+	public List<SayDialog> SayDialogCache = new List<SayDialog>();
+
+	public static int CacheCount = 50;
+
 	public static CanClickManager Inst
 	{
 		get
 		{
-			if (CanClickManager.inst == null)
+			//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001d: Expected O, but got Unknown
+			if ((Object)(object)inst == (Object)null)
 			{
-				GameObject gameObject = new GameObject("CanClickManager");
-				Object.DontDestroyOnLoad(gameObject);
-				CanClickManager.inst = gameObject.AddComponent<CanClickManager>();
+				GameObject val = new GameObject("CanClickManager");
+				Object.DontDestroyOnLoad((Object)val);
+				inst = val.AddComponent<CanClickManager>();
 			}
-			return CanClickManager.inst;
+			return inst;
 		}
 	}
 
-	// Token: 0x06001260 RID: 4704 RVA: 0x0006F4DE File Offset: 0x0006D6DE
 	private void LateUpdate()
 	{
-		this.IsFinshed = false;
+		IsFinshed = false;
 	}
 
-	// Token: 0x06001261 RID: 4705 RVA: 0x0006F4E8 File Offset: 0x0006D6E8
 	public void RefreshCanClick(bool show = false)
 	{
-		this.ResultCount = 0;
-		for (int i = 0; i < CanClickManager.CacheCount; i++)
+		ResultCount = 0;
+		for (int i = 0; i < CacheCount; i++)
 		{
-			this.ResultCache[i] = false;
+			ResultCache[i] = false;
 		}
 		if (!Tools.canClickFlag)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因canClickFlag而不允许点击");
+				Debug.Log((object)"CanClickManager:因canClickFlag而不允许点击");
 			}
-			this.ResultCache[0] = true;
+			ResultCache[0] = true;
 		}
-		if (SelectLianDanCaiLiaoPage.Inst != null && SelectLianDanCaiLiaoPage.Inst.gameObject.activeInHierarchy)
+		if ((Object)(object)SelectLianDanCaiLiaoPage.Inst != (Object)null && ((Component)SelectLianDanCaiLiaoPage.Inst).gameObject.activeInHierarchy)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在炼丹选择材料界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在炼丹选择材料界面而不允许点击");
 			}
-			this.ResultCache[1] = true;
+			ResultCache[1] = true;
 		}
-		if (UINPCLeftList.Inst != null && UINPCLeftList.Inst.IsMouseInUI)
+		if ((Object)(object)UINPCLeftList.Inst != (Object)null && UINPCLeftList.Inst.IsMouseInUI)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因鼠标在NPC左侧列表内而不允许点击");
+				Debug.Log((object)"CanClickManager:因鼠标在NPC左侧列表内而不允许点击");
 			}
-			this.ResultCache[2] = true;
+			ResultCache[2] = true;
 		}
-		if (UIHeadPanel.Inst != null && UIHeadPanel.Inst.IsMouseInUI)
+		if ((Object)(object)UIHeadPanel.Inst != (Object)null && UIHeadPanel.Inst.IsMouseInUI)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因鼠标在左上头像区内而不允许点击");
+				Debug.Log((object)"CanClickManager:因鼠标在左上头像区内而不允许点击");
 			}
-			this.ResultCache[3] = true;
+			ResultCache[3] = true;
 		}
 		if (UINPCJiaoHu.Inst.NowIsJiaoHu)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在进行NPC交互而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在进行NPC交互而不允许点击");
 			}
-			this.ResultCache[4] = true;
+			ResultCache[4] = true;
 		}
-		if (CyUIMag.inst != null)
+		if ((Object)(object)CyUIMag.inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在传音符界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在传音符界面而不允许点击");
 			}
-			this.ResultCache[5] = true;
+			ResultCache[5] = true;
 		}
-		if (FpUIMag.inst != null)
+		if ((Object)(object)FpUIMag.inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在战前准备界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在战前准备界面而不允许点击");
 			}
-			this.ResultCache[6] = true;
+			ResultCache[6] = true;
 		}
-		if (TpUIMag.inst != null)
+		if ((Object)(object)TpUIMag.inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在突破准备界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在突破准备界面而不允许点击");
 			}
-			this.ResultCache[7] = true;
+			ResultCache[7] = true;
 		}
-		if (KeFangSelectTime.inst != null)
+		if ((Object)(object)KeFangSelectTime.inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在客房选择时间界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在客房选择时间界面而不允许点击");
 			}
-			this.ResultCache[8] = true;
+			ResultCache[8] = true;
 		}
 		if (UIBiGuanPanel.Inst.PanelObj.activeInHierarchy)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在客房选择时间界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在客房选择时间界面而不允许点击");
 			}
-			this.ResultCache[9] = true;
+			ResultCache[9] = true;
 		}
 		if (UIDongFu.Inst.ScaleObj.activeInHierarchy)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在洞府界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在洞府界面而不允许点击");
 			}
-			this.ResultCache[10] = true;
+			ResultCache[10] = true;
 		}
 		if (UIMenPaiShop.Inst.ScaleObj.activeInHierarchy)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在门派商店界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在门派商店界面而不允许点击");
 			}
-			this.ResultCache[11] = true;
+			ResultCache[11] = true;
 		}
 		if (UInputBox.IsShow)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在UInputBox界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在UInputBox界面而不允许点击");
 			}
-			this.ResultCache[12] = true;
+			ResultCache[12] = true;
 		}
 		if (USelectBox.IsShow)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在确定选择框界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在确定选择框界面而不允许点击");
 			}
-			this.ResultCache[13] = true;
+			ResultCache[13] = true;
 		}
 		if (UCheckBox.IsShow)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在确定框界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在确定框界面而不允许点击");
 			}
-			this.ResultCache[14] = true;
+			ResultCache[14] = true;
 		}
 		if (USelectNum.IsShow)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在数量选择框界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在数量选择框界面而不允许点击");
 			}
-			this.ResultCache[15] = true;
+			ResultCache[15] = true;
 		}
-		if (TuJianManager.Inst != null && TuJianManager.Inst._Canvas.enabled)
+		if ((Object)(object)TuJianManager.Inst != (Object)null && ((Behaviour)TuJianManager.Inst._Canvas).enabled)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在图鉴界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在图鉴界面而不允许点击");
 			}
-			this.ResultCache[16] = true;
+			ResultCache[16] = true;
 		}
-		if (UIHuaShenRuDaoSelect.Inst != null && UIHuaShenRuDaoSelect.Inst.IsShow)
+		if ((Object)(object)UIHuaShenRuDaoSelect.Inst != (Object)null && UIHuaShenRuDaoSelect.Inst.IsShow)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在化神入道选择界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在化神入道选择界面而不允许点击");
 			}
-			this.ResultCache[17] = true;
+			ResultCache[17] = true;
 		}
-		if (SingletonMono<TabUIMag>.Instance != null)
+		if ((Object)(object)SingletonMono<TabUIMag>.Instance != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在Tab界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在Tab界面而不允许点击");
 			}
-			this.ResultCache[18] = true;
+			ResultCache[18] = true;
 		}
-		if (UIMapPanel.Inst != null && UIMapPanel.Inst.IsShow)
+		if ((Object)(object)UIMapPanel.Inst != (Object)null && UIMapPanel.Inst.IsShow)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在地图界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在地图界面而不允许点击");
 			}
-			this.ResultCache[19] = true;
+			ResultCache[19] = true;
 		}
-		if (JiaoYiUIMag.Inst != null)
+		if ((Object)(object)JiaoYiUIMag.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在交易界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在交易界面而不允许点击");
 			}
-			this.ResultCache[20] = true;
+			ResultCache[20] = true;
 		}
-		if (UIXiuChuanPanel.Inst != null)
+		if ((Object)(object)UIXiuChuanPanel.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在修船界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在修船界面而不允许点击");
 			}
-			this.ResultCache[21] = true;
+			ResultCache[21] = true;
 		}
-		if (UITianJiDaBiSaiChang.Inst != null)
+		if ((Object)(object)UITianJiDaBiSaiChang.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在天机大比赛场界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在天机大比赛场界面而不允许点击");
 			}
-			this.ResultCache[22] = true;
+			ResultCache[22] = true;
 		}
-		if (UITianJiDaBiPlayerInfo.Inst != null)
+		if ((Object)(object)UITianJiDaBiPlayerInfo.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在天机大比参赛人员信息界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在天机大比参赛人员信息界面而不允许点击");
 			}
-			this.ResultCache[23] = true;
+			ResultCache[23] = true;
 		}
-		if (UITianJiDaBiRankPanel.Inst != null)
+		if ((Object)(object)UITianJiDaBiRankPanel.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在天机榜界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在天机榜界面而不允许点击");
 			}
-			this.ResultCache[24] = true;
+			ResultCache[24] = true;
 		}
-		if (UIMiniShop.Inst != null)
+		if ((Object)(object)UIMiniShop.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在迷你商店界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在迷你商店界面而不允许点击");
 			}
-			this.ResultCache[25] = true;
+			ResultCache[25] = true;
 		}
-		if (UIDuJieZhunBei.Inst != null)
+		if ((Object)(object)UIDuJieZhunBei.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在渡劫准备界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在渡劫准备界面而不允许点击");
 			}
-			this.ResultCache[26] = true;
+			ResultCache[26] = true;
 		}
-		if (UIJianLingPanel.Inst != null)
+		if ((Object)(object)UIJianLingPanel.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在剑灵界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在剑灵界面而不允许点击");
 			}
-			this.ResultCache[27] = true;
+			ResultCache[27] = true;
 		}
-		if (UIJianLingXianSuoPanel.Inst != null)
+		if ((Object)(object)UIJianLingXianSuoPanel.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在剑灵线索界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在剑灵线索界面而不允许点击");
 			}
-			this.ResultCache[28] = true;
+			ResultCache[28] = true;
 		}
-		if (UIJianLingQingJiaoPanel.Inst != null)
+		if ((Object)(object)UIJianLingQingJiaoPanel.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因正在剑灵请教界面而不允许点击");
+				Debug.Log((object)"CanClickManager:因正在剑灵请教界面而不允许点击");
 			}
-			this.ResultCache[29] = true;
+			ResultCache[29] = true;
 		}
-		if (SetFaceUI.Inst != null)
+		if ((Object)(object)SetFaceUI.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因捏脸界面不允许点击");
+				Debug.Log((object)"CanClickManager:因捏脸界面不允许点击");
 			}
-			this.ResultCache[30] = true;
+			ResultCache[30] = true;
 		}
-		if (ElderTaskUIMag.Inst != null)
+		if ((Object)(object)ElderTaskUIMag.Inst != (Object)null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因发布任务界面不允许点击");
+				Debug.Log((object)"CanClickManager:因发布任务界面不允许点击");
 			}
-			this.ResultCache[31] = true;
+			ResultCache[31] = true;
 		}
 		if (IExchangeUIMag.Inst != null)
 		{
 			if (show)
 			{
-				Debug.Log("CanClickManager:因发交易会界面不允许点击");
+				Debug.Log((object)"CanClickManager:因发交易会界面不允许点击");
 			}
-			this.ResultCache[32] = true;
+			ResultCache[32] = true;
 		}
-		for (int j = this.MenuDialogCache.Count - 1; j >= 0; j--)
+		for (int num = MenuDialogCache.Count - 1; num >= 0; num--)
 		{
-			if (this.MenuDialogCache[j] != null)
+			if ((Object)(object)MenuDialogCache[num] != (Object)null)
 			{
-				if (this.MenuDialogCache[j].gameObject.activeInHierarchy)
+				if (((Component)MenuDialogCache[num]).gameObject.activeInHierarchy)
 				{
 					if (show)
 					{
-						Debug.Log("CanClickManager:因MenuDialog存在而不允许点击");
+						Debug.Log((object)"CanClickManager:因MenuDialog存在而不允许点击");
 					}
-					this.ResultCache[48] = true;
+					ResultCache[48] = true;
 				}
 			}
 			else
 			{
-				this.MenuDialogCache.RemoveAt(j);
+				MenuDialogCache.RemoveAt(num);
 			}
 		}
-		for (int k = this.SayDialogCache.Count - 1; k >= 0; k--)
+		for (int num2 = SayDialogCache.Count - 1; num2 >= 0; num2--)
 		{
-			if (this.SayDialogCache[k] != null)
+			if ((Object)(object)SayDialogCache[num2] != (Object)null)
 			{
-				if (this.SayDialogCache[k].gameObject.activeInHierarchy)
+				if (((Component)SayDialogCache[num2]).gameObject.activeInHierarchy)
 				{
 					if (show)
 					{
-						Debug.Log("CanClickManager:因SayDialog存在而不允许点击");
+						Debug.Log((object)"CanClickManager:因SayDialog存在而不允许点击");
 					}
-					this.ResultCache[49] = true;
+					ResultCache[49] = true;
 				}
 			}
 			else
 			{
-				this.SayDialogCache.RemoveAt(k);
+				SayDialogCache.RemoveAt(num2);
 			}
 		}
-		for (int l = 0; l < CanClickManager.CacheCount; l++)
+		for (int j = 0; j < CacheCount; j++)
 		{
-			if (this.ResultCache[l])
+			if (ResultCache[j])
 			{
-				this.ResultCount++;
+				ResultCount++;
 			}
 		}
-		this.Result = (this.ResultCount == 0);
+		Result = ResultCount == 0;
 	}
-
-	// Token: 0x04000CFF RID: 3327
-	private static CanClickManager inst;
-
-	// Token: 0x04000D00 RID: 3328
-	public bool IsFinshed;
-
-	// Token: 0x04000D01 RID: 3329
-	public bool Result;
-
-	// Token: 0x04000D02 RID: 3330
-	public bool[] ResultCache = new bool[CanClickManager.CacheCount];
-
-	// Token: 0x04000D03 RID: 3331
-	public int ResultCount;
-
-	// Token: 0x04000D04 RID: 3332
-	public List<MenuDialog> MenuDialogCache = new List<MenuDialog>();
-
-	// Token: 0x04000D05 RID: 3333
-	public List<SayDialog> SayDialogCache = new List<SayDialog>();
-
-	// Token: 0x04000D06 RID: 3334
-	public static int CacheCount = 50;
 }

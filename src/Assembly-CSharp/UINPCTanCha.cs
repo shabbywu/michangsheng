@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -6,32 +6,55 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200027C RID: 636
 public class UINPCTanCha : MonoBehaviour
 {
-	// Token: 0x06001725 RID: 5925 RVA: 0x0009E048 File Offset: 0x0009C248
+	private UINPCData npc;
+
+	public Slider TanChaSlider;
+
+	public Text TanChaText;
+
+	public GameObject GreenBG;
+
+	public GameObject RedBG;
+
+	private static Color Green = new Color(0.64705884f, 73f / 85f, 0.76862746f);
+
+	private static Color Red = new Color(0.8392157f, 0.70980394f, 0.6039216f);
+
+	private static float animTime = 2f;
+
 	public void RefreshUI()
 	{
-		UINPCTanCha.animTime = 2f;
-		this.GreenBG.SetActive(true);
-		this.RedBG.SetActive(false);
-		this.TanChaSlider.value = 0f;
-		this.TanChaText.text = "正在探查中...";
-		this.TanChaText.color = UINPCTanCha.Green;
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c3: Expected O, but got Unknown
+		//IL_01c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cd: Expected O, but got Unknown
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018b: Expected O, but got Unknown
+		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0195: Expected O, but got Unknown
+		animTime = 2f;
+		GreenBG.SetActive(true);
+		RedBG.SetActive(false);
+		TanChaSlider.value = 0f;
+		TanChaText.text = "正在探查中...";
+		((Graphic)TanChaText).color = Green;
 		Avatar player = Tools.instance.getPlayer();
-		this.npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
+		npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
 		bool flag = false;
 		bool flag2;
-		if (player.shengShi >= this.npc.ShenShi)
+		if (player.shengShi >= npc.ShenShi)
 		{
 			flag2 = true;
-			if (jsonData.instance.AvatarJsonData[this.npc.ID.ToString()].HasField("isTanChaUnlock"))
+			if (jsonData.instance.AvatarJsonData[npc.ID.ToString()].HasField("isTanChaUnlock"))
 			{
-				jsonData.instance.AvatarJsonData[this.npc.ID.ToString()].SetField("isTanChaUnlock", true);
+				jsonData.instance.AvatarJsonData[npc.ID.ToString()].SetField("isTanChaUnlock", val: true);
 			}
 			else
 			{
-				jsonData.instance.AvatarJsonData[this.npc.ID.ToString()].AddField("isTanChaUnlock", true);
+				jsonData.instance.AvatarJsonData[npc.ID.ToString()].AddField("isTanChaUnlock", val: true);
 			}
 		}
 		else
@@ -40,70 +63,47 @@ public class UINPCTanCha : MonoBehaviour
 		}
 		if (flag2)
 		{
-			float num = (1f - (float)(this.npc.ShenShi - player.shengShi) / (float)this.npc.ShenShi) * 2f;
+			float num = (1f - (float)(npc.ShenShi - player.shengShi) / (float)npc.ShenShi) * 2f;
 			num *= 100f;
-			flag = ((float)Random.Range(0, 100) >= num);
+			flag = ((!((float)Random.Range(0, 100) < num)) ? true : false);
 		}
 		if (!flag2 || flag)
 		{
-			TweenerCore<float, float, FloatOptions> tweenerCore = DOTweenModuleUI.DOValue(this.TanChaSlider, 1f, UINPCTanCha.animTime, false);
-			tweenerCore.onComplete = (TweenCallback)Delegate.Combine(tweenerCore.onComplete, new TweenCallback(delegate()
+			TweenerCore<float, float, FloatOptions> obj = DOTweenModuleUI.DOValue(TanChaSlider, 1f, animTime, false);
+			((Tween)obj).onComplete = (TweenCallback)Delegate.Combine((Delegate?)(object)((Tween)obj).onComplete, (Delegate?)(TweenCallback)delegate
 			{
-				Debug.Log("探查失败");
-				this.TanChaText.text = "探查失败";
-				this.TanChaText.color = UINPCTanCha.Red;
-				this.GreenBG.SetActive(false);
-				this.RedBG.SetActive(true);
-				base.Invoke("TanChaShiBai", UINPCTanCha.animTime);
-			}));
-			return;
+				//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+				Debug.Log((object)"探查失败");
+				TanChaText.text = "探查失败";
+				((Graphic)TanChaText).color = Red;
+				GreenBG.SetActive(false);
+				RedBG.SetActive(true);
+				((MonoBehaviour)this).Invoke("TanChaShiBai", animTime);
+			});
 		}
-		TweenerCore<float, float, FloatOptions> tweenerCore2 = DOTweenModuleUI.DOValue(this.TanChaSlider, 1f, UINPCTanCha.animTime, false);
-		tweenerCore2.onComplete = (TweenCallback)Delegate.Combine(tweenerCore2.onComplete, new TweenCallback(delegate()
+		else
 		{
-			Debug.Log("探查成功");
-			this.TanChaText.text = "探查成功";
-			base.Invoke("TanChaChengGong", UINPCTanCha.animTime);
-		}));
+			TweenerCore<float, float, FloatOptions> obj2 = DOTweenModuleUI.DOValue(TanChaSlider, 1f, animTime, false);
+			((Tween)obj2).onComplete = (TweenCallback)Delegate.Combine((Delegate?)(object)((Tween)obj2).onComplete, (Delegate?)(TweenCallback)delegate
+			{
+				Debug.Log((object)"探查成功");
+				TanChaText.text = "探查成功";
+				((MonoBehaviour)this).Invoke("TanChaChengGong", animTime);
+			});
+		}
 	}
 
-	// Token: 0x06001726 RID: 5926 RVA: 0x0009E224 File Offset: 0x0009C424
 	private void TanChaChengGong()
 	{
-		this.npc.IsTanChaUnlock = true;
-		jsonData.instance.AvatarJsonData[this.npc.ID.ToString()].SetField("isTanChaUnlock", this.npc.IsTanChaUnlock);
+		npc.IsTanChaUnlock = true;
+		jsonData.instance.AvatarJsonData[npc.ID.ToString()].SetField("isTanChaUnlock", npc.IsTanChaUnlock);
 		UINPCJiaoHu.Inst.HideNPCTanChaPanel();
-		UINPCJiaoHu.Inst.ShowNPCInfoPanel(null);
+		UINPCJiaoHu.Inst.ShowNPCInfoPanel();
 	}
 
-	// Token: 0x06001727 RID: 5927 RVA: 0x0009E286 File Offset: 0x0009C486
 	private void TanChaShiBai()
 	{
 		UINPCJiaoHu.Inst.HideNPCTanChaPanel();
 		UINPCJiaoHu.Inst.IsTanChaShiBaiOrFaXian = true;
 	}
-
-	// Token: 0x040011D1 RID: 4561
-	private UINPCData npc;
-
-	// Token: 0x040011D2 RID: 4562
-	public Slider TanChaSlider;
-
-	// Token: 0x040011D3 RID: 4563
-	public Text TanChaText;
-
-	// Token: 0x040011D4 RID: 4564
-	public GameObject GreenBG;
-
-	// Token: 0x040011D5 RID: 4565
-	public GameObject RedBG;
-
-	// Token: 0x040011D6 RID: 4566
-	private static Color Green = new Color(0.64705884f, 0.85882354f, 0.76862746f);
-
-	// Token: 0x040011D7 RID: 4567
-	private static Color Red = new Color(0.8392157f, 0.70980394f, 0.6039216f);
-
-	// Token: 0x040011D8 RID: 4568
-	private static float animTime = 2f;
 }

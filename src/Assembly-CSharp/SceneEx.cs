@@ -1,157 +1,136 @@
-﻿using System;
 using System.Collections.Generic;
 using Fungus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020001CD RID: 461
 public static class SceneEx
 {
-	// Token: 0x06001337 RID: 4919 RVA: 0x00078C60 File Offset: 0x00076E60
-	private static void Init()
-	{
-		if (!SceneEx.isInited)
-		{
-			foreach (JSONObject jsonobject in jsonData.instance.SceneNameJsonData.list)
-			{
-				SceneEx._SceneTypeDict.TryAdd(jsonobject["id"].str, jsonobject["MoneyType"].I, "");
-			}
-			SceneEx._SceneItemFlagType.Add(0, new List<int>());
-			SceneEx._SceneItemPercent.Add(0, new List<int>());
-			foreach (JSONObject jsonobject2 in jsonData.instance.ScenePriceData.list)
-			{
-				List<int> list = new List<int>();
-				List<int> list2 = new List<int>();
-				foreach (JSONObject jsonobject3 in jsonobject2["ItemFlag"].list)
-				{
-					list.Add(jsonobject3.I);
-				}
-				foreach (JSONObject jsonobject4 in jsonobject2["percent"].list)
-				{
-					list2.Add(jsonobject4.I);
-				}
-				SceneEx._SceneItemFlagType.TryAdd(jsonobject2["id"].I, list, "");
-				SceneEx._SceneItemPercent.TryAdd(jsonobject2["id"].I, list2, "");
-			}
-			SceneEx.isInited = true;
-		}
-	}
+	private static bool isInited;
 
-	// Token: 0x17000228 RID: 552
-	// (get) Token: 0x06001338 RID: 4920 RVA: 0x00078E58 File Offset: 0x00077058
+	private static Dictionary<string, int> _SceneTypeDict = new Dictionary<string, int>();
+
+	private static Dictionary<int, List<int>> _SceneItemFlagType = new Dictionary<int, List<int>>();
+
+	private static Dictionary<int, List<int>> _SceneItemPercent = new Dictionary<int, List<int>>();
+
 	public static string NowSceneName
 	{
 		get
 		{
-			return SceneManager.GetActiveScene().name;
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+			Scene activeScene = SceneManager.GetActiveScene();
+			return ((Scene)(ref activeScene)).name;
 		}
 	}
 
-	// Token: 0x06001339 RID: 4921 RVA: 0x00078E74 File Offset: 0x00077074
+	private static void Init()
+	{
+		if (isInited)
+		{
+			return;
+		}
+		foreach (JSONObject item in jsonData.instance.SceneNameJsonData.list)
+		{
+			ToolsEx.TryAdd(_SceneTypeDict, item["id"].str, item["MoneyType"].I);
+		}
+		_SceneItemFlagType.Add(0, new List<int>());
+		_SceneItemPercent.Add(0, new List<int>());
+		foreach (JSONObject item2 in jsonData.instance.ScenePriceData.list)
+		{
+			List<int> list = new List<int>();
+			List<int> list2 = new List<int>();
+			foreach (JSONObject item3 in item2["ItemFlag"].list)
+			{
+				list.Add(item3.I);
+			}
+			foreach (JSONObject item4 in item2["percent"].list)
+			{
+				list2.Add(item4.I);
+			}
+			ToolsEx.TryAdd(_SceneItemFlagType, item2["id"].I, list);
+			ToolsEx.TryAdd(_SceneItemPercent, item2["id"].I, list2);
+		}
+		isInited = true;
+	}
+
 	public static int GetNowSceneType()
 	{
-		SceneEx.Init();
-		if (SceneEx._SceneTypeDict.ContainsKey(SceneEx.NowSceneName))
+		Init();
+		if (_SceneTypeDict.ContainsKey(NowSceneName))
 		{
-			return SceneEx._SceneTypeDict[SceneEx.NowSceneName];
+			return _SceneTypeDict[NowSceneName];
 		}
-		if (!(SceneEx.NowSceneName == "FRandomBase"))
+		if (NowSceneName == "FRandomBase")
 		{
-			Debug.LogError("获取场景类型出错，此场景" + SceneEx.NowSceneName + "没有在配表数据中，需要反馈");
+			if (_SceneTypeDict.ContainsKey(PlayerEx.Player.lastFuBenScence))
+			{
+				return _SceneTypeDict[PlayerEx.Player.lastFuBenScence];
+			}
+			Debug.LogError((object)("获取场景类型出错，此随机场景" + NowSceneName + "的出口" + PlayerEx.Player.lastFuBenScence + "没有在配表数据中，需要反馈"));
 			return 0;
 		}
-		if (SceneEx._SceneTypeDict.ContainsKey(PlayerEx.Player.lastFuBenScence))
-		{
-			return SceneEx._SceneTypeDict[PlayerEx.Player.lastFuBenScence];
-		}
-		Debug.LogError(string.Concat(new string[]
-		{
-			"获取场景类型出错，此随机场景",
-			SceneEx.NowSceneName,
-			"的出口",
-			PlayerEx.Player.lastFuBenScence,
-			"没有在配表数据中，需要反馈"
-		}));
+		Debug.LogError((object)("获取场景类型出错，此场景" + NowSceneName + "没有在配表数据中，需要反馈"));
 		return 0;
 	}
 
-	// Token: 0x0600133A RID: 4922 RVA: 0x00078F3C File Offset: 0x0007713C
 	public static int ItemNowSceneJiaCheng(int itemid)
 	{
 		int result = 0;
-		int nowSceneType = SceneEx.GetNowSceneType();
-		JSONObject jsonobject = itemid.ItemJson();
-		if (!jsonobject["ItemFlag"].IsNull)
+		int nowSceneType = GetNowSceneType();
+		JSONObject jSONObject = itemid.ItemJson();
+		if (!jSONObject["ItemFlag"].IsNull)
 		{
-			foreach (JSONObject jsonobject2 in jsonobject["ItemFlag"].list)
+			foreach (JSONObject item in jSONObject["ItemFlag"].list)
 			{
-				for (int i = 0; i < SceneEx._SceneItemFlagType[nowSceneType].Count; i++)
+				for (int i = 0; i < _SceneItemFlagType[nowSceneType].Count; i++)
 				{
-					if (SceneEx._SceneItemFlagType[nowSceneType][i] == jsonobject2.I)
+					if (_SceneItemFlagType[nowSceneType][i] == item.I)
 					{
-						return SceneEx._SceneItemPercent[nowSceneType][i];
+						return _SceneItemPercent[nowSceneType][i];
 					}
 				}
 			}
-			return result;
 		}
 		return result;
 	}
 
-	// Token: 0x0600133B RID: 4923 RVA: 0x0007900C File Offset: 0x0007720C
 	public static void LoadFuBen(string fubenName, int pos)
 	{
 		Fungus.LoadFuBen.loadfuben(fubenName, pos);
 	}
 
-	// Token: 0x0600133C RID: 4924 RVA: 0x00079018 File Offset: 0x00077218
 	public static void CloseYSFight()
 	{
-		foreach (GameObject gameObject in SceneManager.GetActiveScene().GetRootGameObjects())
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		Scene activeScene = SceneManager.GetActiveScene();
+		GameObject[] rootGameObjects = ((Scene)(ref activeScene)).GetRootGameObjects();
+		foreach (GameObject val in rootGameObjects)
 		{
-			if (gameObject.name != "Main Camera" && gameObject.name != "EventSystem" && gameObject != null)
+			if (((Object)val).name != "Main Camera" && ((Object)val).name != "EventSystem" && (Object)(object)val != (Object)null)
 			{
 				try
 				{
-					gameObject.SetActive(false);
+					val.SetActive(false);
 				}
 				catch
 				{
-					Debug.Log("异常");
+					Debug.Log((object)"异常");
 				}
 			}
 		}
 	}
 
-	// Token: 0x0600133D RID: 4925 RVA: 0x00079098 File Offset: 0x00077298
 	public static MapArea GetNowMapArea()
 	{
-		SceneEx.Init();
-		int nowSceneType = SceneEx.GetNowSceneType();
-		if (nowSceneType == 1)
+		Init();
+		return GetNowSceneType() switch
 		{
-			return MapArea.NingZhou;
-		}
-		if (nowSceneType == 2)
-		{
-			return MapArea.Sea;
-		}
-		if (nowSceneType == 3)
-		{
-			return MapArea.Sea;
-		}
-		return MapArea.Unknow;
+			1 => MapArea.NingZhou, 
+			2 => MapArea.Sea, 
+			3 => MapArea.Sea, 
+			_ => MapArea.Unknow, 
+		};
 	}
-
-	// Token: 0x04000E88 RID: 3720
-	private static bool isInited;
-
-	// Token: 0x04000E89 RID: 3721
-	private static Dictionary<string, int> _SceneTypeDict = new Dictionary<string, int>();
-
-	// Token: 0x04000E8A RID: 3722
-	private static Dictionary<int, List<int>> _SceneItemFlagType = new Dictionary<int, List<int>>();
-
-	// Token: 0x04000E8B RID: 3723
-	private static Dictionary<int, List<int>> _SceneItemPercent = new Dictionary<int, List<int>>();
 }

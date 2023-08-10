@@ -1,100 +1,116 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000D2 RID: 210
 public class CharacterAttack : MonoBehaviour
 {
-	// Token: 0x06000AFD RID: 2813 RVA: 0x00042878 File Offset: 0x00040A78
+	public float Direction = 0.5f;
+
+	public float Radius = 1f;
+
+	public int Force = 500;
+
+	public AudioClip[] SoundHit;
+
+	public bool Activated;
+
+	public GameObject FloatingText;
+
+	private HashSet<GameObject> listObjHitted = new HashSet<GameObject>();
+
 	public void StartDamage()
 	{
-		this.listObjHitted.Clear();
-		this.Activated = false;
+		listObjHitted.Clear();
+		Activated = false;
 	}
 
-	// Token: 0x06000AFE RID: 2814 RVA: 0x0004288C File Offset: 0x00040A8C
 	private void AddObjHitted(GameObject obj)
 	{
-		this.listObjHitted.Add(obj);
+		listObjHitted.Add(obj);
 	}
 
-	// Token: 0x06000AFF RID: 2815 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B00 RID: 2816 RVA: 0x0004289C File Offset: 0x00040A9C
 	public void AddFloatingText(Vector3 pos, string text)
 	{
-		if (this.FloatingText)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		if (Object.op_Implicit((Object)(object)FloatingText))
 		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.FloatingText, pos, base.transform.rotation);
-			if (gameObject.GetComponent<FloatingText>())
+			GameObject val = Object.Instantiate<GameObject>(FloatingText, pos, ((Component)this).transform.rotation);
+			if (Object.op_Implicit((Object)(object)val.GetComponent<FloatingText>()))
 			{
-				gameObject.GetComponent<FloatingText>().Text = text;
+				val.GetComponent<FloatingText>().Text = text;
 			}
-			Object.Destroy(gameObject, 1f);
+			Object.Destroy((Object)(object)val, 1f);
 		}
 	}
 
-	// Token: 0x06000B01 RID: 2817 RVA: 0x000428F4 File Offset: 0x00040AF4
 	public void DoDamage()
 	{
-		this.Activated = true;
-		foreach (Collider collider in Physics.OverlapSphere(base.transform.position, this.Radius))
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
+		Activated = true;
+		Collider[] array = Physics.OverlapSphere(((Component)this).transform.position, Radius);
+		foreach (Collider val in array)
 		{
-			if (collider && !(collider.gameObject == base.gameObject) && !(collider.gameObject.tag == base.gameObject.tag) && !this.listObjHitted.Contains(collider.gameObject) && Vector3.Dot((collider.transform.position - base.transform.position).normalized, base.transform.forward) >= this.Direction)
+			if (!Object.op_Implicit((Object)(object)val) || (Object)(object)((Component)val).gameObject == (Object)(object)((Component)this).gameObject || ((Component)val).gameObject.tag == ((Component)this).gameObject.tag || listObjHitted.Contains(((Component)val).gameObject))
 			{
-				OrbitGameObject component = Camera.main.gameObject.GetComponent<OrbitGameObject>();
-				if (component != null && component.Target == collider.gameObject)
-				{
-					ShakeCamera.Shake(0.5f, 0.5f);
-				}
-				Vector3 vector = (base.transform.forward + base.transform.up) * (float)this.Force;
-				if (collider.gameObject.GetComponent<CharacterStatus>())
-				{
-					if (this.SoundHit.Length != 0)
-					{
-						int num = Random.Range(0, this.SoundHit.Length);
-						if (this.SoundHit[num] != null)
-						{
-							AudioSource.PlayClipAtPoint(this.SoundHit[num], base.transform.position);
-						}
-					}
-					int damage = base.gameObject.GetComponent<CharacterStatus>().Damage;
-					int damage2 = (int)Random.Range((float)damage / 2f, (float)damage) + 1;
-					CharacterStatus component2 = collider.gameObject.GetComponent<CharacterStatus>();
-					int num2 = component2.ApplayDamage(damage2, vector);
-					this.AddFloatingText(collider.transform.position + Vector3.up, num2.ToString());
-					component2.AddParticle(collider.transform.position + Vector3.up);
-				}
-				if (collider.GetComponent<Rigidbody>())
-				{
-					collider.GetComponent<Rigidbody>().AddForce(vector);
-				}
-				this.AddObjHitted(collider.gameObject);
+				continue;
 			}
+			Vector3 val2 = ((Component)val).transform.position - ((Component)this).transform.position;
+			if (Vector3.Dot(((Vector3)(ref val2)).normalized, ((Component)this).transform.forward) < Direction)
+			{
+				continue;
+			}
+			OrbitGameObject component = ((Component)Camera.main).gameObject.GetComponent<OrbitGameObject>();
+			if ((Object)(object)component != (Object)null && (Object)(object)component.Target == (Object)(object)((Component)val).gameObject)
+			{
+				ShakeCamera.Shake(0.5f, 0.5f);
+			}
+			Vector3 val3 = (((Component)this).transform.forward + ((Component)this).transform.up) * (float)Force;
+			if (Object.op_Implicit((Object)(object)((Component)val).gameObject.GetComponent<CharacterStatus>()))
+			{
+				if (SoundHit.Length != 0)
+				{
+					int num = Random.Range(0, SoundHit.Length);
+					if ((Object)(object)SoundHit[num] != (Object)null)
+					{
+						AudioSource.PlayClipAtPoint(SoundHit[num], ((Component)this).transform.position);
+					}
+				}
+				int damage = ((Component)this).gameObject.GetComponent<CharacterStatus>().Damage;
+				int damage2 = (int)Random.Range((float)damage / 2f, (float)damage) + 1;
+				CharacterStatus component2 = ((Component)val).gameObject.GetComponent<CharacterStatus>();
+				int num2 = component2.ApplayDamage(damage2, val3);
+				AddFloatingText(((Component)val).transform.position + Vector3.up, num2.ToString());
+				component2.AddParticle(((Component)val).transform.position + Vector3.up);
+			}
+			if (Object.op_Implicit((Object)(object)((Component)val).GetComponent<Rigidbody>()))
+			{
+				((Component)val).GetComponent<Rigidbody>().AddForce(val3);
+			}
+			AddObjHitted(((Component)val).gameObject);
 		}
 	}
-
-	// Token: 0x04000720 RID: 1824
-	public float Direction = 0.5f;
-
-	// Token: 0x04000721 RID: 1825
-	public float Radius = 1f;
-
-	// Token: 0x04000722 RID: 1826
-	public int Force = 500;
-
-	// Token: 0x04000723 RID: 1827
-	public AudioClip[] SoundHit;
-
-	// Token: 0x04000724 RID: 1828
-	public bool Activated;
-
-	// Token: 0x04000725 RID: 1829
-	public GameObject FloatingText;
-
-	// Token: 0x04000726 RID: 1830
-	private HashSet<GameObject> listObjHitted = new HashSet<GameObject>();
 }

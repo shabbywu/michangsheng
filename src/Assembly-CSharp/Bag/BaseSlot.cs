@@ -1,44 +1,47 @@
-﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Bag
+namespace Bag;
+
+public class BaseSlot : SlotBase
 {
-	// Token: 0x020009B7 RID: 2487
-	public class BaseSlot : SlotBase
+	public override void OnPointerEnter(PointerEventData eventData)
 	{
-		// Token: 0x06004526 RID: 17702 RVA: 0x001D5BC4 File Offset: 0x001D3DC4
-		public override void OnPointerEnter(PointerEventData eventData)
+		if (DragMag.Inst.IsDraging)
 		{
-			if (DragMag.Inst.IsDraging)
-			{
-				DragMag.Inst.ToSlot = this;
-			}
-			if (this.SlotType == SlotType.空)
-			{
-				return;
-			}
-			this.IsIn = true;
-			if (!eventData.dragging)
-			{
-				if (ToolTipsMag.Inst == null)
-				{
-					ResManager.inst.LoadPrefab("ToolTips").Inst(NewUICanvas.Inst.transform);
-				}
-				ToolTipsMag.Inst.Show(this.Item);
-			}
-			this._selectPanel.SetActive(true);
+			DragMag.Inst.ToSlot = this;
 		}
+		if (SlotType == SlotType.空)
+		{
+			return;
+		}
+		IsIn = true;
+		if (!eventData.dragging)
+		{
+			if ((Object)(object)ToolTipsMag.Inst == (Object)null)
+			{
+				ResManager.inst.LoadPrefab("ToolTips").Inst(((Component)NewUICanvas.Inst).transform);
+			}
+			ToolTipsMag.Inst.Show(Item);
+		}
+		_selectPanel.SetActive(true);
+	}
 
-		// Token: 0x06004527 RID: 17703 RVA: 0x001D5C48 File Offset: 0x001D3E48
-		public override void OnPointerUp(PointerEventData eventData)
-		{
-			this._selectPanel.SetActive(false);
-		}
+	public override void OnPointerUp(PointerEventData eventData)
+	{
+		_selectPanel.SetActive(false);
+	}
 
-		// Token: 0x06004528 RID: 17704 RVA: 0x0018C39D File Offset: 0x0018A59D
-		public override bool CanDrag()
+	public override bool CanDrag()
+	{
+		if (IsNull())
 		{
-			return !base.IsNull() && this.Item.CanSale && base.CanDrag();
+			return false;
 		}
+		if (!Item.CanSale)
+		{
+			return false;
+		}
+		return base.CanDrag();
 	}
 }

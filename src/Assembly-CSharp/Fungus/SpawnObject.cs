@@ -1,141 +1,137 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Scripting", "Spawn Object", "Spawns a new object based on a reference to a scene or prefab game object.", 0, Priority = 10)]
+[CommandInfo("GameObject", "Instantiate", "Instantiate a game object", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class SpawnObject : Command
 {
-	// Token: 0x02000E4B RID: 3659
-	[CommandInfo("Scripting", "Spawn Object", "Spawns a new object based on a reference to a scene or prefab game object.", 0, Priority = 10)]
-	[CommandInfo("GameObject", "Instantiate", "Instantiate a game object", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class SpawnObject : Command
+	[Tooltip("Game object to copy when spawning. Can be a scene object or a prefab.")]
+	[SerializeField]
+	protected GameObjectData _sourceObject;
+
+	[Tooltip("Transform to use as parent during instantiate.")]
+	[SerializeField]
+	protected TransformData _parentTransform;
+
+	[Tooltip("If true, will use the Transfrom of this Flowchart for the position and rotation.")]
+	[SerializeField]
+	protected BooleanData _spawnAtSelf = new BooleanData(v: false);
+
+	[Tooltip("Local position of newly spawned object.")]
+	[SerializeField]
+	protected Vector3Data _spawnPosition;
+
+	[Tooltip("Local rotation of newly spawned object.")]
+	[SerializeField]
+	protected Vector3Data _spawnRotation;
+
+	[Tooltip("Optional variable to store the GameObject that was just created.")]
+	[SerializeField]
+	protected GameObjectData _newlySpawnedObject;
+
+	[HideInInspector]
+	[FormerlySerializedAs("sourceObject")]
+	public GameObject sourceObjectOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("parentTransform")]
+	public Transform parentTransformOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("spawnPosition")]
+	public Vector3 spawnPositionOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("spawnRotation")]
+	public Vector3 spawnRotationOLD;
+
+	public override void OnEnter()
 	{
-		// Token: 0x060066E9 RID: 26345 RVA: 0x002882D0 File Offset: 0x002864D0
-		public override void OnEnter()
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)_sourceObject.Value == (Object)null)
 		{
-			if (this._sourceObject.Value == null)
-			{
-				this.Continue();
-				return;
-			}
-			GameObject gameObject;
-			if (this._parentTransform.Value != null)
-			{
-				gameObject = Object.Instantiate<GameObject>(this._sourceObject.Value, this._parentTransform.Value);
-			}
-			else
-			{
-				gameObject = Object.Instantiate<GameObject>(this._sourceObject.Value);
-			}
-			if (!this._spawnAtSelf.Value)
-			{
-				gameObject.transform.localPosition = this._spawnPosition.Value;
-				gameObject.transform.localRotation = Quaternion.Euler(this._spawnRotation.Value);
-			}
-			else
-			{
-				gameObject.transform.SetPositionAndRotation(base.transform.position, base.transform.rotation);
-			}
-			this._newlySpawnedObject.Value = gameObject;
-			this.Continue();
+			Continue();
+			return;
 		}
-
-		// Token: 0x060066EA RID: 26346 RVA: 0x002883AE File Offset: 0x002865AE
-		public override string GetSummary()
+		GameObject val = null;
+		val = ((!((Object)(object)_parentTransform.Value != (Object)null)) ? Object.Instantiate<GameObject>(_sourceObject.Value) : Object.Instantiate<GameObject>(_sourceObject.Value, _parentTransform.Value));
+		if (!_spawnAtSelf.Value)
 		{
-			if (this._sourceObject.Value == null)
-			{
-				return "Error: No source GameObject specified";
-			}
-			return this._sourceObject.Value.name;
+			val.transform.localPosition = _spawnPosition.Value;
+			val.transform.localRotation = Quaternion.Euler(_spawnRotation.Value);
 		}
-
-		// Token: 0x060066EB RID: 26347 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			val.transform.SetPositionAndRotation(((Component)this).transform.position, ((Component)this).transform.rotation);
 		}
+		_newlySpawnedObject.Value = val;
+		Continue();
+	}
 
-		// Token: 0x060066EC RID: 26348 RVA: 0x002883DC File Offset: 0x002865DC
-		public override bool HasReference(Variable variable)
+	public override string GetSummary()
+	{
+		if ((Object)(object)_sourceObject.Value == (Object)null)
 		{
-			return this._sourceObject.gameObjectRef == variable || this._parentTransform.transformRef == variable || this._spawnAtSelf.booleanRef == variable || this._spawnPosition.vector3Ref == variable || this._spawnRotation.vector3Ref == variable;
+			return "Error: No source GameObject specified";
 		}
+		return ((Object)_sourceObject.Value).name;
+	}
 
-		// Token: 0x060066ED RID: 26349 RVA: 0x0028844C File Offset: 0x0028664C
-		protected virtual void OnEnable()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if ((Object)(object)_sourceObject.gameObjectRef == (Object)(object)variable || (Object)(object)_parentTransform.transformRef == (Object)(object)variable || (Object)(object)_spawnAtSelf.booleanRef == (Object)(object)variable || (Object)(object)_spawnPosition.vector3Ref == (Object)(object)variable || (Object)(object)_spawnRotation.vector3Ref == (Object)(object)variable)
 		{
-			if (this.sourceObjectOLD != null)
-			{
-				this._sourceObject.Value = this.sourceObjectOLD;
-				this.sourceObjectOLD = null;
-			}
-			if (this.parentTransformOLD != null)
-			{
-				this._parentTransform.Value = this.parentTransformOLD;
-				this.parentTransformOLD = null;
-			}
-			if (this.spawnPositionOLD != default(Vector3))
-			{
-				this._spawnPosition.Value = this.spawnPositionOLD;
-				this.spawnPositionOLD = default(Vector3);
-			}
-			if (this.spawnRotationOLD != default(Vector3))
-			{
-				this._spawnRotation.Value = this.spawnRotationOLD;
-				this.spawnRotationOLD = default(Vector3);
-			}
+			return true;
 		}
+		return false;
+	}
 
-		// Token: 0x04005814 RID: 22548
-		[Tooltip("Game object to copy when spawning. Can be a scene object or a prefab.")]
-		[SerializeField]
-		protected GameObjectData _sourceObject;
-
-		// Token: 0x04005815 RID: 22549
-		[Tooltip("Transform to use as parent during instantiate.")]
-		[SerializeField]
-		protected TransformData _parentTransform;
-
-		// Token: 0x04005816 RID: 22550
-		[Tooltip("If true, will use the Transfrom of this Flowchart for the position and rotation.")]
-		[SerializeField]
-		protected BooleanData _spawnAtSelf = new BooleanData(false);
-
-		// Token: 0x04005817 RID: 22551
-		[Tooltip("Local position of newly spawned object.")]
-		[SerializeField]
-		protected Vector3Data _spawnPosition;
-
-		// Token: 0x04005818 RID: 22552
-		[Tooltip("Local rotation of newly spawned object.")]
-		[SerializeField]
-		protected Vector3Data _spawnRotation;
-
-		// Token: 0x04005819 RID: 22553
-		[Tooltip("Optional variable to store the GameObject that was just created.")]
-		[SerializeField]
-		protected GameObjectData _newlySpawnedObject;
-
-		// Token: 0x0400581A RID: 22554
-		[HideInInspector]
-		[FormerlySerializedAs("sourceObject")]
-		public GameObject sourceObjectOLD;
-
-		// Token: 0x0400581B RID: 22555
-		[HideInInspector]
-		[FormerlySerializedAs("parentTransform")]
-		public Transform parentTransformOLD;
-
-		// Token: 0x0400581C RID: 22556
-		[HideInInspector]
-		[FormerlySerializedAs("spawnPosition")]
-		public Vector3 spawnPositionOLD;
-
-		// Token: 0x0400581D RID: 22557
-		[HideInInspector]
-		[FormerlySerializedAs("spawnRotation")]
-		public Vector3 spawnRotationOLD;
+	protected virtual void OnEnable()
+	{
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)sourceObjectOLD != (Object)null)
+		{
+			_sourceObject.Value = sourceObjectOLD;
+			sourceObjectOLD = null;
+		}
+		if ((Object)(object)parentTransformOLD != (Object)null)
+		{
+			_parentTransform.Value = parentTransformOLD;
+			parentTransformOLD = null;
+		}
+		if (spawnPositionOLD != default(Vector3))
+		{
+			_spawnPosition.Value = spawnPositionOLD;
+			spawnPositionOLD = default(Vector3);
+		}
+		if (spawnRotationOLD != default(Vector3))
+		{
+			_spawnRotation.Value = spawnRotationOLD;
+			spawnRotationOLD = default(Vector3);
+		}
 	}
 }

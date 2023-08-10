@@ -1,86 +1,69 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class MenPaiFengLuBiao : IJSONClass
 {
-	// Token: 0x0200088D RID: 2189
-	public class MenPaiFengLuBiao : IJSONClass
+	public static Dictionary<int, MenPaiFengLuBiao> DataDict = new Dictionary<int, MenPaiFengLuBiao>();
+
+	public static List<MenPaiFengLuBiao> DataList = new List<MenPaiFengLuBiao>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int MenKan;
+
+	public int CD;
+
+	public int money;
+
+	public string Name;
+
+	public List<int> RenWu = new List<int>();
+
+	public List<int> haogandu = new List<int>();
+
+	public List<int> addMoney = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004047 RID: 16455 RVA: 0x001B6CE0 File Offset: 0x001B4EE0
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.MenPaiFengLuBiao.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.MenPaiFengLuBiao.list)
+			try
 			{
-				try
+				MenPaiFengLuBiao menPaiFengLuBiao = new MenPaiFengLuBiao();
+				menPaiFengLuBiao.id = item["id"].I;
+				menPaiFengLuBiao.MenKan = item["MenKan"].I;
+				menPaiFengLuBiao.CD = item["CD"].I;
+				menPaiFengLuBiao.money = item["money"].I;
+				menPaiFengLuBiao.Name = item["Name"].Str;
+				menPaiFengLuBiao.RenWu = item["RenWu"].ToList();
+				menPaiFengLuBiao.haogandu = item["haogandu"].ToList();
+				menPaiFengLuBiao.addMoney = item["addMoney"].ToList();
+				if (DataDict.ContainsKey(menPaiFengLuBiao.id))
 				{
-					MenPaiFengLuBiao menPaiFengLuBiao = new MenPaiFengLuBiao();
-					menPaiFengLuBiao.id = jsonobject["id"].I;
-					menPaiFengLuBiao.MenKan = jsonobject["MenKan"].I;
-					menPaiFengLuBiao.CD = jsonobject["CD"].I;
-					menPaiFengLuBiao.money = jsonobject["money"].I;
-					menPaiFengLuBiao.Name = jsonobject["Name"].Str;
-					menPaiFengLuBiao.RenWu = jsonobject["RenWu"].ToList();
-					menPaiFengLuBiao.haogandu = jsonobject["haogandu"].ToList();
-					menPaiFengLuBiao.addMoney = jsonobject["addMoney"].ToList();
-					if (MenPaiFengLuBiao.DataDict.ContainsKey(menPaiFengLuBiao.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典MenPaiFengLuBiao.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", menPaiFengLuBiao.id));
-					}
-					else
-					{
-						MenPaiFengLuBiao.DataDict.Add(menPaiFengLuBiao.id, menPaiFengLuBiao);
-						MenPaiFengLuBiao.DataList.Add(menPaiFengLuBiao);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典MenPaiFengLuBiao.DataDict添加数据时出现重复的键，Key:{menPaiFengLuBiao.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典MenPaiFengLuBiao.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(menPaiFengLuBiao.id, menPaiFengLuBiao);
+				DataList.Add(menPaiFengLuBiao);
 			}
-			if (MenPaiFengLuBiao.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				MenPaiFengLuBiao.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典MenPaiFengLuBiao.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004048 RID: 16456 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003D7F RID: 15743
-		public static Dictionary<int, MenPaiFengLuBiao> DataDict = new Dictionary<int, MenPaiFengLuBiao>();
-
-		// Token: 0x04003D80 RID: 15744
-		public static List<MenPaiFengLuBiao> DataList = new List<MenPaiFengLuBiao>();
-
-		// Token: 0x04003D81 RID: 15745
-		public static Action OnInitFinishAction = new Action(MenPaiFengLuBiao.OnInitFinish);
-
-		// Token: 0x04003D82 RID: 15746
-		public int id;
-
-		// Token: 0x04003D83 RID: 15747
-		public int MenKan;
-
-		// Token: 0x04003D84 RID: 15748
-		public int CD;
-
-		// Token: 0x04003D85 RID: 15749
-		public int money;
-
-		// Token: 0x04003D86 RID: 15750
-		public string Name;
-
-		// Token: 0x04003D87 RID: 15751
-		public List<int> RenWu = new List<int>();
-
-		// Token: 0x04003D88 RID: 15752
-		public List<int> haogandu = new List<int>();
-
-		// Token: 0x04003D89 RID: 15753
-		public List<int> addMoney = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

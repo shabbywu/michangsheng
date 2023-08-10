@@ -1,80 +1,74 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Animation", "Reset Anim Trigger", "Resets a trigger parameter on an Animator component.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class ResetAnimTrigger : Command
 {
-	// Token: 0x02000E1E RID: 3614
-	[CommandInfo("Animation", "Reset Anim Trigger", "Resets a trigger parameter on an Animator component.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class ResetAnimTrigger : Command
+	[Tooltip("Reference to an Animator component in a game object")]
+	[SerializeField]
+	protected AnimatorData _animator;
+
+	[Tooltip("Name of the trigger Animator parameter that will be reset")]
+	[SerializeField]
+	protected StringData _parameterName;
+
+	[HideInInspector]
+	[FormerlySerializedAs("animator")]
+	public Animator animatorOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("parameterName")]
+	public string parameterNameOLD = "";
+
+	public override void OnEnter()
 	{
-		// Token: 0x060065E8 RID: 26088 RVA: 0x00284598 File Offset: 0x00282798
-		public override void OnEnter()
+		if ((Object)(object)_animator.Value != (Object)null)
 		{
-			if (this._animator.Value != null)
-			{
-				this._animator.Value.ResetTrigger(this._parameterName.Value);
-			}
-			this.Continue();
+			_animator.Value.ResetTrigger(_parameterName.Value);
 		}
+		Continue();
+	}
 
-		// Token: 0x060065E9 RID: 26089 RVA: 0x002845D0 File Offset: 0x002827D0
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)_animator.Value == (Object)null)
 		{
-			if (this._animator.Value == null)
-			{
-				return "Error: No animator selected";
-			}
-			return this._animator.Value.name + " (" + this._parameterName.Value + ")";
+			return "Error: No animator selected";
 		}
+		return ((Object)_animator.Value).name + " (" + _parameterName.Value + ")";
+	}
 
-		// Token: 0x060065EA RID: 26090 RVA: 0x002836B8 File Offset: 0x002818B8
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)170, (byte)204, (byte)169, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_animator.animatorRef == (Object)(object)variable) && !((Object)(object)_parameterName.stringRef == (Object)(object)variable))
 		{
-			return new Color32(170, 204, 169, byte.MaxValue);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x060065EB RID: 26091 RVA: 0x00284620 File Offset: 0x00282820
-		public override bool HasReference(Variable variable)
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)animatorOLD != (Object)null)
 		{
-			return this._animator.animatorRef == variable || this._parameterName.stringRef == variable || base.HasReference(variable);
+			_animator.Value = animatorOLD;
+			animatorOLD = null;
 		}
-
-		// Token: 0x060065EC RID: 26092 RVA: 0x00284654 File Offset: 0x00282854
-		protected virtual void OnEnable()
+		if (parameterNameOLD != "")
 		{
-			if (this.animatorOLD != null)
-			{
-				this._animator.Value = this.animatorOLD;
-				this.animatorOLD = null;
-			}
-			if (this.parameterNameOLD != "")
-			{
-				this._parameterName.Value = this.parameterNameOLD;
-				this.parameterNameOLD = "";
-			}
+			_parameterName.Value = parameterNameOLD;
+			parameterNameOLD = "";
 		}
-
-		// Token: 0x04005769 RID: 22377
-		[Tooltip("Reference to an Animator component in a game object")]
-		[SerializeField]
-		protected AnimatorData _animator;
-
-		// Token: 0x0400576A RID: 22378
-		[Tooltip("Name of the trigger Animator parameter that will be reset")]
-		[SerializeField]
-		protected StringData _parameterName;
-
-		// Token: 0x0400576B RID: 22379
-		[HideInInspector]
-		[FormerlySerializedAs("animator")]
-		public Animator animatorOLD;
-
-		// Token: 0x0400576C RID: 22380
-		[HideInInspector]
-		[FormerlySerializedAs("parameterName")]
-		public string parameterNameOLD = "";
 	}
 }

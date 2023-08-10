@@ -1,25 +1,39 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
 
-// Token: 0x02000081 RID: 129
 public class ByteReader
 {
-	// Token: 0x06000650 RID: 1616 RVA: 0x000239F4 File Offset: 0x00021BF4
+	private byte[] mBuffer;
+
+	private int mOffset;
+
+	private static BetterList<string> mTemp = new BetterList<string>();
+
+	public bool canRead
+	{
+		get
+		{
+			if (mBuffer != null)
+			{
+				return mOffset < mBuffer.Length;
+			}
+			return false;
+		}
+	}
+
 	public ByteReader(byte[] bytes)
 	{
-		this.mBuffer = bytes;
+		mBuffer = bytes;
 	}
 
-	// Token: 0x06000651 RID: 1617 RVA: 0x00023A03 File Offset: 0x00021C03
 	public ByteReader(TextAsset asset)
 	{
-		this.mBuffer = asset.bytes;
+		mBuffer = asset.bytes;
 	}
 
-	// Token: 0x06000652 RID: 1618 RVA: 0x00023A18 File Offset: 0x00021C18
 	public static ByteReader Open(string path)
 	{
 		FileStream fileStream = File.OpenRead(path);
@@ -35,71 +49,56 @@ public class ByteReader
 		return null;
 	}
 
-	// Token: 0x170000BF RID: 191
-	// (get) Token: 0x06000653 RID: 1619 RVA: 0x00023A6A File Offset: 0x00021C6A
-	public bool canRead
-	{
-		get
-		{
-			return this.mBuffer != null && this.mOffset < this.mBuffer.Length;
-		}
-	}
-
-	// Token: 0x06000654 RID: 1620 RVA: 0x00023A86 File Offset: 0x00021C86
 	private static string ReadLine(byte[] buffer, int start, int count)
 	{
 		return Encoding.UTF8.GetString(buffer, start, count);
 	}
 
-	// Token: 0x06000655 RID: 1621 RVA: 0x00023A95 File Offset: 0x00021C95
 	public string ReadLine()
 	{
-		return this.ReadLine(true);
+		return ReadLine(skipEmptyLines: true);
 	}
 
-	// Token: 0x06000656 RID: 1622 RVA: 0x00023AA0 File Offset: 0x00021CA0
 	public string ReadLine(bool skipEmptyLines)
 	{
-		int num = this.mBuffer.Length;
+		int num = mBuffer.Length;
 		if (skipEmptyLines)
 		{
-			while (this.mOffset < num && this.mBuffer[this.mOffset] < 32)
+			while (mOffset < num && mBuffer[mOffset] < 32)
 			{
-				this.mOffset++;
+				mOffset++;
 			}
 		}
-		int i = this.mOffset;
-		if (i < num)
+		int num2 = mOffset;
+		if (num2 < num)
 		{
-			while (i < num)
+			int num3;
+			do
 			{
-				int num2 = (int)this.mBuffer[i++];
-				if (num2 == 10 || num2 == 13)
+				if (num2 < num)
 				{
-					IL_62:
-					string result = ByteReader.ReadLine(this.mBuffer, this.mOffset, i - this.mOffset - 1);
-					this.mOffset = i;
-					return result;
+					num3 = mBuffer[num2++];
+					continue;
 				}
+				num2++;
+				break;
 			}
-			i++;
-			goto IL_62;
+			while (num3 != 10 && num3 != 13);
+			string result = ReadLine(mBuffer, mOffset, num2 - mOffset - 1);
+			mOffset = num2;
+			return result;
 		}
-		this.mOffset = num;
+		mOffset = num;
 		return null;
 	}
 
-	// Token: 0x06000657 RID: 1623 RVA: 0x00023B3C File Offset: 0x00021D3C
 	public Dictionary<string, string> ReadDictionary()
 	{
 		Dictionary<string, string> dictionary = new Dictionary<string, string>();
-		char[] separator = new char[]
+		char[] separator = new char[1] { '=' };
+		while (canRead)
 		{
-			'='
-		};
-		while (this.canRead)
-		{
-			string text = this.ReadLine();
+			string text = ReadLine();
 			if (text == null)
 			{
 				break;
@@ -118,18 +117,17 @@ public class ByteReader
 		return dictionary;
 	}
 
-	// Token: 0x06000658 RID: 1624 RVA: 0x00023BBC File Offset: 0x00021DBC
 	public BetterList<string> ReadCSV()
 	{
-		ByteReader.mTemp.Clear();
+		mTemp.Clear();
 		string text = "";
 		bool flag = false;
 		int num = 0;
-		while (this.canRead)
+		while (canRead)
 		{
 			if (flag)
 			{
-				string text2 = this.ReadLine(false);
+				string text2 = ReadLine(skipEmptyLines: false);
 				if (text2 == null)
 				{
 					return null;
@@ -140,7 +138,7 @@ public class ByteReader
 			}
 			else
 			{
-				text = this.ReadLine(true);
+				text = ReadLine(skipEmptyLines: true);
 				if (text == null)
 				{
 					return null;
@@ -149,30 +147,28 @@ public class ByteReader
 				num = 0;
 			}
 			int i = num;
-			int length = text.Length;
-			while (i < length)
+			for (int length = text.Length; i < length; i++)
 			{
-				char c = text[i];
-				if (c == ',')
+				switch (text[i])
 				{
+				case ',':
 					if (!flag)
 					{
-						ByteReader.mTemp.Add(text.Substring(num, i - num));
+						mTemp.Add(text.Substring(num, i - num));
 						num = i + 1;
 					}
-				}
-				else if (c == '"')
-				{
+					break;
+				case '"':
 					if (flag)
 					{
 						if (i + 1 >= length)
 						{
-							ByteReader.mTemp.Add(text.Substring(num, i - num).Replace("\"\"", "\""));
-							return ByteReader.mTemp;
+							mTemp.Add(text.Substring(num, i - num).Replace("\"\"", "\""));
+							return mTemp;
 						}
 						if (text[i + 1] != '"')
 						{
-							ByteReader.mTemp.Add(text.Substring(num, i - num).Replace("\"\"", "\""));
+							mTemp.Add(text.Substring(num, i - num).Replace("\"\"", "\""));
 							flag = false;
 							if (text[i + 1] == ',')
 							{
@@ -190,8 +186,8 @@ public class ByteReader
 						num = i + 1;
 						flag = true;
 					}
+					break;
 				}
-				i++;
 			}
 			if (num < text.Length)
 			{
@@ -199,19 +195,10 @@ public class ByteReader
 				{
 					continue;
 				}
-				ByteReader.mTemp.Add(text.Substring(num, text.Length - num));
+				mTemp.Add(text.Substring(num, text.Length - num));
 			}
-			return ByteReader.mTemp;
+			return mTemp;
 		}
 		return null;
 	}
-
-	// Token: 0x04000444 RID: 1092
-	private byte[] mBuffer;
-
-	// Token: 0x04000445 RID: 1093
-	private int mOffset;
-
-	// Token: 0x04000446 RID: 1094
-	private static BetterList<string> mTemp = new BetterList<string>();
 }

@@ -1,115 +1,100 @@
-﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x0200035A RID: 858
 public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 {
-	// Token: 0x06001CF6 RID: 7414 RVA: 0x000CE46C File Offset: 0x000CC66C
+	private Button Button;
+
+	public Sprite NormalSprite;
+
+	public Sprite HighlightSprite;
+
+	public Sprite PressSprite;
+
+	public Sprite SelectedSprite;
+
+	public AudioClip ClickSound;
+
+	public AudioClip MouseHoverSound;
+
+	private SpriteState loseState;
+
+	private SpriteState toggleState;
+
+	private Image Image;
+
+	public UnityEvent OnToggleEvent;
+
+	public UnityEvent OnLoseEvent;
+
 	public override void Awake()
 	{
-		this.toggleState.highlightedSprite = this.SelectedSprite;
-		this.toggleState.pressedSprite = this.SelectedSprite;
-		this.loseState.highlightedSprite = this.HighlightSprite;
-		this.loseState.pressedSprite = this.PressSprite;
-		this.Button = base.GetComponent<Button>();
-		this.Image = base.GetComponent<Image>();
-		this.Button.onClick.AddListener(new UnityAction(this.OnButtonClick));
-		this.Group.AddTab(this);
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Expected O, but got Unknown
+		((SpriteState)(ref toggleState)).highlightedSprite = SelectedSprite;
+		((SpriteState)(ref toggleState)).pressedSprite = SelectedSprite;
+		((SpriteState)(ref loseState)).highlightedSprite = HighlightSprite;
+		((SpriteState)(ref loseState)).pressedSprite = PressSprite;
+		Button = ((Component)this).GetComponent<Button>();
+		Image = ((Component)this).GetComponent<Image>();
+		((UnityEvent)Button.onClick).AddListener(new UnityAction(OnButtonClick));
+		Group.AddTab(this);
 	}
 
-	// Token: 0x06001CF7 RID: 7415 RVA: 0x000CE4FE File Offset: 0x000CC6FE
 	public override void OnToggle()
 	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
 		base.OnToggle();
-		this.Image.sprite = this.SelectedSprite;
-		this.Button.spriteState = this.toggleState;
-		if (this.OnToggleEvent != null)
+		Image.sprite = SelectedSprite;
+		((Selectable)Button).spriteState = toggleState;
+		if (OnToggleEvent != null)
 		{
-			this.OnToggleEvent.Invoke();
+			OnToggleEvent.Invoke();
 		}
 	}
 
-	// Token: 0x06001CF8 RID: 7416 RVA: 0x000CE53B File Offset: 0x000CC73B
 	public override void OnLose()
 	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
 		base.OnLose();
-		this.Image.sprite = this.NormalSprite;
-		this.Button.spriteState = this.loseState;
-		if (this.OnLoseEvent != null)
+		Image.sprite = NormalSprite;
+		((Selectable)Button).spriteState = loseState;
+		if (OnLoseEvent != null)
 		{
-			this.OnLoseEvent.Invoke();
+			OnLoseEvent.Invoke();
 		}
 	}
 
-	// Token: 0x06001CF9 RID: 7417 RVA: 0x000CE578 File Offset: 0x000CC778
 	public override void OnButtonClick()
 	{
 		base.OnButtonClick();
 	}
 
-	// Token: 0x06001CFA RID: 7418 RVA: 0x000CE580 File Offset: 0x000CC780
 	public void PlayClickSound()
 	{
-		if (this.ClickSound != null)
+		if ((Object)(object)ClickSound != (Object)null)
 		{
-			MusicMag.instance.PlayEffectMusic(this.ClickSound, 1f);
-			return;
+			MusicMag.instance.PlayEffectMusic(ClickSound);
 		}
-		MusicMag.instance.PlayEffectMusic(1, 1f);
+		else
+		{
+			MusicMag.instance.PlayEffectMusic(1);
+		}
 	}
 
-	// Token: 0x06001CFB RID: 7419 RVA: 0x000CE5B6 File Offset: 0x000CC7B6
 	public void PlayHoverSound()
 	{
-		if (this.MouseHoverSound != null)
+		if ((Object)(object)MouseHoverSound != (Object)null)
 		{
-			MusicMag.instance.PlayEffectMusic(this.MouseHoverSound, 1f);
+			MusicMag.instance.PlayEffectMusic(MouseHoverSound);
 		}
 	}
 
-	// Token: 0x06001CFC RID: 7420 RVA: 0x000CE5DB File Offset: 0x000CC7DB
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		this.PlayHoverSound();
+		PlayHoverSound();
 	}
-
-	// Token: 0x0400177C RID: 6012
-	private Button Button;
-
-	// Token: 0x0400177D RID: 6013
-	public Sprite NormalSprite;
-
-	// Token: 0x0400177E RID: 6014
-	public Sprite HighlightSprite;
-
-	// Token: 0x0400177F RID: 6015
-	public Sprite PressSprite;
-
-	// Token: 0x04001780 RID: 6016
-	public Sprite SelectedSprite;
-
-	// Token: 0x04001781 RID: 6017
-	public AudioClip ClickSound;
-
-	// Token: 0x04001782 RID: 6018
-	public AudioClip MouseHoverSound;
-
-	// Token: 0x04001783 RID: 6019
-	private SpriteState loseState;
-
-	// Token: 0x04001784 RID: 6020
-	private SpriteState toggleState;
-
-	// Token: 0x04001785 RID: 6021
-	private Image Image;
-
-	// Token: 0x04001786 RID: 6022
-	public UnityEvent OnToggleEvent;
-
-	// Token: 0x04001787 RID: 6023
-	public UnityEvent OnLoseEvent;
 }

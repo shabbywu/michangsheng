@@ -1,61 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTask", "GetNTaskChildValueList", "获取某个任务的子项的值", 0)]
+[AddComponentMenu("")]
+public class GetNTaskChildValueList : Command
 {
-	// Token: 0x02000F6F RID: 3951
-	[CommandInfo("YSTask", "GetNTaskChildValueList", "获取某个任务的子项的值", 0)]
-	[AddComponentMenu("")]
-	public class GetNTaskChildValueList : Command
+	[Tooltip("需要获取的任务ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NTaskID;
+
+	[Tooltip("值列表")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	public List<IntegerVariable> ValueList;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006EF4 RID: 28404 RVA: 0x002A5E1C File Offset: 0x002A401C
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		List<JSONObject> nTaskXiangXiList = player.nomelTaskMag.GetNTaskXiangXiList(NTaskID.Value);
+		int num = 0;
+		foreach (JSONObject item in nTaskXiangXiList)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			List<JSONObject> ntaskXiangXiList = player.nomelTaskMag.GetNTaskXiangXiList(this.NTaskID.Value);
-			int num = 0;
-			foreach (JSONObject jsonobject in ntaskXiangXiList)
+			_ = item;
+			int chilidID = player.nomelTaskMag.getChilidID(NTaskID.Value, num);
+			JSONObject jSONObject = jsonData.instance.NTaskSuiJI[chilidID.ToString()];
+			if ((Object)(object)ValueList[num] != (Object)null)
 			{
-				int chilidID = player.nomelTaskMag.getChilidID(this.NTaskID.Value, num);
-				JSONObject jsonobject2 = jsonData.instance.NTaskSuiJI[chilidID.ToString()];
-				if (this.ValueList[num] != null)
-				{
-					this.ValueList[num].Value = jsonobject2["Value"].I;
-				}
-				num++;
+				ValueList[num].Value = jSONObject["Value"].I;
 			}
-			this.Continue();
+			num++;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006EF5 RID: 28405 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006EF6 RID: 28406 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005BDA RID: 23514
-		[Tooltip("需要获取的任务ID")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NTaskID;
-
-		// Token: 0x04005BDB RID: 23515
-		[Tooltip("值列表")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		public List<IntegerVariable> ValueList;
+	public override void OnReset()
+	{
 	}
 }

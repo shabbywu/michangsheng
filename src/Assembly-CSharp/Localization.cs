@@ -1,75 +1,80 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000083 RID: 131
 public static class Localization
 {
-	// Token: 0x170000C5 RID: 197
-	// (get) Token: 0x06000679 RID: 1657 RVA: 0x0002481E File Offset: 0x00022A1E
-	// (set) Token: 0x0600067A RID: 1658 RVA: 0x00024840 File Offset: 0x00022A40
+	public static bool localizationHasBeenSet = false;
+
+	private static string[] mLanguages = null;
+
+	private static Dictionary<string, string> mOldDictionary = new Dictionary<string, string>();
+
+	private static Dictionary<string, string[]> mDictionary = new Dictionary<string, string[]>();
+
+	private static int mLanguageIndex = -1;
+
+	private static string mLanguage;
+
 	public static Dictionary<string, string[]> dictionary
 	{
 		get
 		{
-			if (!Localization.localizationHasBeenSet)
+			if (!localizationHasBeenSet)
 			{
-				Localization.language = PlayerPrefs.GetString("Language", "English");
+				language = PlayerPrefs.GetString("Language", "English");
 			}
-			return Localization.mDictionary;
+			return mDictionary;
 		}
 		set
 		{
-			Localization.localizationHasBeenSet = (value != null);
-			Localization.mDictionary = value;
+			localizationHasBeenSet = value != null;
+			mDictionary = value;
 		}
 	}
 
-	// Token: 0x170000C6 RID: 198
-	// (get) Token: 0x0600067B RID: 1659 RVA: 0x00024851 File Offset: 0x00022A51
 	public static string[] knownLanguages
 	{
 		get
 		{
-			if (!Localization.localizationHasBeenSet)
+			if (!localizationHasBeenSet)
 			{
-				Localization.LoadDictionary(PlayerPrefs.GetString("Language", "English"));
+				LoadDictionary(PlayerPrefs.GetString("Language", "English"));
 			}
-			return Localization.mLanguages;
+			return mLanguages;
 		}
 	}
 
-	// Token: 0x170000C7 RID: 199
-	// (get) Token: 0x0600067C RID: 1660 RVA: 0x00024874 File Offset: 0x00022A74
-	// (set) Token: 0x0600067D RID: 1661 RVA: 0x000248BF File Offset: 0x00022ABF
 	public static string language
 	{
 		get
 		{
-			if (string.IsNullOrEmpty(Localization.mLanguage))
+			if (string.IsNullOrEmpty(mLanguage))
 			{
-				string[] knownLanguages = Localization.knownLanguages;
-				Localization.mLanguage = PlayerPrefs.GetString("Language", (knownLanguages != null) ? knownLanguages[0] : "English");
-				Localization.LoadAndSelect(Localization.mLanguage);
+				string[] array = knownLanguages;
+				mLanguage = PlayerPrefs.GetString("Language", (array != null) ? array[0] : "English");
+				LoadAndSelect(mLanguage);
 			}
-			return Localization.mLanguage;
+			return mLanguage;
 		}
 		set
 		{
-			if (Localization.mLanguage != value)
+			if (mLanguage != value)
 			{
-				Localization.mLanguage = value;
-				Localization.LoadAndSelect(value);
+				mLanguage = value;
+				LoadAndSelect(value);
 			}
 		}
 	}
 
-	// Token: 0x0600067E RID: 1662 RVA: 0x000248DC File Offset: 0x00022ADC
+	[Obsolete("Localization is now always active. You no longer need to check this property.")]
+	public static bool isActive => true;
+
 	private static bool LoadDictionary(string value)
 	{
-		TextAsset textAsset = Localization.localizationHasBeenSet ? null : (Resources.Load("Localization", typeof(TextAsset)) as TextAsset);
-		Localization.localizationHasBeenSet = true;
-		if (textAsset != null && Localization.LoadCSV(textAsset))
+		TextAsset val = (TextAsset)(localizationHasBeenSet ? null : /*isinst with value type is only supported in some contexts*/);
+		localizationHasBeenSet = true;
+		if ((Object)(object)val != (Object)null && LoadCSV(val))
 		{
 			return true;
 		}
@@ -77,35 +82,35 @@ public static class Localization
 		{
 			return false;
 		}
-		textAsset = (Resources.Load(value, typeof(TextAsset)) as TextAsset);
-		if (textAsset != null)
+		Object obj = Resources.Load(value, typeof(TextAsset));
+		val = (TextAsset)(object)((obj is TextAsset) ? obj : null);
+		if ((Object)(object)val != (Object)null)
 		{
-			Localization.Load(textAsset);
+			Load(val);
 			return true;
 		}
 		return false;
 	}
 
-	// Token: 0x0600067F RID: 1663 RVA: 0x00024958 File Offset: 0x00022B58
 	private static bool LoadAndSelect(string value)
 	{
 		if (!string.IsNullOrEmpty(value))
 		{
-			if (Localization.mDictionary.Count == 0 && !Localization.LoadDictionary(value))
+			if (mDictionary.Count == 0 && !LoadDictionary(value))
 			{
 				return false;
 			}
-			if (Localization.SelectLanguage(value))
+			if (SelectLanguage(value))
 			{
 				return true;
 			}
 		}
-		if (Localization.mOldDictionary.Count > 0)
+		if (mOldDictionary.Count > 0)
 		{
 			return true;
 		}
-		Localization.mOldDictionary.Clear();
-		Localization.mDictionary.Clear();
+		mOldDictionary.Clear();
+		mDictionary.Clear();
 		if (string.IsNullOrEmpty(value))
 		{
 			PlayerPrefs.DeleteKey("Language");
@@ -113,14 +118,12 @@ public static class Localization
 		return false;
 	}
 
-	// Token: 0x06000680 RID: 1664 RVA: 0x000249C4 File Offset: 0x00022BC4
 	public static void Load(TextAsset asset)
 	{
 		ByteReader byteReader = new ByteReader(asset);
-		Localization.Set(asset.name, byteReader.ReadDictionary());
+		Set(((Object)asset).name, byteReader.ReadDictionary());
 	}
 
-	// Token: 0x06000681 RID: 1665 RVA: 0x000249EC File Offset: 0x00022BEC
 	public static bool LoadCSV(TextAsset asset)
 	{
 		ByteReader byteReader = new ByteReader(asset);
@@ -132,42 +135,40 @@ public static class Localization
 		betterList[0] = "KEY";
 		if (!string.Equals(betterList[0], "KEY"))
 		{
-			Debug.LogError("Invalid localization CSV file. The first value is expected to be 'KEY', followed by language columns.\nInstead found '" + betterList[0] + "'", asset);
+			Debug.LogError((object)("Invalid localization CSV file. The first value is expected to be 'KEY', followed by language columns.\nInstead found '" + betterList[0] + "'"), (Object)(object)asset);
 			return false;
 		}
-		Localization.mLanguages = new string[betterList.size - 1];
-		for (int i = 0; i < Localization.mLanguages.Length; i++)
+		mLanguages = new string[betterList.size - 1];
+		for (int i = 0; i < mLanguages.Length; i++)
 		{
-			Localization.mLanguages[i] = betterList[i + 1];
+			mLanguages[i] = betterList[i + 1];
 		}
-		Localization.mDictionary.Clear();
+		mDictionary.Clear();
 		while (betterList != null)
 		{
-			Localization.AddCSV(betterList);
+			AddCSV(betterList);
 			betterList = byteReader.ReadCSV();
 		}
 		return true;
 	}
 
-	// Token: 0x06000682 RID: 1666 RVA: 0x00024AA0 File Offset: 0x00022CA0
 	private static bool SelectLanguage(string language)
 	{
-		Localization.mLanguageIndex = -1;
-		if (Localization.mDictionary.Count == 0)
+		mLanguageIndex = -1;
+		if (mDictionary.Count == 0)
 		{
 			return false;
 		}
-		string[] array;
-		if (Localization.mDictionary.TryGetValue("KEY", out array))
+		if (mDictionary.TryGetValue("KEY", out var value))
 		{
-			for (int i = 0; i < array.Length; i++)
+			for (int i = 0; i < value.Length; i++)
 			{
-				if (array[i] == language)
+				if (value[i] == language)
 				{
-					Localization.mOldDictionary.Clear();
-					Localization.mLanguageIndex = i;
-					Localization.mLanguage = language;
-					PlayerPrefs.SetString("Language", Localization.mLanguage);
+					mOldDictionary.Clear();
+					mLanguageIndex = i;
+					mLanguage = language;
+					PlayerPrefs.SetString("Language", mLanguage);
 					UIRoot.Broadcast("OnLocalize");
 					return true;
 				}
@@ -176,7 +177,6 @@ public static class Localization
 		return false;
 	}
 
-	// Token: 0x06000683 RID: 1667 RVA: 0x00024B20 File Offset: 0x00022D20
 	private static void AddCSV(BetterList<string> values)
 	{
 		if (values.size < 2)
@@ -190,95 +190,62 @@ public static class Localization
 		}
 		try
 		{
-			Localization.mDictionary.Add(values[0], array);
+			mDictionary.Add(values[0], array);
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError("Unable to add '" + values[0] + "' to the Localization dictionary.\n" + ex.Message);
+			Debug.LogError((object)("Unable to add '" + values[0] + "' to the Localization dictionary.\n" + ex.Message));
 		}
 	}
 
-	// Token: 0x06000684 RID: 1668 RVA: 0x00024BAC File Offset: 0x00022DAC
 	public static void Set(string languageName, Dictionary<string, string> dictionary)
 	{
-		Localization.mLanguage = languageName;
-		PlayerPrefs.SetString("Language", Localization.mLanguage);
-		Localization.mOldDictionary = dictionary;
-		Localization.localizationHasBeenSet = false;
-		Localization.mLanguageIndex = -1;
-		Localization.mLanguages = new string[]
-		{
-			languageName
-		};
+		mLanguage = languageName;
+		PlayerPrefs.SetString("Language", mLanguage);
+		mOldDictionary = dictionary;
+		localizationHasBeenSet = false;
+		mLanguageIndex = -1;
+		mLanguages = new string[1] { languageName };
 		UIRoot.Broadcast("OnLocalize");
 	}
 
-	// Token: 0x06000685 RID: 1669 RVA: 0x00024BFC File Offset: 0x00022DFC
 	public static string Get(string key)
 	{
-		if (!Localization.localizationHasBeenSet)
+		if (!localizationHasBeenSet)
 		{
-			Localization.language = PlayerPrefs.GetString("Language", "English");
+			language = PlayerPrefs.GetString("Language", "English");
 		}
-		string[] array;
-		string result;
-		if (Localization.mLanguageIndex != -1 && Localization.mDictionary.TryGetValue(key, out array))
+		string value2;
+		if (mLanguageIndex != -1 && mDictionary.TryGetValue(key, out var value))
 		{
-			if (Localization.mLanguageIndex < array.Length)
+			if (mLanguageIndex < value.Length)
 			{
-				return array[Localization.mLanguageIndex];
+				return value[mLanguageIndex];
 			}
 		}
-		else if (Localization.mOldDictionary.TryGetValue(key, out result))
+		else if (mOldDictionary.TryGetValue(key, out value2))
 		{
-			return result;
+			return value2;
 		}
 		return key;
 	}
 
-	// Token: 0x170000C8 RID: 200
-	// (get) Token: 0x06000686 RID: 1670 RVA: 0x00024C5F File Offset: 0x00022E5F
-	[Obsolete("Localization is now always active. You no longer need to check this property.")]
-	public static bool isActive
-	{
-		get
-		{
-			return true;
-		}
-	}
-
-	// Token: 0x06000687 RID: 1671 RVA: 0x00024C62 File Offset: 0x00022E62
 	[Obsolete("Use Localization.Get instead")]
 	public static string Localize(string key)
 	{
-		return Localization.Get(key);
+		return Get(key);
 	}
 
-	// Token: 0x06000688 RID: 1672 RVA: 0x00024C6A File Offset: 0x00022E6A
 	public static bool Exists(string key)
 	{
-		if (!Localization.localizationHasBeenSet)
+		if (!localizationHasBeenSet)
 		{
-			Localization.language = PlayerPrefs.GetString("Language", "English");
+			language = PlayerPrefs.GetString("Language", "English");
 		}
-		return Localization.mDictionary.ContainsKey(key) || Localization.mOldDictionary.ContainsKey(key);
+		if (!mDictionary.ContainsKey(key))
+		{
+			return mOldDictionary.ContainsKey(key);
+		}
+		return true;
 	}
-
-	// Token: 0x04000451 RID: 1105
-	public static bool localizationHasBeenSet = false;
-
-	// Token: 0x04000452 RID: 1106
-	private static string[] mLanguages = null;
-
-	// Token: 0x04000453 RID: 1107
-	private static Dictionary<string, string> mOldDictionary = new Dictionary<string, string>();
-
-	// Token: 0x04000454 RID: 1108
-	private static Dictionary<string, string[]> mDictionary = new Dictionary<string, string[]>();
-
-	// Token: 0x04000455 RID: 1109
-	private static int mLanguageIndex = -1;
-
-	// Token: 0x04000456 RID: 1110
-	private static string mLanguage;
 }

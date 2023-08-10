@@ -1,92 +1,83 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(CanvasRenderer))]
+[ExecuteInEditMode]
+public class RenderObject : MonoBehaviour
 {
-	// Token: 0x0200069F RID: 1695
-	[RequireComponent(typeof(RectTransform))]
-	[RequireComponent(typeof(CanvasRenderer))]
-	[ExecuteInEditMode]
-	public class RenderObject : MonoBehaviour
+	private RectTransform rect;
+
+	[NonSerialized]
+	private CanvasRenderer m_CanvasRender;
+
+	public CanvasRenderer canvasRenderer
 	{
-		// Token: 0x06003578 RID: 13688 RVA: 0x00170CDC File Offset: 0x0016EEDC
-		protected virtual void OnTransformParentChanged()
+		get
 		{
-			if (base.isActiveAndEnabled)
+			if ((Object)(object)m_CanvasRender == (Object)null)
 			{
-				return;
+				m_CanvasRender = ((Component)this).GetComponent<CanvasRenderer>();
 			}
-			this.UpdateRect();
+			return m_CanvasRender;
 		}
+	}
 
-		// Token: 0x06003579 RID: 13689 RVA: 0x00170CED File Offset: 0x0016EEED
-		protected void OnDisable()
+	protected virtual void OnTransformParentChanged()
+	{
+		if (!((Behaviour)this).isActiveAndEnabled)
 		{
-			if (this.m_CanvasRender == null)
-			{
-				return;
-			}
-			this.m_CanvasRender.Clear();
+			UpdateRect();
 		}
+	}
 
-		// Token: 0x0600357A RID: 13690 RVA: 0x00170D09 File Offset: 0x0016EF09
-		protected void Start()
+	protected void OnDisable()
+	{
+		if (!((Object)(object)m_CanvasRender == (Object)null))
 		{
-			this.UpdateRect();
+			m_CanvasRender.Clear();
 		}
+	}
 
-		// Token: 0x170004F2 RID: 1266
-		// (get) Token: 0x0600357B RID: 13691 RVA: 0x00170D11 File Offset: 0x0016EF11
-		public CanvasRenderer canvasRenderer
+	protected void Start()
+	{
+		UpdateRect();
+	}
+
+	private void UpdateRect()
+	{
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)rect == (Object)null)
 		{
-			get
-			{
-				if (this.m_CanvasRender == null)
-				{
-					this.m_CanvasRender = base.GetComponent<CanvasRenderer>();
-				}
-				return this.m_CanvasRender;
-			}
+			rect = ((Component)this).GetComponent<RectTransform>();
 		}
-
-		// Token: 0x0600357C RID: 13692 RVA: 0x00170D34 File Offset: 0x0016EF34
-		private void UpdateRect()
+		Transform parent = ((Transform)rect).parent;
+		RectTransform val = (RectTransform)(object)((parent is RectTransform) ? parent : null);
+		if (!((Object)(object)val == (Object)null))
 		{
-			if (this.rect == null)
-			{
-				this.rect = base.GetComponent<RectTransform>();
-			}
-			RectTransform rectTransform = this.rect.parent as RectTransform;
-			if (rectTransform == null)
-			{
-				return;
-			}
-			this.rect.pivot = rectTransform.pivot;
-			this.rect.anchorMin = Vector2.zero;
-			this.rect.anchorMax = Vector2.one;
-			this.rect.offsetMax = Vector2.zero;
-			this.rect.offsetMin = Vector2.zero;
+			rect.pivot = val.pivot;
+			rect.anchorMin = Vector2.zero;
+			rect.anchorMax = Vector2.one;
+			rect.offsetMax = Vector2.zero;
+			rect.offsetMin = Vector2.zero;
 		}
+	}
 
-		// Token: 0x0600357D RID: 13693 RVA: 0x00170DC7 File Offset: 0x0016EFC7
-		public void FillMesh(Mesh workerMesh)
-		{
-			this.canvasRenderer.SetMesh(workerMesh);
-		}
+	public void FillMesh(Mesh workerMesh)
+	{
+		canvasRenderer.SetMesh(workerMesh);
+	}
 
-		// Token: 0x0600357E RID: 13694 RVA: 0x00170DD5 File Offset: 0x0016EFD5
-		public void UpdateMaterial(Material mat, Texture texture)
-		{
-			this.canvasRenderer.materialCount = 1;
-			this.canvasRenderer.SetMaterial(mat, 0);
-			this.canvasRenderer.SetTexture(texture);
-		}
-
-		// Token: 0x04002F08 RID: 12040
-		private RectTransform rect;
-
-		// Token: 0x04002F09 RID: 12041
-		[NonSerialized]
-		private CanvasRenderer m_CanvasRender;
+	public void UpdateMaterial(Material mat, Texture texture)
+	{
+		canvasRenderer.materialCount = 1;
+		canvasRenderer.SetMaterial(mat, 0);
+		canvasRenderer.SetTexture(texture);
 	}
 }

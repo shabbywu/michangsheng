@@ -1,58 +1,55 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Flow", "Stop Block", "Stops executing the named Block", 0)]
+public class StopBlock : Command
 {
-	// Token: 0x02000E4F RID: 3663
-	[CommandInfo("Flow", "Stop Block", "Stops executing the named Block", 0)]
-	public class StopBlock : Command
+	[Tooltip("Flowchart containing the Block. If none is specified, the parent Flowchart is used.")]
+	[SerializeField]
+	protected Flowchart flowchart;
+
+	[Tooltip("Name of the Block to stop")]
+	[SerializeField]
+	protected StringData blockName = new StringData("");
+
+	public override void OnEnter()
 	{
-		// Token: 0x060066FB RID: 26363 RVA: 0x00288660 File Offset: 0x00286860
-		public override void OnEnter()
+		if (blockName.Value == "")
 		{
-			if (this.blockName.Value == "")
-			{
-				this.Continue();
-			}
-			if (this.flowchart == null)
-			{
-				this.flowchart = this.GetFlowchart();
-			}
-			Block block = this.flowchart.FindBlock(this.blockName.Value);
-			if (block == null || !block.IsExecuting())
-			{
-				this.Continue();
-			}
-			block.Stop();
-			this.Continue();
+			Continue();
 		}
-
-		// Token: 0x060066FC RID: 26364 RVA: 0x002886DE File Offset: 0x002868DE
-		public override string GetSummary()
+		if ((Object)(object)flowchart == (Object)null)
 		{
-			return this.blockName;
+			flowchart = GetFlowchart();
 		}
-
-		// Token: 0x060066FD RID: 26365 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
-		public override Color GetButtonColor()
+		Block block = flowchart.FindBlock(blockName.Value);
+		if ((Object)(object)block == (Object)null || !block.IsExecuting())
 		{
-			return new Color32(253, 253, 150, byte.MaxValue);
+			Continue();
 		}
+		block.Stop();
+		Continue();
+	}
 
-		// Token: 0x060066FE RID: 26366 RVA: 0x002886EB File Offset: 0x002868EB
-		public override bool HasReference(Variable variable)
+	public override string GetSummary()
+	{
+		return blockName;
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)253, (byte)253, (byte)150, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)blockName.stringRef == (Object)(object)variable))
 		{
-			return this.blockName.stringRef == variable || base.HasReference(variable);
+			return base.HasReference(variable);
 		}
-
-		// Token: 0x04005823 RID: 22563
-		[Tooltip("Flowchart containing the Block. If none is specified, the parent Flowchart is used.")]
-		[SerializeField]
-		protected Flowchart flowchart;
-
-		// Token: 0x04005824 RID: 22564
-		[Tooltip("Name of the Block to stop")]
-		[SerializeField]
-		protected StringData blockName = new StringData("");
+		return true;
 	}
 }

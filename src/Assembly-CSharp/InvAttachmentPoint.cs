@@ -1,40 +1,39 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000038 RID: 56
 [AddComponentMenu("NGUI/Examples/Item Attachment Point")]
 public class InvAttachmentPoint : MonoBehaviour
 {
-	// Token: 0x06000421 RID: 1057 RVA: 0x0001703C File Offset: 0x0001523C
+	public InvBaseItem.Slot slot;
+
+	private GameObject mPrefab;
+
+	private GameObject mChild;
+
 	public GameObject Attach(GameObject prefab)
 	{
-		if (this.mPrefab != prefab)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)mPrefab != (Object)(object)prefab)
 		{
-			this.mPrefab = prefab;
-			if (this.mChild != null)
+			mPrefab = prefab;
+			if ((Object)(object)mChild != (Object)null)
 			{
-				Object.Destroy(this.mChild);
+				Object.Destroy((Object)(object)mChild);
 			}
-			if (this.mPrefab != null)
+			if ((Object)(object)mPrefab != (Object)null)
 			{
-				Transform transform = base.transform;
-				this.mChild = Object.Instantiate<GameObject>(this.mPrefab, transform.position, transform.rotation);
-				Transform transform2 = this.mChild.transform;
+				Transform transform = ((Component)this).transform;
+				mChild = Object.Instantiate<GameObject>(mPrefab, transform.position, transform.rotation);
+				Transform transform2 = mChild.transform;
 				transform2.parent = transform;
 				transform2.localPosition = Vector3.zero;
 				transform2.localRotation = Quaternion.identity;
 				transform2.localScale = Vector3.one;
 			}
 		}
-		return this.mChild;
+		return mChild;
 	}
-
-	// Token: 0x0400024D RID: 589
-	public InvBaseItem.Slot slot;
-
-	// Token: 0x0400024E RID: 590
-	private GameObject mPrefab;
-
-	// Token: 0x0400024F RID: 591
-	private GameObject mChild;
 }

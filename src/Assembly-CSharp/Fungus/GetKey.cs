@@ -1,185 +1,171 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Input", "GetKey", "Store Input.GetKey in a variable. Supports an optional Negative key input. A negative value will be overridden by a positive one, they do not add.", 0)]
+[AddComponentMenu("")]
+public class GetKey : Command
 {
-	// Token: 0x02000DD9 RID: 3545
-	[CommandInfo("Input", "GetKey", "Store Input.GetKey in a variable. Supports an optional Negative key input. A negative value will be overridden by a positive one, they do not add.", 0)]
-	[AddComponentMenu("")]
-	public class GetKey : Command
+	public enum InputKeyQueryType
 	{
-		// Token: 0x060064A7 RID: 25767 RVA: 0x0027F980 File Offset: 0x0027DB80
-		public override void OnEnter()
+		Down,
+		Up,
+		State
+	}
+
+	[SerializeField]
+	protected KeyCode keyCode;
+
+	[Tooltip("Optional, secondary or negative keycode. For booleans will also set to true, for int and float will set to -1.")]
+	[SerializeField]
+	protected KeyCode keyCodeNegative;
+
+	[SerializeField]
+	[Tooltip("Only used if KeyCode is KeyCode.None, expects a name of the key to use.")]
+	protected StringData keyCodeName = new StringData(string.Empty);
+
+	[SerializeField]
+	[Tooltip("Optional, secondary or negative keycode. For booleans will also set to true, for int and float will set to -1.Only used if KeyCode is KeyCode.None, expects a name of the key to use.")]
+	protected StringData keyCodeNameNegative = new StringData(string.Empty);
+
+	[Tooltip("Do we want an Input.GetKeyDown, GetKeyUp or GetKey")]
+	[SerializeField]
+	protected InputKeyQueryType keyQueryType = InputKeyQueryType.State;
+
+	[Tooltip("Will store true or false or 0 or 1 depending on type. Sets true or -1 for negative key values.")]
+	[SerializeField]
+	[VariableProperty(new Type[]
+	{
+		typeof(FloatVariable),
+		typeof(BooleanVariable),
+		typeof(IntegerVariable)
+	})]
+	protected Variable outValue;
+
+	public override void OnEnter()
+	{
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		FillOutValue(0);
+		if ((int)keyCodeNegative != 0)
 		{
-			this.FillOutValue(0);
-			if (this.keyCodeNegative != null)
-			{
-				this.DoKeyCode(this.keyCodeNegative, -1);
-			}
-			else if (!string.IsNullOrEmpty(this.keyCodeNameNegative))
-			{
-				this.DoKeyName(this.keyCodeNameNegative, -1);
-			}
-			if (this.keyCode != null)
-			{
-				this.DoKeyCode(this.keyCode, 1);
-			}
-			else if (!string.IsNullOrEmpty(this.keyCodeName))
-			{
-				this.DoKeyName(this.keyCodeName, 1);
-			}
-			this.Continue();
+			DoKeyCode(keyCodeNegative, -1);
 		}
-
-		// Token: 0x060064A8 RID: 25768 RVA: 0x0027FA10 File Offset: 0x0027DC10
-		private void DoKeyCode(KeyCode key, int trueVal)
+		else if (!string.IsNullOrEmpty(keyCodeNameNegative))
 		{
-			switch (this.keyQueryType)
+			DoKeyName(keyCodeNameNegative, -1);
+		}
+		if ((int)keyCode != 0)
+		{
+			DoKeyCode(keyCode, 1);
+		}
+		else if (!string.IsNullOrEmpty(keyCodeName))
+		{
+			DoKeyName(keyCodeName, 1);
+		}
+		Continue();
+	}
+
+	private void DoKeyCode(KeyCode key, int trueVal)
+	{
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		switch (keyQueryType)
+		{
+		case InputKeyQueryType.Down:
+			if (Input.GetKeyDown(key))
 			{
-			case GetKey.InputKeyQueryType.Down:
-				if (Input.GetKeyDown(key))
-				{
-					this.FillOutValue(trueVal);
-					return;
-				}
-				break;
-			case GetKey.InputKeyQueryType.Up:
-				if (Input.GetKeyUp(key))
-				{
-					this.FillOutValue(trueVal);
-					return;
-				}
-				break;
-			case GetKey.InputKeyQueryType.State:
-				if (Input.GetKey(key))
-				{
-					this.FillOutValue(trueVal);
-				}
-				break;
-			default:
-				return;
+				FillOutValue(trueVal);
 			}
-		}
-
-		// Token: 0x060064A9 RID: 25769 RVA: 0x0027FA68 File Offset: 0x0027DC68
-		private void DoKeyName(string key, int trueVal)
-		{
-			switch (this.keyQueryType)
+			break;
+		case InputKeyQueryType.Up:
+			if (Input.GetKeyUp(key))
 			{
-			case GetKey.InputKeyQueryType.Down:
-				if (Input.GetKeyDown(key))
-				{
-					this.FillOutValue(trueVal);
-					return;
-				}
-				break;
-			case GetKey.InputKeyQueryType.Up:
-				if (Input.GetKeyUp(key))
-				{
-					this.FillOutValue(trueVal);
-					return;
-				}
-				break;
-			case GetKey.InputKeyQueryType.State:
-				if (Input.GetKey(key))
-				{
-					this.FillOutValue(trueVal);
-				}
-				break;
-			default:
-				return;
+				FillOutValue(trueVal);
 			}
-		}
-
-		// Token: 0x060064AA RID: 25770 RVA: 0x0027FAC0 File Offset: 0x0027DCC0
-		private void FillOutValue(int v)
-		{
-			FloatVariable floatVariable = this.outValue as FloatVariable;
-			if (floatVariable != null)
+			break;
+		case InputKeyQueryType.State:
+			if (Input.GetKey(key))
 			{
-				floatVariable.Value = (float)v;
-				return;
+				FillOutValue(trueVal);
 			}
-			BooleanVariable booleanVariable = this.outValue as BooleanVariable;
-			if (booleanVariable != null)
+			break;
+		}
+	}
+
+	private void DoKeyName(string key, int trueVal)
+	{
+		switch (keyQueryType)
+		{
+		case InputKeyQueryType.Down:
+			if (Input.GetKeyDown(key))
 			{
-				booleanVariable.Value = (v != 0);
-				return;
+				FillOutValue(trueVal);
 			}
-			IntegerVariable integerVariable = this.outValue as IntegerVariable;
-			if (integerVariable != null)
+			break;
+		case InputKeyQueryType.Up:
+			if (Input.GetKeyUp(key))
 			{
-				integerVariable.Value = v;
-				return;
+				FillOutValue(trueVal);
 			}
-		}
-
-		// Token: 0x060064AB RID: 25771 RVA: 0x0027FB2C File Offset: 0x0027DD2C
-		public override string GetSummary()
-		{
-			if (this.outValue == null)
+			break;
+		case InputKeyQueryType.State:
+			if (Input.GetKey(key))
 			{
-				return "Error: no outvalue set";
+				FillOutValue(trueVal);
 			}
-			return ((this.keyCode != null) ? this.keyCode.ToString() : this.keyCodeName) + " in " + this.outValue.Key;
+			break;
 		}
+	}
 
-		// Token: 0x060064AC RID: 25772 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	private void FillOutValue(int v)
+	{
+		FloatVariable floatVariable = outValue as FloatVariable;
+		if ((Object)(object)floatVariable != (Object)null)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			floatVariable.Value = v;
+			return;
 		}
-
-		// Token: 0x060064AD RID: 25773 RVA: 0x0027FB88 File Offset: 0x0027DD88
-		public override bool HasReference(Variable variable)
+		BooleanVariable booleanVariable = outValue as BooleanVariable;
+		if ((Object)(object)booleanVariable != (Object)null)
 		{
-			return this.keyCodeName.stringRef == variable || this.outValue == variable || this.keyCodeNameNegative.stringRef == variable;
+			booleanVariable.Value = ((v != 0) ? true : false);
+			return;
 		}
-
-		// Token: 0x04005675 RID: 22133
-		[SerializeField]
-		protected KeyCode keyCode;
-
-		// Token: 0x04005676 RID: 22134
-		[Tooltip("Optional, secondary or negative keycode. For booleans will also set to true, for int and float will set to -1.")]
-		[SerializeField]
-		protected KeyCode keyCodeNegative;
-
-		// Token: 0x04005677 RID: 22135
-		[SerializeField]
-		[Tooltip("Only used if KeyCode is KeyCode.None, expects a name of the key to use.")]
-		protected StringData keyCodeName = new StringData(string.Empty);
-
-		// Token: 0x04005678 RID: 22136
-		[SerializeField]
-		[Tooltip("Optional, secondary or negative keycode. For booleans will also set to true, for int and float will set to -1.Only used if KeyCode is KeyCode.None, expects a name of the key to use.")]
-		protected StringData keyCodeNameNegative = new StringData(string.Empty);
-
-		// Token: 0x04005679 RID: 22137
-		[Tooltip("Do we want an Input.GetKeyDown, GetKeyUp or GetKey")]
-		[SerializeField]
-		protected GetKey.InputKeyQueryType keyQueryType = GetKey.InputKeyQueryType.State;
-
-		// Token: 0x0400567A RID: 22138
-		[Tooltip("Will store true or false or 0 or 1 depending on type. Sets true or -1 for negative key values.")]
-		[SerializeField]
-		[VariableProperty(new Type[]
+		IntegerVariable integerVariable = outValue as IntegerVariable;
+		if ((Object)(object)integerVariable != (Object)null)
 		{
-			typeof(FloatVariable),
-			typeof(BooleanVariable),
-			typeof(IntegerVariable)
-		})]
-		protected Variable outValue;
-
-		// Token: 0x020016AF RID: 5807
-		public enum InputKeyQueryType
-		{
-			// Token: 0x0400735C RID: 29532
-			Down,
-			// Token: 0x0400735D RID: 29533
-			Up,
-			// Token: 0x0400735E RID: 29534
-			State
+			integerVariable.Value = v;
 		}
+	}
+
+	public override string GetSummary()
+	{
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)outValue == (Object)null)
+		{
+			return "Error: no outvalue set";
+		}
+		return (((int)keyCode != 0) ? ((object)(KeyCode)(ref keyCode)).ToString() : ((string)keyCodeName)) + " in " + outValue.Key;
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if ((Object)(object)keyCodeName.stringRef == (Object)(object)variable || (Object)(object)outValue == (Object)(object)variable || (Object)(object)keyCodeNameNegative.stringRef == (Object)(object)variable)
+		{
+			return true;
+		}
+		return false;
 	}
 }

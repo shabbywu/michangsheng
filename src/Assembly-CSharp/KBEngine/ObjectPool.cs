@@ -1,45 +1,31 @@
-﻿using System;
 using System.Collections.Generic;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class ObjectPool<T> where T : new()
 {
-	// Token: 0x02000C54 RID: 3156
-	public class ObjectPool<T> where T : new()
+	private static Stack<T> _objects = new Stack<T>();
+
+	private static T v;
+
+	public static T createObject()
 	{
-		// Token: 0x060055BE RID: 21950 RVA: 0x0023A020 File Offset: 0x00238220
-		public static T createObject()
+		lock (_objects)
 		{
-			Stack<T> objects = ObjectPool<T>._objects;
-			T result;
-			lock (objects)
+			if (_objects.Count > 0)
 			{
-				if (ObjectPool<T>._objects.Count > 0)
-				{
-					ObjectPool<T>.v = ObjectPool<T>._objects.Pop();
-					result = ObjectPool<T>.v;
-				}
-				else
-				{
-					result = Activator.CreateInstance<T>();
-				}
+				v = _objects.Pop();
+				return v;
 			}
-			return result;
+			return new T();
 		}
+	}
 
-		// Token: 0x060055BF RID: 21951 RVA: 0x0023A084 File Offset: 0x00238284
-		public static void reclaimObject(T item)
+	public static void reclaimObject(T item)
+	{
+		lock (_objects)
 		{
-			Stack<T> objects = ObjectPool<T>._objects;
-			lock (objects)
-			{
-				ObjectPool<T>._objects.Push(item);
-			}
+			_objects.Push(item);
 		}
-
-		// Token: 0x040050C4 RID: 20676
-		private static Stack<T> _objects = new Stack<T>();
-
-		// Token: 0x040050C5 RID: 20677
-		private static T v;
 	}
 }

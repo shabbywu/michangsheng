@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 
-namespace KBEngine
+namespace KBEngine;
+
+[Serializable]
+public class consumableItem
 {
-	// Token: 0x02000C79 RID: 3193
-	[Serializable]
-	public class consumableItem
-	{
-	}
 }

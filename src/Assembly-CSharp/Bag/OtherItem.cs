@@ -1,24 +1,24 @@
-﻿using System;
+using System;
 using GUIPackage;
 using JSONClass;
+using UnityEngine.Events;
 
-namespace Bag
+namespace Bag;
+
+[Serializable]
+public class OtherItem : BaseItem
 {
-	// Token: 0x020009AF RID: 2479
-	[Serializable]
-	public class OtherItem : BaseItem
+	public override void Use()
 	{
-		// Token: 0x060044F6 RID: 17654 RVA: 0x001D5211 File Offset: 0x001D3411
-		public override void Use()
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Expected O, but got Unknown
+		if (_ItemJsonData.DataDict[Id].vagueType == 1)
 		{
-			if (_ItemJsonData.DataDict[this.Id].vagueType == 1)
+			new item(Id).gongneng((UnityAction)delegate
 			{
-				new item(this.Id).gongneng(delegate
-				{
-					Tools.instance.getPlayer().removeItem(this.Id, 1);
-					MessageMag.Instance.Send(MessageName.MSG_PLAYER_USE_ITEM, null);
-				}, false);
-			}
+				Tools.instance.getPlayer().removeItem(Id, 1);
+				MessageMag.Instance.Send(MessageName.MSG_PLAYER_USE_ITEM);
+			});
 		}
 	}
 }

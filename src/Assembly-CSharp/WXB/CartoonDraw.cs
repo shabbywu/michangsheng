@@ -1,191 +1,181 @@
-﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Sprites;
 using UnityEngine.UI;
 
-namespace WXB
+namespace WXB;
+
+[ExecuteInEditMode]
+public class CartoonDraw : EffectDrawObjec, ICanvasElement
 {
-	// Token: 0x02000683 RID: 1667
-	[ExecuteInEditMode]
-	public class CartoonDraw : EffectDrawObjec, ICanvasElement
+	private class Data
 	{
-		// Token: 0x170004CF RID: 1231
-		// (get) Token: 0x060034D6 RID: 13526 RVA: 0x0016F21F File Offset: 0x0016D41F
-		public override DrawType type
+		public Vector2 leftPos;
+
+		public Color color;
+
+		public float width;
+
+		public float height;
+
+		public void Gen(VertexHelper vh, Vector4 uv)
 		{
-			get
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+			//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+			int currentVertCount = vh.currentVertCount;
+			vh.AddVert(new Vector3(leftPos.x, leftPos.y), Color32.op_Implicit(color), new Vector2(uv.x, uv.y));
+			vh.AddVert(new Vector3(leftPos.x, leftPos.y + height), Color32.op_Implicit(color), new Vector2(uv.x, uv.w));
+			vh.AddVert(new Vector3(leftPos.x + width, leftPos.y + height), Color32.op_Implicit(color), new Vector2(uv.z, uv.w));
+			vh.AddVert(new Vector3(leftPos.x + width, leftPos.y), Color32.op_Implicit(color), new Vector2(uv.z, uv.y));
+			vh.AddTriangle(currentVertCount, currentVertCount + 1, currentVertCount + 2);
+			vh.AddTriangle(currentVertCount + 2, currentVertCount + 3, currentVertCount);
+		}
+	}
+
+	private int frameIndex;
+
+	private float mDelta;
+
+	private List<Data> mData = new List<Data>();
+
+	public override DrawType type => DrawType.Cartoon;
+
+	public Cartoon cartoon { get; set; }
+
+	public bool isOpenAlpha
+	{
+		get
+		{
+			return GetOpen(0);
+		}
+		set
+		{
+			SetOpen<AlphaEffect>(0, value);
+		}
+	}
+
+	public bool isOpenOffset
+	{
+		get
+		{
+			return GetOpen(1);
+		}
+		set
+		{
+			SetOpen<OffsetEffect>(1, value);
+		}
+	}
+
+	private void UpdateAnim(float deltaTime)
+	{
+		mDelta += Mathf.Min(1f, deltaTime);
+		float num = 1f / cartoon.fps;
+		while (num < mDelta)
+		{
+			mDelta = ((num > 0f) ? (mDelta - num) : 0f);
+			if (++frameIndex >= cartoon.sprites.Length)
 			{
-				return DrawType.Cartoon;
+				frameIndex = 0;
 			}
 		}
+	}
 
-		// Token: 0x170004D0 RID: 1232
-		// (get) Token: 0x060034D7 RID: 13527 RVA: 0x0016F222 File Offset: 0x0016D422
-		// (set) Token: 0x060034D8 RID: 13528 RVA: 0x0016F22A File Offset: 0x0016D42A
-		public Cartoon cartoon { get; set; }
-
-		// Token: 0x060034D9 RID: 13529 RVA: 0x0016F234 File Offset: 0x0016D434
-		private void UpdateAnim(float deltaTime)
+	public void Add(Vector2 leftPos, float width, float height, Color color)
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		mData.Add(new Data
 		{
-			this.mDelta += Mathf.Min(1f, deltaTime);
-			float num = 1f / this.cartoon.fps;
-			while (num < this.mDelta)
-			{
-				this.mDelta = ((num > 0f) ? (this.mDelta - num) : 0f);
-				int num2 = this.frameIndex + 1;
-				this.frameIndex = num2;
-				if (num2 >= this.cartoon.sprites.Length)
-				{
-					this.frameIndex = 0;
-				}
-			}
+			leftPos = leftPos,
+			color = color,
+			width = width,
+			height = height
+		});
+	}
+
+	public override void UpdateSelf(float deltaTime)
+	{
+		base.UpdateSelf(deltaTime);
+		int num = frameIndex;
+		UpdateAnim(deltaTime);
+		if (num != frameIndex)
+		{
+			CanvasUpdateRegistry.RegisterCanvasElementForGraphicRebuild((ICanvasElement)(object)this);
 		}
+	}
 
-		// Token: 0x170004D1 RID: 1233
-		// (get) Token: 0x060034DA RID: 13530 RVA: 0x0016F2BA File Offset: 0x0016D4BA
-		// (set) Token: 0x060034DB RID: 13531 RVA: 0x0016F2C3 File Offset: 0x0016D4C3
-		public bool isOpenAlpha
+	public void Rebuild(CanvasUpdate executing)
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0002: Invalid comparison between Unknown and I4
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)executing == 3 && mData != null)
 		{
-			get
-			{
-				return base.GetOpen(0);
-			}
-			set
-			{
-				base.SetOpen<AlphaEffect>(0, value);
-			}
-		}
-
-		// Token: 0x170004D2 RID: 1234
-		// (get) Token: 0x060034DC RID: 13532 RVA: 0x0016F2CD File Offset: 0x0016D4CD
-		// (set) Token: 0x060034DD RID: 13533 RVA: 0x0016F2D6 File Offset: 0x0016D4D6
-		public bool isOpenOffset
-		{
-			get
-			{
-				return base.GetOpen(1);
-			}
-			set
-			{
-				base.SetOpen<OffsetEffect>(1, value);
-			}
-		}
-
-		// Token: 0x060034DE RID: 13534 RVA: 0x0016F2E0 File Offset: 0x0016D4E0
-		public void Add(Vector2 leftPos, float width, float height, Color color)
-		{
-			this.mData.Add(new CartoonDraw.Data
-			{
-				leftPos = leftPos,
-				color = color,
-				width = width,
-				height = height
-			});
-		}
-
-		// Token: 0x060034DF RID: 13535 RVA: 0x0016F30F File Offset: 0x0016D50F
-		public override void UpdateSelf(float deltaTime)
-		{
-			base.UpdateSelf(deltaTime);
-			int num = this.frameIndex;
-			this.UpdateAnim(deltaTime);
-			if (num != this.frameIndex)
-			{
-				CanvasUpdateRegistry.RegisterCanvasElementForGraphicRebuild(this);
-			}
-		}
-
-		// Token: 0x060034E0 RID: 13536 RVA: 0x0016F334 File Offset: 0x0016D534
-		public void Rebuild(CanvasUpdate executing)
-		{
-			if (executing != 3)
-			{
-				return;
-			}
-			if (this.mData == null)
-			{
-				return;
-			}
-			Sprite sprite = this.cartoon.sprites[this.frameIndex];
-			Vector4 outerUV = DataUtility.GetOuterUV(this.cartoon.sprites[this.frameIndex]);
+			Sprite val = cartoon.sprites[frameIndex];
+			Vector4 outerUV = DataUtility.GetOuterUV(cartoon.sprites[frameIndex]);
 			VertexHelper vertexHelper = Tools.vertexHelper;
 			vertexHelper.Clear();
-			for (int i = 0; i < this.mData.Count; i++)
+			for (int i = 0; i < mData.Count; i++)
 			{
-				this.mData[i].Gen(vertexHelper, outerUV);
+				mData[i].Gen(vertexHelper, outerUV);
 			}
 			Mesh workerMesh = SymbolText.WorkerMesh;
 			vertexHelper.FillMesh(workerMesh);
 			base.canvasRenderer.SetMesh(workerMesh);
-			base.canvasRenderer.SetTexture(sprite.texture);
+			base.canvasRenderer.SetTexture((Texture)(object)val.texture);
 		}
+	}
 
-		// Token: 0x060034E1 RID: 13537 RVA: 0x0016F3DE File Offset: 0x0016D5DE
-		public override void Release()
-		{
-			base.Release();
-			this.mData.Clear();
-			this.frameIndex = 0;
-		}
+	public override void Release()
+	{
+		base.Release();
+		mData.Clear();
+		frameIndex = 0;
+	}
 
-		// Token: 0x060034E2 RID: 13538 RVA: 0x00004095 File Offset: 0x00002295
-		public void GraphicUpdateComplete()
-		{
-		}
+	public void GraphicUpdateComplete()
+	{
+	}
 
-		// Token: 0x060034E3 RID: 13539 RVA: 0x0016F3F8 File Offset: 0x0016D5F8
-		public bool IsDestroyed()
-		{
-			return this == null;
-		}
+	public bool IsDestroyed()
+	{
+		return (Object)(object)this == (Object)null;
+	}
 
-		// Token: 0x060034E4 RID: 13540 RVA: 0x00004095 File Offset: 0x00002295
-		public void LayoutComplete()
-		{
-		}
+	public void LayoutComplete()
+	{
+	}
 
-		// Token: 0x060034E6 RID: 13542 RVA: 0x0016F414 File Offset: 0x0016D614
-		Transform ICanvasElement.get_transform()
-		{
-			return base.transform;
-		}
-
-		// Token: 0x04002EC9 RID: 11977
-		private int frameIndex;
-
-		// Token: 0x04002ECA RID: 11978
-		private float mDelta;
-
-		// Token: 0x04002ECB RID: 11979
-		private List<CartoonDraw.Data> mData = new List<CartoonDraw.Data>();
-
-		// Token: 0x020014F7 RID: 5367
-		private class Data
-		{
-			// Token: 0x0600828C RID: 33420 RVA: 0x002DB3F0 File Offset: 0x002D95F0
-			public void Gen(VertexHelper vh, Vector4 uv)
-			{
-				int currentVertCount = vh.currentVertCount;
-				vh.AddVert(new Vector3(this.leftPos.x, this.leftPos.y), this.color, new Vector2(uv.x, uv.y));
-				vh.AddVert(new Vector3(this.leftPos.x, this.leftPos.y + this.height), this.color, new Vector2(uv.x, uv.w));
-				vh.AddVert(new Vector3(this.leftPos.x + this.width, this.leftPos.y + this.height), this.color, new Vector2(uv.z, uv.w));
-				vh.AddVert(new Vector3(this.leftPos.x + this.width, this.leftPos.y), this.color, new Vector2(uv.z, uv.y));
-				vh.AddTriangle(currentVertCount, currentVertCount + 1, currentVertCount + 2);
-				vh.AddTriangle(currentVertCount + 2, currentVertCount + 3, currentVertCount);
-			}
-
-			// Token: 0x04006DE8 RID: 28136
-			public Vector2 leftPos;
-
-			// Token: 0x04006DE9 RID: 28137
-			public Color color;
-
-			// Token: 0x04006DEA RID: 28138
-			public float width;
-
-			// Token: 0x04006DEB RID: 28139
-			public float height;
-		}
+	[SpecialName]
+	Transform ICanvasElement.get_transform()
+	{
+		return ((Component)this).transform;
 	}
 }

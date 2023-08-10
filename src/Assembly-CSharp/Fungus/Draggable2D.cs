@@ -1,289 +1,267 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+public class Draggable2D : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-	// Token: 0x02000E6D RID: 3693
-	public class Draggable2D : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+	[Tooltip("Is object dragging enabled")]
+	[SerializeField]
+	protected bool dragEnabled = true;
+
+	[Tooltip("Move object back to its starting position when drag is cancelled")]
+	[FormerlySerializedAs("returnToStartPos")]
+	[SerializeField]
+	protected bool returnOnCancelled = true;
+
+	[Tooltip("Move object back to its starting position when drag is completed")]
+	[SerializeField]
+	protected bool returnOnCompleted = true;
+
+	[Tooltip("Time object takes to return to its starting position")]
+	[SerializeField]
+	protected float returnDuration = 1f;
+
+	[Tooltip("Mouse texture to use when hovering mouse over object")]
+	[SerializeField]
+	protected Texture2D hoverCursor;
+
+	[Tooltip("Use the UI Event System to check for drag events. Clicks that hit an overlapping UI object will be ignored. Camera must have a PhysicsRaycaster component, or a Physics2DRaycaster for 2D colliders.")]
+	[SerializeField]
+	protected bool useEventSystem;
+
+	protected Vector3 startingPosition;
+
+	protected bool updatePosition;
+
+	protected Vector3 newPosition;
+
+	protected Vector3 delta = Vector3.zero;
+
+	protected List<DragCompleted> dragCompletedHandlers = new List<DragCompleted>();
+
+	public virtual bool DragEnabled
 	{
-		// Token: 0x060067F7 RID: 26615 RVA: 0x0028B80B File Offset: 0x00289A0B
-		public void RegisterHandler(DragCompleted handler)
+		get
 		{
-			this.dragCompletedHandlers.Add(handler);
+			return dragEnabled;
 		}
-
-		// Token: 0x060067F8 RID: 26616 RVA: 0x0028B819 File Offset: 0x00289A19
-		public void UnregisterHandler(DragCompleted handler)
+		set
 		{
-			if (this.dragCompletedHandlers.Contains(handler))
-			{
-				this.dragCompletedHandlers.Remove(handler);
-			}
+			dragEnabled = value;
 		}
+	}
 
-		// Token: 0x060067F9 RID: 26617 RVA: 0x0028B836 File Offset: 0x00289A36
-		protected virtual void LateUpdate()
+	public void RegisterHandler(DragCompleted handler)
+	{
+		dragCompletedHandlers.Add(handler);
+	}
+
+	public void UnregisterHandler(DragCompleted handler)
+	{
+		if (dragCompletedHandlers.Contains(handler))
 		{
-			if (this.updatePosition)
-			{
-				base.transform.position = this.newPosition;
-				this.updatePosition = false;
-			}
+			dragCompletedHandlers.Remove(handler);
 		}
+	}
 
-		// Token: 0x060067FA RID: 26618 RVA: 0x0028B858 File Offset: 0x00289A58
-		protected virtual void OnTriggerEnter2D(Collider2D other)
+	protected virtual void LateUpdate()
+	{
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		if (updatePosition)
 		{
-			if (!this.dragEnabled)
-			{
-				return;
-			}
-			FungusManager.Instance.EventDispatcher.Raise<DragEntered.DragEnteredEvent>(new DragEntered.DragEnteredEvent(this, other));
+			((Component)this).transform.position = newPosition;
+			updatePosition = false;
 		}
+	}
 
-		// Token: 0x060067FB RID: 26619 RVA: 0x0028B879 File Offset: 0x00289A79
-		protected virtual void OnTriggerExit2D(Collider2D other)
+	protected virtual void OnTriggerEnter2D(Collider2D other)
+	{
+		if (dragEnabled)
 		{
-			if (!this.dragEnabled)
-			{
-				return;
-			}
-			FungusManager.Instance.EventDispatcher.Raise<DragExited.DragExitedEvent>(new DragExited.DragExitedEvent(this, other));
+			FungusManager.Instance.EventDispatcher.Raise(new DragEntered.DragEnteredEvent(this, other));
 		}
+	}
 
-		// Token: 0x060067FC RID: 26620 RVA: 0x0028B89C File Offset: 0x00289A9C
-		protected virtual void DoBeginDrag()
+	protected virtual void OnTriggerExit2D(Collider2D other)
+	{
+		if (dragEnabled)
+		{
+			FungusManager.Instance.EventDispatcher.Raise(new DragExited.DragExitedEvent(this, other));
+		}
+	}
+
+	protected virtual void DoBeginDrag()
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		float x = Input.mousePosition.x;
+		float y = Input.mousePosition.y;
+		delta = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f)) - ((Component)this).transform.position;
+		delta.z = 0f;
+		startingPosition = ((Component)this).transform.position;
+		FungusManager.Instance.EventDispatcher.Raise(new DragStarted.DragStartedEvent(this));
+	}
+
+	protected virtual void DoDrag()
+	{
+		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		if (dragEnabled)
 		{
 			float x = Input.mousePosition.x;
 			float y = Input.mousePosition.y;
-			this.delta = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f)) - base.transform.position;
-			this.delta.z = 0f;
-			this.startingPosition = base.transform.position;
-			FungusManager.Instance.EventDispatcher.Raise<DragStarted.DragStartedEvent>(new DragStarted.DragStartedEvent(this));
+			float z = ((Component)this).transform.position.z;
+			newPosition = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f)) - delta;
+			newPosition.z = z;
+			updatePosition = true;
 		}
+	}
 
-		// Token: 0x060067FD RID: 26621 RVA: 0x0028B924 File Offset: 0x00289B24
-		protected virtual void DoDrag()
+	protected virtual void DoEndDrag()
+	{
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		if (!dragEnabled)
 		{
-			if (!this.dragEnabled)
-			{
-				return;
-			}
-			float x = Input.mousePosition.x;
-			float y = Input.mousePosition.y;
-			float z = base.transform.position.z;
-			this.newPosition = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f)) - this.delta;
-			this.newPosition.z = z;
-			this.updatePosition = true;
+			return;
 		}
-
-		// Token: 0x060067FE RID: 26622 RVA: 0x0028B99C File Offset: 0x00289B9C
-		protected virtual void DoEndDrag()
+		EventDispatcher eventDispatcher = FungusManager.Instance.EventDispatcher;
+		bool flag = false;
+		for (int i = 0; i < dragCompletedHandlers.Count; i++)
 		{
-			if (!this.dragEnabled)
+			DragCompleted dragCompleted = dragCompletedHandlers[i];
+			if ((Object)(object)dragCompleted != (Object)null && (Object)(object)dragCompleted.DraggableObject == (Object)(object)this && dragCompleted.IsOverTarget())
 			{
-				return;
-			}
-			EventDispatcher eventDispatcher = FungusManager.Instance.EventDispatcher;
-			bool flag = false;
-			for (int i = 0; i < this.dragCompletedHandlers.Count; i++)
-			{
-				DragCompleted dragCompleted = this.dragCompletedHandlers[i];
-				if (dragCompleted != null && dragCompleted.DraggableObject == this && dragCompleted.IsOverTarget())
-				{
-					flag = true;
-					eventDispatcher.Raise<DragCompleted.DragCompletedEvent>(new DragCompleted.DragCompletedEvent(this));
-				}
-			}
-			if (!flag)
-			{
-				eventDispatcher.Raise<DragCancelled.DragCancelledEvent>(new DragCancelled.DragCancelledEvent(this));
-				if (this.returnOnCancelled)
-				{
-					LeanTween.move(base.gameObject, this.startingPosition, this.returnDuration).setEase(LeanTweenType.easeOutExpo);
-					return;
-				}
-			}
-			else if (this.returnOnCompleted)
-			{
-				LeanTween.move(base.gameObject, this.startingPosition, this.returnDuration).setEase(LeanTweenType.easeOutExpo);
+				flag = true;
+				eventDispatcher.Raise(new DragCompleted.DragCompletedEvent(this));
 			}
 		}
-
-		// Token: 0x060067FF RID: 26623 RVA: 0x0028BA6D File Offset: 0x00289C6D
-		protected virtual void DoPointerEnter()
+		if (!flag)
 		{
-			this.ChangeCursor(this.hoverCursor);
-		}
-
-		// Token: 0x06006800 RID: 26624 RVA: 0x0028BA7B File Offset: 0x00289C7B
-		protected virtual void DoPointerExit()
-		{
-			SetMouseCursor.ResetMouseCursor();
-		}
-
-		// Token: 0x06006801 RID: 26625 RVA: 0x0028BA82 File Offset: 0x00289C82
-		protected virtual void ChangeCursor(Texture2D cursorTexture)
-		{
-			if (!this.dragEnabled)
+			eventDispatcher.Raise(new DragCancelled.DragCancelledEvent(this));
+			if (returnOnCancelled)
 			{
-				return;
-			}
-			Cursor.SetCursor(cursorTexture, Vector2.zero, 0);
-		}
-
-		// Token: 0x06006802 RID: 26626 RVA: 0x0028BA99 File Offset: 0x00289C99
-		protected virtual void OnMouseDown()
-		{
-			if (!this.useEventSystem)
-			{
-				this.DoBeginDrag();
+				LeanTween.move(((Component)this).gameObject, startingPosition, returnDuration).setEase(LeanTweenType.easeOutExpo);
 			}
 		}
-
-		// Token: 0x06006803 RID: 26627 RVA: 0x0028BAA9 File Offset: 0x00289CA9
-		protected virtual void OnMouseDrag()
+		else if (returnOnCompleted)
 		{
-			if (!this.useEventSystem)
-			{
-				this.DoDrag();
-			}
+			LeanTween.move(((Component)this).gameObject, startingPosition, returnDuration).setEase(LeanTweenType.easeOutExpo);
 		}
+	}
 
-		// Token: 0x06006804 RID: 26628 RVA: 0x0028BAB9 File Offset: 0x00289CB9
-		protected virtual void OnMouseUp()
+	protected virtual void DoPointerEnter()
+	{
+		ChangeCursor(hoverCursor);
+	}
+
+	protected virtual void DoPointerExit()
+	{
+		SetMouseCursor.ResetMouseCursor();
+	}
+
+	protected virtual void ChangeCursor(Texture2D cursorTexture)
+	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		if (dragEnabled)
 		{
-			if (!this.useEventSystem)
-			{
-				this.DoEndDrag();
-			}
+			Cursor.SetCursor(cursorTexture, Vector2.zero, (CursorMode)0);
 		}
+	}
 
-		// Token: 0x06006805 RID: 26629 RVA: 0x0028BAC9 File Offset: 0x00289CC9
-		protected virtual void OnMouseEnter()
+	protected virtual void OnMouseDown()
+	{
+		if (!useEventSystem)
 		{
-			if (!this.useEventSystem)
-			{
-				this.DoPointerEnter();
-			}
+			DoBeginDrag();
 		}
+	}
 
-		// Token: 0x06006806 RID: 26630 RVA: 0x0028BAD9 File Offset: 0x00289CD9
-		protected virtual void OnMouseExit()
+	protected virtual void OnMouseDrag()
+	{
+		if (!useEventSystem)
 		{
-			if (!this.useEventSystem)
-			{
-				this.DoPointerExit();
-			}
+			DoDrag();
 		}
+	}
 
-		// Token: 0x17000846 RID: 2118
-		// (get) Token: 0x06006807 RID: 26631 RVA: 0x0028BAE9 File Offset: 0x00289CE9
-		// (set) Token: 0x06006808 RID: 26632 RVA: 0x0028BAF1 File Offset: 0x00289CF1
-		public virtual bool DragEnabled
+	protected virtual void OnMouseUp()
+	{
+		if (!useEventSystem)
 		{
-			get
-			{
-				return this.dragEnabled;
-			}
-			set
-			{
-				this.dragEnabled = value;
-			}
+			DoEndDrag();
 		}
+	}
 
-		// Token: 0x06006809 RID: 26633 RVA: 0x0028BAFA File Offset: 0x00289CFA
-		public void OnBeginDrag(PointerEventData eventData)
+	protected virtual void OnMouseEnter()
+	{
+		if (!useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoBeginDrag();
-			}
+			DoPointerEnter();
 		}
+	}
 
-		// Token: 0x0600680A RID: 26634 RVA: 0x0028BB0A File Offset: 0x00289D0A
-		public void OnDrag(PointerEventData eventData)
+	protected virtual void OnMouseExit()
+	{
+		if (!useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoDrag();
-			}
+			DoPointerExit();
 		}
+	}
 
-		// Token: 0x0600680B RID: 26635 RVA: 0x0028BB1A File Offset: 0x00289D1A
-		public void OnEndDrag(PointerEventData eventData)
+	public void OnBeginDrag(PointerEventData eventData)
+	{
+		if (useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoEndDrag();
-			}
+			DoBeginDrag();
 		}
+	}
 
-		// Token: 0x0600680C RID: 26636 RVA: 0x0028BB2A File Offset: 0x00289D2A
-		public void OnPointerEnter(PointerEventData eventData)
+	public void OnDrag(PointerEventData eventData)
+	{
+		if (useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoPointerEnter();
-			}
+			DoDrag();
 		}
+	}
 
-		// Token: 0x0600680D RID: 26637 RVA: 0x0028BB3A File Offset: 0x00289D3A
-		public void OnPointerExit(PointerEventData eventData)
+	public void OnEndDrag(PointerEventData eventData)
+	{
+		if (useEventSystem)
 		{
-			if (this.useEventSystem)
-			{
-				this.DoPointerExit();
-			}
+			DoEndDrag();
 		}
+	}
 
-		// Token: 0x040058B6 RID: 22710
-		[Tooltip("Is object dragging enabled")]
-		[SerializeField]
-		protected bool dragEnabled = true;
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		if (useEventSystem)
+		{
+			DoPointerEnter();
+		}
+	}
 
-		// Token: 0x040058B7 RID: 22711
-		[Tooltip("Move object back to its starting position when drag is cancelled")]
-		[FormerlySerializedAs("returnToStartPos")]
-		[SerializeField]
-		protected bool returnOnCancelled = true;
-
-		// Token: 0x040058B8 RID: 22712
-		[Tooltip("Move object back to its starting position when drag is completed")]
-		[SerializeField]
-		protected bool returnOnCompleted = true;
-
-		// Token: 0x040058B9 RID: 22713
-		[Tooltip("Time object takes to return to its starting position")]
-		[SerializeField]
-		protected float returnDuration = 1f;
-
-		// Token: 0x040058BA RID: 22714
-		[Tooltip("Mouse texture to use when hovering mouse over object")]
-		[SerializeField]
-		protected Texture2D hoverCursor;
-
-		// Token: 0x040058BB RID: 22715
-		[Tooltip("Use the UI Event System to check for drag events. Clicks that hit an overlapping UI object will be ignored. Camera must have a PhysicsRaycaster component, or a Physics2DRaycaster for 2D colliders.")]
-		[SerializeField]
-		protected bool useEventSystem;
-
-		// Token: 0x040058BC RID: 22716
-		protected Vector3 startingPosition;
-
-		// Token: 0x040058BD RID: 22717
-		protected bool updatePosition;
-
-		// Token: 0x040058BE RID: 22718
-		protected Vector3 newPosition;
-
-		// Token: 0x040058BF RID: 22719
-		protected Vector3 delta = Vector3.zero;
-
-		// Token: 0x040058C0 RID: 22720
-		protected List<DragCompleted> dragCompletedHandlers = new List<DragCompleted>();
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		if (useEventSystem)
+		{
+			DoPointerExit();
+		}
 	}
 }

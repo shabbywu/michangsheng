@@ -1,136 +1,123 @@
-﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class SkillCell : MonoBehaviour
 {
-	// Token: 0x02000A6B RID: 2667
-	public class SkillCell : MonoBehaviour
+	public GameObject Icon;
+
+	public GameObject Level;
+
+	public GameObject Name;
+
+	public GameObject PingZhi;
+
+	public int skillID;
+
+	public GameObject KeyName;
+
+	public UILabel NameLabel;
+
+	public bool showName;
+
+	private float refreshCD;
+
+	private void Update()
 	{
-		// Token: 0x06004AF0 RID: 19184 RVA: 0x001FE456 File Offset: 0x001FC656
-		private void Update()
+		if (refreshCD < 0f)
 		{
-			if (this.refreshCD < 0f)
-			{
-				this.UpdateRefresh();
-				this.refreshCD = 0.2f;
-				return;
-			}
-			this.refreshCD -= Time.deltaTime;
+			UpdateRefresh();
+			refreshCD = 0.2f;
 		}
-
-		// Token: 0x06004AF1 RID: 19185 RVA: 0x001FE48C File Offset: 0x001FC68C
-		public void UpdateRefresh()
+		else
 		{
-			if (this.skillID == -1)
-			{
-				this.Icon.GetComponent<UITexture>().mainTexture = null;
-				this.Level.GetComponent<UILabel>().text = "";
-				this.Name.GetComponent<UILabel>().text = "";
-				this.PingZhi.GetComponent<UITexture>().mainTexture = null;
-				if (this.KeyName != null)
-				{
-					this.KeyName.SetActive(false);
-				}
-				return;
-			}
-			this.Icon.GetComponent<UITexture>().mainTexture = Singleton.skillUI.skill[this.skillID].skill_Icon;
-			this.Level.GetComponent<UILabel>().text = "Lv" + Singleton.skillUI.skill[this.skillID].skill_level.ToString() + "/" + Singleton.skillUI.skill[this.skillID].Max_level.ToString();
-			this.Name.GetComponent<UILabel>().text = Singleton.skillUI.skill[this.skillID].skill_Name;
-			this.PingZhi.GetComponent<UITexture>().mainTexture = Singleton.skillUI.skill[this.skillID].SkillPingZhi;
-			if (this.KeyName == null)
-			{
-				return;
-			}
-			if (Tools.instance.getPlayer().showSkillName == 0 && this.showName)
-			{
-				this.KeyName.SetActive(true);
-				this.NameLabel.text = Tools.instance.getSkillName(Singleton.skillUI.skill[this.skillID].skill_ID, true);
-				return;
-			}
-			this.KeyName.SetActive(false);
+			refreshCD -= Time.deltaTime;
 		}
+	}
 
-		// Token: 0x06004AF2 RID: 19186 RVA: 0x001FE655 File Offset: 0x001FC855
-		private void OnPress()
+	public void UpdateRefresh()
+	{
+		if (skillID == -1)
 		{
-			if (this.skillID == -1)
+			Icon.GetComponent<UITexture>().mainTexture = null;
+			Level.GetComponent<UILabel>().text = "";
+			Name.GetComponent<UILabel>().text = "";
+			PingZhi.GetComponent<UITexture>().mainTexture = null;
+			if ((Object)(object)KeyName != (Object)null)
 			{
-				return;
+				KeyName.SetActive(false);
 			}
-			this.PCOnPress();
+			return;
 		}
-
-		// Token: 0x06004AF3 RID: 19187 RVA: 0x001FE667 File Offset: 0x001FC867
-		public void MobilePress()
+		Icon.GetComponent<UITexture>().mainTexture = (Texture)(object)Singleton.skillUI.skill[skillID].skill_Icon;
+		Level.GetComponent<UILabel>().text = "Lv" + Singleton.skillUI.skill[skillID].skill_level + "/" + Singleton.skillUI.skill[skillID].Max_level;
+		Name.GetComponent<UILabel>().text = Singleton.skillUI.skill[skillID].skill_Name;
+		PingZhi.GetComponent<UITexture>().mainTexture = (Texture)(object)Singleton.skillUI.skill[skillID].SkillPingZhi;
+		if (!((Object)(object)KeyName == (Object)null))
 		{
-			this.PCOnHover(true);
-			Singleton.ToolTipsBackGround.openTooltips();
-			TooltipsBackgroundi toolTipsBackGround = Singleton.ToolTipsBackGround;
-			toolTipsBackGround.CloseAction = delegate()
+			if (Tools.instance.getPlayer().showSkillName == 0 && showName)
 			{
-				this.PCOnHover(false);
-			};
-			toolTipsBackGround.use.gameObject.SetActive(false);
-		}
-
-		// Token: 0x06004AF4 RID: 19188 RVA: 0x001FE6A4 File Offset: 0x001FC8A4
-		public void PCOnPress()
-		{
-			Singleton.skillUI.showTooltip = false;
-			if (Input.GetMouseButton(0) && !Singleton.inventory.draggingItem && !Singleton.key.draggingKey && Singleton.skillUI.skill[this.skillID].CoolDown != 0f)
+				KeyName.SetActive(true);
+				NameLabel.text = Tools.instance.getSkillName(Singleton.skillUI.skill[skillID].skill_ID, includecolor: true);
+			}
+			else
 			{
-				Singleton.skillUI.draggingSkill = true;
-				Singleton.skillUI.dragedSkill = Singleton.skillUI.skill[this.skillID];
+				KeyName.SetActive(false);
 			}
 		}
+	}
 
-		// Token: 0x06004AF5 RID: 19189 RVA: 0x001FE727 File Offset: 0x001FC927
-		private void OnHover(bool isOver)
+	private void OnPress()
+	{
+		if (skillID != -1)
 		{
-			this.PCOnHover(isOver);
+			PCOnPress();
 		}
+	}
 
-		// Token: 0x06004AF6 RID: 19190 RVA: 0x001FE730 File Offset: 0x001FC930
-		public void PCOnHover(bool isOver)
+	public void MobilePress()
+	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Expected O, but got Unknown
+		PCOnHover(isOver: true);
+		Singleton.ToolTipsBackGround.openTooltips();
+		TooltipsBackgroundi toolTipsBackGround = Singleton.ToolTipsBackGround;
+		toolTipsBackGround.CloseAction = (UnityAction)delegate
 		{
-			if (this.skillID == -1)
-			{
-				return;
-			}
+			PCOnHover(isOver: false);
+		};
+		((Component)toolTipsBackGround.use).gameObject.SetActive(false);
+	}
+
+	public void PCOnPress()
+	{
+		Singleton.skillUI.showTooltip = false;
+		if (Input.GetMouseButton(0) && !Singleton.inventory.draggingItem && !Singleton.key.draggingKey && Singleton.skillUI.skill[skillID].CoolDown != 0f)
+		{
+			Singleton.skillUI.draggingSkill = true;
+			Singleton.skillUI.dragedSkill = Singleton.skillUI.skill[skillID];
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		PCOnHover(isOver);
+	}
+
+	public void PCOnHover(bool isOver)
+	{
+		if (skillID != -1)
+		{
 			if (isOver)
 			{
-				Singleton.skillUI.Show_Tooltip(Singleton.skillUI.skill[this.skillID]);
+				Singleton.skillUI.Show_Tooltip(Singleton.skillUI.skill[skillID]);
 				Singleton.skillUI.showTooltip = true;
-				return;
 			}
-			Singleton.skillUI.showTooltip = false;
+			else
+			{
+				Singleton.skillUI.showTooltip = false;
+			}
 		}
-
-		// Token: 0x04004A19 RID: 18969
-		public GameObject Icon;
-
-		// Token: 0x04004A1A RID: 18970
-		public GameObject Level;
-
-		// Token: 0x04004A1B RID: 18971
-		public GameObject Name;
-
-		// Token: 0x04004A1C RID: 18972
-		public GameObject PingZhi;
-
-		// Token: 0x04004A1D RID: 18973
-		public int skillID;
-
-		// Token: 0x04004A1E RID: 18974
-		public GameObject KeyName;
-
-		// Token: 0x04004A1F RID: 18975
-		public UILabel NameLabel;
-
-		// Token: 0x04004A20 RID: 18976
-		public bool showName;
-
-		// Token: 0x04004A21 RID: 18977
-		private float refreshCD;
 	}
 }

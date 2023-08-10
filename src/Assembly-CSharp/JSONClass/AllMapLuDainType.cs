@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class AllMapLuDainType : IJSONClass
 {
-	// Token: 0x0200074C RID: 1868
-	public class AllMapLuDainType : IJSONClass
+	public static Dictionary<int, AllMapLuDainType> DataDict = new Dictionary<int, AllMapLuDainType>();
+
+	public static List<AllMapLuDainType> DataList = new List<AllMapLuDainType>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int MapType;
+
+	public string LuDianName;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003B44 RID: 15172 RVA: 0x00197CA4 File Offset: 0x00195EA4
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.AllMapLuDainType.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.AllMapLuDainType.list)
+			try
 			{
-				try
+				AllMapLuDainType allMapLuDainType = new AllMapLuDainType();
+				allMapLuDainType.id = item["id"].I;
+				allMapLuDainType.MapType = item["MapType"].I;
+				allMapLuDainType.LuDianName = item["LuDianName"].Str;
+				if (DataDict.ContainsKey(allMapLuDainType.id))
 				{
-					AllMapLuDainType allMapLuDainType = new AllMapLuDainType();
-					allMapLuDainType.id = jsonobject["id"].I;
-					allMapLuDainType.MapType = jsonobject["MapType"].I;
-					allMapLuDainType.LuDianName = jsonobject["LuDianName"].Str;
-					if (AllMapLuDainType.DataDict.ContainsKey(allMapLuDainType.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典AllMapLuDainType.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", allMapLuDainType.id));
-					}
-					else
-					{
-						AllMapLuDainType.DataDict.Add(allMapLuDainType.id, allMapLuDainType);
-						AllMapLuDainType.DataList.Add(allMapLuDainType);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典AllMapLuDainType.DataDict添加数据时出现重复的键，Key:{allMapLuDainType.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典AllMapLuDainType.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(allMapLuDainType.id, allMapLuDainType);
+				DataList.Add(allMapLuDainType);
 			}
-			if (AllMapLuDainType.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				AllMapLuDainType.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典AllMapLuDainType.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003B45 RID: 15173 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040033DB RID: 13275
-		public static Dictionary<int, AllMapLuDainType> DataDict = new Dictionary<int, AllMapLuDainType>();
-
-		// Token: 0x040033DC RID: 13276
-		public static List<AllMapLuDainType> DataList = new List<AllMapLuDainType>();
-
-		// Token: 0x040033DD RID: 13277
-		public static Action OnInitFinishAction = new Action(AllMapLuDainType.OnInitFinish);
-
-		// Token: 0x040033DE RID: 13278
-		public int id;
-
-		// Token: 0x040033DF RID: 13279
-		public int MapType;
-
-		// Token: 0x040033E0 RID: 13280
-		public string LuDianName;
+	private static void OnInitFinish()
+	{
 	}
 }

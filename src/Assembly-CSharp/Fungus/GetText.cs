@@ -1,84 +1,77 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("UI", "Get Text", "Gets the text property from a UI Text object and stores it in a string variable.", 0)]
+[AddComponentMenu("")]
+public class GetText : Command
 {
-	// Token: 0x02000DD5 RID: 3541
-	[CommandInfo("UI", "Get Text", "Gets the text property from a UI Text object and stores it in a string variable.", 0)]
-	[AddComponentMenu("")]
-	public class GetText : Command
+	[Tooltip("Text object to get text value from")]
+	[SerializeField]
+	protected GameObject targetTextObject;
+
+	[Tooltip("String variable to store the text value in")]
+	[VariableProperty(new Type[] { typeof(StringVariable) })]
+	[SerializeField]
+	protected StringVariable stringVariable;
+
+	[HideInInspector]
+	[FormerlySerializedAs("textObject")]
+	public Text _textObjectObsolete;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006495 RID: 25749 RVA: 0x0027F770 File Offset: 0x0027D970
-		public override void OnEnter()
+		if ((Object)(object)stringVariable == (Object)null)
 		{
-			if (this.stringVariable == null)
-			{
-				this.Continue();
-				return;
-			}
-			TextAdapter textAdapter = new TextAdapter();
-			textAdapter.InitFromGameObject(this.targetTextObject, false);
-			if (textAdapter.HasTextObject())
-			{
-				this.stringVariable.Value = textAdapter.Text;
-			}
-			this.Continue();
+			Continue();
+			return;
 		}
-
-		// Token: 0x06006496 RID: 25750 RVA: 0x0027F7C4 File Offset: 0x0027D9C4
-		public override string GetSummary()
+		TextAdapter textAdapter = new TextAdapter();
+		textAdapter.InitFromGameObject(targetTextObject);
+		if (textAdapter.HasTextObject())
 		{
-			if (this.targetTextObject == null)
-			{
-				return "Error: No text object selected";
-			}
-			if (this.stringVariable == null)
-			{
-				return "Error: No variable selected";
-			}
-			return this.targetTextObject.name + " : " + this.stringVariable.name;
+			stringVariable.Value = textAdapter.Text;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006497 RID: 25751 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override string GetSummary()
+	{
+		if ((Object)(object)targetTextObject == (Object)null)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return "Error: No text object selected";
 		}
-
-		// Token: 0x06006498 RID: 25752 RVA: 0x0027F819 File Offset: 0x0027DA19
-		public override bool HasReference(Variable variable)
+		if ((Object)(object)stringVariable == (Object)null)
 		{
-			return this.stringVariable == variable || base.HasReference(variable);
+			return "Error: No variable selected";
 		}
+		return ((Object)targetTextObject).name + " : " + ((Object)stringVariable).name;
+	}
 
-		// Token: 0x06006499 RID: 25753 RVA: 0x0027F832 File Offset: 0x0027DA32
-		protected virtual void OnEnable()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)stringVariable == (Object)(object)variable))
 		{
-			if (this._textObjectObsolete != null)
-			{
-				this.targetTextObject = this._textObjectObsolete.gameObject;
-			}
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x0400566D RID: 22125
-		[Tooltip("Text object to get text value from")]
-		[SerializeField]
-		protected GameObject targetTextObject;
-
-		// Token: 0x0400566E RID: 22126
-		[Tooltip("String variable to store the text value in")]
-		[VariableProperty(new Type[]
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)_textObjectObsolete != (Object)null)
 		{
-			typeof(StringVariable)
-		})]
-		[SerializeField]
-		protected StringVariable stringVariable;
-
-		// Token: 0x0400566F RID: 22127
-		[HideInInspector]
-		[FormerlySerializedAs("textObject")]
-		public Text _textObjectObsolete;
+			targetTextObject = ((Component)_textObjectObsolete).gameObject;
+		}
 	}
 }

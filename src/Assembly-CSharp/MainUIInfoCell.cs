@@ -1,69 +1,67 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000328 RID: 808
 public class MainUIInfoCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x06001BD7 RID: 7127 RVA: 0x000C6884 File Offset: 0x000C4A84
+	[SerializeField]
+	private Text text;
+
+	public int baseNum;
+
+	public int curNum;
+
+	public string desc;
+
 	public void UpdateNum(string content, bool isLinGen = false)
 	{
-		this.text.text = content;
+		//IL_00ae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		text.text = content;
 		if (!isLinGen)
 		{
-			if (this.curNum > this.baseNum)
+			if (curNum > baseNum)
 			{
-				this.text.color = new Color(0.7921569f, 0.9764706f, 0.24705882f);
-				return;
+				((Graphic)text).color = new Color(0.7921569f, 83f / 85f, 21f / 85f);
 			}
-			if (this.curNum < this.baseNum)
+			else if (curNum < baseNum)
 			{
-				this.text.color = new Color(1f, 0.7529412f, 0.6313726f);
-				return;
+				((Graphic)text).color = new Color(1f, 64f / 85f, 0.6313726f);
 			}
-			this.text.color = new Color(1f, 0.9882353f, 0.84313726f);
-			return;
+			else
+			{
+				((Graphic)text).color = new Color(1f, 84f / 85f, 43f / 51f);
+			}
+		}
+		else if (curNum > baseNum)
+		{
+			((Graphic)text).color = new Color(1f, 64f / 85f, 0.6313726f);
+		}
+		else if (curNum < baseNum)
+		{
+			((Graphic)text).color = new Color(0.7921569f, 83f / 85f, 21f / 85f);
 		}
 		else
 		{
-			if (this.curNum > this.baseNum)
-			{
-				this.text.color = new Color(1f, 0.7529412f, 0.6313726f);
-				return;
-			}
-			if (this.curNum < this.baseNum)
-			{
-				this.text.color = new Color(0.7921569f, 0.9764706f, 0.24705882f);
-				return;
-			}
-			this.text.color = new Color(1f, 0.9882353f, 0.84313726f);
-			return;
+			((Graphic)text).color = new Color(1f, 84f / 85f, 43f / 51f);
 		}
 	}
 
-	// Token: 0x06001BD8 RID: 7128 RVA: 0x000C6998 File Offset: 0x000C4B98
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		MainUIMag.inst.tooltip.Show(this.desc, new Vector3(base.transform.position.x, base.transform.position.y, base.transform.position.z));
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		MainUIMag.inst.tooltip.Show(desc, new Vector3(((Component)this).transform.position.x, ((Component)this).transform.position.y, ((Component)this).transform.position.z));
 	}
 
-	// Token: 0x06001BD9 RID: 7129 RVA: 0x000C69EF File Offset: 0x000C4BEF
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		MainUIMag.inst.tooltip.Hide();
 	}
-
-	// Token: 0x0400166C RID: 5740
-	[SerializeField]
-	private Text text;
-
-	// Token: 0x0400166D RID: 5741
-	public int baseNum;
-
-	// Token: 0x0400166E RID: 5742
-	public int curNum;
-
-	// Token: 0x0400166F RID: 5743
-	public string desc;
 }

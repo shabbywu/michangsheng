@@ -1,70 +1,65 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Scripting", "Set Active", "Sets a game object in the scene to be active / inactive.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class SetActive : Command
 {
-	// Token: 0x02000E2E RID: 3630
-	[CommandInfo("Scripting", "Set Active", "Sets a game object in the scene to be active / inactive.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class SetActive : Command
+	[Tooltip("Reference to game object to enable / disable")]
+	[SerializeField]
+	protected GameObjectData _targetGameObject;
+
+	[Tooltip("Set to true to enable the game object")]
+	[SerializeField]
+	protected BooleanData activeState;
+
+	[HideInInspector]
+	[FormerlySerializedAs("targetGameObject")]
+	public GameObject targetGameObjectOLD;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006643 RID: 26179 RVA: 0x00285D63 File Offset: 0x00283F63
-		public override void OnEnter()
+		if ((Object)(object)_targetGameObject.Value != (Object)null)
 		{
-			if (this._targetGameObject.Value != null)
-			{
-				this._targetGameObject.Value.SetActive(this.activeState.Value);
-			}
-			this.Continue();
+			_targetGameObject.Value.SetActive(activeState.Value);
 		}
+		Continue();
+	}
 
-		// Token: 0x06006644 RID: 26180 RVA: 0x00285D99 File Offset: 0x00283F99
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)_targetGameObject.Value == (Object)null)
 		{
-			if (this._targetGameObject.Value == null)
-			{
-				return "Error: No game object selected";
-			}
-			return this._targetGameObject.Value.name + " = " + this.activeState.GetDescription();
+			return "Error: No game object selected";
 		}
+		return ((Object)_targetGameObject.Value).name + " = " + activeState.GetDescription();
+	}
 
-		// Token: 0x06006645 RID: 26181 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_targetGameObject.gameObjectRef == (Object)(object)variable) && !((Object)(object)activeState.booleanRef == (Object)(object)variable))
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x06006646 RID: 26182 RVA: 0x00285DD9 File Offset: 0x00283FD9
-		public override bool HasReference(Variable variable)
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)targetGameObjectOLD != (Object)null)
 		{
-			return this._targetGameObject.gameObjectRef == variable || this.activeState.booleanRef == variable || base.HasReference(variable);
+			_targetGameObject.Value = targetGameObjectOLD;
+			targetGameObjectOLD = null;
 		}
-
-		// Token: 0x06006647 RID: 26183 RVA: 0x00285E0A File Offset: 0x0028400A
-		protected virtual void OnEnable()
-		{
-			if (this.targetGameObjectOLD != null)
-			{
-				this._targetGameObject.Value = this.targetGameObjectOLD;
-				this.targetGameObjectOLD = null;
-			}
-		}
-
-		// Token: 0x040057B1 RID: 22449
-		[Tooltip("Reference to game object to enable / disable")]
-		[SerializeField]
-		protected GameObjectData _targetGameObject;
-
-		// Token: 0x040057B2 RID: 22450
-		[Tooltip("Set to true to enable the game object")]
-		[SerializeField]
-		protected BooleanData activeState;
-
-		// Token: 0x040057B3 RID: 22451
-		[HideInInspector]
-		[FormerlySerializedAs("targetGameObject")]
-		public GameObject targetGameObjectOLD;
 	}
 }

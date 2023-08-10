@@ -1,222 +1,192 @@
-﻿using System;
+using System;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Scripting", "Execute Lua", "Executes a Lua code chunk using a Lua Environment.", 0)]
+public class ExecuteLua : Command
 {
-	// Token: 0x02000DCC RID: 3532
-	[CommandInfo("Scripting", "Execute Lua", "Executes a Lua code chunk using a Lua Environment.", 0)]
-	public class ExecuteLua : Command
+	[Tooltip("Lua Environment to use to execute this Lua script")]
+	[SerializeField]
+	protected LuaEnvironment luaEnvironment;
+
+	[Tooltip("A text file containing Lua script to execute.")]
+	[SerializeField]
+	protected TextAsset luaFile;
+
+	[TextArea(10, 100)]
+	[Tooltip("Lua script to execute. This text is appended to the contents of Lua file (if one is specified).")]
+	[SerializeField]
+	protected string luaScript;
+
+	[Tooltip("Execute this Lua script as a Lua coroutine")]
+	[SerializeField]
+	protected bool runAsCoroutine = true;
+
+	[Tooltip("Pause command execution until the Lua script has finished execution")]
+	[SerializeField]
+	protected bool waitUntilFinished = true;
+
+	[Tooltip("A Flowchart variable to store the returned value in.")]
+	[VariableProperty(new Type[] { })]
+	[SerializeField]
+	protected Variable returnVariable;
+
+	protected string friendlyName = "";
+
+	protected bool initialised;
+
+	protected Closure luaFunction;
+
+	protected virtual void Start()
 	{
-		// Token: 0x06006468 RID: 25704 RVA: 0x0027E669 File Offset: 0x0027C869
-		protected virtual void Start()
-		{
-			this.InitExecuteLua();
-		}
+		InitExecuteLua();
+	}
 
-		// Token: 0x06006469 RID: 25705 RVA: 0x0027E674 File Offset: 0x0027C874
-		protected virtual void InitExecuteLua()
+	protected virtual void InitExecuteLua()
+	{
+		if (initialised)
 		{
-			if (this.initialised)
+			return;
+		}
+		friendlyName = ((Object)((Component)this).gameObject).name + "." + ParentBlock.BlockName + ".ExecuteLua #" + CommandIndex;
+		Flowchart flowchart = GetFlowchart();
+		if ((Object)(object)luaEnvironment == (Object)null)
+		{
+			luaEnvironment = flowchart.LuaEnv;
+		}
+		if ((Object)(object)luaEnvironment == (Object)null)
+		{
+			luaEnvironment = LuaEnvironment.GetLua();
+		}
+		string luaString = GetLuaString();
+		luaFunction = luaEnvironment.LoadLuaFunction(luaString, friendlyName);
+		if (flowchart.LuaBindingName != "")
+		{
+			Table globals = luaEnvironment.Interpreter.Globals;
+			if (globals != null)
 			{
-				return;
-			}
-			this.friendlyName = string.Concat(new string[]
-			{
-				base.gameObject.name,
-				".",
-				this.ParentBlock.BlockName,
-				".ExecuteLua #",
-				this.CommandIndex.ToString()
-			});
-			Flowchart flowchart = this.GetFlowchart();
-			if (this.luaEnvironment == null)
-			{
-				this.luaEnvironment = flowchart.LuaEnv;
-			}
-			if (this.luaEnvironment == null)
-			{
-				this.luaEnvironment = LuaEnvironment.GetLua();
-			}
-			string luaString = this.GetLuaString();
-			this.luaFunction = this.luaEnvironment.LoadLuaFunction(luaString, this.friendlyName);
-			if (flowchart.LuaBindingName != "")
-			{
-				Table globals = this.luaEnvironment.Interpreter.Globals;
-				if (globals != null)
-				{
-					globals[flowchart.LuaBindingName] = flowchart;
-				}
-			}
-			if (!Application.isPlaying || !Application.isEditor)
-			{
-				this.initialised = true;
+				globals[flowchart.LuaBindingName] = flowchart;
 			}
 		}
-
-		// Token: 0x0600646A RID: 25706 RVA: 0x0027E779 File Offset: 0x0027C979
-		protected virtual string GetLuaString()
+		if (!Application.isPlaying || !Application.isEditor)
 		{
-			if (this.luaFile == null)
-			{
-				return this.luaScript;
-			}
-			return this.luaFile.text + "\n" + this.luaScript;
+			initialised = true;
 		}
+	}
 
-		// Token: 0x0600646B RID: 25707 RVA: 0x0027E7AC File Offset: 0x0027C9AC
-		protected virtual void StoreReturnVariable(DynValue returnValue)
+	protected virtual string GetLuaString()
+	{
+		if ((Object)(object)luaFile == (Object)null)
 		{
-			if (this.returnVariable == null || returnValue == null)
-			{
-				return;
-			}
-			Type type = this.returnVariable.GetType();
+			return luaScript;
+		}
+		return luaFile.text + "\n" + luaScript;
+	}
+
+	protected virtual void StoreReturnVariable(DynValue returnValue)
+	{
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
+		if (!((Object)(object)returnVariable == (Object)null) && returnValue != null)
+		{
+			Type type = ((object)returnVariable).GetType();
 			if (type == typeof(BooleanVariable) && returnValue.Type == DataType.Boolean)
 			{
-				(this.returnVariable as BooleanVariable).Value = returnValue.Boolean;
-				return;
+				(returnVariable as BooleanVariable).Value = returnValue.Boolean;
 			}
-			if (type == typeof(IntegerVariable) && returnValue.Type == DataType.Number)
+			else if (type == typeof(IntegerVariable) && returnValue.Type == DataType.Number)
 			{
-				(this.returnVariable as IntegerVariable).Value = (int)returnValue.Number;
-				return;
+				(returnVariable as IntegerVariable).Value = (int)returnValue.Number;
 			}
-			if (type == typeof(FloatVariable) && returnValue.Type == DataType.Number)
+			else if (type == typeof(FloatVariable) && returnValue.Type == DataType.Number)
 			{
-				(this.returnVariable as FloatVariable).Value = (float)returnValue.Number;
-				return;
+				(returnVariable as FloatVariable).Value = (float)returnValue.Number;
 			}
-			if (type == typeof(StringVariable) && returnValue.Type == DataType.String)
+			else if (type == typeof(StringVariable) && returnValue.Type == DataType.String)
 			{
-				(this.returnVariable as StringVariable).Value = returnValue.String;
-				return;
+				(returnVariable as StringVariable).Value = returnValue.String;
 			}
-			if (type == typeof(ColorVariable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(ColorVariable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as ColorVariable).Value = returnValue.CheckUserDataType<Color>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as ColorVariable).Value = returnValue.CheckUserDataType<Color>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(GameObjectVariable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(GameObjectVariable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as GameObjectVariable).Value = returnValue.CheckUserDataType<GameObject>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as GameObjectVariable).Value = returnValue.CheckUserDataType<GameObject>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(MaterialVariable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(MaterialVariable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as MaterialVariable).Value = returnValue.CheckUserDataType<Material>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as MaterialVariable).Value = returnValue.CheckUserDataType<Material>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(ObjectVariable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(ObjectVariable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as ObjectVariable).Value = returnValue.CheckUserDataType<Object>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as ObjectVariable).Value = returnValue.CheckUserDataType<Object>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(SpriteVariable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(SpriteVariable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as SpriteVariable).Value = returnValue.CheckUserDataType<Sprite>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as SpriteVariable).Value = returnValue.CheckUserDataType<Sprite>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(TextureVariable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(TextureVariable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as TextureVariable).Value = returnValue.CheckUserDataType<Texture>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as TextureVariable).Value = returnValue.CheckUserDataType<Texture>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(Vector2Variable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(Vector2Variable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as Vector2Variable).Value = returnValue.CheckUserDataType<Vector2>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as Vector2Variable).Value = returnValue.CheckUserDataType<Vector2>("ExecuteLua.StoreReturnVariable");
 			}
-			if (type == typeof(Vector3Variable) && returnValue.Type == DataType.UserData)
+			else if (type == typeof(Vector3Variable) && returnValue.Type == DataType.UserData)
 			{
-				(this.returnVariable as Vector3Variable).Value = returnValue.CheckUserDataType<Vector3>("ExecuteLua.StoreReturnVariable", -1, TypeValidationFlags.AutoConvert);
-				return;
+				(returnVariable as Vector3Variable).Value = returnValue.CheckUserDataType<Vector3>("ExecuteLua.StoreReturnVariable");
 			}
-			Debug.LogError("Failed to convert " + returnValue.Type.ToLuaTypeString() + " return type to " + type.ToString());
-		}
-
-		// Token: 0x0600646C RID: 25708 RVA: 0x0027EA90 File Offset: 0x0027CC90
-		public override void OnEnter()
-		{
-			this.InitExecuteLua();
-			if (this.luaFunction == null)
+			else
 			{
-				this.Continue();
-			}
-			this.luaEnvironment.RunLuaFunction(this.luaFunction, this.runAsCoroutine, delegate(DynValue returnValue)
-			{
-				this.StoreReturnVariable(returnValue);
-				if (this.waitUntilFinished)
-				{
-					this.Continue();
-				}
-			});
-			if (!this.waitUntilFinished)
-			{
-				this.Continue();
+				Debug.LogError((object)("Failed to convert " + returnValue.Type.ToLuaTypeString() + " return type to " + type.ToString()));
 			}
 		}
+	}
 
-		// Token: 0x0600646D RID: 25709 RVA: 0x0027EAE2 File Offset: 0x0027CCE2
-		public override string GetSummary()
+	public override void OnEnter()
+	{
+		InitExecuteLua();
+		if (luaFunction == null)
 		{
-			return this.luaScript;
+			Continue();
 		}
-
-		// Token: 0x0600646E RID: 25710 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+		luaEnvironment.RunLuaFunction(luaFunction, runAsCoroutine, delegate(DynValue returnValue)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			StoreReturnVariable(returnValue);
+			if (waitUntilFinished)
+			{
+				Continue();
+			}
+		});
+		if (!waitUntilFinished)
+		{
+			Continue();
 		}
+	}
 
-		// Token: 0x0600646F RID: 25711 RVA: 0x0027EAEA File Offset: 0x0027CCEA
-		public override bool HasReference(Variable variable)
+	public override string GetSummary()
+	{
+		return luaScript;
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)returnVariable == (Object)(object)variable))
 		{
-			return this.returnVariable == variable || base.HasReference(variable);
+			return base.HasReference(variable);
 		}
-
-		// Token: 0x04005645 RID: 22085
-		[Tooltip("Lua Environment to use to execute this Lua script")]
-		[SerializeField]
-		protected LuaEnvironment luaEnvironment;
-
-		// Token: 0x04005646 RID: 22086
-		[Tooltip("A text file containing Lua script to execute.")]
-		[SerializeField]
-		protected TextAsset luaFile;
-
-		// Token: 0x04005647 RID: 22087
-		[TextArea(10, 100)]
-		[Tooltip("Lua script to execute. This text is appended to the contents of Lua file (if one is specified).")]
-		[SerializeField]
-		protected string luaScript;
-
-		// Token: 0x04005648 RID: 22088
-		[Tooltip("Execute this Lua script as a Lua coroutine")]
-		[SerializeField]
-		protected bool runAsCoroutine = true;
-
-		// Token: 0x04005649 RID: 22089
-		[Tooltip("Pause command execution until the Lua script has finished execution")]
-		[SerializeField]
-		protected bool waitUntilFinished = true;
-
-		// Token: 0x0400564A RID: 22090
-		[Tooltip("A Flowchart variable to store the returned value in.")]
-		[VariableProperty(new Type[]
-		{
-
-		})]
-		[SerializeField]
-		protected Variable returnVariable;
-
-		// Token: 0x0400564B RID: 22091
-		protected string friendlyName = "";
-
-		// Token: 0x0400564C RID: 22092
-		protected bool initialised;
-
-		// Token: 0x0400564D RID: 22093
-		protected Closure luaFunction;
+		return true;
 	}
 }

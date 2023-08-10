@@ -1,28 +1,24 @@
-﻿using System;
 using GUIPackage;
+using UnityEngine;
 
-// Token: 0x020001A4 RID: 420
 public class selectSkillType : selectSkillConfig
 {
-	// Token: 0x060011E0 RID: 4576 RVA: 0x0006BCF8 File Offset: 0x00069EF8
 	private void Awake()
 	{
-		this.mList = base.GetComponent<UIPopupList>();
+		mList = ((Component)this).GetComponent<UIPopupList>();
 	}
 
-	// Token: 0x060011E1 RID: 4577 RVA: 0x0006BE9B File Offset: 0x0006A09B
 	private void Start()
 	{
-		EventDelegate.Add(this.mList.onChange, new EventDelegate.Callback(this.OnChange));
+		EventDelegate.Add(mList.onChange, OnChange);
 	}
 
-	// Token: 0x060011E2 RID: 4578 RVA: 0x0006BEBC File Offset: 0x0006A0BC
 	public int getInputID1(string name)
 	{
 		int num = 0;
-		foreach (string b in this.mList.items)
+		foreach (string item in mList.items)
 		{
-			if (name == b)
+			if (name == item)
 			{
 				break;
 			}
@@ -31,11 +27,10 @@ public class selectSkillType : selectSkillConfig
 		return num;
 	}
 
-	// Token: 0x060011E3 RID: 4579 RVA: 0x0006BF20 File Offset: 0x0006A120
 	private void OnChange()
 	{
 		Tools.instance.getPlayer();
-		int inputID = this.getInputID1(this.mList.value);
+		int inputID = getInputID1(mList.value);
 		Singleton.skillUI.ShowType = inputID;
 	}
 }

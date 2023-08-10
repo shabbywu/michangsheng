@@ -1,66 +1,60 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UltimateSurvival
-{
-	// Token: 0x020005E3 RID: 1507
-	public class PoolManager : MonoBehaviour
-	{
-		// Token: 0x06003084 RID: 12420 RVA: 0x0015B73A File Offset: 0x0015993A
-		private void Awake()
-		{
-			this.InitializePools();
-		}
+namespace UltimateSurvival;
 
-		// Token: 0x06003085 RID: 12421 RVA: 0x0015B744 File Offset: 0x00159944
-		private void InitializePools()
+public class PoolManager : MonoBehaviour
+{
+	[SerializeField]
+	private List<Pool> _pools = new List<Pool>();
+
+	private void Awake()
+	{
+		InitializePools();
+	}
+
+	private void InitializePools()
+	{
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		for (int i = 0; i < _pools.Count; i++)
 		{
-			for (int i = 0; i < this._pools.Count; i++)
+			Pool pool = _pools[i];
+			if (pool.PoolName == string.Empty)
 			{
-				Pool pool = this._pools[i];
-				if (pool.PoolName == string.Empty)
+				Debug.LogError((object)("Pool with index of " + i + " does not contain a pool name."));
+				break;
+			}
+			Transform transform = new GameObject(pool.PoolName + " Pool").transform;
+			transform.SetParent(((Component)this).transform);
+			for (int j = 0; j < pool.Amount; j++)
+			{
+				if (!Object.op_Implicit((Object)(object)pool.Prefab))
 				{
-					Debug.LogError("Pool with index of " + i + " does not contain a pool name.");
+					Debug.LogError((object)("There is no prefab assigned for the " + pool.PoolName + " pool"));
 					return;
 				}
-				Transform transform = new GameObject(pool.PoolName + " Pool").transform;
-				transform.SetParent(base.transform);
-				for (int j = 0; j < pool.Amount; j++)
-				{
-					if (!pool.Prefab)
-					{
-						Debug.LogError("There is no prefab assigned for the " + pool.PoolName + " pool");
-						return;
-					}
-					GameObject gameObject = Object.Instantiate<GameObject>(pool.Prefab);
-					gameObject.transform.SetParent(transform);
-					gameObject.SetActive(false);
-					pool.PooledObjects.Add(gameObject);
-				}
+				GameObject val = Object.Instantiate<GameObject>(pool.Prefab);
+				val.transform.SetParent(transform);
+				val.SetActive(false);
+				pool.PooledObjects.Add(val);
 			}
 		}
+	}
 
-		// Token: 0x06003086 RID: 12422 RVA: 0x0015B838 File Offset: 0x00159A38
-		public Pool GetPool(string name)
+	public Pool GetPool(string name)
+	{
+		Pool pool = null;
+		for (int i = 0; i < _pools.Count; i++)
 		{
-			Pool pool = null;
-			for (int i = 0; i < this._pools.Count; i++)
+			if (_pools[i].PoolName == name)
 			{
-				if (this._pools[i].PoolName == name)
-				{
-					pool = this._pools[i];
-				}
+				pool = _pools[i];
 			}
-			if (pool == null)
-			{
-				Debug.LogError("Couldn't find pool with name: " + name);
-			}
-			return pool;
 		}
-
-		// Token: 0x04002AAB RID: 10923
-		[SerializeField]
-		private List<Pool> _pools = new List<Pool>();
+		if (pool == null)
+		{
+			Debug.LogError((object)("Couldn't find pool with name: " + name));
+		}
+		return pool;
 	}
 }

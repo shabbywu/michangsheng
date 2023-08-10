@@ -1,28 +1,28 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020001BA RID: 442
 public static class ColorEx
 {
-	// Token: 0x0600126A RID: 4714 RVA: 0x00070798 File Offset: 0x0006E998
-	public static string ColorToString(this Color color)
-	{
-		string str = ((int)(color.r * 255f)).ToString("X");
-		string str2 = ((int)(color.g * 255f)).ToString("X");
-		string str3 = ((int)(color.b * 255f)).ToString("X");
-		string str4 = ((int)(color.a * 255f)).ToString("X");
-		return str + str2 + str3 + str4;
-	}
-
-	// Token: 0x04000D08 RID: 3336
 	public static List<Color> ItemQualityColor = new List<Color>
 	{
-		new Color(0.84705883f, 0.84705883f, 0.7921569f),
-		new Color(0.8f, 0.8862745f, 0.5058824f),
+		new Color(72f / 85f, 72f / 85f, 0.7921569f),
+		new Color(0.8f, 0.8862745f, 43f / 85f),
 		new Color(0.6745098f, 1f, 0.99607843f),
-		new Color(0.94509804f, 0.7176471f, 0.972549f),
-		new Color(1f, 0.6745098f, 0.37254903f),
+		new Color(0.94509804f, 61f / 85f, 0.972549f),
+		new Color(1f, 0.6745098f, 19f / 51f),
 		new Color(1f, 0.69803923f, 0.54509807f)
 	};
+
+	public static string ColorToString(this Color color)
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		string text = ((int)(color.r * 255f)).ToString("X");
+		string text2 = ((int)(color.g * 255f)).ToString("X");
+		string text3 = ((int)(color.b * 255f)).ToString("X");
+		string text4 = ((int)(color.a * 255f)).ToString("X");
+		return text + text2 + text3 + text4;
+	}
 }

@@ -1,48 +1,101 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000019 RID: 25
 public class LeanTween : MonoBehaviour
 {
-	// Token: 0x0600007C RID: 124 RVA: 0x000045C5 File Offset: 0x000027C5
-	public static void init()
-	{
-		LeanTween.init(LeanTween.maxTweens);
-	}
+	public static bool throwErrors = true;
 
-	// Token: 0x17000011 RID: 17
-	// (get) Token: 0x0600007D RID: 125 RVA: 0x000045D1 File Offset: 0x000027D1
-	public static int maxSearch
-	{
-		get
-		{
-			return LeanTween.tweenMaxSearch;
-		}
-	}
+	public static float tau = (float)Math.PI * 2f;
 
-	// Token: 0x17000012 RID: 18
-	// (get) Token: 0x0600007E RID: 126 RVA: 0x000045D8 File Offset: 0x000027D8
-	public static int maxSimulataneousTweens
-	{
-		get
-		{
-			return LeanTween.maxTweens;
-		}
-	}
+	public static float PI_DIV2 = (float)Math.PI / 2f;
 
-	// Token: 0x17000013 RID: 19
-	// (get) Token: 0x0600007F RID: 127 RVA: 0x000045E0 File Offset: 0x000027E0
+	private static LTSeq[] sequences;
+
+	private static LTDescr[] tweens;
+
+	private static int[] tweensFinished;
+
+	private static int[] tweensFinishedIds;
+
+	private static LTDescr tween;
+
+	private static int tweenMaxSearch = -1;
+
+	private static int maxTweens = 400;
+
+	private static int maxSequences = 400;
+
+	private static int frameRendered = -1;
+
+	private static GameObject _tweenEmpty;
+
+	public static float dtEstimated = -1f;
+
+	public static float dtManual;
+
+	public static float dtActual;
+
+	private static uint global_counter = 0u;
+
+	private static int i;
+
+	private static int j;
+
+	private static int finishedCnt;
+
+	public static AnimationCurve punch = new AnimationCurve((Keyframe[])(object)new Keyframe[9]
+	{
+		new Keyframe(0f, 0f),
+		new Keyframe(0.112586f, 0.9976035f),
+		new Keyframe(0.3120486f, -0.1720615f),
+		new Keyframe(0.4316337f, 0.07030682f),
+		new Keyframe(0.5524869f, -0.03141804f),
+		new Keyframe(0.6549395f, 0.003909959f),
+		new Keyframe(0.770987f, -0.009817753f),
+		new Keyframe(0.8838775f, 0.001939224f),
+		new Keyframe(1f, 0f)
+	});
+
+	public static AnimationCurve shake = new AnimationCurve((Keyframe[])(object)new Keyframe[4]
+	{
+		new Keyframe(0f, 0f),
+		new Keyframe(0.25f, 1f),
+		new Keyframe(0.75f, -1f),
+		new Keyframe(1f, 0f)
+	});
+
+	private static int maxTweenReached;
+
+	public static int startSearch = 0;
+
+	public static LTDescr d;
+
+	private static Action<LTEvent>[] eventListeners;
+
+	private static GameObject[] goListeners;
+
+	private static int eventsMaxSearch = 0;
+
+	public static int EVENTS_MAX = 10;
+
+	public static int LISTENERS_MAX = 10;
+
+	private static int INIT_LISTENERS_MAX = LISTENERS_MAX;
+
+	public static int maxSearch => tweenMaxSearch;
+
+	public static int maxSimulataneousTweens => maxTweens;
+
 	public static int tweensRunning
 	{
 		get
 		{
 			int num = 0;
-			for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+			for (int i = 0; i <= tweenMaxSearch; i++)
 			{
-				if (LeanTween.tweens[i].toggle)
+				if (tweens[i].toggle)
 				{
 					num++;
 				}
@@ -51,168 +104,175 @@ public class LeanTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000080 RID: 128 RVA: 0x00004612 File Offset: 0x00002812
-	public static void init(int maxSimultaneousTweens)
+	public static GameObject tweenEmpty
 	{
-		LeanTween.init(maxSimultaneousTweens, LeanTween.maxSequences);
+		get
+		{
+			init(maxTweens);
+			return _tweenEmpty;
+		}
 	}
 
-	// Token: 0x06000081 RID: 129 RVA: 0x00004620 File Offset: 0x00002820
+	public static void init()
+	{
+		init(maxTweens);
+	}
+
+	public static void init(int maxSimultaneousTweens)
+	{
+		init(maxSimultaneousTweens, maxSequences);
+	}
+
 	public static void init(int maxSimultaneousTweens, int maxSimultaneousSequences)
 	{
-		if (LeanTween.tweens == null)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Expected O, but got Unknown
+		if (tweens == null)
 		{
-			LeanTween.maxTweens = maxSimultaneousTweens;
-			LeanTween.tweens = new LTDescr[LeanTween.maxTweens];
-			LeanTween.tweensFinished = new int[LeanTween.maxTweens];
-			LeanTween.tweensFinishedIds = new int[LeanTween.maxTweens];
-			LeanTween._tweenEmpty = new GameObject();
-			LeanTween._tweenEmpty.name = "~LeanTween";
-			LeanTween._tweenEmpty.AddComponent(typeof(LeanTween));
-			LeanTween._tweenEmpty.isStatic = true;
-			LeanTween._tweenEmpty.hideFlags = 61;
-			Object.DontDestroyOnLoad(LeanTween._tweenEmpty);
-			for (int i = 0; i < LeanTween.maxTweens; i++)
+			maxTweens = maxSimultaneousTweens;
+			tweens = new LTDescr[maxTweens];
+			tweensFinished = new int[maxTweens];
+			tweensFinishedIds = new int[maxTweens];
+			_tweenEmpty = new GameObject();
+			((Object)_tweenEmpty).name = "~LeanTween";
+			_tweenEmpty.AddComponent(typeof(LeanTween));
+			_tweenEmpty.isStatic = true;
+			((Object)_tweenEmpty).hideFlags = (HideFlags)61;
+			Object.DontDestroyOnLoad((Object)(object)_tweenEmpty);
+			for (int i = 0; i < maxTweens; i++)
 			{
-				LeanTween.tweens[i] = new LTDescr();
+				tweens[i] = new LTDescr();
 			}
-			SceneManager.sceneLoaded += new UnityAction<Scene, LoadSceneMode>(LeanTween.onLevelWasLoaded54);
-			LeanTween.sequences = new LTSeq[maxSimultaneousSequences];
+			SceneManager.sceneLoaded += onLevelWasLoaded54;
+			sequences = new LTSeq[maxSimultaneousSequences];
 			for (int j = 0; j < maxSimultaneousSequences; j++)
 			{
-				LeanTween.sequences[j] = new LTSeq();
+				sequences[j] = new LTSeq();
 			}
 		}
 	}
 
-	// Token: 0x06000082 RID: 130 RVA: 0x0000470C File Offset: 0x0000290C
 	public static void reset()
 	{
-		if (LeanTween.tweens != null)
+		if (tweens != null)
 		{
-			for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+			for (int i = 0; i <= tweenMaxSearch; i++)
 			{
-				if (LeanTween.tweens[i] != null)
+				if (tweens[i] != null)
 				{
-					LeanTween.tweens[i].toggle = false;
+					tweens[i].toggle = false;
 				}
 			}
 		}
-		LeanTween.tweens = null;
-		Object.Destroy(LeanTween._tweenEmpty);
+		tweens = null;
+		Object.Destroy((Object)(object)_tweenEmpty);
 	}
 
-	// Token: 0x06000083 RID: 131 RVA: 0x00004756 File Offset: 0x00002956
 	public void Update()
 	{
-		LeanTween.update();
+		update();
 	}
 
-	// Token: 0x06000084 RID: 132 RVA: 0x0000475D File Offset: 0x0000295D
 	private static void onLevelWasLoaded54(Scene scene, LoadSceneMode mode)
 	{
-		LeanTween.internalOnLevelWasLoaded(scene.buildIndex);
+		internalOnLevelWasLoaded(((Scene)(ref scene)).buildIndex);
 	}
 
-	// Token: 0x06000085 RID: 133 RVA: 0x0000476B File Offset: 0x0000296B
 	private static void internalOnLevelWasLoaded(int lvl)
 	{
 		LTGUI.reset();
 	}
 
-	// Token: 0x06000086 RID: 134 RVA: 0x00004774 File Offset: 0x00002974
 	public static void update()
 	{
-		if (LeanTween.frameRendered != Time.frameCount)
+		if (frameRendered == Time.frameCount)
 		{
-			LeanTween.init();
-			LeanTween.dtEstimated = ((LeanTween.dtEstimated < 0f) ? 0f : (LeanTween.dtEstimated = Time.unscaledDeltaTime));
-			LeanTween.dtActual = Time.deltaTime;
-			LeanTween.maxTweenReached = 0;
-			LeanTween.finishedCnt = 0;
-			int num = 0;
-			while (num <= LeanTween.tweenMaxSearch && num < LeanTween.maxTweens)
+			return;
+		}
+		init();
+		dtEstimated = ((dtEstimated < 0f) ? 0f : (dtEstimated = Time.unscaledDeltaTime));
+		dtActual = Time.deltaTime;
+		maxTweenReached = 0;
+		finishedCnt = 0;
+		for (int i = 0; i <= tweenMaxSearch && i < maxTweens; i++)
+		{
+			tween = tweens[i];
+			if (tween.toggle)
 			{
-				LeanTween.tween = LeanTween.tweens[num];
-				if (LeanTween.tween.toggle)
+				maxTweenReached = i;
+				if (tween.updateInternal())
 				{
-					LeanTween.maxTweenReached = num;
-					if (LeanTween.tween.updateInternal())
-					{
-						LeanTween.tweensFinished[LeanTween.finishedCnt] = num;
-						LeanTween.tweensFinishedIds[LeanTween.finishedCnt] = LeanTween.tweens[num].id;
-						LeanTween.finishedCnt++;
-					}
+					tweensFinished[finishedCnt] = i;
+					tweensFinishedIds[finishedCnt] = tweens[i].id;
+					finishedCnt++;
 				}
-				num++;
 			}
-			LeanTween.tweenMaxSearch = LeanTween.maxTweenReached;
-			LeanTween.frameRendered = Time.frameCount;
-			for (int i = 0; i < LeanTween.finishedCnt; i++)
+		}
+		tweenMaxSearch = maxTweenReached;
+		frameRendered = Time.frameCount;
+		for (int j = 0; j < finishedCnt; j++)
+		{
+			LeanTween.j = tweensFinished[j];
+			tween = tweens[LeanTween.j];
+			if (tween.id == tweensFinishedIds[j])
 			{
-				LeanTween.j = LeanTween.tweensFinished[i];
-				LeanTween.tween = LeanTween.tweens[LeanTween.j];
-				if (LeanTween.tween.id == LeanTween.tweensFinishedIds[i])
+				removeTween(LeanTween.j);
+				if (tween.hasExtraOnCompletes && (Object)(object)tween.trans != (Object)null)
 				{
-					LeanTween.removeTween(LeanTween.j);
-					if (LeanTween.tween.hasExtraOnCompletes && LeanTween.tween.trans != null)
-					{
-						LeanTween.tween.callOnCompletes();
-					}
+					tween.callOnCompletes();
 				}
 			}
 		}
 	}
 
-	// Token: 0x06000087 RID: 135 RVA: 0x000048C4 File Offset: 0x00002AC4
 	public static void removeTween(int i, int uniqueId)
 	{
-		if (LeanTween.tweens[i].uniqueId == uniqueId)
+		if (tweens[i].uniqueId == uniqueId)
 		{
-			LeanTween.removeTween(i);
+			removeTween(i);
 		}
 	}
 
-	// Token: 0x06000088 RID: 136 RVA: 0x000048DC File Offset: 0x00002ADC
 	public static void removeTween(int i)
 	{
-		if (LeanTween.tweens[i].toggle)
+		if (!tweens[i].toggle)
 		{
-			LeanTween.tweens[i].toggle = false;
-			LeanTween.tweens[i].counter = uint.MaxValue;
-			if (LeanTween.tweens[i].destroyOnComplete)
+			return;
+		}
+		tweens[i].toggle = false;
+		tweens[i].counter = uint.MaxValue;
+		if (tweens[i].destroyOnComplete)
+		{
+			if (tweens[i]._optional.ltRect != null)
 			{
-				if (LeanTween.tweens[i]._optional.ltRect != null)
-				{
-					LTGUI.destroy(LeanTween.tweens[i]._optional.ltRect.id);
-				}
-				else if (LeanTween.tweens[i].trans != null && LeanTween.tweens[i].trans.gameObject != LeanTween._tweenEmpty)
-				{
-					Object.Destroy(LeanTween.tweens[i].trans.gameObject);
-				}
+				LTGUI.destroy(tweens[i]._optional.ltRect.id);
 			}
-			LeanTween.startSearch = i;
-			if (i + 1 >= LeanTween.tweenMaxSearch)
+			else if ((Object)(object)tweens[i].trans != (Object)null && (Object)(object)((Component)tweens[i].trans).gameObject != (Object)(object)_tweenEmpty)
 			{
-				LeanTween.startSearch = 0;
+				Object.Destroy((Object)(object)((Component)tweens[i].trans).gameObject);
 			}
+		}
+		startSearch = i;
+		if (i + 1 >= tweenMaxSearch)
+		{
+			startSearch = 0;
 		}
 	}
 
-	// Token: 0x06000089 RID: 137 RVA: 0x000049B0 File Offset: 0x00002BB0
 	public static Vector3[] add(Vector3[] a, Vector3 b)
 	{
-		Vector3[] array = new Vector3[a.Length];
-		LeanTween.i = 0;
-		while (LeanTween.i < a.Length)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		Vector3[] array = (Vector3[])(object)new Vector3[a.Length];
+		for (i = 0; i < a.Length; i++)
 		{
-			array[LeanTween.i] = a[LeanTween.i] + b;
-			LeanTween.i++;
+			array[i] = a[i] + b;
 		}
 		return array;
 	}
 
-	// Token: 0x0600008A RID: 138 RVA: 0x00004A04 File Offset: 0x00002C04
 	public static float closestRot(float from, float to)
 	{
 		float num = 0f - (360f - to);
@@ -231,271 +291,252 @@ public class LeanTween : MonoBehaviour
 		return num2;
 	}
 
-	// Token: 0x0600008B RID: 139 RVA: 0x00004A56 File Offset: 0x00002C56
 	public static void cancelAll()
 	{
-		LeanTween.cancelAll(false);
+		cancelAll(callComplete: false);
 	}
 
-	// Token: 0x0600008C RID: 140 RVA: 0x00004A60 File Offset: 0x00002C60
 	public static void cancelAll(bool callComplete)
 	{
-		LeanTween.init();
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		init();
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].trans != null)
+			if ((Object)(object)tweens[i].trans != (Object)null)
 			{
-				if (callComplete && LeanTween.tweens[i].optional.onComplete != null)
+				if (callComplete && tweens[i].optional.onComplete != null)
 				{
-					LeanTween.tweens[i].optional.onComplete();
+					tweens[i].optional.onComplete();
 				}
-				LeanTween.removeTween(i);
+				removeTween(i);
 			}
 		}
 	}
 
-	// Token: 0x0600008D RID: 141 RVA: 0x00004AC8 File Offset: 0x00002CC8
 	public static void cancel(GameObject gameObject)
 	{
-		LeanTween.cancel(gameObject, false);
+		cancel(gameObject, callOnComplete: false);
 	}
 
-	// Token: 0x0600008E RID: 142 RVA: 0x00004AD4 File Offset: 0x00002CD4
 	public static void cancel(GameObject gameObject, bool callOnComplete)
 	{
-		LeanTween.init();
+		init();
 		Transform transform = gameObject.transform;
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].toggle && LeanTween.tweens[i].trans == transform)
+			if (tweens[i].toggle && (Object)(object)tweens[i].trans == (Object)(object)transform)
 			{
-				if (callOnComplete && LeanTween.tweens[i].optional.onComplete != null)
+				if (callOnComplete && tweens[i].optional.onComplete != null)
 				{
-					LeanTween.tweens[i].optional.onComplete();
+					tweens[i].optional.onComplete();
 				}
-				LeanTween.removeTween(i);
+				removeTween(i);
 			}
 		}
 	}
 
-	// Token: 0x0600008F RID: 143 RVA: 0x00004B51 File Offset: 0x00002D51
 	public static void cancel(RectTransform rect)
 	{
-		LeanTween.cancel(rect.gameObject, false);
+		cancel(((Component)rect).gameObject, callOnComplete: false);
 	}
 
-	// Token: 0x06000090 RID: 144 RVA: 0x00004B60 File Offset: 0x00002D60
 	public static void cancel(GameObject gameObject, int uniqueId, bool callOnComplete = false)
 	{
-		if (uniqueId >= 0)
+		if (uniqueId < 0)
 		{
-			LeanTween.init();
-			int num = uniqueId & 65535;
-			int num2 = uniqueId >> 16;
-			if (LeanTween.tweens[num].trans == null || (LeanTween.tweens[num].trans.gameObject == gameObject && (ulong)LeanTween.tweens[num].counter == (ulong)((long)num2)))
+			return;
+		}
+		init();
+		int num = uniqueId & 0xFFFF;
+		int num2 = uniqueId >> 16;
+		if ((Object)(object)tweens[num].trans == (Object)null || ((Object)(object)((Component)tweens[num].trans).gameObject == (Object)(object)gameObject && tweens[num].counter == num2))
+		{
+			if (callOnComplete && tweens[num].optional.onComplete != null)
 			{
-				if (callOnComplete && LeanTween.tweens[num].optional.onComplete != null)
-				{
-					LeanTween.tweens[num].optional.onComplete();
-				}
-				LeanTween.removeTween(num);
+				tweens[num].optional.onComplete();
 			}
+			removeTween(num);
 		}
 	}
 
-	// Token: 0x06000091 RID: 145 RVA: 0x00004BF8 File Offset: 0x00002DF8
 	public static void cancel(LTRect ltRect, int uniqueId)
 	{
 		if (uniqueId >= 0)
 		{
-			LeanTween.init();
-			int num = uniqueId & 65535;
+			init();
+			int num = uniqueId & 0xFFFF;
 			int num2 = uniqueId >> 16;
-			if (LeanTween.tweens[num]._optional.ltRect == ltRect && (ulong)LeanTween.tweens[num].counter == (ulong)((long)num2))
+			if (tweens[num]._optional.ltRect == ltRect && tweens[num].counter == num2)
 			{
-				LeanTween.removeTween(num);
+				removeTween(num);
 			}
 		}
 	}
 
-	// Token: 0x06000092 RID: 146 RVA: 0x00004C46 File Offset: 0x00002E46
 	public static void cancel(int uniqueId)
 	{
-		LeanTween.cancel(uniqueId, false);
+		cancel(uniqueId, callOnComplete: false);
 	}
 
-	// Token: 0x06000093 RID: 147 RVA: 0x00004C50 File Offset: 0x00002E50
 	public static void cancel(int uniqueId, bool callOnComplete)
 	{
-		if (uniqueId >= 0)
+		if (uniqueId < 0)
 		{
-			LeanTween.init();
-			int num = uniqueId & 65535;
-			int num2 = uniqueId >> 16;
-			if (num > LeanTween.tweens.Length - 1)
+			return;
+		}
+		init();
+		int num = uniqueId & 0xFFFF;
+		int num2 = uniqueId >> 16;
+		if (num > tweens.Length - 1)
+		{
+			int num3 = num - tweens.Length;
+			LTSeq lTSeq = sequences[num3];
+			for (int i = 0; i < maxSequences; i++)
 			{
-				int num3 = num - LeanTween.tweens.Length;
-				LTSeq ltseq = LeanTween.sequences[num3];
-				for (int i = 0; i < LeanTween.maxSequences; i++)
+				if (lTSeq.current.tween != null)
 				{
-					if (ltseq.current.tween != null)
-					{
-						LeanTween.removeTween(ltseq.current.tween.uniqueId & 65535);
-					}
-					if (ltseq.previous == null)
-					{
-						return;
-					}
-					ltseq.current = ltseq.previous;
+					removeTween(lTSeq.current.tween.uniqueId & 0xFFFF);
 				}
-				return;
+				if (lTSeq.previous != null)
+				{
+					lTSeq.current = lTSeq.previous;
+					continue;
+				}
+				break;
 			}
-			if ((ulong)LeanTween.tweens[num].counter == (ulong)((long)num2))
+		}
+		else if (tweens[num].counter == num2)
+		{
+			if (callOnComplete && tweens[num].optional.onComplete != null)
 			{
-				if (callOnComplete && LeanTween.tweens[num].optional.onComplete != null)
-				{
-					LeanTween.tweens[num].optional.onComplete();
-				}
-				LeanTween.removeTween(num);
+				tweens[num].optional.onComplete();
 			}
+			removeTween(num);
 		}
 	}
 
-	// Token: 0x06000094 RID: 148 RVA: 0x00004D28 File Offset: 0x00002F28
 	public static LTDescr descr(int uniqueId)
 	{
-		LeanTween.init();
-		int num = uniqueId & 65535;
+		init();
+		int num = uniqueId & 0xFFFF;
 		int num2 = uniqueId >> 16;
-		if (LeanTween.tweens[num] != null && LeanTween.tweens[num].uniqueId == uniqueId && (ulong)LeanTween.tweens[num].counter == (ulong)((long)num2))
+		if (tweens[num] != null && tweens[num].uniqueId == uniqueId && tweens[num].counter == num2)
 		{
-			return LeanTween.tweens[num];
+			return tweens[num];
 		}
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].uniqueId == uniqueId && (ulong)LeanTween.tweens[i].counter == (ulong)((long)num2))
+			if (tweens[i].uniqueId == uniqueId && tweens[i].counter == num2)
 			{
-				return LeanTween.tweens[i];
+				return tweens[i];
 			}
 		}
 		return null;
 	}
 
-	// Token: 0x06000095 RID: 149 RVA: 0x00004DB1 File Offset: 0x00002FB1
 	public static LTDescr description(int uniqueId)
 	{
-		return LeanTween.descr(uniqueId);
+		return descr(uniqueId);
 	}
 
-	// Token: 0x06000096 RID: 150 RVA: 0x00004DBC File Offset: 0x00002FBC
 	public static LTDescr[] descriptions(GameObject gameObject = null)
 	{
-		if (gameObject == null)
+		if ((Object)(object)gameObject == (Object)null)
 		{
 			return null;
 		}
 		List<LTDescr> list = new List<LTDescr>();
 		Transform transform = gameObject.transform;
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].toggle && LeanTween.tweens[i].trans == transform)
+			if (tweens[i].toggle && (Object)(object)tweens[i].trans == (Object)(object)transform)
 			{
-				list.Add(LeanTween.tweens[i]);
+				list.Add(tweens[i]);
 			}
 		}
 		return list.ToArray();
 	}
 
-	// Token: 0x06000097 RID: 151 RVA: 0x00004E26 File Offset: 0x00003026
 	[Obsolete("Use 'pause( id )' instead")]
 	public static void pause(GameObject gameObject, int uniqueId)
 	{
-		LeanTween.pause(uniqueId);
+		pause(uniqueId);
 	}
 
-	// Token: 0x06000098 RID: 152 RVA: 0x00004E30 File Offset: 0x00003030
 	public static void pause(int uniqueId)
 	{
-		int num = uniqueId & 65535;
+		int num = uniqueId & 0xFFFF;
 		int num2 = uniqueId >> 16;
-		if ((ulong)LeanTween.tweens[num].counter == (ulong)((long)num2))
+		if (tweens[num].counter == num2)
 		{
-			LeanTween.tweens[num].pause();
+			tweens[num].pause();
 		}
 	}
 
-	// Token: 0x06000099 RID: 153 RVA: 0x00004E68 File Offset: 0x00003068
 	public static void pause(GameObject gameObject)
 	{
 		Transform transform = gameObject.transform;
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].trans == transform)
+			if ((Object)(object)tweens[i].trans == (Object)(object)transform)
 			{
-				LeanTween.tweens[i].pause();
+				tweens[i].pause();
 			}
 		}
 	}
 
-	// Token: 0x0600009A RID: 154 RVA: 0x00004EB0 File Offset: 0x000030B0
 	public static void pauseAll()
 	{
-		LeanTween.init();
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		init();
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			LeanTween.tweens[i].pause();
+			tweens[i].pause();
 		}
 	}
 
-	// Token: 0x0600009B RID: 155 RVA: 0x00004EE0 File Offset: 0x000030E0
 	public static void resumeAll()
 	{
-		LeanTween.init();
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		init();
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			LeanTween.tweens[i].resume();
+			tweens[i].resume();
 		}
 	}
 
-	// Token: 0x0600009C RID: 156 RVA: 0x00004F0F File Offset: 0x0000310F
 	[Obsolete("Use 'resume( id )' instead")]
 	public static void resume(GameObject gameObject, int uniqueId)
 	{
-		LeanTween.resume(uniqueId);
+		resume(uniqueId);
 	}
 
-	// Token: 0x0600009D RID: 157 RVA: 0x00004F18 File Offset: 0x00003118
 	public static void resume(int uniqueId)
 	{
-		int num = uniqueId & 65535;
+		int num = uniqueId & 0xFFFF;
 		int num2 = uniqueId >> 16;
-		if ((ulong)LeanTween.tweens[num].counter == (ulong)((long)num2))
+		if (tweens[num].counter == num2)
 		{
-			LeanTween.tweens[num].resume();
+			tweens[num].resume();
 		}
 	}
 
-	// Token: 0x0600009E RID: 158 RVA: 0x00004F50 File Offset: 0x00003150
 	public static void resume(GameObject gameObject)
 	{
 		Transform transform = gameObject.transform;
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].trans == transform)
+			if ((Object)(object)tweens[i].trans == (Object)(object)transform)
 			{
-				LeanTween.tweens[i].resume();
+				tweens[i].resume();
 			}
 		}
 	}
 
-	// Token: 0x0600009F RID: 159 RVA: 0x00004F98 File Offset: 0x00003198
 	public static bool isTweening(GameObject gameObject = null)
 	{
-		if (gameObject == null)
+		if ((Object)(object)gameObject == (Object)null)
 		{
-			for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+			for (int i = 0; i <= tweenMaxSearch; i++)
 			{
-				if (LeanTween.tweens[i].toggle)
+				if (tweens[i].toggle)
 				{
 					return true;
 				}
@@ -503,9 +544,9 @@ public class LeanTween : MonoBehaviour
 			return false;
 		}
 		Transform transform = gameObject.transform;
-		for (int j = 0; j <= LeanTween.tweenMaxSearch; j++)
+		for (int j = 0; j <= tweenMaxSearch; j++)
 		{
-			if (LeanTween.tweens[j].toggle && LeanTween.tweens[j].trans == transform)
+			if (tweens[j].toggle && (Object)(object)tweens[j].trans == (Object)(object)transform)
 			{
 				return true;
 			}
@@ -513,26 +554,31 @@ public class LeanTween : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060000A0 RID: 160 RVA: 0x0000500C File Offset: 0x0000320C
 	public static bool isTweening(RectTransform rect)
 	{
-		return LeanTween.isTweening(rect.gameObject);
+		return isTweening(((Component)rect).gameObject);
 	}
 
-	// Token: 0x060000A1 RID: 161 RVA: 0x0000501C File Offset: 0x0000321C
 	public static bool isTweening(int uniqueId)
 	{
-		int num = uniqueId & 65535;
+		int num = uniqueId & 0xFFFF;
 		int num2 = uniqueId >> 16;
-		return num >= 0 && num < LeanTween.maxTweens && ((ulong)LeanTween.tweens[num].counter == (ulong)((long)num2) && LeanTween.tweens[num].toggle);
+		if (num < 0 || num >= maxTweens)
+		{
+			return false;
+		}
+		if (tweens[num].counter == num2 && tweens[num].toggle)
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x060000A2 RID: 162 RVA: 0x00005068 File Offset: 0x00003268
 	public static bool isTweening(LTRect ltRect)
 	{
-		for (int i = 0; i <= LeanTween.tweenMaxSearch; i++)
+		for (int i = 0; i <= tweenMaxSearch; i++)
 		{
-			if (LeanTween.tweens[i].toggle && LeanTween.tweens[i]._optional.ltRect == ltRect)
+			if (tweens[i].toggle && tweens[i]._optional.ltRect == ltRect)
 			{
 				return true;
 			}
@@ -540,13 +586,107 @@ public class LeanTween : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060000A3 RID: 163 RVA: 0x000050AC File Offset: 0x000032AC
 	public static void drawBezierPath(Vector3 a, Vector3 b, Vector3 c, Vector3 d, float arrowSize = 0f, Transform arrowTransform = null)
 	{
-		Vector3 vector = a;
-		Vector3 vector2 = -a + 3f * (b - c) + d;
-		Vector3 vector3 = 3f * (a + c) - 6f * b;
-		Vector3 vector4 = 3f * (b - a);
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0194: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0108: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0115: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0138: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0155: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0162: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = a;
+		Vector3 val2 = -a + 3f * (b - c) + d;
+		Vector3 val3 = 3f * (a + c) - 6f * b;
+		Vector3 val4 = 3f * (b - a);
 		if (arrowSize > 0f)
 		{
 			Vector3 position = arrowTransform.position;
@@ -555,116 +695,107 @@ public class LeanTween : MonoBehaviour
 			for (float num2 = 1f; num2 <= 120f; num2 += 1f)
 			{
 				float num3 = num2 / 120f;
-				Vector3 vector5 = ((vector2 * num3 + vector3) * num3 + vector4) * num3 + a;
-				Gizmos.DrawLine(vector, vector5);
-				num += (vector5 - vector).magnitude;
+				Vector3 val5 = ((val2 * num3 + val3) * num3 + val4) * num3 + a;
+				Gizmos.DrawLine(val, val5);
+				float num4 = num;
+				Vector3 val6 = val5 - val;
+				num = num4 + ((Vector3)(ref val6)).magnitude;
 				if (num > 1f)
 				{
 					num -= 1f;
-					arrowTransform.position = vector5;
-					arrowTransform.LookAt(vector, Vector3.forward);
-					Vector3 vector6 = arrowTransform.TransformDirection(Vector3.right);
-					Vector3 normalized = (vector - vector5).normalized;
-					Gizmos.DrawLine(vector5, vector5 + (vector6 + normalized) * arrowSize);
-					vector6 = arrowTransform.TransformDirection(-Vector3.right);
-					Gizmos.DrawLine(vector5, vector5 + (vector6 + normalized) * arrowSize);
+					arrowTransform.position = val5;
+					arrowTransform.LookAt(val, Vector3.forward);
+					Vector3 val7 = arrowTransform.TransformDirection(Vector3.right);
+					Vector3 val8 = val - val5;
+					val8 = ((Vector3)(ref val8)).normalized;
+					Gizmos.DrawLine(val5, val5 + (val7 + val8) * arrowSize);
+					val7 = arrowTransform.TransformDirection(-Vector3.right);
+					Gizmos.DrawLine(val5, val5 + (val7 + val8) * arrowSize);
 				}
-				vector = vector5;
+				val = val5;
 			}
 			arrowTransform.position = position;
 			arrowTransform.rotation = rotation;
-			return;
-		}
-		for (float num4 = 1f; num4 <= 30f; num4 += 1f)
-		{
-			float num3 = num4 / 30f;
-			Vector3 vector5 = ((vector2 * num3 + vector3) * num3 + vector4) * num3 + a;
-			Gizmos.DrawLine(vector, vector5);
-			vector = vector5;
-		}
-	}
-
-	// Token: 0x060000A4 RID: 164 RVA: 0x000052AE File Offset: 0x000034AE
-	public static object logError(string error)
-	{
-		if (LeanTween.throwErrors)
-		{
-			Debug.LogError(error);
 		}
 		else
 		{
-			Debug.Log(error);
+			for (float num5 = 1f; num5 <= 30f; num5 += 1f)
+			{
+				float num3 = num5 / 30f;
+				Vector3 val5 = ((val2 * num3 + val3) * num3 + val4) * num3 + a;
+				Gizmos.DrawLine(val, val5);
+				val = val5;
+			}
+		}
+	}
+
+	public static object logError(string error)
+	{
+		if (throwErrors)
+		{
+			Debug.LogError((object)error);
+		}
+		else
+		{
+			Debug.Log((object)error);
 		}
 		return null;
 	}
 
-	// Token: 0x060000A5 RID: 165 RVA: 0x000052C6 File Offset: 0x000034C6
 	public static LTDescr options(LTDescr seed)
 	{
-		Debug.LogError("error this function is no longer used");
+		Debug.LogError((object)"error this function is no longer used");
 		return null;
 	}
 
-	// Token: 0x060000A6 RID: 166 RVA: 0x000052D4 File Offset: 0x000034D4
 	public static LTDescr options()
 	{
-		LeanTween.init();
+		init();
 		bool flag = false;
-		LeanTween.j = 0;
-		LeanTween.i = LeanTween.startSearch;
-		while (LeanTween.j <= LeanTween.maxTweens)
+		j = 0;
+		i = startSearch;
+		while (j <= maxTweens)
 		{
-			if (LeanTween.j >= LeanTween.maxTweens)
+			if (j >= maxTweens)
 			{
-				return LeanTween.logError("LeanTween - You have run out of available spaces for tweening. To avoid this error increase the number of spaces to available for tweening when you initialize the LeanTween class ex: LeanTween.init( " + LeanTween.maxTweens * 2 + " );") as LTDescr;
+				return logError("LeanTween - You have run out of available spaces for tweening. To avoid this error increase the number of spaces to available for tweening when you initialize the LeanTween class ex: LeanTween.init( " + maxTweens * 2 + " );") as LTDescr;
 			}
-			if (LeanTween.i >= LeanTween.maxTweens)
+			if (i >= maxTweens)
 			{
-				LeanTween.i = 0;
+				i = 0;
 			}
-			if (!LeanTween.tweens[LeanTween.i].toggle)
+			if (!tweens[i].toggle)
 			{
-				if (LeanTween.i + 1 > LeanTween.tweenMaxSearch)
+				if (i + 1 > tweenMaxSearch)
 				{
-					LeanTween.tweenMaxSearch = LeanTween.i + 1;
+					tweenMaxSearch = i + 1;
 				}
-				LeanTween.startSearch = LeanTween.i + 1;
+				startSearch = i + 1;
 				flag = true;
 				break;
 			}
-			LeanTween.j++;
-			LeanTween.i++;
+			j++;
+			i++;
 		}
 		if (!flag)
 		{
-			LeanTween.logError("no available tween found!");
+			logError("no available tween found!");
 		}
-		LeanTween.tweens[LeanTween.i].reset();
-		LeanTween.global_counter += 1U;
-		if (LeanTween.global_counter > 32768U)
+		tweens[i].reset();
+		global_counter++;
+		if (global_counter > 32768)
 		{
-			LeanTween.global_counter = 0U;
+			global_counter = 0u;
 		}
-		LeanTween.tweens[LeanTween.i].setId((uint)LeanTween.i, LeanTween.global_counter);
-		return LeanTween.tweens[LeanTween.i];
+		tweens[i].setId((uint)i, global_counter);
+		return tweens[i];
 	}
 
-	// Token: 0x17000014 RID: 20
-	// (get) Token: 0x060000A7 RID: 167 RVA: 0x00005406 File Offset: 0x00003606
-	public static GameObject tweenEmpty
-	{
-		get
-		{
-			LeanTween.init(LeanTween.maxTweens);
-			return LeanTween._tweenEmpty;
-		}
-	}
-
-	// Token: 0x060000A8 RID: 168 RVA: 0x00005418 File Offset: 0x00003618
 	private static LTDescr pushNewTween(GameObject gameObject, Vector3 to, float time, LTDescr tween)
 	{
-		LeanTween.init(LeanTween.maxTweens);
-		if (gameObject == null || tween == null)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		init(maxTweens);
+		if ((Object)(object)gameObject == (Object)null || tween == null)
 		{
 			return null;
 		}
@@ -678,552 +809,658 @@ public class LeanTween : MonoBehaviour
 		return tween;
 	}
 
-	// Token: 0x060000A9 RID: 169 RVA: 0x0000546C File Offset: 0x0000366C
 	public static LTDescr play(RectTransform rectTransform, Sprite[] sprites)
 	{
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
 		float time = 0.25f * (float)sprites.Length;
-		return LeanTween.pushNewTween(rectTransform.gameObject, new Vector3((float)sprites.Length - 1f, 0f, 0f), time, LeanTween.options().setCanvasPlaySprite().setSprites(sprites).setRepeat(-1));
+		return pushNewTween(((Component)rectTransform).gameObject, new Vector3((float)sprites.Length - 1f, 0f, 0f), time, options().setCanvasPlaySprite().setSprites(sprites).setRepeat(-1));
 	}
 
-	// Token: 0x060000AA RID: 170 RVA: 0x000054C0 File Offset: 0x000036C0
 	public static LTDescr alpha(GameObject gameObject, float to, float time)
 	{
-		LTDescr ltdescr = LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setAlpha());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		LTDescr lTDescr = pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setAlpha());
 		SpriteRenderer component = gameObject.GetComponent<SpriteRenderer>();
-		ltdescr.spriteRen = component;
-		return ltdescr;
+		lTDescr.spriteRen = component;
+		return lTDescr;
 	}
 
-	// Token: 0x060000AB RID: 171 RVA: 0x000054FC File Offset: 0x000036FC
 	public static LTSeq sequence(bool initSequence = true)
 	{
-		LeanTween.init(LeanTween.maxTweens);
-		for (int i = 0; i < LeanTween.sequences.Length; i++)
+		init(maxTweens);
+		for (int i = 0; i < sequences.Length; i++)
 		{
-			if ((LeanTween.sequences[i].tween == null || !LeanTween.sequences[i].tween.toggle) && !LeanTween.sequences[i].toggle)
+			if ((sequences[i].tween != null && sequences[i].tween.toggle) || sequences[i].toggle)
 			{
-				LTSeq ltseq = LeanTween.sequences[i];
-				if (initSequence)
-				{
-					ltseq.init((uint)(i + LeanTween.tweens.Length), LeanTween.global_counter);
-					LeanTween.global_counter += 1U;
-					if (LeanTween.global_counter > 32768U)
-					{
-						LeanTween.global_counter = 0U;
-					}
-				}
-				else
-				{
-					ltseq.reset();
-				}
-				return ltseq;
+				continue;
 			}
+			LTSeq lTSeq = sequences[i];
+			if (initSequence)
+			{
+				lTSeq.init((uint)(i + tweens.Length), global_counter);
+				global_counter++;
+				if (global_counter > 32768)
+				{
+					global_counter = 0u;
+				}
+			}
+			else
+			{
+				lTSeq.reset();
+			}
+			return lTSeq;
 		}
 		return null;
 	}
 
-	// Token: 0x060000AC RID: 172 RVA: 0x0000559F File Offset: 0x0000379F
 	public static LTDescr alpha(LTRect ltRect, float to, float time)
 	{
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
 		ltRect.alphaEnabled = true;
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, new Vector3(to, 0f, 0f), time, LeanTween.options().setGUIAlpha().setRect(ltRect));
+		return pushNewTween(tweenEmpty, new Vector3(to, 0f, 0f), time, options().setGUIAlpha().setRect(ltRect));
 	}
 
-	// Token: 0x060000AD RID: 173 RVA: 0x000055D3 File Offset: 0x000037D3
 	public static LTDescr textAlpha(RectTransform rectTransform, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTransform.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setTextAlpha());
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTransform).gameObject, new Vector3(to, 0f, 0f), time, options().setTextAlpha());
 	}
 
-	// Token: 0x060000AE RID: 174 RVA: 0x000055D3 File Offset: 0x000037D3
 	public static LTDescr alphaText(RectTransform rectTransform, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTransform.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setTextAlpha());
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTransform).gameObject, new Vector3(to, 0f, 0f), time, options().setTextAlpha());
 	}
 
-	// Token: 0x060000AF RID: 175 RVA: 0x000055FB File Offset: 0x000037FB
 	public static LTDescr alphaCanvas(CanvasGroup canvasGroup, float to, float time)
 	{
-		return LeanTween.pushNewTween(canvasGroup.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasGroupAlpha());
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)canvasGroup).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasGroupAlpha());
 	}
 
-	// Token: 0x060000B0 RID: 176 RVA: 0x00005623 File Offset: 0x00003823
 	public static LTDescr alphaVertex(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setAlphaVertex());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setAlphaVertex());
 	}
 
-	// Token: 0x060000B1 RID: 177 RVA: 0x00005648 File Offset: 0x00003848
 	public static LTDescr color(GameObject gameObject, Color to, float time)
 	{
-		LTDescr ltdescr = LeanTween.pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setColor().setPoint(new Vector3(to.r, to.g, to.b)));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		LTDescr lTDescr = pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, options().setColor().setPoint(new Vector3(to.r, to.g, to.b)));
 		SpriteRenderer component = gameObject.GetComponent<SpriteRenderer>();
-		ltdescr.spriteRen = component;
-		return ltdescr;
+		lTDescr.spriteRen = component;
+		return lTDescr;
 	}
 
-	// Token: 0x060000B2 RID: 178 RVA: 0x000056A8 File Offset: 0x000038A8
 	public static LTDescr textColor(RectTransform rectTransform, Color to, float time)
 	{
-		return LeanTween.pushNewTween(rectTransform.gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setTextColor().setPoint(new Vector3(to.r, to.g, to.b)));
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTransform).gameObject, new Vector3(1f, to.a, 0f), time, options().setTextColor().setPoint(new Vector3(to.r, to.g, to.b)));
 	}
 
-	// Token: 0x060000B3 RID: 179 RVA: 0x000056FC File Offset: 0x000038FC
 	public static LTDescr colorText(RectTransform rectTransform, Color to, float time)
 	{
-		return LeanTween.pushNewTween(rectTransform.gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setTextColor().setPoint(new Vector3(to.r, to.g, to.b)));
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTransform).gameObject, new Vector3(1f, to.a, 0f), time, options().setTextColor().setPoint(new Vector3(to.r, to.g, to.b)));
 	}
 
-	// Token: 0x060000B4 RID: 180 RVA: 0x00005750 File Offset: 0x00003950
 	public static LTDescr delayedCall(float delayTime, Action callback)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, Vector3.zero, delayTime, LeanTween.options().setCallback().setOnComplete(callback));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, Vector3.zero, delayTime, options().setCallback().setOnComplete(callback));
 	}
 
-	// Token: 0x060000B5 RID: 181 RVA: 0x00005772 File Offset: 0x00003972
 	public static LTDescr delayedCall(float delayTime, Action<object> callback)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, Vector3.zero, delayTime, LeanTween.options().setCallback().setOnComplete(callback));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, Vector3.zero, delayTime, options().setCallback().setOnComplete(callback));
 	}
 
-	// Token: 0x060000B6 RID: 182 RVA: 0x00005794 File Offset: 0x00003994
 	public static LTDescr delayedCall(GameObject gameObject, float delayTime, Action callback)
 	{
-		return LeanTween.pushNewTween(gameObject, Vector3.zero, delayTime, LeanTween.options().setCallback().setOnComplete(callback));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, Vector3.zero, delayTime, options().setCallback().setOnComplete(callback));
 	}
 
-	// Token: 0x060000B7 RID: 183 RVA: 0x000057B2 File Offset: 0x000039B2
 	public static LTDescr delayedCall(GameObject gameObject, float delayTime, Action<object> callback)
 	{
-		return LeanTween.pushNewTween(gameObject, Vector3.zero, delayTime, LeanTween.options().setCallback().setOnComplete(callback));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, Vector3.zero, delayTime, options().setCallback().setOnComplete(callback));
 	}
 
-	// Token: 0x060000B8 RID: 184 RVA: 0x000057D0 File Offset: 0x000039D0
 	public static LTDescr destroyAfter(LTRect rect, float delayTime)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, Vector3.zero, delayTime, LeanTween.options().setCallback().setRect(rect).setDestroyOnComplete(true));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, Vector3.zero, delayTime, options().setCallback().setRect(rect).setDestroyOnComplete(doesDestroy: true));
 	}
 
-	// Token: 0x060000B9 RID: 185 RVA: 0x000057F8 File Offset: 0x000039F8
 	public static LTDescr move(GameObject gameObject, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setMove());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setMove());
 	}
 
-	// Token: 0x060000BA RID: 186 RVA: 0x0000580C File Offset: 0x00003A0C
 	public static LTDescr move(GameObject gameObject, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to.x, to.y, gameObject.transform.position.z), time, LeanTween.options().setMove());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to.x, to.y, gameObject.transform.position.z), time, options().setMove());
 	}
 
-	// Token: 0x060000BB RID: 187 RVA: 0x00005840 File Offset: 0x00003A40
 	public static LTDescr move(GameObject gameObject, Vector3[] to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveCurved();
-		if (LeanTween.d.optional.path == null)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveCurved();
+		if (d.optional.path == null)
 		{
-			LeanTween.d.optional.path = new LTBezierPath(to);
+			d.optional.path = new LTBezierPath(to);
 		}
 		else
 		{
-			LeanTween.d.optional.path.setPoints(to);
+			d.optional.path.setPoints(to);
 		}
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000BC RID: 188 RVA: 0x000058BC File Offset: 0x00003ABC
 	public static LTDescr move(GameObject gameObject, LTBezierPath to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveCurved();
-		LeanTween.d.optional.path = to;
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveCurved();
+		d.optional.path = to;
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000BD RID: 189 RVA: 0x00005908 File Offset: 0x00003B08
 	public static LTDescr move(GameObject gameObject, LTSpline to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveSpline();
-		LeanTween.d.optional.spline = to;
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveSpline();
+		d.optional.spline = to;
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000BE RID: 190 RVA: 0x00005954 File Offset: 0x00003B54
 	public static LTDescr moveSpline(GameObject gameObject, Vector3[] to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveSpline();
-		LeanTween.d.optional.spline = new LTSpline(to);
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveSpline();
+		d.optional.spline = new LTSpline(to);
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000BF RID: 191 RVA: 0x000059A8 File Offset: 0x00003BA8
 	public static LTDescr moveSpline(GameObject gameObject, LTSpline to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveSpline();
-		LeanTween.d.optional.spline = to;
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveSpline();
+		d.optional.spline = to;
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000C0 RID: 192 RVA: 0x000059F4 File Offset: 0x00003BF4
 	public static LTDescr moveSplineLocal(GameObject gameObject, Vector3[] to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveSplineLocal();
-		LeanTween.d.optional.spline = new LTSpline(to);
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveSplineLocal();
+		d.optional.spline = new LTSpline(to);
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000C1 RID: 193 RVA: 0x00005A45 File Offset: 0x00003C45
 	public static LTDescr move(LTRect ltRect, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, to, time, LeanTween.options().setGUIMove().setRect(ltRect));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, Vector2.op_Implicit(to), time, options().setGUIMove().setRect(ltRect));
 	}
 
-	// Token: 0x060000C2 RID: 194 RVA: 0x00005A68 File Offset: 0x00003C68
 	public static LTDescr moveMargin(LTRect ltRect, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, to, time, LeanTween.options().setGUIMoveMargin().setRect(ltRect));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, Vector2.op_Implicit(to), time, options().setGUIMoveMargin().setRect(ltRect));
 	}
 
-	// Token: 0x060000C3 RID: 195 RVA: 0x00005A8B File Offset: 0x00003C8B
 	public static LTDescr moveX(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setMoveX());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setMoveX());
 	}
 
-	// Token: 0x060000C4 RID: 196 RVA: 0x00005AAE File Offset: 0x00003CAE
 	public static LTDescr moveY(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setMoveY());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setMoveY());
 	}
 
-	// Token: 0x060000C5 RID: 197 RVA: 0x00005AD1 File Offset: 0x00003CD1
 	public static LTDescr moveZ(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setMoveZ());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setMoveZ());
 	}
 
-	// Token: 0x060000C6 RID: 198 RVA: 0x00005AF4 File Offset: 0x00003CF4
 	public static LTDescr moveLocal(GameObject gameObject, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setMoveLocal());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setMoveLocal());
 	}
 
-	// Token: 0x060000C7 RID: 199 RVA: 0x00005B08 File Offset: 0x00003D08
 	public static LTDescr moveLocal(GameObject gameObject, Vector3[] to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveCurvedLocal();
-		if (LeanTween.d.optional.path == null)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveCurvedLocal();
+		if (d.optional.path == null)
 		{
-			LeanTween.d.optional.path = new LTBezierPath(to);
+			d.optional.path = new LTBezierPath(to);
 		}
 		else
 		{
-			LeanTween.d.optional.path.setPoints(to);
+			d.optional.path.setPoints(to);
 		}
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000C8 RID: 200 RVA: 0x00005B81 File Offset: 0x00003D81
 	public static LTDescr moveLocalX(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setMoveLocalX());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setMoveLocalX());
 	}
 
-	// Token: 0x060000C9 RID: 201 RVA: 0x00005BA4 File Offset: 0x00003DA4
 	public static LTDescr moveLocalY(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setMoveLocalY());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setMoveLocalY());
 	}
 
-	// Token: 0x060000CA RID: 202 RVA: 0x00005BC7 File Offset: 0x00003DC7
 	public static LTDescr moveLocalZ(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setMoveLocalZ());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setMoveLocalZ());
 	}
 
-	// Token: 0x060000CB RID: 203 RVA: 0x00005BEC File Offset: 0x00003DEC
 	public static LTDescr moveLocal(GameObject gameObject, LTBezierPath to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveCurvedLocal();
-		LeanTween.d.optional.path = to;
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveCurvedLocal();
+		d.optional.path = to;
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000CC RID: 204 RVA: 0x00005C38 File Offset: 0x00003E38
 	public static LTDescr moveLocal(GameObject gameObject, LTSpline to, float time)
 	{
-		LeanTween.d = LeanTween.options().setMoveSplineLocal();
-		LeanTween.d.optional.spline = to;
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, LeanTween.d);
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		d = options().setMoveSplineLocal();
+		d.optional.spline = to;
+		return pushNewTween(gameObject, new Vector3(1f, 0f, 0f), time, d);
 	}
 
-	// Token: 0x060000CD RID: 205 RVA: 0x00005C84 File Offset: 0x00003E84
 	public static LTDescr move(GameObject gameObject, Transform to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, Vector3.zero, time, LeanTween.options().setTo(to).setMoveToTransform());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, Vector3.zero, time, options().setTo(to).setMoveToTransform());
 	}
 
-	// Token: 0x060000CE RID: 206 RVA: 0x00005CA2 File Offset: 0x00003EA2
 	public static LTDescr rotate(GameObject gameObject, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setRotate());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setRotate());
 	}
 
-	// Token: 0x060000CF RID: 207 RVA: 0x00005CB6 File Offset: 0x00003EB6
 	public static LTDescr rotate(LTRect ltRect, float to, float time)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, new Vector3(to, 0f, 0f), time, LeanTween.options().setGUIRotate().setRect(ltRect));
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, new Vector3(to, 0f, 0f), time, options().setGUIRotate().setRect(ltRect));
 	}
 
-	// Token: 0x060000D0 RID: 208 RVA: 0x00005CE3 File Offset: 0x00003EE3
 	public static LTDescr rotateLocal(GameObject gameObject, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setRotateLocal());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setRotateLocal());
 	}
 
-	// Token: 0x060000D1 RID: 209 RVA: 0x00005CF7 File Offset: 0x00003EF7
 	public static LTDescr rotateX(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setRotateX());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setRotateX());
 	}
 
-	// Token: 0x060000D2 RID: 210 RVA: 0x00005D1A File Offset: 0x00003F1A
 	public static LTDescr rotateY(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setRotateY());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setRotateY());
 	}
 
-	// Token: 0x060000D3 RID: 211 RVA: 0x00005D3D File Offset: 0x00003F3D
 	public static LTDescr rotateZ(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setRotateZ());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setRotateZ());
 	}
 
-	// Token: 0x060000D4 RID: 212 RVA: 0x00005D60 File Offset: 0x00003F60
 	public static LTDescr rotateAround(GameObject gameObject, Vector3 axis, float add, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(add, 0f, 0f), time, LeanTween.options().setAxis(axis).setRotateAround());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(add, 0f, 0f), time, options().setAxis(axis).setRotateAround());
 	}
 
-	// Token: 0x060000D5 RID: 213 RVA: 0x00005D89 File Offset: 0x00003F89
 	public static LTDescr rotateAroundLocal(GameObject gameObject, Vector3 axis, float add, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(add, 0f, 0f), time, LeanTween.options().setRotateAroundLocal().setAxis(axis));
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(add, 0f, 0f), time, options().setRotateAroundLocal().setAxis(axis));
 	}
 
-	// Token: 0x060000D6 RID: 214 RVA: 0x00005DB2 File Offset: 0x00003FB2
 	public static LTDescr scale(GameObject gameObject, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setScale());
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setScale());
 	}
 
-	// Token: 0x060000D7 RID: 215 RVA: 0x00005DC6 File Offset: 0x00003FC6
 	public static LTDescr scale(LTRect ltRect, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, to, time, LeanTween.options().setGUIScale().setRect(ltRect));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, Vector2.op_Implicit(to), time, options().setGUIScale().setRect(ltRect));
 	}
 
-	// Token: 0x060000D8 RID: 216 RVA: 0x00005DE9 File Offset: 0x00003FE9
 	public static LTDescr scaleX(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setScaleX());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setScaleX());
 	}
 
-	// Token: 0x060000D9 RID: 217 RVA: 0x00005E0C File Offset: 0x0000400C
 	public static LTDescr scaleY(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setScaleY());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setScaleY());
 	}
 
-	// Token: 0x060000DA RID: 218 RVA: 0x00005E2F File Offset: 0x0000402F
 	public static LTDescr scaleZ(GameObject gameObject, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setScaleZ());
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setScaleZ());
 	}
 
-	// Token: 0x060000DB RID: 219 RVA: 0x00005E52 File Offset: 0x00004052
 	public static LTDescr value(GameObject gameObject, float from, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCallback().setFrom(new Vector3(from, 0f, 0f)));
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setCallback().setFrom(new Vector3(from, 0f, 0f)));
 	}
 
-	// Token: 0x060000DC RID: 220 RVA: 0x00005E8A File Offset: 0x0000408A
 	public static LTDescr value(float from, float to, float time)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, new Vector3(to, 0f, 0f), time, LeanTween.options().setCallback().setFrom(new Vector3(from, 0f, 0f)));
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, new Vector3(to, 0f, 0f), time, options().setCallback().setFrom(new Vector3(from, 0f, 0f)));
 	}
 
-	// Token: 0x060000DD RID: 221 RVA: 0x00005EC8 File Offset: 0x000040C8
 	public static LTDescr value(GameObject gameObject, Vector2 from, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to.x, to.y, 0f), time, LeanTween.options().setValue3().setTo(new Vector3(to.x, to.y, 0f)).setFrom(new Vector3(from.x, from.y, 0f)));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to.x, to.y, 0f), time, options().setValue3().setTo(new Vector3(to.x, to.y, 0f)).setFrom(new Vector3(from.x, from.y, 0f)));
 	}
 
-	// Token: 0x060000DE RID: 222 RVA: 0x00005F32 File Offset: 0x00004132
 	public static LTDescr value(GameObject gameObject, Vector3 from, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setValue3().setFrom(from));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setValue3().setFrom(from));
 	}
 
-	// Token: 0x060000DF RID: 223 RVA: 0x00005F4C File Offset: 0x0000414C
 	public static LTDescr value(GameObject gameObject, Color from, Color to, float time)
 	{
-		LTDescr ltdescr = LeanTween.pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setCallbackColor().setPoint(new Vector3(to.r, to.g, to.b)).setFromColor(from).setHasInitialized(false));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		LTDescr lTDescr = pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, options().setCallbackColor().setPoint(new Vector3(to.r, to.g, to.b)).setFromColor(from)
+			.setHasInitialized(has: false));
 		SpriteRenderer component = gameObject.GetComponent<SpriteRenderer>();
-		ltdescr.spriteRen = component;
-		return ltdescr;
+		lTDescr.spriteRen = component;
+		return lTDescr;
 	}
 
-	// Token: 0x060000E0 RID: 224 RVA: 0x00005FB8 File Offset: 0x000041B8
 	public static LTDescr value(GameObject gameObject, Action<float> callOnUpdate, float from, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCallback().setTo(new Vector3(to, 0f, 0f)).setFrom(new Vector3(from, 0f, 0f)).setOnUpdate(callOnUpdate));
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setCallback().setTo(new Vector3(to, 0f, 0f)).setFrom(new Vector3(from, 0f, 0f))
+			.setOnUpdate(callOnUpdate));
 	}
 
-	// Token: 0x060000E1 RID: 225 RVA: 0x00006018 File Offset: 0x00004218
 	public static LTDescr value(GameObject gameObject, Action<float, float> callOnUpdateRatio, float from, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCallback().setTo(new Vector3(to, 0f, 0f)).setFrom(new Vector3(from, 0f, 0f)).setOnUpdateRatio(callOnUpdateRatio));
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setCallback().setTo(new Vector3(to, 0f, 0f)).setFrom(new Vector3(from, 0f, 0f))
+			.setOnUpdateRatio(callOnUpdateRatio));
 	}
 
-	// Token: 0x060000E2 RID: 226 RVA: 0x00006078 File Offset: 0x00004278
 	public static LTDescr value(GameObject gameObject, Action<Color> callOnUpdate, Color from, Color to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setCallbackColor().setPoint(new Vector3(to.r, to.g, to.b)).setAxis(new Vector3(from.r, from.g, from.b)).setFrom(new Vector3(0f, from.a, 0f)).setHasInitialized(false).setOnUpdateColor(callOnUpdate));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, options().setCallbackColor().setPoint(new Vector3(to.r, to.g, to.b)).setAxis(new Vector3(from.r, from.g, from.b))
+			.setFrom(new Vector3(0f, from.a, 0f))
+			.setHasInitialized(has: false)
+			.setOnUpdateColor(callOnUpdate));
 	}
 
-	// Token: 0x060000E3 RID: 227 RVA: 0x0000610C File Offset: 0x0000430C
 	public static LTDescr value(GameObject gameObject, Action<Color, object> callOnUpdate, Color from, Color to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setCallbackColor().setPoint(new Vector3(to.r, to.g, to.b)).setAxis(new Vector3(from.r, from.g, from.b)).setFrom(new Vector3(0f, from.a, 0f)).setHasInitialized(false).setOnUpdateColor(callOnUpdate));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(1f, to.a, 0f), time, options().setCallbackColor().setPoint(new Vector3(to.r, to.g, to.b)).setAxis(new Vector3(from.r, from.g, from.b))
+			.setFrom(new Vector3(0f, from.a, 0f))
+			.setHasInitialized(has: false)
+			.setOnUpdateColor(callOnUpdate));
 	}
 
-	// Token: 0x060000E4 RID: 228 RVA: 0x000061A0 File Offset: 0x000043A0
 	public static LTDescr value(GameObject gameObject, Action<Vector2> callOnUpdate, Vector2 from, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to.x, to.y, 0f), time, LeanTween.options().setValue3().setTo(new Vector3(to.x, to.y, 0f)).setFrom(new Vector3(from.x, from.y, 0f)).setOnUpdateVector2(callOnUpdate));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to.x, to.y, 0f), time, options().setValue3().setTo(new Vector3(to.x, to.y, 0f)).setFrom(new Vector3(from.x, from.y, 0f))
+			.setOnUpdateVector2(callOnUpdate));
 	}
 
-	// Token: 0x060000E5 RID: 229 RVA: 0x00006211 File Offset: 0x00004411
 	public static LTDescr value(GameObject gameObject, Action<Vector3> callOnUpdate, Vector3 from, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, to, time, LeanTween.options().setValue3().setTo(to).setFrom(from).setOnUpdateVector3(callOnUpdate));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, to, time, options().setValue3().setTo(to).setFrom(from)
+			.setOnUpdateVector3(callOnUpdate));
 	}
 
-	// Token: 0x060000E6 RID: 230 RVA: 0x00006238 File Offset: 0x00004438
 	public static LTDescr value(GameObject gameObject, Action<float, object> callOnUpdate, float from, float to, float time)
 	{
-		return LeanTween.pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCallback().setTo(new Vector3(to, 0f, 0f)).setFrom(new Vector3(from, 0f, 0f)).setOnUpdate(callOnUpdate, gameObject));
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, new Vector3(to, 0f, 0f), time, options().setCallback().setTo(new Vector3(to, 0f, 0f)).setFrom(new Vector3(from, 0f, 0f))
+			.setOnUpdate(callOnUpdate, gameObject));
 	}
 
-	// Token: 0x060000E7 RID: 231 RVA: 0x00006298 File Offset: 0x00004498
 	public static LTDescr delayedSound(AudioClip audio, Vector3 pos, float volume)
 	{
-		return LeanTween.pushNewTween(LeanTween.tweenEmpty, pos, 0f, LeanTween.options().setDelayedSound().setTo(pos).setFrom(new Vector3(volume, 0f, 0f)).setAudio(audio));
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(tweenEmpty, pos, 0f, options().setDelayedSound().setTo(pos).setFrom(new Vector3(volume, 0f, 0f))
+			.setAudio(audio));
 	}
 
-	// Token: 0x060000E8 RID: 232 RVA: 0x000062D5 File Offset: 0x000044D5
 	public static LTDescr delayedSound(GameObject gameObject, AudioClip audio, Vector3 pos, float volume)
 	{
-		return LeanTween.pushNewTween(gameObject, pos, 0f, LeanTween.options().setDelayedSound().setTo(pos).setFrom(new Vector3(volume, 0f, 0f)).setAudio(audio));
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(gameObject, pos, 0f, options().setDelayedSound().setTo(pos).setFrom(new Vector3(volume, 0f, 0f))
+			.setAudio(audio));
 	}
 
-	// Token: 0x060000E9 RID: 233 RVA: 0x0000630E File Offset: 0x0000450E
 	public static LTDescr move(RectTransform rectTrans, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, to, time, LeanTween.options().setCanvasMove().setRect(rectTrans));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, to, time, options().setCanvasMove().setRect(rectTrans));
 	}
 
-	// Token: 0x060000EA RID: 234 RVA: 0x0000632D File Offset: 0x0000452D
 	public static LTDescr moveX(RectTransform rectTrans, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasMoveX().setRect(rectTrans));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasMoveX().setRect(rectTrans));
 	}
 
-	// Token: 0x060000EB RID: 235 RVA: 0x0000635B File Offset: 0x0000455B
 	public static LTDescr moveY(RectTransform rectTrans, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasMoveY().setRect(rectTrans));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasMoveY().setRect(rectTrans));
 	}
 
-	// Token: 0x060000EC RID: 236 RVA: 0x00006389 File Offset: 0x00004589
 	public static LTDescr moveZ(RectTransform rectTrans, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasMoveZ().setRect(rectTrans));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasMoveZ().setRect(rectTrans));
 	}
 
-	// Token: 0x060000ED RID: 237 RVA: 0x000063B7 File Offset: 0x000045B7
 	public static LTDescr rotate(RectTransform rectTrans, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasRotateAround().setRect(rectTrans).setAxis(Vector3.forward));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasRotateAround().setRect(rectTrans).setAxis(Vector3.forward));
 	}
 
-	// Token: 0x060000EE RID: 238 RVA: 0x000063EF File Offset: 0x000045EF
 	public static LTDescr rotate(RectTransform rectTrans, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, to, time, LeanTween.options().setCanvasRotateAround().setRect(rectTrans).setAxis(Vector3.forward));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, to, time, options().setCanvasRotateAround().setRect(rectTrans).setAxis(Vector3.forward));
 	}
 
-	// Token: 0x060000EF RID: 239 RVA: 0x00006418 File Offset: 0x00004618
 	public static LTDescr rotateAround(RectTransform rectTrans, Vector3 axis, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasRotateAround().setRect(rectTrans).setAxis(axis));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasRotateAround().setRect(rectTrans).setAxis(axis));
 	}
 
-	// Token: 0x060000F0 RID: 240 RVA: 0x0000644C File Offset: 0x0000464C
 	public static LTDescr rotateAroundLocal(RectTransform rectTrans, Vector3 axis, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasRotateAroundLocal().setRect(rectTrans).setAxis(axis));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasRotateAroundLocal().setRect(rectTrans).setAxis(axis));
 	}
 
-	// Token: 0x060000F1 RID: 241 RVA: 0x00006480 File Offset: 0x00004680
 	public static LTDescr scale(RectTransform rectTrans, Vector3 to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, to, time, LeanTween.options().setCanvasScale().setRect(rectTrans));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, to, time, options().setCanvasScale().setRect(rectTrans));
 	}
 
-	// Token: 0x060000F2 RID: 242 RVA: 0x0000649F File Offset: 0x0000469F
 	public static LTDescr size(RectTransform rectTrans, Vector2 to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, to, time, LeanTween.options().setCanvasSizeDelta().setRect(rectTrans));
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, Vector2.op_Implicit(to), time, options().setCanvasSizeDelta().setRect(rectTrans));
 	}
 
-	// Token: 0x060000F3 RID: 243 RVA: 0x000064C3 File Offset: 0x000046C3
 	public static LTDescr alpha(RectTransform rectTrans, float to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(to, 0f, 0f), time, LeanTween.options().setCanvasAlpha().setRect(rectTrans));
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(to, 0f, 0f), time, options().setCanvasAlpha().setRect(rectTrans));
 	}
 
-	// Token: 0x060000F4 RID: 244 RVA: 0x000064F4 File Offset: 0x000046F4
 	public static LTDescr color(RectTransform rectTrans, Color to, float time)
 	{
-		return LeanTween.pushNewTween(rectTrans.gameObject, new Vector3(1f, to.a, 0f), time, LeanTween.options().setCanvasColor().setRect(rectTrans).setPoint(new Vector3(to.r, to.g, to.b)));
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		return pushNewTween(((Component)rectTrans).gameObject, new Vector3(1f, to.a, 0f), time, options().setCanvasColor().setRect(rectTrans).setPoint(new Vector3(to.r, to.g, to.b)));
 	}
 
-	// Token: 0x060000F5 RID: 245 RVA: 0x0000654E File Offset: 0x0000474E
 	public static float tweenOnCurve(LTDescr tweenDescr, float ratioPassed)
 	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 		return tweenDescr.from.x + tweenDescr.diff.x * tweenDescr.optional.animationCurve.Evaluate(ratioPassed);
 	}
 
-	// Token: 0x060000F6 RID: 246 RVA: 0x0000657C File Offset: 0x0000477C
 	public static Vector3 tweenOnCurveVector(LTDescr tweenDescr, float ratioPassed)
 	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
 		return new Vector3(tweenDescr.from.x + tweenDescr.diff.x * tweenDescr.optional.animationCurve.Evaluate(ratioPassed), tweenDescr.from.y + tweenDescr.diff.y * tweenDescr.optional.animationCurve.Evaluate(ratioPassed), tweenDescr.from.z + tweenDescr.diff.z * tweenDescr.optional.animationCurve.Evaluate(ratioPassed));
 	}
 
-	// Token: 0x060000F7 RID: 247 RVA: 0x00006609 File Offset: 0x00004809
 	public static float easeOutQuadOpt(float start, float diff, float ratioPassed)
 	{
-		return -diff * ratioPassed * (ratioPassed - 2f) + start;
+		return (0f - diff) * ratioPassed * (ratioPassed - 2f) + start;
 	}
 
-	// Token: 0x060000F8 RID: 248 RVA: 0x00006619 File Offset: 0x00004819
 	public static float easeInQuadOpt(float start, float diff, float ratioPassed)
 	{
 		return diff * ratioPassed * ratioPassed + start;
 	}
 
-	// Token: 0x060000F9 RID: 249 RVA: 0x00006624 File Offset: 0x00004824
 	public static float easeInOutQuadOpt(float start, float diff, float ratioPassed)
 	{
 		ratioPassed /= 0.5f;
@@ -1232,12 +1469,23 @@ public class LeanTween : MonoBehaviour
 			return diff / 2f * ratioPassed * ratioPassed + start;
 		}
 		ratioPassed -= 1f;
-		return -diff / 2f * (ratioPassed * (ratioPassed - 2f) - 1f) + start;
+		return (0f - diff) / 2f * (ratioPassed * (ratioPassed - 2f) - 1f) + start;
 	}
 
-	// Token: 0x060000FA RID: 250 RVA: 0x00006674 File Offset: 0x00004874
 	public static Vector3 easeInOutQuadOpt(Vector3 start, Vector3 diff, float ratioPassed)
 	{
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 		ratioPassed /= 0.5f;
 		if (ratioPassed < 1f)
 		{
@@ -1247,59 +1495,50 @@ public class LeanTween : MonoBehaviour
 		return -diff / 2f * (ratioPassed * (ratioPassed - 2f) - 1f) + start;
 	}
 
-	// Token: 0x060000FB RID: 251 RVA: 0x000066E3 File Offset: 0x000048E3
 	public static float linear(float start, float end, float val)
 	{
 		return Mathf.Lerp(start, end, val);
 	}
 
-	// Token: 0x060000FC RID: 252 RVA: 0x000066F0 File Offset: 0x000048F0
 	public static float clerp(float start, float end, float val)
 	{
 		float num = 0f;
 		float num2 = 360f;
 		float num3 = Mathf.Abs((num2 - num) / 2f);
-		float result;
-		if (end - start < -num3)
+		float num4 = 0f;
+		float num5 = 0f;
+		if (end - start < 0f - num3)
 		{
-			float num4 = (num2 - start + end) * val;
-			result = start + num4;
+			num5 = (num2 - start + end) * val;
+			return start + num5;
 		}
-		else if (end - start > num3)
+		if (end - start > num3)
 		{
-			float num4 = -(num2 - end + start) * val;
-			result = start + num4;
+			num5 = (0f - (num2 - end + start)) * val;
+			return start + num5;
 		}
-		else
-		{
-			result = start + (end - start) * val;
-		}
-		return result;
-	}
-
-	// Token: 0x060000FD RID: 253 RVA: 0x0000675C File Offset: 0x0000495C
-	public static float spring(float start, float end, float val)
-	{
-		val = Mathf.Clamp01(val);
-		val = (Mathf.Sin(val * 3.1415927f * (0.2f + 2.5f * val * val * val)) * Mathf.Pow(1f - val, 2.2f) + val) * (1f + 1.2f * (1f - val));
 		return start + (end - start) * val;
 	}
 
-	// Token: 0x060000FE RID: 254 RVA: 0x000067C0 File Offset: 0x000049C0
+	public static float spring(float start, float end, float val)
+	{
+		val = Mathf.Clamp01(val);
+		val = (Mathf.Sin(val * (float)Math.PI * (0.2f + 2.5f * val * val * val)) * Mathf.Pow(1f - val, 2.2f) + val) * (1f + 1.2f * (1f - val));
+		return start + (end - start) * val;
+	}
+
 	public static float easeInQuad(float start, float end, float val)
 	{
 		end -= start;
 		return end * val * val + start;
 	}
 
-	// Token: 0x060000FF RID: 255 RVA: 0x000067CE File Offset: 0x000049CE
 	public static float easeOutQuad(float start, float end, float val)
 	{
 		end -= start;
-		return -end * val * (val - 2f) + start;
+		return (0f - end) * val * (val - 2f) + start;
 	}
 
-	// Token: 0x06000100 RID: 256 RVA: 0x000067E4 File Offset: 0x000049E4
 	public static float easeInOutQuad(float start, float end, float val)
 	{
 		val /= 0.5f;
@@ -1309,10 +1548,9 @@ public class LeanTween : MonoBehaviour
 			return end / 2f * val * val + start;
 		}
 		val -= 1f;
-		return -end / 2f * (val * (val - 2f) - 1f) + start;
+		return (0f - end) / 2f * (val * (val - 2f) - 1f) + start;
 	}
 
-	// Token: 0x06000101 RID: 257 RVA: 0x00006838 File Offset: 0x00004A38
 	public static float easeInOutQuadOpt2(float start, float diffBy2, float val, float val2)
 	{
 		val /= 0.5f;
@@ -1321,17 +1559,15 @@ public class LeanTween : MonoBehaviour
 			return diffBy2 * val2 + start;
 		}
 		val -= 1f;
-		return -diffBy2 * (val2 - 2f - 1f) + start;
+		return (0f - diffBy2) * (val2 - 2f - 1f) + start;
 	}
 
-	// Token: 0x06000102 RID: 258 RVA: 0x0000686C File Offset: 0x00004A6C
 	public static float easeInCubic(float start, float end, float val)
 	{
 		end -= start;
 		return end * val * val * val + start;
 	}
 
-	// Token: 0x06000103 RID: 259 RVA: 0x0000687C File Offset: 0x00004A7C
 	public static float easeOutCubic(float start, float end, float val)
 	{
 		val -= 1f;
@@ -1339,7 +1575,6 @@ public class LeanTween : MonoBehaviour
 		return end * (val * val * val + 1f) + start;
 	}
 
-	// Token: 0x06000104 RID: 260 RVA: 0x0000689C File Offset: 0x00004A9C
 	public static float easeInOutCubic(float start, float end, float val)
 	{
 		val /= 0.5f;
@@ -1352,22 +1587,19 @@ public class LeanTween : MonoBehaviour
 		return end / 2f * (val * val * val + 2f) + start;
 	}
 
-	// Token: 0x06000105 RID: 261 RVA: 0x000068ED File Offset: 0x00004AED
 	public static float easeInQuart(float start, float end, float val)
 	{
 		end -= start;
 		return end * val * val * val * val + start;
 	}
 
-	// Token: 0x06000106 RID: 262 RVA: 0x000068FF File Offset: 0x00004AFF
 	public static float easeOutQuart(float start, float end, float val)
 	{
 		val -= 1f;
 		end -= start;
-		return -end * (val * val * val * val - 1f) + start;
+		return (0f - end) * (val * val * val * val - 1f) + start;
 	}
 
-	// Token: 0x06000107 RID: 263 RVA: 0x00006924 File Offset: 0x00004B24
 	public static float easeInOutQuart(float start, float end, float val)
 	{
 		val /= 0.5f;
@@ -1377,17 +1609,15 @@ public class LeanTween : MonoBehaviour
 			return end / 2f * val * val * val * val + start;
 		}
 		val -= 2f;
-		return -end / 2f * (val * val * val * val - 2f) + start;
+		return (0f - end) / 2f * (val * val * val * val - 2f) + start;
 	}
 
-	// Token: 0x06000108 RID: 264 RVA: 0x0000697A File Offset: 0x00004B7A
 	public static float easeInQuint(float start, float end, float val)
 	{
 		end -= start;
 		return end * val * val * val * val * val + start;
 	}
 
-	// Token: 0x06000109 RID: 265 RVA: 0x0000698E File Offset: 0x00004B8E
 	public static float easeOutQuint(float start, float end, float val)
 	{
 		val -= 1f;
@@ -1395,7 +1625,6 @@ public class LeanTween : MonoBehaviour
 		return end * (val * val * val * val * val + 1f) + start;
 	}
 
-	// Token: 0x0600010A RID: 266 RVA: 0x000069B4 File Offset: 0x00004BB4
 	public static float easeInOutQuint(float start, float end, float val)
 	{
 		val /= 0.5f;
@@ -1408,42 +1637,36 @@ public class LeanTween : MonoBehaviour
 		return end / 2f * (val * val * val * val * val + 2f) + start;
 	}
 
-	// Token: 0x0600010B RID: 267 RVA: 0x00006A0D File Offset: 0x00004C0D
 	public static float easeInSine(float start, float end, float val)
 	{
 		end -= start;
-		return -end * Mathf.Cos(val / 1f * 1.5707964f) + end + start;
+		return (0f - end) * Mathf.Cos(val / 1f * ((float)Math.PI / 2f)) + end + start;
 	}
 
-	// Token: 0x0600010C RID: 268 RVA: 0x00006A2D File Offset: 0x00004C2D
 	public static float easeOutSine(float start, float end, float val)
 	{
 		end -= start;
-		return end * Mathf.Sin(val / 1f * 1.5707964f) + start;
+		return end * Mathf.Sin(val / 1f * ((float)Math.PI / 2f)) + start;
 	}
 
-	// Token: 0x0600010D RID: 269 RVA: 0x00006A4A File Offset: 0x00004C4A
 	public static float easeInOutSine(float start, float end, float val)
 	{
 		end -= start;
-		return -end / 2f * (Mathf.Cos(3.1415927f * val / 1f) - 1f) + start;
+		return (0f - end) / 2f * (Mathf.Cos((float)Math.PI * val / 1f) - 1f) + start;
 	}
 
-	// Token: 0x0600010E RID: 270 RVA: 0x00006A74 File Offset: 0x00004C74
 	public static float easeInExpo(float start, float end, float val)
 	{
 		end -= start;
 		return end * Mathf.Pow(2f, 10f * (val / 1f - 1f)) + start;
 	}
 
-	// Token: 0x0600010F RID: 271 RVA: 0x00006A9C File Offset: 0x00004C9C
 	public static float easeOutExpo(float start, float end, float val)
 	{
 		end -= start;
-		return end * (-Mathf.Pow(2f, -10f * val / 1f) + 1f) + start;
+		return end * (0f - Mathf.Pow(2f, -10f * val / 1f) + 1f) + start;
 	}
 
-	// Token: 0x06000110 RID: 272 RVA: 0x00006AC8 File Offset: 0x00004CC8
 	public static float easeInOutExpo(float start, float end, float val)
 	{
 		val /= 0.5f;
@@ -1453,17 +1676,15 @@ public class LeanTween : MonoBehaviour
 			return end / 2f * Mathf.Pow(2f, 10f * (val - 1f)) + start;
 		}
 		val -= 1f;
-		return end / 2f * (-Mathf.Pow(2f, -10f * val) + 2f) + start;
+		return end / 2f * (0f - Mathf.Pow(2f, -10f * val) + 2f) + start;
 	}
 
-	// Token: 0x06000111 RID: 273 RVA: 0x00006B38 File Offset: 0x00004D38
 	public static float easeInCirc(float start, float end, float val)
 	{
 		end -= start;
-		return -end * (Mathf.Sqrt(1f - val * val) - 1f) + start;
+		return (0f - end) * (Mathf.Sqrt(1f - val * val) - 1f) + start;
 	}
 
-	// Token: 0x06000112 RID: 274 RVA: 0x00006B58 File Offset: 0x00004D58
 	public static float easeOutCirc(float start, float end, float val)
 	{
 		val -= 1f;
@@ -1471,28 +1692,25 @@ public class LeanTween : MonoBehaviour
 		return end * Mathf.Sqrt(1f - val * val) + start;
 	}
 
-	// Token: 0x06000113 RID: 275 RVA: 0x00006B7C File Offset: 0x00004D7C
 	public static float easeInOutCirc(float start, float end, float val)
 	{
 		val /= 0.5f;
 		end -= start;
 		if (val < 1f)
 		{
-			return -end / 2f * (Mathf.Sqrt(1f - val * val) - 1f) + start;
+			return (0f - end) / 2f * (Mathf.Sqrt(1f - val * val) - 1f) + start;
 		}
 		val -= 2f;
 		return end / 2f * (Mathf.Sqrt(1f - val * val) + 1f) + start;
 	}
 
-	// Token: 0x06000114 RID: 276 RVA: 0x00006BE8 File Offset: 0x00004DE8
 	public static float easeInBounce(float start, float end, float val)
 	{
 		end -= start;
 		float num = 1f;
-		return end - LeanTween.easeOutBounce(0f, end, num - val) + start;
+		return end - easeOutBounce(0f, end, num - val) + start;
 	}
 
-	// Token: 0x06000115 RID: 277 RVA: 0x00006C14 File Offset: 0x00004E14
 	public static float easeOutBounce(float start, float end, float val)
 	{
 		val /= 1f;
@@ -1511,23 +1729,21 @@ public class LeanTween : MonoBehaviour
 			val -= 0.8181818f;
 			return end * (7.5625f * val * val + 0.9375f) + start;
 		}
-		val -= 0.95454544f;
-		return end * (7.5625f * val * val + 0.984375f) + start;
+		val -= 21f / 22f;
+		return end * (7.5625f * val * val + 63f / 64f) + start;
 	}
 
-	// Token: 0x06000116 RID: 278 RVA: 0x00006CB0 File Offset: 0x00004EB0
 	public static float easeInOutBounce(float start, float end, float val)
 	{
 		end -= start;
 		float num = 1f;
 		if (val < num / 2f)
 		{
-			return LeanTween.easeInBounce(0f, end, val * 2f) * 0.5f + start;
+			return easeInBounce(0f, end, val * 2f) * 0.5f + start;
 		}
-		return LeanTween.easeOutBounce(0f, end, val * 2f - num) * 0.5f + end * 0.5f + start;
+		return easeOutBounce(0f, end, val * 2f - num) * 0.5f + end * 0.5f + start;
 	}
 
-	// Token: 0x06000117 RID: 279 RVA: 0x00006D14 File Offset: 0x00004F14
 	public static float easeInBack(float start, float end, float val, float overshoot = 1f)
 	{
 		end -= start;
@@ -1536,7 +1752,6 @@ public class LeanTween : MonoBehaviour
 		return end * val * val * ((num + 1f) * val - num) + start;
 	}
 
-	// Token: 0x06000118 RID: 280 RVA: 0x00006D4C File Offset: 0x00004F4C
 	public static float easeOutBack(float start, float end, float val, float overshoot = 1f)
 	{
 		float num = 1.70158f * overshoot;
@@ -1545,7 +1760,6 @@ public class LeanTween : MonoBehaviour
 		return end * (val * val * ((num + 1f) * val + num) + 1f) + start;
 	}
 
-	// Token: 0x06000119 RID: 281 RVA: 0x00006D90 File Offset: 0x00004F90
 	public static float easeInOutBack(float start, float end, float val, float overshoot = 1f)
 	{
 		float num = 1.70158f * overshoot;
@@ -1561,11 +1775,11 @@ public class LeanTween : MonoBehaviour
 		return end / 2f * (val * val * ((num + 1f) * val + num) + 2f) + start;
 	}
 
-	// Token: 0x0600011A RID: 282 RVA: 0x00006E14 File Offset: 0x00005014
 	public static float easeInElastic(float start, float end, float val, float overshoot = 1f, float period = 0.3f)
 	{
 		end -= start;
 		float num = 0f;
+		float num2 = 0f;
 		if (val == 0f)
 		{
 			return start;
@@ -1574,29 +1788,28 @@ public class LeanTween : MonoBehaviour
 		{
 			return start + end;
 		}
-		float num2;
-		if (num == 0f || num < Mathf.Abs(end))
+		if (num2 == 0f || num2 < Mathf.Abs(end))
 		{
-			num = end;
-			num2 = period / 4f;
+			num2 = end;
+			num = period / 4f;
 		}
 		else
 		{
-			num2 = period / 6.2831855f * Mathf.Asin(end / num);
+			num = period / ((float)Math.PI * 2f) * Mathf.Asin(end / num2);
 		}
 		if (overshoot > 1f && val > 0.6f)
 		{
 			overshoot = 1f + (1f - val) / 0.4f * (overshoot - 1f);
 		}
 		val -= 1f;
-		return start - num * Mathf.Pow(2f, 10f * val) * Mathf.Sin((val - num2) * 6.2831855f / period) * overshoot;
+		return start - num2 * Mathf.Pow(2f, 10f * val) * Mathf.Sin((val - num) * ((float)Math.PI * 2f) / period) * overshoot;
 	}
 
-	// Token: 0x0600011B RID: 283 RVA: 0x00006ED8 File Offset: 0x000050D8
 	public static float easeOutElastic(float start, float end, float val, float overshoot = 1f, float period = 0.3f)
 	{
 		end -= start;
 		float num = 0f;
+		float num2 = 0f;
 		if (val == 0f)
 		{
 			return start;
@@ -1605,28 +1818,27 @@ public class LeanTween : MonoBehaviour
 		{
 			return start + end;
 		}
-		float num2;
-		if (num == 0f || num < Mathf.Abs(end))
+		if (num2 == 0f || num2 < Mathf.Abs(end))
 		{
-			num = end;
-			num2 = period / 4f;
+			num2 = end;
+			num = period / 4f;
 		}
 		else
 		{
-			num2 = period / 6.2831855f * Mathf.Asin(end / num);
+			num = period / ((float)Math.PI * 2f) * Mathf.Asin(end / num2);
 		}
 		if (overshoot > 1f && val < 0.4f)
 		{
 			overshoot = 1f + val / 0.4f * (overshoot - 1f);
 		}
-		return start + end + num * Mathf.Pow(2f, -10f * val) * Mathf.Sin((val - num2) * 6.2831855f / period) * overshoot;
+		return start + end + num2 * Mathf.Pow(2f, -10f * val) * Mathf.Sin((val - num) * ((float)Math.PI * 2f) / period) * overshoot;
 	}
 
-	// Token: 0x0600011C RID: 284 RVA: 0x00006F90 File Offset: 0x00005190
 	public static float easeInOutElastic(float start, float end, float val, float overshoot = 1f, float period = 0.3f)
 	{
 		end -= start;
 		float num = 0f;
+		float num2 = 0f;
 		if (val == 0f)
 		{
 			return start;
@@ -1636,15 +1848,14 @@ public class LeanTween : MonoBehaviour
 		{
 			return start + end;
 		}
-		float num2;
-		if (num == 0f || num < Mathf.Abs(end))
+		if (num2 == 0f || num2 < Mathf.Abs(end))
 		{
-			num = end;
-			num2 = period / 4f;
+			num2 = end;
+			num = period / 4f;
 		}
 		else
 		{
-			num2 = period / 6.2831855f * Mathf.Asin(end / num);
+			num = period / ((float)Math.PI * 2f) * Mathf.Asin(end / num2);
 		}
 		if (overshoot > 1f)
 		{
@@ -1660,216 +1871,95 @@ public class LeanTween : MonoBehaviour
 		if (val < 1f)
 		{
 			val -= 1f;
-			return start - 0.5f * (num * Mathf.Pow(2f, 10f * val) * Mathf.Sin((val - num2) * 6.2831855f / period)) * overshoot;
+			return start - 0.5f * (num2 * Mathf.Pow(2f, 10f * val) * Mathf.Sin((val - num) * ((float)Math.PI * 2f) / period)) * overshoot;
 		}
 		val -= 1f;
-		return end + start + num * Mathf.Pow(2f, -10f * val) * Mathf.Sin((val - num2) * 6.2831855f / period) * 0.5f * overshoot;
+		return end + start + num2 * Mathf.Pow(2f, -10f * val) * Mathf.Sin((val - num) * ((float)Math.PI * 2f) / period) * 0.5f * overshoot;
 	}
 
-	// Token: 0x0600011D RID: 285 RVA: 0x000070C5 File Offset: 0x000052C5
 	public static void addListener(int eventId, Action<LTEvent> callback)
 	{
-		LeanTween.addListener(LeanTween.tweenEmpty, eventId, callback);
+		addListener(tweenEmpty, eventId, callback);
 	}
 
-	// Token: 0x0600011E RID: 286 RVA: 0x000070D4 File Offset: 0x000052D4
 	public static void addListener(GameObject caller, int eventId, Action<LTEvent> callback)
 	{
-		if (LeanTween.eventListeners == null)
+		if (eventListeners == null)
 		{
-			LeanTween.INIT_LISTENERS_MAX = LeanTween.LISTENERS_MAX;
-			LeanTween.eventListeners = new Action<LTEvent>[LeanTween.EVENTS_MAX * LeanTween.LISTENERS_MAX];
-			LeanTween.goListeners = new GameObject[LeanTween.EVENTS_MAX * LeanTween.LISTENERS_MAX];
+			INIT_LISTENERS_MAX = LISTENERS_MAX;
+			eventListeners = new Action<LTEvent>[EVENTS_MAX * LISTENERS_MAX];
+			goListeners = (GameObject[])(object)new GameObject[EVENTS_MAX * LISTENERS_MAX];
 		}
-		LeanTween.i = 0;
-		while (LeanTween.i < LeanTween.INIT_LISTENERS_MAX)
+		for (i = 0; i < INIT_LISTENERS_MAX; i++)
 		{
-			int num = eventId * LeanTween.INIT_LISTENERS_MAX + LeanTween.i;
-			if (LeanTween.goListeners[num] == null || LeanTween.eventListeners[num] == null)
+			int num = eventId * INIT_LISTENERS_MAX + i;
+			if ((Object)(object)goListeners[num] == (Object)null || eventListeners[num] == null)
 			{
-				LeanTween.eventListeners[num] = callback;
-				LeanTween.goListeners[num] = caller;
-				if (LeanTween.i >= LeanTween.eventsMaxSearch)
+				eventListeners[num] = callback;
+				goListeners[num] = caller;
+				if (i >= eventsMaxSearch)
 				{
-					LeanTween.eventsMaxSearch = LeanTween.i + 1;
+					eventsMaxSearch = i + 1;
 				}
 				return;
 			}
-			if (LeanTween.goListeners[num] == caller && object.Equals(LeanTween.eventListeners[num], callback))
+			if ((Object)(object)goListeners[num] == (Object)(object)caller && object.Equals(eventListeners[num], callback))
 			{
 				return;
 			}
-			LeanTween.i++;
 		}
-		Debug.LogError("You ran out of areas to add listeners, consider increasing LISTENERS_MAX, ex: LeanTween.LISTENERS_MAX = " + LeanTween.LISTENERS_MAX * 2);
+		Debug.LogError((object)("You ran out of areas to add listeners, consider increasing LISTENERS_MAX, ex: LeanTween.LISTENERS_MAX = " + LISTENERS_MAX * 2));
 	}
 
-	// Token: 0x0600011F RID: 287 RVA: 0x000071C8 File Offset: 0x000053C8
 	public static bool removeListener(int eventId, Action<LTEvent> callback)
 	{
-		return LeanTween.removeListener(LeanTween.tweenEmpty, eventId, callback);
+		return removeListener(tweenEmpty, eventId, callback);
 	}
 
-	// Token: 0x06000120 RID: 288 RVA: 0x000071D8 File Offset: 0x000053D8
 	public static bool removeListener(int eventId)
 	{
-		int num = eventId * LeanTween.INIT_LISTENERS_MAX + LeanTween.i;
-		LeanTween.eventListeners[num] = null;
-		LeanTween.goListeners[num] = null;
+		int num = eventId * INIT_LISTENERS_MAX + i;
+		eventListeners[num] = null;
+		goListeners[num] = null;
 		return true;
 	}
 
-	// Token: 0x06000121 RID: 289 RVA: 0x00007204 File Offset: 0x00005404
 	public static bool removeListener(GameObject caller, int eventId, Action<LTEvent> callback)
 	{
-		LeanTween.i = 0;
-		while (LeanTween.i < LeanTween.eventsMaxSearch)
+		for (i = 0; i < eventsMaxSearch; i++)
 		{
-			int num = eventId * LeanTween.INIT_LISTENERS_MAX + LeanTween.i;
-			if (LeanTween.goListeners[num] == caller && object.Equals(LeanTween.eventListeners[num], callback))
+			int num = eventId * INIT_LISTENERS_MAX + i;
+			if ((Object)(object)goListeners[num] == (Object)(object)caller && object.Equals(eventListeners[num], callback))
 			{
-				LeanTween.eventListeners[num] = null;
-				LeanTween.goListeners[num] = null;
+				eventListeners[num] = null;
+				goListeners[num] = null;
 				return true;
 			}
-			LeanTween.i++;
 		}
 		return false;
 	}
 
-	// Token: 0x06000122 RID: 290 RVA: 0x00007270 File Offset: 0x00005470
 	public static void dispatchEvent(int eventId)
 	{
-		LeanTween.dispatchEvent(eventId, null);
+		dispatchEvent(eventId, null);
 	}
 
-	// Token: 0x06000123 RID: 291 RVA: 0x0000727C File Offset: 0x0000547C
 	public static void dispatchEvent(int eventId, object data)
 	{
-		for (int i = 0; i < LeanTween.eventsMaxSearch; i++)
+		for (int i = 0; i < eventsMaxSearch; i++)
 		{
-			int num = eventId * LeanTween.INIT_LISTENERS_MAX + i;
-			if (LeanTween.eventListeners[num] != null)
+			int num = eventId * INIT_LISTENERS_MAX + i;
+			if (eventListeners[num] != null)
 			{
-				if (LeanTween.goListeners[num])
+				if (Object.op_Implicit((Object)(object)goListeners[num]))
 				{
-					LeanTween.eventListeners[num](new LTEvent(eventId, data));
+					eventListeners[num](new LTEvent(eventId, data));
 				}
 				else
 				{
-					LeanTween.eventListeners[num] = null;
+					eventListeners[num] = null;
 				}
 			}
 		}
 	}
-
-	// Token: 0x040000C6 RID: 198
-	public static bool throwErrors = true;
-
-	// Token: 0x040000C7 RID: 199
-	public static float tau = 6.2831855f;
-
-	// Token: 0x040000C8 RID: 200
-	public static float PI_DIV2 = 1.5707964f;
-
-	// Token: 0x040000C9 RID: 201
-	private static LTSeq[] sequences;
-
-	// Token: 0x040000CA RID: 202
-	private static LTDescr[] tweens;
-
-	// Token: 0x040000CB RID: 203
-	private static int[] tweensFinished;
-
-	// Token: 0x040000CC RID: 204
-	private static int[] tweensFinishedIds;
-
-	// Token: 0x040000CD RID: 205
-	private static LTDescr tween;
-
-	// Token: 0x040000CE RID: 206
-	private static int tweenMaxSearch = -1;
-
-	// Token: 0x040000CF RID: 207
-	private static int maxTweens = 400;
-
-	// Token: 0x040000D0 RID: 208
-	private static int maxSequences = 400;
-
-	// Token: 0x040000D1 RID: 209
-	private static int frameRendered = -1;
-
-	// Token: 0x040000D2 RID: 210
-	private static GameObject _tweenEmpty;
-
-	// Token: 0x040000D3 RID: 211
-	public static float dtEstimated = -1f;
-
-	// Token: 0x040000D4 RID: 212
-	public static float dtManual;
-
-	// Token: 0x040000D5 RID: 213
-	public static float dtActual;
-
-	// Token: 0x040000D6 RID: 214
-	private static uint global_counter = 0U;
-
-	// Token: 0x040000D7 RID: 215
-	private static int i;
-
-	// Token: 0x040000D8 RID: 216
-	private static int j;
-
-	// Token: 0x040000D9 RID: 217
-	private static int finishedCnt;
-
-	// Token: 0x040000DA RID: 218
-	public static AnimationCurve punch = new AnimationCurve(new Keyframe[]
-	{
-		new Keyframe(0f, 0f),
-		new Keyframe(0.112586f, 0.9976035f),
-		new Keyframe(0.3120486f, -0.1720615f),
-		new Keyframe(0.4316337f, 0.07030682f),
-		new Keyframe(0.5524869f, -0.03141804f),
-		new Keyframe(0.6549395f, 0.003909959f),
-		new Keyframe(0.770987f, -0.009817753f),
-		new Keyframe(0.8838775f, 0.001939224f),
-		new Keyframe(1f, 0f)
-	});
-
-	// Token: 0x040000DB RID: 219
-	public static AnimationCurve shake = new AnimationCurve(new Keyframe[]
-	{
-		new Keyframe(0f, 0f),
-		new Keyframe(0.25f, 1f),
-		new Keyframe(0.75f, -1f),
-		new Keyframe(1f, 0f)
-	});
-
-	// Token: 0x040000DC RID: 220
-	private static int maxTweenReached;
-
-	// Token: 0x040000DD RID: 221
-	public static int startSearch = 0;
-
-	// Token: 0x040000DE RID: 222
-	public static LTDescr d;
-
-	// Token: 0x040000DF RID: 223
-	private static Action<LTEvent>[] eventListeners;
-
-	// Token: 0x040000E0 RID: 224
-	private static GameObject[] goListeners;
-
-	// Token: 0x040000E1 RID: 225
-	private static int eventsMaxSearch = 0;
-
-	// Token: 0x040000E2 RID: 226
-	public static int EVENTS_MAX = 10;
-
-	// Token: 0x040000E3 RID: 227
-	public static int LISTENERS_MAX = 10;
-
-	// Token: 0x040000E4 RID: 228
-	private static int INIT_LISTENERS_MAX = LeanTween.LISTENERS_MAX;
 }

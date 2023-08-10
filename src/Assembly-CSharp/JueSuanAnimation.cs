@@ -1,4 +1,3 @@
-﻿using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -6,88 +5,91 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020002DF RID: 735
 public class JueSuanAnimation : MonoBehaviour
 {
-	// Token: 0x06001983 RID: 6531 RVA: 0x000B66A0 File Offset: 0x000B48A0
+	public Text content;
+
+	public Image slider;
+
+	public Animator animator;
+
+	private TweenerCore<float, float, FloatOptions> obj;
+
+	private bool isNeedJieSuan;
+
+	private UnityAction call;
+
 	public void Play(string content, UnityAction action)
 	{
-		this.isNeedJieSuan = false;
-		base.gameObject.SetActive(true);
-		this.call = action;
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Expected O, but got Unknown
+		isNeedJieSuan = false;
+		((Component)this).gameObject.SetActive(true);
+		call = action;
 		Tools.canClickFlag = false;
 		NpcJieSuanManager.inst.JieSuanAnimation = false;
 		this.content.text = content;
-		TweenCallback <>9__1;
-		this.obj = TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(this.slider, 0.2f, 1.5f), delegate()
+		TweenCallback val = default(TweenCallback);
+		obj = TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(slider, 0.2f, 1.5f), (TweenCallback)delegate
 		{
+			//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003f: Expected O, but got Unknown
+			//IL_0044: Expected O, but got Unknown
 			if (NpcJieSuanManager.inst.isCanJieSuan)
 			{
-				TweenerCore<float, float, FloatOptions> tweenerCore = DOTweenModuleUI.DOFillAmount(this.slider, 1f, 0.5f);
-				TweenCallback tweenCallback;
-				if ((tweenCallback = <>9__1) == null)
+				TweenerCore<float, float, FloatOptions> obj = DOTweenModuleUI.DOFillAmount(slider, 1f, 0.5f);
+				TweenCallback obj2 = val;
+				if (obj2 == null)
 				{
-					tweenCallback = (<>9__1 = delegate()
+					TweenCallback val2 = delegate
 					{
 						Tools.canClickFlag = true;
 						if (action != null)
 						{
 							action.Invoke();
 						}
-						Object.Destroy(this.gameObject);
-					});
+						Object.Destroy((Object)(object)((Component)this).gameObject);
+					};
+					TweenCallback val3 = val2;
+					val = val2;
+					obj2 = val3;
 				}
-				TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(tweenerCore, tweenCallback));
-				return;
+				TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(obj, obj2));
 			}
-			this.isNeedJieSuan = true;
-			this.obj = DOTweenModuleUI.DOFillAmount(this.slider, 0.98f, 20f);
+			else
+			{
+				isNeedJieSuan = true;
+				this.obj = DOTweenModuleUI.DOFillAmount(slider, 0.98f, 20f);
+			}
 		}));
 	}
 
-	// Token: 0x06001984 RID: 6532 RVA: 0x000B6730 File Offset: 0x000B4930
 	private void CallBack()
 	{
-		if (this.obj != null)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Expected O, but got Unknown
+		if (obj != null)
 		{
-			TweenExtensions.Kill(this.obj, false);
+			TweenExtensions.Kill((Tween)(object)obj, false);
 		}
-		TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(this.slider, 1f, 0.5f * (1f - this.slider.fillAmount)), delegate()
+		TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTweenModuleUI.DOFillAmount(slider, 1f, 0.5f * (1f - slider.fillAmount)), (TweenCallback)delegate
 		{
 			Tools.canClickFlag = true;
-			if (this.call != null)
+			if (call != null)
 			{
-				this.call.Invoke();
+				call.Invoke();
 			}
-			Object.Destroy(base.gameObject);
+			Object.Destroy((Object)(object)((Component)this).gameObject);
 		}));
 	}
 
-	// Token: 0x06001985 RID: 6533 RVA: 0x000B678F File Offset: 0x000B498F
 	private void Update()
 	{
-		if (this.isNeedJieSuan && NpcJieSuanManager.inst.JieSuanAnimation)
+		if (isNeedJieSuan && NpcJieSuanManager.inst.JieSuanAnimation)
 		{
 			NpcJieSuanManager.inst.JieSuanAnimation = false;
-			this.CallBack();
+			CallBack();
 		}
 	}
-
-	// Token: 0x040014B7 RID: 5303
-	public Text content;
-
-	// Token: 0x040014B8 RID: 5304
-	public Image slider;
-
-	// Token: 0x040014B9 RID: 5305
-	public Animator animator;
-
-	// Token: 0x040014BA RID: 5306
-	private TweenerCore<float, float, FloatOptions> obj;
-
-	// Token: 0x040014BB RID: 5307
-	private bool isNeedJieSuan;
-
-	// Token: 0x040014BC RID: 5308
-	private UnityAction call;
 }

@@ -1,30 +1,16 @@
-﻿using System;
 using KBEngine;
 
-// Token: 0x0200025A RID: 602
 public static class NPCTalkCmdHelper
 {
-	// Token: 0x06001662 RID: 5730 RVA: 0x00096F50 File Offset: 0x00095150
 	public static string ReplaceTalkWord(this string str, UINPCData npc)
 	{
 		Avatar player = Tools.instance.getPlayer();
 		str = str.ReplaceTalkWord();
 		string newValue = "前辈";
 		string newValue2 = "道友";
-		if (player.menPai != 0 && npc.MenPai == (int)player.menPai)
+		if (player.menPai != 0 && npc.MenPai == player.menPai)
 		{
-			if (player.getLevelType() == 5 && npc.BigLevel < 5)
-			{
-				newValue2 = "师祖";
-			}
-			else if (player.Sex == 1)
-			{
-				newValue2 = (((int)player.level >= npc.Level) ? "师兄" : "师弟");
-			}
-			else
-			{
-				newValue2 = (((int)player.level >= npc.Level) ? "师姐" : "师妹");
-			}
+			newValue2 = ((player.getLevelType() == 5 && npc.BigLevel < 5) ? "师祖" : ((player.Sex != 1) ? ((player.level >= npc.Level) ? "师姐" : "师妹") : ((player.level >= npc.Level) ? "师兄" : "师弟")));
 		}
 		if (PlayerEx.IsBrother(npc.ID))
 		{
@@ -65,20 +51,13 @@ public static class NPCTalkCmdHelper
 		str = str.Replace("{daoyou}", newValue2);
 		str = str.Replace("{qianbei}", newValue);
 		string newValue3 = "小友";
-		if (player.menPai != 0 && npc.MenPai == (int)player.menPai)
+		if (player.menPai != 0 && npc.MenPai == player.menPai)
 		{
 			newValue3 = "师侄";
 		}
 		if (PlayerEx.IsBrother(npc.ID))
 		{
-			if (player.Sex == 1)
-			{
-				newValue3 = "兄弟";
-			}
-			else
-			{
-				newValue3 = "姑娘";
-			}
+			newValue3 = ((player.Sex != 1) ? "姑娘" : "兄弟");
 		}
 		if (PlayerEx.IsTheather(npc.ID))
 		{
@@ -109,7 +88,6 @@ public static class NPCTalkCmdHelper
 		return str;
 	}
 
-	// Token: 0x06001663 RID: 5731 RVA: 0x000972B0 File Offset: 0x000954B0
 	public static string ReplaceTalkWord(this string str)
 	{
 		Avatar player = Tools.instance.getPlayer();

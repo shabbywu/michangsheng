@@ -1,2323 +1,2151 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KBEngine
+namespace KBEngine;
+
+public abstract class AvatarBase : Entity
 {
-	// Token: 0x02000B34 RID: 2868
-	public abstract class AvatarBase : Entity
+	public EntityBaseEntityCall_AvatarBase baseEntityCall;
+
+	public EntityCellEntityCall_AvatarBase cellEntityCall;
+
+	public uint AvatarType = 5u;
+
+	public int HP;
+
+	public short Hunger = 100;
+
+	public List<int> LingGeng = new List<int>();
+
+	public int MP;
+
+	public int MP_Max;
+
+	public uint MaxCard = 5u;
+
+	public ushort SurvivalDays;
+
+	public short Thirst = 100;
+
+	public int ZiZhi = 5;
+
+	public int _HP_Max;
+
+	public int _dunSu = 5;
+
+	public int _shengShi = 5;
+
+	public uint age = 5u;
+
+	public int attack_Max = 10;
+
+	public int attack_Min;
+
+	public List<ushort> buffs = new List<ushort>();
+
+	public List<int> crystal = new List<int>();
+
+	public int defence;
+
+	public int dexterity;
+
+	public int dodge;
+
+	public uint drawCard = 5u;
+
+	public ITEM_INFO_LIST equipItemList = new ITEM_INFO_LIST();
+
+	public int equipWeapon = -1;
+
+	public ulong exp;
+
+	public int forbids;
+
+	public ITEM_INFO_LIST itemList = new ITEM_INFO_LIST();
+
+	public ushort level = 1;
+
+	public ushort menPai;
+
+	public uint modelID;
+
+	public byte modelScale = 30;
+
+	public ulong money;
+
+	public byte moveSpeed = 50;
+
+	public string name = "";
+
+	public int rating = 99;
+
+	public ushort roleSurface = 1;
+
+	public ushort roleSurfaceCall = 1;
+
+	public uint roleType;
+
+	public uint roleTypeCell;
+
+	public uint shaQi = 5u;
+
+	public uint shouYuan = 5u;
+
+	public List<int> skills = new List<int>();
+
+	public uint spaceUType;
+
+	public int stamina;
+
+	public sbyte state;
+
+	public int strength;
+
+	public byte subState;
+
+	public uint uid;
+
+	public uint utype;
+
+	public uint wuXin = 5u;
+
+	public virtual void onAvatarTypeChanged(uint oldValue)
 	{
-		// Token: 0x06005015 RID: 20501 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onAvatarTypeChanged(uint oldValue)
+	}
+
+	public virtual void onHPChanged(int oldValue)
+	{
+	}
+
+	public virtual void onHungerChanged(short oldValue)
+	{
+	}
+
+	public virtual void onLingGengChanged(List<int> oldValue)
+	{
+	}
+
+	public virtual void onMPChanged(int oldValue)
+	{
+	}
+
+	public virtual void onMP_MaxChanged(int oldValue)
+	{
+	}
+
+	public virtual void onMaxCardChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onSurvivalDaysChanged(ushort oldValue)
+	{
+	}
+
+	public virtual void onThirstChanged(short oldValue)
+	{
+	}
+
+	public virtual void onZiZhiChanged(int oldValue)
+	{
+	}
+
+	public virtual void on_HP_MaxChanged(int oldValue)
+	{
+	}
+
+	public virtual void on_dunSuChanged(int oldValue)
+	{
+	}
+
+	public virtual void on_shengShiChanged(int oldValue)
+	{
+	}
+
+	public virtual void onAgeChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onAttack_MaxChanged(int oldValue)
+	{
+	}
+
+	public virtual void onAttack_MinChanged(int oldValue)
+	{
+	}
+
+	public virtual void onBuffsChanged(List<ushort> oldValue)
+	{
+	}
+
+	public virtual void onCrystalChanged(List<int> oldValue)
+	{
+	}
+
+	public virtual void onDefenceChanged(int oldValue)
+	{
+	}
+
+	public virtual void onDexterityChanged(int oldValue)
+	{
+	}
+
+	public virtual void onDodgeChanged(int oldValue)
+	{
+	}
+
+	public virtual void onDrawCardChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onEquipItemListChanged(ITEM_INFO_LIST oldValue)
+	{
+	}
+
+	public virtual void onEquipWeaponChanged(int oldValue)
+	{
+	}
+
+	public virtual void onExpChanged(ulong oldValue)
+	{
+	}
+
+	public virtual void onForbidsChanged(int oldValue)
+	{
+	}
+
+	public virtual void onItemListChanged(ITEM_INFO_LIST oldValue)
+	{
+	}
+
+	public virtual void onLevelChanged(ushort oldValue)
+	{
+	}
+
+	public virtual void onMenPaiChanged(ushort oldValue)
+	{
+	}
+
+	public virtual void onModelIDChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onModelScaleChanged(byte oldValue)
+	{
+	}
+
+	public virtual void onMoneyChanged(ulong oldValue)
+	{
+	}
+
+	public virtual void onMoveSpeedChanged(byte oldValue)
+	{
+	}
+
+	public virtual void onNameChanged(string oldValue)
+	{
+	}
+
+	public virtual void onRatingChanged(int oldValue)
+	{
+	}
+
+	public virtual void onRoleSurfaceChanged(ushort oldValue)
+	{
+	}
+
+	public virtual void onRoleSurfaceCallChanged(ushort oldValue)
+	{
+	}
+
+	public virtual void onRoleTypeChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onRoleTypeCellChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onShaQiChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onShouYuanChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onSkillsChanged(List<int> oldValue)
+	{
+	}
+
+	public virtual void onSpaceUTypeChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onStaminaChanged(int oldValue)
+	{
+	}
+
+	public virtual void onStateChanged(sbyte oldValue)
+	{
+	}
+
+	public virtual void onStrengthChanged(int oldValue)
+	{
+	}
+
+	public virtual void onSubStateChanged(byte oldValue)
+	{
+	}
+
+	public virtual void onUidChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onUtypeChanged(uint oldValue)
+	{
+	}
+
+	public virtual void onWuXinChanged(uint oldValue)
+	{
+	}
+
+	public abstract void GameErrorMsg(string arg1);
+
+	public abstract void PlayerAddGoods(ITEM_INFO_LIST arg1, ushort arg2, ushort arg3);
+
+	public abstract void PlayerLvUP();
+
+	public abstract void ReceiveChatMessage(string arg1);
+
+	public abstract void clearSkills();
+
+	public abstract void createItem(ITEM_INFO arg1);
+
+	public abstract void dialog_close();
+
+	public abstract void dialog_setContent(int arg1, List<uint> arg2, List<string> arg3, string arg4, string arg5, string arg6);
+
+	public abstract void dropItem_re(int arg1, ulong arg2);
+
+	public abstract void equipItemRequest_re(ITEM_INFO arg1, ITEM_INFO arg2);
+
+	public abstract void errorInfo(int arg1);
+
+	public abstract void onAddSkill(int arg1);
+
+	public abstract void onRemoveSkill(int arg1);
+
+	public abstract void onReqItemList(ITEM_INFO_LIST arg1, ITEM_INFO_LIST arg2);
+
+	public abstract void onStartGame();
+
+	public abstract void pickUp_re(ITEM_INFO arg1);
+
+	public abstract void recvDamage(int arg1, int arg2, int arg3, int arg4);
+
+	public abstract void recvSkill(int arg1, int arg2);
+
+	public abstract void setPlayerTime(uint arg1);
+
+	public AvatarBase()
+	{
+	}
+
+	public override void onComponentsEnterworld()
+	{
+	}
+
+	public override void onComponentsLeaveworld()
+	{
+	}
+
+	public override void onGetBase()
+	{
+		baseEntityCall = new EntityBaseEntityCall_AvatarBase(id, className);
+	}
+
+	public override void onGetCell()
+	{
+		cellEntityCall = new EntityCellEntityCall_AvatarBase(id, className);
+	}
+
+	public override void onLoseCell()
+	{
+		cellEntityCall = null;
+	}
+
+	public override EntityCall getBaseEntityCall()
+	{
+		return baseEntityCall;
+	}
+
+	public override EntityCall getCellEntityCall()
+	{
+		return cellEntityCall;
+	}
+
+	public override void attachComponents()
+	{
+	}
+
+	public override void detachComponents()
+	{
+	}
+
+	public override void onRemoteMethodCall(MemoryStream stream)
+	{
+		ScriptModule scriptModule = EntityDef.moduledefs["Avatar"];
+		ushort num = 0;
+		ushort num2 = 0;
+		num2 = ((!scriptModule.usePropertyDescrAlias) ? stream.readUint16() : stream.readUint8());
+		num = ((!scriptModule.useMethodDescrAlias) ? stream.readUint16() : stream.readUint8());
+		Method method = null;
+		if (num2 == 0)
 		{
+			method = scriptModule.idmethods[num];
+			switch (method.methodUtype)
+			{
+			case 101:
+			{
+				string arg28 = stream.readUnicode();
+				GameErrorMsg(arg28);
+				break;
+			}
+			case 107:
+			{
+				ITEM_INFO_LIST arg25 = ((DATATYPE_ITEM_INFO_LIST)method.args[0]).createFromStreamEx(stream);
+				ushort arg26 = stream.readUint16();
+				ushort arg27 = stream.readUint16();
+				PlayerAddGoods(arg25, arg26, arg27);
+				break;
+			}
+			case 99:
+				PlayerLvUP();
+				break;
+			case 102:
+			{
+				string arg24 = stream.readUnicode();
+				ReceiveChatMessage(arg24);
+				break;
+			}
+			case 100:
+				clearSkills();
+				break;
+			case 111:
+			{
+				ITEM_INFO arg23 = ((DATATYPE_ITEM_INFO)method.args[0]).createFromStreamEx(stream);
+				createItem(arg23);
+				break;
+			}
+			case 10104:
+				dialog_close();
+				break;
+			case 10101:
+			{
+				int arg17 = stream.readInt32();
+				List<uint> arg18 = ((DATATYPE_AnonymousArray_47)method.args[1]).createFromStreamEx(stream);
+				List<string> arg19 = ((DATATYPE_AnonymousArray_48)method.args[2]).createFromStreamEx(stream);
+				string arg20 = stream.readUnicode();
+				string arg21 = stream.readUnicode();
+				string arg22 = stream.readUnicode();
+				dialog_setContent(arg17, arg18, arg19, arg20, arg21, arg22);
+				break;
+			}
+			case 105:
+			{
+				int arg15 = stream.readInt32();
+				ulong arg16 = stream.readUint64();
+				dropItem_re(arg15, arg16);
+				break;
+			}
+			case 106:
+			{
+				ITEM_INFO arg13 = ((DATATYPE_ITEM_INFO)method.args[0]).createFromStreamEx(stream);
+				ITEM_INFO arg14 = ((DATATYPE_ITEM_INFO)method.args[1]).createFromStreamEx(stream);
+				equipItemRequest_re(arg13, arg14);
+				break;
+			}
+			case 108:
+			{
+				int arg12 = stream.readInt32();
+				errorInfo(arg12);
+				break;
+			}
+			case 120:
+			{
+				int arg11 = stream.readInt32();
+				onAddSkill(arg11);
+				break;
+			}
+			case 121:
+			{
+				int arg10 = stream.readInt32();
+				onRemoveSkill(arg10);
+				break;
+			}
+			case 103:
+			{
+				ITEM_INFO_LIST arg8 = ((DATATYPE_ITEM_INFO_LIST)method.args[0]).createFromStreamEx(stream);
+				ITEM_INFO_LIST arg9 = ((DATATYPE_ITEM_INFO_LIST)method.args[1]).createFromStreamEx(stream);
+				onReqItemList(arg8, arg9);
+				break;
+			}
+			case 109:
+				onStartGame();
+				break;
+			case 104:
+			{
+				ITEM_INFO arg7 = ((DATATYPE_ITEM_INFO)method.args[0]).createFromStreamEx(stream);
+				pickUp_re(arg7);
+				break;
+			}
+			case 124:
+			{
+				int arg3 = stream.readInt32();
+				int arg4 = stream.readInt32();
+				int arg5 = stream.readInt32();
+				int arg6 = stream.readInt32();
+				recvDamage(arg3, arg4, arg5, arg6);
+				break;
+			}
+			case 125:
+			{
+				int arg = stream.readInt32();
+				int arg2 = stream.readInt32();
+				recvSkill(arg, arg2);
+				break;
+			}
+			case 110:
+			{
+				uint playerTime = stream.readUint32();
+				setPlayerTime(playerTime);
+				break;
+			}
+			}
 		}
-
-		// Token: 0x06005016 RID: 20502 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onHPChanged(int oldValue)
+		else
 		{
+			_ = scriptModule.idpropertys[num2].properUtype;
 		}
+	}
 
-		// Token: 0x06005017 RID: 20503 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onHungerChanged(short oldValue)
+	public override void onUpdatePropertys(MemoryStream stream)
+	{
+		//IL_0c82: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c87: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c8b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c90: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cc2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0caa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_081d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0805: Unknown result type (might be due to invalid IL or missing references)
+		ScriptModule scriptModule = EntityDef.moduledefs["Avatar"];
+		Dictionary<ushort, Property> idpropertys = scriptModule.idpropertys;
+		while (stream.length() != 0)
 		{
-		}
-
-		// Token: 0x06005018 RID: 20504 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onLingGengChanged(List<int> oldValue)
-		{
-		}
-
-		// Token: 0x06005019 RID: 20505 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMPChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x0600501A RID: 20506 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMP_MaxChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x0600501B RID: 20507 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMaxCardChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x0600501C RID: 20508 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onSurvivalDaysChanged(ushort oldValue)
-		{
-		}
-
-		// Token: 0x0600501D RID: 20509 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onThirstChanged(short oldValue)
-		{
-		}
-
-		// Token: 0x0600501E RID: 20510 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onZiZhiChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x0600501F RID: 20511 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void on_HP_MaxChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005020 RID: 20512 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void on_dunSuChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005021 RID: 20513 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void on_shengShiChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005022 RID: 20514 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onAgeChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x06005023 RID: 20515 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onAttack_MaxChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005024 RID: 20516 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onAttack_MinChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005025 RID: 20517 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onBuffsChanged(List<ushort> oldValue)
-		{
-		}
-
-		// Token: 0x06005026 RID: 20518 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onCrystalChanged(List<int> oldValue)
-		{
-		}
-
-		// Token: 0x06005027 RID: 20519 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onDefenceChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005028 RID: 20520 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onDexterityChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005029 RID: 20521 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onDodgeChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x0600502A RID: 20522 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onDrawCardChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x0600502B RID: 20523 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onEquipItemListChanged(ITEM_INFO_LIST oldValue)
-		{
-		}
-
-		// Token: 0x0600502C RID: 20524 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onEquipWeaponChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x0600502D RID: 20525 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onExpChanged(ulong oldValue)
-		{
-		}
-
-		// Token: 0x0600502E RID: 20526 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onForbidsChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x0600502F RID: 20527 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onItemListChanged(ITEM_INFO_LIST oldValue)
-		{
-		}
-
-		// Token: 0x06005030 RID: 20528 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onLevelChanged(ushort oldValue)
-		{
-		}
-
-		// Token: 0x06005031 RID: 20529 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMenPaiChanged(ushort oldValue)
-		{
-		}
-
-		// Token: 0x06005032 RID: 20530 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onModelIDChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x06005033 RID: 20531 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onModelScaleChanged(byte oldValue)
-		{
-		}
-
-		// Token: 0x06005034 RID: 20532 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMoneyChanged(ulong oldValue)
-		{
-		}
-
-		// Token: 0x06005035 RID: 20533 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMoveSpeedChanged(byte oldValue)
-		{
-		}
-
-		// Token: 0x06005036 RID: 20534 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onNameChanged(string oldValue)
-		{
-		}
-
-		// Token: 0x06005037 RID: 20535 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onRatingChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005038 RID: 20536 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onRoleSurfaceChanged(ushort oldValue)
-		{
-		}
-
-		// Token: 0x06005039 RID: 20537 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onRoleSurfaceCallChanged(ushort oldValue)
-		{
-		}
-
-		// Token: 0x0600503A RID: 20538 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onRoleTypeChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x0600503B RID: 20539 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onRoleTypeCellChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x0600503C RID: 20540 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onShaQiChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x0600503D RID: 20541 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onShouYuanChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x0600503E RID: 20542 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onSkillsChanged(List<int> oldValue)
-		{
-		}
-
-		// Token: 0x0600503F RID: 20543 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onSpaceUTypeChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x06005040 RID: 20544 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onStaminaChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005041 RID: 20545 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onStateChanged(sbyte oldValue)
-		{
-		}
-
-		// Token: 0x06005042 RID: 20546 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onStrengthChanged(int oldValue)
-		{
-		}
-
-		// Token: 0x06005043 RID: 20547 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onSubStateChanged(byte oldValue)
-		{
-		}
-
-		// Token: 0x06005044 RID: 20548 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onUidChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x06005045 RID: 20549 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onUtypeChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x06005046 RID: 20550 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onWuXinChanged(uint oldValue)
-		{
-		}
-
-		// Token: 0x06005047 RID: 20551
-		public abstract void GameErrorMsg(string arg1);
-
-		// Token: 0x06005048 RID: 20552
-		public abstract void PlayerAddGoods(ITEM_INFO_LIST arg1, ushort arg2, ushort arg3);
-
-		// Token: 0x06005049 RID: 20553
-		public abstract void PlayerLvUP();
-
-		// Token: 0x0600504A RID: 20554
-		public abstract void ReceiveChatMessage(string arg1);
-
-		// Token: 0x0600504B RID: 20555
-		public abstract void clearSkills();
-
-		// Token: 0x0600504C RID: 20556
-		public abstract void createItem(ITEM_INFO arg1);
-
-		// Token: 0x0600504D RID: 20557
-		public abstract void dialog_close();
-
-		// Token: 0x0600504E RID: 20558
-		public abstract void dialog_setContent(int arg1, List<uint> arg2, List<string> arg3, string arg4, string arg5, string arg6);
-
-		// Token: 0x0600504F RID: 20559
-		public abstract void dropItem_re(int arg1, ulong arg2);
-
-		// Token: 0x06005050 RID: 20560
-		public abstract void equipItemRequest_re(ITEM_INFO arg1, ITEM_INFO arg2);
-
-		// Token: 0x06005051 RID: 20561
-		public abstract void errorInfo(int arg1);
-
-		// Token: 0x06005052 RID: 20562
-		public abstract void onAddSkill(int arg1);
-
-		// Token: 0x06005053 RID: 20563
-		public abstract void onRemoveSkill(int arg1);
-
-		// Token: 0x06005054 RID: 20564
-		public abstract void onReqItemList(ITEM_INFO_LIST arg1, ITEM_INFO_LIST arg2);
-
-		// Token: 0x06005055 RID: 20565
-		public abstract void onStartGame();
-
-		// Token: 0x06005056 RID: 20566
-		public abstract void pickUp_re(ITEM_INFO arg1);
-
-		// Token: 0x06005057 RID: 20567
-		public abstract void recvDamage(int arg1, int arg2, int arg3, int arg4);
-
-		// Token: 0x06005058 RID: 20568
-		public abstract void recvSkill(int arg1, int arg2);
-
-		// Token: 0x06005059 RID: 20569
-		public abstract void setPlayerTime(uint arg1);
-
-		// Token: 0x0600505A RID: 20570 RVA: 0x0021CC04 File Offset: 0x0021AE04
-		public AvatarBase()
-		{
-		}
-
-		// Token: 0x0600505B RID: 20571 RVA: 0x00004095 File Offset: 0x00002295
-		public override void onComponentsEnterworld()
-		{
-		}
-
-		// Token: 0x0600505C RID: 20572 RVA: 0x00004095 File Offset: 0x00002295
-		public override void onComponentsLeaveworld()
-		{
-		}
-
-		// Token: 0x0600505D RID: 20573 RVA: 0x0021CCF6 File Offset: 0x0021AEF6
-		public override void onGetBase()
-		{
-			this.baseEntityCall = new EntityBaseEntityCall_AvatarBase(this.id, this.className);
-		}
-
-		// Token: 0x0600505E RID: 20574 RVA: 0x0021CD0F File Offset: 0x0021AF0F
-		public override void onGetCell()
-		{
-			this.cellEntityCall = new EntityCellEntityCall_AvatarBase(this.id, this.className);
-		}
-
-		// Token: 0x0600505F RID: 20575 RVA: 0x0021CD28 File Offset: 0x0021AF28
-		public override void onLoseCell()
-		{
-			this.cellEntityCall = null;
-		}
-
-		// Token: 0x06005060 RID: 20576 RVA: 0x0021CD31 File Offset: 0x0021AF31
-		public override EntityCall getBaseEntityCall()
-		{
-			return this.baseEntityCall;
-		}
-
-		// Token: 0x06005061 RID: 20577 RVA: 0x0021CD39 File Offset: 0x0021AF39
-		public override EntityCall getCellEntityCall()
-		{
-			return this.cellEntityCall;
-		}
-
-		// Token: 0x06005062 RID: 20578 RVA: 0x00004095 File Offset: 0x00002295
-		public override void attachComponents()
-		{
-		}
-
-		// Token: 0x06005063 RID: 20579 RVA: 0x00004095 File Offset: 0x00002295
-		public override void detachComponents()
-		{
-		}
-
-		// Token: 0x06005064 RID: 20580 RVA: 0x0021CD44 File Offset: 0x0021AF44
-		public override void onRemoteMethodCall(MemoryStream stream)
-		{
-			ScriptModule scriptModule = EntityDef.moduledefs["Avatar"];
-			ushort num;
+			ushort num = 0;
+			ushort num2 = 0;
 			if (scriptModule.usePropertyDescrAlias)
 			{
-				num = (ushort)stream.readUint8();
+				num = stream.readUint8();
+				num2 = stream.readUint8();
 			}
 			else
 			{
 				num = stream.readUint16();
+				num2 = stream.readUint16();
 			}
-			ushort key;
-			if (scriptModule.useMethodDescrAlias)
-			{
-				key = (ushort)stream.readUint8();
-			}
-			else
-			{
-				key = stream.readUint16();
-			}
+			Property property = null;
 			if (num == 0)
 			{
-				Method method = scriptModule.idmethods[key];
-				ushort methodUtype = method.methodUtype;
-				switch (methodUtype)
+				property = idpropertys[num2];
+				switch (property.properUtype)
 				{
-				case 99:
-					this.PlayerLvUP();
-					return;
-				case 100:
-					this.clearSkills();
-					return;
-				case 101:
+				case 22:
 				{
-					string arg = stream.readUnicode();
-					this.GameErrorMsg(arg);
-					return;
-				}
-				case 102:
-				{
-					string arg2 = stream.readUnicode();
-					this.ReceiveChatMessage(arg2);
-					return;
-				}
-				case 103:
-				{
-					ITEM_INFO_LIST arg3 = ((DATATYPE_ITEM_INFO_LIST)method.args[0]).createFromStreamEx(stream);
-					ITEM_INFO_LIST arg4 = ((DATATYPE_ITEM_INFO_LIST)method.args[1]).createFromStreamEx(stream);
-					this.onReqItemList(arg3, arg4);
-					return;
-				}
-				case 104:
-				{
-					ITEM_INFO arg5 = ((DATATYPE_ITEM_INFO)method.args[0]).createFromStreamEx(stream);
-					this.pickUp_re(arg5);
-					return;
-				}
-				case 105:
-				{
-					int arg6 = stream.readInt32();
-					ulong arg7 = stream.readUint64();
-					this.dropItem_re(arg6, arg7);
-					return;
-				}
-				case 106:
-				{
-					ITEM_INFO arg8 = ((DATATYPE_ITEM_INFO)method.args[0]).createFromStreamEx(stream);
-					ITEM_INFO arg9 = ((DATATYPE_ITEM_INFO)method.args[1]).createFromStreamEx(stream);
-					this.equipItemRequest_re(arg8, arg9);
-					return;
-				}
-				case 107:
-				{
-					ITEM_INFO_LIST arg10 = ((DATATYPE_ITEM_INFO_LIST)method.args[0]).createFromStreamEx(stream);
-					ushort arg11 = stream.readUint16();
-					ushort arg12 = stream.readUint16();
-					this.PlayerAddGoods(arg10, arg11, arg12);
-					return;
-				}
-				case 108:
-				{
-					int arg13 = stream.readInt32();
-					this.errorInfo(arg13);
-					return;
-				}
-				case 109:
-					this.onStartGame();
-					return;
-				case 110:
-				{
-					uint playerTime = stream.readUint32();
-					this.setPlayerTime(playerTime);
+					uint avatarType = AvatarType;
+					AvatarType = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onAvatarTypeChanged(avatarType);
+						}
+					}
+					else if (inWorld)
+					{
+						onAvatarTypeChanged(avatarType);
+					}
 					break;
 				}
-				case 111:
+				case 47001:
 				{
-					ITEM_INFO arg14 = ((DATATYPE_ITEM_INFO)method.args[0]).createFromStreamEx(stream);
-					this.createItem(arg14);
-					return;
-				}
-				case 112:
-				case 113:
-				case 114:
-				case 115:
-				case 116:
-				case 117:
-				case 118:
-				case 119:
-				case 122:
-				case 123:
+					int hP = HP;
+					HP = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onHPChanged(hP);
+						}
+					}
+					else if (inWorld)
+					{
+						onHPChanged(hP);
+					}
 					break;
-				case 120:
-				{
-					int arg15 = stream.readInt32();
-					this.onAddSkill(arg15);
-					return;
 				}
-				case 121:
+				case 26:
 				{
-					int arg16 = stream.readInt32();
-					this.onRemoveSkill(arg16);
-					return;
-				}
-				case 124:
-				{
-					int arg17 = stream.readInt32();
-					int arg18 = stream.readInt32();
-					int arg19 = stream.readInt32();
-					int arg20 = stream.readInt32();
-					this.recvDamage(arg17, arg18, arg19, arg20);
-					return;
-				}
-				case 125:
-				{
-					int arg21 = stream.readInt32();
-					int arg22 = stream.readInt32();
-					this.recvSkill(arg21, arg22);
-					return;
-				}
-				default:
-					if (methodUtype == 10101)
+					short hunger = Hunger;
+					Hunger = stream.readInt16();
+					if (property.isBase())
 					{
-						int arg23 = stream.readInt32();
-						List<uint> arg24 = ((DATATYPE_AnonymousArray_47)method.args[1]).createFromStreamEx(stream);
-						List<string> arg25 = ((DATATYPE_AnonymousArray_48)method.args[2]).createFromStreamEx(stream);
-						string arg26 = stream.readUnicode();
-						string arg27 = stream.readUnicode();
-						string arg28 = stream.readUnicode();
-						this.dialog_setContent(arg23, arg24, arg25, arg26, arg27, arg28);
-						return;
+						if (inited)
+						{
+							onHungerChanged(hunger);
+						}
 					}
-					if (methodUtype != 10104)
+					else if (inWorld)
 					{
-						return;
+						onHungerChanged(hunger);
 					}
-					this.dialog_close();
-					return;
+					break;
 				}
-				return;
+				case 28:
+				{
+					List<int> lingGeng = LingGeng;
+					LingGeng = ((DATATYPE_AnonymousArray_44)EntityDef.id2datatypes[44]).createFromStreamEx(stream);
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onLingGengChanged(lingGeng);
+						}
+					}
+					else if (inWorld)
+					{
+						onLingGengChanged(lingGeng);
+					}
+					break;
+				}
+				case 47003:
+				{
+					int mP = MP;
+					MP = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onMPChanged(mP);
+						}
+					}
+					else if (inWorld)
+					{
+						onMPChanged(mP);
+					}
+					break;
+				}
+				case 47004:
+				{
+					int mP_Max = MP_Max;
+					MP_Max = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onMP_MaxChanged(mP_Max);
+						}
+					}
+					else if (inWorld)
+					{
+						onMP_MaxChanged(mP_Max);
+					}
+					break;
+				}
+				case 14:
+				{
+					uint maxCard = MaxCard;
+					MaxCard = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onMaxCardChanged(maxCard);
+						}
+					}
+					else if (inWorld)
+					{
+						onMaxCardChanged(maxCard);
+					}
+					break;
+				}
+				case 35:
+				{
+					ushort survivalDays = SurvivalDays;
+					SurvivalDays = stream.readUint16();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onSurvivalDaysChanged(survivalDays);
+						}
+					}
+					else if (inWorld)
+					{
+						onSurvivalDaysChanged(survivalDays);
+					}
+					break;
+				}
+				case 25:
+				{
+					short thirst = Thirst;
+					Thirst = stream.readInt16();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onThirstChanged(thirst);
+						}
+					}
+					else if (inWorld)
+					{
+						onThirstChanged(thirst);
+					}
+					break;
+				}
+				case 15:
+				{
+					int ziZhi = ZiZhi;
+					ZiZhi = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onZiZhiChanged(ziZhi);
+						}
+					}
+					else if (inWorld)
+					{
+						onZiZhiChanged(ziZhi);
+					}
+					break;
+				}
+				case 47002:
+				{
+					int hP_Max = _HP_Max;
+					_HP_Max = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							on_HP_MaxChanged(hP_Max);
+						}
+					}
+					else if (inWorld)
+					{
+						on_HP_MaxChanged(hP_Max);
+					}
+					break;
+				}
+				case 16:
+				{
+					int dunSu = _dunSu;
+					_dunSu = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							on_dunSuChanged(dunSu);
+						}
+					}
+					else if (inWorld)
+					{
+						on_dunSuChanged(dunSu);
+					}
+					break;
+				}
+				case 18:
+				{
+					int shengShi = _shengShi;
+					_shengShi = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							on_shengShiChanged(shengShi);
+						}
+					}
+					else if (inWorld)
+					{
+						on_shengShiChanged(shengShi);
+					}
+					break;
+				}
+				case 21:
+				{
+					uint oldValue38 = age;
+					age = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onAgeChanged(oldValue38);
+						}
+					}
+					else if (inWorld)
+					{
+						onAgeChanged(oldValue38);
+					}
+					break;
+				}
+				case 44:
+				{
+					int oldValue30 = attack_Max;
+					attack_Max = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onAttack_MaxChanged(oldValue30);
+						}
+					}
+					else if (inWorld)
+					{
+						onAttack_MaxChanged(oldValue30);
+					}
+					break;
+				}
+				case 45:
+				{
+					int oldValue19 = attack_Min;
+					attack_Min = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onAttack_MinChanged(oldValue19);
+						}
+					}
+					else if (inWorld)
+					{
+						onAttack_MinChanged(oldValue19);
+					}
+					break;
+				}
+				case 49:
+				{
+					List<ushort> oldValue2 = buffs;
+					buffs = ((DATATYPE_AnonymousArray_46)EntityDef.id2datatypes[46]).createFromStreamEx(stream);
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onBuffsChanged(oldValue2);
+						}
+					}
+					else if (inWorld)
+					{
+						onBuffsChanged(oldValue2);
+					}
+					break;
+				}
+				case 27:
+				{
+					List<int> oldValue32 = crystal;
+					crystal = ((DATATYPE_AnonymousArray_43)EntityDef.id2datatypes[43]).createFromStreamEx(stream);
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onCrystalChanged(oldValue32);
+						}
+					}
+					else if (inWorld)
+					{
+						onCrystalChanged(oldValue32);
+					}
+					break;
+				}
+				case 46:
+				{
+					int oldValue25 = defence;
+					defence = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onDefenceChanged(oldValue25);
+						}
+					}
+					else if (inWorld)
+					{
+						onDefenceChanged(oldValue25);
+					}
+					break;
+				}
+				case 53:
+				{
+					int oldValue15 = dexterity;
+					dexterity = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onDexterityChanged(oldValue15);
+						}
+					}
+					else if (inWorld)
+					{
+						onDexterityChanged(oldValue15);
+					}
+					break;
+				}
+				case 40001:
+				{
+					Vector3 oldValue8 = direction;
+					direction = stream.readVector3();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onDirectionChanged(oldValue8);
+						}
+					}
+					else if (inWorld)
+					{
+						onDirectionChanged(oldValue8);
+					}
+					break;
+				}
+				case 48:
+				{
+					int oldValue35 = dodge;
+					dodge = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onDodgeChanged(oldValue35);
+						}
+					}
+					else if (inWorld)
+					{
+						onDodgeChanged(oldValue35);
+					}
+					break;
+				}
+				case 13:
+				{
+					uint oldValue29 = drawCard;
+					drawCard = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onDrawCardChanged(oldValue29);
+						}
+					}
+					else if (inWorld)
+					{
+						onDrawCardChanged(oldValue29);
+					}
+					break;
+				}
+				case 33:
+				{
+					ITEM_INFO_LIST oldValue22 = equipItemList;
+					equipItemList = ((DATATYPE_ITEM_INFO_LIST)EntityDef.id2datatypes[38]).createFromStreamEx(stream);
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onEquipItemListChanged(oldValue22);
+						}
+					}
+					else if (inWorld)
+					{
+						onEquipItemListChanged(oldValue22);
+					}
+					break;
+				}
+				case 34:
+				{
+					int oldValue13 = equipWeapon;
+					equipWeapon = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onEquipWeaponChanged(oldValue13);
+						}
+					}
+					else if (inWorld)
+					{
+						onEquipWeaponChanged(oldValue13);
+					}
+					break;
+				}
+				case 51:
+				{
+					ulong oldValue7 = exp;
+					exp = stream.readUint64();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onExpChanged(oldValue7);
+						}
+					}
+					else if (inWorld)
+					{
+						onExpChanged(oldValue7);
+					}
+					break;
+				}
+				case 47005:
+				{
+					int oldValue4 = forbids;
+					forbids = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onForbidsChanged(oldValue4);
+						}
+					}
+					else if (inWorld)
+					{
+						onForbidsChanged(oldValue4);
+					}
+					break;
+				}
+				case 31:
+				{
+					ITEM_INFO_LIST oldValue33 = itemList;
+					itemList = ((DATATYPE_ITEM_INFO_LIST)EntityDef.id2datatypes[38]).createFromStreamEx(stream);
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onItemListChanged(oldValue33);
+						}
+					}
+					else if (inWorld)
+					{
+						onItemListChanged(oldValue33);
+					}
+					break;
+				}
+				case 30:
+				{
+					ushort oldValue26 = level;
+					level = stream.readUint16();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onLevelChanged(oldValue26);
+						}
+					}
+					else if (inWorld)
+					{
+						onLevelChanged(oldValue26);
+					}
+					break;
+				}
+				case 32:
+				{
+					ushort oldValue21 = menPai;
+					menPai = stream.readUint16();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onMenPaiChanged(oldValue21);
+						}
+					}
+					else if (inWorld)
+					{
+						onMenPaiChanged(oldValue21);
+					}
+					break;
+				}
+				case 41006:
+				{
+					uint oldValue17 = modelID;
+					modelID = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onModelIDChanged(oldValue17);
+						}
+					}
+					else if (inWorld)
+					{
+						onModelIDChanged(oldValue17);
+					}
+					break;
+				}
+				case 41007:
+				{
+					byte oldValue11 = modelScale;
+					modelScale = stream.readUint8();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onModelScaleChanged(oldValue11);
+						}
+					}
+					else if (inWorld)
+					{
+						onModelScaleChanged(oldValue11);
+					}
+					break;
+				}
+				case 50:
+				{
+					ulong oldValue3 = money;
+					money = stream.readUint64();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onMoneyChanged(oldValue3);
+						}
+					}
+					else if (inWorld)
+					{
+						onMoneyChanged(oldValue3);
+					}
+					break;
+				}
+				case 39:
+				{
+					byte oldValue37 = moveSpeed;
+					moveSpeed = stream.readUint8();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onMoveSpeedChanged(oldValue37);
+						}
+					}
+					else if (inWorld)
+					{
+						onMoveSpeedChanged(oldValue37);
+					}
+					break;
+				}
+				case 41003:
+				{
+					string oldValue34 = name;
+					name = stream.readUnicode();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onNameChanged(oldValue34);
+						}
+					}
+					else if (inWorld)
+					{
+						onNameChanged(oldValue34);
+					}
+					break;
+				}
+				case 40000:
+				{
+					Vector3 oldValue28 = position;
+					position = stream.readVector3();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onPositionChanged(oldValue28);
+						}
+					}
+					else if (inWorld)
+					{
+						onPositionChanged(oldValue28);
+					}
+					break;
+				}
+				case 47:
+				{
+					int oldValue23 = rating;
+					rating = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onRatingChanged(oldValue23);
+						}
+					}
+					else if (inWorld)
+					{
+						onRatingChanged(oldValue23);
+					}
+					break;
+				}
+				case 23:
+				{
+					ushort oldValue18 = roleSurface;
+					roleSurface = stream.readUint16();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onRoleSurfaceChanged(oldValue18);
+						}
+					}
+					else if (inWorld)
+					{
+						onRoleSurfaceChanged(oldValue18);
+					}
+					break;
+				}
+				case 24:
+				{
+					ushort oldValue14 = roleSurfaceCall;
+					roleSurfaceCall = stream.readUint16();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onRoleSurfaceCallChanged(oldValue14);
+						}
+					}
+					else if (inWorld)
+					{
+						onRoleSurfaceCallChanged(oldValue14);
+					}
+					break;
+				}
+				case 12:
+				{
+					uint oldValue10 = roleType;
+					roleType = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onRoleTypeChanged(oldValue10);
+						}
+					}
+					else if (inWorld)
+					{
+						onRoleTypeChanged(oldValue10);
+					}
+					break;
+				}
+				case 29:
+				{
+					uint oldValue5 = roleTypeCell;
+					roleTypeCell = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onRoleTypeCellChanged(oldValue5);
+						}
+					}
+					else if (inWorld)
+					{
+						onRoleTypeCellChanged(oldValue5);
+					}
+					break;
+				}
+				case 19:
+				{
+					uint oldValue39 = shaQi;
+					shaQi = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onShaQiChanged(oldValue39);
+						}
+					}
+					else if (inWorld)
+					{
+						onShaQiChanged(oldValue39);
+					}
+					break;
+				}
+				case 20:
+				{
+					uint oldValue36 = shouYuan;
+					shouYuan = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onShouYuanChanged(oldValue36);
+						}
+					}
+					else if (inWorld)
+					{
+						onShouYuanChanged(oldValue36);
+					}
+					break;
+				}
+				case 42:
+				{
+					List<int> oldValue31 = skills;
+					skills = ((DATATYPE_AnonymousArray_45)EntityDef.id2datatypes[45]).createFromStreamEx(stream);
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onSkillsChanged(oldValue31);
+						}
+					}
+					else if (inWorld)
+					{
+						onSkillsChanged(oldValue31);
+					}
+					break;
+				}
+				case 40002:
+					stream.readUint32();
+					break;
+				case 41001:
+				{
+					uint oldValue27 = spaceUType;
+					spaceUType = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onSpaceUTypeChanged(oldValue27);
+						}
+					}
+					else if (inWorld)
+					{
+						onSpaceUTypeChanged(oldValue27);
+					}
+					break;
+				}
+				case 54:
+				{
+					int oldValue24 = stamina;
+					stamina = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onStaminaChanged(oldValue24);
+						}
+					}
+					else if (inWorld)
+					{
+						onStaminaChanged(oldValue24);
+					}
+					break;
+				}
+				case 47006:
+				{
+					sbyte oldValue20 = state;
+					state = stream.readInt8();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onStateChanged(oldValue20);
+						}
+					}
+					else if (inWorld)
+					{
+						onStateChanged(oldValue20);
+					}
+					break;
+				}
+				case 52:
+				{
+					int oldValue16 = strength;
+					strength = stream.readInt32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onStrengthChanged(oldValue16);
+						}
+					}
+					else if (inWorld)
+					{
+						onStrengthChanged(oldValue16);
+					}
+					break;
+				}
+				case 47007:
+				{
+					byte oldValue12 = subState;
+					subState = stream.readUint8();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onSubStateChanged(oldValue12);
+						}
+					}
+					else if (inWorld)
+					{
+						onSubStateChanged(oldValue12);
+					}
+					break;
+				}
+				case 41004:
+				{
+					uint oldValue9 = uid;
+					uid = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onUidChanged(oldValue9);
+						}
+					}
+					else if (inWorld)
+					{
+						onUidChanged(oldValue9);
+					}
+					break;
+				}
+				case 41005:
+				{
+					uint oldValue6 = utype;
+					utype = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onUtypeChanged(oldValue6);
+						}
+					}
+					else if (inWorld)
+					{
+						onUtypeChanged(oldValue6);
+					}
+					break;
+				}
+				case 17:
+				{
+					uint oldValue = wuXin;
+					wuXin = stream.readUint32();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onWuXinChanged(oldValue);
+						}
+					}
+					else if (inWorld)
+					{
+						onWuXinChanged(oldValue);
+					}
+					break;
+				}
+				}
+				continue;
 			}
-			ushort properUtype = scriptModule.idpropertys[num].properUtype;
+			_ = idpropertys[num].properUtype;
+			break;
 		}
+	}
 
-		// Token: 0x06005065 RID: 20581 RVA: 0x0021D094 File Offset: 0x0021B294
-		public override void onUpdatePropertys(MemoryStream stream)
+	public override void callPropertysSetMethods()
+	{
+		//IL_06bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0709: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bc5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c12: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bef: Unknown result type (might be due to invalid IL or missing references)
+		Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Avatar"].idpropertys;
+		uint avatarType = AvatarType;
+		Property property = idpropertys[4];
+		if (property.isBase())
 		{
-			ScriptModule scriptModule = EntityDef.moduledefs["Avatar"];
-			Dictionary<ushort, Property> idpropertys = scriptModule.idpropertys;
-			while (stream.length() > 0U)
+			if (inited && !inWorld)
 			{
-				ushort num;
-				ushort key;
-				if (scriptModule.usePropertyDescrAlias)
-				{
-					num = (ushort)stream.readUint8();
-					key = (ushort)stream.readUint8();
-				}
-				else
-				{
-					num = stream.readUint16();
-					key = stream.readUint16();
-				}
-				if (num != 0)
-				{
-					ushort properUtype = idpropertys[num].properUtype;
-					return;
-				}
-				Property property = idpropertys[key];
-				ushort properUtype2 = property.properUtype;
-				if (properUtype2 <= 40002)
-				{
-					switch (properUtype2)
-					{
-					case 12:
-					{
-						uint oldValue = this.roleType;
-						this.roleType = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onRoleTypeChanged(oldValue);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onRoleTypeChanged(oldValue);
-						}
-						break;
-					}
-					case 13:
-					{
-						uint oldValue2 = this.drawCard;
-						this.drawCard = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onDrawCardChanged(oldValue2);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onDrawCardChanged(oldValue2);
-						}
-						break;
-					}
-					case 14:
-					{
-						uint maxCard = this.MaxCard;
-						this.MaxCard = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onMaxCardChanged(maxCard);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onMaxCardChanged(maxCard);
-						}
-						break;
-					}
-					case 15:
-					{
-						int ziZhi = this.ZiZhi;
-						this.ZiZhi = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onZiZhiChanged(ziZhi);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onZiZhiChanged(ziZhi);
-						}
-						break;
-					}
-					case 16:
-					{
-						int dunSu = this._dunSu;
-						this._dunSu = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.on_dunSuChanged(dunSu);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.on_dunSuChanged(dunSu);
-						}
-						break;
-					}
-					case 17:
-					{
-						uint oldValue3 = this.wuXin;
-						this.wuXin = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onWuXinChanged(oldValue3);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onWuXinChanged(oldValue3);
-						}
-						break;
-					}
-					case 18:
-					{
-						int shengShi = this._shengShi;
-						this._shengShi = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.on_shengShiChanged(shengShi);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.on_shengShiChanged(shengShi);
-						}
-						break;
-					}
-					case 19:
-					{
-						uint oldValue4 = this.shaQi;
-						this.shaQi = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onShaQiChanged(oldValue4);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onShaQiChanged(oldValue4);
-						}
-						break;
-					}
-					case 20:
-					{
-						uint oldValue5 = this.shouYuan;
-						this.shouYuan = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onShouYuanChanged(oldValue5);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onShouYuanChanged(oldValue5);
-						}
-						break;
-					}
-					case 21:
-					{
-						uint oldValue6 = this.age;
-						this.age = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onAgeChanged(oldValue6);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onAgeChanged(oldValue6);
-						}
-						break;
-					}
-					case 22:
-					{
-						uint avatarType = this.AvatarType;
-						this.AvatarType = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onAvatarTypeChanged(avatarType);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onAvatarTypeChanged(avatarType);
-						}
-						break;
-					}
-					case 23:
-					{
-						ushort oldValue7 = this.roleSurface;
-						this.roleSurface = stream.readUint16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onRoleSurfaceChanged(oldValue7);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onRoleSurfaceChanged(oldValue7);
-						}
-						break;
-					}
-					case 24:
-					{
-						ushort oldValue8 = this.roleSurfaceCall;
-						this.roleSurfaceCall = stream.readUint16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onRoleSurfaceCallChanged(oldValue8);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onRoleSurfaceCallChanged(oldValue8);
-						}
-						break;
-					}
-					case 25:
-					{
-						short thirst = this.Thirst;
-						this.Thirst = stream.readInt16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onThirstChanged(thirst);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onThirstChanged(thirst);
-						}
-						break;
-					}
-					case 26:
-					{
-						short hunger = this.Hunger;
-						this.Hunger = stream.readInt16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onHungerChanged(hunger);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onHungerChanged(hunger);
-						}
-						break;
-					}
-					case 27:
-					{
-						List<int> oldValue9 = this.crystal;
-						this.crystal = ((DATATYPE_AnonymousArray_43)EntityDef.id2datatypes[43]).createFromStreamEx(stream);
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onCrystalChanged(oldValue9);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onCrystalChanged(oldValue9);
-						}
-						break;
-					}
-					case 28:
-					{
-						List<int> lingGeng = this.LingGeng;
-						this.LingGeng = ((DATATYPE_AnonymousArray_44)EntityDef.id2datatypes[44]).createFromStreamEx(stream);
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onLingGengChanged(lingGeng);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onLingGengChanged(lingGeng);
-						}
-						break;
-					}
-					case 29:
-					{
-						uint oldValue10 = this.roleTypeCell;
-						this.roleTypeCell = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onRoleTypeCellChanged(oldValue10);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onRoleTypeCellChanged(oldValue10);
-						}
-						break;
-					}
-					case 30:
-					{
-						ushort oldValue11 = this.level;
-						this.level = stream.readUint16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onLevelChanged(oldValue11);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onLevelChanged(oldValue11);
-						}
-						break;
-					}
-					case 31:
-					{
-						ITEM_INFO_LIST oldValue12 = this.itemList;
-						this.itemList = ((DATATYPE_ITEM_INFO_LIST)EntityDef.id2datatypes[38]).createFromStreamEx(stream);
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onItemListChanged(oldValue12);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onItemListChanged(oldValue12);
-						}
-						break;
-					}
-					case 32:
-					{
-						ushort oldValue13 = this.menPai;
-						this.menPai = stream.readUint16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onMenPaiChanged(oldValue13);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onMenPaiChanged(oldValue13);
-						}
-						break;
-					}
-					case 33:
-					{
-						ITEM_INFO_LIST oldValue14 = this.equipItemList;
-						this.equipItemList = ((DATATYPE_ITEM_INFO_LIST)EntityDef.id2datatypes[38]).createFromStreamEx(stream);
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onEquipItemListChanged(oldValue14);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onEquipItemListChanged(oldValue14);
-						}
-						break;
-					}
-					case 34:
-					{
-						int oldValue15 = this.equipWeapon;
-						this.equipWeapon = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onEquipWeaponChanged(oldValue15);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onEquipWeaponChanged(oldValue15);
-						}
-						break;
-					}
-					case 35:
-					{
-						ushort survivalDays = this.SurvivalDays;
-						this.SurvivalDays = stream.readUint16();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onSurvivalDaysChanged(survivalDays);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onSurvivalDaysChanged(survivalDays);
-						}
-						break;
-					}
-					case 36:
-					case 37:
-					case 38:
-					case 40:
-					case 41:
-					case 43:
-						break;
-					case 39:
-					{
-						byte oldValue16 = this.moveSpeed;
-						this.moveSpeed = stream.readUint8();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onMoveSpeedChanged(oldValue16);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onMoveSpeedChanged(oldValue16);
-						}
-						break;
-					}
-					case 42:
-					{
-						List<int> oldValue17 = this.skills;
-						this.skills = ((DATATYPE_AnonymousArray_45)EntityDef.id2datatypes[45]).createFromStreamEx(stream);
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onSkillsChanged(oldValue17);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onSkillsChanged(oldValue17);
-						}
-						break;
-					}
-					case 44:
-					{
-						int oldValue18 = this.attack_Max;
-						this.attack_Max = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onAttack_MaxChanged(oldValue18);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onAttack_MaxChanged(oldValue18);
-						}
-						break;
-					}
-					case 45:
-					{
-						int oldValue19 = this.attack_Min;
-						this.attack_Min = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onAttack_MinChanged(oldValue19);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onAttack_MinChanged(oldValue19);
-						}
-						break;
-					}
-					case 46:
-					{
-						int oldValue20 = this.defence;
-						this.defence = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onDefenceChanged(oldValue20);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onDefenceChanged(oldValue20);
-						}
-						break;
-					}
-					case 47:
-					{
-						int oldValue21 = this.rating;
-						this.rating = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onRatingChanged(oldValue21);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onRatingChanged(oldValue21);
-						}
-						break;
-					}
-					case 48:
-					{
-						int oldValue22 = this.dodge;
-						this.dodge = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onDodgeChanged(oldValue22);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onDodgeChanged(oldValue22);
-						}
-						break;
-					}
-					case 49:
-					{
-						List<ushort> oldValue23 = this.buffs;
-						this.buffs = ((DATATYPE_AnonymousArray_46)EntityDef.id2datatypes[46]).createFromStreamEx(stream);
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onBuffsChanged(oldValue23);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onBuffsChanged(oldValue23);
-						}
-						break;
-					}
-					case 50:
-					{
-						ulong oldValue24 = this.money;
-						this.money = stream.readUint64();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onMoneyChanged(oldValue24);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onMoneyChanged(oldValue24);
-						}
-						break;
-					}
-					case 51:
-					{
-						ulong oldValue25 = this.exp;
-						this.exp = stream.readUint64();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onExpChanged(oldValue25);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onExpChanged(oldValue25);
-						}
-						break;
-					}
-					case 52:
-					{
-						int oldValue26 = this.strength;
-						this.strength = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onStrengthChanged(oldValue26);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onStrengthChanged(oldValue26);
-						}
-						break;
-					}
-					case 53:
-					{
-						int oldValue27 = this.dexterity;
-						this.dexterity = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onDexterityChanged(oldValue27);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onDexterityChanged(oldValue27);
-						}
-						break;
-					}
-					case 54:
-					{
-						int oldValue28 = this.stamina;
-						this.stamina = stream.readInt32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onStaminaChanged(oldValue28);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onStaminaChanged(oldValue28);
-						}
-						break;
-					}
-					default:
-						switch (properUtype2)
-						{
-						case 40000:
-						{
-							Vector3 position = this.position;
-							this.position = stream.readVector3();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onPositionChanged(position);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onPositionChanged(position);
-							}
-							break;
-						}
-						case 40001:
-						{
-							Vector3 direction = this.direction;
-							this.direction = stream.readVector3();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onDirectionChanged(direction);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onDirectionChanged(direction);
-							}
-							break;
-						}
-						case 40002:
-							stream.readUint32();
-							break;
-						}
-						break;
-					}
-				}
-				else
-				{
-					switch (properUtype2)
-					{
-					case 41001:
-					{
-						uint oldValue29 = this.spaceUType;
-						this.spaceUType = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onSpaceUTypeChanged(oldValue29);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onSpaceUTypeChanged(oldValue29);
-						}
-						break;
-					}
-					case 41002:
-						break;
-					case 41003:
-					{
-						string oldValue30 = this.name;
-						this.name = stream.readUnicode();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onNameChanged(oldValue30);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onNameChanged(oldValue30);
-						}
-						break;
-					}
-					case 41004:
-					{
-						uint oldValue31 = this.uid;
-						this.uid = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onUidChanged(oldValue31);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onUidChanged(oldValue31);
-						}
-						break;
-					}
-					case 41005:
-					{
-						uint oldValue32 = this.utype;
-						this.utype = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onUtypeChanged(oldValue32);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onUtypeChanged(oldValue32);
-						}
-						break;
-					}
-					case 41006:
-					{
-						uint oldValue33 = this.modelID;
-						this.modelID = stream.readUint32();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onModelIDChanged(oldValue33);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onModelIDChanged(oldValue33);
-						}
-						break;
-					}
-					case 41007:
-					{
-						byte oldValue34 = this.modelScale;
-						this.modelScale = stream.readUint8();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onModelScaleChanged(oldValue34);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onModelScaleChanged(oldValue34);
-						}
-						break;
-					}
-					default:
-						switch (properUtype2)
-						{
-						case 47001:
-						{
-							int hp = this.HP;
-							this.HP = stream.readInt32();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onHPChanged(hp);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onHPChanged(hp);
-							}
-							break;
-						}
-						case 47002:
-						{
-							int hp_Max = this._HP_Max;
-							this._HP_Max = stream.readInt32();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.on_HP_MaxChanged(hp_Max);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.on_HP_MaxChanged(hp_Max);
-							}
-							break;
-						}
-						case 47003:
-						{
-							int mp = this.MP;
-							this.MP = stream.readInt32();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onMPChanged(mp);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onMPChanged(mp);
-							}
-							break;
-						}
-						case 47004:
-						{
-							int mp_Max = this.MP_Max;
-							this.MP_Max = stream.readInt32();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onMP_MaxChanged(mp_Max);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onMP_MaxChanged(mp_Max);
-							}
-							break;
-						}
-						case 47005:
-						{
-							int oldValue35 = this.forbids;
-							this.forbids = stream.readInt32();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onForbidsChanged(oldValue35);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onForbidsChanged(oldValue35);
-							}
-							break;
-						}
-						case 47006:
-						{
-							sbyte oldValue36 = this.state;
-							this.state = stream.readInt8();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onStateChanged(oldValue36);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onStateChanged(oldValue36);
-							}
-							break;
-						}
-						case 47007:
-						{
-							byte oldValue37 = this.subState;
-							this.subState = stream.readUint8();
-							if (property.isBase())
-							{
-								if (this.inited)
-								{
-									this.onSubStateChanged(oldValue37);
-								}
-							}
-							else if (this.inWorld)
-							{
-								this.onSubStateChanged(oldValue37);
-							}
-							break;
-						}
-						}
-						break;
-					}
-				}
+				onAvatarTypeChanged(avatarType);
 			}
 		}
-
-		// Token: 0x06005066 RID: 20582 RVA: 0x0021E250 File Offset: 0x0021C450
-		public override void callPropertysSetMethods()
+		else if (inWorld && (!property.isOwnerOnly() || isPlayer()))
 		{
-			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Avatar"].idpropertys;
-			uint avatarType = this.AvatarType;
-			Property property = idpropertys[4];
-			if (property.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onAvatarTypeChanged(avatarType);
-				}
-			}
-			else if (this.inWorld && (!property.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onAvatarTypeChanged(avatarType);
-			}
-			int hp = this.HP;
-			Property property2 = idpropertys[5];
-			if (property2.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onHPChanged(hp);
-				}
-			}
-			else if (this.inWorld && (!property2.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onHPChanged(hp);
-			}
-			short hunger = this.Hunger;
-			Property property3 = idpropertys[6];
-			if (property3.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onHungerChanged(hunger);
-				}
-			}
-			else if (this.inWorld && (!property3.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onHungerChanged(hunger);
-			}
-			List<int> lingGeng = this.LingGeng;
-			Property property4 = idpropertys[7];
-			if (property4.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onLingGengChanged(lingGeng);
-				}
-			}
-			else if (this.inWorld && (!property4.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onLingGengChanged(lingGeng);
-			}
-			int mp = this.MP;
-			Property property5 = idpropertys[8];
-			if (property5.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMPChanged(mp);
-				}
-			}
-			else if (this.inWorld && (!property5.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMPChanged(mp);
-			}
-			int mp_Max = this.MP_Max;
-			Property property6 = idpropertys[9];
-			if (property6.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMP_MaxChanged(mp_Max);
-				}
-			}
-			else if (this.inWorld && (!property6.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMP_MaxChanged(mp_Max);
-			}
-			uint maxCard = this.MaxCard;
-			Property property7 = idpropertys[10];
-			if (property7.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMaxCardChanged(maxCard);
-				}
-			}
-			else if (this.inWorld && (!property7.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMaxCardChanged(maxCard);
-			}
-			ushort survivalDays = this.SurvivalDays;
-			Property property8 = idpropertys[11];
-			if (property8.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onSurvivalDaysChanged(survivalDays);
-				}
-			}
-			else if (this.inWorld && (!property8.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onSurvivalDaysChanged(survivalDays);
-			}
-			short thirst = this.Thirst;
-			Property property9 = idpropertys[12];
-			if (property9.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onThirstChanged(thirst);
-				}
-			}
-			else if (this.inWorld && (!property9.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onThirstChanged(thirst);
-			}
-			int ziZhi = this.ZiZhi;
-			Property property10 = idpropertys[13];
-			if (property10.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onZiZhiChanged(ziZhi);
-				}
-			}
-			else if (this.inWorld && (!property10.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onZiZhiChanged(ziZhi);
-			}
-			int hp_Max = this._HP_Max;
-			Property property11 = idpropertys[14];
-			if (property11.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.on_HP_MaxChanged(hp_Max);
-				}
-			}
-			else if (this.inWorld && (!property11.isOwnerOnly() || base.isPlayer()))
-			{
-				this.on_HP_MaxChanged(hp_Max);
-			}
-			int dunSu = this._dunSu;
-			Property property12 = idpropertys[15];
-			if (property12.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.on_dunSuChanged(dunSu);
-				}
-			}
-			else if (this.inWorld && (!property12.isOwnerOnly() || base.isPlayer()))
-			{
-				this.on_dunSuChanged(dunSu);
-			}
-			int shengShi = this._shengShi;
-			Property property13 = idpropertys[16];
-			if (property13.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.on_shengShiChanged(shengShi);
-				}
-			}
-			else if (this.inWorld && (!property13.isOwnerOnly() || base.isPlayer()))
-			{
-				this.on_shengShiChanged(shengShi);
-			}
-			uint oldValue = this.age;
-			Property property14 = idpropertys[17];
-			if (property14.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onAgeChanged(oldValue);
-				}
-			}
-			else if (this.inWorld && (!property14.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onAgeChanged(oldValue);
-			}
-			int oldValue2 = this.attack_Max;
-			Property property15 = idpropertys[18];
-			if (property15.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onAttack_MaxChanged(oldValue2);
-				}
-			}
-			else if (this.inWorld && (!property15.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onAttack_MaxChanged(oldValue2);
-			}
-			int oldValue3 = this.attack_Min;
-			Property property16 = idpropertys[19];
-			if (property16.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onAttack_MinChanged(oldValue3);
-				}
-			}
-			else if (this.inWorld && (!property16.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onAttack_MinChanged(oldValue3);
-			}
-			List<ushort> oldValue4 = this.buffs;
-			Property property17 = idpropertys[20];
-			if (property17.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onBuffsChanged(oldValue4);
-				}
-			}
-			else if (this.inWorld && (!property17.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onBuffsChanged(oldValue4);
-			}
-			List<int> oldValue5 = this.crystal;
-			Property property18 = idpropertys[21];
-			if (property18.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onCrystalChanged(oldValue5);
-				}
-			}
-			else if (this.inWorld && (!property18.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onCrystalChanged(oldValue5);
-			}
-			int oldValue6 = this.defence;
-			Property property19 = idpropertys[22];
-			if (property19.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDefenceChanged(oldValue6);
-				}
-			}
-			else if (this.inWorld && (!property19.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDefenceChanged(oldValue6);
-			}
-			int oldValue7 = this.dexterity;
-			Property property20 = idpropertys[23];
-			if (property20.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDexterityChanged(oldValue7);
-				}
-			}
-			else if (this.inWorld && (!property20.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDexterityChanged(oldValue7);
-			}
-			Vector3 direction = this.direction;
-			Property property21 = idpropertys[2];
-			if (property21.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDirectionChanged(direction);
-				}
-			}
-			else if (this.inWorld && (!property21.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDirectionChanged(direction);
-			}
-			int oldValue8 = this.dodge;
-			Property property22 = idpropertys[24];
-			if (property22.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDodgeChanged(oldValue8);
-				}
-			}
-			else if (this.inWorld && (!property22.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDodgeChanged(oldValue8);
-			}
-			uint oldValue9 = this.drawCard;
-			Property property23 = idpropertys[25];
-			if (property23.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDrawCardChanged(oldValue9);
-				}
-			}
-			else if (this.inWorld && (!property23.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDrawCardChanged(oldValue9);
-			}
-			ITEM_INFO_LIST oldValue10 = this.equipItemList;
-			Property property24 = idpropertys[26];
-			if (property24.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onEquipItemListChanged(oldValue10);
-				}
-			}
-			else if (this.inWorld && (!property24.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onEquipItemListChanged(oldValue10);
-			}
-			int oldValue11 = this.equipWeapon;
-			Property property25 = idpropertys[27];
-			if (property25.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onEquipWeaponChanged(oldValue11);
-				}
-			}
-			else if (this.inWorld && (!property25.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onEquipWeaponChanged(oldValue11);
-			}
-			ulong oldValue12 = this.exp;
-			Property property26 = idpropertys[28];
-			if (property26.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onExpChanged(oldValue12);
-				}
-			}
-			else if (this.inWorld && (!property26.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onExpChanged(oldValue12);
-			}
-			int oldValue13 = this.forbids;
-			Property property27 = idpropertys[29];
-			if (property27.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onForbidsChanged(oldValue13);
-				}
-			}
-			else if (this.inWorld && (!property27.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onForbidsChanged(oldValue13);
-			}
-			ITEM_INFO_LIST oldValue14 = this.itemList;
-			Property property28 = idpropertys[30];
-			if (property28.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onItemListChanged(oldValue14);
-				}
-			}
-			else if (this.inWorld && (!property28.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onItemListChanged(oldValue14);
-			}
-			ushort oldValue15 = this.level;
-			Property property29 = idpropertys[31];
-			if (property29.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onLevelChanged(oldValue15);
-				}
-			}
-			else if (this.inWorld && (!property29.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onLevelChanged(oldValue15);
-			}
-			ushort oldValue16 = this.menPai;
-			Property property30 = idpropertys[32];
-			if (property30.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMenPaiChanged(oldValue16);
-				}
-			}
-			else if (this.inWorld && (!property30.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMenPaiChanged(oldValue16);
-			}
-			uint oldValue17 = this.modelID;
-			Property property31 = idpropertys[33];
-			if (property31.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onModelIDChanged(oldValue17);
-				}
-			}
-			else if (this.inWorld && (!property31.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onModelIDChanged(oldValue17);
-			}
-			byte oldValue18 = this.modelScale;
-			Property property32 = idpropertys[34];
-			if (property32.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onModelScaleChanged(oldValue18);
-				}
-			}
-			else if (this.inWorld && (!property32.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onModelScaleChanged(oldValue18);
-			}
-			ulong oldValue19 = this.money;
-			Property property33 = idpropertys[35];
-			if (property33.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMoneyChanged(oldValue19);
-				}
-			}
-			else if (this.inWorld && (!property33.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMoneyChanged(oldValue19);
-			}
-			byte oldValue20 = this.moveSpeed;
-			Property property34 = idpropertys[36];
-			if (property34.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMoveSpeedChanged(oldValue20);
-				}
-			}
-			else if (this.inWorld && (!property34.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMoveSpeedChanged(oldValue20);
-			}
-			string oldValue21 = this.name;
-			Property property35 = idpropertys[37];
-			if (property35.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onNameChanged(oldValue21);
-				}
-			}
-			else if (this.inWorld && (!property35.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onNameChanged(oldValue21);
-			}
-			Vector3 position = this.position;
-			Property property36 = idpropertys[1];
-			if (property36.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onPositionChanged(position);
-				}
-			}
-			else if (this.inWorld && (!property36.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onPositionChanged(position);
-			}
-			int oldValue22 = this.rating;
-			Property property37 = idpropertys[38];
-			if (property37.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onRatingChanged(oldValue22);
-				}
-			}
-			else if (this.inWorld && (!property37.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onRatingChanged(oldValue22);
-			}
-			ushort oldValue23 = this.roleSurface;
-			Property property38 = idpropertys[39];
-			if (property38.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onRoleSurfaceChanged(oldValue23);
-				}
-			}
-			else if (this.inWorld && (!property38.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onRoleSurfaceChanged(oldValue23);
-			}
-			ushort oldValue24 = this.roleSurfaceCall;
-			Property property39 = idpropertys[40];
-			if (property39.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onRoleSurfaceCallChanged(oldValue24);
-				}
-			}
-			else if (this.inWorld && (!property39.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onRoleSurfaceCallChanged(oldValue24);
-			}
-			uint oldValue25 = this.roleType;
-			Property property40 = idpropertys[41];
-			if (property40.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onRoleTypeChanged(oldValue25);
-				}
-			}
-			else if (this.inWorld && (!property40.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onRoleTypeChanged(oldValue25);
-			}
-			uint oldValue26 = this.roleTypeCell;
-			Property property41 = idpropertys[42];
-			if (property41.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onRoleTypeCellChanged(oldValue26);
-				}
-			}
-			else if (this.inWorld && (!property41.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onRoleTypeCellChanged(oldValue26);
-			}
-			uint oldValue27 = this.shaQi;
-			Property property42 = idpropertys[43];
-			if (property42.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onShaQiChanged(oldValue27);
-				}
-			}
-			else if (this.inWorld && (!property42.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onShaQiChanged(oldValue27);
-			}
-			uint oldValue28 = this.shouYuan;
-			Property property43 = idpropertys[44];
-			if (property43.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onShouYuanChanged(oldValue28);
-				}
-			}
-			else if (this.inWorld && (!property43.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onShouYuanChanged(oldValue28);
-			}
-			List<int> oldValue29 = this.skills;
-			Property property44 = idpropertys[45];
-			if (property44.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onSkillsChanged(oldValue29);
-				}
-			}
-			else if (this.inWorld && (!property44.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onSkillsChanged(oldValue29);
-			}
-			uint oldValue30 = this.spaceUType;
-			Property property45 = idpropertys[46];
-			if (property45.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onSpaceUTypeChanged(oldValue30);
-				}
-			}
-			else if (this.inWorld && (!property45.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onSpaceUTypeChanged(oldValue30);
-			}
-			int oldValue31 = this.stamina;
-			Property property46 = idpropertys[47];
-			if (property46.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onStaminaChanged(oldValue31);
-				}
-			}
-			else if (this.inWorld && (!property46.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onStaminaChanged(oldValue31);
-			}
-			sbyte oldValue32 = this.state;
-			Property property47 = idpropertys[48];
-			if (property47.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onStateChanged(oldValue32);
-				}
-			}
-			else if (this.inWorld && (!property47.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onStateChanged(oldValue32);
-			}
-			int oldValue33 = this.strength;
-			Property property48 = idpropertys[49];
-			if (property48.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onStrengthChanged(oldValue33);
-				}
-			}
-			else if (this.inWorld && (!property48.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onStrengthChanged(oldValue33);
-			}
-			byte oldValue34 = this.subState;
-			Property property49 = idpropertys[50];
-			if (property49.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onSubStateChanged(oldValue34);
-				}
-			}
-			else if (this.inWorld && (!property49.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onSubStateChanged(oldValue34);
-			}
-			uint oldValue35 = this.uid;
-			Property property50 = idpropertys[51];
-			if (property50.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onUidChanged(oldValue35);
-				}
-			}
-			else if (this.inWorld && (!property50.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onUidChanged(oldValue35);
-			}
-			uint oldValue36 = this.utype;
-			Property property51 = idpropertys[52];
-			if (property51.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onUtypeChanged(oldValue36);
-				}
-			}
-			else if (this.inWorld && (!property51.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onUtypeChanged(oldValue36);
-			}
-			uint oldValue37 = this.wuXin;
-			Property property52 = idpropertys[53];
-			if (property52.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onWuXinChanged(oldValue37);
-					return;
-				}
-			}
-			else if (this.inWorld && (!property52.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onWuXinChanged(oldValue37);
+			onAvatarTypeChanged(avatarType);
+		}
+		int hP = HP;
+		Property property2 = idpropertys[5];
+		if (property2.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onHPChanged(hP);
 			}
 		}
-
-		// Token: 0x04004F27 RID: 20263
-		public EntityBaseEntityCall_AvatarBase baseEntityCall;
-
-		// Token: 0x04004F28 RID: 20264
-		public EntityCellEntityCall_AvatarBase cellEntityCall;
-
-		// Token: 0x04004F29 RID: 20265
-		public uint AvatarType = 5U;
-
-		// Token: 0x04004F2A RID: 20266
-		public int HP;
-
-		// Token: 0x04004F2B RID: 20267
-		public short Hunger = 100;
-
-		// Token: 0x04004F2C RID: 20268
-		public List<int> LingGeng = new List<int>();
-
-		// Token: 0x04004F2D RID: 20269
-		public int MP;
-
-		// Token: 0x04004F2E RID: 20270
-		public int MP_Max;
-
-		// Token: 0x04004F2F RID: 20271
-		public uint MaxCard = 5U;
-
-		// Token: 0x04004F30 RID: 20272
-		public ushort SurvivalDays;
-
-		// Token: 0x04004F31 RID: 20273
-		public short Thirst = 100;
-
-		// Token: 0x04004F32 RID: 20274
-		public int ZiZhi = 5;
-
-		// Token: 0x04004F33 RID: 20275
-		public int _HP_Max;
-
-		// Token: 0x04004F34 RID: 20276
-		public int _dunSu = 5;
-
-		// Token: 0x04004F35 RID: 20277
-		public int _shengShi = 5;
-
-		// Token: 0x04004F36 RID: 20278
-		public uint age = 5U;
-
-		// Token: 0x04004F37 RID: 20279
-		public int attack_Max = 10;
-
-		// Token: 0x04004F38 RID: 20280
-		public int attack_Min;
-
-		// Token: 0x04004F39 RID: 20281
-		public List<ushort> buffs = new List<ushort>();
-
-		// Token: 0x04004F3A RID: 20282
-		public List<int> crystal = new List<int>();
-
-		// Token: 0x04004F3B RID: 20283
-		public int defence;
-
-		// Token: 0x04004F3C RID: 20284
-		public int dexterity;
-
-		// Token: 0x04004F3D RID: 20285
-		public int dodge;
-
-		// Token: 0x04004F3E RID: 20286
-		public uint drawCard = 5U;
-
-		// Token: 0x04004F3F RID: 20287
-		public ITEM_INFO_LIST equipItemList = new ITEM_INFO_LIST();
-
-		// Token: 0x04004F40 RID: 20288
-		public int equipWeapon = -1;
-
-		// Token: 0x04004F41 RID: 20289
-		public ulong exp;
-
-		// Token: 0x04004F42 RID: 20290
-		public int forbids;
-
-		// Token: 0x04004F43 RID: 20291
-		public ITEM_INFO_LIST itemList = new ITEM_INFO_LIST();
-
-		// Token: 0x04004F44 RID: 20292
-		public ushort level = 1;
-
-		// Token: 0x04004F45 RID: 20293
-		public ushort menPai;
-
-		// Token: 0x04004F46 RID: 20294
-		public uint modelID;
-
-		// Token: 0x04004F47 RID: 20295
-		public byte modelScale = 30;
-
-		// Token: 0x04004F48 RID: 20296
-		public ulong money;
-
-		// Token: 0x04004F49 RID: 20297
-		public byte moveSpeed = 50;
-
-		// Token: 0x04004F4A RID: 20298
-		public string name = "";
-
-		// Token: 0x04004F4B RID: 20299
-		public int rating = 99;
-
-		// Token: 0x04004F4C RID: 20300
-		public ushort roleSurface = 1;
-
-		// Token: 0x04004F4D RID: 20301
-		public ushort roleSurfaceCall = 1;
-
-		// Token: 0x04004F4E RID: 20302
-		public uint roleType;
-
-		// Token: 0x04004F4F RID: 20303
-		public uint roleTypeCell;
-
-		// Token: 0x04004F50 RID: 20304
-		public uint shaQi = 5U;
-
-		// Token: 0x04004F51 RID: 20305
-		public uint shouYuan = 5U;
-
-		// Token: 0x04004F52 RID: 20306
-		public List<int> skills = new List<int>();
-
-		// Token: 0x04004F53 RID: 20307
-		public uint spaceUType;
-
-		// Token: 0x04004F54 RID: 20308
-		public int stamina;
-
-		// Token: 0x04004F55 RID: 20309
-		public sbyte state;
-
-		// Token: 0x04004F56 RID: 20310
-		public int strength;
-
-		// Token: 0x04004F57 RID: 20311
-		public byte subState;
-
-		// Token: 0x04004F58 RID: 20312
-		public uint uid;
-
-		// Token: 0x04004F59 RID: 20313
-		public uint utype;
-
-		// Token: 0x04004F5A RID: 20314
-		public uint wuXin = 5U;
+		else if (inWorld && (!property2.isOwnerOnly() || isPlayer()))
+		{
+			onHPChanged(hP);
+		}
+		short hunger = Hunger;
+		Property property3 = idpropertys[6];
+		if (property3.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onHungerChanged(hunger);
+			}
+		}
+		else if (inWorld && (!property3.isOwnerOnly() || isPlayer()))
+		{
+			onHungerChanged(hunger);
+		}
+		List<int> lingGeng = LingGeng;
+		Property property4 = idpropertys[7];
+		if (property4.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onLingGengChanged(lingGeng);
+			}
+		}
+		else if (inWorld && (!property4.isOwnerOnly() || isPlayer()))
+		{
+			onLingGengChanged(lingGeng);
+		}
+		int mP = MP;
+		Property property5 = idpropertys[8];
+		if (property5.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onMPChanged(mP);
+			}
+		}
+		else if (inWorld && (!property5.isOwnerOnly() || isPlayer()))
+		{
+			onMPChanged(mP);
+		}
+		int mP_Max = MP_Max;
+		Property property6 = idpropertys[9];
+		if (property6.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onMP_MaxChanged(mP_Max);
+			}
+		}
+		else if (inWorld && (!property6.isOwnerOnly() || isPlayer()))
+		{
+			onMP_MaxChanged(mP_Max);
+		}
+		uint maxCard = MaxCard;
+		Property property7 = idpropertys[10];
+		if (property7.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onMaxCardChanged(maxCard);
+			}
+		}
+		else if (inWorld && (!property7.isOwnerOnly() || isPlayer()))
+		{
+			onMaxCardChanged(maxCard);
+		}
+		ushort survivalDays = SurvivalDays;
+		Property property8 = idpropertys[11];
+		if (property8.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onSurvivalDaysChanged(survivalDays);
+			}
+		}
+		else if (inWorld && (!property8.isOwnerOnly() || isPlayer()))
+		{
+			onSurvivalDaysChanged(survivalDays);
+		}
+		short thirst = Thirst;
+		Property property9 = idpropertys[12];
+		if (property9.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onThirstChanged(thirst);
+			}
+		}
+		else if (inWorld && (!property9.isOwnerOnly() || isPlayer()))
+		{
+			onThirstChanged(thirst);
+		}
+		int ziZhi = ZiZhi;
+		Property property10 = idpropertys[13];
+		if (property10.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onZiZhiChanged(ziZhi);
+			}
+		}
+		else if (inWorld && (!property10.isOwnerOnly() || isPlayer()))
+		{
+			onZiZhiChanged(ziZhi);
+		}
+		int hP_Max = _HP_Max;
+		Property property11 = idpropertys[14];
+		if (property11.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				on_HP_MaxChanged(hP_Max);
+			}
+		}
+		else if (inWorld && (!property11.isOwnerOnly() || isPlayer()))
+		{
+			on_HP_MaxChanged(hP_Max);
+		}
+		int dunSu = _dunSu;
+		Property property12 = idpropertys[15];
+		if (property12.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				on_dunSuChanged(dunSu);
+			}
+		}
+		else if (inWorld && (!property12.isOwnerOnly() || isPlayer()))
+		{
+			on_dunSuChanged(dunSu);
+		}
+		int shengShi = _shengShi;
+		Property property13 = idpropertys[16];
+		if (property13.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				on_shengShiChanged(shengShi);
+			}
+		}
+		else if (inWorld && (!property13.isOwnerOnly() || isPlayer()))
+		{
+			on_shengShiChanged(shengShi);
+		}
+		uint oldValue = age;
+		Property property14 = idpropertys[17];
+		if (property14.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onAgeChanged(oldValue);
+			}
+		}
+		else if (inWorld && (!property14.isOwnerOnly() || isPlayer()))
+		{
+			onAgeChanged(oldValue);
+		}
+		int oldValue2 = attack_Max;
+		Property property15 = idpropertys[18];
+		if (property15.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onAttack_MaxChanged(oldValue2);
+			}
+		}
+		else if (inWorld && (!property15.isOwnerOnly() || isPlayer()))
+		{
+			onAttack_MaxChanged(oldValue2);
+		}
+		int oldValue3 = attack_Min;
+		Property property16 = idpropertys[19];
+		if (property16.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onAttack_MinChanged(oldValue3);
+			}
+		}
+		else if (inWorld && (!property16.isOwnerOnly() || isPlayer()))
+		{
+			onAttack_MinChanged(oldValue3);
+		}
+		List<ushort> oldValue4 = buffs;
+		Property property17 = idpropertys[20];
+		if (property17.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onBuffsChanged(oldValue4);
+			}
+		}
+		else if (inWorld && (!property17.isOwnerOnly() || isPlayer()))
+		{
+			onBuffsChanged(oldValue4);
+		}
+		List<int> oldValue5 = crystal;
+		Property property18 = idpropertys[21];
+		if (property18.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onCrystalChanged(oldValue5);
+			}
+		}
+		else if (inWorld && (!property18.isOwnerOnly() || isPlayer()))
+		{
+			onCrystalChanged(oldValue5);
+		}
+		int oldValue6 = defence;
+		Property property19 = idpropertys[22];
+		if (property19.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onDefenceChanged(oldValue6);
+			}
+		}
+		else if (inWorld && (!property19.isOwnerOnly() || isPlayer()))
+		{
+			onDefenceChanged(oldValue6);
+		}
+		int oldValue7 = dexterity;
+		Property property20 = idpropertys[23];
+		if (property20.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onDexterityChanged(oldValue7);
+			}
+		}
+		else if (inWorld && (!property20.isOwnerOnly() || isPlayer()))
+		{
+			onDexterityChanged(oldValue7);
+		}
+		Vector3 oldValue8 = direction;
+		Property property21 = idpropertys[2];
+		if (property21.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onDirectionChanged(oldValue8);
+			}
+		}
+		else if (inWorld && (!property21.isOwnerOnly() || isPlayer()))
+		{
+			onDirectionChanged(oldValue8);
+		}
+		int oldValue9 = dodge;
+		Property property22 = idpropertys[24];
+		if (property22.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onDodgeChanged(oldValue9);
+			}
+		}
+		else if (inWorld && (!property22.isOwnerOnly() || isPlayer()))
+		{
+			onDodgeChanged(oldValue9);
+		}
+		uint oldValue10 = drawCard;
+		Property property23 = idpropertys[25];
+		if (property23.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onDrawCardChanged(oldValue10);
+			}
+		}
+		else if (inWorld && (!property23.isOwnerOnly() || isPlayer()))
+		{
+			onDrawCardChanged(oldValue10);
+		}
+		ITEM_INFO_LIST oldValue11 = equipItemList;
+		Property property24 = idpropertys[26];
+		if (property24.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onEquipItemListChanged(oldValue11);
+			}
+		}
+		else if (inWorld && (!property24.isOwnerOnly() || isPlayer()))
+		{
+			onEquipItemListChanged(oldValue11);
+		}
+		int oldValue12 = equipWeapon;
+		Property property25 = idpropertys[27];
+		if (property25.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onEquipWeaponChanged(oldValue12);
+			}
+		}
+		else if (inWorld && (!property25.isOwnerOnly() || isPlayer()))
+		{
+			onEquipWeaponChanged(oldValue12);
+		}
+		ulong oldValue13 = exp;
+		Property property26 = idpropertys[28];
+		if (property26.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onExpChanged(oldValue13);
+			}
+		}
+		else if (inWorld && (!property26.isOwnerOnly() || isPlayer()))
+		{
+			onExpChanged(oldValue13);
+		}
+		int oldValue14 = forbids;
+		Property property27 = idpropertys[29];
+		if (property27.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onForbidsChanged(oldValue14);
+			}
+		}
+		else if (inWorld && (!property27.isOwnerOnly() || isPlayer()))
+		{
+			onForbidsChanged(oldValue14);
+		}
+		ITEM_INFO_LIST oldValue15 = itemList;
+		Property property28 = idpropertys[30];
+		if (property28.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onItemListChanged(oldValue15);
+			}
+		}
+		else if (inWorld && (!property28.isOwnerOnly() || isPlayer()))
+		{
+			onItemListChanged(oldValue15);
+		}
+		ushort oldValue16 = level;
+		Property property29 = idpropertys[31];
+		if (property29.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onLevelChanged(oldValue16);
+			}
+		}
+		else if (inWorld && (!property29.isOwnerOnly() || isPlayer()))
+		{
+			onLevelChanged(oldValue16);
+		}
+		ushort oldValue17 = menPai;
+		Property property30 = idpropertys[32];
+		if (property30.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onMenPaiChanged(oldValue17);
+			}
+		}
+		else if (inWorld && (!property30.isOwnerOnly() || isPlayer()))
+		{
+			onMenPaiChanged(oldValue17);
+		}
+		uint oldValue18 = modelID;
+		Property property31 = idpropertys[33];
+		if (property31.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onModelIDChanged(oldValue18);
+			}
+		}
+		else if (inWorld && (!property31.isOwnerOnly() || isPlayer()))
+		{
+			onModelIDChanged(oldValue18);
+		}
+		byte oldValue19 = modelScale;
+		Property property32 = idpropertys[34];
+		if (property32.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onModelScaleChanged(oldValue19);
+			}
+		}
+		else if (inWorld && (!property32.isOwnerOnly() || isPlayer()))
+		{
+			onModelScaleChanged(oldValue19);
+		}
+		ulong oldValue20 = money;
+		Property property33 = idpropertys[35];
+		if (property33.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onMoneyChanged(oldValue20);
+			}
+		}
+		else if (inWorld && (!property33.isOwnerOnly() || isPlayer()))
+		{
+			onMoneyChanged(oldValue20);
+		}
+		byte oldValue21 = moveSpeed;
+		Property property34 = idpropertys[36];
+		if (property34.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onMoveSpeedChanged(oldValue21);
+			}
+		}
+		else if (inWorld && (!property34.isOwnerOnly() || isPlayer()))
+		{
+			onMoveSpeedChanged(oldValue21);
+		}
+		string oldValue22 = name;
+		Property property35 = idpropertys[37];
+		if (property35.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onNameChanged(oldValue22);
+			}
+		}
+		else if (inWorld && (!property35.isOwnerOnly() || isPlayer()))
+		{
+			onNameChanged(oldValue22);
+		}
+		Vector3 oldValue23 = position;
+		Property property36 = idpropertys[1];
+		if (property36.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onPositionChanged(oldValue23);
+			}
+		}
+		else if (inWorld && (!property36.isOwnerOnly() || isPlayer()))
+		{
+			onPositionChanged(oldValue23);
+		}
+		int oldValue24 = rating;
+		Property property37 = idpropertys[38];
+		if (property37.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onRatingChanged(oldValue24);
+			}
+		}
+		else if (inWorld && (!property37.isOwnerOnly() || isPlayer()))
+		{
+			onRatingChanged(oldValue24);
+		}
+		ushort oldValue25 = roleSurface;
+		Property property38 = idpropertys[39];
+		if (property38.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onRoleSurfaceChanged(oldValue25);
+			}
+		}
+		else if (inWorld && (!property38.isOwnerOnly() || isPlayer()))
+		{
+			onRoleSurfaceChanged(oldValue25);
+		}
+		ushort oldValue26 = roleSurfaceCall;
+		Property property39 = idpropertys[40];
+		if (property39.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onRoleSurfaceCallChanged(oldValue26);
+			}
+		}
+		else if (inWorld && (!property39.isOwnerOnly() || isPlayer()))
+		{
+			onRoleSurfaceCallChanged(oldValue26);
+		}
+		uint oldValue27 = roleType;
+		Property property40 = idpropertys[41];
+		if (property40.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onRoleTypeChanged(oldValue27);
+			}
+		}
+		else if (inWorld && (!property40.isOwnerOnly() || isPlayer()))
+		{
+			onRoleTypeChanged(oldValue27);
+		}
+		uint oldValue28 = roleTypeCell;
+		Property property41 = idpropertys[42];
+		if (property41.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onRoleTypeCellChanged(oldValue28);
+			}
+		}
+		else if (inWorld && (!property41.isOwnerOnly() || isPlayer()))
+		{
+			onRoleTypeCellChanged(oldValue28);
+		}
+		uint oldValue29 = shaQi;
+		Property property42 = idpropertys[43];
+		if (property42.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onShaQiChanged(oldValue29);
+			}
+		}
+		else if (inWorld && (!property42.isOwnerOnly() || isPlayer()))
+		{
+			onShaQiChanged(oldValue29);
+		}
+		uint oldValue30 = shouYuan;
+		Property property43 = idpropertys[44];
+		if (property43.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onShouYuanChanged(oldValue30);
+			}
+		}
+		else if (inWorld && (!property43.isOwnerOnly() || isPlayer()))
+		{
+			onShouYuanChanged(oldValue30);
+		}
+		List<int> oldValue31 = skills;
+		Property property44 = idpropertys[45];
+		if (property44.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onSkillsChanged(oldValue31);
+			}
+		}
+		else if (inWorld && (!property44.isOwnerOnly() || isPlayer()))
+		{
+			onSkillsChanged(oldValue31);
+		}
+		uint oldValue32 = spaceUType;
+		Property property45 = idpropertys[46];
+		if (property45.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onSpaceUTypeChanged(oldValue32);
+			}
+		}
+		else if (inWorld && (!property45.isOwnerOnly() || isPlayer()))
+		{
+			onSpaceUTypeChanged(oldValue32);
+		}
+		int oldValue33 = stamina;
+		Property property46 = idpropertys[47];
+		if (property46.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onStaminaChanged(oldValue33);
+			}
+		}
+		else if (inWorld && (!property46.isOwnerOnly() || isPlayer()))
+		{
+			onStaminaChanged(oldValue33);
+		}
+		sbyte oldValue34 = state;
+		Property property47 = idpropertys[48];
+		if (property47.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onStateChanged(oldValue34);
+			}
+		}
+		else if (inWorld && (!property47.isOwnerOnly() || isPlayer()))
+		{
+			onStateChanged(oldValue34);
+		}
+		int oldValue35 = strength;
+		Property property48 = idpropertys[49];
+		if (property48.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onStrengthChanged(oldValue35);
+			}
+		}
+		else if (inWorld && (!property48.isOwnerOnly() || isPlayer()))
+		{
+			onStrengthChanged(oldValue35);
+		}
+		byte oldValue36 = subState;
+		Property property49 = idpropertys[50];
+		if (property49.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onSubStateChanged(oldValue36);
+			}
+		}
+		else if (inWorld && (!property49.isOwnerOnly() || isPlayer()))
+		{
+			onSubStateChanged(oldValue36);
+		}
+		uint oldValue37 = uid;
+		Property property50 = idpropertys[51];
+		if (property50.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onUidChanged(oldValue37);
+			}
+		}
+		else if (inWorld && (!property50.isOwnerOnly() || isPlayer()))
+		{
+			onUidChanged(oldValue37);
+		}
+		uint oldValue38 = utype;
+		Property property51 = idpropertys[52];
+		if (property51.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onUtypeChanged(oldValue38);
+			}
+		}
+		else if (inWorld && (!property51.isOwnerOnly() || isPlayer()))
+		{
+			onUtypeChanged(oldValue38);
+		}
+		uint oldValue39 = wuXin;
+		Property property52 = idpropertys[53];
+		if (property52.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onWuXinChanged(oldValue39);
+			}
+		}
+		else if (inWorld && (!property52.isOwnerOnly() || isPlayer()))
+		{
+			onWuXinChanged(oldValue39);
+		}
 	}
 }

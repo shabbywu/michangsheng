@@ -1,60 +1,46 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YS", "检测该功法等级是否达到目标等级", "检测该功法等级是否达到目标等级", 0)]
+[AddComponentMenu("")]
+public class CheckStaticSkillLevel : Command
 {
-	// Token: 0x02000F57 RID: 3927
-	[CommandInfo("YS", "检测该功法等级是否达到目标等级", "检测该功法等级是否达到目标等级", 0)]
-	[AddComponentMenu("")]
-	public class CheckStaticSkillLevel : Command
+	[Tooltip("需要进行检测的技能ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable SkillID;
+
+	[Tooltip("目标等级")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable Level;
+
+	[Tooltip("获取到的值存放位置")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable TempValue;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006EA0 RID: 28320 RVA: 0x002A5308 File Offset: 0x002A3508
-		public override void OnEnter()
+		TempValue.Value = false;
+		foreach (SkillItem hasStaticSkill in Tools.instance.getPlayer().hasStaticSkillList)
 		{
-			this.TempValue.Value = false;
-			foreach (SkillItem skillItem in Tools.instance.getPlayer().hasStaticSkillList)
+			if (hasStaticSkill.itemId == SkillID.Value && hasStaticSkill.level == Level.Value)
 			{
-				if (skillItem.itemId == this.SkillID.Value && skillItem.level == this.Level.Value)
-				{
-					this.TempValue.Value = true;
-					break;
-				}
+				TempValue.Value = true;
+				break;
 			}
-			this.Continue();
 		}
+		Continue();
+	}
 
-		// Token: 0x06006EA1 RID: 28321 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x04005BB8 RID: 23480
-		[Tooltip("需要进行检测的技能ID")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable SkillID;
-
-		// Token: 0x04005BB9 RID: 23481
-		[Tooltip("目标等级")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable Level;
-
-		// Token: 0x04005BBA RID: 23482
-		[Tooltip("获取到的值存放位置")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable TempValue;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

@@ -1,58 +1,49 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000035 RID: 53
 public abstract class UIItemSlot : MonoBehaviour
 {
-	// Token: 0x17000071 RID: 113
-	// (get) Token: 0x06000410 RID: 1040
+	public UISprite icon;
+
+	public UIWidget background;
+
+	public UILabel label;
+
+	public AudioClip grabSound;
+
+	public AudioClip placeSound;
+
+	public AudioClip errorSound;
+
+	private InvGameItem mItem;
+
+	private string mText = "";
+
+	private static InvGameItem mDraggedItem;
+
 	protected abstract InvGameItem observedItem { get; }
 
-	// Token: 0x06000411 RID: 1041
 	protected abstract InvGameItem Replace(InvGameItem item);
 
-	// Token: 0x06000412 RID: 1042 RVA: 0x00016A2C File Offset: 0x00014C2C
 	private void OnTooltip(bool show)
 	{
-		InvGameItem invGameItem = show ? this.mItem : null;
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		InvGameItem invGameItem = (show ? mItem : null);
 		if (invGameItem != null)
 		{
 			InvBaseItem baseItem = invGameItem.baseItem;
 			if (baseItem != null)
 			{
-				string text = string.Concat(new string[]
-				{
-					"[",
-					NGUIText.EncodeColor(invGameItem.color),
-					"]",
-					invGameItem.name,
-					"[-]\n"
-				});
-				text = string.Concat(new object[]
-				{
-					text,
-					"[AFAFAF]Level ",
-					invGameItem.itemLevel,
-					" ",
-					baseItem.slot
-				});
+				string text = "[" + NGUIText.EncodeColor(invGameItem.color) + "]" + invGameItem.name + "[-]\n";
+				text = text + "[AFAFAF]Level " + invGameItem.itemLevel + " " + baseItem.slot;
 				List<InvStat> list = invGameItem.CalculateStats();
 				int i = 0;
-				int count = list.Count;
-				while (i < count)
+				for (int count = list.Count; i < count; i++)
 				{
 					InvStat invStat = list[i];
 					if (invStat.amount != 0)
 					{
-						if (invStat.amount < 0)
-						{
-							text = text + "\n[FF0000]" + invStat.amount;
-						}
-						else
-						{
-							text = text + "\n[00FF00]+" + invStat.amount;
-						}
+						text = ((invStat.amount >= 0) ? (text + "\n[00FF00]+" + invStat.amount) : (text + "\n[FF0000]" + invStat.amount));
 						if (invStat.modifier == InvStat.Modifier.Percent)
 						{
 							text += "%";
@@ -60,7 +51,6 @@ public abstract class UIItemSlot : MonoBehaviour
 						text = text + " " + invStat.id;
 						text += "[-]";
 					}
-					i++;
 				}
 				if (!string.IsNullOrEmpty(baseItem.description))
 				{
@@ -73,130 +63,102 @@ public abstract class UIItemSlot : MonoBehaviour
 		UITooltip.ShowText(null);
 	}
 
-	// Token: 0x06000413 RID: 1043 RVA: 0x00016BAB File Offset: 0x00014DAB
 	private void OnClick()
 	{
-		if (UIItemSlot.mDraggedItem != null)
+		if (mDraggedItem != null)
 		{
-			this.OnDrop(null);
-			return;
+			OnDrop(null);
 		}
-		if (this.mItem != null)
+		else if (mItem != null)
 		{
-			UIItemSlot.mDraggedItem = this.Replace(null);
-			if (UIItemSlot.mDraggedItem != null)
+			mDraggedItem = Replace(null);
+			if (mDraggedItem != null)
 			{
-				NGUITools.PlaySound(this.grabSound);
+				NGUITools.PlaySound(grabSound);
 			}
-			this.UpdateCursor();
+			UpdateCursor();
 		}
 	}
 
-	// Token: 0x06000414 RID: 1044 RVA: 0x00016BE9 File Offset: 0x00014DE9
 	private void OnDrag(Vector2 delta)
 	{
-		if (UIItemSlot.mDraggedItem == null && this.mItem != null)
+		if (mDraggedItem == null && mItem != null)
 		{
 			UICamera.currentTouch.clickNotification = UICamera.ClickNotification.BasedOnDelta;
-			UIItemSlot.mDraggedItem = this.Replace(null);
-			NGUITools.PlaySound(this.grabSound);
-			this.UpdateCursor();
+			mDraggedItem = Replace(null);
+			NGUITools.PlaySound(grabSound);
+			UpdateCursor();
 		}
 	}
 
-	// Token: 0x06000415 RID: 1045 RVA: 0x00016C24 File Offset: 0x00014E24
 	private void OnDrop(GameObject go)
 	{
-		InvGameItem invGameItem = this.Replace(UIItemSlot.mDraggedItem);
-		if (UIItemSlot.mDraggedItem == invGameItem)
+		InvGameItem invGameItem = Replace(mDraggedItem);
+		if (mDraggedItem == invGameItem)
 		{
-			NGUITools.PlaySound(this.errorSound);
+			NGUITools.PlaySound(errorSound);
 		}
 		else if (invGameItem != null)
 		{
-			NGUITools.PlaySound(this.grabSound);
+			NGUITools.PlaySound(grabSound);
 		}
 		else
 		{
-			NGUITools.PlaySound(this.placeSound);
+			NGUITools.PlaySound(placeSound);
 		}
-		UIItemSlot.mDraggedItem = invGameItem;
-		this.UpdateCursor();
+		mDraggedItem = invGameItem;
+		UpdateCursor();
 	}
 
-	// Token: 0x06000416 RID: 1046 RVA: 0x00016C7C File Offset: 0x00014E7C
 	private void UpdateCursor()
 	{
-		if (UIItemSlot.mDraggedItem != null && UIItemSlot.mDraggedItem.baseItem != null)
+		if (mDraggedItem != null && mDraggedItem.baseItem != null)
 		{
-			UICursor.Set(UIItemSlot.mDraggedItem.baseItem.iconAtlas, UIItemSlot.mDraggedItem.baseItem.iconName);
-			return;
+			UICursor.Set(mDraggedItem.baseItem.iconAtlas, mDraggedItem.baseItem.iconName);
 		}
-		UICursor.Clear();
+		else
+		{
+			UICursor.Clear();
+		}
 	}
 
-	// Token: 0x06000417 RID: 1047 RVA: 0x00016CBC File Offset: 0x00014EBC
 	private void Update()
 	{
-		InvGameItem observedItem = this.observedItem;
-		if (this.mItem != observedItem)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
+		InvGameItem invGameItem = observedItem;
+		if (mItem == invGameItem)
 		{
-			this.mItem = observedItem;
-			InvBaseItem invBaseItem = (observedItem != null) ? observedItem.baseItem : null;
-			if (this.label != null)
+			return;
+		}
+		mItem = invGameItem;
+		InvBaseItem invBaseItem = invGameItem?.baseItem;
+		if ((Object)(object)label != (Object)null)
+		{
+			string text = invGameItem?.name;
+			if (string.IsNullOrEmpty(mText))
 			{
-				string text = (observedItem != null) ? observedItem.name : null;
-				if (string.IsNullOrEmpty(this.mText))
-				{
-					this.mText = this.label.text;
-				}
-				this.label.text = ((text != null) ? text : this.mText);
+				mText = label.text;
 			}
-			if (this.icon != null)
+			label.text = ((text != null) ? text : mText);
+		}
+		if ((Object)(object)icon != (Object)null)
+		{
+			if (invBaseItem == null || (Object)(object)invBaseItem.iconAtlas == (Object)null)
 			{
-				if (invBaseItem == null || invBaseItem.iconAtlas == null)
-				{
-					this.icon.enabled = false;
-				}
-				else
-				{
-					this.icon.atlas = invBaseItem.iconAtlas;
-					this.icon.spriteName = invBaseItem.iconName;
-					this.icon.enabled = true;
-					this.icon.MakePixelPerfect();
-				}
+				((Behaviour)icon).enabled = false;
 			}
-			if (this.background != null)
+			else
 			{
-				this.background.color = ((observedItem != null) ? observedItem.color : Color.white);
+				icon.atlas = invBaseItem.iconAtlas;
+				icon.spriteName = invBaseItem.iconName;
+				((Behaviour)icon).enabled = true;
+				icon.MakePixelPerfect();
 			}
 		}
+		if ((Object)(object)background != (Object)null)
+		{
+			background.color = invGameItem?.color ?? Color.white;
+		}
 	}
-
-	// Token: 0x0400023A RID: 570
-	public UISprite icon;
-
-	// Token: 0x0400023B RID: 571
-	public UIWidget background;
-
-	// Token: 0x0400023C RID: 572
-	public UILabel label;
-
-	// Token: 0x0400023D RID: 573
-	public AudioClip grabSound;
-
-	// Token: 0x0400023E RID: 574
-	public AudioClip placeSound;
-
-	// Token: 0x0400023F RID: 575
-	public AudioClip errorSound;
-
-	// Token: 0x04000240 RID: 576
-	private InvGameItem mItem;
-
-	// Token: 0x04000241 RID: 577
-	private string mText = "";
-
-	// Token: 0x04000242 RID: 578
-	private static InvGameItem mDraggedItem;
 }

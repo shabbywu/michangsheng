@@ -1,70 +1,57 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class NpcBigMapBingDate : IJSONClass
 {
-	// Token: 0x02000899 RID: 2201
-	public class NpcBigMapBingDate : IJSONClass
+	public static Dictionary<int, NpcBigMapBingDate> DataDict = new Dictionary<int, NpcBigMapBingDate>();
+
+	public static List<NpcBigMapBingDate> DataList = new List<NpcBigMapBingDate>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int MapType;
+
+	public int NPCType;
+
+	public int MapD;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004077 RID: 16503 RVA: 0x001B835C File Offset: 0x001B655C
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.NpcBigMapBingDate.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.NpcBigMapBingDate.list)
+			try
 			{
-				try
+				NpcBigMapBingDate npcBigMapBingDate = new NpcBigMapBingDate();
+				npcBigMapBingDate.id = item["id"].I;
+				npcBigMapBingDate.MapType = item["MapType"].I;
+				npcBigMapBingDate.NPCType = item["NPCType"].I;
+				npcBigMapBingDate.MapD = item["MapD"].I;
+				if (DataDict.ContainsKey(npcBigMapBingDate.id))
 				{
-					NpcBigMapBingDate npcBigMapBingDate = new NpcBigMapBingDate();
-					npcBigMapBingDate.id = jsonobject["id"].I;
-					npcBigMapBingDate.MapType = jsonobject["MapType"].I;
-					npcBigMapBingDate.NPCType = jsonobject["NPCType"].I;
-					npcBigMapBingDate.MapD = jsonobject["MapD"].I;
-					if (NpcBigMapBingDate.DataDict.ContainsKey(npcBigMapBingDate.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典NpcBigMapBingDate.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", npcBigMapBingDate.id));
-					}
-					else
-					{
-						NpcBigMapBingDate.DataDict.Add(npcBigMapBingDate.id, npcBigMapBingDate);
-						NpcBigMapBingDate.DataList.Add(npcBigMapBingDate);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典NpcBigMapBingDate.DataDict添加数据时出现重复的键，Key:{npcBigMapBingDate.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典NpcBigMapBingDate.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(npcBigMapBingDate.id, npcBigMapBingDate);
+				DataList.Add(npcBigMapBingDate);
 			}
-			if (NpcBigMapBingDate.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				NpcBigMapBingDate.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典NpcBigMapBingDate.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004078 RID: 16504 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003DF8 RID: 15864
-		public static Dictionary<int, NpcBigMapBingDate> DataDict = new Dictionary<int, NpcBigMapBingDate>();
-
-		// Token: 0x04003DF9 RID: 15865
-		public static List<NpcBigMapBingDate> DataList = new List<NpcBigMapBingDate>();
-
-		// Token: 0x04003DFA RID: 15866
-		public static Action OnInitFinishAction = new Action(NpcBigMapBingDate.OnInitFinish);
-
-		// Token: 0x04003DFB RID: 15867
-		public int id;
-
-		// Token: 0x04003DFC RID: 15868
-		public int MapType;
-
-		// Token: 0x04003DFD RID: 15869
-		public int NPCType;
-
-		// Token: 0x04003DFE RID: 15870
-		public int MapD;
+	private static void OnInitFinish()
+	{
 	}
 }

@@ -1,79 +1,72 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000AA RID: 170
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIWidget))]
 [AddComponentMenu("NGUI/UI/Localize")]
 public class UILocalize : MonoBehaviour
 {
-	// Token: 0x17000190 RID: 400
-	// (set) Token: 0x060009DA RID: 2522 RVA: 0x0003B2EC File Offset: 0x000394EC
+	public string key;
+
+	private bool mStarted;
+
 	public string value
 	{
 		set
 		{
-			if (!string.IsNullOrEmpty(value))
+			if (string.IsNullOrEmpty(value))
 			{
-				UIWidget component = base.GetComponent<UIWidget>();
-				UILabel uilabel = component as UILabel;
-				UISprite uisprite = component as UISprite;
-				if (uilabel != null)
+				return;
+			}
+			UIWidget component = ((Component)this).GetComponent<UIWidget>();
+			UILabel uILabel = component as UILabel;
+			UISprite uISprite = component as UISprite;
+			if ((Object)(object)uILabel != (Object)null)
+			{
+				UIInput uIInput = NGUITools.FindInParents<UIInput>(((Component)uILabel).gameObject);
+				if ((Object)(object)uIInput != (Object)null && (Object)(object)uIInput.label == (Object)(object)uILabel)
 				{
-					UIInput uiinput = NGUITools.FindInParents<UIInput>(uilabel.gameObject);
-					if (uiinput != null && uiinput.label == uilabel)
-					{
-						uiinput.defaultText = value;
-						return;
-					}
-					uilabel.text = value;
-					return;
+					uIInput.defaultText = value;
 				}
-				else if (uisprite != null)
+				else
 				{
-					uisprite.spriteName = value;
-					uisprite.MakePixelPerfect();
+					uILabel.text = value;
 				}
+			}
+			else if ((Object)(object)uISprite != (Object)null)
+			{
+				uISprite.spriteName = value;
+				uISprite.MakePixelPerfect();
 			}
 		}
 	}
 
-	// Token: 0x060009DB RID: 2523 RVA: 0x0003B366 File Offset: 0x00039566
 	private void OnEnable()
 	{
-		if (this.mStarted)
+		if (mStarted)
 		{
-			this.OnLocalize();
+			OnLocalize();
 		}
 	}
 
-	// Token: 0x060009DC RID: 2524 RVA: 0x0003B376 File Offset: 0x00039576
 	private void Start()
 	{
-		this.mStarted = true;
-		this.OnLocalize();
+		mStarted = true;
+		OnLocalize();
 	}
 
-	// Token: 0x060009DD RID: 2525 RVA: 0x0003B388 File Offset: 0x00039588
 	private void OnLocalize()
 	{
-		if (string.IsNullOrEmpty(this.key))
+		if (string.IsNullOrEmpty(key))
 		{
-			UILabel component = base.GetComponent<UILabel>();
-			if (component != null)
+			UILabel component = ((Component)this).GetComponent<UILabel>();
+			if ((Object)(object)component != (Object)null)
 			{
-				this.key = component.text;
+				key = component.text;
 			}
 		}
-		if (!string.IsNullOrEmpty(this.key))
+		if (!string.IsNullOrEmpty(key))
 		{
-			this.value = Localization.Get(this.key);
+			value = Localization.Get(key);
 		}
 	}
-
-	// Token: 0x0400060B RID: 1547
-	public string key;
-
-	// Token: 0x0400060C RID: 1548
-	private bool mStarted;
 }

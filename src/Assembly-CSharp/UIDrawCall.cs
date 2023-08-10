@@ -1,216 +1,259 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200008D RID: 141
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Internal/Draw Call")]
 public class UIDrawCall : MonoBehaviour
 {
-	// Token: 0x170000E0 RID: 224
-	// (get) Token: 0x0600077B RID: 1915 RVA: 0x0002DD98 File Offset: 0x0002BF98
+	public enum Clipping
+	{
+		None = 0,
+		SoftClip = 3,
+		ConstrainButDontClip = 4
+	}
+
+	private static BetterList<UIDrawCall> mActiveList = new BetterList<UIDrawCall>();
+
+	private static BetterList<UIDrawCall> mInactiveList = new BetterList<UIDrawCall>();
+
+	[NonSerialized]
+	[HideInInspector]
+	public int depthStart = int.MaxValue;
+
+	[NonSerialized]
+	[HideInInspector]
+	public int depthEnd = int.MinValue;
+
+	[NonSerialized]
+	[HideInInspector]
+	public UIPanel manager;
+
+	[NonSerialized]
+	[HideInInspector]
+	public UIPanel panel;
+
+	[NonSerialized]
+	[HideInInspector]
+	public bool alwaysOnScreen;
+
+	[NonSerialized]
+	[HideInInspector]
+	public BetterList<Vector3> verts = new BetterList<Vector3>();
+
+	[NonSerialized]
+	[HideInInspector]
+	public BetterList<Vector3> norms = new BetterList<Vector3>();
+
+	[NonSerialized]
+	[HideInInspector]
+	public BetterList<Vector4> tans = new BetterList<Vector4>();
+
+	[NonSerialized]
+	[HideInInspector]
+	public BetterList<Vector2> uvs = new BetterList<Vector2>();
+
+	[NonSerialized]
+	[HideInInspector]
+	public BetterList<Color32> cols = new BetterList<Color32>();
+
+	private Material mMaterial;
+
+	private Texture mTexture;
+
+	private Shader mShader;
+
+	private int mClipCount;
+
+	private Transform mTrans;
+
+	private Mesh mMesh;
+
+	private MeshFilter mFilter;
+
+	private MeshRenderer mRenderer;
+
+	private Material mDynamicMat;
+
+	private int[] mIndices;
+
+	private bool mRebuildMat = true;
+
+	private bool mLegacyShader;
+
+	private int mRenderQueue = 3000;
+
+	private int mTriangles;
+
+	[NonSerialized]
+	public bool isDirty;
+
+	private const int maxIndexBufferCache = 10;
+
+	private static List<int[]> mCache = new List<int[]>(10);
+
+	private static int[] ClipRange = new int[4]
+	{
+		Shader.PropertyToID("_ClipRange0"),
+		Shader.PropertyToID("_ClipRange1"),
+		Shader.PropertyToID("_ClipRange2"),
+		Shader.PropertyToID("_ClipRange4")
+	};
+
+	private static int[] ClipArgs = new int[4]
+	{
+		Shader.PropertyToID("_ClipArgs0"),
+		Shader.PropertyToID("_ClipArgs1"),
+		Shader.PropertyToID("_ClipArgs2"),
+		Shader.PropertyToID("_ClipArgs3")
+	};
+
 	[Obsolete("Use UIDrawCall.activeList")]
-	public static BetterList<UIDrawCall> list
-	{
-		get
-		{
-			return UIDrawCall.mActiveList;
-		}
-	}
+	public static BetterList<UIDrawCall> list => mActiveList;
 
-	// Token: 0x170000E1 RID: 225
-	// (get) Token: 0x0600077C RID: 1916 RVA: 0x0002DD98 File Offset: 0x0002BF98
-	public static BetterList<UIDrawCall> activeList
-	{
-		get
-		{
-			return UIDrawCall.mActiveList;
-		}
-	}
+	public static BetterList<UIDrawCall> activeList => mActiveList;
 
-	// Token: 0x170000E2 RID: 226
-	// (get) Token: 0x0600077D RID: 1917 RVA: 0x0002DD9F File Offset: 0x0002BF9F
-	public static BetterList<UIDrawCall> inactiveList
-	{
-		get
-		{
-			return UIDrawCall.mInactiveList;
-		}
-	}
+	public static BetterList<UIDrawCall> inactiveList => mInactiveList;
 
-	// Token: 0x170000E3 RID: 227
-	// (get) Token: 0x0600077E RID: 1918 RVA: 0x0002DDA6 File Offset: 0x0002BFA6
-	// (set) Token: 0x0600077F RID: 1919 RVA: 0x0002DDAE File Offset: 0x0002BFAE
 	public int renderQueue
 	{
 		get
 		{
-			return this.mRenderQueue;
+			return mRenderQueue;
 		}
 		set
 		{
-			if (this.mRenderQueue != value)
+			if (mRenderQueue != value)
 			{
-				this.mRenderQueue = value;
-				if (this.mDynamicMat != null)
+				mRenderQueue = value;
+				if ((Object)(object)mDynamicMat != (Object)null)
 				{
-					this.mDynamicMat.renderQueue = value;
+					mDynamicMat.renderQueue = value;
 				}
 			}
 		}
 	}
 
-	// Token: 0x170000E4 RID: 228
-	// (get) Token: 0x06000780 RID: 1920 RVA: 0x0002DDDA File Offset: 0x0002BFDA
-	// (set) Token: 0x06000781 RID: 1921 RVA: 0x0002DDF7 File Offset: 0x0002BFF7
 	public int sortingOrder
 	{
 		get
 		{
-			if (!(this.mRenderer != null))
+			if (!((Object)(object)mRenderer != (Object)null))
 			{
 				return 0;
 			}
-			return this.mRenderer.sortingOrder;
+			return ((Renderer)mRenderer).sortingOrder;
 		}
 		set
 		{
-			if (this.mRenderer != null && this.mRenderer.sortingOrder != value)
+			if ((Object)(object)mRenderer != (Object)null && ((Renderer)mRenderer).sortingOrder != value)
 			{
-				this.mRenderer.sortingOrder = value;
+				((Renderer)mRenderer).sortingOrder = value;
 			}
 		}
 	}
 
-	// Token: 0x170000E5 RID: 229
-	// (get) Token: 0x06000782 RID: 1922 RVA: 0x0002DE21 File Offset: 0x0002C021
 	public int finalRenderQueue
 	{
 		get
 		{
-			if (!(this.mDynamicMat != null))
+			if (!((Object)(object)mDynamicMat != (Object)null))
 			{
-				return this.mRenderQueue;
+				return mRenderQueue;
 			}
-			return this.mDynamicMat.renderQueue;
+			return mDynamicMat.renderQueue;
 		}
 	}
 
-	// Token: 0x170000E6 RID: 230
-	// (get) Token: 0x06000783 RID: 1923 RVA: 0x0002DE43 File Offset: 0x0002C043
 	public Transform cachedTransform
 	{
 		get
 		{
-			if (this.mTrans == null)
+			if ((Object)(object)mTrans == (Object)null)
 			{
-				this.mTrans = base.transform;
+				mTrans = ((Component)this).transform;
 			}
-			return this.mTrans;
+			return mTrans;
 		}
 	}
 
-	// Token: 0x170000E7 RID: 231
-	// (get) Token: 0x06000784 RID: 1924 RVA: 0x0002DE65 File Offset: 0x0002C065
-	// (set) Token: 0x06000785 RID: 1925 RVA: 0x0002DE6D File Offset: 0x0002C06D
 	public Material baseMaterial
 	{
 		get
 		{
-			return this.mMaterial;
+			return mMaterial;
 		}
 		set
 		{
-			if (this.mMaterial != value)
+			if ((Object)(object)mMaterial != (Object)(object)value)
 			{
-				this.mMaterial = value;
-				this.mRebuildMat = true;
+				mMaterial = value;
+				mRebuildMat = true;
 			}
 		}
 	}
 
-	// Token: 0x170000E8 RID: 232
-	// (get) Token: 0x06000786 RID: 1926 RVA: 0x0002DE8B File Offset: 0x0002C08B
-	public Material dynamicMaterial
-	{
-		get
-		{
-			return this.mDynamicMat;
-		}
-	}
+	public Material dynamicMaterial => mDynamicMat;
 
-	// Token: 0x170000E9 RID: 233
-	// (get) Token: 0x06000787 RID: 1927 RVA: 0x0002DE93 File Offset: 0x0002C093
-	// (set) Token: 0x06000788 RID: 1928 RVA: 0x0002DE9B File Offset: 0x0002C09B
 	public Texture mainTexture
 	{
 		get
 		{
-			return this.mTexture;
+			return mTexture;
 		}
 		set
 		{
-			this.mTexture = value;
-			if (this.mDynamicMat != null)
+			mTexture = value;
+			if ((Object)(object)mDynamicMat != (Object)null)
 			{
-				this.mDynamicMat.mainTexture = value;
+				mDynamicMat.mainTexture = value;
 			}
 		}
 	}
 
-	// Token: 0x170000EA RID: 234
-	// (get) Token: 0x06000789 RID: 1929 RVA: 0x0002DEBE File Offset: 0x0002C0BE
-	// (set) Token: 0x0600078A RID: 1930 RVA: 0x0002DEC6 File Offset: 0x0002C0C6
 	public Shader shader
 	{
 		get
 		{
-			return this.mShader;
+			return mShader;
 		}
 		set
 		{
-			if (this.mShader != value)
+			if ((Object)(object)mShader != (Object)(object)value)
 			{
-				this.mShader = value;
-				this.mRebuildMat = true;
+				mShader = value;
+				mRebuildMat = true;
 			}
 		}
 	}
 
-	// Token: 0x170000EB RID: 235
-	// (get) Token: 0x0600078B RID: 1931 RVA: 0x0002DEE4 File Offset: 0x0002C0E4
 	public int triangles
 	{
 		get
 		{
-			if (!(this.mMesh != null))
+			if (!((Object)(object)mMesh != (Object)null))
 			{
 				return 0;
 			}
-			return this.mTriangles;
+			return mTriangles;
 		}
 	}
 
-	// Token: 0x170000EC RID: 236
-	// (get) Token: 0x0600078C RID: 1932 RVA: 0x0002DEFC File Offset: 0x0002C0FC
-	public bool isClipped
-	{
-		get
-		{
-			return this.mClipCount != 0;
-		}
-	}
+	public bool isClipped => mClipCount != 0;
 
-	// Token: 0x0600078D RID: 1933 RVA: 0x0002DF08 File Offset: 0x0002C108
 	private void CreateMaterial()
 	{
-		this.mLegacyShader = false;
-		this.mClipCount = this.panel.clipCount;
-		string text = (this.mShader != null) ? this.mShader.name : ((this.mMaterial != null) ? this.mMaterial.shader.name : "Unlit/Transparent Colored");
+		//IL_024d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0257: Expected O, but got Unknown
+		//IL_019b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Expected O, but got Unknown
+		mLegacyShader = false;
+		mClipCount = panel.clipCount;
+		string text = (((Object)(object)mShader != (Object)null) ? ((Object)mShader).name : (((Object)(object)mMaterial != (Object)null) ? ((Object)mMaterial.shader).name : "Unlit/Transparent Colored"));
 		text = text.Replace("GUI/Text Shader", "Unlit/Text");
 		if (text.Length > 2 && text[text.Length - 2] == ' ')
 		{
-			int num = (int)text[text.Length - 1];
+			int num = text[text.Length - 1];
 			if (num > 48 && num <= 57)
 			{
 				text = text.Substring(0, text.Length - 2);
@@ -221,233 +264,208 @@ public class UIDrawCall : MonoBehaviour
 			text = text.Substring(7);
 		}
 		text = text.Replace(" (SoftClip)", "");
-		if (this.mClipCount != 0)
+		if (mClipCount != 0)
 		{
-			this.shader = Shader.Find(string.Concat(new object[]
+			shader = Shader.Find("Hidden/" + text + " " + mClipCount);
+			if ((Object)(object)shader == (Object)null)
 			{
-				"Hidden/",
-				text,
-				" ",
-				this.mClipCount
-			}));
-			if (this.shader == null)
-			{
-				Shader.Find(text + " " + this.mClipCount);
+				Shader.Find(text + " " + mClipCount);
 			}
-			if (this.shader == null && this.mClipCount == 1)
+			if ((Object)(object)shader == (Object)null && mClipCount == 1)
 			{
-				this.mLegacyShader = true;
-				this.shader = Shader.Find(text + " (SoftClip)");
+				mLegacyShader = true;
+				shader = Shader.Find(text + " (SoftClip)");
 			}
 		}
 		else
 		{
-			this.shader = Shader.Find(text);
+			shader = Shader.Find(text);
 		}
-		if (this.mMaterial != null)
+		if ((Object)(object)mMaterial != (Object)null)
 		{
-			this.mDynamicMat = new Material(this.mMaterial);
-			this.mDynamicMat.hideFlags = 60;
-			this.mDynamicMat.CopyPropertiesFromMaterial(this.mMaterial);
-			string[] shaderKeywords = this.mMaterial.shaderKeywords;
+			mDynamicMat = new Material(mMaterial);
+			((Object)mDynamicMat).hideFlags = (HideFlags)60;
+			mDynamicMat.CopyPropertiesFromMaterial(mMaterial);
+			string[] shaderKeywords = mMaterial.shaderKeywords;
 			for (int i = 0; i < shaderKeywords.Length; i++)
 			{
-				this.mDynamicMat.EnableKeyword(shaderKeywords[i]);
+				mDynamicMat.EnableKeyword(shaderKeywords[i]);
 			}
-			if (this.shader != null)
+			if ((Object)(object)shader != (Object)null)
 			{
-				this.mDynamicMat.shader = this.shader;
-				return;
+				mDynamicMat.shader = shader;
 			}
-			if (this.mClipCount != 0)
+			else if (mClipCount != 0)
 			{
-				Debug.LogError(string.Concat(new object[]
-				{
-					text,
-					" shader doesn't have a clipped shader version for ",
-					this.mClipCount,
-					" clip regions"
-				}));
-				return;
+				Debug.LogError((object)(text + " shader doesn't have a clipped shader version for " + mClipCount + " clip regions"));
 			}
 		}
 		else
 		{
-			this.mDynamicMat = new Material(this.shader);
-			this.mDynamicMat.hideFlags = 60;
+			mDynamicMat = new Material(shader);
+			((Object)mDynamicMat).hideFlags = (HideFlags)60;
 		}
 	}
 
-	// Token: 0x0600078E RID: 1934 RVA: 0x0002E17C File Offset: 0x0002C37C
 	private Material RebuildMaterial()
 	{
-		NGUITools.DestroyImmediate(this.mDynamicMat);
-		this.CreateMaterial();
-		this.mDynamicMat.renderQueue = this.mRenderQueue;
-		if (this.mTexture != null)
+		NGUITools.DestroyImmediate((Object)(object)mDynamicMat);
+		CreateMaterial();
+		mDynamicMat.renderQueue = mRenderQueue;
+		if ((Object)(object)mTexture != (Object)null)
 		{
-			this.mDynamicMat.mainTexture = this.mTexture;
+			mDynamicMat.mainTexture = mTexture;
 		}
-		if (this.mRenderer != null)
+		if ((Object)(object)mRenderer != (Object)null)
 		{
-			this.mRenderer.sharedMaterials = new Material[]
-			{
-				this.mDynamicMat
-			};
+			((Renderer)mRenderer).sharedMaterials = (Material[])(object)new Material[1] { mDynamicMat };
 		}
-		return this.mDynamicMat;
+		return mDynamicMat;
 	}
 
-	// Token: 0x0600078F RID: 1935 RVA: 0x0002E1F8 File Offset: 0x0002C3F8
 	private void UpdateMaterials()
 	{
-		if (this.mRebuildMat || this.mDynamicMat == null || this.mClipCount != this.panel.clipCount)
+		if (mRebuildMat || (Object)(object)mDynamicMat == (Object)null || mClipCount != panel.clipCount)
 		{
-			this.RebuildMaterial();
-			this.mRebuildMat = false;
-			return;
+			RebuildMaterial();
+			mRebuildMat = false;
 		}
-		if (this.mRenderer.sharedMaterial != this.mDynamicMat)
+		else if ((Object)(object)((Renderer)mRenderer).sharedMaterial != (Object)(object)mDynamicMat)
 		{
-			this.mRenderer.sharedMaterials = new Material[]
-			{
-				this.mDynamicMat
-			};
+			((Renderer)mRenderer).sharedMaterials = (Material[])(object)new Material[1] { mDynamicMat };
 		}
 	}
 
-	// Token: 0x06000790 RID: 1936 RVA: 0x0002E270 File Offset: 0x0002C470
 	public void UpdateGeometry()
 	{
-		int size = this.verts.size;
-		if (size > 0 && size == this.uvs.size && size == this.cols.size && size % 4 == 0)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c9: Expected O, but got Unknown
+		int size = verts.size;
+		if (size > 0 && size == uvs.size && size == cols.size && size % 4 == 0)
 		{
-			if (this.mFilter == null)
+			if ((Object)(object)mFilter == (Object)null)
 			{
-				this.mFilter = base.gameObject.GetComponent<MeshFilter>();
+				mFilter = ((Component)this).gameObject.GetComponent<MeshFilter>();
 			}
-			if (this.mFilter == null)
+			if ((Object)(object)mFilter == (Object)null)
 			{
-				this.mFilter = base.gameObject.AddComponent<MeshFilter>();
+				mFilter = ((Component)this).gameObject.AddComponent<MeshFilter>();
 			}
-			if (this.verts.size < 65000)
+			if (verts.size < 65000)
 			{
 				int num = (size >> 1) * 3;
-				bool flag = this.mIndices == null || this.mIndices.Length != num;
-				if (this.mMesh == null)
+				bool flag = mIndices == null || mIndices.Length != num;
+				if ((Object)(object)mMesh == (Object)null)
 				{
-					this.mMesh = new Mesh();
-					this.mMesh.hideFlags = 52;
-					this.mMesh.name = ((this.mMaterial != null) ? this.mMaterial.name : "Mesh");
-					this.mMesh.MarkDynamic();
+					mMesh = new Mesh();
+					((Object)mMesh).hideFlags = (HideFlags)52;
+					((Object)mMesh).name = (((Object)(object)mMaterial != (Object)null) ? ((Object)mMaterial).name : "Mesh");
+					mMesh.MarkDynamic();
 					flag = true;
 				}
-				bool flag2 = this.uvs.buffer.Length != this.verts.buffer.Length || this.cols.buffer.Length != this.verts.buffer.Length || (this.norms.buffer != null && this.norms.buffer.Length != this.verts.buffer.Length) || (this.tans.buffer != null && this.tans.buffer.Length != this.verts.buffer.Length);
-				if (!flag2 && this.panel.renderQueue != UIPanel.RenderQueue.Automatic)
+				bool flag2 = uvs.buffer.Length != verts.buffer.Length || cols.buffer.Length != verts.buffer.Length || (norms.buffer != null && norms.buffer.Length != verts.buffer.Length) || (tans.buffer != null && tans.buffer.Length != verts.buffer.Length);
+				if (!flag2 && panel.renderQueue != 0)
 				{
-					flag2 = (this.mMesh == null || this.mMesh.vertexCount != this.verts.buffer.Length);
+					flag2 = (Object)(object)mMesh == (Object)null || mMesh.vertexCount != verts.buffer.Length;
 				}
-				if (!flag2 && this.verts.size << 1 < this.verts.buffer.Length)
+				if (!flag2 && verts.size << 1 < verts.buffer.Length)
 				{
 					flag2 = true;
 				}
-				this.mTriangles = this.verts.size >> 1;
-				if (flag2 || this.verts.buffer.Length > 65000)
+				mTriangles = verts.size >> 1;
+				if (flag2 || verts.buffer.Length > 65000)
 				{
-					if (flag2 || this.mMesh.vertexCount != this.verts.size)
+					if (flag2 || mMesh.vertexCount != verts.size)
 					{
-						this.mMesh.Clear();
+						mMesh.Clear();
 						flag = true;
 					}
-					this.mMesh.vertices = this.verts.ToArray();
-					this.mMesh.uv = this.uvs.ToArray();
-					this.mMesh.colors32 = this.cols.ToArray();
-					if (this.norms != null)
+					mMesh.vertices = verts.ToArray();
+					mMesh.uv = uvs.ToArray();
+					mMesh.colors32 = cols.ToArray();
+					if (norms != null)
 					{
-						this.mMesh.normals = this.norms.ToArray();
+						mMesh.normals = norms.ToArray();
 					}
-					if (this.tans != null)
+					if (tans != null)
 					{
-						this.mMesh.tangents = this.tans.ToArray();
+						mMesh.tangents = tans.ToArray();
 					}
 				}
 				else
 				{
-					if (this.mMesh.vertexCount != this.verts.buffer.Length)
+					if (mMesh.vertexCount != verts.buffer.Length)
 					{
-						this.mMesh.Clear();
+						mMesh.Clear();
 						flag = true;
 					}
-					this.mMesh.vertices = this.verts.buffer;
-					this.mMesh.uv = this.uvs.buffer;
-					this.mMesh.colors32 = this.cols.buffer;
-					if (this.norms != null)
+					mMesh.vertices = verts.buffer;
+					mMesh.uv = uvs.buffer;
+					mMesh.colors32 = cols.buffer;
+					if (norms != null)
 					{
-						this.mMesh.normals = this.norms.buffer;
+						mMesh.normals = norms.buffer;
 					}
-					if (this.tans != null)
+					if (tans != null)
 					{
-						this.mMesh.tangents = this.tans.buffer;
+						mMesh.tangents = tans.buffer;
 					}
 				}
 				if (flag)
 				{
-					this.mIndices = this.GenerateCachedIndexBuffer(size, num);
-					this.mMesh.triangles = this.mIndices;
+					mIndices = GenerateCachedIndexBuffer(size, num);
+					mMesh.triangles = mIndices;
 				}
-				if (flag2 || !this.alwaysOnScreen)
+				if (flag2 || !alwaysOnScreen)
 				{
-					this.mMesh.RecalculateBounds();
+					mMesh.RecalculateBounds();
 				}
-				this.mFilter.mesh = this.mMesh;
+				mFilter.mesh = mMesh;
 			}
 			else
 			{
-				this.mTriangles = 0;
-				if (this.mFilter.mesh != null)
+				mTriangles = 0;
+				if ((Object)(object)mFilter.mesh != (Object)null)
 				{
-					this.mFilter.mesh.Clear();
+					mFilter.mesh.Clear();
 				}
-				Debug.LogError("Too many vertices on one panel: " + this.verts.size);
+				Debug.LogError((object)("Too many vertices on one panel: " + verts.size));
 			}
-			if (this.mRenderer == null)
+			if ((Object)(object)mRenderer == (Object)null)
 			{
-				this.mRenderer = base.gameObject.GetComponent<MeshRenderer>();
+				mRenderer = ((Component)this).gameObject.GetComponent<MeshRenderer>();
 			}
-			if (this.mRenderer == null)
+			if ((Object)(object)mRenderer == (Object)null)
 			{
-				this.mRenderer = base.gameObject.AddComponent<MeshRenderer>();
+				mRenderer = ((Component)this).gameObject.AddComponent<MeshRenderer>();
 			}
-			this.UpdateMaterials();
+			UpdateMaterials();
 		}
 		else
 		{
-			if (this.mFilter.mesh != null)
+			if ((Object)(object)mFilter.mesh != (Object)null)
 			{
-				this.mFilter.mesh.Clear();
+				mFilter.mesh.Clear();
 			}
-			Debug.LogError("UIWidgets must fill the buffer with 4 vertices per quad. Found " + size);
+			Debug.LogError((object)("UIWidgets must fill the buffer with 4 vertices per quad. Found " + size));
 		}
-		this.verts.Clear();
-		this.uvs.Clear();
-		this.cols.Clear();
-		this.norms.Clear();
-		this.tans.Clear();
+		verts.Clear();
+		uvs.Clear();
+		cols.Clear();
+		norms.Clear();
+		tans.Clear();
 	}
 
-	// Token: 0x06000791 RID: 1937 RVA: 0x0002E748 File Offset: 0x0002C948
 	private int[] GenerateCachedIndexBuffer(int vertexCount, int indexCount)
 	{
 		int i = 0;
-		int count = UIDrawCall.mCache.Count;
-		while (i < count)
+		for (int count = mCache.Count; i < count; i++)
 		{
-			int[] array = UIDrawCall.mCache[i];
+			int[] array = mCache[i];
 			if (array != null && array.Length == indexCount)
 			{
 				return array;
 			}
-			i++;
 		}
 		int[] array2 = new int[indexCount];
 		int num = 0;
@@ -460,218 +478,274 @@ public class UIDrawCall : MonoBehaviour
 			array2[num++] = j + 3;
 			array2[num++] = j;
 		}
-		if (UIDrawCall.mCache.Count > 10)
+		if (mCache.Count > 10)
 		{
-			UIDrawCall.mCache.RemoveAt(0);
+			mCache.RemoveAt(0);
 		}
-		UIDrawCall.mCache.Add(array2);
+		mCache.Add(array2);
 		return array2;
 	}
 
-	// Token: 0x06000792 RID: 1938 RVA: 0x0002E804 File Offset: 0x0002CA04
 	private void OnWillRenderObject()
 	{
-		this.UpdateMaterials();
-		if (this.mDynamicMat == null || this.mClipCount == 0)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0192: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0200: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0244: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0256: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0258: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0224: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0155: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
+		UpdateMaterials();
+		if ((Object)(object)mDynamicMat == (Object)null || mClipCount == 0)
 		{
 			return;
 		}
-		if (!this.mLegacyShader)
+		if (!mLegacyShader)
 		{
-			UIPanel parentPanel = this.panel;
+			UIPanel parentPanel = panel;
 			int num = 0;
-			while (parentPanel != null)
+			while ((Object)(object)parentPanel != (Object)null)
 			{
 				if (parentPanel.hasClipping)
 				{
 					float angle = 0f;
 					Vector4 drawCallClipRange = parentPanel.drawCallClipRange;
-					if (parentPanel != this.panel)
+					if ((Object)(object)parentPanel != (Object)(object)panel)
 					{
-						Vector3 vector = parentPanel.cachedTransform.InverseTransformPoint(this.panel.cachedTransform.position);
-						drawCallClipRange.x -= vector.x;
-						drawCallClipRange.y -= vector.y;
-						Vector3 eulerAngles = this.panel.cachedTransform.rotation.eulerAngles;
-						Vector3 vector2 = parentPanel.cachedTransform.rotation.eulerAngles - eulerAngles;
-						vector2.x = NGUIMath.WrapAngle(vector2.x);
-						vector2.y = NGUIMath.WrapAngle(vector2.y);
-						vector2.z = NGUIMath.WrapAngle(vector2.z);
-						if (Mathf.Abs(vector2.x) > 0.001f || Mathf.Abs(vector2.y) > 0.001f)
+						Vector3 val = parentPanel.cachedTransform.InverseTransformPoint(panel.cachedTransform.position);
+						drawCallClipRange.x -= val.x;
+						drawCallClipRange.y -= val.y;
+						Quaternion rotation = panel.cachedTransform.rotation;
+						Vector3 eulerAngles = ((Quaternion)(ref rotation)).eulerAngles;
+						rotation = parentPanel.cachedTransform.rotation;
+						Vector3 val2 = ((Quaternion)(ref rotation)).eulerAngles - eulerAngles;
+						val2.x = NGUIMath.WrapAngle(val2.x);
+						val2.y = NGUIMath.WrapAngle(val2.y);
+						val2.z = NGUIMath.WrapAngle(val2.z);
+						if (Mathf.Abs(val2.x) > 0.001f || Mathf.Abs(val2.y) > 0.001f)
 						{
-							Debug.LogWarning("Panel can only be clipped properly if X and Y rotation is left at 0", this.panel);
+							Debug.LogWarning((object)"Panel can only be clipped properly if X and Y rotation is left at 0", (Object)(object)panel);
 						}
-						angle = vector2.z;
+						angle = val2.z;
 					}
-					this.SetClipping(num++, drawCallClipRange, parentPanel.clipSoftness, angle);
+					SetClipping(num++, drawCallClipRange, parentPanel.clipSoftness, angle);
 				}
 				parentPanel = parentPanel.parentPanel;
 			}
-			return;
 		}
-		Vector2 clipSoftness = this.panel.clipSoftness;
-		Vector4 drawCallClipRange2 = this.panel.drawCallClipRange;
-		Vector2 mainTextureOffset;
-		mainTextureOffset..ctor(-drawCallClipRange2.x / drawCallClipRange2.z, -drawCallClipRange2.y / drawCallClipRange2.w);
-		Vector2 mainTextureScale;
-		mainTextureScale..ctor(1f / drawCallClipRange2.z, 1f / drawCallClipRange2.w);
-		Vector2 vector3;
-		vector3..ctor(1000f, 1000f);
-		if (clipSoftness.x > 0f)
+		else
 		{
-			vector3.x = drawCallClipRange2.z / clipSoftness.x;
+			Vector2 clipSoftness = panel.clipSoftness;
+			Vector4 drawCallClipRange2 = panel.drawCallClipRange;
+			Vector2 mainTextureOffset = default(Vector2);
+			((Vector2)(ref mainTextureOffset))._002Ector((0f - drawCallClipRange2.x) / drawCallClipRange2.z, (0f - drawCallClipRange2.y) / drawCallClipRange2.w);
+			Vector2 mainTextureScale = default(Vector2);
+			((Vector2)(ref mainTextureScale))._002Ector(1f / drawCallClipRange2.z, 1f / drawCallClipRange2.w);
+			Vector2 val3 = default(Vector2);
+			((Vector2)(ref val3))._002Ector(1000f, 1000f);
+			if (clipSoftness.x > 0f)
+			{
+				val3.x = drawCallClipRange2.z / clipSoftness.x;
+			}
+			if (clipSoftness.y > 0f)
+			{
+				val3.y = drawCallClipRange2.w / clipSoftness.y;
+			}
+			mDynamicMat.mainTextureOffset = mainTextureOffset;
+			mDynamicMat.mainTextureScale = mainTextureScale;
+			mDynamicMat.SetVector("_ClipSharpness", Vector4.op_Implicit(val3));
 		}
-		if (clipSoftness.y > 0f)
-		{
-			vector3.y = drawCallClipRange2.w / clipSoftness.y;
-		}
-		this.mDynamicMat.mainTextureOffset = mainTextureOffset;
-		this.mDynamicMat.mainTextureScale = mainTextureScale;
-		this.mDynamicMat.SetVector("_ClipSharpness", vector3);
 	}
 
-	// Token: 0x06000793 RID: 1939 RVA: 0x0002EA74 File Offset: 0x0002CC74
 	private void SetClipping(int index, Vector4 cr, Vector2 soft, float angle)
 	{
-		angle *= -0.017453292f;
-		Vector2 vector;
-		vector..ctor(1000f, 1000f);
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
+		angle *= -(float)Math.PI / 180f;
+		Vector2 val = default(Vector2);
+		((Vector2)(ref val))._002Ector(1000f, 1000f);
 		if (soft.x > 0f)
 		{
-			vector.x = cr.z / soft.x;
+			val.x = cr.z / soft.x;
 		}
 		if (soft.y > 0f)
 		{
-			vector.y = cr.w / soft.y;
+			val.y = cr.w / soft.y;
 		}
-		if (index < UIDrawCall.ClipRange.Length)
+		if (index < ClipRange.Length)
 		{
-			this.mDynamicMat.SetVector(UIDrawCall.ClipRange[index], new Vector4(-cr.x / cr.z, -cr.y / cr.w, 1f / cr.z, 1f / cr.w));
-			this.mDynamicMat.SetVector(UIDrawCall.ClipArgs[index], new Vector4(vector.x, vector.y, Mathf.Sin(angle), Mathf.Cos(angle)));
+			mDynamicMat.SetVector(ClipRange[index], new Vector4((0f - cr.x) / cr.z, (0f - cr.y) / cr.w, 1f / cr.z, 1f / cr.w));
+			mDynamicMat.SetVector(ClipArgs[index], new Vector4(val.x, val.y, Mathf.Sin(angle), Mathf.Cos(angle)));
 		}
 	}
 
-	// Token: 0x06000794 RID: 1940 RVA: 0x0002EB64 File Offset: 0x0002CD64
 	private void OnEnable()
 	{
-		this.mRebuildMat = true;
+		mRebuildMat = true;
 	}
 
-	// Token: 0x06000795 RID: 1941 RVA: 0x0002EB70 File Offset: 0x0002CD70
 	private void OnDisable()
 	{
-		this.depthStart = int.MaxValue;
-		this.depthEnd = int.MinValue;
-		this.panel = null;
-		this.manager = null;
-		this.mMaterial = null;
-		this.mTexture = null;
-		NGUITools.DestroyImmediate(this.mDynamicMat);
-		this.mDynamicMat = null;
-		if (this.mRenderer != null)
+		depthStart = int.MaxValue;
+		depthEnd = int.MinValue;
+		panel = null;
+		manager = null;
+		mMaterial = null;
+		mTexture = null;
+		NGUITools.DestroyImmediate((Object)(object)mDynamicMat);
+		mDynamicMat = null;
+		if ((Object)(object)mRenderer != (Object)null)
 		{
-			this.mRenderer.sharedMaterials = new Material[0];
+			((Renderer)mRenderer).sharedMaterials = (Material[])(object)new Material[0];
 		}
 	}
 
-	// Token: 0x06000796 RID: 1942 RVA: 0x0002EBE0 File Offset: 0x0002CDE0
 	private void OnDestroy()
 	{
-		NGUITools.DestroyImmediate(this.mMesh);
+		NGUITools.DestroyImmediate((Object)(object)mMesh);
 	}
 
-	// Token: 0x06000797 RID: 1943 RVA: 0x0002EBED File Offset: 0x0002CDED
 	public static UIDrawCall Create(UIPanel panel, Material mat, Texture tex, Shader shader)
 	{
-		return UIDrawCall.Create(null, panel, mat, tex, shader);
+		return Create(null, panel, mat, tex, shader);
 	}
 
-	// Token: 0x06000798 RID: 1944 RVA: 0x0002EBFC File Offset: 0x0002CDFC
 	private static UIDrawCall Create(string name, UIPanel pan, Material mat, Texture tex, Shader shader)
 	{
-		UIDrawCall uidrawCall = UIDrawCall.Create(name);
-		uidrawCall.gameObject.layer = pan.cachedGameObject.layer;
-		uidrawCall.baseMaterial = mat;
-		uidrawCall.mainTexture = tex;
-		uidrawCall.shader = shader;
-		uidrawCall.renderQueue = pan.startingRenderQueue;
-		uidrawCall.sortingOrder = pan.sortingOrder;
-		uidrawCall.manager = pan;
-		return uidrawCall;
+		UIDrawCall uIDrawCall = Create(name);
+		((Component)uIDrawCall).gameObject.layer = pan.cachedGameObject.layer;
+		uIDrawCall.baseMaterial = mat;
+		uIDrawCall.mainTexture = tex;
+		uIDrawCall.shader = shader;
+		uIDrawCall.renderQueue = pan.startingRenderQueue;
+		uIDrawCall.sortingOrder = pan.sortingOrder;
+		uIDrawCall.manager = pan;
+		return uIDrawCall;
 	}
 
-	// Token: 0x06000799 RID: 1945 RVA: 0x0002EC5C File Offset: 0x0002CE5C
 	private static UIDrawCall Create(string name)
 	{
-		if (UIDrawCall.mInactiveList.size > 0)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Expected O, but got Unknown
+		if (mInactiveList.size > 0)
 		{
-			UIDrawCall uidrawCall = UIDrawCall.mInactiveList.Pop();
-			UIDrawCall.mActiveList.Add(uidrawCall);
+			UIDrawCall uIDrawCall = mInactiveList.Pop();
+			mActiveList.Add(uIDrawCall);
 			if (name != null)
 			{
-				uidrawCall.name = name;
+				((Object)uIDrawCall).name = name;
 			}
-			NGUITools.SetActive(uidrawCall.gameObject, true);
-			return uidrawCall;
+			NGUITools.SetActive(((Component)uIDrawCall).gameObject, state: true);
+			return uIDrawCall;
 		}
-		GameObject gameObject = new GameObject(name);
-		Object.DontDestroyOnLoad(gameObject);
-		UIDrawCall uidrawCall2 = gameObject.AddComponent<UIDrawCall>();
-		UIDrawCall.mActiveList.Add(uidrawCall2);
-		return uidrawCall2;
+		GameObject val = new GameObject(name);
+		Object.DontDestroyOnLoad((Object)val);
+		UIDrawCall uIDrawCall2 = val.AddComponent<UIDrawCall>();
+		mActiveList.Add(uIDrawCall2);
+		return uIDrawCall2;
 	}
 
-	// Token: 0x0600079A RID: 1946 RVA: 0x0002ECC4 File Offset: 0x0002CEC4
 	public static void ClearAll()
 	{
 		bool isPlaying = Application.isPlaying;
-		int i = UIDrawCall.mActiveList.size;
-		while (i > 0)
+		int num = mActiveList.size;
+		while (num > 0)
 		{
-			UIDrawCall uidrawCall = UIDrawCall.mActiveList[--i];
-			if (uidrawCall)
+			UIDrawCall uIDrawCall = mActiveList[--num];
+			if (Object.op_Implicit((Object)(object)uIDrawCall))
 			{
 				if (isPlaying)
 				{
-					NGUITools.SetActive(uidrawCall.gameObject, false);
+					NGUITools.SetActive(((Component)uIDrawCall).gameObject, state: false);
 				}
 				else
 				{
-					NGUITools.DestroyImmediate(uidrawCall.gameObject);
+					NGUITools.DestroyImmediate((Object)(object)((Component)uIDrawCall).gameObject);
 				}
 			}
 		}
-		UIDrawCall.mActiveList.Clear();
+		mActiveList.Clear();
 	}
 
-	// Token: 0x0600079B RID: 1947 RVA: 0x0002ED26 File Offset: 0x0002CF26
 	public static void ReleaseAll()
 	{
-		UIDrawCall.ClearAll();
-		UIDrawCall.ReleaseInactive();
+		ClearAll();
+		ReleaseInactive();
 	}
 
-	// Token: 0x0600079C RID: 1948 RVA: 0x0002ED34 File Offset: 0x0002CF34
 	public static void ReleaseInactive()
 	{
-		int i = UIDrawCall.mInactiveList.size;
-		while (i > 0)
+		int num = mInactiveList.size;
+		while (num > 0)
 		{
-			UIDrawCall uidrawCall = UIDrawCall.mInactiveList[--i];
-			if (uidrawCall)
+			UIDrawCall uIDrawCall = mInactiveList[--num];
+			if (Object.op_Implicit((Object)(object)uIDrawCall))
 			{
-				NGUITools.DestroyImmediate(uidrawCall.gameObject);
+				NGUITools.DestroyImmediate((Object)(object)((Component)uIDrawCall).gameObject);
 			}
 		}
-		UIDrawCall.mInactiveList.Clear();
+		mInactiveList.Clear();
 	}
 
-	// Token: 0x0600079D RID: 1949 RVA: 0x0002ED80 File Offset: 0x0002CF80
 	public static int Count(UIPanel panel)
 	{
 		int num = 0;
-		for (int i = 0; i < UIDrawCall.mActiveList.size; i++)
+		for (int i = 0; i < mActiveList.size; i++)
 		{
-			if (UIDrawCall.mActiveList[i].manager == panel)
+			if ((Object)(object)mActiveList[i].manager == (Object)(object)panel)
 			{
 				num++;
 			}
@@ -679,162 +753,24 @@ public class UIDrawCall : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x0600079E RID: 1950 RVA: 0x0002EDC4 File Offset: 0x0002CFC4
 	public static void Destroy(UIDrawCall dc)
 	{
-		if (dc)
+		if (!Object.op_Implicit((Object)(object)dc))
 		{
-			if (Application.isPlaying)
+			return;
+		}
+		if (Application.isPlaying)
+		{
+			if (mActiveList.Remove(dc))
 			{
-				if (UIDrawCall.mActiveList.Remove(dc))
-				{
-					NGUITools.SetActive(dc.gameObject, false);
-					UIDrawCall.mInactiveList.Add(dc);
-					return;
-				}
-			}
-			else
-			{
-				UIDrawCall.mActiveList.Remove(dc);
-				NGUITools.DestroyImmediate(dc.gameObject);
+				NGUITools.SetActive(((Component)dc).gameObject, state: false);
+				mInactiveList.Add(dc);
 			}
 		}
-	}
-
-	// Token: 0x0400049F RID: 1183
-	private static BetterList<UIDrawCall> mActiveList = new BetterList<UIDrawCall>();
-
-	// Token: 0x040004A0 RID: 1184
-	private static BetterList<UIDrawCall> mInactiveList = new BetterList<UIDrawCall>();
-
-	// Token: 0x040004A1 RID: 1185
-	[HideInInspector]
-	[NonSerialized]
-	public int depthStart = int.MaxValue;
-
-	// Token: 0x040004A2 RID: 1186
-	[HideInInspector]
-	[NonSerialized]
-	public int depthEnd = int.MinValue;
-
-	// Token: 0x040004A3 RID: 1187
-	[HideInInspector]
-	[NonSerialized]
-	public UIPanel manager;
-
-	// Token: 0x040004A4 RID: 1188
-	[HideInInspector]
-	[NonSerialized]
-	public UIPanel panel;
-
-	// Token: 0x040004A5 RID: 1189
-	[HideInInspector]
-	[NonSerialized]
-	public bool alwaysOnScreen;
-
-	// Token: 0x040004A6 RID: 1190
-	[HideInInspector]
-	[NonSerialized]
-	public BetterList<Vector3> verts = new BetterList<Vector3>();
-
-	// Token: 0x040004A7 RID: 1191
-	[HideInInspector]
-	[NonSerialized]
-	public BetterList<Vector3> norms = new BetterList<Vector3>();
-
-	// Token: 0x040004A8 RID: 1192
-	[HideInInspector]
-	[NonSerialized]
-	public BetterList<Vector4> tans = new BetterList<Vector4>();
-
-	// Token: 0x040004A9 RID: 1193
-	[HideInInspector]
-	[NonSerialized]
-	public BetterList<Vector2> uvs = new BetterList<Vector2>();
-
-	// Token: 0x040004AA RID: 1194
-	[HideInInspector]
-	[NonSerialized]
-	public BetterList<Color32> cols = new BetterList<Color32>();
-
-	// Token: 0x040004AB RID: 1195
-	private Material mMaterial;
-
-	// Token: 0x040004AC RID: 1196
-	private Texture mTexture;
-
-	// Token: 0x040004AD RID: 1197
-	private Shader mShader;
-
-	// Token: 0x040004AE RID: 1198
-	private int mClipCount;
-
-	// Token: 0x040004AF RID: 1199
-	private Transform mTrans;
-
-	// Token: 0x040004B0 RID: 1200
-	private Mesh mMesh;
-
-	// Token: 0x040004B1 RID: 1201
-	private MeshFilter mFilter;
-
-	// Token: 0x040004B2 RID: 1202
-	private MeshRenderer mRenderer;
-
-	// Token: 0x040004B3 RID: 1203
-	private Material mDynamicMat;
-
-	// Token: 0x040004B4 RID: 1204
-	private int[] mIndices;
-
-	// Token: 0x040004B5 RID: 1205
-	private bool mRebuildMat = true;
-
-	// Token: 0x040004B6 RID: 1206
-	private bool mLegacyShader;
-
-	// Token: 0x040004B7 RID: 1207
-	private int mRenderQueue = 3000;
-
-	// Token: 0x040004B8 RID: 1208
-	private int mTriangles;
-
-	// Token: 0x040004B9 RID: 1209
-	[NonSerialized]
-	public bool isDirty;
-
-	// Token: 0x040004BA RID: 1210
-	private const int maxIndexBufferCache = 10;
-
-	// Token: 0x040004BB RID: 1211
-	private static List<int[]> mCache = new List<int[]>(10);
-
-	// Token: 0x040004BC RID: 1212
-	private static int[] ClipRange = new int[]
-	{
-		Shader.PropertyToID("_ClipRange0"),
-		Shader.PropertyToID("_ClipRange1"),
-		Shader.PropertyToID("_ClipRange2"),
-		Shader.PropertyToID("_ClipRange4")
-	};
-
-	// Token: 0x040004BD RID: 1213
-	private static int[] ClipArgs = new int[]
-	{
-		Shader.PropertyToID("_ClipArgs0"),
-		Shader.PropertyToID("_ClipArgs1"),
-		Shader.PropertyToID("_ClipArgs2"),
-		Shader.PropertyToID("_ClipArgs3")
-	};
-
-	// Token: 0x02001206 RID: 4614
-	public enum Clipping
-	{
-		// Token: 0x04006459 RID: 25689
-		None,
-		// Token: 0x0400645A RID: 25690
-		SoftClip = 3,
-		// Token: 0x0400645B RID: 25691
-		ConstrainButDontClip
+		else
+		{
+			mActiveList.Remove(dc);
+			NGUITools.DestroyImmediate((Object)(object)((Component)dc).gameObject);
+		}
 	}
 }

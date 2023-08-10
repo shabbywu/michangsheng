@@ -1,54 +1,49 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Flow", "Else", "Marks the start of a command block to be executed when the preceding If statement is False.", 0)]
+[AddComponentMenu("")]
+public class Else : Command, INoCommand
 {
-	// Token: 0x02000DC9 RID: 3529
-	[CommandInfo("Flow", "Else", "Marks the start of a command block to be executed when the preceding If statement is False.", 0)]
-	[AddComponentMenu("")]
-	public class Else : Command, INoCommand
+	public override void OnEnter()
 	{
-		// Token: 0x06006458 RID: 25688 RVA: 0x0027E534 File Offset: 0x0027C734
-		public override void OnEnter()
+		if ((Object)(object)ParentBlock == (Object)null)
 		{
-			if (this.ParentBlock == null)
+			return;
+		}
+		if (CommandIndex >= ParentBlock.CommandList.Count - 1)
+		{
+			StopParentBlock();
+			return;
+		}
+		int num = indentLevel;
+		for (int i = CommandIndex + 1; i < ParentBlock.CommandList.Count; i++)
+		{
+			Command command = ParentBlock.CommandList[i];
+			if (command.IndentLevel == num && ((object)command).GetType() == typeof(End))
 			{
+				Continue(command.CommandIndex + 1);
 				return;
 			}
-			if (this.CommandIndex >= this.ParentBlock.CommandList.Count - 1)
-			{
-				this.StopParentBlock();
-				return;
-			}
-			int indentLevel = this.indentLevel;
-			for (int i = this.CommandIndex + 1; i < this.ParentBlock.CommandList.Count; i++)
-			{
-				Command command = this.ParentBlock.CommandList[i];
-				if (command.IndentLevel == indentLevel && command.GetType() == typeof(End))
-				{
-					this.Continue(command.CommandIndex + 1);
-					return;
-				}
-			}
-			this.StopParentBlock();
 		}
+		StopParentBlock();
+	}
 
-		// Token: 0x06006459 RID: 25689 RVA: 0x00024C5F File Offset: 0x00022E5F
-		public override bool OpenBlock()
-		{
-			return true;
-		}
+	public override bool OpenBlock()
+	{
+		return true;
+	}
 
-		// Token: 0x0600645A RID: 25690 RVA: 0x00024C5F File Offset: 0x00022E5F
-		public override bool CloseBlock()
-		{
-			return true;
-		}
+	public override bool CloseBlock()
+	{
+		return true;
+	}
 
-		// Token: 0x0600645B RID: 25691 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
-		public override Color GetButtonColor()
-		{
-			return new Color32(253, 253, 150, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)253, (byte)253, (byte)150, byte.MaxValue));
 	}
 }

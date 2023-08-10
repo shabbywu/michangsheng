@@ -1,271 +1,239 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class Bundle : ObjectPool<Bundle>
 {
-	// Token: 0x02000B37 RID: 2871
-	public class Bundle : ObjectPool<Bundle>
+	public MemoryStream stream = new MemoryStream();
+
+	public List<MemoryStream> streamList = new List<MemoryStream>();
+
+	public int numMessage;
+
+	public int messageLength;
+
+	public Message msgtype;
+
+	private int _curMsgStreamIndex;
+
+	public void clear()
 	{
-		// Token: 0x0600508C RID: 20620 RVA: 0x00220254 File Offset: 0x0021E454
-		public void clear()
+		for (int i = 0; i < streamList.Count; i++)
 		{
-			for (int i = 0; i < this.streamList.Count; i++)
+			if (stream != streamList[i])
 			{
-				if (this.stream != this.streamList[i])
-				{
-					this.streamList[i].reclaimObject();
-				}
+				streamList[i].reclaimObject();
 			}
-			this.streamList.Clear();
-			if (this.stream != null)
+		}
+		streamList.Clear();
+		if (stream != null)
+		{
+			stream.clear();
+		}
+		else
+		{
+			stream = ObjectPool<MemoryStream>.createObject();
+		}
+		numMessage = 0;
+		messageLength = 0;
+		msgtype = null;
+		_curMsgStreamIndex = 0;
+	}
+
+	public void reclaimObject()
+	{
+		clear();
+		ObjectPool<Bundle>.reclaimObject(this);
+	}
+
+	public void newMessage(Message mt)
+	{
+		fini(issend: false);
+		msgtype = mt;
+		numMessage++;
+		writeUint16(msgtype.id);
+		if (msgtype.msglen == -1)
+		{
+			writeUint16(0);
+			messageLength = 0;
+		}
+		_curMsgStreamIndex = 0;
+	}
+
+	public void writeMsgLength()
+	{
+		if (msgtype.msglen == -1)
+		{
+			MemoryStream memoryStream = stream;
+			if (_curMsgStreamIndex > 0)
 			{
-				this.stream.clear();
+				memoryStream = streamList[streamList.Count - _curMsgStreamIndex];
 			}
-			else
+			memoryStream.data()[2] = (byte)((uint)messageLength & 0xFFu);
+			memoryStream.data()[3] = (byte)((uint)(messageLength >> 8) & 0xFFu);
+		}
+	}
+
+	public void fini(bool issend)
+	{
+		if (numMessage > 0)
+		{
+			writeMsgLength();
+			streamList.Add(stream);
+			stream = ObjectPool<MemoryStream>.createObject();
+		}
+		if (issend)
+		{
+			numMessage = 0;
+			msgtype = null;
+		}
+		_curMsgStreamIndex = 0;
+	}
+
+	public void send(NetworkInterfaceBase networkInterface)
+	{
+		fini(issend: true);
+		if (networkInterface.valid())
+		{
+			for (int i = 0; i < streamList.Count; i++)
 			{
-				this.stream = ObjectPool<MemoryStream>.createObject();
+				MemoryStream memoryStream = streamList[i];
+				networkInterface.send(memoryStream);
 			}
-			this.numMessage = 0;
-			this.messageLength = 0;
-			this.msgtype = null;
-			this._curMsgStreamIndex = 0;
 		}
-
-		// Token: 0x0600508D RID: 20621 RVA: 0x002202E3 File Offset: 0x0021E4E3
-		public void reclaimObject()
+		else
 		{
-			this.clear();
-			ObjectPool<Bundle>.reclaimObject(this);
+			Dbg.ERROR_MSG("Bundle::send: networkInterface invalid!");
 		}
+		reclaimObject();
+	}
 
-		// Token: 0x0600508E RID: 20622 RVA: 0x002202F4 File Offset: 0x0021E4F4
-		public void newMessage(Message mt)
+	public void checkStream(int v)
+	{
+		if (v > stream.space())
 		{
-			this.fini(false);
-			this.msgtype = mt;
-			this.numMessage++;
-			this.writeUint16(this.msgtype.id);
-			if (this.msgtype.msglen == -1)
-			{
-				this.writeUint16(0);
-				this.messageLength = 0;
-			}
-			this._curMsgStreamIndex = 0;
+			streamList.Add(stream);
+			stream = ObjectPool<MemoryStream>.createObject();
+			_curMsgStreamIndex++;
 		}
+		messageLength += v;
+	}
 
-		// Token: 0x0600508F RID: 20623 RVA: 0x00220354 File Offset: 0x0021E554
-		public void writeMsgLength()
-		{
-			if (this.msgtype.msglen != -1)
-			{
-				return;
-			}
-			MemoryStream memoryStream = this.stream;
-			if (this._curMsgStreamIndex > 0)
-			{
-				memoryStream = this.streamList[this.streamList.Count - this._curMsgStreamIndex];
-			}
-			memoryStream.data()[2] = (byte)(this.messageLength & 255);
-			memoryStream.data()[3] = (byte)(this.messageLength >> 8 & 255);
-		}
+	public void writeInt8(sbyte v)
+	{
+		checkStream(1);
+		stream.writeInt8(v);
+	}
 
-		// Token: 0x06005090 RID: 20624 RVA: 0x002203CC File Offset: 0x0021E5CC
-		public void fini(bool issend)
-		{
-			if (this.numMessage > 0)
-			{
-				this.writeMsgLength();
-				this.streamList.Add(this.stream);
-				this.stream = ObjectPool<MemoryStream>.createObject();
-			}
-			if (issend)
-			{
-				this.numMessage = 0;
-				this.msgtype = null;
-			}
-			this._curMsgStreamIndex = 0;
-		}
+	public void writeInt16(short v)
+	{
+		checkStream(2);
+		stream.writeInt16(v);
+	}
 
-		// Token: 0x06005091 RID: 20625 RVA: 0x0022041C File Offset: 0x0021E61C
-		public void send(NetworkInterfaceBase networkInterface)
-		{
-			this.fini(true);
-			if (networkInterface.valid())
-			{
-				for (int i = 0; i < this.streamList.Count; i++)
-				{
-					MemoryStream memoryStream = this.streamList[i];
-					networkInterface.send(memoryStream);
-				}
-			}
-			else
-			{
-				Dbg.ERROR_MSG("Bundle::send: networkInterface invalid!");
-			}
-			this.reclaimObject();
-		}
+	public void writeInt32(int v)
+	{
+		checkStream(4);
+		stream.writeInt32(v);
+	}
 
-		// Token: 0x06005092 RID: 20626 RVA: 0x00220478 File Offset: 0x0021E678
-		public void checkStream(int v)
-		{
-			if ((long)v > (long)((ulong)this.stream.space()))
-			{
-				this.streamList.Add(this.stream);
-				this.stream = ObjectPool<MemoryStream>.createObject();
-				this._curMsgStreamIndex++;
-			}
-			this.messageLength += v;
-		}
+	public void writeInt64(long v)
+	{
+		checkStream(8);
+		stream.writeInt64(v);
+	}
 
-		// Token: 0x06005093 RID: 20627 RVA: 0x002204CD File Offset: 0x0021E6CD
-		public void writeInt8(sbyte v)
-		{
-			this.checkStream(1);
-			this.stream.writeInt8(v);
-		}
+	public void writeUint8(byte v)
+	{
+		checkStream(1);
+		stream.writeUint8(v);
+	}
 
-		// Token: 0x06005094 RID: 20628 RVA: 0x002204E2 File Offset: 0x0021E6E2
-		public void writeInt16(short v)
-		{
-			this.checkStream(2);
-			this.stream.writeInt16(v);
-		}
+	public void writeUint16(ushort v)
+	{
+		checkStream(2);
+		stream.writeUint16(v);
+	}
 
-		// Token: 0x06005095 RID: 20629 RVA: 0x002204F7 File Offset: 0x0021E6F7
-		public void writeInt32(int v)
-		{
-			this.checkStream(4);
-			this.stream.writeInt32(v);
-		}
+	public void writeUint32(uint v)
+	{
+		checkStream(4);
+		stream.writeUint32(v);
+	}
 
-		// Token: 0x06005096 RID: 20630 RVA: 0x0022050C File Offset: 0x0021E70C
-		public void writeInt64(long v)
-		{
-			this.checkStream(8);
-			this.stream.writeInt64(v);
-		}
+	public void writeUint64(ulong v)
+	{
+		checkStream(8);
+		stream.writeUint64(v);
+	}
 
-		// Token: 0x06005097 RID: 20631 RVA: 0x00220521 File Offset: 0x0021E721
-		public void writeUint8(byte v)
-		{
-			this.checkStream(1);
-			this.stream.writeUint8(v);
-		}
+	public void writeFloat(float v)
+	{
+		checkStream(4);
+		stream.writeFloat(v);
+	}
 
-		// Token: 0x06005098 RID: 20632 RVA: 0x00220536 File Offset: 0x0021E736
-		public void writeUint16(ushort v)
-		{
-			this.checkStream(2);
-			this.stream.writeUint16(v);
-		}
+	public void writeDouble(double v)
+	{
+		checkStream(8);
+		stream.writeDouble(v);
+	}
 
-		// Token: 0x06005099 RID: 20633 RVA: 0x0022054B File Offset: 0x0021E74B
-		public void writeUint32(uint v)
-		{
-			this.checkStream(4);
-			this.stream.writeUint32(v);
-		}
+	public void writeString(string v)
+	{
+		checkStream(v.Length + 1);
+		stream.writeString(v);
+	}
 
-		// Token: 0x0600509A RID: 20634 RVA: 0x00220560 File Offset: 0x0021E760
-		public void writeUint64(ulong v)
-		{
-			this.checkStream(8);
-			this.stream.writeUint64(v);
-		}
+	public void writeUnicode(string v)
+	{
+		writeBlob(Encoding.UTF8.GetBytes(v));
+	}
 
-		// Token: 0x0600509B RID: 20635 RVA: 0x00220575 File Offset: 0x0021E775
-		public void writeFloat(float v)
-		{
-			this.checkStream(4);
-			this.stream.writeFloat(v);
-		}
+	public void writeBlob(byte[] v)
+	{
+		checkStream(v.Length + 4);
+		stream.writeBlob(v);
+	}
 
-		// Token: 0x0600509C RID: 20636 RVA: 0x0022058A File Offset: 0x0021E78A
-		public void writeDouble(double v)
-		{
-			this.checkStream(8);
-			this.stream.writeDouble(v);
-		}
+	public void writePython(byte[] v)
+	{
+		writeBlob(v);
+	}
 
-		// Token: 0x0600509D RID: 20637 RVA: 0x0022059F File Offset: 0x0021E79F
-		public void writeString(string v)
-		{
-			this.checkStream(v.Length + 1);
-			this.stream.writeString(v);
-		}
+	public void writeVector2(Vector2 v)
+	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		checkStream(8);
+		stream.writeVector2(v);
+	}
 
-		// Token: 0x0600509E RID: 20638 RVA: 0x002205BB File Offset: 0x0021E7BB
-		public void writeUnicode(string v)
-		{
-			this.writeBlob(Encoding.UTF8.GetBytes(v));
-		}
+	public void writeVector3(Vector3 v)
+	{
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		checkStream(12);
+		stream.writeVector3(v);
+	}
 
-		// Token: 0x0600509F RID: 20639 RVA: 0x002205CE File Offset: 0x0021E7CE
-		public void writeBlob(byte[] v)
-		{
-			this.checkStream(v.Length + 4);
-			this.stream.writeBlob(v);
-		}
+	public void writeVector4(Vector4 v)
+	{
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		checkStream(16);
+		stream.writeVector4(v);
+	}
 
-		// Token: 0x060050A0 RID: 20640 RVA: 0x002205E7 File Offset: 0x0021E7E7
-		public void writePython(byte[] v)
-		{
-			this.writeBlob(v);
-		}
-
-		// Token: 0x060050A1 RID: 20641 RVA: 0x002205F0 File Offset: 0x0021E7F0
-		public void writeVector2(Vector2 v)
-		{
-			this.checkStream(8);
-			this.stream.writeVector2(v);
-		}
-
-		// Token: 0x060050A2 RID: 20642 RVA: 0x00220605 File Offset: 0x0021E805
-		public void writeVector3(Vector3 v)
-		{
-			this.checkStream(12);
-			this.stream.writeVector3(v);
-		}
-
-		// Token: 0x060050A3 RID: 20643 RVA: 0x0022061B File Offset: 0x0021E81B
-		public void writeVector4(Vector4 v)
-		{
-			this.checkStream(16);
-			this.stream.writeVector4(v);
-		}
-
-		// Token: 0x060050A4 RID: 20644 RVA: 0x00220634 File Offset: 0x0021E834
-		public void writeEntitycall(byte[] v)
-		{
-			this.checkStream(16);
-			ulong v2 = 0UL;
-			int v3 = 0;
-			ushort v4 = 0;
-			ushort v5 = 0;
-			this.stream.writeUint64(v2);
-			this.stream.writeInt32(v3);
-			this.stream.writeUint16(v4);
-			this.stream.writeUint16(v5);
-		}
-
-		// Token: 0x04004F71 RID: 20337
-		public MemoryStream stream = new MemoryStream();
-
-		// Token: 0x04004F72 RID: 20338
-		public List<MemoryStream> streamList = new List<MemoryStream>();
-
-		// Token: 0x04004F73 RID: 20339
-		public int numMessage;
-
-		// Token: 0x04004F74 RID: 20340
-		public int messageLength;
-
-		// Token: 0x04004F75 RID: 20341
-		public Message msgtype;
-
-		// Token: 0x04004F76 RID: 20342
-		private int _curMsgStreamIndex;
+	public void writeEntitycall(byte[] v)
+	{
+		checkStream(16);
+		ulong num = 0uL;
+		int num2 = 0;
+		ushort num3 = 0;
+		ushort num4 = 0;
+		stream.writeUint64(num);
+		stream.writeInt32(num2);
+		stream.writeUint16(num3);
+		stream.writeUint16(num4);
 	}
 }

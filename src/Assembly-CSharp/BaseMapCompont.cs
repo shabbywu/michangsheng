@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using CaiYao;
@@ -10,77 +10,94 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using YSGame;
 
-// Token: 0x02000183 RID: 387
 public class BaseMapCompont : MonoBehaviour
 {
-	// Token: 0x0600106F RID: 4207 RVA: 0x0006094E File Offset: 0x0005EB4E
+	[NonSerialized]
+	public int NodeIndex;
+
+	public List<int> nextIndex = new List<int>();
+
+	public Vector2 MapPositon;
+
+	[Tooltip("是否是固定场景，在副本中这个选项决定是否显示节点名称")]
+	public bool IsStatic;
+
+	public JSONObject MapRandomJsonData;
+
+	public JSONObject AllMapCastTimeJsonData;
+
+	protected Avatar ComAvatar;
+
+	protected GameObject enterScenes;
+
+	protected Transform PlayerPosition;
+
 	protected virtual void Awake()
 	{
-		this.NodeIndex = int.Parse(base.name);
-		this.AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
-		this.MapRandomJsonData = jsonData.instance.MapRandomJsonData;
+		NodeIndex = int.Parse(((Object)this).name);
+		AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
+		MapRandomJsonData = jsonData.instance.MapRandomJsonData;
 	}
 
-	// Token: 0x06001070 RID: 4208 RVA: 0x00060981 File Offset: 0x0005EB81
 	protected virtual void Start()
 	{
-		this.StartSeting();
+		StartSeting();
 	}
 
-	// Token: 0x06001071 RID: 4209 RVA: 0x00060989 File Offset: 0x0005EB89
 	public virtual void Update()
 	{
-		this.SetStatic();
+		SetStatic();
 	}
 
-	// Token: 0x06001072 RID: 4210 RVA: 0x00060994 File Offset: 0x0005EB94
 	public virtual void StartSeting()
 	{
-		Transform transform = base.transform.Find("flowchat/enter");
-		if (transform != null)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		Transform val = ((Component)this).transform.Find("flowchat/enter");
+		if ((Object)(object)val != (Object)null)
 		{
-			this.enterScenes = transform.gameObject;
+			enterScenes = ((Component)val).gameObject;
 		}
-		this.PlayerPosition = base.transform.Find("PlayerPosition");
-		this.ComAvatar = (Avatar)KBEngineApp.app.player();
-		AllMapManage.instance.mapIndex[this.NodeIndex] = this;
-		if (this.NodeIndex == this.getAvatarNowMapIndex())
+		PlayerPosition = ((Component)this).transform.Find("PlayerPosition");
+		ComAvatar = (Avatar)KBEngineApp.app.player();
+		AllMapManage.instance.mapIndex[NodeIndex] = this;
+		if (NodeIndex == getAvatarNowMapIndex())
 		{
-			Vector3 position = base.transform.position;
-			if (this.PlayerPosition != null)
+			Vector3 position = ((Component)this).transform.position;
+			if ((Object)(object)PlayerPosition != (Object)null)
 			{
-				position = this.PlayerPosition.position;
+				position = PlayerPosition.position;
 			}
 			if (Tools.getScreenName().StartsWith("F"))
 			{
 				position.y -= 0.4f;
 			}
-			AllMapManage.instance.MapPlayerController.transform.position = position;
+			((Component)AllMapManage.instance.MapPlayerController).transform.position = position;
 		}
-		this.BaseSetFlag();
+		BaseSetFlag();
 	}
 
-	// Token: 0x06001073 RID: 4211 RVA: 0x00060A78 File Offset: 0x0005EC78
 	public virtual void BaseSetFlag()
 	{
-		this.setFlag();
+		setFlag();
 	}
 
-	// Token: 0x06001074 RID: 4212 RVA: 0x00060A80 File Offset: 0x0005EC80
 	public int getRandomNumSum()
 	{
 		int num = 0;
-		foreach (JSONObject jsonobject in this.MapRandomJsonData.list)
+		foreach (JSONObject item in MapRandomJsonData.list)
 		{
-			if (jsonobject["EventLv"].list.Find((JSONObject aa) => (int)aa.n == (int)Tools.instance.getPlayer().level) != null)
+			if (item["EventLv"].list.Find((JSONObject aa) => (int)aa.n == Tools.instance.getPlayer().level) != null)
 			{
-				num += (int)jsonobject["percent"].n;
+				num += (int)item["percent"].n;
 			}
 		}
 		return num;
 	}
 
-	// Token: 0x06001075 RID: 4213 RVA: 0x00060B20 File Offset: 0x0005ED20
 	public int getRandomNum()
 	{
 		byte[] array = new byte[8];
@@ -88,334 +105,314 @@ public class BaseMapCompont : MonoBehaviour
 		return Math.Abs(BitConverter.ToInt32(array, 0));
 	}
 
-	// Token: 0x06001076 RID: 4214 RVA: 0x00060B4C File Offset: 0x0005ED4C
 	public int getEventID()
 	{
-		int randomNumSum = this.getRandomNumSum();
+		int randomNumSum = getRandomNumSum();
 		if (randomNumSum == 0)
 		{
-			Debug.LogError(string.Format("地图{0}的{1}获取事件ID失败，MapRandomJsonData中没有EventLv为{2}的数据，请反馈策划\njson详细:\n{3}", new object[]
-			{
-				SceneEx.NowSceneName,
-				this.NodeIndex,
-				PlayerEx.Player.getLevelType(),
-				this.MapRandomJsonData
-			}));
+			Debug.LogError((object)$"地图{SceneEx.NowSceneName}的{NodeIndex}获取事件ID失败，MapRandomJsonData中没有EventLv为{PlayerEx.Player.getLevelType()}的数据，请反馈策划\njson详细:\n{MapRandomJsonData}");
 			return 0;
 		}
-		int num = this.getRandomNum() % randomNumSum;
+		int num = getRandomNum() % randomNumSum;
 		int result = 0;
-		foreach (JSONObject jsonobject in this.MapRandomJsonData.list)
+		foreach (JSONObject item in MapRandomJsonData.list)
 		{
-			if (jsonobject["EventLv"].list.Find((JSONObject aa) => (int)aa.n == (int)Tools.instance.getPlayer().level) != null)
+			if (item["EventLv"].list.Find((JSONObject aa) => (int)aa.n == Tools.instance.getPlayer().level) != null)
 			{
-				if ((int)jsonobject["percent"].n >= num)
+				if ((int)item["percent"].n >= num)
 				{
-					result = jsonobject["id"].I;
+					result = item["id"].I;
 					break;
 				}
-				num -= (int)jsonobject["percent"].n;
+				num -= (int)item["percent"].n;
 			}
 		}
 		return result;
 	}
 
-	// Token: 0x06001077 RID: 4215 RVA: 0x00004095 File Offset: 0x00002295
 	public void Talk()
 	{
 	}
 
-	// Token: 0x06001078 RID: 4216 RVA: 0x00004095 File Offset: 0x00002295
 	public void StartGame()
 	{
 	}
 
-	// Token: 0x06001079 RID: 4217 RVA: 0x0000280F File Offset: 0x00000A0F
 	public virtual bool YuJianFeiXing()
 	{
 		return false;
 	}
 
-	// Token: 0x0600107A RID: 4218 RVA: 0x00060C74 File Offset: 0x0005EE74
 	public bool CanClick()
 	{
-		return !AllMapManage.instance.isPlayMove && (this.YuJianFeiXing() || (AllMapManage.instance.mapIndex[this.getAvatarNowMapIndex()].nextIndex.Contains(this.NodeIndex) && this.getAvatarNowMapIndex() != this.NodeIndex));
+		if (AllMapManage.instance.isPlayMove)
+		{
+			return false;
+		}
+		if (YuJianFeiXing())
+		{
+			return true;
+		}
+		if (AllMapManage.instance.mapIndex[getAvatarNowMapIndex()].nextIndex.Contains(NodeIndex) && getAvatarNowMapIndex() != NodeIndex)
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x0600107B RID: 4219 RVA: 0x00060CD4 File Offset: 0x0005EED4
 	public void showDebugLine()
 	{
-		foreach (int num in this.nextIndex)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		foreach (int item in nextIndex)
 		{
-			Transform transform = base.transform.parent.Find(string.Concat(num));
-			if (transform != null)
+			Transform val = ((Component)this).transform.parent.Find(string.Concat(item));
+			if ((Object)(object)val != (Object)null)
 			{
-				Vector3 position = transform.transform.position;
-				Vector3 normalized = (base.transform.position - position).normalized;
-				Debug.DrawLine(base.transform.position, position + normalized * 0.5f, Color.red, 0.01f);
+				Vector3 position = ((Component)val).transform.position;
+				Vector3 val2 = ((Component)this).transform.position - position;
+				Vector3 normalized = ((Vector3)(ref val2)).normalized;
+				Debug.DrawLine(((Component)this).transform.position, position + normalized * 0.5f, Color.red, 0.01f);
 			}
 			else
 			{
-				Debug.LogError(string.Concat(new object[]
-				{
-					base.name,
-					"节点的链接节点（",
-					num,
-					"）找不到，请进行修改"
-				}));
+				Debug.LogError((object)(((Object)this).name + "节点的链接节点（" + item + "）找不到，请进行修改"));
 			}
 		}
 	}
 
-	// Token: 0x0600107C RID: 4220 RVA: 0x00060DD4 File Offset: 0x0005EFD4
 	public virtual void SetStatic()
 	{
-		if (this.IsStatic && this.PlayerPosition != null)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		if (IsStatic && (Object)(object)PlayerPosition != (Object)null)
 		{
-			if (this.getAvatarNowMapIndex() == this.NodeIndex)
+			if (getAvatarNowMapIndex() == NodeIndex)
 			{
-				this.enterScenes.transform.localPosition = this.PlayerPosition.transform.localPosition + new Vector3(0f, -1.2f, -2f);
-				this.enterScenes.SetActive(true);
-				return;
+				enterScenes.transform.localPosition = ((Component)PlayerPosition).transform.localPosition + new Vector3(0f, -1.2f, -2f);
+				enterScenes.SetActive(true);
 			}
-			if (this.enterScenes.activeSelf)
+			else if (enterScenes.activeSelf)
 			{
-				this.enterScenes.transform.localPosition = this.PlayerPosition.transform.localPosition + new Vector3(0f, -1.2f, -2f);
-				this.enterScenes.SetActive(false);
+				enterScenes.transform.localPosition = ((Component)PlayerPosition).transform.localPosition + new Vector3(0f, -1.2f, -2f);
+				enterScenes.SetActive(false);
 			}
 		}
 	}
 
-	// Token: 0x0600107D RID: 4221 RVA: 0x00060EA4 File Offset: 0x0005F0A4
 	public void setFlag()
 	{
-		if (this.ComAvatar.taskMag._TaskData.HasField("ShowTask") && (int)this.ComAvatar.taskMag._TaskData["ShowTask"].n != 0)
+		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
+		if (ComAvatar.taskMag._TaskData.HasField("ShowTask") && (int)ComAvatar.taskMag._TaskData["ShowTask"].n != 0)
 		{
-			int taskID = (int)this.ComAvatar.taskMag._TaskData["ShowTask"].n;
-			int index = (int)this.ComAvatar.taskMag._TaskData["Task"][taskID.ToString()]["NowIndex"].n;
+			int taskID = (int)ComAvatar.taskMag._TaskData["ShowTask"].n;
+			int index = (int)ComAvatar.taskMag._TaskData["Task"][taskID.ToString()]["NowIndex"].n;
 			JSONObject taskInfo = jsonData.instance.getTaskInfo(taskID, index);
-			JSONObject jsonobject = jsonData.instance.TaskJsonData[taskID.ToString()];
-			if ((taskInfo != null && (int)taskInfo["mapIndex"].n == this.NodeIndex) || (int)jsonobject["mapIndex"].n == this.NodeIndex)
+			JSONObject jSONObject = jsonData.instance.TaskJsonData[taskID.ToString()];
+			if ((taskInfo != null && (int)taskInfo["mapIndex"].n == NodeIndex) || (int)jSONObject["mapIndex"].n == NodeIndex)
 			{
-				Transform transform = base.transform.Find("PlayerPosition");
-				AllMapManage.instance.TaskFlag.transform.position = ((transform != null) ? transform.transform.position : base.transform.position);
+				Transform val = ((Component)this).transform.Find("PlayerPosition");
+				AllMapManage.instance.TaskFlag.transform.position = (((Object)(object)val != (Object)null) ? ((Component)val).transform.position : ((Component)this).transform.position);
 			}
 		}
 	}
 
-	// Token: 0x0600107E RID: 4222 RVA: 0x00060FF0 File Offset: 0x0005F1F0
 	public virtual void movaAvatar()
 	{
-		if (!this.CanClick())
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		if (!CanClick())
 		{
-			base.transform.Find("flowchat").GetComponent<Flowchart>().StopAllBlocks();
+			((Component)((Component)this).transform.Find("flowchat")).GetComponent<Flowchart>().StopAllBlocks();
 			return;
 		}
-		if (UINPCLeftList.Inst != null && !UINPCLeftList.Inst.nowLeft && !SceneManager.GetActiveScene().name.StartsWith("Sea") && !UINPCJiaoHu.Inst.NowIsJiaoHu)
+		if ((Object)(object)UINPCLeftList.Inst != (Object)null && !UINPCLeftList.Inst.nowLeft)
 		{
-			UINPCLeftList.Inst.ToLeft();
+			Scene activeScene = SceneManager.GetActiveScene();
+			if (!((Scene)(ref activeScene)).name.StartsWith("Sea") && !UINPCJiaoHu.Inst.NowIsJiaoHu)
+			{
+				UINPCLeftList.Inst.ToLeft();
+			}
 		}
-		this.AvatarMoveToThis();
-		this.BaseAddTime();
+		AvatarMoveToThis();
+		BaseAddTime();
 	}
 
-	// Token: 0x0600107F RID: 4223 RVA: 0x00061074 File Offset: 0x0005F274
 	public virtual void BaseAddTime()
 	{
-		JSONObject jsonobject = this.AllMapCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= this.ComAvatar.dunSu);
-		if (jsonobject != null)
+		JSONObject jSONObject = AllMapCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= ComAvatar.dunSu);
+		if (jSONObject != null)
 		{
-			this.ComAvatar.AddTime((int)jsonobject["XiaoHao"].n, 0, 0);
+			ComAvatar.AddTime((int)jSONObject["XiaoHao"].n);
 		}
 	}
 
-	// Token: 0x06001080 RID: 4224 RVA: 0x000610BF File Offset: 0x0005F2BF
 	public virtual void AvatarMoveToThis()
 	{
-		if (AllMapManage.instance != null)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)AllMapManage.instance != (Object)null)
 		{
-			AllMapManage.instance.MapPlayerController.transform.position = base.transform.position;
-			this.setAvatarNowMapIndex();
+			((Component)AllMapManage.instance.MapPlayerController).transform.position = ((Component)this).transform.position;
+			setAvatarNowMapIndex();
 		}
 	}
 
-	// Token: 0x06001081 RID: 4225 RVA: 0x000610F3 File Offset: 0x0005F2F3
 	public virtual void setAvatarNowMapIndex()
 	{
-		Tools.instance.fubenLastIndex = this.ComAvatar.NowMapIndex;
-		this.ComAvatar.NowMapIndex = this.NodeIndex;
+		Tools.instance.fubenLastIndex = ComAvatar.NowMapIndex;
+		ComAvatar.NowMapIndex = NodeIndex;
 	}
 
-	// Token: 0x06001082 RID: 4226 RVA: 0x0006111B File Offset: 0x0005F31B
 	public virtual int getAvatarNowMapIndex()
 	{
-		return this.ComAvatar.NowMapIndex;
+		return ComAvatar.NowMapIndex;
 	}
 
-	// Token: 0x06001083 RID: 4227 RVA: 0x00061128 File Offset: 0x0005F328
 	public virtual void addOption(int talkID)
 	{
 		new AddOption().addOption(talkID);
 	}
 
-	// Token: 0x06001084 RID: 4228 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void fuBenSetClick()
 	{
 	}
 
-	// Token: 0x06001085 RID: 4229 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void showLuDian()
 	{
 	}
 
-	// Token: 0x06001086 RID: 4230 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void CloseLuDian()
 	{
 	}
 
-	// Token: 0x06001087 RID: 4231 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void ResteAllMapNode()
 	{
 	}
 
-	// Token: 0x06001088 RID: 4232 RVA: 0x00061138 File Offset: 0x0005F338
 	public virtual void EventRandom()
 	{
-		if (!this.CanClick())
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Expected O, but got Unknown
+		if (!CanClick())
 		{
 			return;
 		}
-		this.fuBenSetClick();
-		this.movaAvatar();
-		if (this.IsStatic)
+		fuBenSetClick();
+		movaAvatar();
+		if (IsStatic)
 		{
 			return;
 		}
 		Queue<UnityAction> queue = new Queue<UnityAction>();
-		UnityAction item = delegate()
+		UnityAction item = (UnityAction)delegate
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
-			int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int>
-			{
-				this.NodeIndex
-			});
+			int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int> { NodeIndex });
 			if (num != -1)
 			{
-				JSONObject jsonobject = avatar.nomelTaskMag.IsNTaskZiXiangInLuJin(num, new List<int>
-				{
-					this.NodeIndex
-				});
+				JSONObject jSONObject = avatar.nomelTaskMag.IsNTaskZiXiangInLuJin(num, new List<int> { NodeIndex });
 				JSONObject nowChildIDSuiJiJson = avatar.nomelTaskMag.GetNowChildIDSuiJiJson(num);
-				if (jsonobject["type"].I == 5)
+				if (jSONObject["type"].I == 5)
 				{
-					avatar.randomFuBenMag.GetInRandomFuBen(this.NodeIndex, -1);
+					avatar.randomFuBenMag.GetInRandomFuBen(NodeIndex);
 				}
 				else
 				{
-					GlobalValue.Set(401, nowChildIDSuiJiJson["Value"].I, base.GetType().Name + ".EventRandom");
-					GlobalValue.Set(402, num, base.GetType().Name + ".EventRandom");
-					Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + jsonobject["talkID"].str));
+					GlobalValue.Set(401, nowChildIDSuiJiJson["Value"].I, ((object)this).GetType().Name + ".EventRandom");
+					GlobalValue.Set(402, num, ((object)this).GetType().Name + ".EventRandom");
+					Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + jSONObject["talkID"].str));
 				}
 				YSFuncList.Ints.Continue();
-				return;
 			}
-			int i = avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I;
-			int num2 = (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["Type"].n;
-			if (num2 == 2 || num2 == 5 || avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I == 0)
+			else
 			{
-				if (FungusManager.Instance.jieShaBlock == null)
+				int i = avatar.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I;
+				int num2 = (int)avatar.AllMapRandomNode[NodeIndex.ToString()]["Type"].n;
+				if (num2 == 2 || num2 == 5 || avatar.AllMapRandomNode[NodeIndex.ToString()]["EventId"].I == 0)
 				{
-					GameObject gameObject = Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk4010"));
-					FungusManager.Instance.jieShaBlock = gameObject.GetComponentInChildren<Flowchart>();
-				}
-				else if (GlobalValue.Get(171, base.GetType().Name + ".EventRandom") == 1)
-				{
-					GlobalValue.Set(171, 0, base.GetType().Name + ".EventRandom");
+					if ((Object)(object)FungusManager.Instance.jieShaBlock == (Object)null)
+					{
+						GameObject val = Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk4010"));
+						FungusManager.Instance.jieShaBlock = val.GetComponentInChildren<Flowchart>();
+					}
+					else if (GlobalValue.Get(171, ((object)this).GetType().Name + ".EventRandom") == 1)
+					{
+						GlobalValue.Set(171, 0, ((object)this).GetType().Name + ".EventRandom");
+					}
+					else
+					{
+						FungusManager.Instance.jieShaBlock.Reset(resetCommands: false, resetVariables: true);
+						FungusManager.Instance.jieShaBlock.ExecuteBlock("Splash");
+					}
+					ResteAllMapNode();
+					Tools.instance.getPlayer().AllMapSetNode();
+					YSFuncList.Ints.Continue();
 				}
 				else
 				{
-					FungusManager.Instance.jieShaBlock.Reset(false, true);
-					FungusManager.Instance.jieShaBlock.ExecuteBlock("Splash");
+					int i2 = MapRandomJsonData[string.Concat(i)]["EventData"].I;
+					int i3 = MapRandomJsonData[string.Concat(i)]["MosterID"].I;
+					if (MapRandomJsonData[string.Concat(i)]["once"].I != 0)
+					{
+						if (!avatar.SuiJiShiJian.HasField(Tools.getScreenName()))
+						{
+							avatar.SuiJiShiJian.AddField(Tools.getScreenName(), new JSONObject(JSONObject.Type.ARRAY));
+						}
+						avatar.SuiJiShiJian[Tools.getScreenName()].Add(i);
+					}
+					switch ((int)MapRandomJsonData[string.Concat(i)]["EventList"].n)
+					{
+					case 0:
+						Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + i2));
+						break;
+					case 1:
+						addOption(i2);
+						break;
+					case 2:
+						Tools.instance.MonstarID = i3;
+						Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + i2));
+						break;
+					case 3:
+						OpenDadituCaiJi();
+						break;
+					}
+					ResteAllMapNode();
+					Tools.instance.getPlayer().AllMapSetNode();
+					YSFuncList.Ints.Continue();
 				}
-				this.ResteAllMapNode();
-				Tools.instance.getPlayer().AllMapSetNode();
-				YSFuncList.Ints.Continue();
-				return;
 			}
-			int i2 = this.MapRandomJsonData[string.Concat(i)]["EventData"].I;
-			int i3 = this.MapRandomJsonData[string.Concat(i)]["MosterID"].I;
-			if (this.MapRandomJsonData[string.Concat(i)]["once"].I != 0)
-			{
-				if (!avatar.SuiJiShiJian.HasField(Tools.getScreenName()))
-				{
-					avatar.SuiJiShiJian.AddField(Tools.getScreenName(), new JSONObject(JSONObject.Type.ARRAY));
-				}
-				avatar.SuiJiShiJian[Tools.getScreenName()].Add(i);
-			}
-			switch ((int)this.MapRandomJsonData[string.Concat(i)]["EventList"].n)
-			{
-			case 0:
-				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + i2));
-				break;
-			case 1:
-				this.addOption(i2);
-				break;
-			case 2:
-				Tools.instance.MonstarID = i3;
-				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + i2));
-				break;
-			case 3:
-				this.OpenDadituCaiJi();
-				break;
-			}
-			this.ResteAllMapNode();
-			Tools.instance.getPlayer().AllMapSetNode();
-			YSFuncList.Ints.Continue();
 		};
 		queue.Enqueue(item);
 		YSFuncList.Ints.AddFunc(queue);
 	}
 
-	// Token: 0x06001089 RID: 4233 RVA: 0x00061188 File Offset: 0x0005F388
 	public void OpenDadituCaiJi()
 	{
-		ResManager.inst.LoadPrefab("CaiYaoEvent").Inst(null).GetComponent<CaiYaoUIMag>().ShowNomal();
+		ResManager.inst.LoadPrefab("CaiYaoEvent").Inst().GetComponent<CaiYaoUIMag>()
+			.ShowNomal();
 	}
 
-	// Token: 0x0600108A RID: 4234 RVA: 0x000611A9 File Offset: 0x0005F3A9
 	public void closeOption(GameObject OptionObject)
 	{
 		UltimateSurvival.MonoSingleton<UI_Backgroud>.Instance.Value = false;
 		OptionObject.gameObject.SetActive(false);
 		Tools.canClickFlag = true;
 	}
-
-	// Token: 0x04000BE6 RID: 3046
-	[NonSerialized]
-	public int NodeIndex;
-
-	// Token: 0x04000BE7 RID: 3047
-	public List<int> nextIndex = new List<int>();
-
-	// Token: 0x04000BE8 RID: 3048
-	public Vector2 MapPositon;
-
-	// Token: 0x04000BE9 RID: 3049
-	[Tooltip("是否是固定场景，在副本中这个选项决定是否显示节点名称")]
-	public bool IsStatic;
-
-	// Token: 0x04000BEA RID: 3050
-	public JSONObject MapRandomJsonData;
-
-	// Token: 0x04000BEB RID: 3051
-	public JSONObject AllMapCastTimeJsonData;
-
-	// Token: 0x04000BEC RID: 3052
-	protected Avatar ComAvatar;
-
-	// Token: 0x04000BED RID: 3053
-	protected GameObject enterScenes;
-
-	// Token: 0x04000BEE RID: 3054
-	protected Transform PlayerPosition;
 }

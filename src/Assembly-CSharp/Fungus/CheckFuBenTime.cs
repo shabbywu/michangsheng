@@ -1,76 +1,67 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YS", "CheckFuBenTime", "检测副本时间", 0)]
+[AddComponentMenu("")]
+public class CheckFuBenTime : Command
 {
-	// Token: 0x02000F19 RID: 3865
-	[CommandInfo("YS", "CheckFuBenTime", "检测副本时间", 0)]
-	[AddComponentMenu("")]
-	public class CheckFuBenTime : Command
+	[Tooltip("比较类型，大于 小于 等于")]
+	[SerializeField]
+	protected ItemCheck.CompareNum CompareType;
+
+	[Tooltip("剩余时间：单位 /天")]
+	[SerializeField]
+	protected int Time;
+
+	[Tooltip("将检测到的值赋给一个变量")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable TempBool;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006DA9 RID: 28073 RVA: 0x002A3B50 File Offset: 0x002A1D50
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		bool value = false;
+		string screenName = Tools.getScreenName();
+		int num = 0;
+		if (jsonData.instance.FuBenInfoJsonData.HasField(screenName))
 		{
-			Avatar player = Tools.instance.getPlayer();
-			bool value = false;
-			string screenName = Tools.getScreenName();
-			int num = 0;
-			if (jsonData.instance.FuBenInfoJsonData.HasField(screenName))
-			{
-				num = player.fubenContorl[screenName].ResidueTimeDay;
-			}
-			int time = this.Time;
-			if (this.CompareType == ItemCheck.CompareNum.GreaterThan)
-			{
-				if (num > time)
-				{
-					value = true;
-				}
-			}
-			else if (this.CompareType == ItemCheck.CompareNum.LessThan)
-			{
-				if (num < time)
-				{
-					value = true;
-				}
-			}
-			else if (this.CompareType == ItemCheck.CompareNum.equalTo && num == time)
+			num = player.fubenContorl[screenName].ResidueTimeDay;
+		}
+		int time = Time;
+		if (CompareType == ItemCheck.CompareNum.GreaterThan)
+		{
+			if (num > time)
 			{
 				value = true;
 			}
-			this.TempBool.Value = value;
-			this.Continue();
 		}
-
-		// Token: 0x06006DAA RID: 28074 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else if (CompareType == ItemCheck.CompareNum.LessThan)
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			if (num < time)
+			{
+				value = true;
+			}
 		}
-
-		// Token: 0x06006DAB RID: 28075 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
+		else if (CompareType == ItemCheck.CompareNum.equalTo && num == time)
 		{
+			value = true;
 		}
+		TempBool.Value = value;
+		Continue();
+	}
 
-		// Token: 0x04005B46 RID: 23366
-		[Tooltip("比较类型，大于 小于 等于")]
-		[SerializeField]
-		protected ItemCheck.CompareNum CompareType;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005B47 RID: 23367
-		[Tooltip("剩余时间：单位 /天")]
-		[SerializeField]
-		protected int Time;
-
-		// Token: 0x04005B48 RID: 23368
-		[Tooltip("将检测到的值赋给一个变量")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable TempBool;
+	public override void OnReset()
+	{
 	}
 }

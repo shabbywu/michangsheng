@@ -1,83 +1,81 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x0200033F RID: 831
 public class UIMapNingZhouNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x06001C7E RID: 7294 RVA: 0x000CC013 File Offset: 0x000CA213
+	public string NodeName;
+
+	public string WarpSceneName;
+
+	private Image iconImage;
+
+	private Text nodeNameText;
+
+	private Vector3 imageOriScale;
+
+	private Color textOriColor;
+
+	private Color textAnColor = new Color(0.76862746f, 0.75686276f, 0.59607846f);
+
 	public void SetNodeName(string nodeName)
 	{
-		this.NodeName = nodeName;
-		this.nodeNameText.text = nodeName;
+		NodeName = nodeName;
+		nodeNameText.text = nodeName;
 	}
 
-	// Token: 0x06001C7F RID: 7295 RVA: 0x000CC028 File Offset: 0x000CA228
 	public void Init()
 	{
-		this.iconImage = base.transform.GetChild(0).GetComponent<Image>();
-		this.nodeNameText = base.transform.GetChild(1).GetComponent<Text>();
-		this.imageOriScale = this.iconImage.transform.localScale;
-		this.textOriColor = this.nodeNameText.color;
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		iconImage = ((Component)((Component)this).transform.GetChild(0)).GetComponent<Image>();
+		nodeNameText = ((Component)((Component)this).transform.GetChild(1)).GetComponent<Text>();
+		imageOriScale = ((Component)iconImage).transform.localScale;
+		textOriColor = ((Graphic)nodeNameText).color;
 	}
 
-	// Token: 0x06001C80 RID: 7296 RVA: 0x000CC08A File Offset: 0x000CA28A
 	public void SetCanJiaoHu(bool can)
 	{
-		this.iconImage.transform.localScale = this.imageOriScale;
-		this.iconImage.raycastTarget = can;
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		((Component)iconImage).transform.localScale = imageOriScale;
+		((Graphic)iconImage).raycastTarget = can;
 	}
 
-	// Token: 0x06001C81 RID: 7297 RVA: 0x000CC0B0 File Offset: 0x000CA2B0
 	public void SetNodeAlpha(bool alpha)
 	{
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
 		if (alpha)
 		{
-			this.iconImage.color = new Color(1f, 1f, 1f, 0.5f);
-			this.nodeNameText.color = this.textAnColor;
-			return;
+			((Graphic)iconImage).color = new Color(1f, 1f, 1f, 0.5f);
+			((Graphic)nodeNameText).color = textAnColor;
 		}
-		this.iconImage.color = Color.white;
-		this.nodeNameText.color = this.textOriColor;
+		else
+		{
+			((Graphic)iconImage).color = Color.white;
+			((Graphic)nodeNameText).color = textOriColor;
+		}
 	}
 
-	// Token: 0x06001C82 RID: 7298 RVA: 0x000CC117 File Offset: 0x000CA317
 	void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
 	{
 		UIMapPanel.Inst.NingZhou.OnNodeClick(this);
 	}
 
-	// Token: 0x06001C83 RID: 7299 RVA: 0x000CC129 File Offset: 0x000CA329
 	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
 	{
-		this.iconImage.transform.localScale = this.imageOriScale * 1.2f;
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		((Component)iconImage).transform.localScale = imageOriScale * 1.2f;
 	}
 
-	// Token: 0x06001C84 RID: 7300 RVA: 0x000CC14B File Offset: 0x000CA34B
 	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
 	{
-		this.iconImage.transform.localScale = this.imageOriScale;
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		((Component)iconImage).transform.localScale = imageOriScale;
 	}
-
-	// Token: 0x040016F5 RID: 5877
-	public string NodeName;
-
-	// Token: 0x040016F6 RID: 5878
-	public string WarpSceneName;
-
-	// Token: 0x040016F7 RID: 5879
-	private Image iconImage;
-
-	// Token: 0x040016F8 RID: 5880
-	private Text nodeNameText;
-
-	// Token: 0x040016F9 RID: 5881
-	private Vector3 imageOriScale;
-
-	// Token: 0x040016FA RID: 5882
-	private Color textOriColor;
-
-	// Token: 0x040016FB RID: 5883
-	private Color textAnColor = new Color(0.76862746f, 0.75686276f, 0.59607846f);
 }

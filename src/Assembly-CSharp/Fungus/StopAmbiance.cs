@@ -1,24 +1,21 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
-{
-	// Token: 0x02000E4E RID: 3662
-	[CommandInfo("Audio", "Stop Ambiance", "Stops the currently playing game ambiance.", 0)]
-	[AddComponentMenu("")]
-	public class StopAmbiance : Command
-	{
-		// Token: 0x060066F8 RID: 26360 RVA: 0x00288647 File Offset: 0x00286847
-		public override void OnEnter()
-		{
-			FungusManager.Instance.MusicManager.StopAmbiance();
-			this.Continue();
-		}
+namespace Fungus;
 
-		// Token: 0x060066F9 RID: 26361 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
-		public override Color GetButtonColor()
-		{
-			return new Color32(242, 209, 176, byte.MaxValue);
-		}
+[CommandInfo("Audio", "Stop Ambiance", "Stops the currently playing game ambiance.", 0)]
+[AddComponentMenu("")]
+public class StopAmbiance : Command
+{
+	public override void OnEnter()
+	{
+		FungusManager.Instance.MusicManager.StopAmbiance();
+		Continue();
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)242, (byte)209, (byte)176, byte.MaxValue));
 	}
 }

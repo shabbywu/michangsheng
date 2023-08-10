@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[Serializable]
+public class ReorderableBoolList : ReorderableGenericList<bool>
 {
-	// Token: 0x0200059D RID: 1437
-	[Serializable]
-	public class ReorderableBoolList : ReorderableGenericList<bool>
-	{
-	}
 }

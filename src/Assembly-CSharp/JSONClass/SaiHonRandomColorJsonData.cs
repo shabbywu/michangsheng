@@ -1,74 +1,60 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class SaiHonRandomColorJsonData : IJSONClass
 {
-	// Token: 0x020008D0 RID: 2256
-	public class SaiHonRandomColorJsonData : IJSONClass
+	public static Dictionary<int, SaiHonRandomColorJsonData> DataDict = new Dictionary<int, SaiHonRandomColorJsonData>();
+
+	public static List<SaiHonRandomColorJsonData> DataList = new List<SaiHonRandomColorJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int R;
+
+	public int G;
+
+	public int B;
+
+	public string beizhu;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004153 RID: 16723 RVA: 0x001BF568 File Offset: 0x001BD768
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.SaiHonRandomColorJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.SaiHonRandomColorJsonData.list)
+			try
 			{
-				try
+				SaiHonRandomColorJsonData saiHonRandomColorJsonData = new SaiHonRandomColorJsonData();
+				saiHonRandomColorJsonData.id = item["id"].I;
+				saiHonRandomColorJsonData.R = item["R"].I;
+				saiHonRandomColorJsonData.G = item["G"].I;
+				saiHonRandomColorJsonData.B = item["B"].I;
+				saiHonRandomColorJsonData.beizhu = item["beizhu"].Str;
+				if (DataDict.ContainsKey(saiHonRandomColorJsonData.id))
 				{
-					SaiHonRandomColorJsonData saiHonRandomColorJsonData = new SaiHonRandomColorJsonData();
-					saiHonRandomColorJsonData.id = jsonobject["id"].I;
-					saiHonRandomColorJsonData.R = jsonobject["R"].I;
-					saiHonRandomColorJsonData.G = jsonobject["G"].I;
-					saiHonRandomColorJsonData.B = jsonobject["B"].I;
-					saiHonRandomColorJsonData.beizhu = jsonobject["beizhu"].Str;
-					if (SaiHonRandomColorJsonData.DataDict.ContainsKey(saiHonRandomColorJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典SaiHonRandomColorJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", saiHonRandomColorJsonData.id));
-					}
-					else
-					{
-						SaiHonRandomColorJsonData.DataDict.Add(saiHonRandomColorJsonData.id, saiHonRandomColorJsonData);
-						SaiHonRandomColorJsonData.DataList.Add(saiHonRandomColorJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典SaiHonRandomColorJsonData.DataDict添加数据时出现重复的键，Key:{saiHonRandomColorJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典SaiHonRandomColorJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(saiHonRandomColorJsonData.id, saiHonRandomColorJsonData);
+				DataList.Add(saiHonRandomColorJsonData);
 			}
-			if (SaiHonRandomColorJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				SaiHonRandomColorJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典SaiHonRandomColorJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004154 RID: 16724 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x0400408A RID: 16522
-		public static Dictionary<int, SaiHonRandomColorJsonData> DataDict = new Dictionary<int, SaiHonRandomColorJsonData>();
-
-		// Token: 0x0400408B RID: 16523
-		public static List<SaiHonRandomColorJsonData> DataList = new List<SaiHonRandomColorJsonData>();
-
-		// Token: 0x0400408C RID: 16524
-		public static Action OnInitFinishAction = new Action(SaiHonRandomColorJsonData.OnInitFinish);
-
-		// Token: 0x0400408D RID: 16525
-		public int id;
-
-		// Token: 0x0400408E RID: 16526
-		public int R;
-
-		// Token: 0x0400408F RID: 16527
-		public int G;
-
-		// Token: 0x04004090 RID: 16528
-		public int B;
-
-		// Token: 0x04004091 RID: 16529
-		public string beizhu;
+	private static void OnInitFinish()
+	{
 	}
 }

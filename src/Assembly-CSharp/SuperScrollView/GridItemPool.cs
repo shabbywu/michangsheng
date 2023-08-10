@@ -1,132 +1,119 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SuperScrollView
-{
-	// Token: 0x020006C5 RID: 1733
-	public class GridItemPool
-	{
-		// Token: 0x060036CA RID: 14026 RVA: 0x00176950 File Offset: 0x00174B50
-		public void Init(GameObject prefabObj, int createCount, RectTransform parent)
-		{
-			this.mPrefabObj = prefabObj;
-			this.mPrefabName = this.mPrefabObj.name;
-			this.mInitCreateCount = createCount;
-			this.mItemParent = parent;
-			this.mPrefabObj.SetActive(false);
-			for (int i = 0; i < this.mInitCreateCount; i++)
-			{
-				LoopGridViewItem item = this.CreateItem();
-				this.RecycleItemReal(item);
-			}
-		}
+namespace SuperScrollView;
 
-		// Token: 0x060036CB RID: 14027 RVA: 0x001769B0 File Offset: 0x00174BB0
-		public LoopGridViewItem GetItem()
+public class GridItemPool
+{
+	private GameObject mPrefabObj;
+
+	private string mPrefabName;
+
+	private int mInitCreateCount = 1;
+
+	private List<LoopGridViewItem> mTmpPooledItemList = new List<LoopGridViewItem>();
+
+	private List<LoopGridViewItem> mPooledItemList = new List<LoopGridViewItem>();
+
+	private static int mCurItemIdCount;
+
+	private RectTransform mItemParent;
+
+	public void Init(GameObject prefabObj, int createCount, RectTransform parent)
+	{
+		mPrefabObj = prefabObj;
+		mPrefabName = ((Object)mPrefabObj).name;
+		mInitCreateCount = createCount;
+		mItemParent = parent;
+		mPrefabObj.SetActive(false);
+		for (int i = 0; i < mInitCreateCount; i++)
 		{
-			GridItemPool.mCurItemIdCount++;
-			LoopGridViewItem loopGridViewItem;
-			if (this.mTmpPooledItemList.Count > 0)
+			LoopGridViewItem item = CreateItem();
+			RecycleItemReal(item);
+		}
+	}
+
+	public LoopGridViewItem GetItem()
+	{
+		mCurItemIdCount++;
+		LoopGridViewItem loopGridViewItem = null;
+		if (mTmpPooledItemList.Count > 0)
+		{
+			int count = mTmpPooledItemList.Count;
+			loopGridViewItem = mTmpPooledItemList[count - 1];
+			mTmpPooledItemList.RemoveAt(count - 1);
+			((Component)loopGridViewItem).gameObject.SetActive(true);
+		}
+		else
+		{
+			int count2 = mPooledItemList.Count;
+			if (count2 == 0)
 			{
-				int count = this.mTmpPooledItemList.Count;
-				loopGridViewItem = this.mTmpPooledItemList[count - 1];
-				this.mTmpPooledItemList.RemoveAt(count - 1);
-				loopGridViewItem.gameObject.SetActive(true);
+				loopGridViewItem = CreateItem();
 			}
 			else
 			{
-				int count2 = this.mPooledItemList.Count;
-				if (count2 == 0)
-				{
-					loopGridViewItem = this.CreateItem();
-				}
-				else
-				{
-					loopGridViewItem = this.mPooledItemList[count2 - 1];
-					this.mPooledItemList.RemoveAt(count2 - 1);
-					loopGridViewItem.gameObject.SetActive(true);
-				}
+				loopGridViewItem = mPooledItemList[count2 - 1];
+				mPooledItemList.RemoveAt(count2 - 1);
+				((Component)loopGridViewItem).gameObject.SetActive(true);
 			}
-			loopGridViewItem.ItemId = GridItemPool.mCurItemIdCount;
-			return loopGridViewItem;
 		}
+		loopGridViewItem.ItemId = mCurItemIdCount;
+		return loopGridViewItem;
+	}
 
-		// Token: 0x060036CC RID: 14028 RVA: 0x00176A60 File Offset: 0x00174C60
-		public void DestroyAllItem()
+	public void DestroyAllItem()
+	{
+		ClearTmpRecycledItem();
+		int count = mPooledItemList.Count;
+		for (int i = 0; i < count; i++)
 		{
-			this.ClearTmpRecycledItem();
-			int count = this.mPooledItemList.Count;
+			Object.DestroyImmediate((Object)(object)((Component)mPooledItemList[i]).gameObject);
+		}
+		mPooledItemList.Clear();
+	}
+
+	public LoopGridViewItem CreateItem()
+	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		GameObject obj = Object.Instantiate<GameObject>(mPrefabObj, Vector3.zero, Quaternion.identity, (Transform)(object)mItemParent);
+		obj.SetActive(true);
+		RectTransform component = obj.GetComponent<RectTransform>();
+		((Transform)component).localScale = Vector3.one;
+		component.anchoredPosition3D = Vector3.zero;
+		((Transform)component).localEulerAngles = Vector3.zero;
+		LoopGridViewItem component2 = obj.GetComponent<LoopGridViewItem>();
+		component2.ItemPrefabName = mPrefabName;
+		return component2;
+	}
+
+	private void RecycleItemReal(LoopGridViewItem item)
+	{
+		((Component)item).gameObject.SetActive(false);
+		mPooledItemList.Add(item);
+	}
+
+	public void RecycleItem(LoopGridViewItem item)
+	{
+		item.PrevItem = null;
+		item.NextItem = null;
+		mTmpPooledItemList.Add(item);
+	}
+
+	public void ClearTmpRecycledItem()
+	{
+		int count = mTmpPooledItemList.Count;
+		if (count != 0)
+		{
 			for (int i = 0; i < count; i++)
 			{
-				Object.DestroyImmediate(this.mPooledItemList[i].gameObject);
+				RecycleItemReal(mTmpPooledItemList[i]);
 			}
-			this.mPooledItemList.Clear();
+			mTmpPooledItemList.Clear();
 		}
-
-		// Token: 0x060036CD RID: 14029 RVA: 0x00176AAC File Offset: 0x00174CAC
-		public LoopGridViewItem CreateItem()
-		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.mPrefabObj, Vector3.zero, Quaternion.identity, this.mItemParent);
-			gameObject.SetActive(true);
-			RectTransform component = gameObject.GetComponent<RectTransform>();
-			component.localScale = Vector3.one;
-			component.anchoredPosition3D = Vector3.zero;
-			component.localEulerAngles = Vector3.zero;
-			LoopGridViewItem component2 = gameObject.GetComponent<LoopGridViewItem>();
-			component2.ItemPrefabName = this.mPrefabName;
-			return component2;
-		}
-
-		// Token: 0x060036CE RID: 14030 RVA: 0x00176B12 File Offset: 0x00174D12
-		private void RecycleItemReal(LoopGridViewItem item)
-		{
-			item.gameObject.SetActive(false);
-			this.mPooledItemList.Add(item);
-		}
-
-		// Token: 0x060036CF RID: 14031 RVA: 0x00176B2C File Offset: 0x00174D2C
-		public void RecycleItem(LoopGridViewItem item)
-		{
-			item.PrevItem = null;
-			item.NextItem = null;
-			this.mTmpPooledItemList.Add(item);
-		}
-
-		// Token: 0x060036D0 RID: 14032 RVA: 0x00176B48 File Offset: 0x00174D48
-		public void ClearTmpRecycledItem()
-		{
-			int count = this.mTmpPooledItemList.Count;
-			if (count == 0)
-			{
-				return;
-			}
-			for (int i = 0; i < count; i++)
-			{
-				this.RecycleItemReal(this.mTmpPooledItemList[i]);
-			}
-			this.mTmpPooledItemList.Clear();
-		}
-
-		// Token: 0x04002FC4 RID: 12228
-		private GameObject mPrefabObj;
-
-		// Token: 0x04002FC5 RID: 12229
-		private string mPrefabName;
-
-		// Token: 0x04002FC6 RID: 12230
-		private int mInitCreateCount = 1;
-
-		// Token: 0x04002FC7 RID: 12231
-		private List<LoopGridViewItem> mTmpPooledItemList = new List<LoopGridViewItem>();
-
-		// Token: 0x04002FC8 RID: 12232
-		private List<LoopGridViewItem> mPooledItemList = new List<LoopGridViewItem>();
-
-		// Token: 0x04002FC9 RID: 12233
-		private static int mCurItemIdCount;
-
-		// Token: 0x04002FCA RID: 12234
-		private RectTransform mItemParent;
 	}
 }

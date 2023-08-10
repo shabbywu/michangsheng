@@ -1,148 +1,129 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[ExecuteInEditMode]
+public abstract class iTweenCommand : Command
 {
-	// Token: 0x02000DE1 RID: 3553
-	[ExecuteInEditMode]
-	public abstract class iTweenCommand : Command
+	[Tooltip("Target game object to apply the Tween to")]
+	[SerializeField]
+	protected GameObjectData _targetObject;
+
+	[Tooltip("An individual name useful for stopping iTweens by name")]
+	[SerializeField]
+	protected StringData _tweenName;
+
+	[Tooltip("The time in seconds the animation will take to complete")]
+	[SerializeField]
+	protected FloatData _duration = new FloatData(1f);
+
+	[Tooltip("The shape of the easing curve applied to the animation")]
+	[SerializeField]
+	protected iTween.EaseType easeType = iTween.EaseType.easeInOutQuad;
+
+	[Tooltip("The type of loop to apply once the animation has completed")]
+	[SerializeField]
+	protected iTween.LoopType loopType;
+
+	[Tooltip("Stop any previously added iTweens on this object before adding this iTween")]
+	[SerializeField]
+	protected bool stopPreviousTweens;
+
+	[Tooltip("Wait until the tween has finished before executing the next command")]
+	[SerializeField]
+	protected bool waitUntilFinished = true;
+
+	[HideInInspector]
+	[FormerlySerializedAs("target")]
+	[FormerlySerializedAs("targetObject")]
+	public GameObject targetObjectOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("tweenName")]
+	public string tweenNameOLD = "";
+
+	[HideInInspector]
+	[FormerlySerializedAs("duration")]
+	public float durationOLD;
+
+	protected virtual void OniTweenComplete(object param)
 	{
-		// Token: 0x060064C4 RID: 25796 RVA: 0x002809B8 File Offset: 0x0027EBB8
-		protected virtual void OniTweenComplete(object param)
+		Command command = param as Command;
+		if ((Object)(object)command != (Object)null && ((object)command).Equals((object?)this) && waitUntilFinished)
 		{
-			Command command = param as Command;
-			if (command != null && command.Equals(this) && this.waitUntilFinished)
+			Continue();
+		}
+	}
+
+	public override void OnEnter()
+	{
+		if ((Object)(object)_targetObject.Value == (Object)null)
+		{
+			Continue();
+			return;
+		}
+		if (stopPreviousTweens)
+		{
+			iTween[] components = _targetObject.Value.GetComponents<iTween>();
+			foreach (iTween obj in components)
 			{
-				this.Continue();
+				obj.time = 0f;
+				((Component)obj).SendMessage("Update");
 			}
 		}
-
-		// Token: 0x060064C5 RID: 25797 RVA: 0x002809EC File Offset: 0x0027EBEC
-		public override void OnEnter()
+		DoTween();
+		if (!waitUntilFinished)
 		{
-			if (this._targetObject.Value == null)
-			{
-				this.Continue();
-				return;
-			}
-			if (this.stopPreviousTweens)
-			{
-				foreach (iTween iTween in this._targetObject.Value.GetComponents<iTween>())
-				{
-					iTween.time = 0f;
-					iTween.SendMessage("Update");
-				}
-			}
-			this.DoTween();
-			if (!this.waitUntilFinished)
-			{
-				this.Continue();
-			}
+			Continue();
 		}
+	}
 
-		// Token: 0x060064C6 RID: 25798 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void DoTween()
+	public virtual void DoTween()
+	{
+	}
+
+	public override string GetSummary()
+	{
+		if ((Object)(object)_targetObject.Value == (Object)null)
 		{
+			return "Error: No target object selected";
 		}
+		return ((Object)_targetObject.Value).name + " over " + _duration.Value + " seconds";
+	}
 
-		// Token: 0x060064C7 RID: 25799 RVA: 0x00280A68 File Offset: 0x0027EC68
-		public override string GetSummary()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)233, (byte)163, (byte)180, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_targetObject.gameObjectRef == (Object)(object)variable) && !((Object)(object)_tweenName.stringRef == (Object)(object)variable))
 		{
-			if (this._targetObject.Value == null)
-			{
-				return "Error: No target object selected";
-			}
-			return string.Concat(new object[]
-			{
-				this._targetObject.Value.name,
-				" over ",
-				this._duration.Value,
-				" seconds"
-			});
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x060064C8 RID: 25800 RVA: 0x00280ACF File Offset: 0x0027ECCF
-		public override Color GetButtonColor()
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)targetObjectOLD != (Object)null)
 		{
-			return new Color32(233, 163, 180, byte.MaxValue);
+			_targetObject.Value = targetObjectOLD;
+			targetObjectOLD = null;
 		}
-
-		// Token: 0x060064C9 RID: 25801 RVA: 0x00280AEF File Offset: 0x0027ECEF
-		public override bool HasReference(Variable variable)
+		if (tweenNameOLD != "")
 		{
-			return this._targetObject.gameObjectRef == variable || this._tweenName.stringRef == variable || base.HasReference(variable);
+			_tweenName.Value = tweenNameOLD;
+			tweenNameOLD = "";
 		}
-
-		// Token: 0x060064CA RID: 25802 RVA: 0x00280B20 File Offset: 0x0027ED20
-		protected virtual void OnEnable()
+		if (durationOLD != 0f)
 		{
-			if (this.targetObjectOLD != null)
-			{
-				this._targetObject.Value = this.targetObjectOLD;
-				this.targetObjectOLD = null;
-			}
-			if (this.tweenNameOLD != "")
-			{
-				this._tweenName.Value = this.tweenNameOLD;
-				this.tweenNameOLD = "";
-			}
-			if (this.durationOLD != 0f)
-			{
-				this._duration.Value = this.durationOLD;
-				this.durationOLD = 0f;
-			}
+			_duration.Value = durationOLD;
+			durationOLD = 0f;
 		}
-
-		// Token: 0x040056B4 RID: 22196
-		[Tooltip("Target game object to apply the Tween to")]
-		[SerializeField]
-		protected GameObjectData _targetObject;
-
-		// Token: 0x040056B5 RID: 22197
-		[Tooltip("An individual name useful for stopping iTweens by name")]
-		[SerializeField]
-		protected StringData _tweenName;
-
-		// Token: 0x040056B6 RID: 22198
-		[Tooltip("The time in seconds the animation will take to complete")]
-		[SerializeField]
-		protected FloatData _duration = new FloatData(1f);
-
-		// Token: 0x040056B7 RID: 22199
-		[Tooltip("The shape of the easing curve applied to the animation")]
-		[SerializeField]
-		protected iTween.EaseType easeType = iTween.EaseType.easeInOutQuad;
-
-		// Token: 0x040056B8 RID: 22200
-		[Tooltip("The type of loop to apply once the animation has completed")]
-		[SerializeField]
-		protected iTween.LoopType loopType;
-
-		// Token: 0x040056B9 RID: 22201
-		[Tooltip("Stop any previously added iTweens on this object before adding this iTween")]
-		[SerializeField]
-		protected bool stopPreviousTweens;
-
-		// Token: 0x040056BA RID: 22202
-		[Tooltip("Wait until the tween has finished before executing the next command")]
-		[SerializeField]
-		protected bool waitUntilFinished = true;
-
-		// Token: 0x040056BB RID: 22203
-		[HideInInspector]
-		[FormerlySerializedAs("target")]
-		[FormerlySerializedAs("targetObject")]
-		public GameObject targetObjectOLD;
-
-		// Token: 0x040056BC RID: 22204
-		[HideInInspector]
-		[FormerlySerializedAs("tweenName")]
-		public string tweenNameOLD = "";
-
-		// Token: 0x040056BD RID: 22205
-		[HideInInspector]
-		[FormerlySerializedAs("duration")]
-		public float durationOLD;
 	}
 }

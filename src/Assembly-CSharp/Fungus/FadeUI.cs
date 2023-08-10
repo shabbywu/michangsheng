@@ -1,238 +1,250 @@
-﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("UI", "Fade UI", "Fades a UI object", 0)]
+public class FadeUI : TweenUI
 {
-	// Token: 0x02000DD1 RID: 3537
-	[CommandInfo("UI", "Fade UI", "Fades a UI object", 0)]
-	public class FadeUI : TweenUI
+	[SerializeField]
+	protected FadeMode fadeMode;
+
+	[SerializeField]
+	protected ColorData targetColor = new ColorData(Color.white);
+
+	[SerializeField]
+	protected FloatData targetAlpha = new FloatData(1f);
+
+	protected override void ApplyTween(GameObject go)
 	{
-		// Token: 0x06006487 RID: 25735 RVA: 0x0027EF78 File Offset: 0x0027D178
-		protected override void ApplyTween(GameObject go)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0162: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0262: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0278: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0289: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0364: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0428: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0433: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0398: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0530: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d9: Unknown result type (might be due to invalid IL or missing references)
+		Image[] componentsInChildren = go.GetComponentsInChildren<Image>();
+		foreach (Image val in componentsInChildren)
 		{
-			foreach (Image image in go.GetComponentsInChildren<Image>())
+			if (Mathf.Approximately((float)duration, 0f))
 			{
-				if (Mathf.Approximately(this.duration, 0f))
+				switch (fadeMode)
 				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							image.color = this.targetColor;
-						}
-					}
-					else
-					{
-						Color color = image.color;
-						color.a = this.targetAlpha;
-						image.color = color;
-					}
+				case FadeMode.Alpha:
+				{
+					Color color = ((Graphic)val).color;
+					color.a = targetAlpha;
+					((Graphic)val).color = color;
+					break;
 				}
-				else
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							LeanTween.color(image.rectTransform, this.targetColor, this.duration).setEase(this.tweenType).setEase(this.tweenType);
-						}
-					}
-					else
-					{
-						LeanTween.alpha(image.rectTransform, this.targetAlpha, this.duration).setEase(this.tweenType).setEase(this.tweenType);
-					}
+				case FadeMode.Color:
+					((Graphic)val).color = targetColor;
+					break;
 				}
 			}
-			foreach (Text text in go.GetComponentsInChildren<Text>())
+			else
 			{
-				if (Mathf.Approximately(this.duration, 0f))
+				switch (fadeMode)
 				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							text.color = this.targetColor;
-						}
-					}
-					else
-					{
-						Color color2 = text.color;
-						color2.a = this.targetAlpha;
-						text.color = color2;
-					}
-				}
-				else
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							LeanTween.textColor(text.rectTransform, this.targetColor, this.duration).setEase(this.tweenType);
-						}
-					}
-					else
-					{
-						LeanTween.textAlpha(text.rectTransform, this.targetAlpha, this.duration).setEase(this.tweenType);
-					}
-				}
-			}
-			foreach (TextMesh textMesh in go.GetComponentsInChildren<TextMesh>())
-			{
-				if (Mathf.Approximately(this.duration, 0f))
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							textMesh.color = this.targetColor;
-						}
-					}
-					else
-					{
-						Color color3 = textMesh.color;
-						color3.a = this.targetAlpha;
-						textMesh.color = color3;
-					}
-				}
-				else
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							LeanTween.color(go, this.targetColor, this.duration).setEase(this.tweenType);
-						}
-					}
-					else
-					{
-						LeanTween.alpha(go, this.targetAlpha, this.duration).setEase(this.tweenType);
-					}
-				}
-			}
-			TMP_Text[] componentsInChildren4 = go.GetComponentsInChildren<TMP_Text>();
-			for (int l = 0; l < componentsInChildren4.Length; l++)
-			{
-				TMP_Text tmpro = componentsInChildren4[l];
-				if (Mathf.Approximately(this.duration, 0f))
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							tmpro.color = this.targetColor;
-						}
-					}
-					else
-					{
-						Color color4 = tmpro.color;
-						color4.a = this.targetAlpha;
-						tmpro.color = color4;
-					}
-				}
-				else
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							LeanTween.value(tmpro.gameObject, tmpro.color, this.targetColor.Value, this.duration).setEase(this.tweenType).setOnUpdate(delegate(Color colorValue)
-							{
-								tmpro.color = colorValue;
-							});
-						}
-					}
-					else
-					{
-						LeanTween.value(tmpro.gameObject, tmpro.color.a, this.targetAlpha.Value, this.duration).setEase(this.tweenType).setOnUpdate(delegate(float alphaValue)
-						{
-							Color color5 = tmpro.color;
-							color5.a = alphaValue;
-							tmpro.color = color5;
-						});
-					}
-				}
-			}
-			foreach (CanvasGroup canvasGroup in go.GetComponentsInChildren<CanvasGroup>())
-			{
-				if (Mathf.Approximately(this.duration, 0f))
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							canvasGroup.alpha = this.targetColor.Value.a;
-						}
-					}
-					else
-					{
-						canvasGroup.alpha = this.targetAlpha.Value;
-					}
-				}
-				else
-				{
-					FadeMode fadeMode = this.fadeMode;
-					if (fadeMode != FadeMode.Alpha)
-					{
-						if (fadeMode == FadeMode.Color)
-						{
-							LeanTween.alphaCanvas(canvasGroup, this.targetColor.Value.a, this.duration).setEase(this.tweenType);
-						}
-					}
-					else
-					{
-						LeanTween.alphaCanvas(canvasGroup, this.targetAlpha, this.duration).setEase(this.tweenType);
-					}
+				case FadeMode.Alpha:
+					LeanTween.alpha(((Graphic)val).rectTransform, targetAlpha, duration).setEase(tweenType).setEase(tweenType);
+					break;
+				case FadeMode.Color:
+					LeanTween.color(((Graphic)val).rectTransform, targetColor, duration).setEase(tweenType).setEase(tweenType);
+					break;
 				}
 			}
 		}
-
-		// Token: 0x06006488 RID: 25736 RVA: 0x0027F4EC File Offset: 0x0027D6EC
-		protected override string GetSummaryValue()
+		Text[] componentsInChildren2 = go.GetComponentsInChildren<Text>();
+		foreach (Text val2 in componentsInChildren2)
 		{
-			if (this.fadeMode == FadeMode.Alpha)
+			if (Mathf.Approximately((float)duration, 0f))
 			{
-				return this.targetAlpha.Value.ToString() + " alpha";
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+				{
+					Color color2 = ((Graphic)val2).color;
+					color2.a = targetAlpha;
+					((Graphic)val2).color = color2;
+					break;
+				}
+				case FadeMode.Color:
+					((Graphic)val2).color = targetColor;
+					break;
+				}
 			}
-			if (this.fadeMode == FadeMode.Color)
+			else
 			{
-				return this.targetColor.Value.ToString() + " color";
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+					LeanTween.textAlpha(((Graphic)val2).rectTransform, targetAlpha, duration).setEase(tweenType);
+					break;
+				case FadeMode.Color:
+					LeanTween.textColor(((Graphic)val2).rectTransform, targetColor, duration).setEase(tweenType);
+					break;
+				}
 			}
-			return "";
 		}
-
-		// Token: 0x06006489 RID: 25737 RVA: 0x0027F551 File Offset: 0x0027D751
-		public override bool IsPropertyVisible(string propertyName)
+		TextMesh[] componentsInChildren3 = go.GetComponentsInChildren<TextMesh>();
+		foreach (TextMesh val3 in componentsInChildren3)
 		{
-			return (this.fadeMode != FadeMode.Alpha || !(propertyName == "targetColor")) && (this.fadeMode != FadeMode.Color || !(propertyName == "targetAlpha"));
+			if (Mathf.Approximately((float)duration, 0f))
+			{
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+				{
+					Color color3 = val3.color;
+					color3.a = targetAlpha;
+					val3.color = color3;
+					break;
+				}
+				case FadeMode.Color:
+					val3.color = targetColor;
+					break;
+				}
+			}
+			else
+			{
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+					LeanTween.alpha(go, targetAlpha, duration).setEase(tweenType);
+					break;
+				case FadeMode.Color:
+					LeanTween.color(go, targetColor, duration).setEase(tweenType);
+					break;
+				}
+			}
 		}
-
-		// Token: 0x0600648A RID: 25738 RVA: 0x0027F583 File Offset: 0x0027D783
-		public override bool HasReference(Variable variable)
+		TMP_Text[] componentsInChildren4 = go.GetComponentsInChildren<TMP_Text>();
+		foreach (TMP_Text tmpro in componentsInChildren4)
 		{
-			return this.targetColor.colorRef == variable || this.targetAlpha.floatRef == variable || base.HasReference(variable);
+			if (Mathf.Approximately((float)duration, 0f))
+			{
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+				{
+					Color color4 = ((Graphic)tmpro).color;
+					color4.a = targetAlpha;
+					((Graphic)tmpro).color = color4;
+					break;
+				}
+				case FadeMode.Color:
+					((Graphic)tmpro).color = targetColor;
+					break;
+				}
+				continue;
+			}
+			switch (fadeMode)
+			{
+			case FadeMode.Alpha:
+				LeanTween.value(((Component)tmpro).gameObject, ((Graphic)tmpro).color.a, targetAlpha.Value, duration).setEase(tweenType).setOnUpdate(delegate(float alphaValue)
+				{
+					//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+					//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+					//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+					Color color5 = ((Graphic)tmpro).color;
+					color5.a = alphaValue;
+					((Graphic)tmpro).color = color5;
+				});
+				break;
+			case FadeMode.Color:
+				LeanTween.value(((Component)tmpro).gameObject, ((Graphic)tmpro).color, targetColor.Value, duration).setEase(tweenType).setOnUpdate(delegate(Color colorValue)
+				{
+					//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+					((Graphic)tmpro).color = colorValue;
+				});
+				break;
+			}
 		}
+		CanvasGroup[] componentsInChildren5 = go.GetComponentsInChildren<CanvasGroup>();
+		foreach (CanvasGroup val4 in componentsInChildren5)
+		{
+			if (Mathf.Approximately((float)duration, 0f))
+			{
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+					val4.alpha = targetAlpha.Value;
+					break;
+				case FadeMode.Color:
+					val4.alpha = targetColor.Value.a;
+					break;
+				}
+			}
+			else
+			{
+				switch (fadeMode)
+				{
+				case FadeMode.Alpha:
+					LeanTween.alphaCanvas(val4, targetAlpha, duration).setEase(tweenType);
+					break;
+				case FadeMode.Color:
+					LeanTween.alphaCanvas(val4, targetColor.Value.a, duration).setEase(tweenType);
+					break;
+				}
+			}
+		}
+	}
 
-		// Token: 0x04005663 RID: 22115
-		[SerializeField]
-		protected FadeMode fadeMode;
+	protected override string GetSummaryValue()
+	{
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		if (fadeMode == FadeMode.Alpha)
+		{
+			return targetAlpha.Value + " alpha";
+		}
+		if (fadeMode == FadeMode.Color)
+		{
+			Color value = targetColor.Value;
+			return ((object)(Color)(ref value)).ToString() + " color";
+		}
+		return "";
+	}
 
-		// Token: 0x04005664 RID: 22116
-		[SerializeField]
-		protected ColorData targetColor = new ColorData(Color.white);
+	public override bool IsPropertyVisible(string propertyName)
+	{
+		if (fadeMode == FadeMode.Alpha && propertyName == "targetColor")
+		{
+			return false;
+		}
+		if (fadeMode == FadeMode.Color && propertyName == "targetAlpha")
+		{
+			return false;
+		}
+		return true;
+	}
 
-		// Token: 0x04005665 RID: 22117
-		[SerializeField]
-		protected FloatData targetAlpha = new FloatData(1f);
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)targetColor.colorRef == (Object)(object)variable) && !((Object)(object)targetAlpha.floatRef == (Object)(object)variable))
+		{
+			return base.HasReference(variable);
+		}
+		return true;
 	}
 }

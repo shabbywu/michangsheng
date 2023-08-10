@@ -1,58 +1,75 @@
-﻿using System;
 using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200013F RID: 319
 public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPointerDownHandler, IEndDragHandler
 {
-	// Token: 0x14000034 RID: 52
-	// (add) Token: 0x06000E9C RID: 3740 RVA: 0x0005804C File Offset: 0x0005624C
-	// (remove) Token: 0x06000E9D RID: 3741 RVA: 0x00058080 File Offset: 0x00056280
-	public static event DragItem.ItemDelegate updateInventoryList;
+	public delegate void ItemDelegate();
 
-	// Token: 0x06000E9E RID: 3742 RVA: 0x000580B4 File Offset: 0x000562B4
+	private Vector2 pointerOffset;
+
+	private RectTransform rectTransform;
+
+	private RectTransform rectTransformSlot;
+
+	private CanvasGroup canvasGroup;
+
+	private GameObject oldSlot;
+
+	private Inventory inventory;
+
+	private Transform draggedItemBox;
+
+	public static event ItemDelegate updateInventoryList;
+
 	private void Start()
 	{
-		this.rectTransform = base.GetComponent<RectTransform>();
-		this.canvasGroup = base.GetComponent<CanvasGroup>();
-		this.rectTransformSlot = GameObject.FindGameObjectWithTag("DraggingItem").GetComponent<RectTransform>();
-		this.inventory = base.transform.parent.parent.parent.GetComponent<Inventory>();
-		this.draggedItemBox = GameObject.FindGameObjectWithTag("DraggingItem").transform;
+		rectTransform = ((Component)this).GetComponent<RectTransform>();
+		canvasGroup = ((Component)this).GetComponent<CanvasGroup>();
+		rectTransformSlot = GameObject.FindGameObjectWithTag("DraggingItem").GetComponent<RectTransform>();
+		inventory = ((Component)((Component)this).transform.parent.parent.parent).GetComponent<Inventory>();
+		draggedItemBox = GameObject.FindGameObjectWithTag("DraggingItem").transform;
 	}
 
-	// Token: 0x06000E9F RID: 3743 RVA: 0x00058124 File Offset: 0x00056324
 	public void OnDrag(PointerEventData data)
 	{
-		if (this.rectTransform == null)
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)rectTransform == (Object)null)
 		{
 			return;
 		}
-		if (data.button == null && base.transform.parent.GetComponent<CraftResultSlot>() == null)
+		if ((int)data.button == 0 && (Object)(object)((Component)((Component)this).transform.parent).GetComponent<CraftResultSlot>() == (Object)null)
 		{
-			this.rectTransform.SetAsLastSibling();
-			base.transform.SetParent(this.draggedItemBox);
-			this.canvasGroup.blocksRaycasts = false;
-			Vector2 vector;
-			if (RectTransformUtility.ScreenPointToLocalPointInRectangle(this.rectTransformSlot, Input.mousePosition, data.pressEventCamera, ref vector))
+			((Transform)rectTransform).SetAsLastSibling();
+			((Component)this).transform.SetParent(draggedItemBox);
+			canvasGroup.blocksRaycasts = false;
+			Vector2 val = default(Vector2);
+			if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransformSlot, Vector2.op_Implicit(Input.mousePosition), data.pressEventCamera, ref val))
 			{
-				this.rectTransform.localPosition = vector - this.pointerOffset;
-				if (base.transform.GetComponent<ConsumeItem>().duplication != null)
+				((Transform)rectTransform).localPosition = Vector2.op_Implicit(val - pointerOffset);
+				if ((Object)(object)((Component)((Component)this).transform).GetComponent<ConsumeItem>().duplication != (Object)null)
 				{
-					Object.Destroy(base.transform.GetComponent<ConsumeItem>().duplication);
+					Object.Destroy((Object)(object)((Component)((Component)this).transform).GetComponent<ConsumeItem>().duplication);
 				}
 			}
 		}
-		this.inventory.OnUpdateItemList();
+		inventory.OnUpdateItemList();
 	}
 
-	// Token: 0x06000EA0 RID: 3744 RVA: 0x00058204 File Offset: 0x00056404
 	public void OnPointerDown(PointerEventData data)
 	{
-		if (data.button == null)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)data.button == 0)
 		{
-			RectTransformUtility.ScreenPointToLocalPointInRectangle(this.rectTransform, data.position, data.pressEventCamera, ref this.pointerOffset);
-			this.oldSlot = base.transform.parent.gameObject;
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, data.position, data.pressEventCamera, ref pointerOffset);
+			oldSlot = ((Component)((Component)this).transform.parent).gameObject;
 		}
 		if (DragItem.updateInventoryList != null)
 		{
@@ -60,38 +77,79 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 		}
 	}
 
-	// Token: 0x06000EA1 RID: 3745 RVA: 0x00058260 File Offset: 0x00056460
 	public void createDuplication(GameObject Item)
 	{
 		Item item = Item.GetComponent<ItemOnObject>().item;
-		GameObject gameObject = GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().addItemToInventory(item.itemID, item.itemValue);
-		gameObject.transform.parent.parent.parent.GetComponent<Inventory>().stackableSettings();
-		Item.GetComponent<ConsumeItem>().duplication = gameObject;
-		gameObject.GetComponent<ConsumeItem>().duplication = Item;
+		GameObject val = GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().addItemToInventory(item.itemID, item.itemValue);
+		((Component)val.transform.parent.parent.parent).GetComponent<Inventory>().stackableSettings();
+		Item.GetComponent<ConsumeItem>().duplication = val;
+		val.GetComponent<ConsumeItem>().duplication = Item;
 	}
 
-	// Token: 0x06000EA2 RID: 3746 RVA: 0x000582D4 File Offset: 0x000564D4
 	public void OnEndDrag(PointerEventData data)
 	{
-		if (data.button == null)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1498: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c0b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0251: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e4d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0da4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0daf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f4b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ebb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0acf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0743: Unknown result type (might be due to invalid IL or missing references)
+		//IL_104f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0722: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1134: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ba0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b21: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b2c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0485: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0491: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0409: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1259: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1264: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1365: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1370: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1303: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0592: Unknown result type (might be due to invalid IL or missing references)
+		//IL_059d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_061b: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)data.button == 0)
 		{
-			this.canvasGroup.blocksRaycasts = true;
-			Transform transform = null;
-			if (data.pointerEnter != null)
+			canvasGroup.blocksRaycasts = true;
+			Transform val = null;
+			if ((Object)(object)data.pointerEnter != (Object)null)
 			{
-				transform = data.pointerEnter.transform;
+				val = data.pointerEnter.transform;
 			}
-			if (transform != null && transform.tag != "Untagged")
+			if ((Object)(object)val != (Object)null && ((Component)val).tag != "Untagged")
 			{
-				GameObject gameObject = base.gameObject;
-				GameObject gameObject2 = transform.parent.gameObject;
-				RectTransform component = base.gameObject.GetComponent<RectTransform>();
-				RectTransform component2 = transform.parent.GetComponent<RectTransform>();
-				Item item = this.rectTransform.GetComponent<ItemOnObject>().item;
+				GameObject gameObject = ((Component)this).gameObject;
+				GameObject gameObject2 = ((Component)val.parent).gameObject;
+				RectTransform component = ((Component)this).gameObject.GetComponent<RectTransform>();
+				RectTransform component2 = ((Component)val.parent).GetComponent<RectTransform>();
+				Item item = ((Component)rectTransform).GetComponent<ItemOnObject>().item;
 				Item item2 = new Item();
-				if (transform.parent.GetComponent<ItemOnObject>() != null)
+				if ((Object)(object)((Component)val.parent).GetComponent<ItemOnObject>() != (Object)null)
 				{
-					item2 = transform.parent.GetComponent<ItemOnObject>().item;
+					item2 = ((Component)val.parent).GetComponent<ItemOnObject>().item;
 				}
 				bool flag = item.itemName == item2.itemName;
 				bool flag2 = item.Equals(item2);
@@ -99,56 +157,56 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 				bool flag4 = false;
 				if (flag)
 				{
-					flag4 = (item.itemValue < item.maxStack);
-					flag3 = (item2.itemValue < item2.maxStack);
+					flag4 = item.itemValue < item.maxStack;
+					flag3 = item2.itemValue < item2.maxStack;
 				}
-				if (component2.parent == null)
+				if ((Object)(object)((Transform)component2).parent == (Object)null)
 				{
-					base.gameObject.transform.SetParent(this.oldSlot.transform);
-					base.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+					((Component)this).gameObject.transform.SetParent(oldSlot.transform);
+					((Transform)((Component)this).gameObject.GetComponent<RectTransform>()).localPosition = Vector3.zero;
 					return;
 				}
-				GameObject gameObject3 = component2.parent.gameObject;
+				GameObject gameObject3 = ((Component)((Transform)component2).parent).gameObject;
 				if (gameObject3.tag == "Slot")
 				{
-					gameObject3 = component2.parent.parent.parent.gameObject;
+					gameObject3 = ((Component)((Transform)component2).parent.parent.parent).gameObject;
 				}
 				if (gameObject3.tag.Equals("Slot"))
 				{
-					gameObject3 = gameObject3.transform.parent.parent.gameObject;
+					gameObject3 = ((Component)gameObject3.transform.parent.parent).gameObject;
 				}
-				if (gameObject3.GetComponent<Hotbar>() == null && gameObject3.GetComponent<EquipmentSystem>() == null && gameObject3.GetComponent<CraftSystem>() == null)
+				if ((Object)(object)gameObject3.GetComponent<Hotbar>() == (Object)null && (Object)(object)gameObject3.GetComponent<EquipmentSystem>() == (Object)null && (Object)(object)gameObject3.GetComponent<CraftSystem>() == (Object)null)
 				{
-					if (transform.transform.parent.tag == "ResultSlot" || transform.transform.tag == "ResultSlot" || transform.transform.parent.parent.tag == "ResultSlot")
+					if (((Component)((Component)val).transform.parent).tag == "ResultSlot" || ((Component)((Component)val).transform).tag == "ResultSlot" || ((Component)((Component)val).transform.parent.parent).tag == "ResultSlot")
 					{
-						gameObject.transform.SetParent(this.oldSlot.transform);
-						component.localPosition = Vector3.zero;
+						gameObject.transform.SetParent(oldSlot.transform);
+						((Transform)component).localPosition = Vector3.zero;
 					}
 					else
 					{
-						int childCount = transform.transform.parent.childCount;
-						bool flag5 = transform.transform.parent.GetChild(0).tag == "ItemIcon";
+						int childCount = ((Component)val).transform.parent.childCount;
+						bool flag5 = ((Component)((Component)val).transform.parent.GetChild(0)).tag == "ItemIcon";
 						if (childCount != 0 && flag5)
 						{
 							bool flag6 = false;
 							if (flag)
 							{
-								flag6 = (item.itemValue + item2.itemValue <= item.maxStack);
+								flag6 = item.itemValue + item2.itemValue <= item.maxStack;
 							}
-							if (this.inventory.stackable && flag && flag4 && flag3)
+							if (inventory.stackable && flag && flag4 && flag3)
 							{
 								if (flag6 && !flag2)
 								{
 									item2.itemValue = item.itemValue + item2.itemValue;
-									gameObject2.transform.SetParent(transform.parent.parent);
-									Object.Destroy(gameObject);
-									component2.localPosition = Vector3.zero;
-									if (gameObject2.GetComponent<ConsumeItem>().duplication != null)
+									gameObject2.transform.SetParent(val.parent.parent);
+									Object.Destroy((Object)(object)gameObject);
+									((Transform)component2).localPosition = Vector3.zero;
+									if ((Object)(object)gameObject2.GetComponent<ConsumeItem>().duplication != (Object)null)
 									{
 										GameObject duplication = gameObject2.GetComponent<ConsumeItem>().duplication;
 										duplication.GetComponent<ItemOnObject>().item.itemValue = item2.itemValue;
 										duplication.GetComponent<SplitItem>().inv.stackableSettings();
-										duplication.transform.parent.parent.parent.GetComponent<Inventory>().updateItemList();
+										((Component)duplication.transform.parent.parent.parent).GetComponent<Inventory>().updateItemList();
 									}
 								}
 								else
@@ -159,9 +217,9 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 										item.itemValue = item.maxStack;
 										item2.itemValue = num;
 										gameObject.transform.SetParent(gameObject2.transform.parent);
-										gameObject2.transform.SetParent(this.oldSlot.transform);
-										component.localPosition = Vector3.zero;
-										component2.localPosition = Vector3.zero;
+										gameObject2.transform.SetParent(oldSlot.transform);
+										((Transform)component).localPosition = Vector3.zero;
+										((Transform)component2).localPosition = Vector3.zero;
 									}
 								}
 							}
@@ -177,98 +235,94 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 									item2.itemValue = item.maxStack;
 									item.itemValue = num2;
 									gameObject.transform.SetParent(gameObject2.transform.parent);
-									gameObject2.transform.SetParent(this.oldSlot.transform);
-									component.localPosition = Vector3.zero;
-									component2.localPosition = Vector3.zero;
+									gameObject2.transform.SetParent(oldSlot.transform);
+									((Transform)component).localPosition = Vector3.zero;
+									((Transform)component2).localPosition = Vector3.zero;
 								}
 								else if (!flag6 && num2 == 0)
 								{
-									if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null && item.itemType == item2.itemType)
+									if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null && item.itemType == item2.itemType)
 									{
-										int.Parse(this.oldSlot.name);
-										int.Parse(gameObject2.transform.parent.name);
-										Avatar avatar = (Avatar)KBEngineApp.app.player();
-										transform.transform.parent.parent.parent.parent.GetComponent<Inventory>().UnEquipItem1(item);
-										this.oldSlot.transform.parent.parent.GetComponent<Inventory>().EquiptItem(item2);
+										int.Parse(((Object)oldSlot).name);
+										int.Parse(((Object)gameObject2.transform.parent).name);
+										_ = (Avatar)KBEngineApp.app.player();
+										((Component)((Component)val).transform.parent.parent.parent.parent).GetComponent<Inventory>().UnEquipItem1(item);
+										((Component)oldSlot.transform.parent.parent).GetComponent<Inventory>().EquiptItem(item2);
 										gameObject.transform.SetParent(gameObject2.transform.parent);
-										gameObject2.transform.SetParent(this.oldSlot.transform);
-										component2.localPosition = Vector3.zero;
-										component.localPosition = Vector3.zero;
-										if (gameObject2.GetComponent<ConsumeItem>().duplication != null)
+										gameObject2.transform.SetParent(oldSlot.transform);
+										((Transform)component2).localPosition = Vector3.zero;
+										((Transform)component).localPosition = Vector3.zero;
+										if ((Object)(object)gameObject2.GetComponent<ConsumeItem>().duplication != (Object)null)
 										{
-											Object.Destroy(gameObject2.GetComponent<ConsumeItem>().duplication);
+											Object.Destroy((Object)(object)gameObject2.GetComponent<ConsumeItem>().duplication);
 										}
 									}
-									else if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null && item.itemType != item2.itemType)
+									else if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null && item.itemType != item2.itemType)
 									{
-										gameObject.transform.SetParent(this.oldSlot.transform);
-										component.localPosition = Vector3.zero;
+										gameObject.transform.SetParent(oldSlot.transform);
+										((Transform)component).localPosition = Vector3.zero;
 									}
-									else if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() == null)
+									else if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() == (Object)null)
 									{
-										int srcIndex = int.Parse(this.oldSlot.name) - 1;
-										int dstIndex = int.Parse(gameObject2.transform.parent.name) - 1;
+										int srcIndex = int.Parse(((Object)oldSlot).name) - 1;
+										int dstIndex = int.Parse(((Object)gameObject2.transform.parent).name) - 1;
 										gameObject.transform.SetParent(gameObject2.transform.parent);
-										gameObject2.transform.SetParent(this.oldSlot.transform);
-										component2.localPosition = Vector3.zero;
-										component.localPosition = Vector3.zero;
-										Avatar avatar2 = (Avatar)KBEngineApp.app.player();
-										if (avatar2 != null)
-										{
-											avatar2.swapItemRequest(srcIndex, dstIndex);
-										}
+										gameObject2.transform.SetParent(oldSlot.transform);
+										((Transform)component2).localPosition = Vector3.zero;
+										((Transform)component).localPosition = Vector3.zero;
+										((Avatar)KBEngineApp.app.player())?.swapItemRequest(srcIndex, dstIndex);
 									}
 								}
 							}
 						}
-						else if (transform.tag != "Slot" && transform.tag != "ItemIcon")
+						else if (((Component)val).tag != "Slot" && ((Component)val).tag != "ItemIcon")
 						{
-							gameObject.transform.SetParent(this.oldSlot.transform);
-							component.localPosition = Vector3.zero;
+							gameObject.transform.SetParent(oldSlot.transform);
+							((Transform)component).localPosition = Vector3.zero;
 						}
 						else
 						{
-							gameObject.transform.SetParent(transform.transform);
-							component.localPosition = Vector3.zero;
-							int srcIndex2 = int.Parse(this.oldSlot.name) - 1;
-							int dstIndex2 = int.Parse(transform.name) - 1;
-							Avatar avatar3 = (Avatar)KBEngineApp.app.player();
-							if (avatar3 != null && (!(transform.transform.parent.parent.GetComponent<EquipmentSystem>() == null) || !(this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)))
+							gameObject.transform.SetParent(((Component)val).transform);
+							((Transform)component).localPosition = Vector3.zero;
+							int srcIndex2 = int.Parse(((Object)oldSlot).name) - 1;
+							int dstIndex2 = int.Parse(((Object)val).name) - 1;
+							Avatar avatar = (Avatar)KBEngineApp.app.player();
+							if (avatar != null && (!((Object)(object)((Component)((Component)val).transform.parent.parent).GetComponent<EquipmentSystem>() == (Object)null) || !((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null)))
 							{
-								avatar3.swapItemRequest(srcIndex2, dstIndex2);
+								avatar.swapItemRequest(srcIndex2, dstIndex2);
 							}
-							if (transform.transform.parent.parent.GetComponent<EquipmentSystem>() == null && this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
+							if ((Object)(object)((Component)((Component)val).transform.parent.parent).GetComponent<EquipmentSystem>() == (Object)null && (Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null)
 							{
-								this.oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(item);
+								((Component)oldSlot.transform.parent.parent).GetComponent<Inventory>().UnEquipItem1(item);
 							}
 						}
 					}
 				}
-				if (gameObject3.GetComponent<Hotbar>() != null)
+				if ((Object)(object)gameObject3.GetComponent<Hotbar>() != (Object)null)
 				{
-					int childCount2 = transform.transform.parent.childCount;
-					bool flag7 = transform.transform.parent.GetChild(0).tag == "ItemIcon";
+					int childCount2 = ((Component)val).transform.parent.childCount;
+					bool flag7 = ((Component)((Component)val).transform.parent.GetChild(0)).tag == "ItemIcon";
 					if (childCount2 != 0 && flag7)
 					{
 						bool flag8 = false;
 						if (flag)
 						{
-							flag8 = (item.itemValue + item2.itemValue <= item.maxStack);
+							flag8 = item.itemValue + item2.itemValue <= item.maxStack;
 						}
-						if (this.inventory.stackable && flag && flag4 && flag3)
+						if (inventory.stackable && flag && flag4 && flag3)
 						{
 							if (flag8 && !flag2)
 							{
 								item2.itemValue = item.itemValue + item2.itemValue;
-								gameObject2.transform.SetParent(transform.parent.parent);
-								Object.Destroy(gameObject);
-								component2.localPosition = Vector3.zero;
-								if (gameObject2.GetComponent<ConsumeItem>().duplication != null)
+								gameObject2.transform.SetParent(val.parent.parent);
+								Object.Destroy((Object)(object)gameObject);
+								((Transform)component2).localPosition = Vector3.zero;
+								if ((Object)(object)gameObject2.GetComponent<ConsumeItem>().duplication != (Object)null)
 								{
 									GameObject duplication2 = gameObject2.GetComponent<ConsumeItem>().duplication;
 									duplication2.GetComponent<ItemOnObject>().item.itemValue = item2.itemValue;
 									gameObject3.GetComponent<Inventory>().stackableSettings();
-									duplication2.transform.parent.parent.parent.GetComponent<Inventory>().updateItemList();
+									((Component)duplication2.transform.parent.parent.parent).GetComponent<Inventory>().updateItemList();
 								}
 							}
 							else
@@ -279,10 +333,10 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 									item.itemValue = item.maxStack;
 									item2.itemValue = num3;
 									gameObject.transform.SetParent(gameObject2.transform.parent);
-									gameObject2.transform.SetParent(this.oldSlot.transform);
-									component.localPosition = Vector3.zero;
-									component2.localPosition = Vector3.zero;
-									this.createDuplication(base.gameObject);
+									gameObject2.transform.SetParent(oldSlot.transform);
+									((Transform)component).localPosition = Vector3.zero;
+									((Transform)component2).localPosition = Vector3.zero;
+									createDuplication(((Component)this).gameObject);
 									gameObject2.GetComponent<ConsumeItem>().duplication.GetComponent<ItemOnObject>().item = item2;
 									gameObject2.GetComponent<SplitItem>().inv.stackableSettings();
 								}
@@ -295,79 +349,79 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 							{
 								num4 = (item.itemValue + item2.itemValue) % item.maxStack;
 							}
-							bool flag9 = this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null;
+							bool flag9 = (Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null;
 							if (!flag8 && num4 > 0)
 							{
 								item2.itemValue = item.maxStack;
 								item.itemValue = num4;
-								this.createDuplication(base.gameObject);
+								createDuplication(((Component)this).gameObject);
 								gameObject.transform.SetParent(gameObject2.transform.parent);
-								gameObject2.transform.SetParent(this.oldSlot.transform);
-								component.localPosition = Vector3.zero;
-								component2.localPosition = Vector3.zero;
+								gameObject2.transform.SetParent(oldSlot.transform);
+								((Transform)component).localPosition = Vector3.zero;
+								((Transform)component2).localPosition = Vector3.zero;
 							}
 							else if (!flag8 && num4 == 0)
 							{
 								if (!flag9)
 								{
 									gameObject.transform.SetParent(gameObject2.transform.parent);
-									gameObject2.transform.SetParent(this.oldSlot.transform);
-									component2.localPosition = Vector3.zero;
-									component.localPosition = Vector3.zero;
-									if (this.oldSlot.transform.parent.parent.gameObject.Equals(GameObject.FindGameObjectWithTag("MainInventory")))
+									gameObject2.transform.SetParent(oldSlot.transform);
+									((Transform)component2).localPosition = Vector3.zero;
+									((Transform)component).localPosition = Vector3.zero;
+									if (((object)((Component)oldSlot.transform.parent.parent).gameObject).Equals((object?)GameObject.FindGameObjectWithTag("MainInventory")))
 									{
-										Object.Destroy(gameObject2.GetComponent<ConsumeItem>().duplication);
-										this.createDuplication(gameObject);
+										Object.Destroy((Object)(object)gameObject2.GetComponent<ConsumeItem>().duplication);
+										createDuplication(gameObject);
 									}
 									else
 									{
-										this.createDuplication(gameObject);
+										createDuplication(gameObject);
 									}
 								}
 								else
 								{
-									gameObject.transform.SetParent(this.oldSlot.transform);
-									component.localPosition = Vector3.zero;
+									gameObject.transform.SetParent(oldSlot.transform);
+									((Transform)component).localPosition = Vector3.zero;
 								}
 							}
 						}
 					}
-					else if (transform.tag != "Slot" && transform.tag != "ItemIcon")
+					else if (((Component)val).tag != "Slot" && ((Component)val).tag != "ItemIcon")
 					{
-						gameObject.transform.SetParent(this.oldSlot.transform);
-						component.localPosition = Vector3.zero;
+						gameObject.transform.SetParent(oldSlot.transform);
+						((Transform)component).localPosition = Vector3.zero;
 					}
 					else
 					{
-						gameObject.transform.SetParent(transform.transform);
-						component.localPosition = Vector3.zero;
-						if (transform.transform.parent.parent.GetComponent<EquipmentSystem>() == null && this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
+						gameObject.transform.SetParent(((Component)val).transform);
+						((Transform)component).localPosition = Vector3.zero;
+						if ((Object)(object)((Component)((Component)val).transform.parent.parent).GetComponent<EquipmentSystem>() == (Object)null && (Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null)
 						{
-							this.oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(item);
+							((Component)oldSlot.transform.parent.parent).GetComponent<Inventory>().UnEquipItem1(item);
 						}
-						this.createDuplication(gameObject);
+						createDuplication(gameObject);
 					}
 				}
-				if (gameObject3.GetComponent<EquipmentSystem>() != null)
+				if ((Object)(object)gameObject3.GetComponent<EquipmentSystem>() != (Object)null)
 				{
 					ItemType[] itemTypeOfSlots = GameObject.FindGameObjectWithTag("EquipmentSystem").GetComponent<EquipmentSystem>().itemTypeOfSlots;
-					int childCount3 = transform.transform.parent.childCount;
-					bool flag10 = transform.transform.parent.GetChild(0).tag == "ItemIcon";
+					int childCount3 = ((Component)val).transform.parent.childCount;
+					bool flag10 = ((Component)((Component)val).transform.parent.GetChild(0)).tag == "ItemIcon";
 					bool flag11 = item.itemType == item2.itemType;
-					bool flag12 = this.oldSlot.transform.parent.parent.GetComponent<Hotbar>() != null;
+					bool flag12 = (Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<Hotbar>() != (Object)null;
 					if (childCount3 != 0 && flag10)
 					{
 						if (flag11 && !flag2)
 						{
-							int.Parse(this.oldSlot.name);
-							int.Parse(gameObject2.transform.parent.name);
-							object parent = gameObject2.transform.parent.parent.parent;
-							Transform parent2 = this.oldSlot.transform.parent.parent;
+							int.Parse(((Object)oldSlot).name);
+							int.Parse(((Object)gameObject2.transform.parent).name);
+							Transform parent = gameObject2.transform.parent.parent.parent;
+							Transform parent2 = oldSlot.transform.parent.parent;
 							gameObject.transform.SetParent(gameObject2.transform.parent);
-							gameObject2.transform.SetParent(this.oldSlot.transform);
-							component2.localPosition = Vector3.zero;
-							component.localPosition = Vector3.zero;
-							if (!parent.Equals(parent2))
+							gameObject2.transform.SetParent(oldSlot.transform);
+							((Transform)component2).localPosition = Vector3.zero;
+							((Transform)component).localPosition = Vector3.zero;
+							if (!((object)parent).Equals((object?)parent2))
 							{
 								if (item.itemType == ItemType.UFPS_Weapon)
 								{
@@ -385,81 +439,82 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 							}
 							if (flag12)
 							{
-								this.createDuplication(gameObject2);
+								createDuplication(gameObject2);
 							}
-							if ((Avatar)KBEngineApp.app.player() != null)
+							if ((Avatar)KBEngineApp.app.player() == null)
 							{
 							}
 						}
 						else
 						{
-							gameObject.transform.SetParent(this.oldSlot.transform);
-							component.localPosition = Vector3.zero;
+							gameObject.transform.SetParent(oldSlot.transform);
+							((Transform)component).localPosition = Vector3.zero;
 							if (flag12)
 							{
-								this.createDuplication(gameObject);
+								createDuplication(gameObject);
 							}
 						}
 					}
 					else
 					{
-						for (int i = 0; i < transform.parent.childCount; i++)
+						for (int i = 0; i < val.parent.childCount; i++)
 						{
-							if (transform.Equals(transform.parent.GetChild(i)))
+							if (!((object)val).Equals((object?)val.parent.GetChild(i)))
 							{
-								if (itemTypeOfSlots[i] == base.transform.GetComponent<ItemOnObject>().item.itemType)
+								continue;
+							}
+							if (itemTypeOfSlots[i] == ((Component)((Component)this).transform).GetComponent<ItemOnObject>().item.itemType)
+							{
+								((Component)this).transform.SetParent(val);
+								((Transform)rectTransform).localPosition = Vector3.zero;
+								if (!((object)oldSlot.transform.parent.parent).Equals((object?)((Component)val).transform.parent.parent))
 								{
-									base.transform.SetParent(transform);
-									this.rectTransform.localPosition = Vector3.zero;
-									if (!this.oldSlot.transform.parent.parent.Equals(transform.transform.parent.parent))
-									{
-										gameObject3.GetComponent<Inventory>().EquiptItem(item);
-									}
-									if ((Avatar)KBEngineApp.app.player() != null)
-									{
-										int.Parse(this.oldSlot.name);
-										int.Parse(transform.name);
-									}
+									gameObject3.GetComponent<Inventory>().EquiptItem(item);
 								}
-								else
+								if ((Avatar)KBEngineApp.app.player() != null)
 								{
-									base.transform.SetParent(this.oldSlot.transform);
-									this.rectTransform.localPosition = Vector3.zero;
-									if (flag12)
-									{
-										this.createDuplication(gameObject);
-									}
+									int.Parse(((Object)oldSlot).name);
+									int.Parse(((Object)val).name);
+								}
+							}
+							else
+							{
+								((Component)this).transform.SetParent(oldSlot.transform);
+								((Transform)rectTransform).localPosition = Vector3.zero;
+								if (flag12)
+								{
+									createDuplication(gameObject);
 								}
 							}
 						}
 					}
 				}
-				if (gameObject3.GetComponent<CraftSystem>() != null)
+				if ((Object)(object)gameObject3.GetComponent<CraftSystem>() != (Object)null)
 				{
 					CraftSystem component3 = gameObject3.GetComponent<CraftSystem>();
-					int childCount4 = transform.transform.parent.childCount;
-					bool flag13 = transform.transform.parent.GetChild(0).tag == "ItemIcon";
+					int childCount4 = ((Component)val).transform.parent.childCount;
+					bool flag13 = ((Component)((Component)val).transform.parent.GetChild(0)).tag == "ItemIcon";
 					if (childCount4 != 0 && flag13)
 					{
 						bool flag14 = false;
 						if (flag)
 						{
-							flag14 = (item.itemValue + item2.itemValue <= item.maxStack);
+							flag14 = item.itemValue + item2.itemValue <= item.maxStack;
 						}
-						if (this.inventory.stackable && flag && flag4 && flag3)
+						if (inventory.stackable && flag && flag4 && flag3)
 						{
 							if (flag14 && !flag2)
 							{
 								item2.itemValue = item.itemValue + item2.itemValue;
-								gameObject2.transform.SetParent(transform.parent.parent);
-								Object.Destroy(gameObject);
-								component2.localPosition = Vector3.zero;
-								if (gameObject2.GetComponent<ConsumeItem>().duplication != null)
+								gameObject2.transform.SetParent(val.parent.parent);
+								Object.Destroy((Object)(object)gameObject);
+								((Transform)component2).localPosition = Vector3.zero;
+								if ((Object)(object)gameObject2.GetComponent<ConsumeItem>().duplication != (Object)null)
 								{
 									GameObject duplication3 = gameObject2.GetComponent<ConsumeItem>().duplication;
 									duplication3.GetComponent<ItemOnObject>().item.itemValue = item2.itemValue;
 									duplication3.GetComponent<SplitItem>().inv.stackableSettings();
-									duplication3.transform.parent.parent.parent.GetComponent<Inventory>().updateItemList();
+									((Component)duplication3.transform.parent.parent.parent).GetComponent<Inventory>().updateItemList();
 								}
 								component3.ListWithItem();
 							}
@@ -471,9 +526,9 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 									item.itemValue = item.maxStack;
 									item2.itemValue = num5;
 									gameObject.transform.SetParent(gameObject2.transform.parent);
-									gameObject2.transform.SetParent(this.oldSlot.transform);
-									component.localPosition = Vector3.zero;
-									component2.localPosition = Vector3.zero;
+									gameObject2.transform.SetParent(oldSlot.transform);
+									((Transform)component).localPosition = Vector3.zero;
+									((Transform)component2).localPosition = Vector3.zero;
 									component3.ListWithItem();
 								}
 							}
@@ -490,94 +545,69 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 								item2.itemValue = item.maxStack;
 								item.itemValue = num6;
 								gameObject.transform.SetParent(gameObject2.transform.parent);
-								gameObject2.transform.SetParent(this.oldSlot.transform);
-								component.localPosition = Vector3.zero;
-								component2.localPosition = Vector3.zero;
+								gameObject2.transform.SetParent(oldSlot.transform);
+								((Transform)component).localPosition = Vector3.zero;
+								((Transform)component2).localPosition = Vector3.zero;
 								component3.ListWithItem();
 							}
 							else if (!flag14 && num6 == 0)
 							{
-								if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null && item.itemType == item2.itemType)
+								if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null && item.itemType == item2.itemType)
 								{
 									gameObject.transform.SetParent(gameObject2.transform.parent);
-									gameObject2.transform.SetParent(this.oldSlot.transform);
-									component2.localPosition = Vector3.zero;
-									component.localPosition = Vector3.zero;
-									this.oldSlot.transform.parent.parent.GetComponent<Inventory>().EquiptItem(item2);
-									transform.transform.parent.parent.parent.parent.GetComponent<Inventory>().UnEquipItem1(item);
+									gameObject2.transform.SetParent(oldSlot.transform);
+									((Transform)component2).localPosition = Vector3.zero;
+									((Transform)component).localPosition = Vector3.zero;
+									((Component)oldSlot.transform.parent.parent).GetComponent<Inventory>().EquiptItem(item2);
+									((Component)((Component)val).transform.parent.parent.parent.parent).GetComponent<Inventory>().UnEquipItem1(item);
 								}
-								else if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null && item.itemType != item2.itemType)
+								else if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null && item.itemType != item2.itemType)
 								{
-									gameObject.transform.SetParent(this.oldSlot.transform);
-									component.localPosition = Vector3.zero;
+									gameObject.transform.SetParent(oldSlot.transform);
+									((Transform)component).localPosition = Vector3.zero;
 								}
-								else if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() == null)
+								else if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() == (Object)null)
 								{
 									gameObject.transform.SetParent(gameObject2.transform.parent);
-									gameObject2.transform.SetParent(this.oldSlot.transform);
-									component2.localPosition = Vector3.zero;
-									component.localPosition = Vector3.zero;
+									gameObject2.transform.SetParent(oldSlot.transform);
+									((Transform)component2).localPosition = Vector3.zero;
+									((Transform)component).localPosition = Vector3.zero;
 								}
 							}
 						}
 					}
-					else if (transform.tag != "Slot" && transform.tag != "ItemIcon")
+					else if (((Component)val).tag != "Slot" && ((Component)val).tag != "ItemIcon")
 					{
-						gameObject.transform.SetParent(this.oldSlot.transform);
-						component.localPosition = Vector3.zero;
+						gameObject.transform.SetParent(oldSlot.transform);
+						((Transform)component).localPosition = Vector3.zero;
 					}
 					else
 					{
-						gameObject.transform.SetParent(transform.transform);
-						component.localPosition = Vector3.zero;
-						if (transform.transform.parent.parent.GetComponent<EquipmentSystem>() == null && this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
+						gameObject.transform.SetParent(((Component)val).transform);
+						((Transform)component).localPosition = Vector3.zero;
+						if ((Object)(object)((Component)((Component)val).transform.parent.parent).GetComponent<EquipmentSystem>() == (Object)null && (Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null)
 						{
-							this.oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(item);
+							((Component)oldSlot.transform.parent.parent).GetComponent<Inventory>().UnEquipItem1(item);
 						}
 					}
 				}
 			}
 			else
 			{
-				if (this.oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
+				if ((Object)(object)((Component)oldSlot.transform.parent.parent).GetComponent<EquipmentSystem>() != (Object)null)
 				{
-					base.gameObject.transform.SetParent(this.oldSlot.transform);
-					base.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+					((Component)this).gameObject.transform.SetParent(oldSlot.transform);
+					((Transform)((Component)this).gameObject.GetComponent<RectTransform>()).localPosition = Vector3.zero;
 					return;
 				}
-				Avatar avatar4 = (Avatar)KBEngineApp.app.player();
-				if (avatar4 != null)
+				Avatar avatar2 = (Avatar)KBEngineApp.app.player();
+				if (avatar2 != null)
 				{
-					avatar4.dropRequest(base.gameObject.GetComponent<ItemOnObject>().item.itemUUID);
-					Object.Destroy(base.gameObject);
+					avatar2.dropRequest(((Component)this).gameObject.GetComponent<ItemOnObject>().item.itemUUID);
+					Object.Destroy((Object)(object)((Component)this).gameObject);
 				}
 			}
 		}
-		this.inventory.OnUpdateItemList();
+		inventory.OnUpdateItemList();
 	}
-
-	// Token: 0x04000AA5 RID: 2725
-	private Vector2 pointerOffset;
-
-	// Token: 0x04000AA6 RID: 2726
-	private RectTransform rectTransform;
-
-	// Token: 0x04000AA7 RID: 2727
-	private RectTransform rectTransformSlot;
-
-	// Token: 0x04000AA8 RID: 2728
-	private CanvasGroup canvasGroup;
-
-	// Token: 0x04000AA9 RID: 2729
-	private GameObject oldSlot;
-
-	// Token: 0x04000AAA RID: 2730
-	private Inventory inventory;
-
-	// Token: 0x04000AAB RID: 2731
-	private Transform draggedItemBox;
-
-	// Token: 0x02001291 RID: 4753
-	// (Invoke) Token: 0x060079BF RID: 31167
-	public delegate void ItemDelegate();
 }

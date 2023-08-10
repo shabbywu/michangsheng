@@ -1,119 +1,124 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000512 RID: 1298
 public class VerticalScroll : MonoBehaviour
 {
-	// Token: 0x060029C0 RID: 10688 RVA: 0x0013EF40 File Offset: 0x0013D140
+	public Transform upLimit;
+
+	public Transform downLimit;
+
+	private Transform items;
+
+	private float upLimitY;
+
+	private float downLimitY;
+
+	private bool pomeraj;
+
+	private float startY;
+
+	private float endY;
+
+	public bool canScroll = true;
+
+	private string clickedItem;
+
+	private string releasedItem;
+
+	private float offsetY;
+
+	private bool bounce;
+
+	private bool moved;
+
+	private bool released;
+
 	private void Start()
 	{
-		this.items = base.transform.Find("Items");
-		this.upLimitY = this.upLimit.position.y;
-		this.downLimitY = this.downLimit.position.y;
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		items = ((Component)this).transform.Find("Items");
+		upLimitY = upLimit.position.y;
+		downLimitY = downLimit.position.y;
 	}
 
-	// Token: 0x060029C1 RID: 10689 RVA: 0x0013EF90 File Offset: 0x0013D190
 	private void Update()
 	{
-		if (this.canScroll)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0220: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0240: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0273: Unknown result type (might be due to invalid IL or missing references)
+		if (!canScroll)
 		{
-			if (Input.GetMouseButtonDown(0))
+			return;
+		}
+		if (Input.GetMouseButtonDown(0))
+		{
+			clickedItem = RaycastFunction(Input.mousePosition);
+			startY = (endY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+			Debug.Log((object)("start y: " + startY));
+		}
+		else if (Input.GetMouseButton(0))
+		{
+			moved = true;
+			endY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+			offsetY = endY - startY;
+			items.position = new Vector3(items.position.x, Mathf.MoveTowards(items.position.y, items.position.y + offsetY, 0.5f), items.position.z);
+			startY = endY;
+		}
+		else if (Input.GetMouseButtonUp(0) && moved)
+		{
+			moved = false;
+			released = true;
+		}
+		if (released)
+		{
+			items.Translate(0f, offsetY, 0f);
+			offsetY *= 0.92f;
+		}
+		if (released && startY == endY)
+		{
+			if (items.position.y < downLimitY)
 			{
-				this.clickedItem = this.RaycastFunction(Input.mousePosition);
-				this.startY = (this.endY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-				Debug.Log("start y: " + this.startY);
+				items.position = new Vector3(items.position.x, Mathf.MoveTowards(items.position.y, downLimitY, 1f), items.position.z);
 			}
-			else if (Input.GetMouseButton(0))
+			else if (items.position.y > upLimitY)
 			{
-				this.moved = true;
-				this.endY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-				this.offsetY = this.endY - this.startY;
-				this.items.position = new Vector3(this.items.position.x, Mathf.MoveTowards(this.items.position.y, this.items.position.y + this.offsetY, 0.5f), this.items.position.z);
-				this.startY = this.endY;
+				items.position = new Vector3(items.position.x, Mathf.MoveTowards(items.position.y, upLimitY, 1f), items.position.z);
 			}
-			else if (Input.GetMouseButtonUp(0) && this.moved)
+			else if (items.position.y == upLimitY || items.position.y == downLimitY)
 			{
-				this.moved = false;
-				this.released = true;
-			}
-			if (this.released)
-			{
-				this.items.Translate(0f, this.offsetY, 0f);
-				this.offsetY *= 0.92f;
-			}
-			if (this.released && this.startY == this.endY)
-			{
-				if (this.items.position.y < this.downLimitY)
-				{
-					this.items.position = new Vector3(this.items.position.x, Mathf.MoveTowards(this.items.position.y, this.downLimitY, 1f), this.items.position.z);
-					return;
-				}
-				if (this.items.position.y > this.upLimitY)
-				{
-					this.items.position = new Vector3(this.items.position.x, Mathf.MoveTowards(this.items.position.y, this.upLimitY, 1f), this.items.position.z);
-					return;
-				}
-				if (this.items.position.y == this.upLimitY || this.items.position.y == this.downLimitY)
-				{
-					this.released = false;
-				}
+				released = false;
 			}
 		}
 	}
 
-	// Token: 0x060029C2 RID: 10690 RVA: 0x0013F22C File Offset: 0x0013D42C
 	private string RaycastFunction(Vector3 obj)
 	{
-		RaycastHit raycastHit;
-		if (Physics.Raycast(Camera.main.ScreenPointToRay(obj), ref raycastHit))
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		RaycastHit val = default(RaycastHit);
+		if (Physics.Raycast(Camera.main.ScreenPointToRay(obj), ref val))
 		{
-			return raycastHit.collider.name;
+			return ((Object)((RaycastHit)(ref val)).collider).name;
 		}
 		return string.Empty;
 	}
-
-	// Token: 0x04002617 RID: 9751
-	public Transform upLimit;
-
-	// Token: 0x04002618 RID: 9752
-	public Transform downLimit;
-
-	// Token: 0x04002619 RID: 9753
-	private Transform items;
-
-	// Token: 0x0400261A RID: 9754
-	private float upLimitY;
-
-	// Token: 0x0400261B RID: 9755
-	private float downLimitY;
-
-	// Token: 0x0400261C RID: 9756
-	private bool pomeraj;
-
-	// Token: 0x0400261D RID: 9757
-	private float startY;
-
-	// Token: 0x0400261E RID: 9758
-	private float endY;
-
-	// Token: 0x0400261F RID: 9759
-	public bool canScroll = true;
-
-	// Token: 0x04002620 RID: 9760
-	private string clickedItem;
-
-	// Token: 0x04002621 RID: 9761
-	private string releasedItem;
-
-	// Token: 0x04002622 RID: 9762
-	private float offsetY;
-
-	// Token: 0x04002623 RID: 9763
-	private bool bounce;
-
-	// Token: 0x04002624 RID: 9764
-	private bool moved;
-
-	// Token: 0x04002625 RID: 9765
-	private bool released;
 }

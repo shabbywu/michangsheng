@@ -1,102 +1,129 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Fungus;
 using KBEngine;
 using Newtonsoft.Json.Linq;
-using UltimateSurvival;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000197 RID: 407
 public class MapRandomCompent : MapInstComport
 {
-	// Token: 0x0600114E RID: 4430 RVA: 0x00068253 File Offset: 0x00066453
-	protected override void Awake()
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
 	{
-		this.AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
-		this.MapRandomJsonData = jsonData.instance.MapRandomJsonData;
-	}
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-	// Token: 0x0600114F RID: 4431 RVA: 0x00068278 File Offset: 0x00066478
-	protected override void Start()
-	{
-		this.NodeIndex = int.Parse(base.name);
-		this.SetState.SetTryer(new Attempt<MapInstComport.NodeType>.GenericTryerDelegate(base.TryChange_State));
-		this.State.AddChangeListener(new Action(base.chengeState));
-		this.State.Set(MapInstComport.NodeType.Disable);
-		this.StartSeting();
-		if (this.ISOutNode())
+		public static UnityAction _003C_003E9__5_0;
+
+		internal void _003CEventRandom_003Eb__5_0()
 		{
-			MapRandomCompent.NowRandomOutCompent = this;
+			if ((Object)(object)AllMapManage.instance != (Object)null && AllMapManage.instance.mapIndex.ContainsKey(Tools.instance.fubenLastIndex))
+			{
+				AllMapManage.instance.mapIndex[Tools.instance.fubenLastIndex].AvatarMoveToThis();
+			}
 		}
 	}
 
-	// Token: 0x06001150 RID: 4432 RVA: 0x000682E4 File Offset: 0x000664E4
-	protected override int GetGrideNum()
+	public static MapRandomCompent NowRandomOutCompent;
+
+	protected override void Awake()
 	{
-		return base.transform.parent.GetComponent<RandomFuBen>().Wide;
+		AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
+		MapRandomJsonData = jsonData.instance.MapRandomJsonData;
 	}
 
-	// Token: 0x06001151 RID: 4433 RVA: 0x00004095 File Offset: 0x00002295
+	protected override void Start()
+	{
+		NodeIndex = int.Parse(((Object)this).name);
+		SetState.SetTryer(base.TryChange_State);
+		State.AddChangeListener(base.chengeState);
+		State.Set(NodeType.Disable);
+		StartSeting();
+		if (ISOutNode())
+		{
+			NowRandomOutCompent = this;
+		}
+	}
+
+	protected override int GetGrideNum()
+	{
+		return ((Component)((Component)this).transform.parent).GetComponent<RandomFuBen>().Wide;
+	}
+
 	public override void BaseAddTime()
 	{
 	}
 
-	// Token: 0x06001152 RID: 4434 RVA: 0x000682FC File Offset: 0x000664FC
 	public override void EventRandom()
 	{
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Expected O, but got Unknown
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Expected O, but got Unknown
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
 		Avatar player = Tools.instance.getPlayer();
-		if (!base.CanClick())
+		if (!CanClick())
 		{
 			return;
 		}
-		if (WASDMove.Inst != null)
+		if ((Object)(object)WASDMove.Inst != (Object)null)
 		{
 			WASDMove.Inst.IsMoved = true;
 		}
-		this.fuBenSetClick();
-		this.movaAvatar();
-		if (this.ISOutNode())
+		fuBenSetClick();
+		movaAvatar();
+		if (ISOutNode())
 		{
-			USelectBox.Show("是否离开当前副本？", new UnityAction(this.OutRandomFuBen), delegate
+			UnityAction val = OutRandomFuBen;
+			object obj = _003C_003Ec._003C_003E9__5_0;
+			if (obj == null)
 			{
-				if (AllMapManage.instance != null && AllMapManage.instance.mapIndex.ContainsKey(Tools.instance.fubenLastIndex))
+				UnityAction val2 = delegate
 				{
-					AllMapManage.instance.mapIndex[Tools.instance.fubenLastIndex].AvatarMoveToThis();
-				}
-			});
+					if ((Object)(object)AllMapManage.instance != (Object)null && AllMapManage.instance.mapIndex.ContainsKey(Tools.instance.fubenLastIndex))
+					{
+						AllMapManage.instance.mapIndex[Tools.instance.fubenLastIndex].AvatarMoveToThis();
+					}
+				};
+				_003C_003Ec._003C_003E9__5_0 = val2;
+				obj = (object)val2;
+			}
+			USelectBox.Show("是否离开当前副本？", val, (UnityAction)obj);
 			return;
 		}
-		int taskTalkID = this.GetTaskTalkID();
+		int taskTalkID = GetTaskTalkID();
 		if (taskTalkID != -1 && taskTalkID != 0)
 		{
 			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + taskTalkID));
 			int nowRandomFuBenID = player.NowRandomFuBenID;
-			JToken jtoken = player.RandomFuBenList[nowRandomFuBenID.ToString()];
-			jtoken["ShouldReset"] = true;
-			jtoken["TaskTalkID"] = -1;
-			this.ResetIndex();
+			JToken obj2 = player.RandomFuBenList[nowRandomFuBenID.ToString()];
+			obj2[(object)"ShouldReset"] = JToken.op_Implicit(true);
+			obj2[(object)"TaskTalkID"] = JToken.op_Implicit(-1);
+			ResetIndex();
 			return;
 		}
-		int suiIndex = this.getSuiIndex();
+		int suiIndex = getSuiIndex();
 		if (suiIndex == -1)
 		{
 			return;
 		}
-		JToken jtoken2 = jsonData.instance.RandomMapEventList[suiIndex.ToString()];
+		JToken val3 = jsonData.instance.RandomMapEventList[suiIndex.ToString()];
 		int num = 0;
-		foreach (JToken jtoken3 in ((JArray)jtoken2["valueID"]))
+		foreach (JToken item in (JArray)val3[(object)"valueID"])
 		{
-			GlobalValue.Set((int)jtoken3, (int)jtoken2["value"][num], "MapRandomComponent.EventRandom 随机副本事件全局变量");
+			GlobalValue.Set((int)item, (int)val3[(object)"value"][(object)num], "MapRandomComponent.EventRandom 随机副本事件全局变量");
 			num++;
 		}
-		if (!(AllMapManage.instance != null) || !AllMapManage.instance.RandomFlag.ContainsKey(suiIndex))
+		if (!((Object)(object)AllMapManage.instance != (Object)null) || !AllMapManage.instance.RandomFlag.ContainsKey(suiIndex))
 		{
-			string text = string.Format("talkPrefab/TalkPrefab/talk{0}", (int)jtoken2["talk"]);
-			GameObject gameObject = Resources.Load<GameObject>(text);
-			if (gameObject != null)
+			string text = string.Format("talkPrefab/TalkPrefab/talk{0}", (int)val3[(object)"talk"]);
+			GameObject val4 = Resources.Load<GameObject>(text);
+			if ((Object)(object)val4 != (Object)null)
 			{
-				Flowchart componentInChildren = Object.Instantiate<GameObject>(gameObject).GetComponentInChildren<Flowchart>();
+				Flowchart componentInChildren = Object.Instantiate<GameObject>(val4).GetComponentInChildren<Flowchart>();
 				if (componentInChildren.HasVariable("FBEventID"))
 				{
 					componentInChildren.SetIntegerVariable("FBEventID", suiIndex);
@@ -104,107 +131,114 @@ public class MapRandomCompent : MapInstComport
 			}
 			else
 			{
-				Debug.LogError(text + "不存在，无法实例化talk，请检查");
+				Debug.LogError((object)(text + "不存在，无法实例化talk，请检查"));
 			}
 		}
-		this.ResetIndex();
+		ResetIndex();
 	}
 
-	// Token: 0x06001153 RID: 4435 RVA: 0x00068520 File Offset: 0x00066720
 	public static void ShowOutRandomFubenTalk()
 	{
-		MapRandomCompent.NowRandomOutCompent.OutRandomFuBen();
+		NowRandomOutCompent.OutRandomFuBen();
 	}
 
-	// Token: 0x06001154 RID: 4436 RVA: 0x0006852C File Offset: 0x0006672C
 	public void OutRandomFuBen()
 	{
 		Tools.instance.getPlayer().randomFuBenMag.OutRandomFuBen();
 	}
 
-	// Token: 0x06001155 RID: 4437 RVA: 0x00068544 File Offset: 0x00066744
 	public void ResetIndex()
 	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Expected O, but got Unknown
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Expected O, but got Unknown
 		Avatar player = Tools.instance.getPlayer();
 		int nowRandomFuBenID = player.NowRandomFuBenID;
-		JToken jtoken = player.RandomFuBenList[nowRandomFuBenID.ToString()];
-		foreach (JToken jtoken2 in ((JArray)jtoken["Award"]))
+		JToken val = player.RandomFuBenList[nowRandomFuBenID.ToString()];
+		foreach (JObject item in (JArray)val[(object)"Award"])
 		{
-			JObject jobject = (JObject)jtoken2;
-			if ((int)jobject["Index"] == this.NodeIndex)
+			JObject val2 = item;
+			if ((int)val2["Index"] == NodeIndex)
 			{
-				if ((int)jobject["ID"] != -1 && (int)jsonData.instance.RandomMapEventList[((int)jobject["ID"]).ToString()]["chufaduoci"] == 1)
+				if ((int)val2["ID"] != -1 && (int)jsonData.instance.RandomMapEventList[((int)val2["ID"]).ToString()][(object)"chufaduoci"] == 1)
 				{
-					jobject["ID"] = -1;
-					break;
+					val2["ID"] = JToken.op_Implicit(-1);
 				}
 				break;
 			}
 		}
-		foreach (JToken jtoken3 in ((JArray)jtoken["Event"]))
+		foreach (JObject item2 in (JArray)val[(object)"Event"])
 		{
-			JObject jobject2 = (JObject)jtoken3;
-			if ((int)jobject2["Index"] == this.NodeIndex)
+			JObject val3 = item2;
+			if ((int)val3["Index"] == NodeIndex)
 			{
-				if ((int)jobject2["ID"] != -1 && (int)jsonData.instance.RandomMapEventList[((int)jobject2["ID"]).ToString()]["chufaduoci"] == 1)
+				if ((int)val3["ID"] != -1 && (int)jsonData.instance.RandomMapEventList[((int)val3["ID"]).ToString()][(object)"chufaduoci"] == 1)
 				{
-					jobject2["ID"] = -1;
-					break;
+					val3["ID"] = JToken.op_Implicit(-1);
 				}
 				break;
 			}
 		}
 	}
 
-	// Token: 0x06001156 RID: 4438 RVA: 0x00068704 File Offset: 0x00066904
 	public bool ISOutNode()
 	{
-		RandomFuBen component = base.transform.parent.GetComponent<RandomFuBen>();
+		RandomFuBen component = ((Component)((Component)this).transform.parent).GetComponent<RandomFuBen>();
 		List<int> list = new List<int>();
 		List<int> list2 = new List<int>();
 		component.mapMag.getAllMapIndex(FuBenMap.NodeType.Exit, list, list2);
-		return component.mapMag.mapIndex[list[0], list2[0]] == this.NodeIndex;
+		if (component.mapMag.mapIndex[list[0], list2[0]] == NodeIndex)
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x06001157 RID: 4439 RVA: 0x00068764 File Offset: 0x00066964
 	public int GetTaskTalkID()
 	{
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Expected O, but got Unknown
 		Avatar player = Tools.instance.getPlayer();
 		int nowRandomFuBenID = player.NowRandomFuBenID;
-		JObject jobject = (JObject)player.RandomFuBenList[nowRandomFuBenID.ToString()];
-		if (jobject.ContainsKey("TaskIndex") && (int)jobject["TaskIndex"] == this.NodeIndex)
+		JObject val = (JObject)player.RandomFuBenList[nowRandomFuBenID.ToString()];
+		if (val.ContainsKey("TaskIndex") && (int)val["TaskIndex"] == NodeIndex)
 		{
-			return (int)jobject["TaskTalkID"];
+			return (int)val["TaskTalkID"];
 		}
 		return -1;
 	}
 
-	// Token: 0x06001158 RID: 4440 RVA: 0x000687D0 File Offset: 0x000669D0
 	public int getSuiIndex()
 	{
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Expected O, but got Unknown
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ae: Expected O, but got Unknown
 		Avatar player = Tools.instance.getPlayer();
 		int nowRandomFuBenID = player.NowRandomFuBenID;
-		JToken jtoken = player.RandomFuBenList[nowRandomFuBenID.ToString()];
+		JToken val = player.RandomFuBenList[nowRandomFuBenID.ToString()];
 		int result = -1;
-		foreach (JToken jtoken2 in ((JArray)jtoken["Award"]))
+		foreach (JObject item in (JArray)val[(object)"Award"])
 		{
-			JObject jobject = (JObject)jtoken2;
-			if ((int)jobject["Index"] == this.NodeIndex)
+			JObject val2 = item;
+			if ((int)val2["Index"] == NodeIndex)
 			{
-				result = (int)jobject["ID"];
+				result = (int)val2["ID"];
 			}
 		}
-		foreach (JToken jtoken3 in ((JArray)jtoken["Event"]))
+		foreach (JObject item2 in (JArray)val[(object)"Event"])
 		{
-			JObject jobject2 = (JObject)jtoken3;
-			if ((int)jobject2["Index"] == this.NodeIndex)
+			JObject val3 = item2;
+			if ((int)val3["Index"] == NodeIndex)
 			{
-				result = (int)jobject2["ID"];
+				result = (int)val3["ID"];
 			}
 		}
 		return result;
 	}
-
-	// Token: 0x04000C7B RID: 3195
-	public static MapRandomCompent NowRandomOutCompent;
 }

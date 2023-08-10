@@ -1,41 +1,41 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000127 RID: 295
 public class CraftResultSlot : MonoBehaviour
 {
-	// Token: 0x06000E08 RID: 3592 RVA: 0x00052C98 File Offset: 0x00050E98
-	private void Start()
-	{
-		this.craftSystem = base.transform.parent.GetComponent<CraftSystem>();
-		this.itemGameObject = Object.Instantiate<GameObject>(Resources.Load("Prefabs/Item") as GameObject);
-		this.itemGameObject.transform.SetParent(base.gameObject.transform);
-		this.itemGameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
-		this.itemGameObject.GetComponent<DragItem>().enabled = false;
-		this.itemGameObject.SetActive(false);
-		this.itemGameObject.transform.GetChild(1).GetComponent<Text>().enabled = true;
-		this.itemGameObject.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector2((float)GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().positionNumberX, (float)GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().positionNumberY);
-	}
-
-	// Token: 0x06000E09 RID: 3593 RVA: 0x00052D90 File Offset: 0x00050F90
-	private void Update()
-	{
-		if (this.craftSystem.possibleItems.Count != 0)
-		{
-			this.itemGameObject.GetComponent<ItemOnObject>().item = this.craftSystem.possibleItems[this.temp];
-			this.itemGameObject.SetActive(true);
-			return;
-		}
-		this.itemGameObject.SetActive(false);
-	}
-
-	// Token: 0x040009EF RID: 2543
 	private CraftSystem craftSystem;
 
-	// Token: 0x040009F0 RID: 2544
 	public int temp;
 
-	// Token: 0x040009F1 RID: 2545
 	private GameObject itemGameObject;
+
+	private void Start()
+	{
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		craftSystem = ((Component)((Component)this).transform.parent).GetComponent<CraftSystem>();
+		ref GameObject reference = ref itemGameObject;
+		Object obj = Resources.Load("Prefabs/Item");
+		reference = Object.Instantiate<GameObject>((GameObject)(object)((obj is GameObject) ? obj : null));
+		itemGameObject.transform.SetParent(((Component)this).gameObject.transform);
+		((Transform)itemGameObject.GetComponent<RectTransform>()).localPosition = Vector3.zero;
+		((Behaviour)itemGameObject.GetComponent<DragItem>()).enabled = false;
+		itemGameObject.SetActive(false);
+		((Behaviour)((Component)itemGameObject.transform.GetChild(1)).GetComponent<Text>()).enabled = true;
+		((Transform)((Component)itemGameObject.transform.GetChild(1)).GetComponent<RectTransform>()).localPosition = Vector2.op_Implicit(new Vector2((float)GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().positionNumberX, (float)GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().positionNumberY));
+	}
+
+	private void Update()
+	{
+		if (craftSystem.possibleItems.Count != 0)
+		{
+			itemGameObject.GetComponent<ItemOnObject>().item = craftSystem.possibleItems[temp];
+			itemGameObject.SetActive(true);
+		}
+		else
+		{
+			itemGameObject.SetActive(false);
+		}
+	}
 }

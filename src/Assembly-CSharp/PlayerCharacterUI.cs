@@ -1,173 +1,205 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F0 RID: 240
 public class PlayerCharacterUI : MonoBehaviour
 {
-	// Token: 0x06000B81 RID: 2945 RVA: 0x00045FA2 File Offset: 0x000441A2
+	private enum UIState
+	{
+		None,
+		Item
+	}
+
+	public GUISkin skin;
+
+	private CharacterInventory character;
+
+	private CharacterSkillDeployer skill;
+
+	private Vector2 scrollPosition;
+
+	private UIState uiState;
+
 	private void Start()
 	{
-		this.character = base.gameObject.GetComponent<CharacterInventory>();
-		this.skill = base.gameObject.GetComponent<CharacterSkillDeployer>();
+		character = ((Component)this).gameObject.GetComponent<CharacterInventory>();
+		skill = ((Component)this).gameObject.GetComponent<CharacterSkillDeployer>();
 	}
 
-	// Token: 0x06000B82 RID: 2946 RVA: 0x00045FC6 File Offset: 0x000441C6
 	private void Update()
 	{
-		if (Screen.lockCursor && Input.GetKey(101))
+		if (Screen.lockCursor && Input.GetKey((KeyCode)101))
 		{
-			this.uiState = PlayerCharacterUI.UIState.Item;
+			uiState = UIState.Item;
 		}
-		Screen.lockCursor = (this.uiState == PlayerCharacterUI.UIState.None);
+		Screen.lockCursor = uiState == UIState.None;
 	}
 
-	// Token: 0x06000B83 RID: 2947 RVA: 0x00045FF0 File Offset: 0x000441F0
 	private void OnGUI()
 	{
-		if (this.skin)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0269: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0150: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0174: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020e: Unknown result type (might be due to invalid IL or missing references)
+		if (Object.op_Implicit((Object)(object)skin))
 		{
-			GUI.skin = this.skin;
+			GUI.skin = skin;
 		}
-		if (this.character)
+		if (Object.op_Implicit((Object)(object)character))
 		{
 			GUI.skin.label.fontSize = 18;
-			GUI.skin.label.alignment = 0;
+			GUI.skin.label.alignment = (TextAnchor)0;
 			GUI.Label(new Rect(60f, (float)(Screen.height - 130), 300f, 30f), "Equiped");
 			GUI.BeginGroup(new Rect(50f, (float)(Screen.height - 100), (float)Screen.width, 100f));
-			for (int i = 0; i < this.character.ItemsEquiped.Length; i++)
+			for (int i = 0; i < character.ItemsEquiped.Length; i++)
 			{
-				if (this.character.ItemsEquiped[i] != null)
+				if (character.ItemsEquiped[i] != null)
 				{
-					this.DrawItemBox(this.character.ItemsEquiped[i], new Vector2((float)(i * 60), 0f));
+					DrawItemBox(character.ItemsEquiped[i], new Vector2((float)(i * 60), 0f));
 				}
 			}
 			GUI.EndGroup();
-			if (this.uiState == PlayerCharacterUI.UIState.Item)
+			if (uiState == UIState.Item)
 			{
 				Screen.lockCursor = false;
 				GUI.BeginGroup(new Rect((float)(Screen.width - 330), 30f, 300f, 350f));
 				GUI.skin.label.fontSize = 20;
-				GUI.skin.label.alignment = 0;
+				GUI.skin.label.alignment = (TextAnchor)0;
 				GUI.Label(new Rect(10f, 10f, 150f, 30f), "Item Lists");
-				this.scrollPosition = GUI.BeginScrollView(new Rect(0f, 50f, 300f, 300f), this.scrollPosition, new Rect(0f, 50f, 280f, (float)(this.character.ItemSlots.Count * 50)));
-				for (int j = 0; j < this.character.ItemSlots.Count; j++)
+				scrollPosition = GUI.BeginScrollView(new Rect(0f, 50f, 300f, 300f), scrollPosition, new Rect(0f, 50f, 280f, (float)(character.ItemSlots.Count * 50)));
+				for (int j = 0; j < character.ItemSlots.Count; j++)
 				{
-					this.DrawItemBoxDetail(this.character.ItemSlots[j], new Vector2(0f, (float)(j * 60 + 50)));
+					DrawItemBoxDetail(character.ItemSlots[j], new Vector2(0f, (float)(j * 60 + 50)));
 				}
 				GUI.EndScrollView();
 				if (GUI.Button(new Rect(270f, 0f, 30f, 30f), "X"))
 				{
-					this.uiState = PlayerCharacterUI.UIState.None;
+					uiState = UIState.None;
 				}
 				GUI.EndGroup();
 			}
 			else
 			{
 				GUI.skin.label.fontSize = 17;
-				GUI.skin.label.alignment = 2;
+				GUI.skin.label.alignment = (TextAnchor)2;
 				GUI.Label(new Rect((float)(Screen.width - 330), 30f, 300f, 30f), "Press 'E' Open Inventory");
 			}
 		}
-		if (this.skill)
+		if (Object.op_Implicit((Object)(object)skill))
 		{
-			for (int k = 0; k < this.skill.Skill.Length; k++)
+			for (int k = 0; k < skill.Skill.Length; k++)
 			{
-				this.DrawSkill(k, new Vector2((float)(Screen.width - this.skill.Skill.Length * 60 - 30 + k * 60), (float)(Screen.height - 100)));
+				DrawSkill(k, new Vector2((float)(Screen.width - skill.Skill.Length * 60 - 30 + k * 60), (float)(Screen.height - 100)));
 			}
 		}
 	}
 
-	// Token: 0x06000B84 RID: 2948 RVA: 0x000462D0 File Offset: 0x000444D0
 	private void DrawSkill(int index, Vector2 position)
 	{
-		if (this.skill.indexSkill == index)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		if (skill.indexSkill == index)
 		{
 			GUI.skin.label.fontSize = 13;
-			GUI.skin.label.alignment = 0;
+			GUI.skin.label.alignment = (TextAnchor)0;
 			GUI.Label(new Rect(10f + position.x, position.y - 10f, 55f, 50f), "Selected");
 		}
-		if (GUI.Button(new Rect(10f + position.x, 10f + position.y, 50f, 50f), this.skill.SkillIcon[index]))
+		if (GUI.Button(new Rect(10f + position.x, 10f + position.y, 50f, 50f), (Texture)(object)skill.SkillIcon[index]))
 		{
-			this.skill.indexSkill = index;
+			skill.indexSkill = index;
 		}
 	}
 
-	// Token: 0x06000B85 RID: 2949 RVA: 0x00046384 File Offset: 0x00044584
 	private void DrawItemBox(ItemSlot itemslot, Vector2 position)
 	{
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
 		if (itemslot != null)
 		{
-			ItemCollector itemCollector = this.character.itemManager.Items[itemslot.Index];
+			ItemCollector itemCollector = character.itemManager.Items[itemslot.Index];
 			GUI.Box(new Rect(10f + position.x, 10f + position.y, 50f, 50f), "");
-			GUI.DrawTexture(new Rect(10f + position.x, 10f + position.y, 50f, 50f), itemCollector.Icon);
+			GUI.DrawTexture(new Rect(10f + position.x, 10f + position.y, 50f, 50f), (Texture)(object)itemCollector.Icon);
 			GUI.skin.label.fontSize = 13;
-			GUI.skin.label.alignment = 0;
+			GUI.skin.label.alignment = (TextAnchor)0;
 			GUI.Label(new Rect(14f + position.x, 14f + position.y, 30f, 30f), itemslot.Num.ToString());
 		}
 	}
 
-	// Token: 0x06000B86 RID: 2950 RVA: 0x00046470 File Offset: 0x00044670
 	private void DrawItemBoxDetail(ItemSlot itemslot, Vector2 position)
 	{
-		if (itemslot != null)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		if (itemslot == null)
 		{
-			ItemCollector itemCollector = this.character.itemManager.Items[itemslot.Index];
-			GUI.Box(new Rect(10f + position.x, 10f + position.y, 50f, 50f), "");
-			GUI.DrawTexture(new Rect(10f + position.x, 10f + position.y, 50f, 50f), itemCollector.Icon);
-			GUI.skin.label.fontSize = 13;
-			GUI.skin.label.alignment = 0;
-			GUI.Label(new Rect(14f + position.x, 14f + position.y, 30f, 30f), itemslot.Num.ToString());
-			GUI.skin.label.alignment = 3;
-			GUI.Label(new Rect(position.x + 70f, position.y, 100f, 60f), itemCollector.Name);
-			ItemType itemType = itemCollector.ItemType;
-			if (itemType != ItemType.Weapon)
-			{
-				if (itemType != ItemType.Edible)
-				{
-					return;
-				}
-				if (GUI.Button(new Rect(200f + position.x, position.y + 10f, 80f, 30f), "Use"))
-				{
-					this.character.UseItem(itemslot);
-				}
-			}
-			else if (this.character.CheckEquiped(itemslot))
+			return;
+		}
+		ItemCollector itemCollector = character.itemManager.Items[itemslot.Index];
+		GUI.Box(new Rect(10f + position.x, 10f + position.y, 50f, 50f), "");
+		GUI.DrawTexture(new Rect(10f + position.x, 10f + position.y, 50f, 50f), (Texture)(object)itemCollector.Icon);
+		GUI.skin.label.fontSize = 13;
+		GUI.skin.label.alignment = (TextAnchor)0;
+		GUI.Label(new Rect(14f + position.x, 14f + position.y, 30f, 30f), itemslot.Num.ToString());
+		GUI.skin.label.alignment = (TextAnchor)3;
+		GUI.Label(new Rect(position.x + 70f, position.y, 100f, 60f), itemCollector.Name);
+		switch (itemCollector.ItemType)
+		{
+		case ItemType.Weapon:
+			if (character.CheckEquiped(itemslot))
 			{
 				if (GUI.Button(new Rect(200f + position.x, position.y + 10f, 80f, 30f), "UnEquipped"))
 				{
-					this.character.UnEquipItem(itemslot);
-					return;
+					character.UnEquipItem(itemslot);
 				}
 			}
 			else if (GUI.Button(new Rect(200f + position.x, position.y + 10f, 80f, 30f), "Equip"))
 			{
-				this.character.EquipItem(itemslot);
-				return;
+				character.EquipItem(itemslot);
 			}
+			break;
+		case ItemType.Edible:
+			if (GUI.Button(new Rect(200f + position.x, position.y + 10f, 80f, 30f), "Use"))
+			{
+				character.UseItem(itemslot);
+			}
+			break;
 		}
-	}
-
-	// Token: 0x040007B8 RID: 1976
-	public GUISkin skin;
-
-	// Token: 0x040007B9 RID: 1977
-	private CharacterInventory character;
-
-	// Token: 0x040007BA RID: 1978
-	private CharacterSkillDeployer skill;
-
-	// Token: 0x040007BB RID: 1979
-	private Vector2 scrollPosition;
-
-	// Token: 0x040007BC RID: 1980
-	private PlayerCharacterUI.UIState uiState;
-
-	// Token: 0x0200123B RID: 4667
-	private enum UIState
-	{
-		// Token: 0x0400652B RID: 25899
-		None,
-		// Token: 0x0400652C RID: 25900
-		Item
 	}
 }

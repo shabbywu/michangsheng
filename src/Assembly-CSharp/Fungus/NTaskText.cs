@@ -1,90 +1,78 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTask", "NTaskText", "", 0)]
+[AddComponentMenu("")]
+public class NTaskText : Command
 {
-	// Token: 0x02000F75 RID: 3957
-	[CommandInfo("YSTask", "NTaskText", "", 0)]
-	[AddComponentMenu("")]
-	public class NTaskText : Command
+	[Tooltip("需要获取描述的任务ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NTaskID;
+
+	[Tooltip("需要到的值存放位置")]
+	[VariableProperty(new Type[] { typeof(StringVariable) })]
+	[SerializeField]
+	protected StringVariable Desc;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006F0B RID: 28427 RVA: 0x002A6192 File Offset: 0x002A4392
-		public override void OnEnter()
+		Desc.Value = GetNTaskDesc(NTaskID.Value);
+		Continue();
+	}
+
+	public static string GetNTaskDesc(int NTaskID)
+	{
+		Avatar player = Tools.instance.getPlayer();
+		try
 		{
-			this.Desc.Value = NTaskText.GetNTaskDesc(this.NTaskID.Value);
-			this.Continue();
+			if (!player.nomelTaskMag.HasNTask(NTaskID))
+			{
+				player.nomelTaskMag.DeDaiSetWhereNode(NTaskID);
+			}
 		}
-
-		// Token: 0x06006F0C RID: 28428 RVA: 0x002A61B8 File Offset: 0x002A43B8
-		public static string GetNTaskDesc(int NTaskID)
+		catch (Exception ex)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			try
-			{
-				if (!player.nomelTaskMag.HasNTask(NTaskID))
-				{
-					player.nomelTaskMag.DeDaiSetWhereNode(NTaskID, false);
-				}
-			}
-			catch (Exception ex)
-			{
-				Debug.LogError(ex);
-			}
-			NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(NTaskID);
-			List<JSONObject> ntaskXiangXiList = player.nomelTaskMag.GetNTaskXiangXiList(NTaskID);
-			string text = ntaskXiangXiData.SayMiaoShu ?? "";
-			int num = 0;
-			foreach (JSONObject jsonobject in ntaskXiangXiList)
-			{
-				int chilidID = player.nomelTaskMag.getChilidID(NTaskID, num);
-				NTaskSuiJI ntaskSuiJI = NTaskSuiJI.DataDict[chilidID];
-				string str = jsonobject["TaskID"].str;
-				text = text.Replace(str, ntaskSuiJI.name);
-				if (jsonobject["Place"].str != "0" && text.Contains(jsonobject["Place"].str))
-				{
-					int whereChilidID = player.nomelTaskMag.getWhereChilidID(NTaskID, num);
-					text = text.Replace(jsonobject["Place"].str, NTaskSuiJI.DataDict[whereChilidID].name);
-				}
-				if (jsonobject["type"].I == 6)
-				{
-					text = text.Replace("{yiwunum}", string.Concat(player.nomelTaskMag.GetTaskSeid6AddItemNum(NTaskID, num)));
-				}
-				num++;
-			}
-			JSONObject whereTaskChildTypeList = player.nomelTaskMag.getWhereTaskChildTypeList(NTaskID);
-			if (whereTaskChildTypeList != null && whereTaskChildTypeList.Count > 0)
-			{
-				text = text.Replace("{whereType}", (string)jsonData.instance.RandomMapType[whereTaskChildTypeList[0].I.ToString()]["name"]);
-			}
-			text = text.Replace("{lingshi}", string.Concat(player.nomelTaskMag.GetTaskMoney(NTaskID)));
-			return text;
+			Debug.LogError((object)ex);
 		}
-
-		// Token: 0x06006F0D RID: 28429 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		NTaskXiangXi nTaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(NTaskID);
+		List<JSONObject> nTaskXiangXiList = player.nomelTaskMag.GetNTaskXiangXiList(NTaskID);
+		string text = nTaskXiangXiData.SayMiaoShu ?? "";
+		int num = 0;
+		foreach (JSONObject item in nTaskXiangXiList)
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			int chilidID = player.nomelTaskMag.getChilidID(NTaskID, num);
+			NTaskSuiJI nTaskSuiJI = NTaskSuiJI.DataDict[chilidID];
+			string str = item["TaskID"].str;
+			text = text.Replace(str, nTaskSuiJI.name);
+			if (item["Place"].str != "0" && text.Contains(item["Place"].str))
+			{
+				int whereChilidID = player.nomelTaskMag.getWhereChilidID(NTaskID, num);
+				text = text.Replace(item["Place"].str, NTaskSuiJI.DataDict[whereChilidID].name);
+			}
+			if (item["type"].I == 6)
+			{
+				text = text.Replace("{yiwunum}", string.Concat(player.nomelTaskMag.GetTaskSeid6AddItemNum(NTaskID, num)));
+			}
+			num++;
 		}
-
-		// Token: 0x04005BE5 RID: 23525
-		[Tooltip("需要获取描述的任务ID")]
-		[VariableProperty(new Type[]
+		JSONObject whereTaskChildTypeList = player.nomelTaskMag.getWhereTaskChildTypeList(NTaskID);
+		if (whereTaskChildTypeList != null && whereTaskChildTypeList.Count > 0)
 		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NTaskID;
+			text = text.Replace("{whereType}", (string)jsonData.instance.RandomMapType[whereTaskChildTypeList[0].I.ToString()][(object)"name"]);
+		}
+		return text.Replace("{lingshi}", string.Concat(player.nomelTaskMag.GetTaskMoney(NTaskID)));
+	}
 
-		// Token: 0x04005BE6 RID: 23526
-		[Tooltip("需要到的值存放位置")]
-		[VariableProperty(new Type[]
-		{
-			typeof(StringVariable)
-		})]
-		[SerializeField]
-		protected StringVariable Desc;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

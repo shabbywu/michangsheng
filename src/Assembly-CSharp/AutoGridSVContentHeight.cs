@@ -1,74 +1,78 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200034B RID: 843
 public class AutoGridSVContentHeight : MonoBehaviour
 {
-	// Token: 0x06001CC1 RID: 7361 RVA: 0x000CDB27 File Offset: 0x000CBD27
-	private void Start()
-	{
-		this.rt = (base.transform as RectTransform);
-		this.grid = base.GetComponent<GridLayoutGroup>();
-	}
-
-	// Token: 0x06001CC2 RID: 7362 RVA: 0x000CDB48 File Offset: 0x000CBD48
-	private void Update()
-	{
-		int childCount = this.rt.childCount;
-		if (this.ChildCountMode && this.lastChildCount == childCount)
-		{
-			return;
-		}
-		int num = childCount / this.ColCount;
-		if (childCount % this.ColCount > 0)
-		{
-			num++;
-		}
-		float num2 = (float)num * (this.grid.cellSize.y + this.grid.spacing.y);
-		this.lastChildCount = childCount;
-		if (this.rt.sizeDelta.y != num2 + (float)this.ExHeigt)
-		{
-			this.rt.sizeDelta = new Vector2(this.rt.sizeDelta.x, num2 + (float)this.ExHeigt);
-			this.rt.anchoredPosition = new Vector2(this.rt.anchoredPosition.x, 0f);
-			if (this.grid != null && this.IsLimitSliding)
-			{
-				if (num2 < (this.SR.transform as RectTransform).sizeDelta.y)
-				{
-					this.SR.vertical = false;
-					return;
-				}
-				this.SR.vertical = true;
-			}
-		}
-	}
-
-	// Token: 0x04001746 RID: 5958
 	private GridLayoutGroup grid;
 
-	// Token: 0x04001747 RID: 5959
 	private RectTransform rt;
 
-	// Token: 0x04001748 RID: 5960
 	private int lastChildCount;
 
-	// Token: 0x04001749 RID: 5961
 	[Header("每行个数")]
 	public int ColCount;
 
-	// Token: 0x0400174A RID: 5962
 	[Header("额外高度")]
 	public int ExHeigt;
 
-	// Token: 0x0400174B RID: 5963
 	[Header("是否现在滑动")]
 	[Tooltip("当子物体高度小于SV高度时，禁止滑动")]
 	public bool IsLimitSliding;
 
-	// Token: 0x0400174C RID: 5964
 	public ScrollRect SR;
 
-	// Token: 0x0400174D RID: 5965
 	[Tooltip("根据物体数量的变动进行高度刷新。关闭的话会一直检测")]
 	public bool ChildCountMode = true;
+
+	private void Start()
+	{
+		ref RectTransform reference = ref rt;
+		Transform transform = ((Component)this).transform;
+		reference = (RectTransform)(object)((transform is RectTransform) ? transform : null);
+		grid = ((Component)this).GetComponent<GridLayoutGroup>();
+	}
+
+	private void Update()
+	{
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
+		int childCount = ((Transform)rt).childCount;
+		if (ChildCountMode && lastChildCount == childCount)
+		{
+			return;
+		}
+		float num = 0f;
+		int num2 = childCount / ColCount;
+		if (childCount % ColCount > 0)
+		{
+			num2++;
+		}
+		num = (float)num2 * (grid.cellSize.y + grid.spacing.y);
+		lastChildCount = childCount;
+		if (rt.sizeDelta.y == num + (float)ExHeigt)
+		{
+			return;
+		}
+		rt.sizeDelta = new Vector2(rt.sizeDelta.x, num + (float)ExHeigt);
+		rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, 0f);
+		if ((Object)(object)grid != (Object)null && IsLimitSliding)
+		{
+			float num3 = num;
+			Transform transform = ((Component)SR).transform;
+			if (num3 < ((RectTransform)((transform is RectTransform) ? transform : null)).sizeDelta.y)
+			{
+				SR.vertical = false;
+			}
+			else
+			{
+				SR.vertical = true;
+			}
+		}
+	}
 }

@@ -1,38 +1,35 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200026F RID: 623
 public class UINPCEventSVItem : MonoBehaviour
 {
-	// Token: 0x06001696 RID: 5782 RVA: 0x0009A1F4 File Offset: 0x000983F4
+	public Text TimeText;
+
+	public Text DescText;
+
+	private RectTransform RT;
+
 	private void Awake()
 	{
-		this.RT = (base.transform as RectTransform);
+		ref RectTransform rT = ref RT;
+		Transform transform = ((Component)this).transform;
+		rT = (RectTransform)(object)((transform is RectTransform) ? transform : null);
 	}
 
-	// Token: 0x06001697 RID: 5783 RVA: 0x0009A208 File Offset: 0x00098408
 	private void Update()
 	{
-		if (this.RT.sizeDelta.y != this.DescText.preferredHeight)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		if (RT.sizeDelta.y != DescText.preferredHeight)
 		{
-			this.RT.sizeDelta = new Vector2(this.RT.sizeDelta.x, this.DescText.preferredHeight);
+			RT.sizeDelta = new Vector2(RT.sizeDelta.x, DescText.preferredHeight);
 		}
 	}
 
-	// Token: 0x06001698 RID: 5784 RVA: 0x0009A25D File Offset: 0x0009845D
 	public void SetEvent(string time, string desc)
 	{
-		this.TimeText.text = time;
-		this.DescText.text = desc;
+		TimeText.text = time;
+		DescText.text = desc;
 	}
-
-	// Token: 0x0400110F RID: 4367
-	public Text TimeText;
-
-	// Token: 0x04001110 RID: 4368
-	public Text DescText;
-
-	// Token: 0x04001111 RID: 4369
-	private RectTransform RT;
 }

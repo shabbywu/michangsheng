@@ -1,23 +1,22 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020001EC RID: 492
 public class MapFollow : MonoBehaviour
 {
-	// Token: 0x06001464 RID: 5220 RVA: 0x00004095 File Offset: 0x00002295
+	public Transform target;
+
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001465 RID: 5221 RVA: 0x0008336C File Offset: 0x0008156C
 	private void Update()
 	{
-		if (this.target != null)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)target != (Object)null)
 		{
-			base.transform.position = new Vector3(this.target.position.x, base.transform.position.y, this.target.position.z);
+			((Component)this).transform.position = new Vector3(target.position.x, ((Component)this).transform.position.y, target.position.z);
 		}
 	}
-
-	// Token: 0x04000F24 RID: 3876
-	public Transform target;
 }

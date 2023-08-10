@@ -1,75 +1,60 @@
-﻿using System;
+using System;
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000239 RID: 569
 [CommandInfo("YSNPCJiaoHu", "获取NPCJson数据", "获取NPCJson数据，Int值会赋值到TmpValue，文本会赋值到TmpStrValue，布尔值会赋值到TmpBoolValue", 0)]
 [AddComponentMenu("")]
 public class CmdGetNPCJson : Command
 {
-	// Token: 0x06001618 RID: 5656 RVA: 0x00095970 File Offset: 0x00093B70
+	[SerializeField]
+	protected string npcid;
+
+	[SerializeField]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	protected IntegerVariable VarNPCID;
+
+	[SerializeField]
+	protected string valueName;
+
+	[SerializeField]
+	protected SetValueType valueType;
+
 	public override void OnEnter()
 	{
-		Flowchart flowchart = this.GetFlowchart();
-		int num = flowchart.GetIntegerVariable(this.npcid);
-		if (this.VarNPCID != null)
+		Flowchart flowchart = GetFlowchart();
+		int num = flowchart.GetIntegerVariable(npcid);
+		if ((Object)(object)VarNPCID != (Object)null)
 		{
-			num = this.VarNPCID.Value;
+			num = VarNPCID.Value;
 		}
 		try
 		{
 			if (jsonData.instance.AvatarJsonData.HasField(num.ToString()))
 			{
-				JSONObject jsonobject = jsonData.instance.AvatarJsonData[num.ToString()][this.valueName];
-				switch (this.valueType)
+				JSONObject jSONObject = jsonData.instance.AvatarJsonData[num.ToString()][valueName];
+				switch (valueType)
 				{
 				case SetValueType.Int:
-					flowchart.SetIntegerVariable("TmpValue", jsonobject.I);
-					break;
-				case SetValueType.Bool:
-					flowchart.SetBooleanVariable("TmpBoolValue", jsonobject.b);
+					flowchart.SetIntegerVariable("TmpValue", jSONObject.I);
 					break;
 				case SetValueType.String:
-					flowchart.SetStringVariable("TmpStrValue", jsonobject.Str);
+					flowchart.SetStringVariable("TmpStrValue", jSONObject.Str);
+					break;
+				case SetValueType.Bool:
+					flowchart.SetBooleanVariable("TmpBoolValue", jSONObject.b);
 					break;
 				}
 			}
 			else
 			{
-				Debug.LogError(string.Format("获取NPCJson异常，没有NPCID:{0}的数据", num));
+				Debug.LogError((object)$"获取NPCJson异常，没有NPCID:{num}的数据");
 			}
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError(ex);
-			Debug.LogError(string.Format("获取NPCJson异常，NPCID:{0}，要获取的变量:{1}({2})，JSON数据:{3}", new object[]
-			{
-				num,
-				this.valueName,
-				this.valueType,
-				jsonData.instance.AvatarJsonData[num.ToString()].ToString()
-			}));
+			Debug.LogError((object)ex);
+			Debug.LogError((object)$"获取NPCJson异常，NPCID:{num}，要获取的变量:{valueName}({valueType})，JSON数据:{jsonData.instance.AvatarJsonData[num.ToString()].ToString()}");
 		}
-		this.Continue();
+		Continue();
 	}
-
-	// Token: 0x0400106A RID: 4202
-	[SerializeField]
-	protected string npcid;
-
-	// Token: 0x0400106B RID: 4203
-	[SerializeField]
-	[VariableProperty(new Type[]
-	{
-		typeof(IntegerVariable)
-	})]
-	protected IntegerVariable VarNPCID;
-
-	// Token: 0x0400106C RID: 4204
-	[SerializeField]
-	protected string valueName;
-
-	// Token: 0x0400106D RID: 4205
-	[SerializeField]
-	protected SetValueType valueType;
 }

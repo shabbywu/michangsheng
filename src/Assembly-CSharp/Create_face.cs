@@ -1,201 +1,144 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003E8 RID: 1000
 public class Create_face : MonoBehaviour
 {
-	// Token: 0x0600203E RID: 8254 RVA: 0x000E3010 File Offset: 0x000E1210
+	public GameObject faceChoicePrefab;
+
+	public GameObject faceItmePrefab;
+
+	public GameObject colorPrefab;
+
+	public GameObject AllItmePrefab;
+
+	public AvatarFaceDatabase faceDatabase;
+
+	public UIGrid AllListGrid;
+
+	public UIGrid ItemGrid;
+
+	public GameObject goodsGrid;
+
+	public GameObject colorset;
+
+	public GameObject colorsetScroll;
+
+	public GameObject colorsetGrid;
+
+	public Image NowSelectColor;
+
+	public string nowColorstr = "";
+
 	private void Start()
 	{
 		jsonData.instance.AvatarRandomJsonData = new JSONObject(JSONObject.Type.OBJECT);
 		jsonData.instance.refreshMonstar(1);
-		base.transform.parent.parent.GetComponent<CreateAvatarMag>().player.randomAvatar(1);
-		this.resetList();
+		((Component)((Component)this).transform.parent.parent).GetComponent<CreateAvatarMag>().player.randomAvatar(1);
+		resetList();
 	}
 
-	// Token: 0x0600203F RID: 8255 RVA: 0x000E3060 File Offset: 0x000E1260
 	public JSONObject GetColorJson(string color_s)
 	{
 		JSONObject result = null;
-		uint num = <PrivateImplementationDetails>.ComputeStringHash(color_s);
-		if (num <= 1128880211U)
+		switch (color_s)
 		{
-			if (num <= 527219179U)
-			{
-				if (num != 153553283U)
-				{
-					if (num == 527219179U)
-					{
-						if (color_s == "yanzhuColor")
-						{
-							result = jsonData.instance.YanZhuYanSeRandomColorJsonData;
-						}
-					}
-				}
-				else if (color_s == "tezhengColor")
-				{
-					result = jsonData.instance.MianWenYanSeRandomColorJsonData;
-				}
-			}
-			else if (num != 596278282U)
-			{
-				if (num == 1128880211U)
-				{
-					if (color_s == "tattooColor")
-					{
-						result = jsonData.instance.WenShenRandomColorJsonData;
-					}
-				}
-			}
-			else if (color_s == "hairColorR")
-			{
-				result = jsonData.instance.HairRandomColorJsonData;
-			}
-		}
-		else if (num <= 2189298307U)
-		{
-			if (num != 1180500499U)
-			{
-				if (num == 2189298307U)
-				{
-					if (color_s == "mouthColor")
-					{
-						result = jsonData.instance.MouthRandomColorJsonData;
-					}
-				}
-			}
-			else if (color_s == "eyebrowColor")
-			{
-				result = jsonData.instance.MeiMaoYanSeRandomColorJsonData;
-			}
-		}
-		else if (num != 2546894512U)
-		{
-			if (num == 4294355740U)
-			{
-				if (color_s == "blushColor")
-				{
-					result = jsonData.instance.SaiHonRandomColorJsonData;
-				}
-			}
-		}
-		else if (color_s == "featureColor")
-		{
+		case "hairColorR":
+			result = jsonData.instance.HairRandomColorJsonData;
+			break;
+		case "mouthColor":
+			result = jsonData.instance.MouthRandomColorJsonData;
+			break;
+		case "tattooColor":
+			result = jsonData.instance.WenShenRandomColorJsonData;
+			break;
+		case "blushColor":
+			result = jsonData.instance.SaiHonRandomColorJsonData;
+			break;
+		case "yanzhuColor":
+			result = jsonData.instance.YanZhuYanSeRandomColorJsonData;
+			break;
+		case "tezhengColor":
+			result = jsonData.instance.MianWenYanSeRandomColorJsonData;
+			break;
+		case "eyebrowColor":
 			result = jsonData.instance.MeiMaoYanSeRandomColorJsonData;
+			break;
+		case "featureColor":
+			result = jsonData.instance.MeiMaoYanSeRandomColorJsonData;
+			break;
 		}
 		return result;
 	}
 
-	// Token: 0x06002040 RID: 8256 RVA: 0x000E31E0 File Offset: 0x000E13E0
 	public void ResteColorSetUIColor(string c)
 	{
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
 		if (c == "")
 		{
-			this.NowSelectColor.gameObject.SetActive(false);
+			((Component)NowSelectColor).gameObject.SetActive(false);
 			return;
 		}
-		this.NowSelectColor.gameObject.SetActive(true);
+		((Component)NowSelectColor).gameObject.SetActive(true);
 		int num = jsonData.instance.AvatarRandomJsonData["1"][c].I + 1;
-		JSONObject jsonobject = this.GetColorJson(c)[string.Concat(num)];
-		float n = jsonobject["R"].n;
-		float n2 = jsonobject["G"].n;
-		float n3 = jsonobject["B"].n;
-		this.NowSelectColor.color = new Color(n / 255f, n2 / 255f, n3 / 255f);
+		JSONObject jSONObject = GetColorJson(c)[string.Concat(num)];
+		float n = jSONObject["R"].n;
+		float n2 = jSONObject["G"].n;
+		float n3 = jSONObject["B"].n;
+		((Graphic)NowSelectColor).color = new Color(n / 255f, n2 / 255f, n3 / 255f);
 	}
 
-	// Token: 0x06002041 RID: 8257 RVA: 0x000E32AD File Offset: 0x000E14AD
 	public void ShowColorSet()
 	{
-		this.colorset.SetActive(true);
-		this.colorset.transform.GetComponent<UIToggle>().value = false;
-		this.colorsetScroll.SetActive(false);
+		colorset.SetActive(true);
+		((Component)colorset.transform).GetComponent<UIToggle>().value = false;
+		colorsetScroll.SetActive(false);
 	}
 
-	// Token: 0x06002042 RID: 8258 RVA: 0x000E32DD File Offset: 0x000E14DD
 	public void hideColorSet()
 	{
-		this.colorset.SetActive(false);
-		this.colorsetScroll.SetActive(false);
+		colorset.SetActive(false);
+		colorsetScroll.SetActive(false);
 	}
 
-	// Token: 0x06002043 RID: 8259 RVA: 0x000E32F8 File Offset: 0x000E14F8
 	public void resetList()
 	{
-		foreach (object obj in this.AllListGrid.transform)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Expected O, but got Unknown
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+		foreach (Transform item in ((Component)AllListGrid).transform)
 		{
-			Transform transform = (Transform)obj;
-			if (transform.gameObject.activeSelf)
+			Transform val = item;
+			if (((Component)val).gameObject.activeSelf)
 			{
-				Object.Destroy(transform.gameObject);
+				Object.Destroy((Object)(object)((Component)val).gameObject);
 			}
 		}
 		int num = 0;
-		foreach (faceInfoList faceInfoList in this.faceDatabase.AllList)
+		foreach (faceInfoList all in faceDatabase.AllList)
 		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.AllItmePrefab, this.AllListGrid.transform);
-			gameObject.transform.localPosition = Vector3.zero;
-			gameObject.transform.localScale = Vector3.one;
-			gameObject.transform.Find("Label").GetComponent<UILabel>().text = faceInfoList.Name;
-			gameObject.transform.Find("LabelLight").GetComponent<UILabel>().text = faceInfoList.Name;
+			GameObject val2 = Object.Instantiate<GameObject>(AllItmePrefab, ((Component)AllListGrid).transform);
+			val2.transform.localPosition = Vector3.zero;
+			val2.transform.localScale = Vector3.one;
+			((Component)val2.transform.Find("Label")).GetComponent<UILabel>().text = all.Name;
+			((Component)val2.transform.Find("LabelLight")).GetComponent<UILabel>().text = all.Name;
 			if (num == 0)
 			{
-				gameObject.transform.GetComponent<UIToggle>().value = true;
-				gameObject.transform.GetComponent<CreateFaceButton>().resteChoice();
+				((Component)val2.transform).GetComponent<UIToggle>().value = true;
+				((Component)val2.transform).GetComponent<CreateFaceButton>().resteChoice();
 			}
 			num++;
 		}
-		base.Invoke("resetAllListGrid", 0.1f);
+		((MonoBehaviour)this).Invoke("resetAllListGrid", 0.1f);
 	}
 
-	// Token: 0x06002044 RID: 8260 RVA: 0x000E346C File Offset: 0x000E166C
 	public void resetAllListGrid()
 	{
-		this.AllListGrid.repositionNow = true;
+		AllListGrid.repositionNow = true;
 	}
 
-	// Token: 0x06002045 RID: 8261 RVA: 0x000E347A File Offset: 0x000E167A
 	private void Update()
 	{
-		this.ResteColorSetUIColor(this.nowColorstr);
+		ResteColorSetUIColor(nowColorstr);
 	}
-
-	// Token: 0x04001A2E RID: 6702
-	public GameObject faceChoicePrefab;
-
-	// Token: 0x04001A2F RID: 6703
-	public GameObject faceItmePrefab;
-
-	// Token: 0x04001A30 RID: 6704
-	public GameObject colorPrefab;
-
-	// Token: 0x04001A31 RID: 6705
-	public GameObject AllItmePrefab;
-
-	// Token: 0x04001A32 RID: 6706
-	public AvatarFaceDatabase faceDatabase;
-
-	// Token: 0x04001A33 RID: 6707
-	public UIGrid AllListGrid;
-
-	// Token: 0x04001A34 RID: 6708
-	public UIGrid ItemGrid;
-
-	// Token: 0x04001A35 RID: 6709
-	public GameObject goodsGrid;
-
-	// Token: 0x04001A36 RID: 6710
-	public GameObject colorset;
-
-	// Token: 0x04001A37 RID: 6711
-	public GameObject colorsetScroll;
-
-	// Token: 0x04001A38 RID: 6712
-	public GameObject colorsetGrid;
-
-	// Token: 0x04001A39 RID: 6713
-	public Image NowSelectColor;
-
-	// Token: 0x04001A3A RID: 6714
-	public string nowColorstr = "";
 }

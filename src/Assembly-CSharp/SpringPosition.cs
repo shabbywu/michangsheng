@@ -1,133 +1,146 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000095 RID: 149
 [AddComponentMenu("NGUI/Tween/Spring Position")]
 public class SpringPosition : MonoBehaviour
 {
-	// Token: 0x0600082B RID: 2091 RVA: 0x00031B78 File Offset: 0x0002FD78
+	public delegate void OnFinished();
+
+	public static SpringPosition current;
+
+	public Vector3 target = Vector3.zero;
+
+	public float strength = 10f;
+
+	public bool worldSpace;
+
+	public bool ignoreTimeScale;
+
+	public bool updateScrollView;
+
+	public OnFinished onFinished;
+
+	[SerializeField]
+	[HideInInspector]
+	private GameObject eventReceiver;
+
+	[SerializeField]
+	[HideInInspector]
+	public string callWhenFinished;
+
+	private Transform mTrans;
+
+	private float mThreshold;
+
+	private UIScrollView mSv;
+
 	private void Start()
 	{
-		this.mTrans = base.transform;
-		if (this.updateScrollView)
+		mTrans = ((Component)this).transform;
+		if (updateScrollView)
 		{
-			this.mSv = NGUITools.FindInParents<UIScrollView>(base.gameObject);
+			mSv = NGUITools.FindInParents<UIScrollView>(((Component)this).gameObject);
 		}
 	}
 
-	// Token: 0x0600082C RID: 2092 RVA: 0x00031BA0 File Offset: 0x0002FDA0
 	private void Update()
 	{
-		float deltaTime = this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime;
-		if (this.worldSpace)
+		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0120: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		float deltaTime = (ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
+		Vector3 val;
+		if (worldSpace)
 		{
-			if (this.mThreshold == 0f)
+			if (mThreshold == 0f)
 			{
-				this.mThreshold = (this.target - this.mTrans.position).sqrMagnitude * 0.001f;
+				val = target - mTrans.position;
+				mThreshold = ((Vector3)(ref val)).sqrMagnitude * 0.001f;
 			}
-			this.mTrans.position = NGUIMath.SpringLerp(this.mTrans.position, this.target, this.strength, deltaTime);
-			if (this.mThreshold >= (this.target - this.mTrans.position).sqrMagnitude)
+			mTrans.position = NGUIMath.SpringLerp(mTrans.position, target, strength, deltaTime);
+			float num = mThreshold;
+			val = target - mTrans.position;
+			if (num >= ((Vector3)(ref val)).sqrMagnitude)
 			{
-				this.mTrans.position = this.target;
-				this.NotifyListeners();
-				base.enabled = false;
+				mTrans.position = target;
+				NotifyListeners();
+				((Behaviour)this).enabled = false;
 			}
 		}
 		else
 		{
-			if (this.mThreshold == 0f)
+			if (mThreshold == 0f)
 			{
-				this.mThreshold = (this.target - this.mTrans.localPosition).sqrMagnitude * 1E-05f;
+				val = target - mTrans.localPosition;
+				mThreshold = ((Vector3)(ref val)).sqrMagnitude * 1E-05f;
 			}
-			this.mTrans.localPosition = NGUIMath.SpringLerp(this.mTrans.localPosition, this.target, this.strength, deltaTime);
-			if (this.mThreshold >= (this.target - this.mTrans.localPosition).sqrMagnitude)
+			mTrans.localPosition = NGUIMath.SpringLerp(mTrans.localPosition, target, strength, deltaTime);
+			float num2 = mThreshold;
+			val = target - mTrans.localPosition;
+			if (num2 >= ((Vector3)(ref val)).sqrMagnitude)
 			{
-				this.mTrans.localPosition = this.target;
-				this.NotifyListeners();
-				base.enabled = false;
+				mTrans.localPosition = target;
+				NotifyListeners();
+				((Behaviour)this).enabled = false;
 			}
 		}
-		if (this.mSv != null)
+		if ((Object)(object)mSv != (Object)null)
 		{
-			this.mSv.UpdateScrollbars(true);
+			mSv.UpdateScrollbars(recalculateBounds: true);
 		}
 	}
 
-	// Token: 0x0600082D RID: 2093 RVA: 0x00031D38 File Offset: 0x0002FF38
 	private void NotifyListeners()
 	{
-		SpringPosition.current = this;
-		if (this.onFinished != null)
+		current = this;
+		if (onFinished != null)
 		{
-			this.onFinished();
+			onFinished();
 		}
-		if (this.eventReceiver != null && !string.IsNullOrEmpty(this.callWhenFinished))
+		if ((Object)(object)eventReceiver != (Object)null && !string.IsNullOrEmpty(callWhenFinished))
 		{
-			this.eventReceiver.SendMessage(this.callWhenFinished, this, 1);
+			eventReceiver.SendMessage(callWhenFinished, (object)this, (SendMessageOptions)1);
 		}
-		SpringPosition.current = null;
+		current = null;
 	}
 
-	// Token: 0x0600082E RID: 2094 RVA: 0x00031D94 File Offset: 0x0002FF94
 	public static SpringPosition Begin(GameObject go, Vector3 pos, float strength)
 	{
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
 		SpringPosition springPosition = go.GetComponent<SpringPosition>();
-		if (springPosition == null)
+		if ((Object)(object)springPosition == (Object)null)
 		{
 			springPosition = go.AddComponent<SpringPosition>();
 		}
 		springPosition.target = pos;
 		springPosition.strength = strength;
 		springPosition.onFinished = null;
-		if (!springPosition.enabled)
+		if (!((Behaviour)springPosition).enabled)
 		{
 			springPosition.mThreshold = 0f;
-			springPosition.enabled = true;
+			((Behaviour)springPosition).enabled = true;
 		}
 		return springPosition;
 	}
-
-	// Token: 0x0400050C RID: 1292
-	public static SpringPosition current;
-
-	// Token: 0x0400050D RID: 1293
-	public Vector3 target = Vector3.zero;
-
-	// Token: 0x0400050E RID: 1294
-	public float strength = 10f;
-
-	// Token: 0x0400050F RID: 1295
-	public bool worldSpace;
-
-	// Token: 0x04000510 RID: 1296
-	public bool ignoreTimeScale;
-
-	// Token: 0x04000511 RID: 1297
-	public bool updateScrollView;
-
-	// Token: 0x04000512 RID: 1298
-	public SpringPosition.OnFinished onFinished;
-
-	// Token: 0x04000513 RID: 1299
-	[SerializeField]
-	[HideInInspector]
-	private GameObject eventReceiver;
-
-	// Token: 0x04000514 RID: 1300
-	[SerializeField]
-	[HideInInspector]
-	public string callWhenFinished;
-
-	// Token: 0x04000515 RID: 1301
-	private Transform mTrans;
-
-	// Token: 0x04000516 RID: 1302
-	private float mThreshold;
-
-	// Token: 0x04000517 RID: 1303
-	private UIScrollView mSv;
-
-	// Token: 0x02001214 RID: 4628
-	// (Invoke) Token: 0x0600786B RID: 30827
-	public delegate void OnFinished();
 }

@@ -1,22 +1,25 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200001A RID: 26
 public class LTUtility
 {
-	// Token: 0x06000126 RID: 294 RVA: 0x0000749C File Offset: 0x0000569C
 	public static Vector3[] reverse(Vector3[] arr)
 	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
 		int num = arr.Length;
-		int i = 0;
-		int num2 = num - 1;
-		while (i < num2)
+		int num2 = 0;
+		int num3 = num - 1;
+		while (num2 < num3)
 		{
-			Vector3 vector = arr[i];
-			arr[i] = arr[num2];
-			arr[num2] = vector;
-			i++;
-			num2--;
+			Vector3 val = arr[num2];
+			arr[num2] = arr[num3];
+			arr[num3] = val;
+			num2++;
+			num3--;
 		}
 		return arr;
 	}

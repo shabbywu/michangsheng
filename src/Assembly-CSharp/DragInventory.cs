@@ -1,47 +1,46 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000135 RID: 309
 public class DragInventory : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IDragHandler
 {
-	// Token: 0x06000E43 RID: 3651 RVA: 0x00054B00 File Offset: 0x00052D00
-	private void Awake()
-	{
-		Canvas componentInParent = base.GetComponentInParent<Canvas>();
-		if (componentInParent != null)
-		{
-			this.canvasRectTransform = (componentInParent.transform as RectTransform);
-			this.panelRectTransform = (base.transform.parent as RectTransform);
-		}
-	}
-
-	// Token: 0x06000E44 RID: 3652 RVA: 0x00054B44 File Offset: 0x00052D44
-	public void OnPointerDown(PointerEventData data)
-	{
-		RectTransformUtility.ScreenPointToLocalPointInRectangle(this.panelRectTransform, data.position, data.pressEventCamera, ref this.pointerOffset);
-	}
-
-	// Token: 0x06000E45 RID: 3653 RVA: 0x00054B64 File Offset: 0x00052D64
-	public void OnDrag(PointerEventData data)
-	{
-		if (this.panelRectTransform == null)
-		{
-			return;
-		}
-		Vector2 vector;
-		if (RectTransformUtility.ScreenPointToLocalPointInRectangle(this.canvasRectTransform, Input.mousePosition, data.pressEventCamera, ref vector))
-		{
-			this.panelRectTransform.localPosition = vector - this.pointerOffset;
-		}
-	}
-
-	// Token: 0x04000A4B RID: 2635
 	private Vector2 pointerOffset;
 
-	// Token: 0x04000A4C RID: 2636
 	private RectTransform canvasRectTransform;
 
-	// Token: 0x04000A4D RID: 2637
 	private RectTransform panelRectTransform;
+
+	private void Awake()
+	{
+		Canvas componentInParent = ((Component)this).GetComponentInParent<Canvas>();
+		if ((Object)(object)componentInParent != (Object)null)
+		{
+			ref RectTransform reference = ref canvasRectTransform;
+			Transform transform = ((Component)componentInParent).transform;
+			reference = (RectTransform)(object)((transform is RectTransform) ? transform : null);
+			ref RectTransform reference2 = ref panelRectTransform;
+			Transform parent = ((Component)this).transform.parent;
+			reference2 = (RectTransform)(object)((parent is RectTransform) ? parent : null);
+		}
+	}
+
+	public void OnPointerDown(PointerEventData data)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		RectTransformUtility.ScreenPointToLocalPointInRectangle(panelRectTransform, data.position, data.pressEventCamera, ref pointerOffset);
+	}
+
+	public void OnDrag(PointerEventData data)
+	{
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = default(Vector2);
+		if (!((Object)(object)panelRectTransform == (Object)null) && RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, Vector2.op_Implicit(Input.mousePosition), data.pressEventCamera, ref val))
+		{
+			((Transform)panelRectTransform).localPosition = Vector2.op_Implicit(val - pointerOffset);
+		}
+	}
 }

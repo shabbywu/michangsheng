@@ -1,40 +1,20 @@
-﻿using System;
-
-// Token: 0x02000156 RID: 342
 public enum AccountType
 {
-	// Token: 0x04000B4A RID: 2890
-	ANONYMOUS,
-	// Token: 0x04000B4B RID: 2891
-	REGISTERED,
-	// Token: 0x04000B4C RID: 2892
-	SINA_WEIBO,
-	// Token: 0x04000B4D RID: 2893
-	QQ,
-	// Token: 0x04000B4E RID: 2894
-	QQ_WEIBO,
-	// Token: 0x04000B4F RID: 2895
-	ND91,
-	// Token: 0x04000B50 RID: 2896
-	WEIXIN,
-	// Token: 0x04000B51 RID: 2897
+	ANONYMOUS = 0,
+	REGISTERED = 1,
+	SINA_WEIBO = 2,
+	QQ = 3,
+	QQ_WEIBO = 4,
+	ND91 = 5,
+	WEIXIN = 6,
 	TYPE1 = 11,
-	// Token: 0x04000B52 RID: 2898
-	TYPE2,
-	// Token: 0x04000B53 RID: 2899
-	TYPE3,
-	// Token: 0x04000B54 RID: 2900
-	TYPE4,
-	// Token: 0x04000B55 RID: 2901
-	TYPE5,
-	// Token: 0x04000B56 RID: 2902
-	TYPE6,
-	// Token: 0x04000B57 RID: 2903
-	TYPE7,
-	// Token: 0x04000B58 RID: 2904
-	TYPE8,
-	// Token: 0x04000B59 RID: 2905
-	TYPE9,
-	// Token: 0x04000B5A RID: 2906
-	TYPE10
+	TYPE2 = 12,
+	TYPE3 = 13,
+	TYPE4 = 14,
+	TYPE5 = 15,
+	TYPE6 = 16,
+	TYPE7 = 17,
+	TYPE8 = 18,
+	TYPE9 = 19,
+	TYPE10 = 20
 }

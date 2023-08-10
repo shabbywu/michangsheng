@@ -1,150 +1,181 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x0200002F RID: 47
 [ExecuteInEditMode]
 public class Lightbeam : MonoBehaviour
 {
-	// Token: 0x1700006B RID: 107
-	// (get) Token: 0x060003F2 RID: 1010 RVA: 0x00015D63 File Offset: 0x00013F63
-	// (set) Token: 0x060003F3 RID: 1011 RVA: 0x00015D70 File Offset: 0x00013F70
+	public bool IsModifyingMesh;
+
+	public Material DefaultMaterial;
+
+	public LightbeamSettings Settings;
+
 	public float RadiusTop
 	{
 		get
 		{
-			return this.Settings.RadiusTop;
+			return Settings.RadiusTop;
 		}
 		set
 		{
-			this.Settings.RadiusTop = value;
+			Settings.RadiusTop = value;
 		}
 	}
 
-	// Token: 0x1700006C RID: 108
-	// (get) Token: 0x060003F4 RID: 1012 RVA: 0x00015D7E File Offset: 0x00013F7E
-	// (set) Token: 0x060003F5 RID: 1013 RVA: 0x00015D8B File Offset: 0x00013F8B
 	public float RadiusBottom
 	{
 		get
 		{
-			return this.Settings.RadiusBottom;
+			return Settings.RadiusBottom;
 		}
 		set
 		{
-			this.Settings.RadiusBottom = value;
+			Settings.RadiusBottom = value;
 		}
 	}
 
-	// Token: 0x1700006D RID: 109
-	// (get) Token: 0x060003F6 RID: 1014 RVA: 0x00015D99 File Offset: 0x00013F99
-	// (set) Token: 0x060003F7 RID: 1015 RVA: 0x00015DA6 File Offset: 0x00013FA6
 	public float Length
 	{
 		get
 		{
-			return this.Settings.Length;
+			return Settings.Length;
 		}
 		set
 		{
-			this.Settings.Length = value;
+			Settings.Length = value;
 		}
 	}
 
-	// Token: 0x1700006E RID: 110
-	// (get) Token: 0x060003F8 RID: 1016 RVA: 0x00015DB4 File Offset: 0x00013FB4
-	// (set) Token: 0x060003F9 RID: 1017 RVA: 0x00015DC1 File Offset: 0x00013FC1
 	public int Subdivisions
 	{
 		get
 		{
-			return this.Settings.Subdivisions;
+			return Settings.Subdivisions;
 		}
 		set
 		{
-			this.Settings.Subdivisions = value;
+			Settings.Subdivisions = value;
 		}
 	}
 
-	// Token: 0x1700006F RID: 111
-	// (get) Token: 0x060003FA RID: 1018 RVA: 0x00015DCF File Offset: 0x00013FCF
-	// (set) Token: 0x060003FB RID: 1019 RVA: 0x00015DDC File Offset: 0x00013FDC
 	public int SubdivisionsHeight
 	{
 		get
 		{
-			return this.Settings.SubdivisionsHeight;
+			return Settings.SubdivisionsHeight;
 		}
 		set
 		{
-			this.Settings.SubdivisionsHeight = value;
+			Settings.SubdivisionsHeight = value;
 		}
 	}
 
-	// Token: 0x060003FC RID: 1020 RVA: 0x00015DEC File Offset: 0x00013FEC
 	public void GenerateBeam()
 	{
-		MeshFilter component = base.GetComponent<MeshFilter>();
-		CombineInstance[] array = new CombineInstance[2];
-		array[0].mesh = this.GenerateMesh(false);
-		array[0].transform = Matrix4x4.identity;
-		array[1].mesh = this.GenerateMesh(true);
-		array[1].transform = Matrix4x4.identity;
-		Mesh mesh = new Mesh();
-		mesh.CombineMeshes(array);
-		if (component.sharedMesh == null)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Expected O, but got Unknown
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Expected O, but got Unknown
+		MeshFilter component = ((Component)this).GetComponent<MeshFilter>();
+		CombineInstance[] array = (CombineInstance[])(object)new CombineInstance[2];
+		((CombineInstance)(ref array[0])).mesh = GenerateMesh(reverseNormals: false);
+		((CombineInstance)(ref array[0])).transform = Matrix4x4.identity;
+		((CombineInstance)(ref array[1])).mesh = GenerateMesh(reverseNormals: true);
+		((CombineInstance)(ref array[1])).transform = Matrix4x4.identity;
+		Mesh val = new Mesh();
+		val.CombineMeshes(array);
+		if ((Object)(object)component.sharedMesh == (Object)null)
 		{
 			component.sharedMesh = new Mesh();
 		}
 		component.sharedMesh.Clear();
-		component.sharedMesh.vertices = mesh.vertices;
-		component.sharedMesh.uv = mesh.uv;
-		component.sharedMesh.triangles = mesh.triangles;
-		component.sharedMesh.tangents = mesh.tangents;
-		component.sharedMesh.normals = mesh.normals;
+		component.sharedMesh.vertices = val.vertices;
+		component.sharedMesh.uv = val.uv;
+		component.sharedMesh.triangles = val.triangles;
+		component.sharedMesh.tangents = val.tangents;
+		component.sharedMesh.normals = val.normals;
 	}
 
-	// Token: 0x060003FD RID: 1021 RVA: 0x00015ED8 File Offset: 0x000140D8
 	private Mesh GenerateMesh(bool reverseNormals)
 	{
-		int num = this.Settings.Subdivisions * (this.Settings.SubdivisionsHeight + 1);
-		num += this.Settings.SubdivisionsHeight + 1;
-		Vector3[] array = new Vector3[num];
-		Vector2[] array2 = new Vector2[num];
-		Vector3[] array3 = new Vector3[num];
-		int[] array4 = new int[this.Settings.Subdivisions * 2 * this.Settings.SubdivisionsHeight * 3];
-		int num2 = this.Settings.SubdivisionsHeight + 1;
-		float num3 = 6.2831855f / (float)this.Settings.Subdivisions;
-		float lengthFrac = this.Settings.Length / (float)this.Settings.SubdivisionsHeight;
-		float num4 = 1f / (float)this.Settings.Subdivisions;
-		float num5 = 1f / (float)this.Settings.SubdivisionsHeight;
-		for (int i = 0; i < this.Settings.Subdivisions + 1; i++)
+		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0162: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0363: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0369: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0370: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0377: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0386: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0392: Expected O, but got Unknown
+		//IL_0393: Expected O, but got Unknown
+		//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0194: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		int num = Settings.Subdivisions * (Settings.SubdivisionsHeight + 1);
+		num += Settings.SubdivisionsHeight + 1;
+		Vector3[] array = (Vector3[])(object)new Vector3[num];
+		Vector2[] array2 = (Vector2[])(object)new Vector2[num];
+		Vector3[] array3 = (Vector3[])(object)new Vector3[num];
+		int[] array4 = new int[Settings.Subdivisions * 2 * Settings.SubdivisionsHeight * 3];
+		int num2 = Settings.SubdivisionsHeight + 1;
+		float num3 = (float)Math.PI * 2f / (float)Settings.Subdivisions;
+		float lengthFrac = Settings.Length / (float)Settings.SubdivisionsHeight;
+		float num4 = 1f / (float)Settings.Subdivisions;
+		float num5 = 1f / (float)Settings.SubdivisionsHeight;
+		for (int i = 0; i < Settings.Subdivisions + 1; i++)
 		{
 			float xAngle = Mathf.Cos((float)i * num3);
 			float yAngle = Mathf.Sin((float)i * num3);
-			Vector3 vector = Lightbeam.CalculateVertex(lengthFrac, xAngle, yAngle, 0, this.Settings.RadiusTop);
-			Vector3 vector2 = Lightbeam.CalculateVertex(lengthFrac, xAngle, yAngle, num2 - 1, this.Settings.RadiusBottom) - vector;
+			Vector3 val = CalculateVertex(lengthFrac, xAngle, yAngle, 0, Settings.RadiusTop);
+			Vector3 val2 = CalculateVertex(lengthFrac, xAngle, yAngle, num2 - 1, Settings.RadiusBottom) - val;
 			for (int j = 0; j < num2; j++)
 			{
-				float radius = Mathf.Lerp(this.Settings.RadiusTop, this.Settings.RadiusBottom, num5 * (float)j);
-				Vector3 vector3 = Lightbeam.CalculateVertex(lengthFrac, xAngle, yAngle, j, radius);
-				Vector3 vector4 = Vector3.Cross(vector2.normalized, new Vector3(vector3.x, 0f, vector3.z).normalized);
-				if (reverseNormals)
-				{
-					vector4 = Vector3.Cross(vector2.normalized, vector4.normalized);
-				}
-				else
-				{
-					vector4 = Vector3.Cross(vector4.normalized, vector2.normalized);
-				}
+				float radius = Mathf.Lerp(Settings.RadiusTop, Settings.RadiusBottom, num5 * (float)j);
+				Vector3 val3 = CalculateVertex(lengthFrac, xAngle, yAngle, j, radius);
+				Vector3 normalized = ((Vector3)(ref val2)).normalized;
+				Vector3 val4 = new Vector3(val3.x, 0f, val3.z);
+				Vector3 val5 = Vector3.Cross(normalized, ((Vector3)(ref val4)).normalized);
+				val5 = ((!reverseNormals) ? Vector3.Cross(((Vector3)(ref val5)).normalized, ((Vector3)(ref val2)).normalized) : Vector3.Cross(((Vector3)(ref val2)).normalized, ((Vector3)(ref val5)).normalized));
 				int num6 = i * num2 + j;
-				array[num6] = vector3;
+				array[num6] = val3;
 				array2[num6] = new Vector2(num4 * (float)i, 1f - num5 * (float)j);
-				array3[num6] = vector4.normalized;
+				array3[num6] = ((Vector3)(ref val5)).normalized;
 				array2[num6] = new Vector2(num4 * (float)i, 1f - num5 * (float)j);
 			}
 		}
 		int num7 = 0;
-		for (int k = 0; k < this.Settings.Subdivisions; k++)
+		for (int k = 0; k < Settings.Subdivisions; k++)
 		{
 			for (int l = 0; l < num2 - 1; l++)
 			{
@@ -188,104 +219,152 @@ public class Lightbeam : MonoBehaviour
 				}
 			}
 		}
-		Mesh mesh = new Mesh();
-		mesh.Clear();
-		mesh.vertices = array;
-		mesh.uv = array2;
-		mesh.triangles = array4;
-		mesh.normals = array3;
-		mesh.RecalculateBounds();
-		Lightbeam.CalculateMeshTangents(mesh);
-		return mesh;
+		Mesh val6 = new Mesh();
+		val6.Clear();
+		val6.vertices = array;
+		val6.uv = array2;
+		val6.triangles = array4;
+		val6.normals = array3;
+		val6.RecalculateBounds();
+		CalculateMeshTangents(val6);
+		return val6;
 	}
 
-	// Token: 0x060003FE RID: 1022 RVA: 0x00016278 File Offset: 0x00014478
 	private static Vector3 CalculateVertex(float lengthFrac, float xAngle, float yAngle, int j, float radius)
 	{
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
 		float num = radius * xAngle;
 		float num2 = radius * yAngle;
 		return new Vector3(num, (float)j * (lengthFrac * -1f), num2);
 	}
 
-	// Token: 0x060003FF RID: 1023 RVA: 0x000162A0 File Offset: 0x000144A0
 	private static void CalculateMeshTangents(Mesh mesh)
 	{
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0106: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0110: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0143: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0211: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0213: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0218: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0228: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0234: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0244: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0249: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0265: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0267: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0294: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0305: Unknown result type (might be due to invalid IL or missing references)
 		int[] triangles = mesh.triangles;
 		Vector3[] vertices = mesh.vertices;
 		Vector2[] uv = mesh.uv;
 		Vector3[] normals = mesh.normals;
 		int num = triangles.Length;
 		int num2 = vertices.Length;
-		Vector3[] array = new Vector3[num2];
-		Vector3[] array2 = new Vector3[num2];
-		Vector4[] array3 = new Vector4[num2];
-		for (long num3 = 0L; num3 < (long)num; num3 += 3L)
+		Vector3[] array = (Vector3[])(object)new Vector3[num2];
+		Vector3[] array2 = (Vector3[])(object)new Vector3[num2];
+		Vector4[] array3 = (Vector4[])(object)new Vector4[num2];
+		Vector3 val7 = default(Vector3);
+		Vector3 val8 = default(Vector3);
+		for (long num3 = 0L; num3 < num; num3 += 3)
 		{
-			long num4 = (long)triangles[(int)(checked((IntPtr)num3))];
-			long num5 = (long)triangles[(int)(checked((IntPtr)(unchecked(num3 + 1L))))];
-			long num6 = (long)triangles[(int)(checked((IntPtr)(unchecked(num3 + 2L))))];
-			Vector3 vector;
-			Vector3 vector2;
-			Vector3 vector3;
-			Vector2 vector4;
-			Vector2 vector5;
-			Vector2 vector6;
-			checked
-			{
-				vector = vertices[(int)((IntPtr)num4)];
-				vector2 = vertices[(int)((IntPtr)num5)];
-				vector3 = vertices[(int)((IntPtr)num6)];
-				vector4 = uv[(int)((IntPtr)num4)];
-				vector5 = uv[(int)((IntPtr)num5)];
-				vector6 = uv[(int)((IntPtr)num6)];
-			}
-			float num7 = vector2.x - vector.x;
-			float num8 = vector3.x - vector.x;
-			float num9 = vector2.y - vector.y;
-			float num10 = vector3.y - vector.y;
-			float num11 = vector2.z - vector.z;
-			float num12 = vector3.z - vector.z;
-			float num13 = vector5.x - vector4.x;
-			float num14 = vector6.x - vector4.x;
-			float num15 = vector5.y - vector4.y;
-			float num16 = vector6.y - vector4.y;
+			long num4 = triangles[num3];
+			long num5 = triangles[num3 + 1];
+			long num6 = triangles[num3 + 2];
+			Vector3 val = vertices[num4];
+			Vector3 val2 = vertices[num5];
+			Vector3 val3 = vertices[num6];
+			Vector2 val4 = uv[num4];
+			Vector2 val5 = uv[num5];
+			Vector2 val6 = uv[num6];
+			float num7 = val2.x - val.x;
+			float num8 = val3.x - val.x;
+			float num9 = val2.y - val.y;
+			float num10 = val3.y - val.y;
+			float num11 = val2.z - val.z;
+			float num12 = val3.z - val.z;
+			float num13 = val5.x - val4.x;
+			float num14 = val6.x - val4.x;
+			float num15 = val5.y - val4.y;
+			float num16 = val6.y - val4.y;
 			float num17 = 1f / (num13 * num16 - num14 * num15);
-			Vector3 vector7;
-			vector7..ctor((num16 * num7 - num15 * num8) * num17, (num16 * num9 - num15 * num10) * num17, (num16 * num11 - num15 * num12) * num17);
-			Vector3 vector8;
-			vector8..ctor((num13 * num8 - num14 * num7) * num17, (num13 * num10 - num14 * num9) * num17, (num13 * num12 - num14 * num11) * num17);
-			checked
-			{
-				array[(int)((IntPtr)num4)] += vector7;
-				array[(int)((IntPtr)num5)] += vector7;
-				array[(int)((IntPtr)num6)] += vector7;
-				array2[(int)((IntPtr)num4)] += vector8;
-				array2[(int)((IntPtr)num5)] += vector8;
-				array2[(int)((IntPtr)num6)] += vector8;
-			}
+			((Vector3)(ref val7))._002Ector((num16 * num7 - num15 * num8) * num17, (num16 * num9 - num15 * num10) * num17, (num16 * num11 - num15 * num12) * num17);
+			((Vector3)(ref val8))._002Ector((num13 * num8 - num14 * num7) * num17, (num13 * num10 - num14 * num9) * num17, (num13 * num12 - num14 * num11) * num17);
+			ref Vector3 reference = ref array[num4];
+			reference += val7;
+			ref Vector3 reference2 = ref array[num5];
+			reference2 += val7;
+			ref Vector3 reference3 = ref array[num6];
+			reference3 += val7;
+			ref Vector3 reference4 = ref array2[num4];
+			reference4 += val8;
+			ref Vector3 reference5 = ref array2[num5];
+			reference5 += val8;
+			ref Vector3 reference6 = ref array2[num6];
+			reference6 += val8;
 		}
-		for (long num18 = 0L; num18 < (long)num2; num18 += 1L)
+		for (long num18 = 0L; num18 < num2; num18++)
 		{
-			checked
-			{
-				Vector3 vector9 = normals[(int)((IntPtr)num18)];
-				Vector3 vector10 = array[(int)((IntPtr)num18)];
-				Vector3.OrthoNormalize(ref vector9, ref vector10);
-				array3[(int)((IntPtr)num18)].x = vector10.x;
-				array3[(int)((IntPtr)num18)].y = vector10.y;
-				array3[(int)((IntPtr)num18)].z = vector10.z;
-				array3[(int)((IntPtr)num18)].w = ((Vector3.Dot(Vector3.Cross(vector9, vector10), array2[(int)((IntPtr)num18)]) < 0f) ? -1f : 1f);
-			}
+			Vector3 val9 = normals[num18];
+			Vector3 val10 = array[num18];
+			Vector3.OrthoNormalize(ref val9, ref val10);
+			array3[num18].x = val10.x;
+			array3[num18].y = val10.y;
+			array3[num18].z = val10.z;
+			array3[num18].w = ((Vector3.Dot(Vector3.Cross(val9, val10), array2[num18]) < 0f) ? (-1f) : 1f);
 		}
 		mesh.tangents = array3;
 	}
-
-	// Token: 0x04000228 RID: 552
-	public bool IsModifyingMesh;
-
-	// Token: 0x04000229 RID: 553
-	public Material DefaultMaterial;
-
-	// Token: 0x0400022A RID: 554
-	public LightbeamSettings Settings;
 }

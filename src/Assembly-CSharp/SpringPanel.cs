@@ -1,93 +1,103 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200008B RID: 139
 [RequireComponent(typeof(UIPanel))]
 [AddComponentMenu("NGUI/Internal/Spring Panel")]
 public class SpringPanel : MonoBehaviour
 {
-	// Token: 0x0600075A RID: 1882 RVA: 0x0002B6FD File Offset: 0x000298FD
+	public delegate void OnFinished();
+
+	public static SpringPanel current;
+
+	public Vector3 target = Vector3.zero;
+
+	public float strength = 10f;
+
+	public OnFinished onFinished;
+
+	private UIPanel mPanel;
+
+	private Transform mTrans;
+
+	private UIScrollView mDrag;
+
 	private void Start()
 	{
-		this.mPanel = base.GetComponent<UIPanel>();
-		this.mDrag = base.GetComponent<UIScrollView>();
-		this.mTrans = base.transform;
+		mPanel = ((Component)this).GetComponent<UIPanel>();
+		mDrag = ((Component)this).GetComponent<UIScrollView>();
+		mTrans = ((Component)this).transform;
 	}
 
-	// Token: 0x0600075B RID: 1883 RVA: 0x0002B723 File Offset: 0x00029923
 	private void Update()
 	{
-		this.AdvanceTowardsPosition();
+		AdvanceTowardsPosition();
 	}
 
-	// Token: 0x0600075C RID: 1884 RVA: 0x0002B72C File Offset: 0x0002992C
 	protected virtual void AdvanceTowardsPosition()
 	{
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
 		float deltaTime = RealTime.deltaTime;
 		bool flag = false;
-		Vector3 localPosition = this.mTrans.localPosition;
-		Vector3 vector = NGUIMath.SpringLerp(this.mTrans.localPosition, this.target, this.strength, deltaTime);
-		if ((vector - this.target).sqrMagnitude < 0.01f)
+		Vector3 localPosition = mTrans.localPosition;
+		Vector3 val = NGUIMath.SpringLerp(mTrans.localPosition, target, strength, deltaTime);
+		Vector3 val2 = val - target;
+		if (((Vector3)(ref val2)).sqrMagnitude < 0.01f)
 		{
-			vector = this.target;
-			base.enabled = false;
+			val = target;
+			((Behaviour)this).enabled = false;
 			flag = true;
 		}
-		this.mTrans.localPosition = vector;
-		Vector3 vector2 = vector - localPosition;
-		Vector2 clipOffset = this.mPanel.clipOffset;
-		clipOffset.x -= vector2.x;
-		clipOffset.y -= vector2.y;
-		this.mPanel.clipOffset = clipOffset;
-		if (this.mDrag != null)
+		mTrans.localPosition = val;
+		Vector3 val3 = val - localPosition;
+		Vector2 clipOffset = mPanel.clipOffset;
+		clipOffset.x -= val3.x;
+		clipOffset.y -= val3.y;
+		mPanel.clipOffset = clipOffset;
+		if ((Object)(object)mDrag != (Object)null)
 		{
-			this.mDrag.UpdateScrollbars(false);
+			mDrag.UpdateScrollbars(recalculateBounds: false);
 		}
-		if (flag && this.onFinished != null)
+		if (flag && onFinished != null)
 		{
-			SpringPanel.current = this;
-			this.onFinished();
-			SpringPanel.current = null;
+			current = this;
+			onFinished();
+			current = null;
 		}
 	}
 
-	// Token: 0x0600075D RID: 1885 RVA: 0x0002B828 File Offset: 0x00029A28
 	public static SpringPanel Begin(GameObject go, Vector3 pos, float strength)
 	{
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
 		SpringPanel springPanel = go.GetComponent<SpringPanel>();
-		if (springPanel == null)
+		if ((Object)(object)springPanel == (Object)null)
 		{
 			springPanel = go.AddComponent<SpringPanel>();
 		}
 		springPanel.target = pos;
 		springPanel.strength = strength;
 		springPanel.onFinished = null;
-		springPanel.enabled = true;
+		((Behaviour)springPanel).enabled = true;
 		return springPanel;
 	}
-
-	// Token: 0x0400048A RID: 1162
-	public static SpringPanel current;
-
-	// Token: 0x0400048B RID: 1163
-	public Vector3 target = Vector3.zero;
-
-	// Token: 0x0400048C RID: 1164
-	public float strength = 10f;
-
-	// Token: 0x0400048D RID: 1165
-	public SpringPanel.OnFinished onFinished;
-
-	// Token: 0x0400048E RID: 1166
-	private UIPanel mPanel;
-
-	// Token: 0x0400048F RID: 1167
-	private Transform mTrans;
-
-	// Token: 0x04000490 RID: 1168
-	private UIScrollView mDrag;
-
-	// Token: 0x02001201 RID: 4609
-	// (Invoke) Token: 0x0600783A RID: 30778
-	public delegate void OnFinished();
 }

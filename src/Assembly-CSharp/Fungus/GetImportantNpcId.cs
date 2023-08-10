@@ -1,54 +1,43 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Get", "GetImportantNpcId", "根据固定NpcId获取绑定该Id的NpcId", 0)]
+[AddComponentMenu("")]
+public class GetImportantNpcId : Command
 {
-	// Token: 0x02000F43 RID: 3907
-	[CommandInfo("YSNew/Get", "GetImportantNpcId", "根据固定NpcId获取绑定该Id的NpcId", 0)]
-	[AddComponentMenu("")]
-	public class GetImportantNpcId : Command
+	[Tooltip("Npc绑定Id")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NpcBingDingId;
+
+	[Tooltip("NpcId存放位置")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NpcId;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006E4D RID: 28237 RVA: 0x002A49DC File Offset: 0x002A2BDC
-		public override void OnEnter()
+		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(NpcBingDingId.Value))
 		{
-			if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(this.NpcBingDingId.Value))
-			{
-				this.NpcId.Value = NpcJieSuanManager.inst.ImportantNpcBangDingDictionary[this.NpcBingDingId.Value];
-			}
-			else
-			{
-				this.NpcId.Value = 0;
-			}
-			this.Continue();
+			NpcId.Value = NpcJieSuanManager.inst.ImportantNpcBangDingDictionary[NpcBingDingId.Value];
 		}
-
-		// Token: 0x06006E4E RID: 28238 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			NpcId.Value = 0;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006E4F RID: 28239 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005B94 RID: 23444
-		[Tooltip("Npc绑定Id")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NpcBingDingId;
-
-		// Token: 0x04005B95 RID: 23445
-		[Tooltip("NpcId存放位置")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NpcId;
+	public override void OnReset()
+	{
 	}
 }

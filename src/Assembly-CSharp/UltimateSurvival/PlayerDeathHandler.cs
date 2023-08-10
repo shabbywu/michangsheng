@@ -1,146 +1,139 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public class PlayerDeathHandler : PlayerBehaviour
 {
-	// Token: 0x02000612 RID: 1554
-	public class PlayerDeathHandler : PlayerBehaviour
+	[SerializeField]
+	private GameObject m_Camera;
+
+	[Header("Audio")]
+	[SerializeField]
+	private AudioSource m_AudioSource;
+
+	[SerializeField]
+	private SoundPlayer m_DeathAudio;
+
+	[Header("Stuff To Disable On Death")]
+	[SerializeField]
+	private GameObject[] m_ObjectsToDisable;
+
+	[SerializeField]
+	private Behaviour[] m_BehavioursToDisable;
+
+	[SerializeField]
+	private Collider[] m_CollidersToDisable;
+
+	[Header("Ragdoll")]
+	[SerializeField]
+	private bool m_EnableRagdoll;
+
+	[SerializeField]
+	[Tooltip("A Ragdoll component, usually attached to the armature of the character.")]
+	private Ragdoll m_Ragdoll;
+
+	[Header("Respawn")]
+	[SerializeField]
+	private bool m_AutoRespawn = true;
+
+	[SerializeField]
+	private float m_RespawnDuration = 10f;
+
+	[SerializeField]
+	private float m_RespawnBlockTime = 3f;
+
+	private Vector3 m_CamStartPos;
+
+	private Quaternion m_CamStartRot;
+
+	private void Awake()
 	{
-		// Token: 0x060031AD RID: 12717 RVA: 0x00160C14 File Offset: 0x0015EE14
-		private void Awake()
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		if (m_EnableRagdoll && !Object.op_Implicit((Object)(object)m_Ragdoll))
 		{
-			if (this.m_EnableRagdoll && !this.m_Ragdoll)
-			{
-				Debug.LogError("The ragdoll option has been enabled but no ragdoll object is assigned!", this);
-			}
-			base.Player.Health.AddChangeListener(new Action(this.OnChanged_Health));
-			this.m_CamStartPos = this.m_Camera.transform.localPosition;
-			this.m_CamStartRot = this.m_Camera.transform.localRotation;
+			Debug.LogError((object)"The ragdoll option has been enabled but no ragdoll object is assigned!", (Object)(object)this);
 		}
+		base.Player.Health.AddChangeListener(OnChanged_Health);
+		m_CamStartPos = m_Camera.transform.localPosition;
+		m_CamStartRot = m_Camera.transform.localRotation;
+	}
 
-		// Token: 0x060031AE RID: 12718 RVA: 0x00160C8C File Offset: 0x0015EE8C
-		private void OnChanged_Health()
+	private void OnChanged_Health()
+	{
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		if (base.Player.Health.Is(0f))
 		{
-			if (base.Player.Health.Is(0f))
+			On_Death();
+			RaycastHit val = default(RaycastHit);
+			if (Physics.Raycast(new Ray(((Component)this).transform.position + Vector3.up, Vector3.down), ref val, 1.5f, -1))
 			{
-				this.On_Death();
-				RaycastHit raycastHit;
-				if (Physics.Raycast(new Ray(base.transform.position + Vector3.up, Vector3.down), ref raycastHit, 1.5f, -1))
-				{
-					this.m_Camera.transform.position = raycastHit.point + Vector3.up * 0.1f;
-					this.m_Camera.transform.rotation = Quaternion.Euler(-30f, Random.Range(-180f, 180f), 0f);
-				}
+				m_Camera.transform.position = ((RaycastHit)(ref val)).point + Vector3.up * 0.1f;
+				m_Camera.transform.rotation = Quaternion.Euler(-30f, Random.Range(-180f, 180f), 0f);
 			}
 		}
+	}
 
-		// Token: 0x060031AF RID: 12719 RVA: 0x00004095 File Offset: 0x00002295
-		private void On_Death()
+	private void On_Death()
+	{
+	}
+
+	private IEnumerator C_Respawn()
+	{
+		yield return (object)new WaitForSeconds(m_RespawnDuration);
+		if (m_EnableRagdoll && Object.op_Implicit((Object)(object)m_Ragdoll))
 		{
+			m_Ragdoll.Disable();
 		}
-
-		// Token: 0x060031B0 RID: 12720 RVA: 0x00160D40 File Offset: 0x0015EF40
-		private IEnumerator C_Respawn()
+		m_Camera.transform.localPosition = m_CamStartPos;
+		m_Camera.transform.localRotation = m_CamStartRot;
+		if (base.Player.LastSleepPosition.Get() != Vector3.zero)
 		{
-			yield return new WaitForSeconds(this.m_RespawnDuration);
-			if (this.m_EnableRagdoll && this.m_Ragdoll)
-			{
-				this.m_Ragdoll.Disable();
-			}
-			this.m_Camera.transform.localPosition = this.m_CamStartPos;
-			this.m_Camera.transform.localRotation = this.m_CamStartRot;
-			if (base.Player.LastSleepPosition.Get() != Vector3.zero)
-			{
-				base.transform.position = base.Player.LastSleepPosition.Get();
-				base.transform.rotation = Quaternion.Euler(Vector3.up * Random.Range(-180f, 180f));
-			}
-			else
-			{
-				GameObject[] array = GameObject.FindGameObjectsWithTag("Spawn Point");
-				if (array != null && array.Length != 0)
-				{
-					GameObject gameObject = array[Random.Range(0, array.Length)];
-					base.transform.position = gameObject.transform.position;
-					base.transform.rotation = Quaternion.Euler(Vector3.up * Random.Range(-180f, 180f));
-				}
-			}
-			yield return new WaitForSeconds(this.m_RespawnBlockTime);
-			GameObject[] objectsToDisable = this.m_ObjectsToDisable;
-			for (int i = 0; i < objectsToDisable.Length; i++)
-			{
-				objectsToDisable[i].SetActive(true);
-			}
-			Behaviour[] behavioursToDisable = this.m_BehavioursToDisable;
-			for (int i = 0; i < behavioursToDisable.Length; i++)
-			{
-				behavioursToDisable[i].enabled = true;
-			}
-			Collider[] collidersToDisable = this.m_CollidersToDisable;
-			for (int i = 0; i < collidersToDisable.Length; i++)
-			{
-				collidersToDisable[i].enabled = true;
-			}
-			base.Player.Health.Set(100f);
-			base.Player.Thirst.Set(100f);
-			base.Player.Hunger.Set(100f);
-			base.Player.Stamina.Set(100f);
-			base.Player.Respawn.Send();
-			yield break;
+			((Component)this).transform.position = base.Player.LastSleepPosition.Get();
+			((Component)this).transform.rotation = Quaternion.Euler(Vector3.up * Random.Range(-180f, 180f));
 		}
-
-		// Token: 0x04002BFB RID: 11259
-		[SerializeField]
-		private GameObject m_Camera;
-
-		// Token: 0x04002BFC RID: 11260
-		[Header("Audio")]
-		[SerializeField]
-		private AudioSource m_AudioSource;
-
-		// Token: 0x04002BFD RID: 11261
-		[SerializeField]
-		private SoundPlayer m_DeathAudio;
-
-		// Token: 0x04002BFE RID: 11262
-		[Header("Stuff To Disable On Death")]
-		[SerializeField]
-		private GameObject[] m_ObjectsToDisable;
-
-		// Token: 0x04002BFF RID: 11263
-		[SerializeField]
-		private Behaviour[] m_BehavioursToDisable;
-
-		// Token: 0x04002C00 RID: 11264
-		[SerializeField]
-		private Collider[] m_CollidersToDisable;
-
-		// Token: 0x04002C01 RID: 11265
-		[Header("Ragdoll")]
-		[SerializeField]
-		private bool m_EnableRagdoll;
-
-		// Token: 0x04002C02 RID: 11266
-		[SerializeField]
-		[Tooltip("A Ragdoll component, usually attached to the armature of the character.")]
-		private Ragdoll m_Ragdoll;
-
-		// Token: 0x04002C03 RID: 11267
-		[Header("Respawn")]
-		[SerializeField]
-		private bool m_AutoRespawn = true;
-
-		// Token: 0x04002C04 RID: 11268
-		[SerializeField]
-		private float m_RespawnDuration = 10f;
-
-		// Token: 0x04002C05 RID: 11269
-		[SerializeField]
-		private float m_RespawnBlockTime = 3f;
-
-		// Token: 0x04002C06 RID: 11270
-		private Vector3 m_CamStartPos;
-
-		// Token: 0x04002C07 RID: 11271
-		private Quaternion m_CamStartRot;
+		else
+		{
+			GameObject[] array = GameObject.FindGameObjectsWithTag("Spawn Point");
+			if (array != null && array.Length != 0)
+			{
+				GameObject val = array[Random.Range(0, array.Length)];
+				((Component)this).transform.position = val.transform.position;
+				((Component)this).transform.rotation = Quaternion.Euler(Vector3.up * Random.Range(-180f, 180f));
+			}
+		}
+		yield return (object)new WaitForSeconds(m_RespawnBlockTime);
+		GameObject[] objectsToDisable = m_ObjectsToDisable;
+		for (int i = 0; i < objectsToDisable.Length; i++)
+		{
+			objectsToDisable[i].SetActive(true);
+		}
+		Behaviour[] behavioursToDisable = m_BehavioursToDisable;
+		for (int i = 0; i < behavioursToDisable.Length; i++)
+		{
+			behavioursToDisable[i].enabled = true;
+		}
+		Collider[] collidersToDisable = m_CollidersToDisable;
+		for (int i = 0; i < collidersToDisable.Length; i++)
+		{
+			collidersToDisable[i].enabled = true;
+		}
+		base.Player.Health.Set(100f);
+		base.Player.Thirst.Set(100f);
+		base.Player.Hunger.Set(100f);
+		base.Player.Stamina.Set(100f);
+		base.Player.Respawn.Send();
 	}
 }

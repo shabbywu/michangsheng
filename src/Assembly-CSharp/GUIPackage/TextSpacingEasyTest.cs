@@ -1,77 +1,86 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+[AddComponentMenu("UI/Effects/TextSpacingEasyTest")]
+public class TextSpacingEasyTest : BaseMeshEffect
 {
-	// Token: 0x02000A57 RID: 2647
-	[AddComponentMenu("UI/Effects/TextSpacingEasyTest")]
-	public class TextSpacingEasyTest : BaseMeshEffect
+	[SerializeField]
+	private Text text;
+
+	[SerializeField]
+	private float textWidth;
+
+	[SerializeField]
+	private bool AutoSpace;
+
+	private int fontSize = 14;
+
+	private RectTransform rect;
+
+	public float spacing;
+
+	private void Start()
 	{
-		// Token: 0x060049E4 RID: 18916 RVA: 0x001F54E8 File Offset: 0x001F36E8
-		private void Start()
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		text = ((Component)this).GetComponent<Text>();
+		rect = ((Component)text).GetComponent<RectTransform>();
+		Rect val = rect.rect;
+		textWidth = ((Rect)(ref val)).height;
+		fontSize = text.fontSize;
+	}
+
+	public override void ModifyMesh(VertexHelper vh)
+	{
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		if (text.text.Length >= 6)
 		{
-			this.text = base.GetComponent<Text>();
-			this.rect = this.text.GetComponent<RectTransform>();
-			this.textWidth = this.rect.rect.height;
-			this.fontSize = this.text.fontSize;
+			return;
 		}
-
-		// Token: 0x060049E5 RID: 18917 RVA: 0x001F553C File Offset: 0x001F373C
-		public override void ModifyMesh(VertexHelper vh)
+		float num = textWidth;
+		Rect val = rect.rect;
+		if (num != ((Rect)(ref val)).height)
 		{
-			if (this.text.text.Length >= 6)
+			val = rect.rect;
+			textWidth = ((Rect)(ref val)).height;
+		}
+		List<UIVertex> list = new List<UIVertex>();
+		vh.GetUIVertexStream(list);
+		int count = list.Count;
+		int num2 = count / 6 - 1;
+		if (AutoSpace)
+		{
+			spacing = (textWidth - (float)((num2 + 1) * fontSize)) / (float)num2;
+		}
+		for (int i = 6; i < count; i++)
+		{
+			UIVertex val2 = list[i];
+			ref Vector3 position = ref val2.position;
+			position -= new Vector3(0f, spacing * (float)(i / 6), 0f);
+			list[i] = val2;
+			if (i % 6 <= 2)
 			{
-				return;
+				vh.SetUIVertex(val2, i / 6 * 4 + i % 6);
 			}
-			if (this.textWidth != this.rect.rect.height)
+			if (i % 6 == 4)
 			{
-				this.textWidth = this.rect.rect.height;
-			}
-			List<UIVertex> list = new List<UIVertex>();
-			vh.GetUIVertexStream(list);
-			int count = list.Count;
-			int num = count / 6 - 1;
-			if (this.AutoSpace)
-			{
-				this.spacing = (this.textWidth - (float)((num + 1) * this.fontSize)) / (float)num;
-			}
-			for (int i = 6; i < count; i++)
-			{
-				UIVertex uivertex = list[i];
-				uivertex.position -= new Vector3(0f, this.spacing * (float)(i / 6), 0f);
-				list[i] = uivertex;
-				if (i % 6 <= 2)
-				{
-					vh.SetUIVertex(uivertex, i / 6 * 4 + i % 6);
-				}
-				if (i % 6 == 4)
-				{
-					vh.SetUIVertex(uivertex, i / 6 * 4 + i % 6 - 1);
-				}
+				vh.SetUIVertex(val2, i / 6 * 4 + i % 6 - 1);
 			}
 		}
-
-		// Token: 0x04004951 RID: 18769
-		[SerializeField]
-		private Text text;
-
-		// Token: 0x04004952 RID: 18770
-		[SerializeField]
-		private float textWidth;
-
-		// Token: 0x04004953 RID: 18771
-		[SerializeField]
-		private bool AutoSpace;
-
-		// Token: 0x04004954 RID: 18772
-		private int fontSize = 14;
-
-		// Token: 0x04004955 RID: 18773
-		private RectTransform rect;
-
-		// Token: 0x04004956 RID: 18774
-		public float spacing;
 	}
 }

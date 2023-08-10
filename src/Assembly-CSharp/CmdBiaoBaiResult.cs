@@ -1,19 +1,20 @@
-﻿using System;
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200021D RID: 541
 [CommandInfo("YSDongFu", "获取表白分数", "获取表白分数，赋值到TmpValue", 0)]
 [AddComponentMenu("")]
 public class CmdBiaoBaiResult : Command
 {
-	// Token: 0x060015AB RID: 5547 RVA: 0x00091264 File Offset: 0x0008F464
+	[SerializeField]
+	[Tooltip("分数类型")]
+	protected BiaoBaiScoreType ScoreType;
+
 	public override void OnEnter()
 	{
 		BiaoBaiManager.CalcBiaoBaiScore();
-		Debug.Log(BiaoBaiManager.BiaoBaiScore.ToString());
+		Debug.Log((object)BiaoBaiManager.BiaoBaiScore.ToString());
 		int value = 0;
-		switch (this.ScoreType)
+		switch (ScoreType)
 		{
 		case BiaoBaiScoreType.好感分:
 			value = BiaoBaiManager.BiaoBaiScore.FavorScore;
@@ -43,12 +44,7 @@ public class CmdBiaoBaiResult : Command
 			value = BiaoBaiManager.BiaoBaiScore.TotalScore;
 			break;
 		}
-		this.GetFlowchart().SetIntegerVariable("TmpValue", value);
-		this.Continue();
+		GetFlowchart().SetIntegerVariable("TmpValue", value);
+		Continue();
 	}
-
-	// Token: 0x04001037 RID: 4151
-	[SerializeField]
-	[Tooltip("分数类型")]
-	protected BiaoBaiScoreType ScoreType;
 }

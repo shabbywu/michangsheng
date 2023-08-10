@@ -1,292 +1,261 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Audio", "Control Audio", "Plays, loops, or stops an audiosource. Any AudioSources with the same tag as the target Audio Source will automatically be stoped.", 0)]
+[ExecuteInEditMode]
+public class ControlAudio : Command
 {
-	// Token: 0x02000DC0 RID: 3520
-	[CommandInfo("Audio", "Control Audio", "Plays, loops, or stops an audiosource. Any AudioSources with the same tag as the target Audio Source will automatically be stoped.", 0)]
-	[ExecuteInEditMode]
-	public class ControlAudio : Command
+	[Tooltip("What to do to audio")]
+	[SerializeField]
+	protected ControlAudioType control;
+
+	[Tooltip("Audio clip to play")]
+	[SerializeField]
+	protected AudioSourceData _audioSource;
+
+	[Range(0f, 1f)]
+	[Tooltip("Start audio at this volume")]
+	[SerializeField]
+	protected float startVolume = 1f;
+
+	[Range(0f, 1f)]
+	[Tooltip("End audio at this volume")]
+	[SerializeField]
+	protected float endVolume = 1f;
+
+	[Tooltip("Time to fade between current volume level and target volume level.")]
+	[SerializeField]
+	protected float fadeDuration;
+
+	[Tooltip("Wait until this command has finished before executing the next command.")]
+	[SerializeField]
+	protected bool waitUntilFinished;
+
+	[HideInInspector]
+	[FormerlySerializedAs("audioSource")]
+	public AudioSource audioSourceOLD;
+
+	public virtual ControlAudioType Control => control;
+
+	protected virtual void StopAudioWithSameTag()
 	{
-		// Token: 0x170007F9 RID: 2041
-		// (get) Token: 0x0600641D RID: 25629 RVA: 0x0027D87F File Offset: 0x0027BA7F
-		public virtual ControlAudioType Control
+		if ((Object)(object)_audioSource.Value == (Object)null || ((Component)_audioSource.Value).tag == "Untagged")
 		{
-			get
+			return;
+		}
+		AudioSource[] array = Object.FindObjectsOfType<AudioSource>();
+		foreach (AudioSource val in array)
+		{
+			if ((Object)(object)val != (Object)(object)_audioSource.Value && ((Component)val).tag == ((Component)_audioSource.Value).tag)
 			{
-				return this.control;
+				StopLoop(val);
 			}
 		}
+	}
 
-		// Token: 0x0600641E RID: 25630 RVA: 0x0027D888 File Offset: 0x0027BA88
-		protected virtual void StopAudioWithSameTag()
+	protected virtual void PlayOnce()
+	{
+		if (fadeDuration > 0f)
 		{
-			if (this._audioSource.Value == null || this._audioSource.Value.tag == "Untagged")
+			LeanTween.value(((Component)_audioSource.Value).gameObject, _audioSource.Value.volume, endVolume, fadeDuration).setOnUpdate(delegate(float updateVolume)
 			{
-				return;
-			}
-			foreach (AudioSource audioSource in Object.FindObjectsOfType<AudioSource>())
-			{
-				if (audioSource != this._audioSource.Value && audioSource.tag == this._audioSource.Value.tag)
-				{
-					this.StopLoop(audioSource);
-				}
-			}
+				_audioSource.Value.volume = updateVolume;
+			});
 		}
-
-		// Token: 0x0600641F RID: 25631 RVA: 0x0027D914 File Offset: 0x0027BB14
-		protected virtual void PlayOnce()
+		_audioSource.Value.PlayOneShot(_audioSource.Value.clip);
+		if (waitUntilFinished)
 		{
-			if (this.fadeDuration > 0f)
-			{
-				LeanTween.value(this._audioSource.Value.gameObject, this._audioSource.Value.volume, this.endVolume, this.fadeDuration).setOnUpdate(delegate(float updateVolume)
-				{
-					this._audioSource.Value.volume = updateVolume;
-				});
-			}
-			this._audioSource.Value.PlayOneShot(this._audioSource.Value.clip);
-			if (this.waitUntilFinished)
-			{
-				base.StartCoroutine(this.WaitAndContinue());
-			}
+			((MonoBehaviour)this).StartCoroutine(WaitAndContinue());
 		}
+	}
 
-		// Token: 0x06006420 RID: 25632 RVA: 0x0027D9A6 File Offset: 0x0027BBA6
-		protected virtual IEnumerator WaitAndContinue()
+	protected virtual IEnumerator WaitAndContinue()
+	{
+		while (_audioSource.Value.isPlaying)
 		{
-			while (this._audioSource.Value.isPlaying)
-			{
-				yield return null;
-			}
-			this.Continue();
-			yield break;
+			yield return null;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006421 RID: 25633 RVA: 0x0027D9B8 File Offset: 0x0027BBB8
-		protected virtual void PlayLoop()
+	protected virtual void PlayLoop()
+	{
+		if (fadeDuration > 0f)
 		{
-			if (this.fadeDuration > 0f)
+			_audioSource.Value.volume = 0f;
+			_audioSource.Value.loop = true;
+			((Component)_audioSource.Value).GetComponent<AudioSource>().Play();
+			LeanTween.value(((Component)_audioSource.Value).gameObject, 0f, endVolume, fadeDuration).setOnUpdate(delegate(float updateVolume)
 			{
-				this._audioSource.Value.volume = 0f;
-				this._audioSource.Value.loop = true;
-				this._audioSource.Value.GetComponent<AudioSource>().Play();
-				LeanTween.value(this._audioSource.Value.gameObject, 0f, this.endVolume, this.fadeDuration).setOnUpdate(delegate(float updateVolume)
-				{
-					this._audioSource.Value.volume = updateVolume;
-				}).setOnComplete(delegate()
-				{
-					if (this.waitUntilFinished)
-					{
-						this.Continue();
-					}
-				});
-				return;
-			}
-			this._audioSource.Value.volume = this.endVolume;
-			this._audioSource.Value.loop = true;
-			this._audioSource.Value.GetComponent<AudioSource>().Play();
-		}
-
-		// Token: 0x06006422 RID: 25634 RVA: 0x0027DA98 File Offset: 0x0027BC98
-		protected virtual void PauseLoop()
-		{
-			if (this.fadeDuration > 0f)
+				_audioSource.Value.volume = updateVolume;
+			}).setOnComplete((Action)delegate
 			{
-				LeanTween.value(this._audioSource.Value.gameObject, this._audioSource.Value.volume, 0f, this.fadeDuration).setOnUpdate(delegate(float updateVolume)
+				if (waitUntilFinished)
 				{
-					this._audioSource.Value.volume = updateVolume;
-				}).setOnComplete(delegate()
-				{
-					this._audioSource.Value.GetComponent<AudioSource>().Pause();
-					if (this.waitUntilFinished)
-					{
-						this.Continue();
-					}
-				});
-				return;
-			}
-			this._audioSource.Value.GetComponent<AudioSource>().Pause();
-		}
-
-		// Token: 0x06006423 RID: 25635 RVA: 0x0027DB1C File Offset: 0x0027BD1C
-		protected virtual void StopLoop(AudioSource source)
-		{
-			if (this.fadeDuration > 0f)
-			{
-				LeanTween.value(source.gameObject, this._audioSource.Value.volume, 0f, this.fadeDuration).setOnUpdate(delegate(float updateVolume)
-				{
-					source.volume = updateVolume;
-				}).setOnComplete(delegate()
-				{
-					source.GetComponent<AudioSource>().Stop();
-					if (this.waitUntilFinished)
-					{
-						this.Continue();
-					}
-				});
-				return;
-			}
-			source.GetComponent<AudioSource>().Stop();
-		}
-
-		// Token: 0x06006424 RID: 25636 RVA: 0x0027DBAC File Offset: 0x0027BDAC
-		protected virtual void ChangeVolume()
-		{
-			LeanTween.value(this._audioSource.Value.gameObject, this._audioSource.Value.volume, this.endVolume, this.fadeDuration).setOnUpdate(delegate(float updateVolume)
-			{
-				this._audioSource.Value.volume = updateVolume;
-			}).setOnComplete(delegate()
-			{
-				if (this.waitUntilFinished)
-				{
-					this.Continue();
+					Continue();
 				}
 			});
 		}
-
-		// Token: 0x06006425 RID: 25637 RVA: 0x0027DC0D File Offset: 0x0027BE0D
-		protected virtual void AudioFinished()
+		else
 		{
-			if (this.waitUntilFinished)
-			{
-				this.Continue();
-			}
+			_audioSource.Value.volume = endVolume;
+			_audioSource.Value.loop = true;
+			((Component)_audioSource.Value).GetComponent<AudioSource>().Play();
 		}
+	}
 
-		// Token: 0x06006426 RID: 25638 RVA: 0x0027DC20 File Offset: 0x0027BE20
-		public override void OnEnter()
+	protected virtual void PauseLoop()
+	{
+		if (fadeDuration > 0f)
 		{
-			if (this._audioSource.Value == null)
+			LeanTween.value(((Component)_audioSource.Value).gameObject, _audioSource.Value.volume, 0f, fadeDuration).setOnUpdate(delegate(float updateVolume)
 			{
-				this.Continue();
-				return;
-			}
-			if (this.control != ControlAudioType.ChangeVolume)
+				_audioSource.Value.volume = updateVolume;
+			}).setOnComplete((Action)delegate
 			{
-				this._audioSource.Value.volume = this.endVolume;
-			}
-			switch (this.control)
-			{
-			case ControlAudioType.PlayOnce:
-				this.StopAudioWithSameTag();
-				this.PlayOnce();
-				break;
-			case ControlAudioType.PlayLoop:
-				this.StopAudioWithSameTag();
-				this.PlayLoop();
-				break;
-			case ControlAudioType.PauseLoop:
-				this.PauseLoop();
-				break;
-			case ControlAudioType.StopLoop:
-				this.StopLoop(this._audioSource.Value);
-				break;
-			case ControlAudioType.ChangeVolume:
-				this.ChangeVolume();
-				break;
-			}
-			if (!this.waitUntilFinished)
-			{
-				this.Continue();
-			}
-		}
-
-		// Token: 0x06006427 RID: 25639 RVA: 0x0027DCD4 File Offset: 0x0027BED4
-		public override string GetSummary()
-		{
-			if (this._audioSource.Value == null)
-			{
-				return "Error: No sound clip selected";
-			}
-			string text = "";
-			if (this.fadeDuration > 0f)
-			{
-				text = " Fade out";
-				if (this.control != ControlAudioType.StopLoop)
+				((Component)_audioSource.Value).GetComponent<AudioSource>().Pause();
+				if (waitUntilFinished)
 				{
-					text = " Fade in volume to " + this.endVolume;
+					Continue();
 				}
-				if (this.control == ControlAudioType.ChangeVolume)
-				{
-					text = " to " + this.endVolume;
-				}
-				text = string.Concat(new object[]
-				{
-					text,
-					" over ",
-					this.fadeDuration,
-					" seconds."
-				});
-			}
-			return string.Concat(new string[]
-			{
-				this.control.ToString(),
-				" \"",
-				this._audioSource.Value.name,
-				"\"",
-				text
 			});
 		}
-
-		// Token: 0x06006428 RID: 25640 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(242, 209, 176, byte.MaxValue);
+			((Component)_audioSource.Value).GetComponent<AudioSource>().Pause();
 		}
+	}
 
-		// Token: 0x06006429 RID: 25641 RVA: 0x0027DDE5 File Offset: 0x0027BFE5
-		public override bool HasReference(Variable variable)
+	protected virtual void StopLoop(AudioSource source)
+	{
+		if (fadeDuration > 0f)
 		{
-			return this._audioSource.audioSourceRef == variable || base.HasReference(variable);
-		}
-
-		// Token: 0x0600642A RID: 25642 RVA: 0x0027DE03 File Offset: 0x0027C003
-		protected virtual void OnEnable()
-		{
-			if (this.audioSourceOLD != null)
+			LeanTween.value(((Component)source).gameObject, _audioSource.Value.volume, 0f, fadeDuration).setOnUpdate(delegate(float updateVolume)
 			{
-				this._audioSource.Value = this.audioSourceOLD;
-				this.audioSourceOLD = null;
-			}
+				source.volume = updateVolume;
+			}).setOnComplete((Action)delegate
+			{
+				((Component)source).GetComponent<AudioSource>().Stop();
+				if (waitUntilFinished)
+				{
+					Continue();
+				}
+			});
 		}
+		else
+		{
+			((Component)source).GetComponent<AudioSource>().Stop();
+		}
+	}
 
-		// Token: 0x0400561F RID: 22047
-		[Tooltip("What to do to audio")]
-		[SerializeField]
-		protected ControlAudioType control;
+	protected virtual void ChangeVolume()
+	{
+		LeanTween.value(((Component)_audioSource.Value).gameObject, _audioSource.Value.volume, endVolume, fadeDuration).setOnUpdate(delegate(float updateVolume)
+		{
+			_audioSource.Value.volume = updateVolume;
+		}).setOnComplete((Action)delegate
+		{
+			if (waitUntilFinished)
+			{
+				Continue();
+			}
+		});
+	}
 
-		// Token: 0x04005620 RID: 22048
-		[Tooltip("Audio clip to play")]
-		[SerializeField]
-		protected AudioSourceData _audioSource;
+	protected virtual void AudioFinished()
+	{
+		if (waitUntilFinished)
+		{
+			Continue();
+		}
+	}
 
-		// Token: 0x04005621 RID: 22049
-		[Range(0f, 1f)]
-		[Tooltip("Start audio at this volume")]
-		[SerializeField]
-		protected float startVolume = 1f;
+	public override void OnEnter()
+	{
+		if ((Object)(object)_audioSource.Value == (Object)null)
+		{
+			Continue();
+			return;
+		}
+		if (control != ControlAudioType.ChangeVolume)
+		{
+			_audioSource.Value.volume = endVolume;
+		}
+		switch (control)
+		{
+		case ControlAudioType.PlayOnce:
+			StopAudioWithSameTag();
+			PlayOnce();
+			break;
+		case ControlAudioType.PlayLoop:
+			StopAudioWithSameTag();
+			PlayLoop();
+			break;
+		case ControlAudioType.PauseLoop:
+			PauseLoop();
+			break;
+		case ControlAudioType.StopLoop:
+			StopLoop(_audioSource.Value);
+			break;
+		case ControlAudioType.ChangeVolume:
+			ChangeVolume();
+			break;
+		}
+		if (!waitUntilFinished)
+		{
+			Continue();
+		}
+	}
 
-		// Token: 0x04005622 RID: 22050
-		[Range(0f, 1f)]
-		[Tooltip("End audio at this volume")]
-		[SerializeField]
-		protected float endVolume = 1f;
+	public override string GetSummary()
+	{
+		if ((Object)(object)_audioSource.Value == (Object)null)
+		{
+			return "Error: No sound clip selected";
+		}
+		string text = "";
+		if (fadeDuration > 0f)
+		{
+			text = " Fade out";
+			if (control != ControlAudioType.StopLoop)
+			{
+				text = " Fade in volume to " + endVolume;
+			}
+			if (control == ControlAudioType.ChangeVolume)
+			{
+				text = " to " + endVolume;
+			}
+			text = text + " over " + fadeDuration + " seconds.";
+		}
+		return control.ToString() + " \"" + ((Object)_audioSource.Value).name + "\"" + text;
+	}
 
-		// Token: 0x04005623 RID: 22051
-		[Tooltip("Time to fade between current volume level and target volume level.")]
-		[SerializeField]
-		protected float fadeDuration;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)242, (byte)209, (byte)176, byte.MaxValue));
+	}
 
-		// Token: 0x04005624 RID: 22052
-		[Tooltip("Wait until this command has finished before executing the next command.")]
-		[SerializeField]
-		protected bool waitUntilFinished;
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_audioSource.audioSourceRef == (Object)(object)variable))
+		{
+			return base.HasReference(variable);
+		}
+		return true;
+	}
 
-		// Token: 0x04005625 RID: 22053
-		[HideInInspector]
-		[FormerlySerializedAs("audioSource")]
-		public AudioSource audioSourceOLD;
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)audioSourceOLD != (Object)null)
+		{
+			_audioSource.Value = audioSourceOLD;
+			audioSourceOLD = null;
+		}
 	}
 }

@@ -1,44 +1,47 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200019E RID: 414
 public class SeaMapUI : MonoBehaviour
 {
-	// Token: 0x060011BE RID: 4542 RVA: 0x00004095 File Offset: 0x00002295
+	public Image image;
+
 	private void Start()
 	{
 	}
 
-	// Token: 0x060011BF RID: 4543 RVA: 0x0006B879 File Offset: 0x00069A79
 	public void CloseSeaMapUI()
 	{
-		base.gameObject.SetActive(false);
+		((Component)this).gameObject.SetActive(false);
 		Tools.canClickFlag = true;
 	}
 
-	// Token: 0x060011C0 RID: 4544 RVA: 0x0006B890 File Offset: 0x00069A90
 	private void Update()
 	{
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
 		if (Input.GetAxis("Mouse ScrollWheel") > 0f)
 		{
-			this.image.rectTransform.sizeDelta *= 1.03f;
+			RectTransform rectTransform = ((Graphic)image).rectTransform;
+			rectTransform.sizeDelta *= 1.03f;
 		}
 		if (Input.GetAxis("Mouse ScrollWheel") < 0f)
 		{
-			this.image.rectTransform.sizeDelta /= 1.03f;
+			RectTransform rectTransform2 = ((Graphic)image).rectTransform;
+			rectTransform2.sizeDelta /= 1.03f;
 		}
-		if (this.image.rectTransform.sizeDelta.x < 1920f)
+		if (((Graphic)image).rectTransform.sizeDelta.x < 1920f)
 		{
-			this.image.rectTransform.sizeDelta = new Vector2(1920f, 1080f);
-			return;
+			((Graphic)image).rectTransform.sizeDelta = new Vector2(1920f, 1080f);
 		}
-		if (this.image.rectTransform.sizeDelta.x > 3840f)
+		else if (((Graphic)image).rectTransform.sizeDelta.x > 3840f)
 		{
-			this.image.rectTransform.sizeDelta = new Vector2(3840f, 2160f);
+			((Graphic)image).rectTransform.sizeDelta = new Vector2(3840f, 2160f);
 		}
 	}
-
-	// Token: 0x04000CB5 RID: 3253
-	public Image image;
 }

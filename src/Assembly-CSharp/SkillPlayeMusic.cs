@@ -1,36 +1,32 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x02000167 RID: 359
 public class SkillPlayeMusic : MonoBehaviour
 {
-	// Token: 0x06000F76 RID: 3958 RVA: 0x0005D194 File Offset: 0x0005B394
+	public AudioClip audioClip;
+
+	[NonSerialized]
+	public GameObject musicObj;
+
 	private void Start()
 	{
-		this.musicObj = new GameObject("SkillMusic");
-		Object @object = this.musicObj;
-		AudioSource audioSource = this.musicObj.AddComponent<AudioSource>();
-		audioSource.clip = this.audioClip;
-		audioSource.loop = false;
-		audioSource.volume = SystemConfig.Inst.GetEffectVolume();
-		audioSource.Play();
-		Object.Destroy(@object, 10f);
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Expected O, but got Unknown
+		musicObj = new GameObject("SkillMusic");
+		GameObject obj = musicObj;
+		AudioSource obj2 = musicObj.AddComponent<AudioSource>();
+		obj2.clip = audioClip;
+		obj2.loop = false;
+		obj2.volume = SystemConfig.Inst.GetEffectVolume();
+		obj2.Play();
+		Object.Destroy((Object)(object)obj, 10f);
 	}
 
-	// Token: 0x06000F77 RID: 3959 RVA: 0x00004095 File Offset: 0x00002295
 	public void removeMusicObject()
 	{
 	}
 
-	// Token: 0x06000F78 RID: 3960 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
-
-	// Token: 0x04000B9E RID: 2974
-	public AudioClip audioClip;
-
-	// Token: 0x04000B9F RID: 2975
-	[NonSerialized]
-	public GameObject musicObj;
 }

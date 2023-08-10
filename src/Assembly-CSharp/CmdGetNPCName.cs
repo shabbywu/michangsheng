@@ -1,50 +1,43 @@
-﻿using System;
+using System;
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200023A RID: 570
 [CommandInfo("YSNPCJiaoHu", "获取NPC名字", "获取NPC名字，文本会赋值到TmpStrValue", 0)]
 [AddComponentMenu("")]
 public class CmdGetNPCName : Command
 {
-	// Token: 0x0600161A RID: 5658 RVA: 0x00095AC4 File Offset: 0x00093CC4
+	[SerializeField]
+	protected string npcid;
+
+	[SerializeField]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	protected IntegerVariable VarNPCID;
+
 	public override void OnEnter()
 	{
-		Flowchart flowchart = this.GetFlowchart();
-		int num = flowchart.GetIntegerVariable(this.npcid);
-		if (this.VarNPCID != null)
+		Flowchart flowchart = GetFlowchart();
+		int num = flowchart.GetIntegerVariable(npcid);
+		if ((Object)(object)VarNPCID != (Object)null)
 		{
-			num = this.VarNPCID.Value;
+			num = VarNPCID.Value;
 		}
 		try
 		{
 			if (jsonData.instance.AvatarRandomJsonData.HasField(num.ToString()))
 			{
-				JSONObject jsonobject = jsonData.instance.AvatarRandomJsonData[num.ToString()];
-				flowchart.SetStringVariable("TmpStrValue", jsonobject["Name"].Str);
+				JSONObject jSONObject = jsonData.instance.AvatarRandomJsonData[num.ToString()];
+				flowchart.SetStringVariable("TmpStrValue", jSONObject["Name"].Str);
 			}
 			else
 			{
-				Debug.LogError(string.Format("获取NPC AvatarRandomJsonData异常，没有NPCID:{0}的数据", num));
+				Debug.LogError((object)$"获取NPC AvatarRandomJsonData异常，没有NPCID:{num}的数据");
 			}
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError(ex);
-			Debug.LogError(string.Format("获取NPC名字异常，NPCID:{0}", num));
+			Debug.LogError((object)ex);
+			Debug.LogError((object)$"获取NPC名字异常，NPCID:{num}");
 		}
-		this.Continue();
+		Continue();
 	}
-
-	// Token: 0x0400106E RID: 4206
-	[SerializeField]
-	protected string npcid;
-
-	// Token: 0x0400106F RID: 4207
-	[SerializeField]
-	[VariableProperty(new Type[]
-	{
-		typeof(IntegerVariable)
-	})]
-	protected IntegerVariable VarNPCID;
 }

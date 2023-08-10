@@ -1,10 +1,7 @@
-﻿using System;
 using UnityEngine;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class SaveDate : MonoBehaviour
 {
-	// Token: 0x02000A65 RID: 2661
-	public class SaveDate : MonoBehaviour
-	{
-	}
 }

@@ -1,99 +1,91 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("UI", "Set Interactable", "Set the interactable state of selectable objects.", 0)]
+public class SetInteractable : Command
 {
-	// Token: 0x02000E38 RID: 3640
-	[CommandInfo("UI", "Set Interactable", "Set the interactable state of selectable objects.", 0)]
-	public class SetInteractable : Command
+	[Tooltip("List of objects to be affected by the command")]
+	[SerializeField]
+	protected List<GameObject> targetObjects = new List<GameObject>();
+
+	[Tooltip("Controls if the selectable UI object be interactable or not")]
+	[SerializeField]
+	protected BooleanData interactableState = new BooleanData(v: true);
+
+	public override void OnEnter()
 	{
-		// Token: 0x0600667C RID: 26236 RVA: 0x00286760 File Offset: 0x00284960
-		public override void OnEnter()
+		if (targetObjects.Count == 0)
 		{
-			if (this.targetObjects.Count == 0)
-			{
-				this.Continue();
-				return;
-			}
-			for (int i = 0; i < this.targetObjects.Count; i++)
-			{
-				Selectable[] components = this.targetObjects[i].GetComponents<Selectable>();
-				for (int j = 0; j < components.Length; j++)
-				{
-					components[j].interactable = this.interactableState.Value;
-				}
-			}
-			this.Continue();
+			Continue();
+			return;
 		}
-
-		// Token: 0x0600667D RID: 26237 RVA: 0x002867D0 File Offset: 0x002849D0
-		public override string GetSummary()
+		for (int i = 0; i < targetObjects.Count; i++)
 		{
-			if (this.targetObjects.Count == 0)
+			Selectable[] components = targetObjects[i].GetComponents<Selectable>();
+			for (int j = 0; j < components.Length; j++)
 			{
-				return "Error: No targetObjects selected";
+				components[j].interactable = interactableState.Value;
 			}
-			if (this.targetObjects.Count != 1)
-			{
-				string text = "";
-				for (int i = 0; i < this.targetObjects.Count; i++)
-				{
-					GameObject gameObject = this.targetObjects[i];
-					if (!(gameObject == null))
-					{
-						if (text == "")
-						{
-							text += gameObject.name;
-						}
-						else
-						{
-							text = text + ", " + gameObject.name;
-						}
-					}
-				}
-				return text + " = " + this.interactableState.Value.ToString();
-			}
-			if (this.targetObjects[0] == null)
+		}
+		Continue();
+	}
+
+	public override string GetSummary()
+	{
+		if (targetObjects.Count == 0)
+		{
+			return "Error: No targetObjects selected";
+		}
+		if (targetObjects.Count == 1)
+		{
+			if ((Object)(object)targetObjects[0] == (Object)null)
 			{
 				return "Error: No targetObjects selected";
 			}
-			return this.targetObjects[0].name + " = " + this.interactableState.Value.ToString();
+			return ((Object)targetObjects[0]).name + " = " + interactableState.Value;
 		}
-
-		// Token: 0x0600667E RID: 26238 RVA: 0x002868C5 File Offset: 0x00284AC5
-		public override Color GetButtonColor()
+		string text = "";
+		for (int i = 0; i < targetObjects.Count; i++)
 		{
-			return new Color32(180, 250, 250, byte.MaxValue);
+			GameObject val = targetObjects[i];
+			if (!((Object)(object)val == (Object)null))
+			{
+				text = ((!(text == "")) ? (text + ", " + ((Object)val).name) : (text + ((Object)val).name));
+			}
 		}
+		return text + " = " + interactableState.Value;
+	}
 
-		// Token: 0x0600667F RID: 26239 RVA: 0x002868E5 File Offset: 0x00284AE5
-		public override void OnCommandAdded(Block parentBlock)
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)180, (byte)250, (byte)250, byte.MaxValue));
+	}
+
+	public override void OnCommandAdded(Block parentBlock)
+	{
+		targetObjects.Add(null);
+	}
+
+	public override bool IsReorderableArray(string propertyName)
+	{
+		if (propertyName == "targetObjects")
 		{
-			this.targetObjects.Add(null);
+			return true;
 		}
+		return false;
+	}
 
-		// Token: 0x06006680 RID: 26240 RVA: 0x002868F3 File Offset: 0x00284AF3
-		public override bool IsReorderableArray(string propertyName)
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)interactableState.booleanRef == (Object)(object)variable))
 		{
-			return propertyName == "targetObjects";
+			return base.HasReference(variable);
 		}
-
-		// Token: 0x06006681 RID: 26241 RVA: 0x00286905 File Offset: 0x00284B05
-		public override bool HasReference(Variable variable)
-		{
-			return this.interactableState.booleanRef == variable || base.HasReference(variable);
-		}
-
-		// Token: 0x040057D4 RID: 22484
-		[Tooltip("List of objects to be affected by the command")]
-		[SerializeField]
-		protected List<GameObject> targetObjects = new List<GameObject>();
-
-		// Token: 0x040057D5 RID: 22485
-		[Tooltip("Controls if the selectable UI object be interactable or not")]
-		[SerializeField]
-		protected BooleanData interactableState = new BooleanData(true);
+		return true;
 	}
 }

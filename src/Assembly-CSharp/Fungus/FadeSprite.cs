@@ -1,101 +1,104 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Sprite", "Fade Sprite", "Fades a sprite to a target color over a period of time.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class FadeSprite : Command
 {
-	// Token: 0x02000DCE RID: 3534
-	[CommandInfo("Sprite", "Fade Sprite", "Fades a sprite to a target color over a period of time.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class FadeSprite : Command
+	[Tooltip("Sprite object to be faded")]
+	[SerializeField]
+	protected SpriteRenderer spriteRenderer;
+
+	[Tooltip("Length of time to perform the fade")]
+	[SerializeField]
+	protected FloatData _duration = new FloatData(1f);
+
+	[Tooltip("Target color to fade to. To only fade transparency level, set the color to white and set the alpha to required transparency.")]
+	[SerializeField]
+	protected ColorData _targetColor = new ColorData(Color.white);
+
+	[Tooltip("Wait until the fade has finished before executing the next command")]
+	[SerializeField]
+	protected bool waitUntilFinished = true;
+
+	[HideInInspector]
+	[FormerlySerializedAs("duration")]
+	public float durationOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("targetColor")]
+	public Color targetColorOLD;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006477 RID: 25719 RVA: 0x0027EC6C File Offset: 0x0027CE6C
-		public override void OnEnter()
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)spriteRenderer == (Object)null)
 		{
-			if (this.spriteRenderer == null)
-			{
-				this.Continue();
-				return;
-			}
-			SpriteFader.FadeSprite(this.spriteRenderer, this._targetColor.Value, this._duration.Value, Vector2.zero, delegate
-			{
-				if (this.waitUntilFinished)
-				{
-					this.Continue();
-				}
-			});
-			if (!this.waitUntilFinished)
-			{
-				this.Continue();
-			}
+			Continue();
+			return;
 		}
-
-		// Token: 0x06006478 RID: 25720 RVA: 0x0027ECD0 File Offset: 0x0027CED0
-		public override string GetSummary()
+		SpriteFader.FadeSprite(spriteRenderer, _targetColor.Value, _duration.Value, Vector2.zero, delegate
 		{
-			if (this.spriteRenderer == null)
+			if (waitUntilFinished)
 			{
-				return "Error: No sprite renderer selected";
+				Continue();
 			}
-			return this.spriteRenderer.name + " to " + this._targetColor.Value.ToString();
-		}
-
-		// Token: 0x06006479 RID: 25721 RVA: 0x0027ED1F File Offset: 0x0027CF1F
-		public override Color GetButtonColor()
+		});
+		if (!waitUntilFinished)
 		{
-			return new Color32(221, 184, 169, byte.MaxValue);
+			Continue();
 		}
+	}
 
-		// Token: 0x0600647A RID: 25722 RVA: 0x0027ED3F File Offset: 0x0027CF3F
-		public override bool HasReference(Variable variable)
+	public override string GetSummary()
+	{
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)spriteRenderer == (Object)null)
 		{
-			return this._duration.floatRef == variable || this._targetColor.colorRef == variable || base.HasReference(variable);
+			return "Error: No sprite renderer selected";
 		}
+		string name = ((Object)spriteRenderer).name;
+		Color value = _targetColor.Value;
+		return name + " to " + ((object)(Color)(ref value)).ToString();
+	}
 
-		// Token: 0x0600647B RID: 25723 RVA: 0x0027ED70 File Offset: 0x0027CF70
-		protected virtual void OnEnable()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)221, (byte)184, (byte)169, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_duration.floatRef == (Object)(object)variable) && !((Object)(object)_targetColor.colorRef == (Object)(object)variable))
 		{
-			if (this.durationOLD != 0f)
-			{
-				this._duration.Value = this.durationOLD;
-				this.durationOLD = 0f;
-			}
-			if (this.targetColorOLD != default(Color))
-			{
-				this._targetColor.Value = this.targetColorOLD;
-				this.targetColorOLD = default(Color);
-			}
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x04005653 RID: 22099
-		[Tooltip("Sprite object to be faded")]
-		[SerializeField]
-		protected SpriteRenderer spriteRenderer;
-
-		// Token: 0x04005654 RID: 22100
-		[Tooltip("Length of time to perform the fade")]
-		[SerializeField]
-		protected FloatData _duration = new FloatData(1f);
-
-		// Token: 0x04005655 RID: 22101
-		[Tooltip("Target color to fade to. To only fade transparency level, set the color to white and set the alpha to required transparency.")]
-		[SerializeField]
-		protected ColorData _targetColor = new ColorData(Color.white);
-
-		// Token: 0x04005656 RID: 22102
-		[Tooltip("Wait until the fade has finished before executing the next command")]
-		[SerializeField]
-		protected bool waitUntilFinished = true;
-
-		// Token: 0x04005657 RID: 22103
-		[HideInInspector]
-		[FormerlySerializedAs("duration")]
-		public float durationOLD;
-
-		// Token: 0x04005658 RID: 22104
-		[HideInInspector]
-		[FormerlySerializedAs("targetColor")]
-		public Color targetColorOLD;
+	protected virtual void OnEnable()
+	{
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		if (durationOLD != 0f)
+		{
+			_duration.Value = durationOLD;
+			durationOLD = 0f;
+		}
+		if (targetColorOLD != default(Color))
+		{
+			_targetColor.Value = targetColorOLD;
+			targetColorOLD = default(Color);
+		}
 	}
 }

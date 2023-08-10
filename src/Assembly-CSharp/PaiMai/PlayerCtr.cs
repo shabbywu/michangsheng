@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JSONClass;
 using KBEngine;
@@ -6,252 +6,256 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace PaiMai
+namespace PaiMai;
+
+[Serializable]
+public class PlayerCtr
 {
-	// Token: 0x0200071C RID: 1820
-	[Serializable]
-	public class PlayerCtr
+	public PaiMaiAvatar Player;
+
+	public bool IsCurShopQuickEnd;
+
+	public bool IsAllQuickEnd;
+
+	[SerializeField]
+	private readonly Dictionary<string, PlayerCommand> _commandict;
+
+	private CommandTips _tips;
+
+	private Avatar _player;
+
+	private Text _moneyText;
+
+	public bool CanAction;
+
+	public PlayerCtr(PaiMaiAvatar player, Dictionary<string, PlayerCommand> dit, Text moneyText, CommandTips tips)
 	{
-		// Token: 0x06003A38 RID: 14904 RVA: 0x0018FDC4 File Offset: 0x0018DFC4
-		public PlayerCtr(PaiMaiAvatar player, Dictionary<string, PlayerCommand> dit, Text moneyText, CommandTips tips)
-		{
-			this._tips = tips;
-			this.CanAction = false;
-			this.IsCurShopQuickEnd = false;
-			this.IsAllQuickEnd = false;
-			this.Player = player;
-			this._player = Tools.instance.getPlayer();
-			this._commandict = dit;
-			this._moneyText = moneyText;
-			this.UpdateMoney();
-			this.InitCommand();
-		}
+		_tips = tips;
+		CanAction = false;
+		IsCurShopQuickEnd = false;
+		IsAllQuickEnd = false;
+		Player = player;
+		_player = Tools.instance.getPlayer();
+		_commandict = dit;
+		_moneyText = moneyText;
+		UpdateMoney();
+		InitCommand();
+	}
 
-		// Token: 0x06003A39 RID: 14905 RVA: 0x0018FE28 File Offset: 0x0018E028
-		private void InitCommand()
+	private void InitCommand()
+	{
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Expected O, but got Unknown
+		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Expected O, but got Unknown
+		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e4: Expected O, but got Unknown
+		//IL_0206: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0210: Expected O, but got Unknown
+		//IL_0232: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023c: Expected O, but got Unknown
+		//IL_025e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0268: Expected O, but got Unknown
+		//IL_028a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0294: Expected O, but got Unknown
+		//IL_02b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c0: Expected O, but got Unknown
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0136: Expected O, but got Unknown
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0158: Expected O, but got Unknown
+		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e8: Expected O, but got Unknown
+		//IL_00ed: Expected O, but got Unknown
+		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0191: Expected O, but got Unknown
+		//IL_0196: Expected O, but got Unknown
+		int commandId = 0;
+		string tips = "";
+		UnityAction val = default(UnityAction);
+		UnityAction val4 = default(UnityAction);
+		foreach (string key in _commandict.Keys)
 		{
-			int commandId = 0;
-			string tips = "";
-			using (Dictionary<string, PlayerCommand>.KeyCollection.Enumerator enumerator = this._commandict.Keys.GetEnumerator())
+			if (_commandict[key].CommandType == CommandType.加价)
 			{
-				UnityAction <>9__8;
-				UnityAction <>9__11;
-				while (enumerator.MoveNext())
+				_commandict[key].AddClickAction((UnityAction)delegate
 				{
-					string key = enumerator.Current;
-					if (this._commandict[key].CommandType == CommandType.加价)
+					if (!IsAllQuickEnd && CanAction)
 					{
-						this._commandict[key].AddClickAction(delegate
+						_tips.Hide();
+						if (SingletonMono<PaiMaiUiMag>.Instance.AddPrice((int)Enum.Parse(typeof(Command), key, ignoreCase: true)))
 						{
-							if (this.IsAllQuickEnd)
-							{
-								return;
-							}
-							if (this.CanAction)
-							{
-								this._tips.Hide();
-								if (SingletonMono<PaiMaiUiMag>.Instance.AddPrice((int)Enum.Parse(typeof(Command), key, true)))
-								{
-									this.EndAction();
-								}
-							}
-						});
-						this._commandict[key].AddMouseEnterListener(delegate
-						{
-							commandId = (int)Enum.Parse(typeof(Command), key, true);
-							int num = PaiMaiChuJia.DataDict[commandId].ZhanBi * SingletonMono<PaiMaiUiMag>.Instance.CurShop.Price;
-							num /= 100;
-							if (num < 1)
-							{
-								num = 1;
-							}
-							num += SingletonMono<PaiMaiUiMag>.Instance.CurShop.CurPrice;
-							tips = PaiMaiCommandTips.DataList[commandId].Text.Replace("{lingshi}", string.Format("{0}", num));
-							this._tips.ShowTips(tips);
-						});
-						PlayerCommand playerCommand = this._commandict[key];
-						UnityAction action;
-						if ((action = <>9__8) == null)
-						{
-							action = (<>9__8 = delegate()
-							{
-								this._tips.Hide();
-							});
+							EndAction();
 						}
-						playerCommand.AddMouseOutsListener(action);
 					}
-					else if (this._commandict[key].CommandType == CommandType.策略)
+				});
+				_commandict[key].AddMouseEnterListener((UnityAction)delegate
+				{
+					commandId = (int)Enum.Parse(typeof(Command), key, ignoreCase: true);
+					int num = PaiMaiChuJia.DataDict[commandId].ZhanBi * SingletonMono<PaiMaiUiMag>.Instance.CurShop.Price;
+					num /= 100;
+					if (num < 1)
 					{
-						this._commandict[key].AddClickAction(delegate
-						{
-							if (this.IsAllQuickEnd)
-							{
-								return;
-							}
-							SingletonMono<PaiMaiUiMag>.Instance.PlayerUseCeLue(this._commandict[key]);
-						});
-						this._commandict[key].AddMouseEnterListener(delegate
-						{
-							commandId = (int)Enum.Parse(typeof(Command), key, true) + 1;
-							tips = PaiMaiCommandTips.DataDict[commandId].Text;
-							this._tips.ShowTips(tips);
-						});
-						PlayerCommand playerCommand2 = this._commandict[key];
-						UnityAction action2;
-						if ((action2 = <>9__11) == null)
-						{
-							action2 = (<>9__11 = delegate()
-							{
-								this._tips.Hide();
-							});
-						}
-						playerCommand2.AddMouseOutsListener(action2);
+						num = 1;
 					}
-				}
-			}
-			this._commandict[Command.放弃竞品.ToString()].AddClickAction(delegate
-			{
-				if (this.IsAllQuickEnd)
+					num += SingletonMono<PaiMaiUiMag>.Instance.CurShop.CurPrice;
+					tips = PaiMaiCommandTips.DataList[commandId].Text.Replace("{lingshi}", $"{num}");
+					_tips.ShowTips(tips);
+				});
+				PlayerCommand playerCommand = _commandict[key];
+				UnityAction obj = val;
+				if (obj == null)
 				{
-					return;
+					UnityAction val2 = delegate
+					{
+						_tips.Hide();
+					};
+					UnityAction val3 = val2;
+					val = val2;
+					obj = val3;
 				}
-				this._tips.Hide();
-				this.GiveUpCurShop();
-			});
-			this._commandict[Command.放弃竞品.ToString()].AddMouseEnterListener(delegate
+				playerCommand.AddMouseOutsListener(obj);
+			}
+			else
 			{
-				commandId = (int)Enum.Parse(typeof(Command), Command.放弃竞品.ToString(), true) + 1;
-				tips = PaiMaiCommandTips.DataDict[commandId].Text;
-				this._tips.ShowTips(tips);
-			});
-			this._commandict[Command.放弃竞品.ToString()].AddMouseOutsListener(delegate
-			{
-				this._tips.Hide();
-			});
-			this._commandict[Command.本轮不出.ToString()].AddClickAction(delegate
-			{
-				if (this.IsAllQuickEnd)
+				if (_commandict[key].CommandType != CommandType.策略)
 				{
-					return;
+					continue;
 				}
-				if (this.CanAction)
+				_commandict[key].AddClickAction((UnityAction)delegate
 				{
-					this._tips.Hide();
-					this.EndAction();
+					if (!IsAllQuickEnd)
+					{
+						SingletonMono<PaiMaiUiMag>.Instance.PlayerUseCeLue(_commandict[key]);
+					}
+				});
+				_commandict[key].AddMouseEnterListener((UnityAction)delegate
+				{
+					commandId = (int)Enum.Parse(typeof(Command), key, ignoreCase: true) + 1;
+					tips = PaiMaiCommandTips.DataDict[commandId].Text;
+					_tips.ShowTips(tips);
+				});
+				PlayerCommand playerCommand2 = _commandict[key];
+				UnityAction obj2 = val4;
+				if (obj2 == null)
+				{
+					UnityAction val5 = delegate
+					{
+						_tips.Hide();
+					};
+					UnityAction val3 = val5;
+					val4 = val5;
+					obj2 = val3;
 				}
-			});
-			this._commandict[Command.本轮不出.ToString()].AddMouseEnterListener(delegate
-			{
-				commandId = (int)Enum.Parse(typeof(Command), Command.本轮不出.ToString(), true) + 1;
-				tips = PaiMaiCommandTips.DataDict[commandId].Text;
-				this._tips.ShowTips(tips);
-			});
-			this._commandict[Command.本轮不出.ToString()].AddMouseOutsListener(delegate
-			{
-				this._tips.Hide();
-			});
-			this.StopAction();
-		}
-
-		// Token: 0x06003A3A RID: 14906 RVA: 0x00190118 File Offset: 0x0018E318
-		public void BuyShop()
-		{
-			this._player.addItem(SingletonMono<PaiMaiUiMag>.Instance.CurShop.ShopId, SingletonMono<PaiMaiUiMag>.Instance.CurShop.Count, SingletonMono<PaiMaiUiMag>.Instance.CurShop.Seid, false);
-			this._player.AddMoney(-SingletonMono<PaiMaiUiMag>.Instance.CurShop.CurPrice);
-			this.UpdateMoney();
-		}
-
-		// Token: 0x06003A3B RID: 14907 RVA: 0x0019017F File Offset: 0x0018E37F
-		private void UpdateMoney()
-		{
-			this.Player.Money = (int)this._player.money;
-			this._moneyText.text = this._player.money.ToString();
-		}
-
-		// Token: 0x06003A3C RID: 14908 RVA: 0x001901B3 File Offset: 0x0018E3B3
-		public void MallShop()
-		{
-			this._player.money += (ulong)((float)SingletonMono<PaiMaiUiMag>.Instance.CurShop.CurPrice * 0.9f);
-			this.UpdateMoney();
-		}
-
-		// Token: 0x06003A3D RID: 14909 RVA: 0x001901E4 File Offset: 0x0018E3E4
-		public void StartAction()
-		{
-			SingletonMono<PaiMaiUiMag>.Instance.CurAvatar = this.Player;
-			for (int i = 1; i <= 8; i++)
-			{
-				Dictionary<string, PlayerCommand> commandict = this._commandict;
-				Command command = (Command)i;
-				commandict[command.ToString()].PlayBackTo();
-			}
-			this.CanAction = true;
-		}
-
-		// Token: 0x06003A3E RID: 14910 RVA: 0x00190234 File Offset: 0x0018E434
-		public void RestartGiveUpCurShop()
-		{
-			if (!this._commandict[Command.放弃竞品.ToString()].CanClick)
-			{
-				this._commandict[Command.放弃竞品.ToString()].PlayBackTo();
+				playerCommand2.AddMouseOutsListener(obj2);
 			}
 		}
-
-		// Token: 0x06003A3F RID: 14911 RVA: 0x00190284 File Offset: 0x0018E484
-		public void GiveUpCurShop()
+		_commandict[Command.放弃竞品.ToString()].AddClickAction((UnityAction)delegate
 		{
-			this.IsCurShopQuickEnd = true;
-			this._commandict[Command.放弃竞品.ToString()].PlayToBack();
-			Time.timeScale = 100f;
-			if (this.CanAction)
+			if (!IsAllQuickEnd)
 			{
-				this.EndAction();
+				_tips.Hide();
+				GiveUpCurShop();
 			}
-		}
-
-		// Token: 0x06003A40 RID: 14912 RVA: 0x001902CF File Offset: 0x0018E4CF
-		private void EndAction()
+		});
+		_commandict[Command.放弃竞品.ToString()].AddMouseEnterListener((UnityAction)delegate
 		{
-			this.CanAction = false;
-			this.StopAction();
-			Debug.Log("玩家回合结束");
-			SingletonMono<PaiMaiUiMag>.Instance.EndRound();
-		}
-
-		// Token: 0x06003A41 RID: 14913 RVA: 0x001902F4 File Offset: 0x0018E4F4
-		private void StopAction()
+			commandId = (int)Enum.Parse(typeof(Command), Command.放弃竞品.ToString(), ignoreCase: true) + 1;
+			tips = PaiMaiCommandTips.DataDict[commandId].Text;
+			_tips.ShowTips(tips);
+		});
+		_commandict[Command.放弃竞品.ToString()].AddMouseOutsListener((UnityAction)delegate
 		{
-			for (int i = 1; i <= 8; i++)
+			_tips.Hide();
+		});
+		_commandict[Command.本轮不出.ToString()].AddClickAction((UnityAction)delegate
+		{
+			if (!IsAllQuickEnd && CanAction)
 			{
-				Dictionary<string, PlayerCommand> commandict = this._commandict;
-				Command command = (Command)i;
-				commandict[command.ToString()].PlayToBack();
+				_tips.Hide();
+				EndAction();
 			}
+		});
+		_commandict[Command.本轮不出.ToString()].AddMouseEnterListener((UnityAction)delegate
+		{
+			commandId = (int)Enum.Parse(typeof(Command), Command.本轮不出.ToString(), ignoreCase: true) + 1;
+			tips = PaiMaiCommandTips.DataDict[commandId].Text;
+			_tips.ShowTips(tips);
+		});
+		_commandict[Command.本轮不出.ToString()].AddMouseOutsListener((UnityAction)delegate
+		{
+			_tips.Hide();
+		});
+		StopAction();
+	}
+
+	public void BuyShop()
+	{
+		_player.addItem(SingletonMono<PaiMaiUiMag>.Instance.CurShop.ShopId, SingletonMono<PaiMaiUiMag>.Instance.CurShop.Count, SingletonMono<PaiMaiUiMag>.Instance.CurShop.Seid);
+		_player.AddMoney(-SingletonMono<PaiMaiUiMag>.Instance.CurShop.CurPrice);
+		UpdateMoney();
+	}
+
+	private void UpdateMoney()
+	{
+		Player.Money = (int)_player.money;
+		_moneyText.text = _player.money.ToString();
+	}
+
+	public void MallShop()
+	{
+		_player.money += (ulong)((float)SingletonMono<PaiMaiUiMag>.Instance.CurShop.CurPrice * 0.9f);
+		UpdateMoney();
+	}
+
+	public void StartAction()
+	{
+		SingletonMono<PaiMaiUiMag>.Instance.CurAvatar = Player;
+		for (int i = 1; i <= 8; i++)
+		{
+			Dictionary<string, PlayerCommand> commandict = _commandict;
+			Command command = (Command)i;
+			commandict[command.ToString()].PlayBackTo();
 		}
+		CanAction = true;
+	}
 
-		// Token: 0x04003255 RID: 12885
-		public PaiMaiAvatar Player;
+	public void RestartGiveUpCurShop()
+	{
+		if (!_commandict[Command.放弃竞品.ToString()].CanClick)
+		{
+			_commandict[Command.放弃竞品.ToString()].PlayBackTo();
+		}
+	}
 
-		// Token: 0x04003256 RID: 12886
-		public bool IsCurShopQuickEnd;
+	public void GiveUpCurShop()
+	{
+		IsCurShopQuickEnd = true;
+		_commandict[Command.放弃竞品.ToString()].PlayToBack();
+		Time.timeScale = 100f;
+		if (CanAction)
+		{
+			EndAction();
+		}
+	}
 
-		// Token: 0x04003257 RID: 12887
-		public bool IsAllQuickEnd;
+	private void EndAction()
+	{
+		CanAction = false;
+		StopAction();
+		Debug.Log((object)"玩家回合结束");
+		SingletonMono<PaiMaiUiMag>.Instance.EndRound();
+	}
 
-		// Token: 0x04003258 RID: 12888
-		[SerializeField]
-		private readonly Dictionary<string, PlayerCommand> _commandict;
-
-		// Token: 0x04003259 RID: 12889
-		private CommandTips _tips;
-
-		// Token: 0x0400325A RID: 12890
-		private Avatar _player;
-
-		// Token: 0x0400325B RID: 12891
-		private Text _moneyText;
-
-		// Token: 0x0400325C RID: 12892
-		public bool CanAction;
+	private void StopAction()
+	{
+		for (int i = 1; i <= 8; i++)
+		{
+			Dictionary<string, PlayerCommand> commandict = _commandict;
+			Command command = (Command)i;
+			commandict[command.ToString()].PlayToBack();
+		}
 	}
 }

@@ -1,249 +1,255 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using KBEngine;
 using SuperScrollView;
 using Tab;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Bag
+namespace Bag;
+
+public class BaseBag : MonoBehaviour, IBaseBag
 {
-	// Token: 0x02000997 RID: 2455
-	public class BaseBag : MonoBehaviour, IBaseBag
-	{
-		// Token: 0x0600447F RID: 17535 RVA: 0x001D2CEB File Offset: 0x001D0EEB
-		public virtual void Init()
-		{
-			this.MLoopListView.InitListView(this.GetCount(this.MItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(this.OnGetItemByIndex), null);
-		}
+	public int MItemTotalCount;
 
-		// Token: 0x06004480 RID: 17536 RVA: 0x001D2D14 File Offset: 0x001D0F14
-		public virtual void OpenBag(List<ITEM_INFO> itemList)
+	public bool IsInit;
+
+	public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
+
+	public BagFilter BagFilter;
+
+	public ItemType ItemType;
+
+	public ItemQuality ItemQuality;
+
+	public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
+
+	public LianQiCaiLiaoType LianQiCaiLiaoType;
+
+	public SkIllType SkIllType = SkIllType.全部;
+
+	public SkillQuality SkillQuality;
+
+	public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
+
+	public LoopListView2 MLoopListView;
+
+	public int mItemCountPerRow = 5;
+
+	public List<ISlot> SlotList = new List<ISlot>();
+
+	public virtual void Init()
+	{
+		MLoopListView.InitListView(GetCount(MItemTotalCount), OnGetItemByIndex);
+	}
+
+	public virtual void OpenBag(List<ITEM_INFO> itemList)
+	{
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Expected O, but got Unknown
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Expected O, but got Unknown
+		ItemType = ItemType.全部;
+		ItemQuality = ItemQuality.全部;
+		LianQiCaiLiaoYinYang = LianQiCaiLiaoYinYang.全部;
+		LianQiCaiLiaoType = LianQiCaiLiaoType.全部;
+		ItemList = new List<ITEM_INFO>(itemList);
+		MItemTotalCount = ItemList.Count;
+		SlotList = new List<ISlot>();
+		BagFilter.AddBigTypeBtn((UnityAction)delegate
 		{
-			this.ItemType = ItemType.全部;
-			this.ItemQuality = ItemQuality.全部;
-			this.LianQiCaiLiaoYinYang = LianQiCaiLiaoYinYang.全部;
-			this.LianQiCaiLiaoType = LianQiCaiLiaoType.全部;
-			this.ItemList = new List<ITEM_INFO>(itemList);
-			this.MItemTotalCount = this.ItemList.Count;
-			this.SlotList = new List<ISlot>();
-			this.BagFilter.AddBigTypeBtn(delegate
+			//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005d: Expected O, but got Unknown
+			foreach (ItemQuality itemQuality in Enum.GetValues(typeof(ItemQuality)))
 			{
-				using (IEnumerator enumerator = Enum.GetValues(typeof(ItemQuality)).GetEnumerator())
+				BagFilter.AddSmallTypeBtn((UnityAction)delegate
 				{
-					while (enumerator.MoveNext())
-					{
-						ItemQuality itemQuality = (ItemQuality)enumerator.Current;
-						this.BagFilter.AddSmallTypeBtn(delegate
-						{
-							this.ItemQuality = itemQuality;
-							this.BagFilter.CloseSmallSelect();
-							this.UpdateItem();
-						}, itemQuality.ToString());
-					}
-				}
-			}, (this.ItemQuality == ItemQuality.全部) ? "品阶" : this.ItemQuality.ToString());
-			this.BagFilter.AddBigTypeBtn(delegate
+					ItemQuality = itemQuality;
+					BagFilter.CloseSmallSelect();
+					UpdateItem();
+				}, itemQuality.ToString());
+			}
+		}, (ItemQuality == ItemQuality.全部) ? "品阶" : ItemQuality.ToString());
+		BagFilter.AddBigTypeBtn((UnityAction)delegate
+		{
+			//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005d: Expected O, but got Unknown
+			foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
 			{
-				using (IEnumerator enumerator = Enum.GetValues(typeof(ItemType)).GetEnumerator())
+				BagFilter.AddSmallTypeBtn((UnityAction)delegate
 				{
-					while (enumerator.MoveNext())
+					//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+					//IL_00d9: Expected O, but got Unknown
+					//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+					//IL_0124: Expected O, but got Unknown
+					ItemType = itemType;
+					BagFilter.CloseSmallSelect();
+					UpdateItem();
+					if (itemType == ItemType.材料)
 					{
-						ItemType itemType = (ItemType)enumerator.Current;
-						this.BagFilter.AddSmallTypeBtn(delegate
+						if (BagFilter.BigTypeIndex >= 3)
 						{
-							this.ItemType = itemType;
-							this.BagFilter.CloseSmallSelect();
-							this.UpdateItem();
-							if (itemType != ItemType.材料)
+							((Component)BagFilter.BigFilterBtnList[2]).gameObject.SetActive(true);
+							((Component)BagFilter.BigFilterBtnList[3]).gameObject.SetActive(true);
+						}
+						else
+						{
+							BagFilter.AddBigTypeBtn((UnityAction)delegate
 							{
-								if (this.BagFilter.BigTypeIndex >= 2)
+								//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+								//IL_005d: Expected O, but got Unknown
+								IEnumerator enumerator3 = Enum.GetValues(typeof(LianQiCaiLiaoYinYang)).GetEnumerator();
+								try
 								{
-									this.BagFilter.BigFilterBtnList[2].gameObject.SetActive(false);
-									this.BagFilter.BigFilterBtnList[3].gameObject.SetActive(false);
-								}
-								return;
-							}
-							if (this.BagFilter.BigTypeIndex >= 3)
-							{
-								this.BagFilter.BigFilterBtnList[2].gameObject.SetActive(true);
-								this.BagFilter.BigFilterBtnList[3].gameObject.SetActive(true);
-								return;
-							}
-							this.BagFilter.AddBigTypeBtn(delegate
-							{
-								using (IEnumerator enumerator2 = Enum.GetValues(typeof(LianQiCaiLiaoYinYang)).GetEnumerator())
-								{
-									while (enumerator2.MoveNext())
+									while (enumerator3.MoveNext())
 									{
-										LianQiCaiLiaoYinYang yinYang = (LianQiCaiLiaoYinYang)enumerator2.Current;
-										this.BagFilter.AddSmallTypeBtn(delegate
+										BaseBag baseBag2 = this;
+										LianQiCaiLiaoYinYang yinYang = (LianQiCaiLiaoYinYang)enumerator3.Current;
+										BagFilter.AddSmallTypeBtn((UnityAction)delegate
 										{
-											this.LianQiCaiLiaoYinYang = yinYang;
-											this.BagFilter.CloseSmallSelect();
-											this.UpdateItem();
+											baseBag2.LianQiCaiLiaoYinYang = yinYang;
+											baseBag2.BagFilter.CloseSmallSelect();
+											baseBag2.UpdateItem();
 										}, yinYang.ToString());
 									}
 								}
-							}, (this.LianQiCaiLiaoYinYang == LianQiCaiLiaoYinYang.全部) ? "阴阳" : this.LianQiCaiLiaoYinYang.ToString());
-							this.BagFilter.AddBigTypeBtn(delegate
+								finally
+								{
+									IDisposable disposable = enumerator3 as IDisposable;
+									if (disposable != null)
+									{
+										disposable.Dispose();
+									}
+								}
+							}, (LianQiCaiLiaoYinYang == LianQiCaiLiaoYinYang.全部) ? "阴阳" : LianQiCaiLiaoYinYang.ToString());
+							BagFilter.AddBigTypeBtn((UnityAction)delegate
 							{
-								using (IEnumerator enumerator2 = Enum.GetValues(typeof(LianQiCaiLiaoType)).GetEnumerator())
+								//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+								//IL_005d: Expected O, but got Unknown
+								IEnumerator enumerator2 = Enum.GetValues(typeof(LianQiCaiLiaoType)).GetEnumerator();
+								try
 								{
 									while (enumerator2.MoveNext())
 									{
+										BaseBag baseBag = this;
 										LianQiCaiLiaoType lianQiCaiLiaoType = (LianQiCaiLiaoType)enumerator2.Current;
-										this.BagFilter.AddSmallTypeBtn(delegate
+										BagFilter.AddSmallTypeBtn((UnityAction)delegate
 										{
-											this.LianQiCaiLiaoType = lianQiCaiLiaoType;
-											this.BagFilter.CloseSmallSelect();
-											this.UpdateItem();
+											baseBag.LianQiCaiLiaoType = lianQiCaiLiaoType;
+											baseBag.BagFilter.CloseSmallSelect();
+											baseBag.UpdateItem();
 										}, lianQiCaiLiaoType.ToString());
 									}
 								}
-							}, (this.LianQiCaiLiaoType == LianQiCaiLiaoType.全部) ? "属性" : this.LianQiCaiLiaoType.ToString());
-						}, itemType.ToString());
+								finally
+								{
+									IDisposable disposable2 = enumerator2 as IDisposable;
+									if (disposable2 != null)
+									{
+										disposable2.Dispose();
+									}
+								}
+							}, (LianQiCaiLiaoType == LianQiCaiLiaoType.全部) ? "属性" : LianQiCaiLiaoType.ToString());
+						}
 					}
-				}
-			}, (this.ItemType == ItemType.全部) ? "类型" : this.ItemType.ToString());
-			if (!this.IsInit)
-			{
-				this.Init();
+					else if (BagFilter.BigTypeIndex >= 2)
+					{
+						((Component)BagFilter.BigFilterBtnList[2]).gameObject.SetActive(false);
+						((Component)BagFilter.BigFilterBtnList[3]).gameObject.SetActive(false);
+					}
+				}, itemType.ToString());
 			}
-			this.UpdateItem();
-		}
-
-		// Token: 0x06004481 RID: 17537 RVA: 0x001D2DE8 File Offset: 0x001D0FE8
-		public virtual void UpdateItem()
+		}, (ItemType == ItemType.全部) ? "类型" : ItemType.ToString());
+		if (!IsInit)
 		{
-			this.ItemList = new List<ITEM_INFO>();
-			foreach (ITEM_INFO item_INFO in this.ItemList)
+			Init();
+		}
+		UpdateItem();
+	}
+
+	public virtual void UpdateItem()
+	{
+		ItemList = new List<ITEM_INFO>();
+		foreach (ITEM_INFO item in ItemList)
+		{
+			BaseItem baseItem = BaseItem.Create(item.itemId, (int)item.itemCount, item.uuid, item.Seid);
+			if (FiddlerItem(baseItem))
 			{
-				BaseItem baseItem = BaseItem.Create(item_INFO.itemId, (int)item_INFO.itemCount, item_INFO.uuid, item_INFO.Seid);
-				if (this.FiddlerItem(baseItem))
-				{
-					this.ItemList.Add(item_INFO);
-				}
+				ItemList.Add(item);
 			}
-			this.MItemTotalCount = this.ItemList.Count;
 		}
+		MItemTotalCount = ItemList.Count;
+	}
 
-		// Token: 0x06004482 RID: 17538 RVA: 0x001D2E84 File Offset: 0x001D1084
-		public bool FiddlerItem(BaseItem baseItem)
+	public bool FiddlerItem(BaseItem baseItem)
+	{
+		if (ItemQuality != 0 && baseItem.GetImgQuality() != (int)ItemQuality)
 		{
-			if (this.ItemQuality != ItemQuality.全部 && baseItem.GetImgQuality() != (int)this.ItemQuality)
+			return false;
+		}
+		if (ItemType != 0 && baseItem.ItemType != ItemType)
+		{
+			return false;
+		}
+		if (ItemType == ItemType.材料)
+		{
+			CaiLiaoItem caiLiaoItem = (CaiLiaoItem)baseItem;
+			if (LianQiCaiLiaoYinYang != 0 && caiLiaoItem.GetYinYang() != LianQiCaiLiaoYinYang)
 			{
 				return false;
 			}
-			if (this.ItemType != ItemType.全部 && baseItem.ItemType != this.ItemType)
+			if (LianQiCaiLiaoType != 0 && caiLiaoItem.GetLianQiCaiLiaoType() != LianQiCaiLiaoType)
 			{
 				return false;
 			}
-			if (this.ItemType == ItemType.材料)
-			{
-				CaiLiaoItem caiLiaoItem = (CaiLiaoItem)baseItem;
-				if (this.LianQiCaiLiaoYinYang != LianQiCaiLiaoYinYang.全部 && caiLiaoItem.GetYinYang() != this.LianQiCaiLiaoYinYang)
-				{
-					return false;
-				}
-				if (this.LianQiCaiLiaoType != LianQiCaiLiaoType.全部 && caiLiaoItem.GetLianQiCaiLiaoType() != this.LianQiCaiLiaoType)
-				{
-					return false;
-				}
-			}
-			return true;
 		}
+		return true;
+	}
 
-		// Token: 0x06004483 RID: 17539 RVA: 0x001D2F04 File Offset: 0x001D1104
-		public int GetCount(int itemCout)
+	public int GetCount(int itemCout)
+	{
+		int num = itemCout / mItemCountPerRow;
+		if (itemCout % mItemCountPerRow > 0)
 		{
-			int num = itemCout / this.mItemCountPerRow;
-			if (itemCout % this.mItemCountPerRow > 0)
-			{
-				num++;
-			}
-			return num + 1;
+			num++;
 		}
+		return num + 1;
+	}
 
-		// Token: 0x06004484 RID: 17540 RVA: 0x001D2F30 File Offset: 0x001D1130
-		private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
+	private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
+	{
+		if (rowIndex < 0)
 		{
-			if (rowIndex < 0)
-			{
-				return null;
-			}
-			LoopListViewItem2 loopListViewItem = listView.NewListViewItem("Prefab");
-			SlotList component = loopListViewItem.GetComponent<SlotList>();
-			if (!loopListViewItem.IsInitHandlerCalled)
-			{
-				loopListViewItem.IsInitHandlerCalled = true;
-				component.Init();
-			}
-			for (int i = 0; i < this.mItemCountPerRow; i++)
-			{
-				int num = rowIndex * this.mItemCountPerRow + i;
-				component.mItemList[i].SetAccptType(CanSlotType.全部物品);
-				if (num >= this.MItemTotalCount)
-				{
-					component.mItemList[i].SetNull();
-					if (!this.SlotList.Contains((SlotBase)component.mItemList[i]))
-					{
-						this.SlotList.Add((SlotBase)component.mItemList[i]);
-					}
-				}
-				else
-				{
-					BaseItem slotData = BaseItem.Create(this.ItemList[num].itemId, (int)this.ItemList[num].itemCount, this.ItemList[num].uuid, this.ItemList[num].Seid);
-					component.mItemList[i].SetSlotData(slotData);
-					if (!this.SlotList.Contains(component.mItemList[i]))
-					{
-						this.SlotList.Add(component.mItemList[i]);
-					}
-				}
-			}
-			return loopListViewItem;
+			return null;
 		}
-
-		// Token: 0x04004634 RID: 17972
-		public int MItemTotalCount;
-
-		// Token: 0x04004635 RID: 17973
-		public bool IsInit;
-
-		// Token: 0x04004636 RID: 17974
-		public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
-
-		// Token: 0x04004637 RID: 17975
-		public BagFilter BagFilter;
-
-		// Token: 0x04004638 RID: 17976
-		public ItemType ItemType;
-
-		// Token: 0x04004639 RID: 17977
-		public ItemQuality ItemQuality;
-
-		// Token: 0x0400463A RID: 17978
-		public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
-
-		// Token: 0x0400463B RID: 17979
-		public LianQiCaiLiaoType LianQiCaiLiaoType;
-
-		// Token: 0x0400463C RID: 17980
-		public SkIllType SkIllType = SkIllType.全部;
-
-		// Token: 0x0400463D RID: 17981
-		public SkillQuality SkillQuality;
-
-		// Token: 0x0400463E RID: 17982
-		public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
-
-		// Token: 0x0400463F RID: 17983
-		public LoopListView2 MLoopListView;
-
-		// Token: 0x04004640 RID: 17984
-		public int mItemCountPerRow = 5;
-
-		// Token: 0x04004641 RID: 17985
-		public List<ISlot> SlotList = new List<ISlot>();
+		LoopListViewItem2 loopListViewItem = listView.NewListViewItem("Prefab");
+		SlotList component = ((Component)loopListViewItem).GetComponent<SlotList>();
+		if (!loopListViewItem.IsInitHandlerCalled)
+		{
+			loopListViewItem.IsInitHandlerCalled = true;
+			component.Init();
+		}
+		for (int i = 0; i < mItemCountPerRow; i++)
+		{
+			int num = rowIndex * mItemCountPerRow + i;
+			component.mItemList[i].SetAccptType(CanSlotType.全部物品);
+			if (num >= MItemTotalCount)
+			{
+				component.mItemList[i].SetNull();
+				if (!SlotList.Contains((SlotBase)component.mItemList[i]))
+				{
+					SlotList.Add((SlotBase)component.mItemList[i]);
+				}
+				continue;
+			}
+			BaseItem slotData = BaseItem.Create(ItemList[num].itemId, (int)ItemList[num].itemCount, ItemList[num].uuid, ItemList[num].Seid);
+			component.mItemList[i].SetSlotData(slotData);
+			if (!SlotList.Contains(component.mItemList[i]))
+			{
+				SlotList.Add(component.mItemList[i]);
+			}
+		}
+		return loopListViewItem;
 	}
 }

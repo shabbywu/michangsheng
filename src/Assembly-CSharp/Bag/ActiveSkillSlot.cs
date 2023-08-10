@@ -1,41 +1,32 @@
-﻿using System;
 using Tab;
 using UnityEngine.EventSystems;
 
-namespace Bag
+namespace Bag;
+
+public class ActiveSkillSlot : SlotBase
 {
-	// Token: 0x020009B6 RID: 2486
-	public class ActiveSkillSlot : SlotBase
+	public int index;
+
+	public override void OnEndDrag(PointerEventData eventData)
 	{
-		// Token: 0x06004523 RID: 17699 RVA: 0x001D5B4A File Offset: 0x001D3D4A
-		public override void OnEndDrag(PointerEventData eventData)
+		if (CanDrag())
 		{
-			if (!this.CanDrag())
+			if (!IsIn && !DragMag.Inst.EndDrag())
 			{
-				return;
-			}
-			if (!this.IsIn && !DragMag.Inst.EndDrag())
-			{
-				SingletonMono<TabUIMag>.Instance.ShenTongPanel.RemoveSkill(this.index);
+				SingletonMono<TabUIMag>.Instance.ShenTongPanel.RemoveSkill(index);
 			}
 			DragMag.Inst.Clear();
 		}
+	}
 
-		// Token: 0x06004524 RID: 17700 RVA: 0x001D5B88 File Offset: 0x001D3D88
-		public override void OnPointerUp(PointerEventData eventData)
+	public override void OnPointerUp(PointerEventData eventData)
+	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Invalid comparison between Unknown and I4
+		if (!eventData.dragging && (int)eventData.button == 1 && !IsNull())
 		{
-			if (eventData.dragging)
-			{
-				return;
-			}
-			if (eventData.button == 1 && !base.IsNull())
-			{
-				ToolTipsMag.Inst.Close();
-				SingletonMono<TabUIMag>.Instance.ShenTongPanel.RemoveSkill(this.index);
-			}
+			ToolTipsMag.Inst.Close();
+			SingletonMono<TabUIMag>.Instance.ShenTongPanel.RemoveSkill(index);
 		}
-
-		// Token: 0x040046C8 RID: 18120
-		public int index;
 	}
 }

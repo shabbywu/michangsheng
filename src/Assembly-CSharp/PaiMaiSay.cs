@@ -1,4 +1,3 @@
-﻿using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -6,39 +5,36 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000371 RID: 881
 public class PaiMaiSay : MonoBehaviour
 {
-	// Token: 0x06001D7B RID: 7547 RVA: 0x000D04B0 File Offset: 0x000CE6B0
+	[SerializeField]
+	private Text SayContent;
+
+	private TweenerCore<float, float, FloatOptions> _do;
+
+	private float _duringTime;
+
 	public void SayWord(string msg, UnityAction complete = null, float time = 1f)
 	{
-		if (this._do != null)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Expected O, but got Unknown
+		if (_do != null)
 		{
-			TweenExtensions.Kill(this._do, false);
+			TweenExtensions.Kill((Tween)(object)_do, false);
 		}
-		this._duringTime = time;
-		this.SayContent.text = msg;
-		base.gameObject.SetActive(true);
-		this._do = TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTween.To(() => this._duringTime, delegate(float x)
+		_duringTime = time;
+		SayContent.text = msg;
+		((Component)this).gameObject.SetActive(true);
+		_do = TweenSettingsExtensions.OnComplete<TweenerCore<float, float, FloatOptions>>(DOTween.To((DOGetter<float>)(() => _duringTime), (DOSetter<float>)delegate(float x)
 		{
-			this._duringTime = x;
-		}, 0f, this._duringTime), delegate()
+			_duringTime = x;
+		}, 0f, _duringTime), (TweenCallback)delegate
 		{
-			this.gameObject.SetActive(false);
+			((Component)this).gameObject.SetActive(false);
 			if (complete != null)
 			{
 				complete.Invoke();
 			}
 		});
 	}
-
-	// Token: 0x0400180F RID: 6159
-	[SerializeField]
-	private Text SayContent;
-
-	// Token: 0x04001810 RID: 6160
-	private TweenerCore<float, float, FloatOptions> _do;
-
-	// Token: 0x04001811 RID: 6161
-	private float _duringTime;
 }

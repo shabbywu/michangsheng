@@ -1,78 +1,63 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class SceneNameJsonData : IJSONClass
 {
-	// Token: 0x020008D1 RID: 2257
-	public class SceneNameJsonData : IJSONClass
+	public static Dictionary<string, SceneNameJsonData> DataDict = new Dictionary<string, SceneNameJsonData>();
+
+	public static List<SceneNameJsonData> DataList = new List<SceneNameJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int MapType;
+
+	public int MoneyType;
+
+	public int HighlightID;
+
+	public string id;
+
+	public string EventName;
+
+	public string MapName;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004157 RID: 16727 RVA: 0x001BF710 File Offset: 0x001BD910
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.SceneNameJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.SceneNameJsonData.list)
+			try
 			{
-				try
+				SceneNameJsonData sceneNameJsonData = new SceneNameJsonData();
+				sceneNameJsonData.MapType = item["MapType"].I;
+				sceneNameJsonData.MoneyType = item["MoneyType"].I;
+				sceneNameJsonData.HighlightID = item["HighlightID"].I;
+				sceneNameJsonData.id = item["id"].Str;
+				sceneNameJsonData.EventName = item["EventName"].Str;
+				sceneNameJsonData.MapName = item["MapName"].Str;
+				if (DataDict.ContainsKey(sceneNameJsonData.id))
 				{
-					SceneNameJsonData sceneNameJsonData = new SceneNameJsonData();
-					sceneNameJsonData.MapType = jsonobject["MapType"].I;
-					sceneNameJsonData.MoneyType = jsonobject["MoneyType"].I;
-					sceneNameJsonData.HighlightID = jsonobject["HighlightID"].I;
-					sceneNameJsonData.id = jsonobject["id"].Str;
-					sceneNameJsonData.EventName = jsonobject["EventName"].Str;
-					sceneNameJsonData.MapName = jsonobject["MapName"].Str;
-					if (SceneNameJsonData.DataDict.ContainsKey(sceneNameJsonData.id))
-					{
-						PreloadManager.LogException("!!!错误!!!向字典SceneNameJsonData.DataDict添加数据时出现重复的键，Key:" + sceneNameJsonData.id + "，已跳过，请检查配表");
-					}
-					else
-					{
-						SceneNameJsonData.DataDict.Add(sceneNameJsonData.id, sceneNameJsonData);
-						SceneNameJsonData.DataList.Add(sceneNameJsonData);
-					}
+					PreloadManager.LogException("!!!错误!!!向字典SceneNameJsonData.DataDict添加数据时出现重复的键，Key:" + sceneNameJsonData.id + "，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典SceneNameJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(sceneNameJsonData.id, sceneNameJsonData);
+				DataList.Add(sceneNameJsonData);
 			}
-			if (SceneNameJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				SceneNameJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典SceneNameJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004158 RID: 16728 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04004092 RID: 16530
-		public static Dictionary<string, SceneNameJsonData> DataDict = new Dictionary<string, SceneNameJsonData>();
-
-		// Token: 0x04004093 RID: 16531
-		public static List<SceneNameJsonData> DataList = new List<SceneNameJsonData>();
-
-		// Token: 0x04004094 RID: 16532
-		public static Action OnInitFinishAction = new Action(SceneNameJsonData.OnInitFinish);
-
-		// Token: 0x04004095 RID: 16533
-		public int MapType;
-
-		// Token: 0x04004096 RID: 16534
-		public int MoneyType;
-
-		// Token: 0x04004097 RID: 16535
-		public int HighlightID;
-
-		// Token: 0x04004098 RID: 16536
-		public string id;
-
-		// Token: 0x04004099 RID: 16537
-		public string EventName;
-
-		// Token: 0x0400409A RID: 16538
-		public string MapName;
+	private static void OnInitFinish()
+	{
 	}
 }

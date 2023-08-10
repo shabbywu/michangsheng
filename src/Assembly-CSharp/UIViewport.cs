@@ -1,55 +1,61 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000B5 RID: 181
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("NGUI/UI/Viewport Camera")]
 public class UIViewport : MonoBehaviour
 {
-	// Token: 0x06000A91 RID: 2705 RVA: 0x0004040B File Offset: 0x0003E60B
-	private void Start()
-	{
-		this.mCam = base.GetComponent<Camera>();
-		if (this.sourceCamera == null)
-		{
-			this.sourceCamera = Camera.main;
-		}
-	}
-
-	// Token: 0x06000A92 RID: 2706 RVA: 0x00040434 File Offset: 0x0003E634
-	private void LateUpdate()
-	{
-		if (this.topLeft != null && this.bottomRight != null)
-		{
-			Vector3 vector = this.sourceCamera.WorldToScreenPoint(this.topLeft.position);
-			Vector3 vector2 = this.sourceCamera.WorldToScreenPoint(this.bottomRight.position);
-			Rect rect;
-			rect..ctor(vector.x / (float)Screen.width, vector2.y / (float)Screen.height, (vector2.x - vector.x) / (float)Screen.width, (vector.y - vector2.y) / (float)Screen.height);
-			float num = this.fullSize * rect.height;
-			if (rect != this.mCam.rect)
-			{
-				this.mCam.rect = rect;
-			}
-			if (this.mCam.orthographicSize != num)
-			{
-				this.mCam.orthographicSize = num;
-			}
-		}
-	}
-
-	// Token: 0x04000686 RID: 1670
 	public Camera sourceCamera;
 
-	// Token: 0x04000687 RID: 1671
 	public Transform topLeft;
 
-	// Token: 0x04000688 RID: 1672
 	public Transform bottomRight;
 
-	// Token: 0x04000689 RID: 1673
 	public float fullSize = 1f;
 
-	// Token: 0x0400068A RID: 1674
 	private Camera mCam;
+
+	private void Start()
+	{
+		mCam = ((Component)this).GetComponent<Camera>();
+		if ((Object)(object)sourceCamera == (Object)null)
+		{
+			sourceCamera = Camera.main;
+		}
+	}
+
+	private void LateUpdate()
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)topLeft != (Object)null && (Object)(object)bottomRight != (Object)null)
+		{
+			Vector3 val = sourceCamera.WorldToScreenPoint(topLeft.position);
+			Vector3 val2 = sourceCamera.WorldToScreenPoint(bottomRight.position);
+			Rect val3 = default(Rect);
+			((Rect)(ref val3))._002Ector(val.x / (float)Screen.width, val2.y / (float)Screen.height, (val2.x - val.x) / (float)Screen.width, (val.y - val2.y) / (float)Screen.height);
+			float num = fullSize * ((Rect)(ref val3)).height;
+			if (val3 != mCam.rect)
+			{
+				mCam.rect = val3;
+			}
+			if (mCam.orthographicSize != num)
+			{
+				mCam.orthographicSize = num;
+			}
+		}
+	}
 }

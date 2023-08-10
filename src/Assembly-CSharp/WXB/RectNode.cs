@@ -1,81 +1,71 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public abstract class RectNode : NodeBase
 {
-	// Token: 0x020006A8 RID: 1704
-	public abstract class RectNode : NodeBase
+	public float width;
+
+	public float height;
+
+	public override float getHeight()
 	{
-		// Token: 0x060035C6 RID: 13766 RVA: 0x00171EAB File Offset: 0x001700AB
-		public override float getHeight()
+		return height;
+	}
+
+	public override float getWidth()
+	{
+		return width;
+	}
+
+	public override void Release()
+	{
+		base.Release();
+		width = 0f;
+		height = 0f;
+	}
+
+	protected abstract void OnRectRender(RenderCache cache, Line line, Rect rect);
+
+	public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
+	{
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		float num = getWidth();
+		float num2 = getHeight();
+		if (x + num > maxWidth)
 		{
-			return this.height;
+			x = 0f;
+			yline++;
 		}
-
-		// Token: 0x060035C7 RID: 13767 RVA: 0x00171EB3 File Offset: 0x001700B3
-		public override float getWidth()
+		float num3 = NodeBase.AlignedFormatting(owner, formatting, maxWidth, lines[(int)yline].x);
+		float num4 = offsetY;
+		for (int i = 0; i < yline; i++)
 		{
-			return this.width;
+			num4 += lines[i].y;
 		}
-
-		// Token: 0x060035C8 RID: 13768 RVA: 0x00171EBB File Offset: 0x001700BB
-		public override void Release()
+		Rect rect = default(Rect);
+		((Rect)(ref rect))._002Ector(x + offsetX + num3, num4, num, num2);
+		float ox = 0f;
+		while (!owner.around.isContain(rect, out ox))
 		{
-			base.Release();
-			this.width = 0f;
-			this.height = 0f;
-		}
-
-		// Token: 0x060035C9 RID: 13769
-		protected abstract void OnRectRender(RenderCache cache, Line line, Rect rect);
-
-		// Token: 0x060035CA RID: 13770 RVA: 0x00171EDC File Offset: 0x001700DC
-		public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
-		{
-			float num = this.getWidth();
-			float num2 = this.getHeight();
+			((Rect)(ref rect)).x = ox;
+			x = ox - num3 - offsetX;
 			if (x + num > maxWidth)
 			{
 				x = 0f;
-				yline += 1U;
-			}
-			float num3 = NodeBase.AlignedFormatting(this.owner, this.formatting, maxWidth, lines[(int)yline].x);
-			float num4 = offsetY;
-			int num5 = 0;
-			while ((long)num5 < (long)((ulong)yline))
-			{
-				num4 += lines[num5].y;
-				num5++;
-			}
-			Rect rect;
-			rect..ctor(x + offsetX + num3, num4, num, num2);
-			float num6 = 0f;
-			while (!this.owner.around.isContain(rect, out num6))
-			{
-				rect.x = num6;
-				x = num6 - num3 - offsetX;
-				if (x + num > maxWidth)
-				{
-					x = 0f;
-					yline += 1U;
-					num4 += lines[(int)yline].y;
-					rect..ctor(x + offsetX + num3, num4, num, num2);
-				}
-			}
-			this.OnRectRender(cache, lines[(int)yline], rect);
-			x += num;
-			if (this.d_bNewLine)
-			{
-				x = 0f;
-				yline += 1U;
+				yline++;
+				num4 += lines[(int)yline].y;
+				((Rect)(ref rect))._002Ector(x + offsetX + num3, num4, num, num2);
 			}
 		}
-
-		// Token: 0x04002F24 RID: 12068
-		public float width;
-
-		// Token: 0x04002F25 RID: 12069
-		public float height;
+		OnRectRender(cache, lines[(int)yline], rect);
+		x += num;
+		if (d_bNewLine)
+		{
+			x = 0f;
+			yline++;
+		}
 	}
 }

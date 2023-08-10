@@ -1,41 +1,35 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace WXB
+namespace WXB;
+
+internal class PoolData<T> where T : new()
 {
-	// Token: 0x0200069A RID: 1690
-	internal class PoolData<T> where T : new()
+	public static List<T> bufs = new List<T>();
+
+	public static T Get()
 	{
-		// Token: 0x0600356C RID: 13676 RVA: 0x00170BA7 File Offset: 0x0016EDA7
-		public static T Get()
+		if (bufs.Count == 0)
 		{
-			if (PoolData<T>.bufs.Count == 0)
-			{
-				return Activator.CreateInstance<T>();
-			}
-			T result = PoolData<T>.bufs[PoolData<T>.bufs.Count - 1];
-			PoolData<T>.bufs.RemoveAt(PoolData<T>.bufs.Count - 1);
-			return result;
+			return new T();
 		}
+		T result = bufs[bufs.Count - 1];
+		bufs.RemoveAt(bufs.Count - 1);
+		return result;
+	}
 
-		// Token: 0x0600356D RID: 13677 RVA: 0x00170BE7 File Offset: 0x0016EDE7
-		public static void Free(T t)
+	public static void Free(T t)
+	{
+		bufs.Add(t);
+	}
+
+	public static void FreeList(List<T> list, Action<T> fun)
+	{
+		for (int i = 0; i < list.Count; i++)
 		{
-			PoolData<T>.bufs.Add(t);
+			fun(list[i]);
 		}
-
-		// Token: 0x0600356E RID: 13678 RVA: 0x00170BF4 File Offset: 0x0016EDF4
-		public static void FreeList(List<T> list, Action<T> fun)
-		{
-			for (int i = 0; i < list.Count; i++)
-			{
-				fun(list[i]);
-			}
-			PoolData<T>.bufs.AddRange(list);
-			list.Clear();
-		}
-
-		// Token: 0x04002F03 RID: 12035
-		public static List<T> bufs = new List<T>();
+		bufs.AddRange(list);
+		list.Clear();
 	}
 }

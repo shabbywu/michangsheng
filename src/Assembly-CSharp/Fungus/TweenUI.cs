@@ -1,138 +1,124 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+public abstract class TweenUI : Command
 {
-	// Token: 0x02000E57 RID: 3671
-	public abstract class TweenUI : Command
+	[Tooltip("List of objects to be affected by the tween")]
+	[SerializeField]
+	protected List<GameObject> targetObjects = new List<GameObject>();
+
+	[Tooltip("Type of tween easing to apply")]
+	[SerializeField]
+	protected LeanTweenType tweenType = LeanTweenType.easeOutQuad;
+
+	[Tooltip("Wait until this command completes before continuing execution")]
+	[SerializeField]
+	protected BooleanData waitUntilFinished = new BooleanData(v: true);
+
+	[Tooltip("Time for the tween to complete")]
+	[SerializeField]
+	protected FloatData duration = new FloatData(1f);
+
+	protected virtual void ApplyTween()
 	{
-		// Token: 0x0600671A RID: 26394 RVA: 0x00288CDC File Offset: 0x00286EDC
-		protected virtual void ApplyTween()
+		for (int i = 0; i < targetObjects.Count; i++)
 		{
-			for (int i = 0; i < this.targetObjects.Count; i++)
+			GameObject val = targetObjects[i];
+			if (!((Object)(object)val == (Object)null))
 			{
-				GameObject gameObject = this.targetObjects[i];
-				if (!(gameObject == null))
-				{
-					this.ApplyTween(gameObject);
-				}
-			}
-			if (this.waitUntilFinished)
-			{
-				LeanTween.value(base.gameObject, 0f, 1f, this.duration).setOnComplete(new Action(this.OnComplete));
+				ApplyTween(val);
 			}
 		}
-
-		// Token: 0x0600671B RID: 26395
-		protected abstract void ApplyTween(GameObject go);
-
-		// Token: 0x0600671C RID: 26396 RVA: 0x0005E3AF File Offset: 0x0005C5AF
-		protected virtual void OnComplete()
+		if ((bool)waitUntilFinished)
 		{
-			this.Continue();
+			LeanTween.value(((Component)this).gameObject, 0f, 1f, duration).setOnComplete(OnComplete);
 		}
+	}
 
-		// Token: 0x0600671D RID: 26397 RVA: 0x001D84A0 File Offset: 0x001D66A0
-		protected virtual string GetSummaryValue()
+	protected abstract void ApplyTween(GameObject go);
+
+	protected virtual void OnComplete()
+	{
+		Continue();
+	}
+
+	protected virtual string GetSummaryValue()
+	{
+		return "";
+	}
+
+	public override void OnEnter()
+	{
+		if (targetObjects.Count == 0)
 		{
-			return "";
+			Continue();
+			return;
 		}
-
-		// Token: 0x0600671E RID: 26398 RVA: 0x00288D5C File Offset: 0x00286F5C
-		public override void OnEnter()
+		ApplyTween();
+		if (!waitUntilFinished)
 		{
-			if (this.targetObjects.Count == 0)
-			{
-				this.Continue();
-				return;
-			}
-			this.ApplyTween();
-			if (!this.waitUntilFinished)
-			{
-				this.Continue();
-			}
+			Continue();
 		}
+	}
 
-		// Token: 0x0600671F RID: 26399 RVA: 0x00288D8B File Offset: 0x00286F8B
-		public override void OnCommandAdded(Block parentBlock)
+	public override void OnCommandAdded(Block parentBlock)
+	{
+		if (targetObjects.Count == 0)
 		{
-			if (this.targetObjects.Count == 0)
-			{
-				this.targetObjects.Add(null);
-			}
+			targetObjects.Add(null);
 		}
+	}
 
-		// Token: 0x06006720 RID: 26400 RVA: 0x00288DA8 File Offset: 0x00286FA8
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if (targetObjects.Count == 0)
 		{
-			if (this.targetObjects.Count == 0)
+			return "Error: No targetObjects selected";
+		}
+		if (targetObjects.Count == 1)
+		{
+			if ((Object)(object)targetObjects[0] == (Object)null)
 			{
 				return "Error: No targetObjects selected";
 			}
-			if (this.targetObjects.Count != 1)
+			return ((Object)targetObjects[0]).name + " = " + GetSummaryValue();
+		}
+		string text = "";
+		for (int i = 0; i < targetObjects.Count; i++)
+		{
+			GameObject val = targetObjects[i];
+			if (!((Object)(object)val == (Object)null))
 			{
-				string text = "";
-				for (int i = 0; i < this.targetObjects.Count; i++)
-				{
-					GameObject gameObject = this.targetObjects[i];
-					if (!(gameObject == null))
-					{
-						if (text == "")
-						{
-							text += gameObject.name;
-						}
-						else
-						{
-							text = text + ", " + gameObject.name;
-						}
-					}
-				}
-				return text + " = " + this.GetSummaryValue();
+				text = ((!(text == "")) ? (text + ", " + ((Object)val).name) : (text + ((Object)val).name));
 			}
-			if (this.targetObjects[0] == null)
-			{
-				return "Error: No targetObjects selected";
-			}
-			return this.targetObjects[0].name + " = " + this.GetSummaryValue();
 		}
+		return text + " = " + GetSummaryValue();
+	}
 
-		// Token: 0x06006721 RID: 26401 RVA: 0x002868C5 File Offset: 0x00284AC5
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)180, (byte)250, (byte)250, byte.MaxValue));
+	}
+
+	public override bool IsReorderableArray(string propertyName)
+	{
+		if (propertyName == "targetObjects")
 		{
-			return new Color32(180, 250, 250, byte.MaxValue);
+			return true;
 		}
+		return false;
+	}
 
-		// Token: 0x06006722 RID: 26402 RVA: 0x002868F3 File Offset: 0x00284AF3
-		public override bool IsReorderableArray(string propertyName)
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)waitUntilFinished.booleanRef == (Object)(object)variable) && !((Object)(object)duration.floatRef == (Object)(object)variable))
 		{
-			return propertyName == "targetObjects";
+			return base.HasReference(variable);
 		}
-
-		// Token: 0x06006723 RID: 26403 RVA: 0x00288E83 File Offset: 0x00287083
-		public override bool HasReference(Variable variable)
-		{
-			return this.waitUntilFinished.booleanRef == variable || this.duration.floatRef == variable || base.HasReference(variable);
-		}
-
-		// Token: 0x0400582F RID: 22575
-		[Tooltip("List of objects to be affected by the tween")]
-		[SerializeField]
-		protected List<GameObject> targetObjects = new List<GameObject>();
-
-		// Token: 0x04005830 RID: 22576
-		[Tooltip("Type of tween easing to apply")]
-		[SerializeField]
-		protected LeanTweenType tweenType = LeanTweenType.easeOutQuad;
-
-		// Token: 0x04005831 RID: 22577
-		[Tooltip("Wait until this command completes before continuing execution")]
-		[SerializeField]
-		protected BooleanData waitUntilFinished = new BooleanData(true);
-
-		// Token: 0x04005832 RID: 22578
-		[Tooltip("Time for the tween to complete")]
-		[SerializeField]
-		protected FloatData duration = new FloatData(1f);
+		return true;
 	}
 }

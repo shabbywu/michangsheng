@@ -1,136 +1,122 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SuperScrollView
-{
-	// Token: 0x020006D7 RID: 1751
-	public class StaggeredGridItemPool
-	{
-		// Token: 0x06003856 RID: 14422 RVA: 0x0018310C File Offset: 0x0018130C
-		public void Init(GameObject prefabObj, float padding, int createCount, RectTransform parent)
-		{
-			this.mPrefabObj = prefabObj;
-			this.mPrefabName = this.mPrefabObj.name;
-			this.mInitCreateCount = createCount;
-			this.mPadding = padding;
-			this.mItemParent = parent;
-			this.mPrefabObj.SetActive(false);
-			for (int i = 0; i < this.mInitCreateCount; i++)
-			{
-				LoopStaggeredGridViewItem item = this.CreateItem();
-				this.RecycleItemReal(item);
-			}
-		}
+namespace SuperScrollView;
 
-		// Token: 0x06003857 RID: 14423 RVA: 0x00183174 File Offset: 0x00181374
-		public LoopStaggeredGridViewItem GetItem()
+public class StaggeredGridItemPool
+{
+	private GameObject mPrefabObj;
+
+	private string mPrefabName;
+
+	private int mInitCreateCount = 1;
+
+	private float mPadding;
+
+	private List<LoopStaggeredGridViewItem> mTmpPooledItemList = new List<LoopStaggeredGridViewItem>();
+
+	private List<LoopStaggeredGridViewItem> mPooledItemList = new List<LoopStaggeredGridViewItem>();
+
+	private static int mCurItemIdCount;
+
+	private RectTransform mItemParent;
+
+	public void Init(GameObject prefabObj, float padding, int createCount, RectTransform parent)
+	{
+		mPrefabObj = prefabObj;
+		mPrefabName = ((Object)mPrefabObj).name;
+		mInitCreateCount = createCount;
+		mPadding = padding;
+		mItemParent = parent;
+		mPrefabObj.SetActive(false);
+		for (int i = 0; i < mInitCreateCount; i++)
 		{
-			StaggeredGridItemPool.mCurItemIdCount++;
-			LoopStaggeredGridViewItem loopStaggeredGridViewItem;
-			if (this.mTmpPooledItemList.Count > 0)
+			LoopStaggeredGridViewItem item = CreateItem();
+			RecycleItemReal(item);
+		}
+	}
+
+	public LoopStaggeredGridViewItem GetItem()
+	{
+		mCurItemIdCount++;
+		LoopStaggeredGridViewItem loopStaggeredGridViewItem = null;
+		if (mTmpPooledItemList.Count > 0)
+		{
+			int count = mTmpPooledItemList.Count;
+			loopStaggeredGridViewItem = mTmpPooledItemList[count - 1];
+			mTmpPooledItemList.RemoveAt(count - 1);
+			((Component)loopStaggeredGridViewItem).gameObject.SetActive(true);
+		}
+		else
+		{
+			int count2 = mPooledItemList.Count;
+			if (count2 == 0)
 			{
-				int count = this.mTmpPooledItemList.Count;
-				loopStaggeredGridViewItem = this.mTmpPooledItemList[count - 1];
-				this.mTmpPooledItemList.RemoveAt(count - 1);
-				loopStaggeredGridViewItem.gameObject.SetActive(true);
+				loopStaggeredGridViewItem = CreateItem();
 			}
 			else
 			{
-				int count2 = this.mPooledItemList.Count;
-				if (count2 == 0)
-				{
-					loopStaggeredGridViewItem = this.CreateItem();
-				}
-				else
-				{
-					loopStaggeredGridViewItem = this.mPooledItemList[count2 - 1];
-					this.mPooledItemList.RemoveAt(count2 - 1);
-					loopStaggeredGridViewItem.gameObject.SetActive(true);
-				}
+				loopStaggeredGridViewItem = mPooledItemList[count2 - 1];
+				mPooledItemList.RemoveAt(count2 - 1);
+				((Component)loopStaggeredGridViewItem).gameObject.SetActive(true);
 			}
-			loopStaggeredGridViewItem.Padding = this.mPadding;
-			loopStaggeredGridViewItem.ItemId = StaggeredGridItemPool.mCurItemIdCount;
-			return loopStaggeredGridViewItem;
 		}
+		loopStaggeredGridViewItem.Padding = mPadding;
+		loopStaggeredGridViewItem.ItemId = mCurItemIdCount;
+		return loopStaggeredGridViewItem;
+	}
 
-		// Token: 0x06003858 RID: 14424 RVA: 0x00183230 File Offset: 0x00181430
-		public void DestroyAllItem()
+	public void DestroyAllItem()
+	{
+		ClearTmpRecycledItem();
+		int count = mPooledItemList.Count;
+		for (int i = 0; i < count; i++)
 		{
-			this.ClearTmpRecycledItem();
-			int count = this.mPooledItemList.Count;
+			Object.DestroyImmediate((Object)(object)((Component)mPooledItemList[i]).gameObject);
+		}
+		mPooledItemList.Clear();
+	}
+
+	public LoopStaggeredGridViewItem CreateItem()
+	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		GameObject obj = Object.Instantiate<GameObject>(mPrefabObj, Vector3.zero, Quaternion.identity, (Transform)(object)mItemParent);
+		obj.SetActive(true);
+		RectTransform component = obj.GetComponent<RectTransform>();
+		((Transform)component).localScale = Vector3.one;
+		component.anchoredPosition3D = Vector3.zero;
+		((Transform)component).localEulerAngles = Vector3.zero;
+		LoopStaggeredGridViewItem component2 = obj.GetComponent<LoopStaggeredGridViewItem>();
+		component2.ItemPrefabName = mPrefabName;
+		component2.StartPosOffset = 0f;
+		return component2;
+	}
+
+	private void RecycleItemReal(LoopStaggeredGridViewItem item)
+	{
+		((Component)item).gameObject.SetActive(false);
+		mPooledItemList.Add(item);
+	}
+
+	public void RecycleItem(LoopStaggeredGridViewItem item)
+	{
+		mTmpPooledItemList.Add(item);
+	}
+
+	public void ClearTmpRecycledItem()
+	{
+		int count = mTmpPooledItemList.Count;
+		if (count != 0)
+		{
 			for (int i = 0; i < count; i++)
 			{
-				Object.DestroyImmediate(this.mPooledItemList[i].gameObject);
+				RecycleItemReal(mTmpPooledItemList[i]);
 			}
-			this.mPooledItemList.Clear();
+			mTmpPooledItemList.Clear();
 		}
-
-		// Token: 0x06003859 RID: 14425 RVA: 0x0018327C File Offset: 0x0018147C
-		public LoopStaggeredGridViewItem CreateItem()
-		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.mPrefabObj, Vector3.zero, Quaternion.identity, this.mItemParent);
-			gameObject.SetActive(true);
-			RectTransform component = gameObject.GetComponent<RectTransform>();
-			component.localScale = Vector3.one;
-			component.anchoredPosition3D = Vector3.zero;
-			component.localEulerAngles = Vector3.zero;
-			LoopStaggeredGridViewItem component2 = gameObject.GetComponent<LoopStaggeredGridViewItem>();
-			component2.ItemPrefabName = this.mPrefabName;
-			component2.StartPosOffset = 0f;
-			return component2;
-		}
-
-		// Token: 0x0600385A RID: 14426 RVA: 0x001832ED File Offset: 0x001814ED
-		private void RecycleItemReal(LoopStaggeredGridViewItem item)
-		{
-			item.gameObject.SetActive(false);
-			this.mPooledItemList.Add(item);
-		}
-
-		// Token: 0x0600385B RID: 14427 RVA: 0x00183307 File Offset: 0x00181507
-		public void RecycleItem(LoopStaggeredGridViewItem item)
-		{
-			this.mTmpPooledItemList.Add(item);
-		}
-
-		// Token: 0x0600385C RID: 14428 RVA: 0x00183318 File Offset: 0x00181518
-		public void ClearTmpRecycledItem()
-		{
-			int count = this.mTmpPooledItemList.Count;
-			if (count == 0)
-			{
-				return;
-			}
-			for (int i = 0; i < count; i++)
-			{
-				this.RecycleItemReal(this.mTmpPooledItemList[i]);
-			}
-			this.mTmpPooledItemList.Clear();
-		}
-
-		// Token: 0x040030C4 RID: 12484
-		private GameObject mPrefabObj;
-
-		// Token: 0x040030C5 RID: 12485
-		private string mPrefabName;
-
-		// Token: 0x040030C6 RID: 12486
-		private int mInitCreateCount = 1;
-
-		// Token: 0x040030C7 RID: 12487
-		private float mPadding;
-
-		// Token: 0x040030C8 RID: 12488
-		private List<LoopStaggeredGridViewItem> mTmpPooledItemList = new List<LoopStaggeredGridViewItem>();
-
-		// Token: 0x040030C9 RID: 12489
-		private List<LoopStaggeredGridViewItem> mPooledItemList = new List<LoopStaggeredGridViewItem>();
-
-		// Token: 0x040030CA RID: 12490
-		private static int mCurItemIdCount;
-
-		// Token: 0x040030CB RID: 12491
-		private RectTransform mItemParent;
 	}
 }

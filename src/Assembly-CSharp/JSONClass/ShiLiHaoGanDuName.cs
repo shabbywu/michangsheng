@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ShiLiHaoGanDuName : IJSONClass
 {
-	// Token: 0x020008DC RID: 2268
-	public class ShiLiHaoGanDuName : IJSONClass
+	public static Dictionary<int, ShiLiHaoGanDuName> DataDict = new Dictionary<int, ShiLiHaoGanDuName>();
+
+	public static List<ShiLiHaoGanDuName> DataList = new List<ShiLiHaoGanDuName>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public string ChinaText;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004183 RID: 16771 RVA: 0x001C083C File Offset: 0x001BEA3C
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ShiLiHaoGanDuName.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ShiLiHaoGanDuName.list)
+			try
 			{
-				try
+				ShiLiHaoGanDuName shiLiHaoGanDuName = new ShiLiHaoGanDuName();
+				shiLiHaoGanDuName.id = item["id"].I;
+				shiLiHaoGanDuName.ChinaText = item["ChinaText"].Str;
+				if (DataDict.ContainsKey(shiLiHaoGanDuName.id))
 				{
-					ShiLiHaoGanDuName shiLiHaoGanDuName = new ShiLiHaoGanDuName();
-					shiLiHaoGanDuName.id = jsonobject["id"].I;
-					shiLiHaoGanDuName.ChinaText = jsonobject["ChinaText"].Str;
-					if (ShiLiHaoGanDuName.DataDict.ContainsKey(shiLiHaoGanDuName.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ShiLiHaoGanDuName.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", shiLiHaoGanDuName.id));
-					}
-					else
-					{
-						ShiLiHaoGanDuName.DataDict.Add(shiLiHaoGanDuName.id, shiLiHaoGanDuName);
-						ShiLiHaoGanDuName.DataList.Add(shiLiHaoGanDuName);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ShiLiHaoGanDuName.DataDict添加数据时出现重复的键，Key:{shiLiHaoGanDuName.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ShiLiHaoGanDuName.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(shiLiHaoGanDuName.id, shiLiHaoGanDuName);
+				DataList.Add(shiLiHaoGanDuName);
 			}
-			if (ShiLiHaoGanDuName.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ShiLiHaoGanDuName.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ShiLiHaoGanDuName.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004184 RID: 16772 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040040E2 RID: 16610
-		public static Dictionary<int, ShiLiHaoGanDuName> DataDict = new Dictionary<int, ShiLiHaoGanDuName>();
-
-		// Token: 0x040040E3 RID: 16611
-		public static List<ShiLiHaoGanDuName> DataList = new List<ShiLiHaoGanDuName>();
-
-		// Token: 0x040040E4 RID: 16612
-		public static Action OnInitFinishAction = new Action(ShiLiHaoGanDuName.OnInitFinish);
-
-		// Token: 0x040040E5 RID: 16613
-		public int id;
-
-		// Token: 0x040040E6 RID: 16614
-		public string ChinaText;
+	private static void OnInitFinish()
+	{
 	}
 }

@@ -1,45 +1,53 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("LeanTween", "Scale", "Changes a game object's scale to a specified value over time.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class ScaleLean : BaseLeanTweenCommand
 {
-	// Token: 0x02000DE7 RID: 3559
-	[CommandInfo("LeanTween", "Scale", "Changes a game object's scale to a specified value over time.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class ScaleLean : BaseLeanTweenCommand
+	[Tooltip("Target transform that the GameObject will scale to")]
+	[SerializeField]
+	protected TransformData _toTransform;
+
+	[Tooltip("Target scale that the GameObject will scale to, if no To Transform is set")]
+	[SerializeField]
+	protected Vector3Data _toScale = new Vector3Data(Vector3.one);
+
+	public override LTDescr ExecuteTween()
 	{
-		// Token: 0x060064E6 RID: 25830 RVA: 0x002811F4 File Offset: 0x0027F3F4
-		public override LTDescr ExecuteTween()
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = (((Object)(object)_toTransform.Value == (Object)null) ? _toScale.Value : _toTransform.Value.localScale);
+		if (base.IsInAddativeMode)
 		{
-			Vector3 vector = (this._toTransform.Value == null) ? this._toScale.Value : this._toTransform.Value.localScale;
-			if (base.IsInAddativeMode)
-			{
-				vector += this._targetObject.Value.transform.localScale;
-			}
-			if (base.IsInFromMode)
-			{
-				Vector3 localScale = this._targetObject.Value.transform.localScale;
-				this._targetObject.Value.transform.localScale = vector;
-				vector = localScale;
-			}
-			return LeanTween.scale(this._targetObject.Value, vector, this._duration);
+			val += _targetObject.Value.transform.localScale;
 		}
-
-		// Token: 0x060064E7 RID: 25831 RVA: 0x002812A6 File Offset: 0x0027F4A6
-		public override bool HasReference(Variable variable)
+		if (base.IsInFromMode)
 		{
-			return variable == this._toTransform.transformRef || this._toScale.vector3Ref == variable || base.HasReference(variable);
+			Vector3 localScale = _targetObject.Value.transform.localScale;
+			_targetObject.Value.transform.localScale = val;
+			val = localScale;
 		}
+		return LeanTween.scale(_targetObject.Value, val, _duration);
+	}
 
-		// Token: 0x040056D2 RID: 22226
-		[Tooltip("Target transform that the GameObject will scale to")]
-		[SerializeField]
-		protected TransformData _toTransform;
-
-		// Token: 0x040056D3 RID: 22227
-		[Tooltip("Target scale that the GameObject will scale to, if no To Transform is set")]
-		[SerializeField]
-		protected Vector3Data _toScale = new Vector3Data(Vector3.one);
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)variable == (Object)(object)_toTransform.transformRef) && !((Object)(object)_toScale.vector3Ref == (Object)(object)variable))
+		{
+			return base.HasReference(variable);
+		}
+		return true;
 	}
 }

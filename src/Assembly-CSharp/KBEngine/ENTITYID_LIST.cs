@@ -1,10 +1,7 @@
-﻿using System;
 using System.Collections.Generic;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class ENTITYID_LIST : List<int>
 {
-	// Token: 0x02000BC9 RID: 3017
-	public class ENTITYID_LIST : List<int>
-	{
-	}
 }

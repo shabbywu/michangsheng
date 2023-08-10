@@ -1,79 +1,76 @@
-﻿using System;
 using System.Collections.Generic;
 using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000307 RID: 775
 public class CaiLiaoInventory : Inventory2
 {
-	// Token: 0x06001B04 RID: 6916 RVA: 0x000C1131 File Offset: 0x000BF331
+	private int WuWeiType = -1;
+
+	public SelectCaiLiaoPage CaiLiaoselectpage;
+
+	public int Quaily;
+
 	public void setWuWeiLeiXing()
 	{
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.RestePageIndex();
+			CaiLiaoselectpage.RestePageIndex();
 		}
-		this.WuWeiType = -1;
-		this.LoadCaiLiaoInventory();
+		WuWeiType = -1;
+		LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001B05 RID: 6917 RVA: 0x000C1159 File Offset: 0x000BF359
 	public void setWuWeiLeiXing1()
 	{
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.RestePageIndex();
+			CaiLiaoselectpage.RestePageIndex();
 		}
-		this.WuWeiType = 1;
-		this.LoadCaiLiaoInventory();
+		WuWeiType = 1;
+		LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001B06 RID: 6918 RVA: 0x000C1181 File Offset: 0x000BF381
 	public void setWuWeiLeiXing2()
 	{
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.RestePageIndex();
+			CaiLiaoselectpage.RestePageIndex();
 		}
-		this.WuWeiType = 2;
-		this.LoadCaiLiaoInventory();
+		WuWeiType = 2;
+		LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001B07 RID: 6919 RVA: 0x000C11A9 File Offset: 0x000BF3A9
 	public void setWuWeiLeiXing3()
 	{
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.RestePageIndex();
+			CaiLiaoselectpage.RestePageIndex();
 		}
-		this.WuWeiType = 3;
-		this.LoadCaiLiaoInventory();
+		WuWeiType = 3;
+		LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001B08 RID: 6920 RVA: 0x000C11D1 File Offset: 0x000BF3D1
 	public void setWuWeiLeiXing4()
 	{
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.RestePageIndex();
+			CaiLiaoselectpage.RestePageIndex();
 		}
-		this.WuWeiType = 4;
-		this.LoadCaiLiaoInventory();
+		WuWeiType = 4;
+		LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001B09 RID: 6921 RVA: 0x000C11F9 File Offset: 0x000BF3F9
 	public void setWuWeiLeiXing5()
 	{
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.RestePageIndex();
+			CaiLiaoselectpage.RestePageIndex();
 		}
-		this.WuWeiType = 5;
-		this.LoadCaiLiaoInventory();
+		WuWeiType = 5;
+		LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001B0A RID: 6922 RVA: 0x000C1224 File Offset: 0x000BF424
 	private List<ITEM_INFO> getRealItemList()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -83,7 +80,7 @@ public class CaiLiaoInventory : Inventory2
 			bool flag = true;
 			for (int j = 25; j < 35; j++)
 			{
-				if (this.inventory[j].UUID == player.itemList.values[i].uuid && (long)this.inventory[j].itemNum >= (long)((ulong)player.itemList.values[i].itemCount))
+				if (inventory[j].UUID == player.itemList.values[i].uuid && inventory[j].itemNum >= player.itemList.values[i].itemCount)
 				{
 					flag = false;
 					break;
@@ -97,86 +94,78 @@ public class CaiLiaoInventory : Inventory2
 		return list;
 	}
 
-	// Token: 0x06001B0B RID: 6923 RVA: 0x000C12F4 File Offset: 0x000BF4F4
 	public void LoadCaiLiaoInventory()
 	{
-		this.resteInventoryItem();
+		resteInventoryItem();
 		Avatar player = Tools.instance.getPlayer();
 		int num = 0;
-		foreach (ITEM_INFO item_INFO in this.getRealItemList())
+		foreach (ITEM_INFO realItem in getRealItemList())
 		{
-			if (player.FindEquipItemByUUID(item_INFO.uuid) == null)
+			if (player.FindEquipItemByUUID(realItem.uuid) != null)
 			{
-				if (!jsonData.instance.ItemJsonData.ContainsKey(string.Concat(item_INFO.itemId)))
+				continue;
+			}
+			if (!jsonData.instance.ItemJsonData.ContainsKey(string.Concat(realItem.itemId)))
+			{
+				Debug.LogError((object)("找不到物品" + realItem.itemId));
+			}
+			else if (jsonData.instance.ItemJsonData[realItem.itemId.ToString()]["WuWeiType"].I != 0 && ((int)jsonData.instance.ItemJsonData[string.Concat(realItem.itemId)]["quality"].n == Quaily || Quaily == 0) && (jsonData.instance.ItemJsonData[string.Concat(realItem.itemId)]["WuWeiType"].I == WuWeiType || WuWeiType == -1))
+			{
+				if (isInPage(nowIndex, num, 25))
 				{
-					Debug.LogError("找不到物品" + item_INFO.itemId);
+					addItemToNullInventory(realItem.itemId, (int)realItem.itemCount, realItem.uuid, realItem.Seid);
 				}
-				else if (jsonData.instance.ItemJsonData[item_INFO.itemId.ToString()]["WuWeiType"].I != 0 && ((int)jsonData.instance.ItemJsonData[string.Concat(item_INFO.itemId)]["quality"].n == this.Quaily || this.Quaily == 0) && (jsonData.instance.ItemJsonData[string.Concat(item_INFO.itemId)]["WuWeiType"].I == this.WuWeiType || this.WuWeiType == -1))
-				{
-					if (this.isInPage(this.nowIndex, num, 25))
-					{
-						this.addItemToNullInventory(item_INFO.itemId, (int)item_INFO.itemCount, item_INFO.uuid, item_INFO.Seid);
-					}
-					num++;
-				}
+				num++;
 			}
 		}
-		if (this.CaiLiaoselectpage != null)
+		if ((Object)(object)CaiLiaoselectpage != (Object)null)
 		{
-			this.CaiLiaoselectpage.setMaxPage(player.itemList.values.Count / (int)this.FanYeCount + 1);
+			CaiLiaoselectpage.setMaxPage(player.itemList.values.Count / (int)FanYeCount + 1);
 		}
 	}
 
-	// Token: 0x06001B0C RID: 6924 RVA: 0x000C14C8 File Offset: 0x000BF6C8
 	public new void resteInventoryItem()
 	{
 		for (int i = 0; i < 25; i++)
 		{
-			this.inventory[i] = new item();
-			this.inventory[i].itemNum = 1;
+			inventory[i] = new item();
+			inventory[i].itemNum = 1;
 		}
 	}
 
-	// Token: 0x06001B0D RID: 6925 RVA: 0x000C1508 File Offset: 0x000BF708
 	public new int addItemToNullInventory(int id, int num, string uuid, JSONObject Seid)
 	{
 		for (int i = 25; i < 35; i++)
 		{
-			if (this.inventory[i].UUID == uuid)
+			if (inventory[i].UUID == uuid)
 			{
-				if (this.inventory[i].itemNum >= num)
+				if (inventory[i].itemNum >= num)
 				{
 					return -1;
 				}
-				num -= this.inventory[i].itemNum;
+				num -= inventory[i].itemNum;
 			}
 		}
 		for (int j = 0; j < 25; j++)
 		{
-			if (this.inventory[j].itemID == -1)
+			if (inventory[j].itemID == -1)
 			{
-				this.inventory[j] = this.datebase.items[id].Clone();
-				this.inventory[j].UUID = uuid;
-				this.inventory[j].Seid = Seid;
-				this.inventory[j].itemNum = num;
+				inventory[j] = datebase.items[id].Clone();
+				inventory[j].UUID = uuid;
+				inventory[j].Seid = Seid;
+				inventory[j].itemNum = num;
 				return j;
 			}
 		}
 		return 0;
 	}
 
-	// Token: 0x06001B0E RID: 6926 RVA: 0x000B9D8C File Offset: 0x000B7F8C
 	public new bool isInPage(int curpage, int itemIndex, int pagesize)
 	{
-		return itemIndex >= curpage * pagesize && itemIndex < (curpage + 1) * pagesize;
+		if (itemIndex >= curpage * pagesize && itemIndex < (curpage + 1) * pagesize)
+		{
+			return true;
+		}
+		return false;
 	}
-
-	// Token: 0x0400159D RID: 5533
-	private int WuWeiType = -1;
-
-	// Token: 0x0400159E RID: 5534
-	public SelectCaiLiaoPage CaiLiaoselectpage;
-
-	// Token: 0x0400159F RID: 5535
-	public int Quaily;
 }

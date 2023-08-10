@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 
-namespace KBEngine
+namespace KBEngine;
+
+[Serializable]
+public class equipItem
 {
-	// Token: 0x02000C7A RID: 3194
-	[Serializable]
-	public class equipItem
-	{
-	}
 }

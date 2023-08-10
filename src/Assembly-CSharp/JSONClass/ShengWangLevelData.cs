@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ShengWangLevelData : IJSONClass
 {
-	// Token: 0x020008DA RID: 2266
-	public class ShengWangLevelData : IJSONClass
+	public static Dictionary<int, ShengWangLevelData> DataDict = new Dictionary<int, ShengWangLevelData>();
+
+	public static List<ShengWangLevelData> DataList = new List<ShengWangLevelData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public string ShengWang;
+
+	public List<int> ShengWangQuJian = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x0600417B RID: 16763 RVA: 0x001C0560 File Offset: 0x001BE760
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ShengWangLevelData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ShengWangLevelData.list)
+			try
 			{
-				try
+				ShengWangLevelData shengWangLevelData = new ShengWangLevelData();
+				shengWangLevelData.id = item["id"].I;
+				shengWangLevelData.ShengWang = item["ShengWang"].Str;
+				shengWangLevelData.ShengWangQuJian = item["ShengWangQuJian"].ToList();
+				if (DataDict.ContainsKey(shengWangLevelData.id))
 				{
-					ShengWangLevelData shengWangLevelData = new ShengWangLevelData();
-					shengWangLevelData.id = jsonobject["id"].I;
-					shengWangLevelData.ShengWang = jsonobject["ShengWang"].Str;
-					shengWangLevelData.ShengWangQuJian = jsonobject["ShengWangQuJian"].ToList();
-					if (ShengWangLevelData.DataDict.ContainsKey(shengWangLevelData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ShengWangLevelData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", shengWangLevelData.id));
-					}
-					else
-					{
-						ShengWangLevelData.DataDict.Add(shengWangLevelData.id, shengWangLevelData);
-						ShengWangLevelData.DataList.Add(shengWangLevelData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ShengWangLevelData.DataDict添加数据时出现重复的键，Key:{shengWangLevelData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ShengWangLevelData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(shengWangLevelData.id, shengWangLevelData);
+				DataList.Add(shengWangLevelData);
 			}
-			if (ShengWangLevelData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ShengWangLevelData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ShengWangLevelData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x0600417C RID: 16764 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040040D6 RID: 16598
-		public static Dictionary<int, ShengWangLevelData> DataDict = new Dictionary<int, ShengWangLevelData>();
-
-		// Token: 0x040040D7 RID: 16599
-		public static List<ShengWangLevelData> DataList = new List<ShengWangLevelData>();
-
-		// Token: 0x040040D8 RID: 16600
-		public static Action OnInitFinishAction = new Action(ShengWangLevelData.OnInitFinish);
-
-		// Token: 0x040040D9 RID: 16601
-		public int id;
-
-		// Token: 0x040040DA RID: 16602
-		public string ShengWang;
-
-		// Token: 0x040040DB RID: 16603
-		public List<int> ShengWangQuJian = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

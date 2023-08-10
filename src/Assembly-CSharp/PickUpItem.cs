@@ -1,83 +1,75 @@
-﻿using System;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000146 RID: 326
 public class PickUpItem : MonoBehaviour
 {
-	// Token: 0x06000EB2 RID: 3762 RVA: 0x000599C4 File Offset: 0x00057BC4
+	public Item item;
+
+	private Inventory _inventory;
+
+	private GameObject _player;
+
+	private int nowAttakBtnStatus;
+
 	private void Start()
 	{
-		this._player = (GameObject)KBEngineApp.app.player().renderObj;
-		if (this._player != null)
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Expected O, but got Unknown
+		_player = (GameObject)KBEngineApp.app.player().renderObj;
+		if ((Object)(object)_player != (Object)null)
 		{
-			this._inventory = this._player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
+			_inventory = _player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
 		}
-		base.InvokeRepeating("cheakPlayer", 0.5f, 0.5f);
+		((MonoBehaviour)this).InvokeRepeating("cheakPlayer", 0.5f, 0.5f);
 	}
 
-	// Token: 0x06000EB3 RID: 3763 RVA: 0x00059A2C File Offset: 0x00057C2C
 	public void cheakPlayer()
 	{
-		if (Vector3.Distance(base.gameObject.transform.position, this._player.transform.position) <= 3f)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		if (Vector3.Distance(((Component)this).gameObject.transform.position, _player.transform.position) <= 3f)
 		{
 			if (UI_MainUI.inst.skill1Text.text != "拾取")
 			{
-				this.nowAttakBtnStatus = 1;
+				nowAttakBtnStatus = 1;
 				UI_MainUI.inst.setSkill1("拾取");
-				return;
 			}
 		}
-		else if (this.nowAttakBtnStatus == 1)
+		else if (nowAttakBtnStatus == 1)
 		{
 			UI_MainUI.inst.skill1Text.text = "攻击";
-			this.nowAttakBtnStatus = 0;
+			nowAttakBtnStatus = 0;
 		}
 	}
 
-	// Token: 0x06000EB4 RID: 3764 RVA: 0x00059ABB File Offset: 0x00057CBB
 	public void OnEnable()
 	{
-		UI_Game.ItemPick += this.OnItemPick;
+		UI_Game.ItemPick += OnItemPick;
 	}
 
-	// Token: 0x06000EB5 RID: 3765 RVA: 0x00059ACE File Offset: 0x00057CCE
 	public void OnDisable()
 	{
-		UI_Game.ItemPick -= this.OnItemPick;
+		UI_Game.ItemPick -= OnItemPick;
 		UI_MainUI.inst.skill1Text.text = "攻击";
 	}
 
-	// Token: 0x06000EB6 RID: 3766 RVA: 0x00059AF8 File Offset: 0x00057CF8
 	private void OnItemPick()
 	{
-		if (this._player == null)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Expected O, but got Unknown
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)_player == (Object)null)
 		{
-			this._player = (GameObject)KBEngineApp.app.player().renderObj;
+			_player = (GameObject)KBEngineApp.app.player().renderObj;
 		}
-		if (this._inventory == null && this._player != null)
+		if ((Object)(object)_inventory == (Object)null && (Object)(object)_player != (Object)null)
 		{
-			this._inventory = this._player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
+			_inventory = _player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
 		}
-		if (this._inventory != null && Vector3.Distance(base.gameObject.transform.position, this._player.transform.position) <= 3f && this._inventory.ItemsInInventory.Count < this._inventory.width * this._inventory.height)
+		if ((Object)(object)_inventory != (Object)null && Vector3.Distance(((Component)this).gameObject.transform.position, _player.transform.position) <= 3f && _inventory.ItemsInInventory.Count < _inventory.width * _inventory.height)
 		{
-			DroppedItem droppedItem = (DroppedItem)KBEngineApp.app.findEntity(Utility.getPostInt(base.gameObject.name));
-			if (droppedItem != null)
-			{
-				droppedItem.pickUpRequest();
-			}
+			((DroppedItem)KBEngineApp.app.findEntity(Utility.getPostInt(((Object)((Component)this).gameObject).name)))?.pickUpRequest();
 		}
 	}
-
-	// Token: 0x04000AE4 RID: 2788
-	public Item item;
-
-	// Token: 0x04000AE5 RID: 2789
-	private Inventory _inventory;
-
-	// Token: 0x04000AE6 RID: 2790
-	private GameObject _player;
-
-	// Token: 0x04000AE7 RID: 2791
-	private int nowAttakBtnStatus;
 }

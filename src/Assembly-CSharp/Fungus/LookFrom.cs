@@ -1,95 +1,94 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("iTween", "Look From", "Instantly rotates a GameObject to look at the supplied Vector3 then returns it to it's starting rotation over time.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class LookFrom : iTweenCommand
 {
-	// Token: 0x02000DEB RID: 3563
-	[CommandInfo("iTween", "Look From", "Instantly rotates a GameObject to look at the supplied Vector3 then returns it to it's starting rotation over time.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class LookFrom : iTweenCommand
+	[Tooltip("Target transform that the GameObject will look at")]
+	[SerializeField]
+	protected TransformData _fromTransform;
+
+	[Tooltip("Target world position that the GameObject will look at, if no From Transform is set")]
+	[SerializeField]
+	protected Vector3Data _fromPosition;
+
+	[Tooltip("Restricts rotation to the supplied axis only")]
+	[SerializeField]
+	protected iTweenAxis axis;
+
+	[HideInInspector]
+	[FormerlySerializedAs("fromTransform")]
+	public Transform fromTransformOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("fromPosition")]
+	public Vector3 fromPositionOLD;
+
+	public override void DoTween()
 	{
-		// Token: 0x060064F9 RID: 25849 RVA: 0x00281640 File Offset: 0x0027F840
-		public override void DoTween()
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		Hashtable hashtable = new Hashtable();
+		hashtable.Add("name", _tweenName.Value);
+		if ((Object)(object)_fromTransform.Value == (Object)null)
 		{
-			Hashtable hashtable = new Hashtable();
-			hashtable.Add("name", this._tweenName.Value);
-			if (this._fromTransform.Value == null)
-			{
-				hashtable.Add("looktarget", this._fromPosition.Value);
-			}
-			else
-			{
-				hashtable.Add("looktarget", this._fromTransform.Value);
-			}
-			switch (this.axis)
-			{
-			case iTweenAxis.X:
-				hashtable.Add("axis", "x");
-				break;
-			case iTweenAxis.Y:
-				hashtable.Add("axis", "y");
-				break;
-			case iTweenAxis.Z:
-				hashtable.Add("axis", "z");
-				break;
-			}
-			hashtable.Add("time", this._duration.Value);
-			hashtable.Add("easetype", this.easeType);
-			hashtable.Add("looptype", this.loopType);
-			hashtable.Add("oncomplete", "OniTweenComplete");
-			hashtable.Add("oncompletetarget", base.gameObject);
-			hashtable.Add("oncompleteparams", this);
-			iTween.LookFrom(this._targetObject.Value, hashtable);
+			hashtable.Add("looktarget", _fromPosition.Value);
 		}
-
-		// Token: 0x060064FA RID: 25850 RVA: 0x00281785 File Offset: 0x0027F985
-		public override bool HasReference(Variable variable)
+		else
 		{
-			return this._fromTransform.transformRef == variable || this._fromPosition.vector3Ref == variable || base.HasReference(variable);
+			hashtable.Add("looktarget", _fromTransform.Value);
 		}
-
-		// Token: 0x060064FB RID: 25851 RVA: 0x002817B8 File Offset: 0x0027F9B8
-		protected override void OnEnable()
+		switch (axis)
 		{
-			base.OnEnable();
-			if (this.fromTransformOLD != null)
-			{
-				this._fromTransform.Value = this.fromTransformOLD;
-				this.fromTransformOLD = null;
-			}
-			if (this.fromPositionOLD != default(Vector3))
-			{
-				this._fromPosition.Value = this.fromPositionOLD;
-				this.fromPositionOLD = default(Vector3);
-			}
+		case iTweenAxis.X:
+			hashtable.Add("axis", "x");
+			break;
+		case iTweenAxis.Y:
+			hashtable.Add("axis", "y");
+			break;
+		case iTweenAxis.Z:
+			hashtable.Add("axis", "z");
+			break;
 		}
+		hashtable.Add("time", _duration.Value);
+		hashtable.Add("easetype", easeType);
+		hashtable.Add("looptype", loopType);
+		hashtable.Add("oncomplete", "OniTweenComplete");
+		hashtable.Add("oncompletetarget", ((Component)this).gameObject);
+		hashtable.Add("oncompleteparams", this);
+		iTween.LookFrom(_targetObject.Value, hashtable);
+	}
 
-		// Token: 0x040056DB RID: 22235
-		[Tooltip("Target transform that the GameObject will look at")]
-		[SerializeField]
-		protected TransformData _fromTransform;
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_fromTransform.transformRef == (Object)(object)variable) && !((Object)(object)_fromPosition.vector3Ref == (Object)(object)variable))
+		{
+			return base.HasReference(variable);
+		}
+		return true;
+	}
 
-		// Token: 0x040056DC RID: 22236
-		[Tooltip("Target world position that the GameObject will look at, if no From Transform is set")]
-		[SerializeField]
-		protected Vector3Data _fromPosition;
-
-		// Token: 0x040056DD RID: 22237
-		[Tooltip("Restricts rotation to the supplied axis only")]
-		[SerializeField]
-		protected iTweenAxis axis;
-
-		// Token: 0x040056DE RID: 22238
-		[HideInInspector]
-		[FormerlySerializedAs("fromTransform")]
-		public Transform fromTransformOLD;
-
-		// Token: 0x040056DF RID: 22239
-		[HideInInspector]
-		[FormerlySerializedAs("fromPosition")]
-		public Vector3 fromPositionOLD;
+	protected override void OnEnable()
+	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		base.OnEnable();
+		if ((Object)(object)fromTransformOLD != (Object)null)
+		{
+			_fromTransform.Value = fromTransformOLD;
+			fromTransformOLD = null;
+		}
+		if (fromPositionOLD != default(Vector3))
+		{
+			_fromPosition.Value = fromPositionOLD;
+			fromPositionOLD = default(Vector3);
+		}
 	}
 }

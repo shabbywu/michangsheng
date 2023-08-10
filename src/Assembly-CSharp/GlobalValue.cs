@@ -1,104 +1,85 @@
-﻿using System;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020001BD RID: 445
 public static class GlobalValue
 {
-	// Token: 0x06001276 RID: 4726 RVA: 0x00070A00 File Offset: 0x0006EC00
+	public static bool LogSource;
+
 	public static int Get(int id, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
 		if (player == null)
 		{
-			Debug.LogError("不能获取全局变量:无法获取到玩家。源:" + source);
+			Debug.LogError((object)("不能获取全局变量:无法获取到玩家。源:" + source));
 			return -1;
 		}
 		if (id < 0 || id >= 2500)
 		{
-			Debug.LogError(string.Format("不能获取全局变量:id {0}超出了边界。源:{1}", id, source));
+			Debug.LogError((object)$"不能获取全局变量:id {id}超出了边界。源:{source}");
 		}
 		int num = player.StaticValue.Value[id];
-		if (GlobalValue.LogSource)
+		if (LogSource)
 		{
-			Debug.Log(string.Format("获取全局变量, id:{0} 值:{1}。源:{2}", id, num, source));
+			Debug.Log((object)$"获取全局变量, id:{id} 值:{num}。源:{source}");
 		}
 		return num;
 	}
 
-	// Token: 0x06001277 RID: 4727 RVA: 0x00070A7C File Offset: 0x0006EC7C
 	public static void Set(int id, int value, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
 		if (player == null)
 		{
-			Debug.LogError("不能设置全局变量:无法获取到玩家。源:" + source);
+			Debug.LogError((object)("不能设置全局变量:无法获取到玩家。源:" + source));
 			return;
 		}
 		if (id < 0 || id >= 2500)
 		{
-			Debug.LogError(string.Format("不能设置全局变量:id {0}超出了边界。源:{1}", id, source));
+			Debug.LogError((object)$"不能设置全局变量:id {id}超出了边界。源:{source}");
 		}
-		if (GlobalValue.LogSource)
+		if (LogSource)
 		{
-			Debug.Log(string.Format("设置全局变量, id:{0} 原始值:{1} 新值:{2}。源:{3}", new object[]
-			{
-				id,
-				player.StaticValue.Value[id],
-				value,
-				source
-			}));
+			Debug.Log((object)$"设置全局变量, id:{id} 原始值:{player.StaticValue.Value[id]} 新值:{value}。源:{source}");
 		}
 		player.StaticValue.Value[id] = value;
 	}
 
-	// Token: 0x06001278 RID: 4728 RVA: 0x00070B1C File Offset: 0x0006ED1C
 	public static int GetTalk(int id, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
 		if (player == null)
 		{
-			Debug.LogError("不能获取talk:无法获取到玩家。源:" + source);
+			Debug.LogError((object)("不能获取talk:无法获取到玩家。源:" + source));
 			return -1;
 		}
 		if (id < 0 || id >= player.StaticValue.talk.Length)
 		{
-			Debug.LogError(string.Format("不能获取talk:id {0}超出了边界。源:{1}", id, source));
+			Debug.LogError((object)$"不能获取talk:id {id}超出了边界。源:{source}");
 		}
 		int num = player.StaticValue.talk[id];
-		if (GlobalValue.LogSource)
+		if (LogSource)
 		{
-			Debug.Log(string.Format("获取talk, id:{0} 值:{1}。源:{2}", id, num, source));
+			Debug.Log((object)$"获取talk, id:{id} 值:{num}。源:{source}");
 		}
 		return num;
 	}
 
-	// Token: 0x06001279 RID: 4729 RVA: 0x00070BA0 File Offset: 0x0006EDA0
 	public static void SetTalk(int id, int value, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
 		if (player == null)
 		{
-			Debug.LogError("不能设置talk:无法获取到玩家。源:" + source);
+			Debug.LogError((object)("不能设置talk:无法获取到玩家。源:" + source));
 			return;
 		}
 		if (id < 0 || id >= player.StaticValue.talk.Length)
 		{
-			Debug.LogError(string.Format("不能设置talk:id {0}超出了边界。源:{1}", id, source));
+			Debug.LogError((object)$"不能设置talk:id {id}超出了边界。源:{source}");
 		}
-		if (GlobalValue.LogSource)
+		if (LogSource)
 		{
-			Debug.Log(string.Format("设置talk, id:{0} 原始值:{1} 新值:{2}。源:{3}", new object[]
-			{
-				id,
-				player.StaticValue.talk[id],
-				value,
-				source
-			}));
+			Debug.Log((object)$"设置talk, id:{id} 原始值:{player.StaticValue.talk[id]} 新值:{value}。源:{source}");
 		}
 		player.StaticValue.talk[id] = value;
 	}
-
-	// Token: 0x04000D0B RID: 3339
-	public static bool LogSource;
 }

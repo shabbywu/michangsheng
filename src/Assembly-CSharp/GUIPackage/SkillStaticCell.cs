@@ -1,197 +1,172 @@
-﻿using System;
 using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class SkillStaticCell : MonoBehaviour
 {
-	// Token: 0x02000A6D RID: 2669
-	public class SkillStaticCell : MonoBehaviour
+	public GameObject Icon;
+
+	public GameObject Level;
+
+	public GameObject Name;
+
+	public GameObject PingZhi;
+
+	public int skillID;
+
+	public Skill_UIST skill_UIST;
+
+	public GameObject KeyName;
+
+	public UILabel NameLabel;
+
+	public bool showName;
+
+	private Avatar avatar;
+
+	public GameObject Dengji;
+
+	public UITexture uITexture;
+
+	public List<Texture> sprites;
+
+	public bool showDengji;
+
+	private float refreshCD;
+
+	private void Start()
 	{
-		// Token: 0x06004AFE RID: 19198 RVA: 0x001FE939 File Offset: 0x001FCB39
-		private void Start()
-		{
-			this.avatar = Tools.instance.getPlayer();
-		}
+		avatar = Tools.instance.getPlayer();
+	}
 
-		// Token: 0x06004AFF RID: 19199 RVA: 0x001FE94B File Offset: 0x001FCB4B
-		private void Update()
+	private void Update()
+	{
+		if (refreshCD < 0f)
 		{
-			if (this.refreshCD < 0f)
-			{
-				this.UpdateRefresh();
-				this.refreshCD = 0.2f;
-				return;
-			}
-			this.refreshCD -= Time.deltaTime;
+			UpdateRefresh();
+			refreshCD = 0.2f;
 		}
-
-		// Token: 0x06004B00 RID: 19200 RVA: 0x001FE980 File Offset: 0x001FCB80
-		public void UpdateRefresh()
+		else
 		{
-			if (this.skillID == -1)
+			refreshCD -= Time.deltaTime;
+		}
+	}
+
+	public void UpdateRefresh()
+	{
+		if (skillID == -1)
+		{
+			Icon.GetComponent<UITexture>().mainTexture = null;
+			Level.GetComponent<UILabel>().text = "";
+			Name.GetComponent<UILabel>().text = "";
+			if ((Object)(object)PingZhi != (Object)null)
 			{
-				this.Icon.GetComponent<UITexture>().mainTexture = null;
-				this.Level.GetComponent<UILabel>().text = "";
-				this.Name.GetComponent<UILabel>().text = "";
-				if (this.PingZhi != null)
-				{
-					this.PingZhi.GetComponent<UITexture>().mainTexture = null;
-				}
-				if (this.KeyName != null)
-				{
-					this.KeyName.SetActive(false);
-				}
-				return;
+				PingZhi.GetComponent<UITexture>().mainTexture = null;
 			}
-			this.Icon.GetComponent<UITexture>().mainTexture = this.skill_UIST.skill[this.skillID].skill_Icon;
-			this.Level.GetComponent<UILabel>().text = "Lv" + this.getSkillLevel(this.skill_UIST.skill[this.skillID].skill_ID).ToString() + "/" + Singleton.skillUI2.skill[this.skillID].Max_level.ToString();
-			this.Name.GetComponent<UILabel>().text = this.skill_UIST.skill[this.skillID].skill_Name;
-			if (this.PingZhi != null)
+			if ((Object)(object)KeyName != (Object)null)
 			{
-				this.PingZhi.GetComponent<UITexture>().mainTexture = this.skill_UIST.skill[this.skillID].SkillPingZhi;
+				KeyName.SetActive(false);
 			}
-			if (this.KeyName == null)
+			return;
+		}
+		Icon.GetComponent<UITexture>().mainTexture = (Texture)(object)skill_UIST.skill[skillID].skill_Icon;
+		Level.GetComponent<UILabel>().text = "Lv" + getSkillLevel(skill_UIST.skill[skillID].skill_ID) + "/" + Singleton.skillUI2.skill[skillID].Max_level;
+		Name.GetComponent<UILabel>().text = skill_UIST.skill[skillID].skill_Name;
+		if ((Object)(object)PingZhi != (Object)null)
+		{
+			PingZhi.GetComponent<UITexture>().mainTexture = (Texture)(object)skill_UIST.skill[skillID].SkillPingZhi;
+		}
+		if (!((Object)(object)KeyName == (Object)null))
+		{
+			if (Tools.instance.getPlayer().showSkillName == 0 && showName)
 			{
-				return;
-			}
-			if (Tools.instance.getPlayer().showSkillName == 0 && this.showName)
-			{
-				this.KeyName.SetActive(true);
-				this.NameLabel.text = Tools.instance.getStaticSkillName(this.skill_UIST.skill[this.skillID].skill_ID, false);
+				KeyName.SetActive(true);
+				NameLabel.text = Tools.instance.getStaticSkillName(skill_UIST.skill[skillID].skill_ID);
 			}
 			else
 			{
-				this.KeyName.SetActive(false);
+				KeyName.SetActive(false);
 			}
-			this.Dengji.SetActive(false);
+			Dengji.SetActive(false);
 		}
+	}
 
-		// Token: 0x06004B01 RID: 19201 RVA: 0x001FEB80 File Offset: 0x001FCD80
-		public int getSkillLevel(int SkillID)
+	public int getSkillLevel(int SkillID)
+	{
+		int staticSkillIDByKey = Tools.instance.getStaticSkillIDByKey(SkillID);
+		foreach (SkillItem hasStaticSkill in avatar.hasStaticSkillList)
 		{
-			int staticSkillIDByKey = Tools.instance.getStaticSkillIDByKey(SkillID);
-			foreach (SkillItem skillItem in this.avatar.hasStaticSkillList)
+			if (staticSkillIDByKey == hasStaticSkill.itemId)
 			{
-				if (staticSkillIDByKey == skillItem.itemId)
-				{
-					return skillItem.level;
-				}
-			}
-			return 0;
-		}
-
-		// Token: 0x06004B02 RID: 19202 RVA: 0x001FEBF4 File Offset: 0x001FCDF4
-		protected virtual void OnPress()
-		{
-			if (this.skillID == -1)
-			{
-				return;
-			}
-			this.PCOnPress();
-		}
-
-		// Token: 0x06004B03 RID: 19203 RVA: 0x001FEC06 File Offset: 0x001FCE06
-		public void MobilePress()
-		{
-			this.PCOnHover(true);
-			Singleton.ToolTipsBackGround.openTooltips();
-			TooltipsBackgroundi toolTipsBackGround = Singleton.ToolTipsBackGround;
-			toolTipsBackGround.CloseAction = delegate()
-			{
-				this.PCOnHover(false);
-			};
-			toolTipsBackGround.use.gameObject.SetActive(false);
-		}
-
-		// Token: 0x06004B04 RID: 19204 RVA: 0x001FEC40 File Offset: 0x001FCE40
-		public void PCOnPress()
-		{
-			this.skill_UIST.showTooltip = false;
-			if (Input.GetMouseButton(0) && !Singleton.inventory.draggingItem && !Singleton.key.draggingKey && this.skill_UIST.skill[this.skillID].CoolDown != 0f)
-			{
-				this.skill_UIST.draggingSkill = true;
-				this.skill_UIST.dragedSkill = this.skill_UIST.skill[this.skillID];
+				return hasStaticSkill.level;
 			}
 		}
+		return 0;
+	}
 
-		// Token: 0x06004B05 RID: 19205 RVA: 0x001FECC8 File Offset: 0x001FCEC8
-		public virtual void SetShow_Tooltip()
+	protected virtual void OnPress()
+	{
+		if (skillID != -1)
 		{
-			this.skill_UIST.Show_Tooltip(this.skill_UIST.skill[this.skillID], 0);
+			PCOnPress();
 		}
+	}
 
-		// Token: 0x06004B06 RID: 19206 RVA: 0x001FECEC File Offset: 0x001FCEEC
-		private void OnHover(bool isOver)
+	public void MobilePress()
+	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Expected O, but got Unknown
+		PCOnHover(isOver: true);
+		Singleton.ToolTipsBackGround.openTooltips();
+		TooltipsBackgroundi toolTipsBackGround = Singleton.ToolTipsBackGround;
+		toolTipsBackGround.CloseAction = (UnityAction)delegate
 		{
-			this.PCOnHover(isOver);
+			PCOnHover(isOver: false);
+		};
+		((Component)toolTipsBackGround.use).gameObject.SetActive(false);
+	}
+
+	public void PCOnPress()
+	{
+		skill_UIST.showTooltip = false;
+		if (Input.GetMouseButton(0) && !Singleton.inventory.draggingItem && !Singleton.key.draggingKey && skill_UIST.skill[skillID].CoolDown != 0f)
+		{
+			skill_UIST.draggingSkill = true;
+			skill_UIST.dragedSkill = skill_UIST.skill[skillID];
 		}
+	}
 
-		// Token: 0x06004B07 RID: 19207 RVA: 0x001FECF5 File Offset: 0x001FCEF5
-		public void PCOnHover(bool isOver)
+	public virtual void SetShow_Tooltip()
+	{
+		skill_UIST.Show_Tooltip(skill_UIST.skill[skillID]);
+	}
+
+	private void OnHover(bool isOver)
+	{
+		PCOnHover(isOver);
+	}
+
+	public void PCOnHover(bool isOver)
+	{
+		if (skillID != -1)
 		{
-			if (this.skillID == -1)
-			{
-				return;
-			}
 			if (isOver)
 			{
-				this.SetShow_Tooltip();
-				this.skill_UIST.showTooltip = true;
-				return;
+				SetShow_Tooltip();
+				skill_UIST.showTooltip = true;
 			}
-			this.skill_UIST.showTooltip = false;
+			else
+			{
+				skill_UIST.showTooltip = false;
+			}
 		}
+	}
 
-		// Token: 0x06004B08 RID: 19208 RVA: 0x001FED23 File Offset: 0x001FCF23
-		public void skillUPCell()
-		{
-			this.skill_UIST.SkillUP(this.skillID);
-		}
-
-		// Token: 0x04004A26 RID: 18982
-		public GameObject Icon;
-
-		// Token: 0x04004A27 RID: 18983
-		public GameObject Level;
-
-		// Token: 0x04004A28 RID: 18984
-		public GameObject Name;
-
-		// Token: 0x04004A29 RID: 18985
-		public GameObject PingZhi;
-
-		// Token: 0x04004A2A RID: 18986
-		public int skillID;
-
-		// Token: 0x04004A2B RID: 18987
-		public Skill_UIST skill_UIST;
-
-		// Token: 0x04004A2C RID: 18988
-		public GameObject KeyName;
-
-		// Token: 0x04004A2D RID: 18989
-		public UILabel NameLabel;
-
-		// Token: 0x04004A2E RID: 18990
-		public bool showName;
-
-		// Token: 0x04004A2F RID: 18991
-		private Avatar avatar;
-
-		// Token: 0x04004A30 RID: 18992
-		public GameObject Dengji;
-
-		// Token: 0x04004A31 RID: 18993
-		public UITexture uITexture;
-
-		// Token: 0x04004A32 RID: 18994
-		public List<Texture> sprites;
-
-		// Token: 0x04004A33 RID: 18995
-		public bool showDengji;
-
-		// Token: 0x04004A34 RID: 18996
-		private float refreshCD;
+	public void skillUPCell()
+	{
+		skill_UIST.SkillUP(skillID);
 	}
 }

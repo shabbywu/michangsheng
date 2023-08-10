@@ -1,112 +1,91 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public class LootObject : InteractableObject, IInventoryTrigger
 {
-	// Token: 0x02000602 RID: 1538
-	public class LootObject : InteractableObject, IInventoryTrigger
+	[SerializeField]
+	[Range(1f, 50f)]
+	protected int m_Capacity = 8;
+
+	[SerializeField]
+	protected ItemToGenerate[] m_InitialItems;
+
+	[Header("Box Opening")]
+	[SerializeField]
+	private Transform m_Cover;
+
+	[SerializeField]
+	private float m_OpenSpeed = 6f;
+
+	[SerializeField]
+	private float m_ClosedRotation;
+
+	[SerializeField]
+	private float m_OpenRotation = 60f;
+
+	private float m_CurrentRotation;
+
+	public List<ItemHolder> ItemHolders { get; private set; }
+
+	public override void OnInteract(PlayerEventHandler player)
 	{
-		// Token: 0x17000445 RID: 1093
-		// (get) Token: 0x06003152 RID: 12626 RVA: 0x0015EA8E File Offset: 0x0015CC8E
-		// (set) Token: 0x06003153 RID: 12627 RVA: 0x0015EA96 File Offset: 0x0015CC96
-		public List<ItemHolder> ItemHolders { get; private set; }
-
-		// Token: 0x06003154 RID: 12628 RVA: 0x0015EA9F File Offset: 0x0015CC9F
-		public override void OnInteract(PlayerEventHandler player)
+		if (((Behaviour)this).enabled && MonoSingleton<InventoryController>.Instance.OpenLootContainer.Try(this))
 		{
-			if (base.enabled && MonoSingleton<InventoryController>.Instance.OpenLootContainer.Try(this))
+			On_InventoryOpened();
+			MonoSingleton<InventoryController>.Instance.State.AddChangeListener(OnChanged_InventoryController_State);
+		}
+	}
+
+	private void Start()
+	{
+		ItemHolders = new List<ItemHolder>();
+		for (int i = 0; i < m_Capacity; i++)
+		{
+			ItemHolders.Add(new ItemHolder());
+			if (i < m_InitialItems.Length && m_InitialItems[i].TryGenerate(out var runtimeItem))
 			{
-				this.On_InventoryOpened();
-				MonoSingleton<InventoryController>.Instance.State.AddChangeListener(new Action(this.OnChanged_InventoryController_State));
+				ItemHolders[i].SetItem(runtimeItem);
 			}
 		}
+	}
 
-		// Token: 0x06003155 RID: 12629 RVA: 0x0015EADC File Offset: 0x0015CCDC
-		private void Start()
+	private void OnChanged_InventoryController_State()
+	{
+		if (MonoSingleton<InventoryController>.Instance.IsClosed)
 		{
-			this.ItemHolders = new List<ItemHolder>();
-			for (int i = 0; i < this.m_Capacity; i++)
-			{
-				this.ItemHolders.Add(new ItemHolder());
-				SavableItem item;
-				if (i < this.m_InitialItems.Length && this.m_InitialItems[i].TryGenerate(out item))
-				{
-					this.ItemHolders[i].SetItem(item);
-				}
-			}
+			On_InventoryClosed();
 		}
+	}
 
-		// Token: 0x06003156 RID: 12630 RVA: 0x0015EB43 File Offset: 0x0015CD43
-		private void OnChanged_InventoryController_State()
+	private void On_InventoryOpened()
+	{
+		if ((Object)(object)m_Cover != (Object)null)
 		{
-			if (MonoSingleton<InventoryController>.Instance.IsClosed)
-			{
-				this.On_InventoryClosed();
-			}
+			((MonoBehaviour)this).StopAllCoroutines();
+			((MonoBehaviour)this).StartCoroutine(C_OpenCover(open: true));
 		}
+	}
 
-		// Token: 0x06003157 RID: 12631 RVA: 0x0015EB57 File Offset: 0x0015CD57
-		private void On_InventoryOpened()
+	private void On_InventoryClosed()
+	{
+		if ((Object)(object)m_Cover != (Object)null)
 		{
-			if (this.m_Cover != null)
-			{
-				base.StopAllCoroutines();
-				base.StartCoroutine(this.C_OpenCover(true));
-			}
+			((MonoBehaviour)this).StopAllCoroutines();
+			((MonoBehaviour)this).StartCoroutine(C_OpenCover(open: false));
 		}
+	}
 
-		// Token: 0x06003158 RID: 12632 RVA: 0x0015EB7B File Offset: 0x0015CD7B
-		private void On_InventoryClosed()
+	private IEnumerator C_OpenCover(bool open)
+	{
+		float targetRotation = (open ? m_OpenRotation : m_ClosedRotation);
+		while (Mathf.Abs(targetRotation - m_CurrentRotation) > 0.1f)
 		{
-			if (this.m_Cover != null)
-			{
-				base.StopAllCoroutines();
-				base.StartCoroutine(this.C_OpenCover(false));
-			}
+			m_CurrentRotation = Mathf.Lerp(m_CurrentRotation, targetRotation, Time.deltaTime * m_OpenSpeed);
+			((Component)m_Cover).transform.localRotation = Quaternion.Euler(m_CurrentRotation, 0f, 0f);
+			yield return null;
 		}
-
-		// Token: 0x06003159 RID: 12633 RVA: 0x0015EB9F File Offset: 0x0015CD9F
-		private IEnumerator C_OpenCover(bool open)
-		{
-			float targetRotation = open ? this.m_OpenRotation : this.m_ClosedRotation;
-			while (Mathf.Abs(targetRotation - this.m_CurrentRotation) > 0.1f)
-			{
-				this.m_CurrentRotation = Mathf.Lerp(this.m_CurrentRotation, targetRotation, Time.deltaTime * this.m_OpenSpeed);
-				this.m_Cover.transform.localRotation = Quaternion.Euler(this.m_CurrentRotation, 0f, 0f);
-				yield return null;
-			}
-			yield break;
-		}
-
-		// Token: 0x04002B72 RID: 11122
-		[SerializeField]
-		[Range(1f, 50f)]
-		protected int m_Capacity = 8;
-
-		// Token: 0x04002B73 RID: 11123
-		[SerializeField]
-		protected ItemToGenerate[] m_InitialItems;
-
-		// Token: 0x04002B74 RID: 11124
-		[Header("Box Opening")]
-		[SerializeField]
-		private Transform m_Cover;
-
-		// Token: 0x04002B75 RID: 11125
-		[SerializeField]
-		private float m_OpenSpeed = 6f;
-
-		// Token: 0x04002B76 RID: 11126
-		[SerializeField]
-		private float m_ClosedRotation;
-
-		// Token: 0x04002B77 RID: 11127
-		[SerializeField]
-		private float m_OpenRotation = 60f;
-
-		// Token: 0x04002B78 RID: 11128
-		private float m_CurrentRotation;
 	}
 }

@@ -1,155 +1,150 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JSONClass;
 using UnityEngine;
 
-namespace Bag
+namespace Bag;
+
+[Serializable]
+public class ActiveSkill : BaseSkill
 {
-	// Token: 0x020009B1 RID: 2481
-	[Serializable]
-	public class ActiveSkill : BaseSkill
+	public List<int> AttackType;
+
+	public override void SetSkill(int id, int level)
 	{
-		// Token: 0x060044FB RID: 17659 RVA: 0x001D5294 File Offset: 0x001D3494
-		public override void SetSkill(int id, int level)
+		foreach (_skillJsonData data in _skillJsonData.DataList)
 		{
-			foreach (_skillJsonData skillJsonData in _skillJsonData.DataList)
+			if (data.Skill_ID == id && level == data.Skill_Lv)
 			{
-				if (skillJsonData.Skill_ID == id && level == skillJsonData.Skill_Lv)
-				{
-					this.Id = skillJsonData.id;
-					this.SkillId = id;
-					this.Level = level;
-					this.Quality = skillJsonData.Skill_LV;
-					this.Name = skillJsonData.name.RemoveNumber();
-					this.AttackType = new List<int>(skillJsonData.AttackType);
-					this.PinJie = skillJsonData.typePinJie;
-					break;
-				}
+				Id = data.id;
+				SkillId = id;
+				Level = level;
+				Quality = data.Skill_LV;
+				Name = data.name.RemoveNumber();
+				AttackType = new List<int>(data.AttackType);
+				PinJie = data.typePinJie;
+				break;
 			}
-			this.CanPutSlotType = CanSlotType.技能;
 		}
+		CanPutSlotType = CanSlotType.技能;
+	}
 
-		// Token: 0x060044FC RID: 17660 RVA: 0x001D5350 File Offset: 0x001D3550
-		public override BaseSkill Clone()
+	public override BaseSkill Clone()
+	{
+		ActiveSkill activeSkill = new ActiveSkill();
+		activeSkill.SetSkill(SkillId, Level);
+		activeSkill.CanPutSlotType = CanPutSlotType;
+		return activeSkill;
+	}
+
+	public override Sprite GetIconSprite()
+	{
+		Sprite val = ResManager.inst.LoadSprite("Skill Icon/" + SkillId);
+		if ((Object)(object)val == (Object)null)
 		{
-			ActiveSkill activeSkill = new ActiveSkill();
-			activeSkill.SetSkill(this.SkillId, this.Level);
-			activeSkill.CanPutSlotType = this.CanPutSlotType;
-			return activeSkill;
+			val = ResManager.inst.LoadSprite("Skill Icon/0");
 		}
+		return val;
+	}
 
-		// Token: 0x060044FD RID: 17661 RVA: 0x001D5378 File Offset: 0x001D3578
-		public override Sprite GetIconSprite()
+	public override string GetDesc1()
+	{
+		_skillJsonData skillJsonData = _skillJsonData.DataDict[Id];
+		return skillJsonData.descr.Replace("（attack）", skillJsonData.HP.ToString()).STVarReplace();
+	}
+
+	public override string GetTypeName()
+	{
+		string text = "";
+		foreach (int item in AttackType)
 		{
-			Sprite sprite = ResManager.inst.LoadSprite("Skill Icon/" + this.SkillId);
-			if (sprite == null)
-			{
-				sprite = ResManager.inst.LoadSprite("Skill Icon/0");
-			}
-			return sprite;
+			text += StrTextJsonData.DataDict["xibie" + item].ChinaText;
 		}
+		return text;
+	}
 
-		// Token: 0x060044FE RID: 17662 RVA: 0x001D53C0 File Offset: 0x001D35C0
-		public override string GetDesc1()
+	public override List<int> GetCiZhuiList()
+	{
+		List<int> list = new List<int>();
+		foreach (int item in _skillJsonData.DataDict[Id].Affix2)
 		{
-			_skillJsonData skillJsonData = _skillJsonData.DataDict[this.Id];
-			return skillJsonData.descr.Replace("（attack）", skillJsonData.HP.ToString()).STVarReplace();
+			list.Add(item);
 		}
+		return list;
+	}
 
-		// Token: 0x060044FF RID: 17663 RVA: 0x001D5400 File Offset: 0x001D3600
-		public override string GetTypeName()
+	public override string GetDesc2()
+	{
+		foreach (_ItemJsonData data in _ItemJsonData.DataList)
 		{
-			string text = "";
-			foreach (int num in this.AttackType)
+			if (data.desc.Replace(".0", "") == SkillId.ToString() && data.type == 3)
 			{
-				text += StrTextJsonData.DataDict["xibie" + num].ChinaText;
+				return data.desc2;
 			}
-			return text;
 		}
+		return "暂无";
+	}
 
-		// Token: 0x06004500 RID: 17664 RVA: 0x001D547C File Offset: 0x001D367C
-		public override List<int> GetCiZhuiList()
+	public override bool SkillTypeIsEqual(int skIllType)
+	{
+		if (skIllType == 9 && AttackType.Count > 0 && AttackType[0] >= 9)
 		{
-			List<int> list = new List<int>();
-			foreach (int item in _skillJsonData.DataDict[this.Id].Affix2)
-			{
-				list.Add(item);
-			}
-			return list;
+			return true;
 		}
-
-		// Token: 0x06004501 RID: 17665 RVA: 0x001D54E8 File Offset: 0x001D36E8
-		public override string GetDesc2()
+		if (AttackType.Contains(skIllType))
 		{
-			foreach (_ItemJsonData itemJsonData in _ItemJsonData.DataList)
-			{
-				if (itemJsonData.desc.Replace(".0", "") == this.SkillId.ToString() && itemJsonData.type == 3)
-				{
-					return itemJsonData.desc2;
-				}
-			}
-			return "暂无";
+			return true;
 		}
+		return false;
+	}
 
-		// Token: 0x06004502 RID: 17666 RVA: 0x001D5574 File Offset: 0x001D3774
-		public override bool SkillTypeIsEqual(int skIllType)
+	public List<int> GetCostList()
+	{
+		List<int> list = new List<int>();
+		_skillJsonData skillJsonData = _skillJsonData.DataDict[Id];
+		for (int i = 0; i < skillJsonData.skill_SameCastNum.Count; i++)
 		{
-			return (skIllType == 9 && this.AttackType.Count > 0 && this.AttackType[0] >= 9) || this.AttackType.Contains(skIllType);
+			for (int j = 0; j < skillJsonData.skill_SameCastNum[i]; j++)
+			{
+				list.Add(6);
+			}
+			list.Add(-11);
 		}
-
-		// Token: 0x06004503 RID: 17667 RVA: 0x001D55AC File Offset: 0x001D37AC
-		public List<int> GetCostList()
+		for (int k = 0; k < skillJsonData.skill_CastType.Count; k++)
 		{
-			List<int> list = new List<int>();
-			_skillJsonData skillJsonData = _skillJsonData.DataDict[this.Id];
-			for (int i = 0; i < skillJsonData.skill_SameCastNum.Count; i++)
+			for (int l = 0; l < skillJsonData.skill_Cast[k]; l++)
 			{
-				for (int j = 0; j < skillJsonData.skill_SameCastNum[i]; j++)
-				{
-					list.Add(6);
-				}
-				list.Add(-11);
+				list.Add(skillJsonData.skill_CastType[k]);
 			}
-			for (int k = 0; k < skillJsonData.skill_CastType.Count; k++)
-			{
-				for (int l = 0; l < skillJsonData.skill_Cast[k]; l++)
-				{
-					list.Add(skillJsonData.skill_CastType[k]);
-				}
-				list.Add(-11);
-			}
-			if (list.Count > 0 && list[list.Count - 1] == -11)
-			{
-				list.RemoveAt(list.Count - 1);
-			}
-			return list;
+			list.Add(-11);
 		}
-
-		// Token: 0x06004504 RID: 17668 RVA: 0x001D5688 File Offset: 0x001D3888
-		public List<SkillCost> GetSkillCost()
+		if (list.Count > 0 && list[list.Count - 1] == -11)
 		{
-			List<SkillCost> list = new List<SkillCost>();
-			_skillJsonData skillJsonData = _skillJsonData.DataDict[this.Id];
-			for (int i = 0; i < skillJsonData.skill_SameCastNum.Count; i++)
-			{
-				list.Add(new SkillCost
-				{
-					Id = 6,
-					Num = skillJsonData.skill_SameCastNum[i]
-				});
-			}
-			for (int j = 0; j < skillJsonData.skill_CastType.Count; j++)
-			{
-				list.Add(new SkillCost
-				{
-					Id = skillJsonData.skill_CastType[j],
-					Num = skillJsonData.skill_Cast[j]
-				});
-			}
-			return list;
+			list.RemoveAt(list.Count - 1);
 		}
+		return list;
+	}
 
-		// Token: 0x040046BD RID: 18109
-		public List<int> AttackType;
+	public List<SkillCost> GetSkillCost()
+	{
+		List<SkillCost> list = new List<SkillCost>();
+		_skillJsonData skillJsonData = _skillJsonData.DataDict[Id];
+		for (int i = 0; i < skillJsonData.skill_SameCastNum.Count; i++)
+		{
+			list.Add(new SkillCost
+			{
+				Id = 6,
+				Num = skillJsonData.skill_SameCastNum[i]
+			});
+		}
+		for (int j = 0; j < skillJsonData.skill_CastType.Count; j++)
+		{
+			list.Add(new SkillCost
+			{
+				Id = skillJsonData.skill_CastType[j],
+				Num = skillJsonData.skill_Cast[j]
+			});
+		}
+		return list;
 	}
 }

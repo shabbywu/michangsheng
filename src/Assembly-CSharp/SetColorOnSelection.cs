@@ -1,111 +1,51 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200004A RID: 74
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIWidget))]
 [AddComponentMenu("NGUI/Examples/Set Color on Selection")]
 public class SetColorOnSelection : MonoBehaviour
 {
-	// Token: 0x06000464 RID: 1124 RVA: 0x0001838C File Offset: 0x0001658C
+	private UIWidget mWidget;
+
 	public void SetSpriteBySelection()
 	{
-		if (UIPopupList.current == null)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		if (!((Object)(object)UIPopupList.current == (Object)null))
 		{
-			return;
-		}
-		if (this.mWidget == null)
-		{
-			this.mWidget = base.GetComponent<UIWidget>();
-		}
-		string value = UIPopupList.current.value;
-		uint num = <PrivateImplementationDetails>.ComputeStringHash(value);
-		if (num <= 2743015548U)
-		{
-			if (num != 382078856U)
+			if ((Object)(object)mWidget == (Object)null)
 			{
-				if (num != 1827351814U)
-				{
-					if (num != 2743015548U)
-					{
-						return;
-					}
-					if (!(value == "Red"))
-					{
-						return;
-					}
-					this.mWidget.color = Color.red;
-					return;
-				}
-				else
-				{
-					if (!(value == "White"))
-					{
-						return;
-					}
-					this.mWidget.color = Color.white;
-					return;
-				}
+				mWidget = ((Component)this).GetComponent<UIWidget>();
 			}
-			else
+			switch (UIPopupList.current.value)
 			{
-				if (!(value == "Magenta"))
-				{
-					return;
-				}
-				this.mWidget.color = Color.magenta;
-				return;
+			case "White":
+				mWidget.color = Color.white;
+				break;
+			case "Red":
+				mWidget.color = Color.red;
+				break;
+			case "Green":
+				mWidget.color = Color.green;
+				break;
+			case "Blue":
+				mWidget.color = Color.blue;
+				break;
+			case "Yellow":
+				mWidget.color = Color.yellow;
+				break;
+			case "Cyan":
+				mWidget.color = Color.cyan;
+				break;
+			case "Magenta":
+				mWidget.color = Color.magenta;
+				break;
 			}
-		}
-		else if (num <= 3381604954U)
-		{
-			if (num != 2840840028U)
-			{
-				if (num != 3381604954U)
-				{
-					return;
-				}
-				if (!(value == "Cyan"))
-				{
-					return;
-				}
-				this.mWidget.color = Color.cyan;
-				return;
-			}
-			else
-			{
-				if (!(value == "Green"))
-				{
-					return;
-				}
-				this.mWidget.color = Color.green;
-				return;
-			}
-		}
-		else if (num != 3654151273U)
-		{
-			if (num != 3923582957U)
-			{
-				return;
-			}
-			if (!(value == "Blue"))
-			{
-				return;
-			}
-			this.mWidget.color = Color.blue;
-			return;
-		}
-		else
-		{
-			if (!(value == "Yellow"))
-			{
-				return;
-			}
-			this.mWidget.color = Color.yellow;
-			return;
 		}
 	}
-
-	// Token: 0x04000291 RID: 657
-	private UIWidget mWidget;
 }

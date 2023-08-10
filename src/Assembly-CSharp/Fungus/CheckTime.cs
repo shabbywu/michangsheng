@@ -1,71 +1,62 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YS", "CheckTime", "检测当前时间", 0)]
+[AddComponentMenu("")]
+public class CheckTime : Command
 {
-	// Token: 0x02000F20 RID: 3872
-	[CommandInfo("YS", "CheckTime", "检测当前时间", 0)]
-	[AddComponentMenu("")]
-	public class CheckTime : Command
+	[Tooltip("比较类型，大于 小于 等于")]
+	[SerializeField]
+	protected ItemCheck.CompareNum CompareType;
+
+	[Tooltip("获取到的修为值存放位置")]
+	[SerializeField]
+	protected string Time;
+
+	[Tooltip("将检测到的值赋给一个变量")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable TempBool;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006DC5 RID: 28101 RVA: 0x002A3D84 File Offset: 0x002A1F84
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		bool value = false;
+		DateTime dateTime = DateTime.Parse(Time);
+		DateTime nowTime = player.worldTimeMag.getNowTime();
+		if (CompareType == ItemCheck.CompareNum.GreaterThan)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			bool value = false;
-			DateTime dateTime = DateTime.Parse(this.Time);
-			DateTime nowTime = player.worldTimeMag.getNowTime();
-			if (this.CompareType == ItemCheck.CompareNum.GreaterThan)
-			{
-				if (dateTime > nowTime)
-				{
-					value = true;
-				}
-			}
-			else if (this.CompareType == ItemCheck.CompareNum.LessThan)
-			{
-				if (dateTime < nowTime)
-				{
-					value = true;
-				}
-			}
-			else if (this.CompareType == ItemCheck.CompareNum.equalTo && dateTime == nowTime)
+			if (dateTime > nowTime)
 			{
 				value = true;
 			}
-			this.TempBool.Value = value;
-			this.Continue();
 		}
-
-		// Token: 0x06006DC6 RID: 28102 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else if (CompareType == ItemCheck.CompareNum.LessThan)
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			if (dateTime < nowTime)
+			{
+				value = true;
+			}
 		}
-
-		// Token: 0x06006DC7 RID: 28103 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
+		else if (CompareType == ItemCheck.CompareNum.equalTo && dateTime == nowTime)
 		{
+			value = true;
 		}
+		TempBool.Value = value;
+		Continue();
+	}
 
-		// Token: 0x04005B52 RID: 23378
-		[Tooltip("比较类型，大于 小于 等于")]
-		[SerializeField]
-		protected ItemCheck.CompareNum CompareType;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005B53 RID: 23379
-		[Tooltip("获取到的修为值存放位置")]
-		[SerializeField]
-		protected string Time;
-
-		// Token: 0x04005B54 RID: 23380
-		[Tooltip("将检测到的值赋给一个变量")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable TempBool;
+	public override void OnReset()
+	{
 	}
 }

@@ -1,97 +1,93 @@
-﻿using System;
+using System;
 using Bag;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x020002B0 RID: 688
 public class UITianJieSkillSlot : SlotBase
 {
-	// Token: 0x06001849 RID: 6217 RVA: 0x000A98C2 File Offset: 0x000A7AC2
+	public Action<UITianJieSkillSlot> OnLiftClick;
+
+	public new Action<UITianJieSkillSlot> OnRightClick;
+
+	public bool IsSelected;
+
+	public bool IsEquipSlot;
+
 	public void SetSelected(bool value)
 	{
-		this.IsSelected = value;
-		this._selectPanel.SetActive(value);
+		IsSelected = value;
+		_selectPanel.SetActive(value);
 	}
 
-	// Token: 0x0600184A RID: 6218 RVA: 0x000A98D8 File Offset: 0x000A7AD8
 	public override void OnPointerEnter(PointerEventData eventData)
 	{
 		if (DragMag.Inst.IsDraging)
 		{
 			DragMag.Inst.ToSlot = this;
 		}
-		if (this.SlotType == SlotType.空)
+		if (SlotType == SlotType.空)
 		{
 			return;
 		}
-		this.IsIn = true;
-		if (this.TianJieSkill.IsLingWu && !eventData.dragging)
+		IsIn = true;
+		if (TianJieSkill.IsLingWu && !eventData.dragging)
 		{
-			if (ToolTipsMag.Inst == null)
+			if ((Object)(object)ToolTipsMag.Inst == (Object)null)
 			{
-				ResManager.inst.LoadPrefab("ToolTips").Inst(NewUICanvas.Inst.transform);
+				ResManager.inst.LoadPrefab("ToolTips").Inst(((Component)NewUICanvas.Inst).transform);
 			}
-			ToolTipsMag.Inst.Show(this.TianJieSkill.BindSkill);
+			ToolTipsMag.Inst.Show(TianJieSkill.BindSkill);
 		}
-		this._selectPanel.SetActive(true);
+		_selectPanel.SetActive(true);
 	}
 
-	// Token: 0x0600184B RID: 6219 RVA: 0x000A996E File Offset: 0x000A7B6E
 	public override void OnPointerExit(PointerEventData eventData)
 	{
 		base.OnPointerExit(eventData);
-		if (this.IsSelected)
+		if (IsSelected)
 		{
-			this._selectPanel.SetActive(true);
+			_selectPanel.SetActive(true);
 		}
 	}
 
-	// Token: 0x0600184C RID: 6220 RVA: 0x000A998C File Offset: 0x000A7B8C
 	public override void OnPointerUp(PointerEventData eventData)
 	{
-		if (!this.IsSelected)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Invalid comparison between Unknown and I4
+		if (!IsSelected)
 		{
-			this._selectPanel.SetActive(false);
+			_selectPanel.SetActive(false);
 		}
-		if (eventData.button == null && this.OnLiftClick != null)
+		if ((int)eventData.button == 0 && OnLiftClick != null)
 		{
-			this.OnLiftClick(this);
+			OnLiftClick(this);
 		}
-		if (eventData.button == 1 && this.OnRightClick != null)
+		if ((int)eventData.button == 1 && OnRightClick != null)
 		{
-			this.OnRightClick(this);
+			OnRightClick(this);
 		}
 	}
 
-	// Token: 0x0600184D RID: 6221 RVA: 0x000A99E8 File Offset: 0x000A7BE8
 	public override void OnEndDrag(PointerEventData eventData)
 	{
-		if (!this.CanDrag())
+		if (CanDrag())
 		{
-			return;
-		}
-		bool flag = DragMag.Inst.EndDrag();
-		if (this.IsEquipSlot && !flag)
-		{
-			UIDuJieZhunBei.Inst.ClearTiaoZhengSlotByID(this.TianJieSkill.MiShu.id);
-			UIDuJieZhunBei.Inst.SaveTiaoZheng();
+			bool flag = DragMag.Inst.EndDrag();
+			if (IsEquipSlot && !flag)
+			{
+				UIDuJieZhunBei.Inst.ClearTiaoZhengSlotByID(TianJieSkill.MiShu.id);
+				UIDuJieZhunBei.Inst.SaveTiaoZheng();
+			}
 		}
 	}
 
-	// Token: 0x0600184E RID: 6222 RVA: 0x000A9A38 File Offset: 0x000A7C38
 	public override bool CanDrag()
 	{
-		return !base.IsNull() && base.CanDrag();
+		if (IsNull())
+		{
+			return false;
+		}
+		return base.CanDrag();
 	}
-
-	// Token: 0x04001361 RID: 4961
-	public Action<UITianJieSkillSlot> OnLiftClick;
-
-	// Token: 0x04001362 RID: 4962
-	public new Action<UITianJieSkillSlot> OnRightClick;
-
-	// Token: 0x04001363 RID: 4963
-	public bool IsSelected;
-
-	// Token: 0x04001364 RID: 4964
-	public bool IsEquipSlot;
 }

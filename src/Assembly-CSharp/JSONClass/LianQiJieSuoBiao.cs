@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class LianQiJieSuoBiao : IJSONClass
 {
-	// Token: 0x02000879 RID: 2169
-	public class LianQiJieSuoBiao : IJSONClass
+	public static Dictionary<int, LianQiJieSuoBiao> DataDict = new Dictionary<int, LianQiJieSuoBiao>();
+
+	public static List<LianQiJieSuoBiao> DataList = new List<LianQiJieSuoBiao>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public string desc;
+
+	public List<int> content = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003FF7 RID: 16375 RVA: 0x001B4B08 File Offset: 0x001B2D08
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.LianQiJieSuoBiao.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.LianQiJieSuoBiao.list)
+			try
 			{
-				try
+				LianQiJieSuoBiao lianQiJieSuoBiao = new LianQiJieSuoBiao();
+				lianQiJieSuoBiao.id = item["id"].I;
+				lianQiJieSuoBiao.desc = item["desc"].Str;
+				lianQiJieSuoBiao.content = item["content"].ToList();
+				if (DataDict.ContainsKey(lianQiJieSuoBiao.id))
 				{
-					LianQiJieSuoBiao lianQiJieSuoBiao = new LianQiJieSuoBiao();
-					lianQiJieSuoBiao.id = jsonobject["id"].I;
-					lianQiJieSuoBiao.desc = jsonobject["desc"].Str;
-					lianQiJieSuoBiao.content = jsonobject["content"].ToList();
-					if (LianQiJieSuoBiao.DataDict.ContainsKey(lianQiJieSuoBiao.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典LianQiJieSuoBiao.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", lianQiJieSuoBiao.id));
-					}
-					else
-					{
-						LianQiJieSuoBiao.DataDict.Add(lianQiJieSuoBiao.id, lianQiJieSuoBiao);
-						LianQiJieSuoBiao.DataList.Add(lianQiJieSuoBiao);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典LianQiJieSuoBiao.DataDict添加数据时出现重复的键，Key:{lianQiJieSuoBiao.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典LianQiJieSuoBiao.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(lianQiJieSuoBiao.id, lianQiJieSuoBiao);
+				DataList.Add(lianQiJieSuoBiao);
 			}
-			if (LianQiJieSuoBiao.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				LianQiJieSuoBiao.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典LianQiJieSuoBiao.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003FF8 RID: 16376 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003CD1 RID: 15569
-		public static Dictionary<int, LianQiJieSuoBiao> DataDict = new Dictionary<int, LianQiJieSuoBiao>();
-
-		// Token: 0x04003CD2 RID: 15570
-		public static List<LianQiJieSuoBiao> DataList = new List<LianQiJieSuoBiao>();
-
-		// Token: 0x04003CD3 RID: 15571
-		public static Action OnInitFinishAction = new Action(LianQiJieSuoBiao.OnInitFinish);
-
-		// Token: 0x04003CD4 RID: 15572
-		public int id;
-
-		// Token: 0x04003CD5 RID: 15573
-		public string desc;
-
-		// Token: 0x04003CD6 RID: 15574
-		public List<int> content = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

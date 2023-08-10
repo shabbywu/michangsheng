@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -13,98 +13,117 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using PaiMai;
 using QiYu;
-using script.ItemSource.Interface;
-using script.NewLianDan;
-using script.Submit;
 using Steamworks;
 using Tab;
 using UnityEngine;
 using YSGame;
 using YSGame.TuJian;
+using script.ItemSource.Interface;
+using script.NewLianDan;
+using script.Submit;
 
-// Token: 0x020001D5 RID: 469
 public static class YSNewSaveSystem
 {
-	// Token: 0x060013EE RID: 5102 RVA: 0x0007ED70 File Offset: 0x0007CF70
+	public static int CloudSaveSlotCountLimit = 4;
+
+	public static int NowUsingAvatarIndex;
+
+	public static int NowUsingSlot;
+
+	public static string NowAvatarPathPre;
+
+	public static float startSaveTime;
+
+	public static Dictionary<string, int> saveInt = new Dictionary<string, int>();
+
+	public static Dictionary<string, string> saveString = new Dictionary<string, string>();
+
+	public static Dictionary<string, JSONObject> saveJSONObject = new Dictionary<string, JSONObject>();
+
+	public static JSONObject SaveJsonData = new JSONObject(JSONObject.Type.OBJECT);
+
+	private static StreamWriter writer;
+
+	private static StreamReader reader;
+
+	public static char huanHangChar = 'þ';
+
 	public static void UploadCloudSaveData(int slot = 0)
 	{
-		string text = string.Format("{0}/CloudSave_{1}.zip", Paths.GetCloudSavePath(), slot);
+		string text = $"{Paths.GetCloudSavePath()}/CloudSave_{slot}.zip";
 		if (File.Exists(text))
 		{
 			try
 			{
 				byte[] array = File.ReadAllBytes(text);
 				int num = array.Length;
-				bool flag = SteamRemoteStorage.FileWrite(string.Format("CloudSave_{0}.zip", slot), array, num);
-				SteamRemoteStorage.SetSyncPlatforms(text, -1);
-				if (flag)
+				bool num2 = SteamRemoteStorage.FileWrite($"CloudSave_{slot}.zip", array, num);
+				SteamRemoteStorage.SetSyncPlatforms(text, (ERemoteStoragePlatform)(-1));
+				if (num2)
 				{
-					Debug.Log("上传成功");
+					Debug.Log((object)"上传成功");
 				}
 				else
 				{
-					Debug.LogError("上传失败");
+					Debug.LogError((object)"上传失败");
 				}
 				return;
 			}
 			catch (Exception arg)
 			{
-				Debug.LogError(string.Format("上传云存档失败 异常:{0}", arg));
+				Debug.LogError((object)$"上传云存档失败 异常:{arg}");
 				return;
 			}
 		}
-		Debug.LogError("上传失败，找不到云存档压缩文件 " + text);
+		Debug.LogError((object)("上传失败，找不到云存档压缩文件 " + text));
 	}
 
-	// Token: 0x060013EF RID: 5103 RVA: 0x0007EE14 File Offset: 0x0007D014
 	public static void UploadCloudSaveDataDesc(int slot = 0)
 	{
-		string text = string.Format("{0}/CloudSave_{1}_Desc.txt", Paths.GetCloudSavePath(), slot);
+		string text = $"{Paths.GetCloudSavePath()}/CloudSave_{slot}_Desc.txt";
 		if (File.Exists(text))
 		{
 			try
 			{
 				byte[] array = File.ReadAllBytes(text);
 				int num = array.Length;
-				bool flag = SteamRemoteStorage.FileWrite(string.Format("CloudSave_{0}_Desc.txt", slot), array, num);
-				SteamRemoteStorage.SetSyncPlatforms(text, -1);
-				if (flag)
+				bool num2 = SteamRemoteStorage.FileWrite($"CloudSave_{slot}_Desc.txt", array, num);
+				SteamRemoteStorage.SetSyncPlatforms(text, (ERemoteStoragePlatform)(-1));
+				if (num2)
 				{
-					Debug.Log("上传备注成功");
+					Debug.Log((object)"上传备注成功");
 				}
 				else
 				{
-					Debug.LogError("上传备注失败");
+					Debug.LogError((object)"上传备注失败");
 				}
 				return;
 			}
 			catch (Exception arg)
 			{
-				Debug.LogError(string.Format("上传云存档备注失败 异常:{0}", arg));
+				Debug.LogError((object)$"上传云存档备注失败 异常:{arg}");
 				return;
 			}
 		}
-		Debug.LogError("上传备注失败，找不到备注文件 " + text);
+		Debug.LogError((object)("上传备注失败，找不到备注文件 " + text));
 	}
 
-	// Token: 0x060013F0 RID: 5104 RVA: 0x0007EEB8 File Offset: 0x0007D0B8
 	public static void ZipAndUploadCloudSaveData(int slot = 0, string desc = "")
 	{
-		YSZip.ZipFile(Paths.GetNewSavePath(), string.Format("{0}/CloudSave_{1}.zip", Paths.GetCloudSavePath(), slot));
+		YSZip.ZipFile(Paths.GetNewSavePath(), $"{Paths.GetCloudSavePath()}/CloudSave_{slot}.zip");
 		if (string.IsNullOrEmpty(desc))
 		{
 			desc = " ";
 		}
-		File.WriteAllText(string.Format("{0}/CloudSave_{1}_Desc.txt", Paths.GetCloudSavePath(), slot), desc);
-		YSNewSaveSystem.UploadCloudSaveData(slot);
-		YSNewSaveSystem.UploadCloudSaveDataDesc(slot);
+		File.WriteAllText($"{Paths.GetCloudSavePath()}/CloudSave_{slot}_Desc.txt", desc);
+		UploadCloudSaveData(slot);
+		UploadCloudSaveDataDesc(slot);
 	}
 
-	// Token: 0x060013F1 RID: 5105 RVA: 0x0007EF1C File Offset: 0x0007D11C
 	public static void DownloadCloudSave(int slot = 0)
 	{
-		string text = string.Format("{0}/CloudSave_{1}.zip", Paths.GetCloudSavePath(), slot);
-		string text2 = string.Format("CloudSave_{0}.zip", slot);
+		string text = $"{Paths.GetCloudSavePath()}/CloudSave_{slot}.zip";
+		string text2 = $"CloudSave_{slot}.zip";
 		try
 		{
 			if (SteamRemoteStorage.FileExists(text2))
@@ -118,31 +137,23 @@ public static class YSNewSaveSystem
 					fileInfo.Directory.Create();
 				}
 				File.WriteAllBytes(text, array);
-				Debug.Log(string.Concat(new string[]
-				{
-					"下载云存档 ",
-					text2,
-					" 到 ",
-					text,
-					" 完毕"
-				}));
+				Debug.Log((object)("下载云存档 " + text2 + " 到 " + text + " 完毕"));
 			}
 			else
 			{
-				Debug.LogError("下载云存档失败，steam云上不存在文件 " + text2);
+				Debug.LogError((object)("下载云存档失败，steam云上不存在文件 " + text2));
 			}
 		}
 		catch (Exception arg)
 		{
-			Debug.LogError(string.Format("下载云存档失败 异常:{0}", arg));
+			Debug.LogError((object)$"下载云存档失败 异常:{arg}");
 		}
 	}
 
-	// Token: 0x060013F2 RID: 5106 RVA: 0x0007F004 File Offset: 0x0007D204
 	public static void DownloadCloudSaveDesc(int slot = 0)
 	{
-		string text = string.Format("{0}/CloudSave_{1}_Desc.txt", Paths.GetCloudSavePath(), slot);
-		string text2 = string.Format("CloudSave_{0}_Desc.txt", slot);
+		string text = $"{Paths.GetCloudSavePath()}/CloudSave_{slot}_Desc.txt";
+		string text2 = $"CloudSave_{slot}_Desc.txt";
 		try
 		{
 			if (SteamRemoteStorage.FileExists(text2))
@@ -156,54 +167,46 @@ public static class YSNewSaveSystem
 					fileInfo.Directory.Create();
 				}
 				File.WriteAllBytes(text, array);
-				Debug.Log(string.Concat(new string[]
-				{
-					"下载云存档备注 ",
-					text2,
-					" 到 ",
-					text,
-					" 完毕"
-				}));
+				Debug.Log((object)("下载云存档备注 " + text2 + " 到 " + text + " 完毕"));
 			}
 			else
 			{
-				Debug.LogError("下载云存档备注失败，steam云上不存在文件 " + text2);
+				Debug.LogError((object)("下载云存档备注失败，steam云上不存在文件 " + text2));
 			}
 		}
 		catch (Exception arg)
 		{
-			Debug.LogError(string.Format("下载云存档备注失败 异常:{0}", arg));
+			Debug.LogError((object)$"下载云存档备注失败 异常:{arg}");
 		}
 	}
 
-	// Token: 0x060013F3 RID: 5107 RVA: 0x0007F0EC File Offset: 0x0007D2EC
 	public static List<CloudSaveFileData> GetCloudSaveData()
 	{
 		List<CloudSaveFileData> list = new List<CloudSaveFileData>();
-		for (int i = 0; i < YSNewSaveSystem.CloudSaveSlotCountLimit; i++)
+		for (int i = 0; i < CloudSaveSlotCountLimit; i++)
 		{
 			CloudSaveFileData cloudSaveFileData = new CloudSaveFileData();
-			cloudSaveFileData.FileName = string.Format("CloudSave_{0}.zip", i);
+			cloudSaveFileData.FileName = $"CloudSave_{i}.zip";
 			try
 			{
 				if (SteamRemoteStorage.FileExists(cloudSaveFileData.FileName))
 				{
 					long fileTimestamp = SteamRemoteStorage.GetFileTimestamp(cloudSaveFileData.FileName);
-					DateTime fileTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddSeconds((double)fileTimestamp);
+					DateTime fileTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddSeconds(fileTimestamp);
 					cloudSaveFileData.FileTime = fileTime;
 					cloudSaveFileData.FileSize = SteamRemoteStorage.GetFileSize(cloudSaveFileData.FileName);
 					cloudSaveFileData.HasFile = true;
 				}
-				if (SteamRemoteStorage.FileExists(string.Format("CloudSave_{0}_Desc.txt", i)))
+				if (SteamRemoteStorage.FileExists($"CloudSave_{i}_Desc.txt"))
 				{
-					YSNewSaveSystem.DownloadCloudSaveDesc(i);
-					string fileDesc = File.ReadAllText(string.Format("{0}/CloudSave_{1}_Desc.txt", Paths.GetCloudSavePath(), i));
+					DownloadCloudSaveDesc(i);
+					string fileDesc = File.ReadAllText($"{Paths.GetCloudSavePath()}/CloudSave_{i}_Desc.txt");
 					cloudSaveFileData.FileDesc = fileDesc;
 				}
 			}
 			catch (Exception ex)
 			{
-				Debug.LogError(string.Format("获取云存档文件信息时出现异常: {0}", ex));
+				Debug.LogError((object)$"获取云存档文件信息时出现异常: {ex}");
 				cloudSaveFileData.HasFile = false;
 				throw ex;
 			}
@@ -213,126 +216,105 @@ public static class YSNewSaveSystem
 		return list;
 	}
 
-	// Token: 0x060013F4 RID: 5108 RVA: 0x0007F20C File Offset: 0x0007D40C
 	public static void DeleteCloudSave(int slot)
 	{
-		if (SteamRemoteStorage.FileExists(string.Format("CloudSave_{0}.zip", slot)))
+		if (SteamRemoteStorage.FileExists($"CloudSave_{slot}.zip"))
 		{
-			SteamRemoteStorage.FileDelete(string.Format("CloudSave_{0}.zip", slot));
+			SteamRemoteStorage.FileDelete($"CloudSave_{slot}.zip");
 		}
-		if (SteamRemoteStorage.FileExists(string.Format("CloudSave_{0}_Desc.txt", slot)))
+		if (SteamRemoteStorage.FileExists($"CloudSave_{slot}_Desc.txt"))
 		{
-			SteamRemoteStorage.FileDelete(string.Format("CloudSave_{0}_Desc.txt", slot));
+			SteamRemoteStorage.FileDelete($"CloudSave_{slot}_Desc.txt");
 		}
 	}
 
-	// Token: 0x060013F5 RID: 5109 RVA: 0x0007F274 File Offset: 0x0007D474
 	public static void LogCloudFiles()
 	{
 		int fileCount = SteamRemoteStorage.GetFileCount();
-		Debug.Log(string.Format("云上共有{0}个文件", fileCount));
+		Debug.Log((object)$"云上共有{fileCount}个文件");
+		int num = default(int);
 		for (int i = 0; i < fileCount; i++)
 		{
-			int num;
 			string fileNameAndSize = SteamRemoteStorage.GetFileNameAndSize(i, ref num);
 			long fileTimestamp = SteamRemoteStorage.GetFileTimestamp(fileNameAndSize);
 			int num2 = num / 1024;
-			DateTime dateTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddSeconds((double)fileTimestamp);
-			Debug.Log(string.Format("index:{0} size:{1}kb time:{2} file:{3}", new object[]
-			{
-				i,
-				num2,
-				dateTime,
-				fileNameAndSize
-			}));
+			DateTime dateTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddSeconds(fileTimestamp);
+			Debug.Log((object)$"index:{i} size:{num2}kb time:{dateTime} file:{fileNameAndSize}");
 		}
 	}
 
-	// Token: 0x060013F6 RID: 5110 RVA: 0x0007F31C File Offset: 0x0007D51C
 	public static void Reset()
 	{
-		YSNewSaveSystem.saveInt = new Dictionary<string, int>();
-		YSNewSaveSystem.saveString = new Dictionary<string, string>();
-		YSNewSaveSystem.saveJSONObject = new Dictionary<string, JSONObject>();
-		YSNewSaveSystem.SaveJsonData = new JSONObject(JSONObject.Type.OBJECT);
+		saveInt = new Dictionary<string, int>();
+		saveString = new Dictionary<string, string>();
+		saveJSONObject = new Dictionary<string, JSONObject>();
+		SaveJsonData = new JSONObject(JSONObject.Type.OBJECT);
 		jsonData.instance.AvatarBackpackJsonData = null;
 	}
 
-	// Token: 0x060013F7 RID: 5111 RVA: 0x0007F352 File Offset: 0x0007D552
 	public static string GetAvatarSavePathPre(int avatarIndex, int slot)
 	{
-		return string.Format("Avatar{0}/Slot{1}", avatarIndex, slot);
+		return $"Avatar{avatarIndex}/Slot{slot}";
 	}
 
-	// Token: 0x060013F8 RID: 5112 RVA: 0x0007F36C File Offset: 0x0007D56C
 	public static void Save(string fileName, JSONObject json, bool autoPath = true)
 	{
-		JSONObject value = new JSONObject(json.ToString(), -2, false, false);
-		YSNewSaveSystem.saveJSONObject[fileName] = value;
-		YSNewSaveSystem.WriteIntoTxt(fileName, YSNewSaveSystem.saveJSONObject[fileName].ToString(), autoPath);
+		JSONObject value = new JSONObject(json.ToString());
+		saveJSONObject[fileName] = value;
+		WriteIntoTxt(fileName, saveJSONObject[fileName].ToString(), autoPath);
 	}
 
-	// Token: 0x060013F9 RID: 5113 RVA: 0x0007F3AC File Offset: 0x0007D5AC
 	public static void Save(string fileName, string value, bool autoPath = true)
 	{
-		YSNewSaveSystem.saveString[fileName] = value;
-		YSNewSaveSystem.WriteIntoTxt(fileName, YSNewSaveSystem.saveString[fileName], autoPath);
+		saveString[fileName] = value;
+		WriteIntoTxt(fileName, saveString[fileName], autoPath);
 	}
 
-	// Token: 0x060013FA RID: 5114 RVA: 0x0007F3CC File Offset: 0x0007D5CC
 	public static void Save(string fileName, int value, bool autoPath = true)
 	{
-		YSNewSaveSystem.saveInt[fileName] = value;
-		YSNewSaveSystem.WriteIntoTxt(fileName, YSNewSaveSystem.saveInt[fileName].ToString(), autoPath);
+		saveInt[fileName] = value;
+		WriteIntoTxt(fileName, saveInt[fileName].ToString(), autoPath);
 	}
 
-	// Token: 0x060013FB RID: 5115 RVA: 0x0007F400 File Offset: 0x0007D600
 	public static JSONObject GetJsonObject(string name, JSONObject json = null)
 	{
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.Start();
-		JSONObject result;
-		if (YSNewSaveSystem.saveJSONObject.ContainsKey(name))
-		{
-			result = YSNewSaveSystem.saveJSONObject[name];
-		}
-		else
-		{
-			result = new JSONObject(YSNewSaveSystem.ReadText(name), -2, false, false);
-		}
+		JSONObject jSONObject = json;
+		jSONObject = ((!saveJSONObject.ContainsKey(name)) ? new JSONObject(ReadText(name)) : saveJSONObject[name]);
 		stopwatch.Stop();
-		return result;
+		return jSONObject;
 	}
 
-	// Token: 0x060013FC RID: 5116 RVA: 0x0007F44C File Offset: 0x0007D64C
 	public static int GetInt(string name, int ret = 0)
 	{
 		int result = ret;
-		if (!YSNewSaveSystem.saveInt.ContainsKey(name))
+		if (saveInt.ContainsKey(name))
+		{
+			result = saveInt[name];
+		}
+		else
 		{
 			try
 			{
-				string text = YSNewSaveSystem.ReadText(name);
+				string text = ReadText(name);
 				if (string.IsNullOrWhiteSpace(text))
 				{
 					return result;
 				}
-				YSNewSaveSystem.saveInt[name] = int.Parse(text);
-				YSNewSaveSystem.SaveJsonData.SetField(name, int.Parse(text));
-				result = (int)YSNewSaveSystem.SaveJsonData[name].n;
+				saveInt[name] = int.Parse(text);
+				SaveJsonData.SetField(name, int.Parse(text));
+				result = (int)SaveJsonData[name].n;
 			}
 			catch (Exception ex)
 			{
-				Debug.LogError(ex.ToString());
-				UIPopTip.Inst.Pop(ex.ToString(), PopTipIconType.叹号);
+				Debug.LogError((object)ex.ToString());
+				UIPopTip.Inst.Pop(ex.ToString());
 			}
-			return result;
 		}
-		result = YSNewSaveSystem.saveInt[name];
 		return result;
 	}
 
-	// Token: 0x060013FD RID: 5117 RVA: 0x0007F4F4 File Offset: 0x0007D6F4
 	public static int LoadInt(string fileName, bool autoPath = true)
 	{
 		try
@@ -340,9 +322,9 @@ public static class YSNewSaveSystem
 			string fileName2 = fileName;
 			if (autoPath)
 			{
-				fileName2 = YSNewSaveSystem.NowAvatarPathPre + "/" + fileName;
+				fileName2 = NowAvatarPathPre + "/" + fileName;
 			}
-			string text = YSNewSaveSystem.ReadText(fileName2);
+			string text = ReadText(fileName2);
 			if (text != null && text != "")
 			{
 				return int.Parse(text);
@@ -355,7 +337,6 @@ public static class YSNewSaveSystem
 		return 0;
 	}
 
-	// Token: 0x060013FE RID: 5118 RVA: 0x0007F554 File Offset: 0x0007D754
 	public static JSONObject LoadJSONObject(string fileName, bool autoPath = true)
 	{
 		try
@@ -363,12 +344,12 @@ public static class YSNewSaveSystem
 			string fileName2 = fileName;
 			if (autoPath)
 			{
-				fileName2 = YSNewSaveSystem.NowAvatarPathPre + "/" + fileName;
+				fileName2 = NowAvatarPathPre + "/" + fileName;
 			}
-			string text = YSNewSaveSystem.ReadText(fileName2);
+			string text = ReadText(fileName2);
 			if (text != null && text != "")
 			{
-				return new JSONObject(text, -2, false, false);
+				return new JSONObject(text);
 			}
 		}
 		catch (Exception)
@@ -378,55 +359,42 @@ public static class YSNewSaveSystem
 		return new JSONObject();
 	}
 
-	// Token: 0x060013FF RID: 5119 RVA: 0x0007F5C0 File Offset: 0x0007D7C0
 	public static bool HasFile(string path)
 	{
-		return new FileInfo(path).Exists;
+		if (!new FileInfo(path).Exists)
+		{
+			return false;
+		}
+		return true;
 	}
 
-	// Token: 0x06001400 RID: 5120 RVA: 0x0007F5D4 File Offset: 0x0007D7D4
 	public static void WriteIntoTxt(string fileName, string text, bool autoPath = true)
 	{
 		try
 		{
-			string fileName2;
-			if (autoPath)
-			{
-				fileName2 = string.Concat(new string[]
-				{
-					Paths.GetNewSavePath(),
-					"/",
-					YSNewSaveSystem.NowAvatarPathPre,
-					"/",
-					fileName
-				});
-			}
-			else
-			{
-				fileName2 = Paths.GetNewSavePath() + "/" + fileName;
-			}
-			string value = text.Replace('\n', YSNewSaveSystem.huanHangChar).ToCN();
-			FileInfo fileInfo = new FileInfo(fileName2);
+			string text2 = "";
+			text2 = ((!autoPath) ? (Paths.GetNewSavePath() + "/" + fileName) : (Paths.GetNewSavePath() + "/" + NowAvatarPathPre + "/" + fileName));
+			string text3 = (text3 = text.Replace('\n', huanHangChar).ToCN());
+			FileInfo fileInfo = new FileInfo(text2);
 			if (!fileInfo.Directory.Exists)
 			{
 				fileInfo.Directory.Create();
-				Debug.Log("创建" + fileInfo.Directory.FullName);
+				Debug.Log((object)("创建" + fileInfo.Directory.FullName));
 			}
-			Debug.Log("开始写入文件" + fileInfo.FullName);
-			YSNewSaveSystem.writer = fileInfo.CreateText();
-			YSNewSaveSystem.writer.Write(value);
-			YSNewSaveSystem.writer.Flush();
-			YSNewSaveSystem.writer.Dispose();
-			YSNewSaveSystem.writer.Close();
+			Debug.Log((object)("开始写入文件" + fileInfo.FullName));
+			writer = fileInfo.CreateText();
+			writer.Write(text3);
+			writer.Flush();
+			writer.Dispose();
+			writer.Close();
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError("在写入存档文件时发生异常:");
+			Debug.LogError((object)"在写入存档文件时发生异常:");
 			Debug.LogException(ex);
 		}
 	}
 
-	// Token: 0x06001401 RID: 5121 RVA: 0x0007F6E8 File Offset: 0x0007D8E8
 	public static string ReadText(string fileName)
 	{
 		string text = "";
@@ -435,127 +403,123 @@ public static class YSNewSaveSystem
 			string path = Paths.GetNewSavePath() + "/" + fileName;
 			if (File.Exists(path))
 			{
-				YSNewSaveSystem.reader = new StreamReader(path, Encoding.UTF8);
-				text = YSNewSaveSystem.reader.ReadToEnd();
-				text = text.Replace(YSNewSaveSystem.huanHangChar, '\n');
-				YSNewSaveSystem.reader.Dispose();
-				YSNewSaveSystem.reader.Close();
+				reader = new StreamReader(path, Encoding.UTF8);
+				text = reader.ReadToEnd();
+				text = text.Replace(huanHangChar, '\n');
+				reader.Dispose();
+				reader.Close();
 			}
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError("在读取存档文件时发生异常:");
+			Debug.LogError((object)"在读取存档文件时发生异常:");
 			Debug.LogException(ex);
 		}
 		return text;
 	}
 
-	// Token: 0x06001402 RID: 5122 RVA: 0x0007F778 File Offset: 0x0007D978
 	public static void AutoLoad()
 	{
-		YSNewSaveSystem.LoadSave(PlayerPrefs.GetInt("NowPlayerFileAvatar"), 1, -1);
+		LoadSave(PlayerPrefs.GetInt("NowPlayerFileAvatar"), 1);
 	}
 
-	// Token: 0x06001403 RID: 5123 RVA: 0x0007F78B File Offset: 0x0007D98B
 	public static void AutoSave()
 	{
-		if (SingletonMono<TabUIMag>.Instance != null)
+		if ((Object)(object)SingletonMono<TabUIMag>.Instance != (Object)null)
 		{
 			SingletonMono<TabUIMag>.Instance.TryEscClose();
 		}
-		YSNewSaveSystem.SaveGame(PlayerPrefs.GetInt("NowPlayerFileAvatar"), 1, null, false);
+		SaveGame(PlayerPrefs.GetInt("NowPlayerFileAvatar"), 1);
 	}
 
-	// Token: 0x06001404 RID: 5124 RVA: 0x0007F7B8 File Offset: 0x0007D9B8
 	public static void DeleteSave(int avatarIndex)
 	{
-		string path = string.Format("{0}/Avatar{1}", Paths.GetNewSavePath(), avatarIndex);
+		string path = $"{Paths.GetNewSavePath()}/Avatar{avatarIndex}";
 		if (Directory.Exists(path))
 		{
 			try
 			{
-				Directory.Delete(path, true);
-				Debug.Log(string.Format("删除了存档{0}", avatarIndex));
+				Directory.Delete(path, recursive: true);
+				Debug.Log((object)$"删除了存档{avatarIndex}");
 			}
 			catch (Exception arg)
 			{
-				Debug.LogError(string.Format("删除存档{0}时出现异常，{1}", avatarIndex, arg));
+				Debug.LogError((object)$"删除存档{avatarIndex}时出现异常，{arg}");
 			}
 		}
 	}
 
-	// Token: 0x06001405 RID: 5125 RVA: 0x0007F82C File Offset: 0x0007DA2C
 	public static void CloseUI()
 	{
-		if (SayDialog.GetSayDialog().gameObject != null)
+		if ((Object)(object)((Component)SayDialog.GetSayDialog()).gameObject != (Object)null)
 		{
-			Object.Destroy(SayDialog.GetSayDialog().gameObject);
+			Object.Destroy((Object)(object)((Component)SayDialog.GetSayDialog()).gameObject);
 		}
-		if (SetFaceUI.Inst != null)
+		if ((Object)(object)SetFaceUI.Inst != (Object)null)
 		{
-			Object.Destroy(SetFaceUI.Inst.gameObject);
+			Object.Destroy((Object)(object)((Component)SetFaceUI.Inst).gameObject);
 		}
-		if (FpUIMag.inst != null)
+		if ((Object)(object)FpUIMag.inst != (Object)null)
 		{
-			Object.Destroy(FpUIMag.inst.gameObject);
+			Object.Destroy((Object)(object)((Component)FpUIMag.inst).gameObject);
 		}
-		if (LianDanUIMag.Instance != null)
+		if ((Object)(object)LianDanUIMag.Instance != (Object)null)
 		{
-			Object.Destroy(LianDanUIMag.Instance.gameObject);
+			Object.Destroy((Object)(object)((Component)LianDanUIMag.Instance).gameObject);
 		}
-		if (TpUIMag.inst != null)
+		if ((Object)(object)TpUIMag.inst != (Object)null)
 		{
-			Object.Destroy(TpUIMag.inst.gameObject);
+			Object.Destroy((Object)(object)((Component)TpUIMag.inst).gameObject);
 		}
-		if (SubmitUIMag.Inst != null)
+		if ((Object)(object)SubmitUIMag.Inst != (Object)null)
 		{
 			SubmitUIMag.Inst.Close();
 		}
-		if (QiYuUIMag.Inst != null)
+		if ((Object)(object)QiYuUIMag.Inst != (Object)null)
 		{
-			Object.Destroy(QiYuUIMag.Inst.gameObject);
+			Object.Destroy((Object)(object)((Component)QiYuUIMag.Inst).gameObject);
 		}
-		if (CaiYaoUIMag.Inst != null)
+		if ((Object)(object)CaiYaoUIMag.Inst != (Object)null)
 		{
-			Object.Destroy(CaiYaoUIMag.Inst.gameObject);
+			Object.Destroy((Object)(object)((Component)CaiYaoUIMag.Inst).gameObject);
 		}
-		if (PanelMamager.inst.UISceneGameObject != null)
+		if ((Object)(object)PanelMamager.inst.UISceneGameObject != (Object)null)
 		{
 			PanelMamager.inst.UISceneGameObject.SetActive(false);
 		}
-		if (SingletonMono<TabUIMag>.Instance != null)
+		if ((Object)(object)SingletonMono<TabUIMag>.Instance != (Object)null)
 		{
 			SingletonMono<TabUIMag>.Instance.TryEscClose();
 		}
-		if (LianQiTotalManager.inst != null)
+		if ((Object)(object)LianQiTotalManager.inst != (Object)null)
 		{
-			Object.Destroy(LianQiTotalManager.inst.gameObject);
+			Object.Destroy((Object)(object)((Component)LianQiTotalManager.inst).gameObject);
 		}
-		if (SingletonMono<PaiMaiUiMag>.Instance != null)
+		if ((Object)(object)SingletonMono<PaiMaiUiMag>.Instance != (Object)null)
 		{
-			Object.Destroy(SingletonMono<PaiMaiUiMag>.Instance.gameObject);
+			Object.Destroy((Object)(object)((Component)SingletonMono<PaiMaiUiMag>.Instance).gameObject);
 			Time.timeScale = 1f;
 		}
 		ESCCloseManager.Inst.CloseAll();
 	}
 
-	// Token: 0x06001406 RID: 5126 RVA: 0x0007F9A0 File Offset: 0x0007DBA0
 	public static void LoadOldSave(int Id, int Index)
 	{
-		YSNewSaveSystem.CloseUI();
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		CloseUI();
 		YSGame.YSSaveGame.Reset();
 		KBEngineApp.app.entities[10] = null;
 		KBEngineApp.app.entities.Remove(10);
-		GameObject gameObject = new GameObject();
-		gameObject.AddComponent<StartGame>();
-		gameObject.GetComponent<StartGame>().startGame(Id, Index, -1);
+		GameObject val = new GameObject();
+		val.AddComponent<StartGame>();
+		val.GetComponent<StartGame>().startGame(Id, Index);
 	}
 
-	// Token: 0x06001407 RID: 5127 RVA: 0x0007F9F4 File Offset: 0x0007DBF4
 	public static SaveSlotData GetAvatarSaveData(int avatarIndex, int slot)
 	{
 		SaveSlotData saveSlotData = new SaveSlotData();
-		if (YSNewSaveSystem.CheckHasNewSaveAvatarInfo(avatarIndex, slot))
+		if (CheckHasNewSaveAvatarInfo(avatarIndex, slot))
 		{
 			saveSlotData.HasSave = true;
 			saveSlotData.IsNewSaveSystem = true;
@@ -563,7 +527,7 @@ public static class YSNewSaveSystem
 		else
 		{
 			saveSlotData.IsNewSaveSystem = false;
-			if (YSNewSaveSystem.CheckHasOldSaveAvatarInfo(avatarIndex, slot))
+			if (CheckHasOldSaveAvatarInfo(avatarIndex, slot))
 			{
 				saveSlotData.HasSave = true;
 			}
@@ -574,39 +538,39 @@ public static class YSNewSaveSystem
 		}
 		if (saveSlotData.HasSave)
 		{
-			JSONObject jsonobject = null;
+			JSONObject jSONObject = null;
 			bool flag = false;
 			if (saveSlotData.IsNewSaveSystem)
 			{
 				try
 				{
-					string avatarSavePathPre = YSNewSaveSystem.GetAvatarSavePathPre(avatarIndex, slot);
-					jsonobject = YSNewSaveSystem.GetJsonObject(avatarSavePathPre + "/AvatarInfo.json", null);
-					saveSlotData.RealSaveTime = YSNewSaveSystem.ReadText(avatarSavePathPre + "/AvatarSavetime.txt");
-					goto IL_CF;
+					string avatarSavePathPre = GetAvatarSavePathPre(avatarIndex, slot);
+					jSONObject = GetJsonObject(avatarSavePathPre + "/AvatarInfo.json");
+					saveSlotData.RealSaveTime = ReadText(avatarSavePathPre + "/AvatarSavetime.txt");
 				}
 				catch
 				{
-					goto IL_CF;
+				}
+			}
+			else
+			{
+				try
+				{
+					jSONObject = YSGame.YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(avatarIndex, slot));
+					saveSlotData.RealSaveTime = YSGame.YSSaveGame.GetTextNameData("AvatarSavetime" + Tools.instance.getSaveID(avatarIndex, slot));
+				}
+				catch
+				{
 				}
 			}
 			try
 			{
-				jsonobject = YSGame.YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(avatarIndex, slot), null);
-				saveSlotData.RealSaveTime = YSGame.YSSaveGame.GetTextNameData("AvatarSavetime" + Tools.instance.getSaveID(avatarIndex, slot));
-			}
-			catch
-			{
-			}
-			IL_CF:
-			try
-			{
-				saveSlotData.AvatarLevel = jsonobject["avatarLevel"].I;
-				JSONObject jsonobject2 = jsonData.instance.LevelUpDataJsonData[saveSlotData.AvatarLevel.ToString()];
-				saveSlotData.AvatarLevelText = jsonobject2["Name"].Str;
-				saveSlotData.AvatarLevelSprite = ResManager.inst.LoadSprite(string.Format("NewUI/Fight/LevelIcon/icon_{0}", saveSlotData.AvatarLevel));
-				DateTime dateTime = DateTime.Parse(jsonobject["gameTime"].Str);
-				saveSlotData.GameTime = string.Format("{0}年{1}月{2}日", dateTime.Year, dateTime.Month, dateTime.Day);
+				saveSlotData.AvatarLevel = jSONObject["avatarLevel"].I;
+				JSONObject jSONObject2 = jsonData.instance.LevelUpDataJsonData[saveSlotData.AvatarLevel.ToString()];
+				saveSlotData.AvatarLevelText = jSONObject2["Name"].Str;
+				saveSlotData.AvatarLevelSprite = ResManager.inst.LoadSprite($"NewUI/Fight/LevelIcon/icon_{saveSlotData.AvatarLevel}");
+				DateTime dateTime = DateTime.Parse(jSONObject["gameTime"].Str);
+				saveSlotData.GameTime = $"{dateTime.Year}年{dateTime.Month}月{dateTime.Day}日";
 				flag = true;
 			}
 			catch
@@ -620,60 +584,57 @@ public static class YSNewSaveSystem
 		return saveSlotData;
 	}
 
-	// Token: 0x06001408 RID: 5128 RVA: 0x0007FBC4 File Offset: 0x0007DDC4
 	private static bool CheckHasNewSaveAvatarInfo(int avatarIndex, int slot)
 	{
-		string avatarSavePathPre = YSNewSaveSystem.GetAvatarSavePathPre(avatarIndex, slot);
-		bool result;
-		if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + avatarSavePathPre + "/AvatarInfo.json"))
+		string avatarSavePathPre = GetAvatarSavePathPre(avatarIndex, slot);
+		bool flag = false;
+		if (HasFile(Paths.GetNewSavePath() + "/" + avatarSavePathPre + "/AvatarInfo.json"))
 		{
-			if (YSNewSaveSystem.GetJsonObject(avatarSavePathPre + "/AvatarInfo.json", null).IsNull)
+			if (GetJsonObject(avatarSavePathPre + "/AvatarInfo.json").IsNull)
 			{
-				result = false;
+				flag = false;
 			}
 			else
 			{
-				result = true;
-				if (YSNewSaveSystem.LoadInt(avatarSavePathPre + "/GameVersion.txt", true) > 4 && !YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + avatarSavePathPre + "/IsComplete.txt"))
+				flag = true;
+				if (LoadInt(avatarSavePathPre + "/GameVersion.txt") > 4 && !HasFile(Paths.GetNewSavePath() + "/" + avatarSavePathPre + "/IsComplete.txt"))
 				{
-					result = false;
+					flag = false;
 				}
 			}
 		}
 		else
 		{
-			result = false;
+			flag = false;
 		}
-		return result;
+		return flag;
 	}
 
-	// Token: 0x06001409 RID: 5129 RVA: 0x0007FC4C File Offset: 0x0007DE4C
 	private static bool CheckHasOldSaveAvatarInfo(int avatarIndex, int slot)
 	{
-		bool result;
+		bool flag = false;
 		if (YSGame.YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(avatarIndex, slot)))
 		{
-			if (YSGame.YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(avatarIndex, slot), null).IsNull)
+			if (YSGame.YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(avatarIndex, slot)).IsNull)
 			{
-				result = false;
+				flag = false;
 			}
 			else
 			{
-				result = true;
+				flag = true;
 				if (FactoryManager.inst.SaveLoadFactory.GetInt("GameVersion" + Tools.instance.getSaveID(avatarIndex, slot)) > 4 && !YSGame.YSSaveGame.HasFile(Paths.GetSavePath(), "IsComplete" + Tools.instance.getSaveID(avatarIndex, slot)))
 				{
-					result = false;
+					flag = false;
 				}
 			}
 		}
 		else
 		{
-			result = false;
+			flag = false;
 		}
-		return result;
+		return flag;
 	}
 
-	// Token: 0x0600140A RID: 5130 RVA: 0x0007FCF8 File Offset: 0x0007DEF8
 	public static void LoadSave(int avatarIndex, int slot, int DFIndex = -1)
 	{
 		ABItemSourceMag.SetNull();
@@ -681,18 +642,18 @@ public static class YSNewSaveSystem
 		{
 			Tools.instance.IsInDF = false;
 		}
-		YSNewSaveSystem.CloseUI();
-		YSNewSaveSystem.Reset();
+		CloseUI();
+		Reset();
 		KBEngineApp.app.entities[10] = null;
 		KBEngineApp.app.entities.Remove(10);
-		YSNewSaveSystem.NowUsingAvatarIndex = avatarIndex;
-		YSNewSaveSystem.NowUsingSlot = slot;
-		YSNewSaveSystem.NowAvatarPathPre = (YSNewSaveSystem.GetAvatarSavePathPre(avatarIndex, slot) ?? "");
+		NowUsingAvatarIndex = avatarIndex;
+		NowUsingSlot = slot;
+		NowAvatarPathPre = GetAvatarSavePathPre(avatarIndex, slot) ?? "";
 		Tools.instance.IsCanLoadSetTalk = false;
 		MusicMag.instance.stopMusic();
-		YSNewSaveSystem.AddAvatar(avatarIndex, slot);
+		AddAvatar(avatarIndex, slot);
 		Avatar player = PlayerEx.Player;
-		YSNewSaveSystem.LoadStreamData(player);
+		LoadStreamData(player);
 		player.nomelTaskMag.restAllTaskType();
 		if (player.age > player.shouYuan)
 		{
@@ -724,54 +685,56 @@ public static class YSNewSaveSystem
 			FactoryManager.inst.loadPlayerDateFactory.NewLoadPlayerData(avatarIndex, slot);
 			Tools.instance.ResetEquipSeid();
 		}
-		if (fader == null)
+		if ((Object)(object)fader == (Object)null)
 		{
 			Tools.instance.loadOtherScenes("LoadingScreen");
-			return;
 		}
-		fader.FadeIntoLevel("LoadingScreen");
+		else
+		{
+			fader.FadeIntoLevel("LoadingScreen");
+		}
 	}
 
-	// Token: 0x0600140B RID: 5131 RVA: 0x0007FEA8 File Offset: 0x0007E0A8
 	public static void AddAvatar(int id, int index)
 	{
-		YSNewSaveSystem.CreatAvatar(10, 51, 40, new Vector3(-5f, -1.7f, -1f), new Vector3(0f, 0f, 80f), 1);
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		CreatAvatar(10, 51, 40, new Vector3(-5f, -1.7f, -1f), new Vector3(0f, 0f, 80f));
 		KBEngineApp.app.entity_id = 10;
-		Avatar avatar = (Avatar)KBEngineApp.app.player();
-		YSNewSaveSystem.LoadAvatar(avatar);
-		YSNewSaveSystem.InitSkill();
-		YSNewSaveSystem.LoadAvatarFace(id, index);
-		StaticSkill.resetSeid(avatar);
-		WuDaoStaticSkill.resetWuDaoSeid(avatar);
-		JieDanSkill.resetJieDanSeid(avatar);
+		Avatar obj = (Avatar)KBEngineApp.app.player();
+		LoadAvatar(obj);
+		InitSkill();
+		LoadAvatarFace(id, index);
+		StaticSkill.resetSeid(obj);
+		WuDaoStaticSkill.resetWuDaoSeid(obj);
+		JieDanSkill.resetJieDanSeid(obj);
 		PlayerPrefs.SetInt("NowPlayerFileAvatar", id);
-		avatar.seaNodeMag.INITSEA();
+		obj.seaNodeMag.INITSEA();
 	}
 
-	// Token: 0x0600140C RID: 5132 RVA: 0x0007FF40 File Offset: 0x0007E140
 	public static void LoadAvatarFace(int id, int index)
 	{
 		jsonData instance = jsonData.instance;
-		instance.AvatarRandomJsonData = YSNewSaveSystem.LoadJSONObject("AvatarRandomJsonData.json", true);
-		instance.AvatarBackpackJsonData = YSNewSaveSystem.LoadJSONObject("AvatarBackpackJsonData.json", true);
-		if (instance.AvatarRandomJsonData.Count != instance.AvatarJsonData.Count || instance.reloadRandomAvatarFace)
+		instance.AvatarRandomJsonData = LoadJSONObject("AvatarRandomJsonData.json");
+		instance.AvatarBackpackJsonData = LoadJSONObject("AvatarBackpackJsonData.json");
+		if (instance.AvatarRandomJsonData.Count == instance.AvatarJsonData.Count && !instance.reloadRandomAvatarFace)
 		{
-			YSNewSaveSystem.Save("FirstSetAvatarRandomJsonData.txt", 0, true);
-			YSNewSaveSystem.NewInitAvatarFace(id, index, 1);
-			instance.IsResetAvatarFace = true;
-			List<int> list = new List<int>();
-			foreach (KeyValuePair<string, JToken> keyValuePair in instance.ResetAvatarBackpackBanBen)
-			{
-				if (!list.Contains((int)keyValuePair.Value["BanBenID"]))
-				{
-					list.Add((int)keyValuePair.Value["BanBenID"]);
-				}
-			}
-			Tools.instance.getPlayer().BanBenHao = list.Max();
+			return;
 		}
+		Save("FirstSetAvatarRandomJsonData.txt", 0);
+		NewInitAvatarFace(id, index);
+		instance.IsResetAvatarFace = true;
+		List<int> list = new List<int>();
+		foreach (KeyValuePair<string, JToken> item in instance.ResetAvatarBackpackBanBen)
+		{
+			if (!list.Contains((int)item.Value[(object)"BanBenID"]))
+			{
+				list.Add((int)item.Value[(object)"BanBenID"]);
+			}
+		}
+		Tools.instance.getPlayer().BanBenHao = list.Max();
 	}
 
-	// Token: 0x0600140D RID: 5133 RVA: 0x00080044 File Offset: 0x0007E244
 	public static void InitSkill()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -779,46 +742,49 @@ public static class YSNewSaveSystem
 		avatar.equipStaticSkillList = avatar.configEquipStaticSkill[avatar.nowConfigEquipStaticSkill];
 	}
 
-	// Token: 0x0600140E RID: 5134 RVA: 0x00080088 File Offset: 0x0007E288
 	public static void SetAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, Avatar avatar, int AvatarID = 1)
 	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
 		avatar.position = position;
 		avatar.direction = direction;
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[string.Concat(AvatarID)];
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData[string.Concat(AvatarID)];
 		int num = 0;
-		foreach (JSONObject jsonobject2 in jsonobject["skills"].list)
+		foreach (JSONObject item2 in jSONObject["skills"].list)
 		{
-			avatar.addHasSkillList((int)jsonobject2.n);
-			avatar.equipSkill((int)jsonobject2.n, num);
+			avatar.addHasSkillList((int)item2.n);
+			avatar.equipSkill((int)item2.n, num);
 			num++;
 		}
 		int num2 = 0;
-		foreach (JSONObject jsonobject3 in jsonobject["staticSkills"].list)
+		foreach (JSONObject item3 in jSONObject["staticSkills"].list)
 		{
-			avatar.addHasStaticSkillList((int)jsonobject3.n, 1);
-			avatar.equipStaticSkill((int)jsonobject3.n, num2);
+			avatar.addHasStaticSkillList((int)item3.n);
+			avatar.equipStaticSkill((int)item3.n, num2);
 			num2++;
 		}
-		for (int j = 0; j < jsonobject["LingGen"].Count; j++)
+		for (int j = 0; j < jSONObject["LingGen"].Count; j++)
 		{
-			int item = (int)jsonobject["LingGen"][j].n;
+			int item = (int)jSONObject["LingGen"][j].n;
 			avatar.LingGeng.Add(item);
 		}
-		avatar.ZiZhi = (int)jsonobject["ziZhi"].n;
-		avatar.dunSu = (int)jsonobject["dunSu"].n;
-		avatar.wuXin = (uint)jsonobject["wuXin"].n;
-		avatar.shengShi = (int)jsonobject["shengShi"].n;
-		avatar.shaQi = (uint)jsonobject["shaQi"].n;
-		avatar.shouYuan = (uint)jsonobject["shouYuan"].n;
-		avatar.age = (uint)jsonobject["age"].n;
-		avatar.HP_Max = (int)jsonobject["HP"].n;
-		avatar.HP = (int)jsonobject["HP"].n;
-		avatar.money = (ulong)((uint)jsonobject["MoneyType"].n);
-		avatar.level = (ushort)jsonobject["Level"].n;
-		avatar.AvatarType = (uint)((ushort)jsonobject["AvatarType"].n);
-		avatar.roleTypeCell = (uint)jsonobject["fightFace"].n;
-		avatar.roleType = (uint)jsonobject["face"].n;
-		avatar.Sex = (int)jsonobject["SexType"].n;
+		avatar.ZiZhi = (int)jSONObject["ziZhi"].n;
+		avatar.dunSu = (int)jSONObject["dunSu"].n;
+		avatar.wuXin = (uint)jSONObject["wuXin"].n;
+		avatar.shengShi = (int)jSONObject["shengShi"].n;
+		avatar.shaQi = (uint)jSONObject["shaQi"].n;
+		avatar.shouYuan = (uint)jSONObject["shouYuan"].n;
+		avatar.age = (uint)jSONObject["age"].n;
+		avatar.HP_Max = (int)jSONObject["HP"].n;
+		avatar.HP = (int)jSONObject["HP"].n;
+		avatar.money = (uint)jSONObject["MoneyType"].n;
+		avatar.level = (ushort)jSONObject["Level"].n;
+		avatar.AvatarType = (ushort)jSONObject["AvatarType"].n;
+		avatar.roleTypeCell = (uint)jSONObject["fightFace"].n;
+		avatar.roleType = (uint)jSONObject["face"].n;
+		avatar.Sex = (int)jSONObject["SexType"].n;
 		avatar.configEquipSkill[0] = avatar.equipSkillList;
 		avatar.configEquipStaticSkill[0] = avatar.equipStaticSkillList;
 		avatar.equipItemList.values.ForEach(delegate(ITEM_INFO i)
@@ -827,318 +793,224 @@ public static class YSNewSaveSystem
 		});
 	}
 
-	// Token: 0x0600140F RID: 5135 RVA: 0x00080408 File Offset: 0x0007E608
 	public static void CreatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, int AvatarID = 1)
 	{
-		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		KBEngineApp.app.Client_onCreatedProxies((ulong)avaterID, avaterID, "Avatar");
 		Avatar avatar = (Avatar)KBEngineApp.app.entities[avaterID];
-		YSNewSaveSystem.SetAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
+		SetAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
 	}
 
-	// Token: 0x06001410 RID: 5136 RVA: 0x0008044C File Offset: 0x0007E64C
 	public static void LoadAvatar(Avatar avatar)
 	{
-		JSONObject jsonobject = YSNewSaveSystem.LoadJSONObject("Avatar.json", true);
+		JSONObject jSONObject = LoadJSONObject("Avatar.json");
 		FieldInfo[] fields = typeof(Avatar).GetFields();
-		int i = 0;
-		while (i < fields.Length)
+		for (int i = 0; i < fields.Length; i++)
 		{
 			string name = fields[i].Name;
-			string name2 = fields[i].FieldType.Name;
-			uint num = <PrivateImplementationDetails>.ComputeStringHash(name2);
-			if (num <= 1615808600U)
+			switch (fields[i].FieldType.Name)
 			{
-				if (num <= 1108380682U)
-				{
-					if (num <= 765439473U)
-					{
-						if (num != 697196164U)
-						{
-							if (num == 765439473U)
-							{
-								if (name2 == "Int16")
-								{
-									goto IL_387;
-								}
-							}
-						}
-						else if (name2 == "Int64")
-						{
-							goto IL_36B;
-						}
-					}
-					else if (num != 815609665U)
-					{
-						if (num != 851515688U)
-						{
-							if (num == 1108380682U)
-							{
-								if (name2 == "WorldTime")
-								{
-									WorldTime worldTime = new WorldTime();
-									worldTime.isLoadDate = true;
-									jsonobject.GetString("worldTimeMag", "0001-1-1");
-									worldTime.nowTime = jsonobject.GetString("worldTimeMag", "0001-1-1");
-									fields[i].SetValue(avatar, worldTime);
-								}
-							}
-						}
-						else if (name2 == "ITEM_INFO_LIST")
-						{
-							ITEM_INFO_LIST item_INFO_LIST = new ITEM_INFO_LIST();
-							foreach (JSONObject jsonobject2 in jsonobject.GetField(name).list)
-							{
-								ITEM_INFO item_INFO = new ITEM_INFO();
-								item_INFO.uuid = jsonobject2.GetString("UUID", "");
-								if (item_INFO.uuid == "")
-								{
-									item_INFO.uuid = Tools.getUUID();
-								}
-								item_INFO.itemId = jsonobject2.GetInt("id", 0);
-								item_INFO.itemCount = (uint)jsonobject2.GetInt("count", 0);
-								item_INFO.itemIndex = jsonobject2.GetInt("index", 0);
-								item_INFO.Seid = jsonobject2.GetField("Seid");
-								item_INFO_LIST.values.Add(item_INFO);
-							}
-							fields[i].SetValue(avatar, item_INFO_LIST);
-						}
-					}
-					else if (name2 == "uInt")
-					{
-						goto IL_36B;
-					}
-				}
-				else if (num <= 1323747186U)
-				{
-					if (num != 1283547685U)
-					{
-						if (num == 1323747186U)
-						{
-							if (name2 == "UInt16")
-							{
-								goto IL_387;
-							}
-						}
-					}
-					else if (name2 == "Float")
-					{
-						fields[i].SetValue(avatar, jsonobject.GetFloat(name, 0f));
-					}
-				}
-				else if (num != 1324880019U)
-				{
-					if (num != 1438686222U)
-					{
-						if (num == 1615808600U)
-						{
-							if (name2 == "String")
-							{
-								fields[i].SetValue(avatar, jsonobject.GetString(name, ""));
-							}
-						}
-					}
-					else if (name2 == "List`1[]")
-					{
-						if (fields[i].Name == "configEquipSkill" || fields[i].Name == "configEquipStaticSkill")
-						{
-							List<SkillItem>[] array = new List<SkillItem>[]
-							{
-								new List<SkillItem>(),
-								new List<SkillItem>(),
-								new List<SkillItem>(),
-								new List<SkillItem>(),
-								new List<SkillItem>()
-							};
-							JSONObject field = jsonobject.GetField(name);
-							for (int j = 0; j < 5; j++)
-							{
-								foreach (JSONObject jsonobject3 in field.list[j].list)
-								{
-									SkillItem skillItem = new SkillItem();
-									skillItem.uuid = jsonobject3.GetString("uuid", "");
-									skillItem.itemId = jsonobject3.GetInt("id", 0);
-									skillItem.level = jsonobject3.GetInt("level", 0);
-									skillItem.itemIndex = jsonobject3.GetInt("index", 0);
-									skillItem.Seid = jsonobject3.GetField("Seid");
-									array[j].Add(skillItem);
-								}
-							}
-							fields[i].SetValue(avatar, array);
-						}
-					}
-				}
-				else if (name2 == "UInt64")
-				{
-					goto IL_387;
-				}
-			}
-			else if (num <= 2388225411U)
+			case "String":
+				fields[i].SetValue(avatar, jSONObject.GetString(name));
+				break;
+			case "Int32":
+			case "Int64":
+			case "Int":
+			case "uInt":
+				fields[i].SetValue(avatar, jSONObject.GetInt(name));
+				break;
+			case "UInt32":
+			case "UInt16":
+			case "Int16":
+			case "UInt64":
 			{
-				if (num <= 1907276658U)
+				int @int = jSONObject.GetInt(name);
+				if (fields[i].FieldType.Name == "UInt32")
 				{
-					if (num != 1731900476U)
-					{
-						if (num == 1907276658U)
-						{
-							if (name2 == "JObject")
-							{
-								JSONObject field2 = jsonobject.GetField(name);
-								if (field2 != null)
-								{
-									JObject value = JObject.Parse(field2.ToString());
-									fields[i].SetValue(avatar, value);
-								}
-							}
-						}
-					}
-					else if (name2 == "ITEM_INFO_LIST[]")
-					{
-						ITEM_INFO_LIST[] array2 = new ITEM_INFO_LIST[]
-						{
-							new ITEM_INFO_LIST(),
-							new ITEM_INFO_LIST(),
-							new ITEM_INFO_LIST(),
-							new ITEM_INFO_LIST(),
-							new ITEM_INFO_LIST()
-						};
-						JSONObject field3 = jsonobject.GetField(name);
-						for (int k = 0; k < 5; k++)
-						{
-							foreach (JSONObject jsonobject4 in field3.list[k].list)
-							{
-								ITEM_INFO item_INFO2 = new ITEM_INFO();
-								item_INFO2.uuid = jsonobject4.GetString("uuid", "");
-								if (item_INFO2.uuid == "")
-								{
-									item_INFO2.uuid = Tools.getUUID();
-								}
-								item_INFO2.itemId = jsonobject4.GetInt("id", 0);
-								item_INFO2.itemCount = (uint)jsonobject4.GetInt("count", 0);
-								item_INFO2.itemIndex = jsonobject4.GetInt("index", 0);
-								item_INFO2.Seid = jsonobject4.GetField("Seid");
-								array2[k].values.Add(item_INFO2);
-							}
-						}
-						fields[i].SetValue(avatar, array2);
-					}
+					fields[i].SetValue(avatar, Convert.ToUInt32(@int));
 				}
-				else if (num != 1926157539U)
+				if (fields[i].FieldType.Name == "UInt16")
 				{
-					if (num != 1966515832U)
-					{
-						if (num == 2388225411U)
-						{
-							if (name2 == "TaskMag")
-							{
-								JSONObject field4 = jsonobject.GetField(name);
-								TaskMag taskMag = new TaskMag(avatar);
-								taskMag._TaskData = field4;
-								fields[i].SetValue(avatar, taskMag);
-							}
-						}
-					}
-					else if (name2 == "JSONObject")
-					{
-						JSONObject field5 = jsonobject.GetField(name);
-						fields[i].SetValue(avatar, field5);
-					}
+					fields[i].SetValue(avatar, Convert.ToUInt16(@int));
 				}
-				else if (name2 == "AvatarStaticValue")
+				if (fields[i].FieldType.Name == "Int16")
 				{
-					JSONObject field6 = jsonobject.GetField(name);
-					List<int> list = field6.GetField("value").ToList();
-					AvatarStaticValue avatarStaticValue = new AvatarStaticValue();
-					for (int l = 0; l < list.Count; l++)
-					{
-						avatarStaticValue.Value[l] = list[l];
-					}
-					List<int> list2 = field6.GetField("talk").ToList();
-					if (list2.Count < 2)
-					{
-						list2.Add(0);
-						list2.Add(0);
-					}
-					avatarStaticValue.talk = list2.ToArray();
-					fields[i].SetValue(avatar, avatarStaticValue);
+					fields[i].SetValue(avatar, Convert.ToInt16(@int));
 				}
+				if (fields[i].FieldType.Name == "UInt64")
+				{
+					fields[i].SetValue(avatar, Convert.ToUInt64(@int));
+				}
+				break;
 			}
-			else if (num <= 2935746502U)
+			case "Float":
+				fields[i].SetValue(avatar, jSONObject.GetFloat(name));
+				break;
+			case "List`1":
+				if (fields[i].Name == "hasSkillList" || fields[i].Name == "hasStaticSkillList" || fields[i].Name == "hasJieDanSkillList" || fields[i].Name == "equipSkillList" || fields[i].Name == "equipStaticSkillList")
+				{
+					List<SkillItem> list3 = new List<SkillItem>();
+					foreach (JSONObject item in jSONObject.GetField(name).list)
+					{
+						SkillItem skillItem = new SkillItem();
+						skillItem.uuid = item.GetString("UUID");
+						if (skillItem.uuid == "")
+						{
+							skillItem.uuid = Tools.getUUID();
+						}
+						skillItem.itemId = item.GetInt("id");
+						skillItem.level = item.GetInt("level");
+						skillItem.itemIndex = item.GetInt("index");
+						skillItem.itemId = item.GetInt("id");
+						skillItem.Seid = item.GetField("Seid");
+						list3.Add(skillItem);
+					}
+					fields[i].SetValue(avatar, list3);
+				}
+				if (fields[i].Name == "bufflist")
+				{
+					if (jSONObject == null || jSONObject.list == null || jSONObject.list.Count == 0)
+					{
+						break;
+					}
+					List<List<int>> list4 = new List<List<int>>();
+					foreach (JSONObject item2 in jSONObject.GetField(name).list)
+					{
+						list4.Add(item2.ToList());
+					}
+					fields[i].SetValue(avatar, list4);
+				}
+				if (fields[i].Name == "LingGeng")
+				{
+					JSONObject field5 = jSONObject.GetField(name);
+					fields[i].SetValue(avatar, field5.ToList());
+				}
+				break;
+			case "List`1[]":
 			{
-				if (num != 2711245919U)
+				if (!(fields[i].Name == "configEquipSkill") && !(fields[i].Name == "configEquipStaticSkill"))
 				{
-					if (num == 2935746502U)
+					break;
+				}
+				List<SkillItem>[] array = new List<SkillItem>[5]
+				{
+					new List<SkillItem>(),
+					new List<SkillItem>(),
+					new List<SkillItem>(),
+					new List<SkillItem>(),
+					new List<SkillItem>()
+				};
+				JSONObject field6 = jSONObject.GetField(name);
+				for (int k = 0; k < 5; k++)
+				{
+					foreach (JSONObject item3 in field6.list[k].list)
 					{
-						if (name2 == "List`1")
-						{
-							if (fields[i].Name == "hasSkillList" || fields[i].Name == "hasStaticSkillList" || fields[i].Name == "hasJieDanSkillList" || fields[i].Name == "equipSkillList" || fields[i].Name == "equipStaticSkillList")
-							{
-								List<SkillItem> list3 = new List<SkillItem>();
-								foreach (JSONObject jsonobject5 in jsonobject.GetField(name).list)
-								{
-									SkillItem skillItem2 = new SkillItem();
-									skillItem2.uuid = jsonobject5.GetString("UUID", "");
-									if (skillItem2.uuid == "")
-									{
-										skillItem2.uuid = Tools.getUUID();
-									}
-									skillItem2.itemId = jsonobject5.GetInt("id", 0);
-									skillItem2.level = jsonobject5.GetInt("level", 0);
-									skillItem2.itemIndex = jsonobject5.GetInt("index", 0);
-									skillItem2.itemId = jsonobject5.GetInt("id", 0);
-									skillItem2.Seid = jsonobject5.GetField("Seid");
-									list3.Add(skillItem2);
-								}
-								fields[i].SetValue(avatar, list3);
-							}
-							if (fields[i].Name == "bufflist")
-							{
-								if (jsonobject == null || jsonobject.list == null || jsonobject.list.Count == 0)
-								{
-									goto IL_BD9;
-								}
-								List<List<int>> list4 = new List<List<int>>();
-								foreach (JSONObject jsonobject6 in jsonobject.GetField(name).list)
-								{
-									list4.Add(jsonobject6.ToList());
-								}
-								fields[i].SetValue(avatar, list4);
-							}
-							if (fields[i].Name == "LingGeng")
-							{
-								JSONObject field7 = jsonobject.GetField(name);
-								fields[i].SetValue(avatar, field7.ToList());
-							}
-						}
+						SkillItem skillItem2 = new SkillItem();
+						skillItem2.uuid = item3.GetString("uuid");
+						skillItem2.itemId = item3.GetInt("id");
+						skillItem2.level = item3.GetInt("level");
+						skillItem2.itemIndex = item3.GetInt("index");
+						skillItem2.Seid = item3.GetField("Seid");
+						array[k].Add(skillItem2);
 					}
 				}
-				else if (name2 == "Int32")
-				{
-					goto IL_36B;
-				}
+				fields[i].SetValue(avatar, array);
+				break;
 			}
-			else if (num != 2940794790U)
+			case "ITEM_INFO_LIST":
 			{
-				if (num != 3538687084U)
+				ITEM_INFO_LIST iTEM_INFO_LIST = new ITEM_INFO_LIST();
+				foreach (JSONObject item4 in jSONObject.GetField(name).list)
 				{
-					if (num == 4168357374U)
+					ITEM_INFO iTEM_INFO = new ITEM_INFO();
+					iTEM_INFO.uuid = item4.GetString("UUID");
+					if (iTEM_INFO.uuid == "")
 					{
-						if (name2 == "Int")
+						iTEM_INFO.uuid = Tools.getUUID();
+					}
+					iTEM_INFO.itemId = item4.GetInt("id");
+					iTEM_INFO.itemCount = (uint)item4.GetInt("count");
+					iTEM_INFO.itemIndex = item4.GetInt("index");
+					iTEM_INFO.Seid = item4.GetField("Seid");
+					iTEM_INFO_LIST.values.Add(iTEM_INFO);
+				}
+				fields[i].SetValue(avatar, iTEM_INFO_LIST);
+				break;
+			}
+			case "ITEM_INFO_LIST[]":
+			{
+				ITEM_INFO_LIST[] array2 = new ITEM_INFO_LIST[5]
+				{
+					new ITEM_INFO_LIST(),
+					new ITEM_INFO_LIST(),
+					new ITEM_INFO_LIST(),
+					new ITEM_INFO_LIST(),
+					new ITEM_INFO_LIST()
+				};
+				JSONObject field7 = jSONObject.GetField(name);
+				for (int l = 0; l < 5; l++)
+				{
+					foreach (JSONObject item5 in field7.list[l].list)
+					{
+						ITEM_INFO iTEM_INFO2 = new ITEM_INFO();
+						iTEM_INFO2.uuid = item5.GetString("uuid");
+						if (iTEM_INFO2.uuid == "")
 						{
-							goto IL_36B;
+							iTEM_INFO2.uuid = Tools.getUUID();
 						}
+						iTEM_INFO2.itemId = item5.GetInt("id");
+						iTEM_INFO2.itemCount = (uint)item5.GetInt("count");
+						iTEM_INFO2.itemIndex = item5.GetInt("index");
+						iTEM_INFO2.Seid = item5.GetField("Seid");
+						array2[l].values.Add(iTEM_INFO2);
 					}
 				}
-				else if (name2 == "UInt32")
-				{
-					goto IL_387;
-				}
+				fields[i].SetValue(avatar, array2);
+				break;
 			}
-			else if (name2 == "EmailDataMag")
+			case "AvatarStaticValue":
+			{
+				JSONObject field4 = jSONObject.GetField(name);
+				List<int> list = field4.GetField("value").ToList();
+				AvatarStaticValue avatarStaticValue = new AvatarStaticValue();
+				for (int j = 0; j < list.Count; j++)
+				{
+					avatarStaticValue.Value[j] = list[j];
+				}
+				List<int> list2 = field4.GetField("talk").ToList();
+				if (list2.Count < 2)
+				{
+					list2.Add(0);
+					list2.Add(0);
+				}
+				avatarStaticValue.talk = list2.ToArray();
+				fields[i].SetValue(avatar, avatarStaticValue);
+				break;
+			}
+			case "WorldTime":
+			{
+				WorldTime worldTime = new WorldTime();
+				worldTime.isLoadDate = true;
+				jSONObject.GetString("worldTimeMag", "0001-1-1");
+				worldTime.nowTime = jSONObject.GetString("worldTimeMag", "0001-1-1");
+				fields[i].SetValue(avatar, worldTime);
+				break;
+			}
+			case "TaskMag":
+			{
+				JSONObject field3 = jSONObject.GetField(name);
+				TaskMag taskMag = new TaskMag(avatar);
+				taskMag._TaskData = field3;
+				fields[i].SetValue(avatar, taskMag);
+				break;
+			}
+			case "EmailDataMag":
 			{
 				EmailDataMag emailDataMag = null;
 				try
 				{
-					string path = Paths.GetNewSavePath() + "/" + YSNewSaveSystem.NowAvatarPathPre + "/EmailDataMag.bin";
+					string path = Paths.GetNewSavePath() + "/" + NowAvatarPathPre + "/EmailDataMag.bin";
 					if (File.Exists(path))
 					{
 						FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -1153,44 +1025,35 @@ public static class YSNewSaveSystem
 				}
 				catch (Exception)
 				{
-					Debug.LogError("传音符错误,清空修复");
+					Debug.LogError((object)"传音符错误,清空修复");
 					emailDataMag = new EmailDataMag();
 				}
 				fields[i].SetValue(avatar, emailDataMag);
+				break;
 			}
-			IL_BD9:
-			i++;
-			continue;
-			IL_36B:
-			fields[i].SetValue(avatar, jsonobject.GetInt(name, 0));
-			goto IL_BD9;
-			IL_387:
-			int @int = jsonobject.GetInt(name, 0);
-			if (fields[i].FieldType.Name == "UInt32")
+			case "JSONObject":
 			{
-				fields[i].SetValue(avatar, Convert.ToUInt32(@int));
+				JSONObject field2 = jSONObject.GetField(name);
+				fields[i].SetValue(avatar, field2);
+				break;
 			}
-			if (fields[i].FieldType.Name == "UInt16")
+			case "JObject":
 			{
-				fields[i].SetValue(avatar, Convert.ToUInt16(@int));
+				JSONObject field = jSONObject.GetField(name);
+				if (field != null)
+				{
+					JObject value = JObject.Parse(field.ToString());
+					fields[i].SetValue(avatar, value);
+				}
+				break;
 			}
-			if (fields[i].FieldType.Name == "Int16")
-			{
-				fields[i].SetValue(avatar, Convert.ToInt16(@int));
 			}
-			if (fields[i].FieldType.Name == "UInt64")
-			{
-				fields[i].SetValue(avatar, Convert.ToUInt64(@int));
-				goto IL_BD9;
-			}
-			goto IL_BD9;
 		}
 	}
 
-	// Token: 0x06001411 RID: 5137 RVA: 0x0008108C File Offset: 0x0007F28C
 	public static void LoadStreamData(Avatar avatar)
 	{
-		string path = Paths.GetNewSavePath() + "/" + YSNewSaveSystem.NowAvatarPathPre + "/StreamData.bin";
+		string path = Paths.GetNewSavePath() + "/" + NowAvatarPathPre + "/StreamData.bin";
 		if (File.Exists(path))
 		{
 			FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -1205,386 +1068,288 @@ public static class YSNewSaveSystem
 		avatar.StreamData.FangAnData.LoadHandle();
 	}
 
-	// Token: 0x06001412 RID: 5138 RVA: 0x00081100 File Offset: 0x0007F300
 	public static void NewInitAvatarFace(int id, int index, int startIndex = 1)
 	{
-		jsonData.instance.AvatarRandomJsonData = YSNewSaveSystem.LoadJSONObject("AvatarRandomJsonData.json", true);
-		if (YSNewSaveSystem.LoadInt("FirstSetAvatarRandomJsonData.txt", true) == 0 || jsonData.instance.reloadRandomAvatarFace)
+		jsonData.instance.AvatarRandomJsonData = LoadJSONObject("AvatarRandomJsonData.json");
+		if (LoadInt("FirstSetAvatarRandomJsonData.txt") != 0 && !jsonData.instance.reloadRandomAvatarFace)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.AvatarJsonData.list)
-			{
-				if (jsonobject["id"].I != 1 && jsonobject["id"].I >= startIndex)
-				{
-					if (jsonobject["id"].I >= 20000)
-					{
-						break;
-					}
-					JSONObject jsonobject2 = jsonData.instance.randomAvatarFace(jsonobject, jsonData.instance.AvatarRandomJsonData.HasField(string.Concat(jsonobject["id"].I)) ? jsonData.instance.AvatarRandomJsonData[jsonobject["id"].I.ToString()] : null);
-					jsonData.instance.AvatarRandomJsonData.SetField(string.Concat(jsonobject["id"].I), jsonobject2.Copy());
-				}
-			}
-			if (jsonData.instance.AvatarRandomJsonData.HasField("1"))
-			{
-				jsonData.instance.AvatarRandomJsonData.SetField("10000", jsonData.instance.AvatarRandomJsonData["1"]);
-			}
-			YSNewSaveSystem.Save("AvatarRandomJsonData.json", jsonData.instance.AvatarRandomJsonData, true);
-			YSNewSaveSystem.Save("FirstSetAvatarRandomJsonData.txt", 1, true);
-			YSNewSaveSystem.NewRandomAvatarBackpack(id, index);
+			return;
 		}
+		foreach (JSONObject item in jsonData.instance.AvatarJsonData.list)
+		{
+			if (item["id"].I != 1 && item["id"].I >= startIndex)
+			{
+				if (item["id"].I >= 20000)
+				{
+					break;
+				}
+				JSONObject jSONObject = jsonData.instance.randomAvatarFace(item, jsonData.instance.AvatarRandomJsonData.HasField(string.Concat(item["id"].I)) ? jsonData.instance.AvatarRandomJsonData[item["id"].I.ToString()] : null);
+				jsonData.instance.AvatarRandomJsonData.SetField(string.Concat(item["id"].I), jSONObject.Copy());
+			}
+		}
+		if (jsonData.instance.AvatarRandomJsonData.HasField("1"))
+		{
+			jsonData.instance.AvatarRandomJsonData.SetField("10000", jsonData.instance.AvatarRandomJsonData["1"]);
+		}
+		Save("AvatarRandomJsonData.json", jsonData.instance.AvatarRandomJsonData);
+		Save("FirstSetAvatarRandomJsonData.txt", 1);
+		NewRandomAvatarBackpack(id, index);
 	}
 
-	// Token: 0x06001413 RID: 5139 RVA: 0x000812CC File Offset: 0x0007F4CC
 	public static void NewRandomAvatarBackpack(int id, int index)
 	{
-		JSONObject jsonobject = new JSONObject();
+		JSONObject jsondata = new JSONObject();
 		Avatar avatar = Tools.instance.getPlayer();
-		List<JToken> list = Tools.FindAllJTokens(jsonData.instance.ResetAvatarBackpackBanBen, (JToken aa) => (int)aa["BanBenID"] > avatar.BanBenHao);
-		foreach (JSONObject jsonobject2 in jsonData.instance.BackpackJsonData.list)
+		List<JToken> list = Tools.FindAllJTokens((JToken)(object)jsonData.instance.ResetAvatarBackpackBanBen, (JToken aa) => (int)aa[(object)"BanBenID"] > avatar.BanBenHao);
+		foreach (JSONObject item in jsonData.instance.BackpackJsonData.list)
 		{
-			int avatarID = jsonobject2["AvatrID"].I;
-			if (list.Find((JToken aa) => (int)aa["avatar"] == avatarID) == null && jsonData.instance.AvatarBackpackJsonData != null && jsonData.instance.AvatarBackpackJsonData.HasField(string.Concat(avatarID)))
+			int avatarID = item["AvatrID"].I;
+			if (list.Find((JToken aa) => (int)aa[(object)"avatar"] == avatarID) == null && jsonData.instance.AvatarBackpackJsonData != null && jsonData.instance.AvatarBackpackJsonData.HasField(string.Concat(avatarID)))
 			{
-				jsonobject.SetField(string.Concat(avatarID), jsonData.instance.AvatarBackpackJsonData[string.Concat(avatarID)]);
+				jsondata.SetField(string.Concat(avatarID), jsonData.instance.AvatarBackpackJsonData[string.Concat(avatarID)]);
+				continue;
 			}
-			else
+			if (!jsondata.HasField(string.Concat(avatarID)))
 			{
-				if (!jsonobject.HasField(string.Concat(avatarID)))
-				{
-					jsonData.instance.InitAvatarBackpack(ref jsonobject, avatarID);
-				}
-				jsonData.instance.AvatarAddBackpackByInfo(ref jsonobject, jsonobject2);
+				jsonData.instance.InitAvatarBackpack(ref jsondata, avatarID);
 			}
+			jsonData.instance.AvatarAddBackpackByInfo(ref jsondata, item);
 		}
-		YSNewSaveSystem.Save("AvatarBackpackJsonData.json", jsonobject, true);
-		jsonData.instance.AvatarBackpackJsonData = jsonobject;
+		Save("AvatarBackpackJsonData.json", jsondata);
+		jsonData.instance.AvatarBackpackJsonData = jsondata;
 	}
 
-	// Token: 0x06001414 RID: 5140 RVA: 0x0008144C File Offset: 0x0007F64C
 	public static void SaveAvatar(object avatar)
 	{
+		//IL_0a1a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a24: Expected O, but got Unknown
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.Start();
 		FieldInfo[] fields = avatar.GetType().GetFields();
-		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
-		int i = 0;
-		while (i < fields.Length)
+		JSONObject jSONObject = new JSONObject(JSONObject.Type.OBJECT);
+		for (int i = 0; i < fields.Length; i++)
 		{
 			string name = fields[i].Name;
-			string name2 = fields[i].FieldType.Name;
-			uint num = <PrivateImplementationDetails>.ComputeStringHash(name2);
-			if (num <= 1615808600U)
+			switch (fields[i].FieldType.Name)
 			{
-				if (num <= 1108380682U)
-				{
-					if (num <= 765439473U)
-					{
-						if (num != 697196164U)
-						{
-							if (num == 765439473U)
-							{
-								if (name2 == "Int16")
-								{
-									goto IL_36F;
-								}
-							}
-						}
-						else if (name2 == "Int64")
-						{
-							goto IL_36F;
-						}
-					}
-					else if (num != 815609665U)
-					{
-						if (num != 851515688U)
-						{
-							if (num == 1108380682U)
-							{
-								if (name2 == "WorldTime")
-								{
-									WorldTime worldTime = (WorldTime)fields[i].GetValue(avatar);
-									jsonobject.AddField(name, worldTime.nowTime);
-								}
-							}
-						}
-						else if (name2 == "ITEM_INFO_LIST")
-						{
-							JSONObject jsonobject2 = new JSONObject(JSONObject.Type.ARRAY);
-							foreach (ITEM_INFO item_INFO in ((ITEM_INFO_LIST)fields[i].GetValue(avatar)).values)
-							{
-								JSONObject jsonobject3 = new JSONObject(JSONObject.Type.OBJECT);
-								jsonobject3.SetField("UUID", item_INFO.uuid);
-								jsonobject3.SetField("id", item_INFO.itemId);
-								jsonobject3.SetField("count", item_INFO.itemCount);
-								jsonobject3.SetField("index", item_INFO.itemIndex);
-								jsonobject3.SetField("Seid", item_INFO.Seid);
-								jsonobject2.Add(jsonobject3);
-							}
-							jsonobject.AddField(name, jsonobject2);
-						}
-					}
-					else if (name2 == "uInt")
-					{
-						goto IL_36F;
-					}
-				}
-				else if (num <= 1323747186U)
-				{
-					if (num != 1283547685U)
-					{
-						if (num == 1323747186U)
-						{
-							if (name2 == "UInt16")
-							{
-								goto IL_36F;
-							}
-						}
-					}
-					else if (name2 == "Float")
-					{
-						jsonobject.AddField(name, (float)fields[i].GetValue(avatar));
-					}
-				}
-				else if (num != 1324880019U)
-				{
-					if (num != 1438686222U)
-					{
-						if (num == 1615808600U)
-						{
-							if (name2 == "String")
-							{
-								jsonobject.AddField(name, fields[i].GetValue(avatar).ToString());
-							}
-						}
-					}
-					else if (name2 == "List`1[]")
-					{
-						if (fields[i].Name == "configEquipSkill" || fields[i].Name == "configEquipStaticSkill")
-						{
-							JSONObject jsonobject4 = new JSONObject(JSONObject.Type.ARRAY);
-							foreach (List<SkillItem> list in (List<SkillItem>[])fields[i].GetValue(avatar))
-							{
-								JSONObject jsonobject5 = new JSONObject(JSONObject.Type.ARRAY);
-								foreach (SkillItem skillItem in list)
-								{
-									JSONObject jsonobject6 = new JSONObject(JSONObject.Type.OBJECT);
-									jsonobject6.SetField("UUID", skillItem.uuid);
-									jsonobject6.SetField("id", skillItem.itemId);
-									jsonobject6.SetField("level", skillItem.level);
-									jsonobject6.SetField("index", skillItem.itemIndex);
-									jsonobject6.SetField("Seid", skillItem.Seid);
-									jsonobject5.Add(jsonobject6);
-								}
-								jsonobject4.Add(jsonobject5);
-							}
-							jsonobject.AddField(name, jsonobject4);
-						}
-					}
-				}
-				else if (name2 == "UInt64")
-				{
-					goto IL_36F;
-				}
-			}
-			else if (num <= 2388225411U)
+			case "String":
+				jSONObject.AddField(name, fields[i].GetValue(avatar).ToString());
+				break;
+			case "Int32":
+			case "Int64":
+			case "Int16":
+			case "UInt32":
+			case "UInt16":
+			case "UInt64":
+			case "Int":
+			case "uInt":
 			{
-				if (num <= 1907276658U)
-				{
-					if (num != 1731900476U)
-					{
-						if (num == 1907276658U)
-						{
-							if (name2 == "JObject")
-							{
-								JSONObject obj = new JSONObject(((JObject)fields[i].GetValue(avatar)).ToString(), -2, false, false);
-								jsonobject.AddField(name, obj);
-							}
-						}
-					}
-					else if (name2 == "ITEM_INFO_LIST[]")
-					{
-						JSONObject jsonobject7 = new JSONObject(JSONObject.Type.ARRAY);
-						foreach (ITEM_INFO_LIST item_INFO_LIST in (ITEM_INFO_LIST[])fields[i].GetValue(avatar))
-						{
-							JSONObject jsonobject8 = new JSONObject(JSONObject.Type.ARRAY);
-							foreach (ITEM_INFO item_INFO2 in item_INFO_LIST.values)
-							{
-								JSONObject jsonobject9 = new JSONObject(JSONObject.Type.OBJECT);
-								jsonobject9.SetField("UUID", item_INFO2.uuid);
-								jsonobject9.SetField("id", item_INFO2.itemId);
-								jsonobject9.SetField("count", item_INFO2.itemCount);
-								jsonobject9.SetField("index", item_INFO2.itemIndex);
-								jsonobject9.SetField("Seid", item_INFO2.Seid);
-								jsonobject8.Add(jsonobject9);
-							}
-							jsonobject7.Add(jsonobject8);
-						}
-						jsonobject.AddField(name, jsonobject7);
-					}
-				}
-				else if (num != 1926157539U)
-				{
-					if (num != 1966515832U)
-					{
-						if (num == 2388225411U)
-						{
-							if (name2 == "TaskMag")
-							{
-								TaskMag taskMag = (TaskMag)fields[i].GetValue(avatar);
-								jsonobject.AddField(name, taskMag._TaskData);
-							}
-						}
-					}
-					else if (name2 == "JSONObject")
-					{
-						JSONObject obj2 = (JSONObject)fields[i].GetValue(avatar);
-						jsonobject.AddField(name, obj2);
-					}
-				}
-				else if (name2 == "AvatarStaticValue")
-				{
-					AvatarStaticValue avatarStaticValue = (AvatarStaticValue)fields[i].GetValue(avatar);
-					JSONObject jsonobject10 = new JSONObject(JSONObject.Type.OBJECT);
-					JSONObject jsonobject11 = new JSONObject(JSONObject.Type.ARRAY);
-					for (int k = 0; k < 2500; k++)
-					{
-						jsonobject11.Add(avatarStaticValue.Value[k]);
-					}
-					jsonobject10.SetField("value", jsonobject11);
-					JSONObject jsonobject12 = new JSONObject(JSONObject.Type.ARRAY);
-					for (int l = 0; l < avatarStaticValue.talk.Length; l++)
-					{
-						jsonobject12.Add(avatarStaticValue.talk[l]);
-					}
-					jsonobject10.SetField("talk", jsonobject12);
-					jsonobject.AddField(name, jsonobject10);
-				}
+				long val = Convert.ToInt64(fields[i].GetValue(avatar));
+				jSONObject.AddField(name, val);
+				break;
 			}
-			else if (num <= 2935746502U)
+			case "Float":
+				jSONObject.AddField(name, (float)fields[i].GetValue(avatar));
+				break;
+			case "List`1":
 			{
-				if (num != 2711245919U)
+				if (fields[i].Name == "hasSkillList" || fields[i].Name == "hasStaticSkillList" || fields[i].Name == "hasJieDanSkillList" || fields[i].Name == "equipSkillList" || fields[i].Name == "equipStaticSkillList")
 				{
-					if (num == 2935746502U)
+					JSONObject jSONObject13 = new JSONObject(JSONObject.Type.ARRAY);
+					foreach (SkillItem item in (List<SkillItem>)fields[i].GetValue(avatar))
 					{
-						if (name2 == "List`1")
-						{
-							if (fields[i].Name == "hasSkillList" || fields[i].Name == "hasStaticSkillList" || fields[i].Name == "hasJieDanSkillList" || fields[i].Name == "equipSkillList" || fields[i].Name == "equipStaticSkillList")
-							{
-								JSONObject jsonobject13 = new JSONObject(JSONObject.Type.ARRAY);
-								foreach (SkillItem skillItem2 in ((List<SkillItem>)fields[i].GetValue(avatar)))
-								{
-									JSONObject jsonobject14 = new JSONObject(JSONObject.Type.OBJECT);
-									jsonobject14.SetField("UUID", skillItem2.uuid);
-									jsonobject14.SetField("id", skillItem2.itemId);
-									jsonobject14.SetField("level", skillItem2.level);
-									jsonobject14.SetField("index", skillItem2.itemIndex);
-									jsonobject14.SetField("Seid", skillItem2.Seid);
-									jsonobject13.Add(jsonobject14);
-								}
-								jsonobject.AddField(name, jsonobject13);
-							}
-							if (fields[i].Name == "bufflist")
-							{
-								JSONObject jsonobject15 = new JSONObject(JSONObject.Type.ARRAY);
-								foreach (List<int> list2 in ((List<List<int>>)fields[i].GetValue(avatar)))
-								{
-									JSONObject jsonobject16 = new JSONObject(JSONObject.Type.ARRAY);
-									foreach (int val in list2)
-									{
-										jsonobject16.Add(val);
-									}
-									jsonobject15.Add(jsonobject16);
-								}
-								jsonobject.AddField(name, jsonobject15);
-							}
-							if (fields[i].Name == "LingGeng")
-							{
-								JSONObject jsonobject17 = new JSONObject(JSONObject.Type.ARRAY);
-								foreach (int val2 in ((List<int>)fields[i].GetValue(avatar)))
-								{
-									jsonobject17.Add(val2);
-								}
-								jsonobject.AddField(name, jsonobject17);
-							}
-						}
+						JSONObject jSONObject14 = new JSONObject(JSONObject.Type.OBJECT);
+						jSONObject14.SetField("UUID", item.uuid);
+						jSONObject14.SetField("id", item.itemId);
+						jSONObject14.SetField("level", item.level);
+						jSONObject14.SetField("index", item.itemIndex);
+						jSONObject14.SetField("Seid", item.Seid);
+						jSONObject13.Add(jSONObject14);
 					}
+					jSONObject.AddField(name, jSONObject13);
 				}
-				else if (name2 == "Int32")
+				if (fields[i].Name == "bufflist")
 				{
-					goto IL_36F;
+					JSONObject jSONObject15 = new JSONObject(JSONObject.Type.ARRAY);
+					foreach (List<int> item2 in (List<List<int>>)fields[i].GetValue(avatar))
+					{
+						JSONObject jSONObject16 = new JSONObject(JSONObject.Type.ARRAY);
+						foreach (int item3 in item2)
+						{
+							jSONObject16.Add(item3);
+						}
+						jSONObject15.Add(jSONObject16);
+					}
+					jSONObject.AddField(name, jSONObject15);
 				}
+				if (!(fields[i].Name == "LingGeng"))
+				{
+					break;
+				}
+				JSONObject jSONObject17 = new JSONObject(JSONObject.Type.ARRAY);
+				foreach (int item4 in (List<int>)fields[i].GetValue(avatar))
+				{
+					jSONObject17.Add(item4);
+				}
+				jSONObject.AddField(name, jSONObject17);
+				break;
 			}
-			else if (num != 2940794790U)
+			case "List`1[]":
 			{
-				if (num != 3538687084U)
+				if (!(fields[i].Name == "configEquipSkill") && !(fields[i].Name == "configEquipStaticSkill"))
 				{
-					if (num == 4168357374U)
+					break;
+				}
+				JSONObject jSONObject7 = new JSONObject(JSONObject.Type.ARRAY);
+				List<SkillItem>[] array = (List<SkillItem>[])fields[i].GetValue(avatar);
+				foreach (List<SkillItem> obj3 in array)
+				{
+					JSONObject jSONObject8 = new JSONObject(JSONObject.Type.ARRAY);
+					foreach (SkillItem item5 in obj3)
 					{
-						if (name2 == "Int")
-						{
-							goto IL_36F;
-						}
+						JSONObject jSONObject9 = new JSONObject(JSONObject.Type.OBJECT);
+						jSONObject9.SetField("UUID", item5.uuid);
+						jSONObject9.SetField("id", item5.itemId);
+						jSONObject9.SetField("level", item5.level);
+						jSONObject9.SetField("index", item5.itemIndex);
+						jSONObject9.SetField("Seid", item5.Seid);
+						jSONObject8.Add(jSONObject9);
 					}
+					jSONObject7.Add(jSONObject8);
 				}
-				else if (name2 == "UInt32")
-				{
-					goto IL_36F;
-				}
+				jSONObject.AddField(name, jSONObject7);
+				break;
 			}
-			else if (name2 == "EmailDataMag")
+			case "ITEM_INFO_LIST":
+			{
+				JSONObject jSONObject5 = new JSONObject(JSONObject.Type.ARRAY);
+				foreach (ITEM_INFO value in ((ITEM_INFO_LIST)fields[i].GetValue(avatar)).values)
+				{
+					JSONObject jSONObject6 = new JSONObject(JSONObject.Type.OBJECT);
+					jSONObject6.SetField("UUID", value.uuid);
+					jSONObject6.SetField("id", value.itemId);
+					jSONObject6.SetField("count", value.itemCount);
+					jSONObject6.SetField("index", value.itemIndex);
+					jSONObject6.SetField("Seid", value.Seid);
+					jSONObject5.Add(jSONObject6);
+				}
+				jSONObject.AddField(name, jSONObject5);
+				break;
+			}
+			case "ITEM_INFO_LIST[]":
+			{
+				JSONObject jSONObject10 = new JSONObject(JSONObject.Type.ARRAY);
+				ITEM_INFO_LIST[] array2 = (ITEM_INFO_LIST[])fields[i].GetValue(avatar);
+				foreach (ITEM_INFO_LIST obj4 in array2)
+				{
+					JSONObject jSONObject11 = new JSONObject(JSONObject.Type.ARRAY);
+					foreach (ITEM_INFO value2 in obj4.values)
+					{
+						JSONObject jSONObject12 = new JSONObject(JSONObject.Type.OBJECT);
+						jSONObject12.SetField("UUID", value2.uuid);
+						jSONObject12.SetField("id", value2.itemId);
+						jSONObject12.SetField("count", value2.itemCount);
+						jSONObject12.SetField("index", value2.itemIndex);
+						jSONObject12.SetField("Seid", value2.Seid);
+						jSONObject11.Add(jSONObject12);
+					}
+					jSONObject10.Add(jSONObject11);
+				}
+				jSONObject.AddField(name, jSONObject10);
+				break;
+			}
+			case "AvatarStaticValue":
+			{
+				AvatarStaticValue avatarStaticValue = (AvatarStaticValue)fields[i].GetValue(avatar);
+				JSONObject jSONObject2 = new JSONObject(JSONObject.Type.OBJECT);
+				JSONObject jSONObject3 = new JSONObject(JSONObject.Type.ARRAY);
+				for (int j = 0; j < 2500; j++)
+				{
+					jSONObject3.Add(avatarStaticValue.Value[j]);
+				}
+				jSONObject2.SetField("value", jSONObject3);
+				JSONObject jSONObject4 = new JSONObject(JSONObject.Type.ARRAY);
+				for (int k = 0; k < avatarStaticValue.talk.Length; k++)
+				{
+					jSONObject4.Add(avatarStaticValue.talk[k]);
+				}
+				jSONObject2.SetField("talk", jSONObject4);
+				jSONObject.AddField(name, jSONObject2);
+				break;
+			}
+			case "WorldTime":
+			{
+				WorldTime worldTime = (WorldTime)fields[i].GetValue(avatar);
+				jSONObject.AddField(name, worldTime.nowTime);
+				break;
+			}
+			case "EmailDataMag":
 			{
 				EmailDataMag graph = (EmailDataMag)fields[i].GetValue(avatar);
-				FileStream fileStream = new FileStream(Paths.GetNewSavePath() + "/" + YSNewSaveSystem.NowAvatarPathPre + "/EmailDataMag.bin", FileMode.Create);
+				FileStream fileStream = new FileStream(Paths.GetNewSavePath() + "/" + NowAvatarPathPre + "/EmailDataMag.bin", FileMode.Create);
 				new BinaryFormatter().Serialize(fileStream, graph);
 				fileStream.Close();
+				break;
 			}
-			IL_A39:
-			i++;
-			continue;
-			IL_36F:
-			long val3 = Convert.ToInt64(fields[i].GetValue(avatar));
-			jsonobject.AddField(name, val3);
-			goto IL_A39;
+			case "TaskMag":
+			{
+				TaskMag taskMag = (TaskMag)fields[i].GetValue(avatar);
+				jSONObject.AddField(name, taskMag._TaskData);
+				break;
+			}
+			case "JSONObject":
+			{
+				JSONObject obj2 = (JSONObject)fields[i].GetValue(avatar);
+				jSONObject.AddField(name, obj2);
+				break;
+			}
+			case "JObject":
+			{
+				JSONObject obj = new JSONObject(((object)(JObject)fields[i].GetValue(avatar)).ToString());
+				jSONObject.AddField(name, obj);
+				break;
+			}
+			}
 		}
-		YSNewSaveSystem.Save("Avatar.json", jsonobject, true);
+		Save("Avatar.json", jSONObject);
 		stopwatch.Stop();
-		Debug.Log(string.Format("SaveAvatar耗时{0}ms", stopwatch.ElapsedMilliseconds));
+		Debug.Log((object)$"SaveAvatar耗时{stopwatch.ElapsedMilliseconds}ms");
 	}
 
-	// Token: 0x06001415 RID: 5141 RVA: 0x00081F24 File Offset: 0x00080124
 	public static void SaveStreamData(Avatar avatar)
 	{
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.Start();
-		string path = Paths.GetNewSavePath() + "/" + YSNewSaveSystem.NowAvatarPathPre + "/StreamData.bin";
+		string path = Paths.GetNewSavePath() + "/" + NowAvatarPathPre + "/StreamData.bin";
 		StreamData streamData = avatar.StreamData;
 		streamData.FangAnData.SaveHandle();
 		FileStream fileStream = new FileStream(path, FileMode.Create);
 		new BinaryFormatter().Serialize(fileStream, streamData);
 		fileStream.Close();
 		stopwatch.Stop();
-		Debug.Log(string.Format("SaveStreamData耗时{0}ms", stopwatch.ElapsedMilliseconds));
+		Debug.Log((object)$"SaveStreamData耗时{stopwatch.ElapsedMilliseconds}ms");
 	}
 
-	// Token: 0x06001416 RID: 5142 RVA: 0x00081FA4 File Offset: 0x000801A4
 	public static void SaveGame(int avatarIndex, int slot, Avatar _avatar = null, bool ignoreSlot0Time = false)
 	{
 		if (jsonData.instance.saveState == 1)
 		{
-			UIPopTip.Inst.Pop("存档未完成,请稍等", PopTipIconType.叹号);
-			return;
+			UIPopTip.Inst.Pop("存档未完成,请稍等");
 		}
-		if (!NpcJieSuanManager.inst.isCanJieSuan)
+		else if (!NpcJieSuanManager.inst.isCanJieSuan)
 		{
-			UIPopTip.Inst.Pop("正在结算中不能存档", PopTipIconType.叹号);
-			return;
+			UIPopTip.Inst.Pop("正在结算中不能存档");
 		}
-		if (FpUIMag.inst != null || TpUIMag.inst != null || UINPCJiaoHu.Inst.NowIsJiaoHu2 || SetFaceUI.Inst != null)
+		else if ((Object)(object)FpUIMag.inst != (Object)null || (Object)(object)TpUIMag.inst != (Object)null || UINPCJiaoHu.Inst.NowIsJiaoHu2 || (Object)(object)SetFaceUI.Inst != (Object)null)
 		{
-			UIPopTip.Inst.Pop("当前状态不能存档", PopTipIconType.叹号);
-			return;
+			UIPopTip.Inst.Pop("当前状态不能存档");
 		}
-		if (!jsonData.instance.SaveLock)
+		else
 		{
+			if (jsonData.instance.SaveLock)
+			{
+				return;
+			}
 			if (slot == 0 && !ignoreSlot0Time && SystemConfig.Inst.GetSaveTimes() != 0)
 			{
 				if (SystemConfig.Inst.GetSaveTimes() == -1)
@@ -1596,36 +1361,36 @@ public static class YSNewSaveSystem
 				{
 					return;
 				}
-				Tools.instance.NextSaveTime = Tools.instance.NextSaveTime.AddMinutes((double)Tools.instance.GetAddTime());
+				Tools.instance.NextSaveTime = Tools.instance.NextSaveTime.AddMinutes(Tools.instance.GetAddTime());
 				if (Tools.instance.NextSaveTime < now)
 				{
-					Tools.instance.NextSaveTime = now.AddMinutes((double)Tools.instance.GetAddTime());
+					Tools.instance.NextSaveTime = now.AddMinutes(Tools.instance.GetAddTime());
 				}
 			}
-			YSNewSaveSystem.startSaveTime = Time.realtimeSinceStartup;
-			YSNewSaveSystem.NowUsingAvatarIndex = avatarIndex;
-			YSNewSaveSystem.NowUsingSlot = slot;
-			YSNewSaveSystem.NowAvatarPathPre = (YSNewSaveSystem.GetAvatarSavePathPre(avatarIndex, slot) ?? "");
+			startSaveTime = Time.realtimeSinceStartup;
+			NowUsingAvatarIndex = avatarIndex;
+			NowUsingSlot = slot;
+			NowAvatarPathPre = GetAvatarSavePathPre(avatarIndex, slot) ?? "";
 			Avatar avatar = PlayerEx.Player;
 			if (_avatar != null)
 			{
 				avatar = _avatar;
 			}
-			YSNewSaveSystem.NowUsingAvatarIndex = avatarIndex;
-			YSNewSaveSystem.NowUsingSlot = slot;
+			NowUsingAvatarIndex = avatarIndex;
+			NowUsingSlot = slot;
 			Paths.GetNewSavePath();
 			GameVersion.inst.GetGameVersion();
-			JSONObject arr = JSONObject.arr;
-			JSONObject jsonobject = new JSONObject();
-			int level = (int)avatar.level;
-			jsonobject.SetField("firstName", avatar.firstName);
-			jsonobject.SetField("lastName", avatar.lastName);
-			jsonobject.SetField("gameTime", avatar.worldTimeMag.nowTime);
-			jsonobject.SetField("avatarLevel", (int)avatar.level);
-			jsonobject.SetField("face", jsonData.instance.AvatarRandomJsonData["1"]);
-			YSNewSaveSystem.Save("AvatarInfo.json", jsonobject, true);
+			_ = JSONObject.arr;
+			JSONObject jSONObject = new JSONObject();
+			int level = avatar.level;
+			jSONObject.SetField("firstName", avatar.firstName);
+			jSONObject.SetField("lastName", avatar.lastName);
+			jSONObject.SetField("gameTime", avatar.worldTimeMag.nowTime);
+			jSONObject.SetField("avatarLevel", avatar.level);
+			jSONObject.SetField("face", jsonData.instance.AvatarRandomJsonData["1"]);
+			Save("AvatarInfo.json", jSONObject);
 			avatar.StreamData.FungusSaveMgr.SaveData();
-			YSNewSaveSystem.SaveAvatar(avatar);
+			SaveAvatar(avatar);
 			string AvatarBackpackJsonDataClone = jsonData.instance.AvatarBackpackJsonData.ToString();
 			string AvatarRandomJsonDataClone = jsonData.instance.AvatarRandomJsonData.ToString();
 			string deathNPCJsonData = NpcJieSuanManager.inst.npcDeath.npcDeathJson.ToString();
@@ -1637,92 +1402,50 @@ public static class YSNewSaveSystem
 			Dictionary<string, List<int>> npcThreeSenceDictionary = new Dictionary<string, List<int>>(NpcJieSuanManager.inst.npcMap.threeSenceNPCDictionary);
 			Dictionary<string, Dictionary<int, List<int>>> npcFuBenDictionary = new Dictionary<string, Dictionary<int, List<int>>>(NpcJieSuanManager.inst.npcMap.fuBenNPCDictionary);
 			avatar.StreamData.NpcJieSuanData.SaveData();
-			YSNewSaveSystem.SaveStreamData(avatar);
+			SaveStreamData(avatar);
 			jsonData.instance.saveState = 1;
-			Action<object> <>9__1;
 			Loom.RunAsync(delegate
 			{
 				jsonData.instance.SaveLock = true;
-				YSNewSaveSystem.Save("GameVersion.txt", GameVersion.inst.GetGameVersion(), true);
-				YSNewSaveSystem.Save("AvatarBackpackJsonData.json", AvatarBackpackJsonDataClone, true);
-				YSNewSaveSystem.Save("AvatarRandomJsonData.json", AvatarRandomJsonDataClone, true);
-				YSNewSaveSystem.Save("NpcBackpack.json", FactoryManager.inst.loadPlayerDateFactory.GetRemoveJSONObjectLess20000keys(jsonData.instance.AvatarBackpackJsonData, AvatarBackpackJsonDataClone), true);
-				YSNewSaveSystem.Save("NpcJsonData.json", FactoryManager.inst.loadPlayerDateFactory.GetRemoveJSONObjectLess20000keys(jsonData.instance.AvatarJsonData, null), true);
-				YSNewSaveSystem.Save("DeathNpcJsonData.json", deathNPCJsonData, true);
-				YSNewSaveSystem.Save("OnlyChengHao.json", npcOnlyChenghHao, true);
-				YSNewSaveSystem.Save("AvatarSavetime.txt", DateTime.Now.ToString(), true);
+				Save("GameVersion.txt", GameVersion.inst.GetGameVersion());
+				Save("AvatarBackpackJsonData.json", AvatarBackpackJsonDataClone);
+				Save("AvatarRandomJsonData.json", AvatarRandomJsonDataClone);
+				Save("NpcBackpack.json", FactoryManager.inst.loadPlayerDateFactory.GetRemoveJSONObjectLess20000keys(jsonData.instance.AvatarBackpackJsonData, AvatarBackpackJsonDataClone));
+				Save("NpcJsonData.json", FactoryManager.inst.loadPlayerDateFactory.GetRemoveJSONObjectLess20000keys(jsonData.instance.AvatarJsonData));
+				Save("DeathNpcJsonData.json", deathNPCJsonData);
+				Save("OnlyChengHao.json", npcOnlyChenghHao);
+				Save("AvatarSavetime.txt", DateTime.Now.ToString());
 				JSONObject json = FactoryManager.inst.loadPlayerDateFactory.SaveJieSuanData(npcBigMapDictionary, npcThreeSenceDictionary, npcFuBenDictionary, JieSuanData);
-				YSNewSaveSystem.Save("JieSuanData.json", json, true);
-				YSNewSaveSystem.Save("TuJianSave.json", TuJianManager.Inst.TuJianSave, false);
-				YSNewSaveSystem.Save("IsComplete.txt", "true", true);
+				Save("JieSuanData.json", json);
+				Save("TuJianSave.json", TuJianManager.Inst.TuJianSave, autoPath: false);
+				Save("IsComplete.txt", "true");
 				jsonData.instance.SaveLock = false;
 				jsonData.instance.saveState = 0;
-				Action<object> taction;
-				if ((taction = <>9__1) == null)
+				Loom.QueueOnMainThread(delegate
 				{
-					taction = (<>9__1 = delegate(object obj)
+					int @int = GetInt("MaxLevelJson.txt");
+					if (level > @int)
 					{
-						int @int = YSNewSaveSystem.GetInt("MaxLevelJson.txt", 0);
-						if (level > @int)
-						{
-							YSNewSaveSystem.Save("MaxLevelJson.txt", level, false);
-						}
-						else
-						{
-							YSNewSaveSystem.Save("MaxLevelJson.txt", @int, false);
-						}
-						if (global::SaveManager.inst != null)
-						{
-							global::SaveManager.inst.updateState();
-						}
-						jsonData.instance.saveState = -1;
-						UIPopTip.Inst.Pop("存档完成", PopTipIconType.叹号);
-						if (Tools.instance.IsNeedLaterCheck)
-						{
-							Tools.instance.IsNeedLaterCheck = false;
-							Tools.instance.getPlayer().worldTimeMag.CheckNeedJieSuan();
-						}
-						Debug.Log(string.Format("新存档系统共计耗时{0}秒", Time.realtimeSinceStartup - YSNewSaveSystem.startSaveTime));
-					});
-				}
-				Loom.QueueOnMainThread(taction, null);
+						Save("MaxLevelJson.txt", level, autoPath: false);
+					}
+					else
+					{
+						Save("MaxLevelJson.txt", @int, autoPath: false);
+					}
+					if ((Object)(object)SaveManager.inst != (Object)null)
+					{
+						SaveManager.inst.updateState();
+					}
+					jsonData.instance.saveState = -1;
+					UIPopTip.Inst.Pop("存档完成");
+					if (Tools.instance.IsNeedLaterCheck)
+					{
+						Tools.instance.IsNeedLaterCheck = false;
+						Tools.instance.getPlayer().worldTimeMag.CheckNeedJieSuan();
+					}
+					Debug.Log((object)$"新存档系统共计耗时{Time.realtimeSinceStartup - startSaveTime}秒");
+				}, null);
 			});
 		}
 	}
-
-	// Token: 0x04000ED8 RID: 3800
-	public static int CloudSaveSlotCountLimit = 4;
-
-	// Token: 0x04000ED9 RID: 3801
-	public static int NowUsingAvatarIndex;
-
-	// Token: 0x04000EDA RID: 3802
-	public static int NowUsingSlot;
-
-	// Token: 0x04000EDB RID: 3803
-	public static string NowAvatarPathPre;
-
-	// Token: 0x04000EDC RID: 3804
-	public static float startSaveTime;
-
-	// Token: 0x04000EDD RID: 3805
-	public static Dictionary<string, int> saveInt = new Dictionary<string, int>();
-
-	// Token: 0x04000EDE RID: 3806
-	public static Dictionary<string, string> saveString = new Dictionary<string, string>();
-
-	// Token: 0x04000EDF RID: 3807
-	public static Dictionary<string, JSONObject> saveJSONObject = new Dictionary<string, JSONObject>();
-
-	// Token: 0x04000EE0 RID: 3808
-	public static JSONObject SaveJsonData = new JSONObject(JSONObject.Type.OBJECT);
-
-	// Token: 0x04000EE1 RID: 3809
-	private static StreamWriter writer;
-
-	// Token: 0x04000EE2 RID: 3810
-	private static StreamReader reader;
-
-	// Token: 0x04000EE3 RID: 3811
-	public static char huanHangChar = 'þ';
 }

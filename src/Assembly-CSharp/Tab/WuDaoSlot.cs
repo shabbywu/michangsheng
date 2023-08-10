@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Coffee.UIEffects;
 using JSONClass;
@@ -7,217 +7,208 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Tab
+namespace Tab;
+
+[Serializable]
+public class WuDaoSlot : UIBase
 {
-	// Token: 0x020006F2 RID: 1778
-	[Serializable]
-	public class WuDaoSlot : UIBase
+	private GameObject _name;
+
+	private GameObject _cost;
+
+	private GameObject _black;
+
+	private Image _icon;
+
+	private Image _white;
+
+	private UIEffect _iconEffect;
+
+	public int Id;
+
+	public int State;
+
+	public int Cost;
+
+	public JSONObject WuDaoJson;
+
+	public WuDaoSlot(GameObject go, int id)
 	{
-		// Token: 0x06003922 RID: 14626 RVA: 0x001860E4 File Offset: 0x001842E4
-		public WuDaoSlot(GameObject go, int id)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Expected O, but got Unknown
+		_go = go;
+		Id = id;
+		WuDaoJson wuDaoJson = JSONClass.WuDaoJson.DataDict[Id];
+		_icon = Get<Image>("Mask/Icon");
+		_icon.sprite = ResManager.inst.LoadSprite("WuDao Icon/" + wuDaoJson.icon);
+		_iconEffect = Get<UIEffect>("Mask/Icon");
+		Get<Text>("Name/Value").text = wuDaoJson.name;
+		Cost = wuDaoJson.Cast;
+		Get<Text>("Cost/Value").text = Cost.ToString();
+		_name = Get("Name");
+		_cost = Get("Cost");
+		_black = Get("Black");
+		_white = _go.GetComponent<Image>();
+		WuDaoJson = jsonData.instance.WuDaoJson[Id.ToString()];
+		_go.AddComponent<UIListener>().mouseUpEvent.AddListener((UnityAction)delegate
 		{
-			this._go = go;
-			this.Id = id;
-			WuDaoJson wuDaoJson = JSONClass.WuDaoJson.DataDict[this.Id];
-			this._icon = base.Get<Image>("Mask/Icon");
-			this._icon.sprite = ResManager.inst.LoadSprite("WuDao Icon/" + wuDaoJson.icon);
-			this._iconEffect = base.Get<UIEffect>("Mask/Icon");
-			base.Get<Text>("Name/Value").text = wuDaoJson.name;
-			this.Cost = wuDaoJson.Cast;
-			base.Get<Text>("Cost/Value").text = this.Cost.ToString();
-			this._name = base.Get("Name", true);
-			this._cost = base.Get("Cost", true);
-			this._black = base.Get("Black", true);
-			this._white = this._go.GetComponent<Image>();
-			this.WuDaoJson = jsonData.instance.WuDaoJson[this.Id.ToString()];
-			this._go.AddComponent<UIListener>().mouseUpEvent.AddListener(delegate()
-			{
-				SingletonMono<TabUIMag>.Instance.WuDaoPanel.WuDaoTooltip.Show(this._icon.sprite, this.Id, new UnityAction(this.Study));
-			});
-		}
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0031: Expected O, but got Unknown
+			SingletonMono<TabUIMag>.Instance.WuDaoPanel.WuDaoTooltip.Show(_icon.sprite, Id, new UnityAction(Study));
+		});
+	}
 
-		// Token: 0x06003923 RID: 14627 RVA: 0x00186224 File Offset: 0x00184424
-		public void SetState(int state)
+	public void SetState(int state)
+	{
+		State = state;
+		switch (State)
 		{
-			this.State = state;
-			switch (this.State)
-			{
-			case 1:
-				this._name.SetActive(false);
-				this._cost.SetActive(false);
-				this._black.SetActive(false);
-				this._white.Show();
-				this._iconEffect.enabled = false;
-				return;
-			case 2:
-				this._name.SetActive(true);
-				this._cost.SetActive(true);
-				this._black.SetActive(false);
-				this._white.Show();
-				this._iconEffect.enabled = true;
-				this._iconEffect.effectFactor = 0.72f;
-				this._iconEffect.colorMode = 3;
-				this._iconEffect.colorFactor = 0.25f;
-				return;
-			case 3:
-				this._name.SetActive(false);
-				this._cost.SetActive(false);
-				this._black.SetActive(true);
-				this._white.Hide();
-				this._iconEffect.enabled = true;
-				this._iconEffect.effectFactor = 0.72f;
-				this._iconEffect.colorMode = 3;
-				this._iconEffect.colorFactor = 0.25f;
-				return;
-			default:
-				return;
-			}
+		case 1:
+			_name.SetActive(false);
+			_cost.SetActive(false);
+			_black.SetActive(false);
+			_white.Show();
+			((Behaviour)_iconEffect).enabled = false;
+			break;
+		case 2:
+			_name.SetActive(true);
+			_cost.SetActive(true);
+			_black.SetActive(false);
+			_white.Show();
+			((Behaviour)_iconEffect).enabled = true;
+			_iconEffect.effectFactor = 0.72f;
+			_iconEffect.colorMode = (ColorMode)3;
+			_iconEffect.colorFactor = 0.25f;
+			break;
+		case 3:
+			_name.SetActive(false);
+			_cost.SetActive(false);
+			_black.SetActive(true);
+			_white.Hide();
+			((Behaviour)_iconEffect).enabled = true;
+			_iconEffect.effectFactor = 0.72f;
+			_iconEffect.colorMode = (ColorMode)3;
+			_iconEffect.colorFactor = 0.25f;
+			break;
 		}
+	}
 
-		// Token: 0x06003924 RID: 14628 RVA: 0x00186360 File Offset: 0x00184560
-		private void Study()
+	private void Study()
+	{
+		Avatar player = Tools.instance.getPlayer();
+		if (State == 1)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			if (this.State == 1)
+			UIPopTip.Inst.Pop("已领悟过该大道");
+		}
+		else if (State == 2)
+		{
+			if (player.wuDaoMag.GetNowWuDaoDian() >= Cost)
 			{
-				UIPopTip.Inst.Pop("已领悟过该大道", PopTipIconType.叹号);
-			}
-			else if (this.State == 2)
-			{
-				if (player.wuDaoMag.GetNowWuDaoDian() >= this.Cost)
+				if (CanStudyWuDao())
 				{
-					if (this.CanStudyWuDao())
+					foreach (int item in JSONClass.WuDaoJson.DataDict[Id].Type)
 					{
-						foreach (int wuDaoType in JSONClass.WuDaoJson.DataDict[this.Id].Type)
-						{
-							player.wuDaoMag.addWuDaoSkill(wuDaoType, this.Id);
-							SingletonMono<TabUIMag>.Instance.WuDaoPanel.UpdateWuDaoDian();
-						}
-						this.SetState(1);
+						player.wuDaoMag.addWuDaoSkill(item, Id);
+						SingletonMono<TabUIMag>.Instance.WuDaoPanel.UpdateWuDaoDian();
 					}
-					else if (this.MoreCheck())
-					{
-						UIPopTip.Inst.Pop("未达到领悟条件", PopTipIconType.叹号);
-					}
-					else
-					{
-						UIPopTip.Inst.Pop("未领悟前置悟道", PopTipIconType.叹号);
-					}
+					SetState(1);
+				}
+				else if (MoreCheck())
+				{
+					UIPopTip.Inst.Pop("未达到领悟条件");
 				}
 				else
 				{
-					UIPopTip.Inst.Pop("悟道点不足", PopTipIconType.叹号);
+					UIPopTip.Inst.Pop("未领悟前置悟道");
 				}
 			}
-			else if (this.State == 3)
+			else
 			{
-				UIPopTip.Inst.Pop("未达到领悟条件", PopTipIconType.叹号);
+				UIPopTip.Inst.Pop("悟道点不足");
 			}
-			SingletonMono<TabUIMag>.Instance.WuDaoPanel.WuDaoTooltip.Close();
 		}
-
-		// Token: 0x06003925 RID: 14629 RVA: 0x001864A4 File Offset: 0x001846A4
-		public bool CanStudyWuDao()
+		else if (State == 3)
 		{
-			JSONObject jsonobject = jsonData.instance.WuDaoJson[this.Id.ToString()];
-			bool flag = true;
-			foreach (JSONObject jsonobject2 in jsonobject["Type"].list)
+			UIPopTip.Inst.Pop("未达到领悟条件");
+		}
+		SingletonMono<TabUIMag>.Instance.WuDaoPanel.WuDaoTooltip.Close();
+	}
+
+	public bool CanStudyWuDao()
+	{
+		JSONObject jSONObject = jsonData.instance.WuDaoJson[Id.ToString()];
+		bool flag = true;
+		foreach (JSONObject item in jSONObject["Type"].list)
+		{
+			if (!CanEx(item.I))
 			{
-				if (!this.CanEx(jsonobject2.I))
-				{
-					return false;
-				}
-				if (this.CanLastWuDao(jsonobject2.I))
-				{
-					flag = false;
-				}
+				return false;
 			}
-			return !flag;
-		}
-
-		// Token: 0x06003926 RID: 14630 RVA: 0x00186540 File Offset: 0x00184740
-		public bool CanEx(int WuDaoType)
-		{
-			int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(WuDaoType);
-			int i = this.WuDaoJson["Lv"].I;
-			return wuDaoLevelByType >= i;
-		}
-
-		// Token: 0x06003927 RID: 14631 RVA: 0x00186580 File Offset: 0x00184780
-		public bool MoreCheck()
-		{
-			foreach (JSONObject jsonobject in jsonData.instance.WuDaoJson[this.Id.ToString()]["Type"].list)
+			if (CanLastWuDao(item.I))
 			{
-				if (!this.CanEx(jsonobject.I))
-				{
-					return true;
-				}
+				flag = false;
 			}
+		}
+		if (flag)
+		{
 			return false;
 		}
+		return true;
+	}
 
-		// Token: 0x06003928 RID: 14632 RVA: 0x00186604 File Offset: 0x00184804
-		public bool CanLastWuDao(int wudaoType)
+	public bool CanEx(int WuDaoType)
+	{
+		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(WuDaoType);
+		int i = WuDaoJson["Lv"].I;
+		if (wuDaoLevelByType >= i)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			JSONObject wuDaoJson = this.WuDaoJson;
-			JSONObject wuDaoStudy = player.wuDaoMag.getWuDaoStudy(wudaoType);
-			int i = wuDaoJson["Lv"].I;
-			if (i == 1)
+			return true;
+		}
+		return false;
+	}
+
+	public bool MoreCheck()
+	{
+		foreach (JSONObject item in jsonData.instance.WuDaoJson[Id.ToString()]["Type"].list)
+		{
+			if (!CanEx(item.I))
 			{
 				return true;
 			}
-			Dictionary<int, bool> dictionary = new Dictionary<int, bool>();
-			for (int j = 1; j < i; j++)
-			{
-				dictionary[j] = false;
-			}
-			foreach (JSONObject jsonobject in wuDaoStudy.list)
-			{
-				JSONObject jsonobject2 = jsonData.instance.WuDaoJson[jsonobject.I.ToString()];
-				if (dictionary.ContainsKey(jsonobject2["Lv"].I) && !dictionary[jsonobject2["Lv"].I])
-				{
-					dictionary[jsonobject2["Lv"].I] = true;
-				}
-			}
-			foreach (KeyValuePair<int, bool> keyValuePair in dictionary)
-			{
-				if (!keyValuePair.Value)
-				{
-					return false;
-				}
-			}
+		}
+		return false;
+	}
+
+	public bool CanLastWuDao(int wudaoType)
+	{
+		Avatar player = Tools.instance.getPlayer();
+		JSONObject wuDaoJson = WuDaoJson;
+		JSONObject wuDaoStudy = player.wuDaoMag.getWuDaoStudy(wudaoType);
+		int i = wuDaoJson["Lv"].I;
+		if (i == 1)
+		{
 			return true;
 		}
-
-		// Token: 0x0400312A RID: 12586
-		private GameObject _name;
-
-		// Token: 0x0400312B RID: 12587
-		private GameObject _cost;
-
-		// Token: 0x0400312C RID: 12588
-		private GameObject _black;
-
-		// Token: 0x0400312D RID: 12589
-		private Image _icon;
-
-		// Token: 0x0400312E RID: 12590
-		private Image _white;
-
-		// Token: 0x0400312F RID: 12591
-		private UIEffect _iconEffect;
-
-		// Token: 0x04003130 RID: 12592
-		public int Id;
-
-		// Token: 0x04003131 RID: 12593
-		public int State;
-
-		// Token: 0x04003132 RID: 12594
-		public int Cost;
-
-		// Token: 0x04003133 RID: 12595
-		public JSONObject WuDaoJson;
+		Dictionary<int, bool> dictionary = new Dictionary<int, bool>();
+		for (int j = 1; j < i; j++)
+		{
+			dictionary[j] = false;
+		}
+		foreach (JSONObject item in wuDaoStudy.list)
+		{
+			JSONObject jSONObject = jsonData.instance.WuDaoJson[item.I.ToString()];
+			if (dictionary.ContainsKey(jSONObject["Lv"].I) && !dictionary[jSONObject["Lv"].I])
+			{
+				dictionary[jSONObject["Lv"].I] = true;
+			}
+		}
+		foreach (KeyValuePair<int, bool> item2 in dictionary)
+		{
+			if (!item2.Value)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }

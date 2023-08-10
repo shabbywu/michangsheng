@@ -1,525 +1,483 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Bag
+namespace Bag;
+
+public class SlotBase : MonoBehaviour, ISlot, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-	// Token: 0x020009BB RID: 2491
-	public class SlotBase : MonoBehaviour, ISlot, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+	public BaseItem Item;
+
+	public BaseSkill Skill;
+
+	public BagTianJieSkill TianJieSkill;
+
+	public int Group;
+
+	public bool IsCanDrag = true;
+
+	public bool IsIn;
+
+	public bool CanUse = true;
+
+	public SlotType SlotType;
+
+	public CanSlotType AcceptType;
+
+	protected GameObject _nullPanel;
+
+	protected GameObject _hasPanel;
+
+	protected GameObject _selectPanel;
+
+	protected GameObject _jiaoBiaoPanel;
+
+	protected Image _jiaoBiao;
+
+	protected Image _qualityBg;
+
+	protected Image _qualityLine;
+
+	protected Image _icon;
+
+	protected Text _name;
+
+	protected Text _count;
+
+	private Dictionary<string, object> _objDict = new Dictionary<string, object>();
+
+	public bool HideTooltip;
+
+	public UnityEvent OnLeftClick;
+
+	public UnityEvent OnRightClick;
+
+	public virtual void SetSlotData(object data)
 	{
-		// Token: 0x06004535 RID: 17717 RVA: 0x001D5D60 File Offset: 0x001D3F60
-		public virtual void SetSlotData(object data)
+		Item = null;
+		Skill = null;
+		if (data is BaseItem)
 		{
-			this.Item = null;
-			this.Skill = null;
-			if (data is BaseItem)
+			SetItem((BaseItem)data);
+			SlotType = SlotType.物品;
+		}
+		else if (data is ActiveSkill)
+		{
+			SetActiveSkill((BaseSkill)data);
+			SlotType = SlotType.技能;
+		}
+		else if (data is PassiveSkill)
+		{
+			SetPassiveSkill((BaseSkill)data);
+			SlotType = SlotType.功法;
+		}
+		else if (data is BagTianJieSkill)
+		{
+			SetTianJieSkill((BagTianJieSkill)data);
+			SlotType = SlotType.天劫秘术;
+		}
+		UpdateUI();
+	}
+
+	public void SetAccptType(CanSlotType slotType)
+	{
+		AcceptType = slotType;
+	}
+
+	protected virtual void SetItem(BaseItem item)
+	{
+		Item = item;
+	}
+
+	private void SetActiveSkill(BaseSkill activeSkill)
+	{
+		Skill = activeSkill;
+	}
+
+	private void SetPassiveSkill(BaseSkill passiveSkill)
+	{
+		Skill = passiveSkill;
+	}
+
+	private void SetTianJieSkill(BagTianJieSkill tianJieSkill)
+	{
+		TianJieSkill = tianJieSkill;
+	}
+
+	public virtual void SetNull()
+	{
+		Item = null;
+		Skill = null;
+		TianJieSkill = null;
+		SlotType = SlotType.空;
+		if ((Object)(object)_nullPanel == (Object)null)
+		{
+			InitUI();
+		}
+		_nullPanel.SetActive(true);
+		_hasPanel.SetActive(false);
+	}
+
+	public bool IsNull()
+	{
+		return SlotType == SlotType.空;
+	}
+
+	public virtual void InitUI()
+	{
+		_nullPanel = Get("Null");
+		_hasPanel = Get("HasItem");
+		_selectPanel = Get("Selected");
+		_jiaoBiaoPanel = Get("HasItem/LeftUpMask");
+		_qualityBg = Get<Image>("HasItem/Quality");
+		_qualityLine = Get<Image>("HasItem/Quality/QualityUp");
+		_jiaoBiao = Get<Image>("HasItem/LeftUpMask/JiaoBiao");
+		_icon = Get<Image>("HasItem/IconMask/Icon");
+		_name = Get<Text>("HasItem/NameMask/NameText");
+		_count = Get<Text>("HasItem/CountText");
+	}
+
+	public void UpdateUI()
+	{
+		if ((Object)(object)_nullPanel == (Object)null)
+		{
+			InitUI();
+		}
+		_nullPanel.SetActive(false);
+		_hasPanel.SetActive(true);
+		try
+		{
+			switch (SlotType)
 			{
-				this.SetItem((BaseItem)data);
-				this.SlotType = SlotType.物品;
+			case SlotType.技能:
+			case SlotType.功法:
+				UpdateSkillUI();
+				break;
+			case SlotType.物品:
+				UpdateItemUI();
+				break;
+			case SlotType.天劫秘术:
+				UpdateTianJieSkillUI();
+				break;
 			}
-			else if (data is ActiveSkill)
+		}
+		catch (Exception arg)
+		{
+			Debug.LogError((object)$"刷新格子出现异常:{arg}");
+			BaseItem baseItem = BaseItem.Create(10000, 1, Guid.NewGuid().ToString(), null);
+			switch (SlotType)
 			{
-				this.SetActiveSkill((BaseSkill)data);
-				this.SlotType = SlotType.技能;
-			}
-			else if (data is PassiveSkill)
-			{
-				this.SetPassiveSkill((BaseSkill)data);
-				this.SlotType = SlotType.功法;
-			}
-			else if (data is BagTianJieSkill)
-			{
-				this.SetTianJieSkill((BagTianJieSkill)data);
-				this.SlotType = SlotType.天劫秘术;
-			}
-			this.UpdateUI();
-		}
-
-		// Token: 0x06004536 RID: 17718 RVA: 0x001D5DF3 File Offset: 0x001D3FF3
-		public void SetAccptType(CanSlotType slotType)
-		{
-			this.AcceptType = slotType;
-		}
-
-		// Token: 0x06004537 RID: 17719 RVA: 0x001D5DFC File Offset: 0x001D3FFC
-		protected virtual void SetItem(BaseItem item)
-		{
-			this.Item = item;
-		}
-
-		// Token: 0x06004538 RID: 17720 RVA: 0x001D5E05 File Offset: 0x001D4005
-		private void SetActiveSkill(BaseSkill activeSkill)
-		{
-			this.Skill = activeSkill;
-		}
-
-		// Token: 0x06004539 RID: 17721 RVA: 0x001D5E05 File Offset: 0x001D4005
-		private void SetPassiveSkill(BaseSkill passiveSkill)
-		{
-			this.Skill = passiveSkill;
-		}
-
-		// Token: 0x0600453A RID: 17722 RVA: 0x001D5E0E File Offset: 0x001D400E
-		private void SetTianJieSkill(BagTianJieSkill tianJieSkill)
-		{
-			this.TianJieSkill = tianJieSkill;
-		}
-
-		// Token: 0x0600453B RID: 17723 RVA: 0x001D5E18 File Offset: 0x001D4018
-		public virtual void SetNull()
-		{
-			this.Item = null;
-			this.Skill = null;
-			this.TianJieSkill = null;
-			this.SlotType = SlotType.空;
-			if (this._nullPanel == null)
-			{
-				this.InitUI();
-			}
-			this._nullPanel.SetActive(true);
-			this._hasPanel.SetActive(false);
-		}
-
-		// Token: 0x0600453C RID: 17724 RVA: 0x001D5E6D File Offset: 0x001D406D
-		public bool IsNull()
-		{
-			return this.SlotType == SlotType.空;
-		}
-
-		// Token: 0x0600453D RID: 17725 RVA: 0x001D5E78 File Offset: 0x001D4078
-		public virtual void InitUI()
-		{
-			this._nullPanel = this.Get("Null", true);
-			this._hasPanel = this.Get("HasItem", true);
-			this._selectPanel = this.Get("Selected", true);
-			this._jiaoBiaoPanel = this.Get("HasItem/LeftUpMask", true);
-			this._qualityBg = this.Get<Image>("HasItem/Quality");
-			this._qualityLine = this.Get<Image>("HasItem/Quality/QualityUp");
-			this._jiaoBiao = this.Get<Image>("HasItem/LeftUpMask/JiaoBiao");
-			this._icon = this.Get<Image>("HasItem/IconMask/Icon");
-			this._name = this.Get<Text>("HasItem/NameMask/NameText");
-			this._count = this.Get<Text>("HasItem/CountText");
-		}
-
-		// Token: 0x0600453E RID: 17726 RVA: 0x001D5F34 File Offset: 0x001D4134
-		public void UpdateUI()
-		{
-			if (this._nullPanel == null)
-			{
-				this.InitUI();
-			}
-			this._nullPanel.SetActive(false);
-			this._hasPanel.SetActive(true);
-			try
-			{
-				switch (this.SlotType)
+			case SlotType.技能:
+			case SlotType.功法:
+				if (Skill != null)
 				{
-				case SlotType.物品:
-					this.UpdateItemUI();
-					break;
-				case SlotType.技能:
-				case SlotType.功法:
-					this.UpdateSkillUI();
-					break;
-				case SlotType.天劫秘术:
-					this.UpdateTianJieSkillUI();
-					break;
+					baseItem.Desc1 += $"错误的技能ID:{Skill.Id}";
 				}
-			}
-			catch (Exception arg)
-			{
-				Debug.LogError(string.Format("刷新格子出现异常:{0}", arg));
-				BaseItem baseItem = BaseItem.Create(10000, 1, Guid.NewGuid().ToString(), null);
-				switch (this.SlotType)
+				break;
+			case SlotType.物品:
+				if (Item != null)
 				{
-				case SlotType.物品:
-					if (this.Item != null)
-					{
-						PlayerEx.AddErrorItemID(this.Item.Id);
-						BaseItem baseItem2 = baseItem;
-						baseItem2.Desc1 += string.Format("错误的物品ID:{0}", this.Item.Id);
-					}
-					break;
-				case SlotType.技能:
-				case SlotType.功法:
-					if (this.Skill != null)
-					{
-						BaseItem baseItem3 = baseItem;
-						baseItem3.Desc1 += string.Format("错误的技能ID:{0}", this.Skill.Id);
-					}
-					break;
-				case SlotType.天劫秘术:
-					if (this.TianJieSkill != null && this.TianJieSkill.MiShu != null)
-					{
-						BaseItem baseItem4 = baseItem;
-						baseItem4.Desc1 = baseItem4.Desc1 + "错误的秘术ID:" + this.TianJieSkill.MiShu.id;
-					}
-					break;
+					PlayerEx.AddErrorItemID(Item.Id);
+					baseItem.Desc1 += $"错误的物品ID:{Item.Id}";
 				}
-				this.SetSlotData(baseItem);
+				break;
+			case SlotType.天劫秘术:
+				if (TianJieSkill != null && TianJieSkill.MiShu != null)
+				{
+					baseItem.Desc1 = baseItem.Desc1 + "错误的秘术ID:" + TianJieSkill.MiShu.id;
+				}
+				break;
 			}
+			SetSlotData(baseItem);
 		}
+	}
 
-		// Token: 0x0600453F RID: 17727 RVA: 0x001D60E0 File Offset: 0x001D42E0
-		private void UpdateTianJieSkillUI()
+	private void UpdateTianJieSkillUI()
+	{
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		((Component)_count).gameObject.SetActive(false);
+		_icon.sprite = TianJieSkill.GetIconSprite();
+		_qualityBg.sprite = TianJieSkill.GetQualitySprite();
+		_qualityLine.sprite = TianJieSkill.GetQualityUpSprite();
+		bool flag = false;
+		if (TianJieSkill.MiShu.Type == 0)
 		{
-			this._count.gameObject.SetActive(false);
-			this._icon.sprite = this.TianJieSkill.GetIconSprite();
-			this._qualityBg.sprite = this.TianJieSkill.GetQualitySprite();
-			this._qualityLine.sprite = this.TianJieSkill.GetQualityUpSprite();
-			bool flag = false;
-			if (this.TianJieSkill.MiShu.Type == 0)
-			{
-				if (this.TianJieSkill.IsGanYing)
-				{
-					flag = true;
-				}
-			}
-			else
+			if (TianJieSkill.IsGanYing)
 			{
 				flag = true;
 			}
-			Color color = ColorEx.ItemQualityColor[this.TianJieSkill.BindSkill.GetImgQuality() - 1];
-			if (flag)
+		}
+		else
+		{
+			flag = true;
+		}
+		Color color = ColorEx.ItemQualityColor[TianJieSkill.BindSkill.GetImgQuality() - 1];
+		if (flag)
+		{
+			SetName(TianJieSkill.MiShu.id, color);
+		}
+		else
+		{
+			SetName("???", color);
+		}
+		_jiaoBiaoPanel.SetActive(false);
+	}
+
+	private void UpdateItemUI()
+	{
+		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		if (Item.Count == 1)
+		{
+			((Component)_count).gameObject.SetActive(false);
+		}
+		else
+		{
+			((Component)_count).gameObject.SetActive(true);
+			_count.SetText(Item.Count);
+		}
+		_icon.sprite = Item.GetIconSprite();
+		_qualityBg.sprite = Item.GetQualitySprite();
+		_qualityLine.sprite = Item.GetQualityUpSprite();
+		SetName(Item.GetName(), ColorEx.ItemQualityColor[Item.GetImgQuality() - 1]);
+		SetJiaoBiao(Item.GetJiaoBiaoType());
+	}
+
+	public void SetJiaoBiao(JiaoBiaoType type)
+	{
+		int num = (int)type;
+		switch (type)
+		{
+		case JiaoBiaoType.无:
+			_jiaoBiaoPanel.SetActive(false);
+			break;
+		case JiaoBiaoType.秘:
+		case JiaoBiaoType.耐:
+		case JiaoBiaoType.悟:
+		case JiaoBiaoType.拍:
+			_jiaoBiao.sprite = BagMag.Inst.JiaoBiaoDict[num.ToString()];
+			_jiaoBiaoPanel.SetActive(true);
+			break;
+		}
+	}
+
+	private void UpdateSkillUI()
+	{
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		((Component)_count).gameObject.SetActive(false);
+		_icon.sprite = Skill.GetIconSprite();
+		_qualityBg.sprite = Skill.GetQualitySprite();
+		_qualityLine.sprite = Skill.GetQualityUpSprite();
+		SetName(Skill.Name, ColorEx.ItemQualityColor[Skill.GetImgQuality() - 1]);
+		_jiaoBiaoPanel.SetActive(false);
+	}
+
+	protected T Get<T>(string path)
+	{
+		string key = path + "_" + typeof(T).Name;
+		if (!_objDict.ContainsKey(key))
+		{
+			Transform val = ((Component)this).gameObject.transform.Find(path);
+			if ((Object)(object)val == (Object)null)
 			{
-				this.SetName(this.TianJieSkill.MiShu.id, color);
+				Debug.LogError((object)("不存在该对象,路径:" + path));
+				return default(T);
+			}
+			T component = ((Component)val).GetComponent<T>();
+			if (component == null)
+			{
+				Debug.LogError((object)("不存在该组件" + typeof(T).Name + ",路径:" + path));
+				return default(T);
+			}
+			_objDict.Add(key, component);
+		}
+		return (T)_objDict[key];
+	}
+
+	protected GameObject Get(string path, bool showError = true)
+	{
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Expected O, but got Unknown
+		string key = path + "_GameObject";
+		if (!_objDict.ContainsKey(key))
+		{
+			Transform val = ((Component)this).gameObject.transform.Find(path);
+			if ((Object)(object)val == (Object)null)
+			{
+				if (showError)
+				{
+					Debug.LogError((object)("不存在该对象,路径:" + path));
+				}
+				return null;
+			}
+			_objDict.Add(key, ((Component)val).gameObject);
+		}
+		return (GameObject)_objDict[key];
+	}
+
+	public virtual void OnPointerEnter(PointerEventData eventData)
+	{
+		if (DragMag.Inst.IsDraging)
+		{
+			DragMag.Inst.ToSlot = this;
+		}
+		if (SlotType == SlotType.空)
+		{
+			return;
+		}
+		IsIn = true;
+		if (!eventData.dragging && !HideTooltip)
+		{
+			if ((Object)(object)ToolTipsMag.Inst == (Object)null)
+			{
+				ResManager.inst.LoadPrefab("ToolTips").Inst(((Component)NewUICanvas.Inst).transform);
+			}
+			if (SlotType == SlotType.物品)
+			{
+				ToolTipsMag.Inst.Show(Item);
 			}
 			else
 			{
-				this.SetName("???", color);
+				ToolTipsMag.Inst.Show(Skill);
 			}
-			this._jiaoBiaoPanel.SetActive(false);
 		}
+		_selectPanel.SetActive(true);
+	}
 
-		// Token: 0x06004540 RID: 17728 RVA: 0x001D61B8 File Offset: 0x001D43B8
-		private void UpdateItemUI()
+	public virtual void OnPointerExit(PointerEventData eventData)
+	{
+		if (DragMag.Inst.IsDraging)
 		{
-			if (this.Item.Count == 1)
-			{
-				this._count.gameObject.SetActive(false);
-			}
-			else
-			{
-				this._count.gameObject.SetActive(true);
-				this._count.SetText(this.Item.Count);
-			}
-			this._icon.sprite = this.Item.GetIconSprite();
-			this._qualityBg.sprite = this.Item.GetQualitySprite();
-			this._qualityLine.sprite = this.Item.GetQualityUpSprite();
-			this.SetName(this.Item.GetName(), ColorEx.ItemQualityColor[this.Item.GetImgQuality() - 1]);
-			this.SetJiaoBiao(this.Item.GetJiaoBiaoType());
+			DragMag.Inst.ToSlot = null;
 		}
-
-		// Token: 0x06004541 RID: 17729 RVA: 0x001D6290 File Offset: 0x001D4490
-		public void SetJiaoBiao(JiaoBiaoType type)
+		if (SlotType != 0)
 		{
-			int num = (int)type;
-			if (type == JiaoBiaoType.无)
-			{
-				this._jiaoBiaoPanel.SetActive(false);
-				return;
-			}
-			if (type - JiaoBiaoType.秘 > 3)
-			{
-				return;
-			}
-			this._jiaoBiao.sprite = BagMag.Inst.JiaoBiaoDict[num.ToString()];
-			this._jiaoBiaoPanel.SetActive(true);
-		}
-
-		// Token: 0x06004542 RID: 17730 RVA: 0x001D62E4 File Offset: 0x001D44E4
-		private void UpdateSkillUI()
-		{
-			this._count.gameObject.SetActive(false);
-			this._icon.sprite = this.Skill.GetIconSprite();
-			this._qualityBg.sprite = this.Skill.GetQualitySprite();
-			this._qualityLine.sprite = this.Skill.GetQualityUpSprite();
-			this.SetName(this.Skill.Name, ColorEx.ItemQualityColor[this.Skill.GetImgQuality() - 1]);
-			this._jiaoBiaoPanel.SetActive(false);
-		}
-
-		// Token: 0x06004543 RID: 17731 RVA: 0x001D6378 File Offset: 0x001D4578
-		protected T Get<T>(string path)
-		{
-			string key = path + "_" + typeof(T).Name;
-			if (!this._objDict.ContainsKey(key))
-			{
-				Transform transform = base.gameObject.transform.Find(path);
-				if (transform == null)
-				{
-					Debug.LogError("不存在该对象,路径:" + path);
-					return default(T);
-				}
-				T component = transform.GetComponent<T>();
-				if (component == null)
-				{
-					Debug.LogError("不存在该组件" + typeof(T).Name + ",路径:" + path);
-					return default(T);
-				}
-				this._objDict.Add(key, component);
-			}
-			return (T)((object)this._objDict[key]);
-		}
-
-		// Token: 0x06004544 RID: 17732 RVA: 0x001D6448 File Offset: 0x001D4648
-		protected GameObject Get(string path, bool showError = true)
-		{
-			string key = path + "_GameObject";
-			if (!this._objDict.ContainsKey(key))
-			{
-				Transform transform = base.gameObject.transform.Find(path);
-				if (transform == null)
-				{
-					if (showError)
-					{
-						Debug.LogError("不存在该对象,路径:" + path);
-					}
-					return null;
-				}
-				this._objDict.Add(key, transform.gameObject);
-			}
-			return (GameObject)this._objDict[key];
-		}
-
-		// Token: 0x06004545 RID: 17733 RVA: 0x001D64C4 File Offset: 0x001D46C4
-		public virtual void OnPointerEnter(PointerEventData eventData)
-		{
-			if (DragMag.Inst.IsDraging)
-			{
-				DragMag.Inst.ToSlot = this;
-			}
-			if (this.SlotType == SlotType.空)
-			{
-				return;
-			}
-			this.IsIn = true;
-			if (!eventData.dragging && !this.HideTooltip)
-			{
-				if (ToolTipsMag.Inst == null)
-				{
-					ResManager.inst.LoadPrefab("ToolTips").Inst(NewUICanvas.Inst.transform);
-				}
-				if (this.SlotType == SlotType.物品)
-				{
-					ToolTipsMag.Inst.Show(this.Item);
-				}
-				else
-				{
-					ToolTipsMag.Inst.Show(this.Skill);
-				}
-			}
-			this._selectPanel.SetActive(true);
-		}
-
-		// Token: 0x06004546 RID: 17734 RVA: 0x001D656C File Offset: 0x001D476C
-		public virtual void OnPointerExit(PointerEventData eventData)
-		{
-			if (DragMag.Inst.IsDraging)
-			{
-				DragMag.Inst.ToSlot = null;
-			}
-			if (this.SlotType == SlotType.空)
-			{
-				return;
-			}
-			this.IsIn = false;
-			this._selectPanel.SetActive(false);
-			if (ToolTipsMag.Inst != null)
+			IsIn = false;
+			_selectPanel.SetActive(false);
+			if ((Object)(object)ToolTipsMag.Inst != (Object)null)
 			{
 				ToolTipsMag.Inst.Close();
 			}
 		}
+	}
 
-		// Token: 0x06004547 RID: 17735 RVA: 0x001D65C4 File Offset: 0x001D47C4
-		public virtual void OnPointerUp(PointerEventData eventData)
+	public virtual void OnPointerUp(PointerEventData eventData)
+	{
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Invalid comparison between Unknown and I4
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Invalid comparison between Unknown and I4
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		if (eventData.dragging || IsNull())
 		{
-			if (eventData.dragging)
+			return;
+		}
+		if ((int)eventData.button == 1 && CanUse)
+		{
+			DragMag.Inst.DragSlot = this;
+			if (Item != null)
 			{
-				return;
-			}
-			if (!this.IsNull())
-			{
-				if (eventData.button == 1 && this.CanUse)
+				Item.Use();
+				if (Item != null && Item.Count > 0)
 				{
-					DragMag.Inst.DragSlot = this;
-					if (this.Item != null)
-					{
-						this.Item.Use();
-						if (this.Item != null && this.Item.Count > 0)
-						{
-							this.UpdateItemUI();
-						}
-					}
-					this._selectPanel.SetActive(false);
-					ToolTipsMag.Inst.Close();
-				}
-				if (eventData.button == 1 && this.OnRightClick != null)
-				{
-					this.OnRightClick.Invoke();
-				}
-				if (eventData.button == null && this.OnLeftClick != null)
-				{
-					this.OnLeftClick.Invoke();
+					UpdateItemUI();
 				}
 			}
+			_selectPanel.SetActive(false);
+			ToolTipsMag.Inst.Close();
 		}
-
-		// Token: 0x06004548 RID: 17736 RVA: 0x001D667D File Offset: 0x001D487D
-		public void SetGrey(bool grey)
+		if ((int)eventData.button == 1 && OnRightClick != null)
 		{
-			this._icon.material = (grey ? GreyMatManager.Grey1 : null);
+			OnRightClick.Invoke();
 		}
-
-		// Token: 0x06004549 RID: 17737 RVA: 0x001D6695 File Offset: 0x001D4895
-		public Sprite GetIcon()
+		if ((int)eventData.button == 0 && OnLeftClick != null)
 		{
-			return this._icon.sprite;
+			OnLeftClick.Invoke();
 		}
+	}
 
-		// Token: 0x0600454A RID: 17738 RVA: 0x001D66A2 File Offset: 0x001D48A2
-		public void SetName(string targetName, string color)
+	public void SetGrey(bool grey)
+	{
+		((Graphic)_icon).material = (grey ? GreyMatManager.Grey1 : null);
+	}
+
+	public Sprite GetIcon()
+	{
+		return _icon.sprite;
+	}
+
+	public void SetName(string targetName, string color)
+	{
+		_name.SetText(targetName, color);
+	}
+
+	public void SetName(string targetName, Color color)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		_name.SetText(targetName, color.ColorToString());
+	}
+
+	private void OnDestroy()
+	{
+		if ((Object)(object)ToolTipsMag.Inst != (Object)null)
 		{
-			this._name.SetText(targetName, color);
+			ToolTipsMag.Inst.Close();
 		}
+	}
 
-		// Token: 0x0600454B RID: 17739 RVA: 0x001D66B1 File Offset: 0x001D48B1
-		public void SetName(string targetName, Color color)
+	public virtual void OnBeginDrag(PointerEventData eventData)
+	{
+		if (CanDrag())
 		{
-			this._name.SetText(targetName, color.ColorToString());
-		}
-
-		// Token: 0x0600454C RID: 17740 RVA: 0x000B3123 File Offset: 0x000B1323
-		private void OnDestroy()
-		{
-			if (ToolTipsMag.Inst != null)
-			{
-				ToolTipsMag.Inst.Close();
-			}
-		}
-
-		// Token: 0x0600454D RID: 17741 RVA: 0x001D66C5 File Offset: 0x001D48C5
-		public virtual void OnBeginDrag(PointerEventData eventData)
-		{
-			if (!this.CanDrag())
-			{
-				return;
-			}
 			DragMag.Inst.StartDrag(this);
 		}
+	}
 
-		// Token: 0x0600454E RID: 17742 RVA: 0x001D66DB File Offset: 0x001D48DB
-		public virtual void OnDrag(PointerEventData eventData)
+	public virtual void OnDrag(PointerEventData eventData)
+	{
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		if (CanDrag())
 		{
-			if (!this.CanDrag())
-			{
-				return;
-			}
-			DragMag.Inst.UpdatePostion(eventData.position);
+			DragMag.Inst.UpdatePostion(Vector2.op_Implicit(eventData.position));
 		}
+	}
 
-		// Token: 0x0600454F RID: 17743 RVA: 0x001D66FB File Offset: 0x001D48FB
-		public virtual void OnEndDrag(PointerEventData eventData)
+	public virtual void OnEndDrag(PointerEventData eventData)
+	{
+		if (CanDrag())
 		{
-			if (!this.CanDrag())
-			{
-				return;
-			}
 			DragMag.Inst.EndDrag();
 		}
+	}
 
-		// Token: 0x06004550 RID: 17744 RVA: 0x001D6714 File Offset: 0x001D4914
-		public virtual bool CanDrag()
+	public virtual bool CanDrag()
+	{
+		if (IsNull())
 		{
-			if (this.IsNull())
+			return false;
+		}
+		if (Skill != null && Skill is ActiveSkill)
+		{
+			ActiveSkill activeSkill = (ActiveSkill)Skill;
+			if (activeSkill.AttackType.Count > 0 && activeSkill.AttackType[0] >= 12)
 			{
 				return false;
 			}
-			if (this.Skill != null && this.Skill is ActiveSkill)
-			{
-				ActiveSkill activeSkill = (ActiveSkill)this.Skill;
-				if (activeSkill.AttackType.Count > 0 && activeSkill.AttackType[0] >= 12)
-				{
-					return false;
-				}
-			}
-			return this.IsCanDrag;
 		}
-
-		// Token: 0x06004551 RID: 17745 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void OnPointerDown(PointerEventData eventData)
+		if (!IsCanDrag)
 		{
+			return false;
 		}
+		return true;
+	}
 
-		// Token: 0x040046CB RID: 18123
-		public BaseItem Item;
-
-		// Token: 0x040046CC RID: 18124
-		public BaseSkill Skill;
-
-		// Token: 0x040046CD RID: 18125
-		public BagTianJieSkill TianJieSkill;
-
-		// Token: 0x040046CE RID: 18126
-		public int Group;
-
-		// Token: 0x040046CF RID: 18127
-		public bool IsCanDrag = true;
-
-		// Token: 0x040046D0 RID: 18128
-		public bool IsIn;
-
-		// Token: 0x040046D1 RID: 18129
-		public bool CanUse = true;
-
-		// Token: 0x040046D2 RID: 18130
-		public SlotType SlotType;
-
-		// Token: 0x040046D3 RID: 18131
-		public CanSlotType AcceptType;
-
-		// Token: 0x040046D4 RID: 18132
-		protected GameObject _nullPanel;
-
-		// Token: 0x040046D5 RID: 18133
-		protected GameObject _hasPanel;
-
-		// Token: 0x040046D6 RID: 18134
-		protected GameObject _selectPanel;
-
-		// Token: 0x040046D7 RID: 18135
-		protected GameObject _jiaoBiaoPanel;
-
-		// Token: 0x040046D8 RID: 18136
-		protected Image _jiaoBiao;
-
-		// Token: 0x040046D9 RID: 18137
-		protected Image _qualityBg;
-
-		// Token: 0x040046DA RID: 18138
-		protected Image _qualityLine;
-
-		// Token: 0x040046DB RID: 18139
-		protected Image _icon;
-
-		// Token: 0x040046DC RID: 18140
-		protected Text _name;
-
-		// Token: 0x040046DD RID: 18141
-		protected Text _count;
-
-		// Token: 0x040046DE RID: 18142
-		private Dictionary<string, object> _objDict = new Dictionary<string, object>();
-
-		// Token: 0x040046DF RID: 18143
-		public bool HideTooltip;
-
-		// Token: 0x040046E0 RID: 18144
-		public UnityEvent OnLeftClick;
-
-		// Token: 0x040046E1 RID: 18145
-		public UnityEvent OnRightClick;
+	public virtual void OnPointerDown(PointerEventData eventData)
+	{
 	}
 }

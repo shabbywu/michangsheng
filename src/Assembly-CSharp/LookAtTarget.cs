@@ -1,39 +1,41 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000046 RID: 70
 [AddComponentMenu("NGUI/Examples/Look At Target")]
 public class LookAtTarget : MonoBehaviour
 {
-	// Token: 0x06000459 RID: 1113 RVA: 0x00017F57 File Offset: 0x00016157
+	public int level;
+
+	public Transform target;
+
+	public float speed = 8f;
+
+	private Transform mTrans;
+
 	private void Start()
 	{
-		this.mTrans = base.transform;
+		mTrans = ((Component)this).transform;
 	}
 
-	// Token: 0x0600045A RID: 1114 RVA: 0x00017F68 File Offset: 0x00016168
 	private void LateUpdate()
 	{
-		if (this.target != null)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)target != (Object)null)
 		{
-			Vector3 vector = this.target.position - this.mTrans.position;
-			if (vector.magnitude > 0.001f)
+			Vector3 val = target.position - mTrans.position;
+			if (((Vector3)(ref val)).magnitude > 0.001f)
 			{
-				Quaternion quaternion = Quaternion.LookRotation(vector);
-				this.mTrans.rotation = Quaternion.Slerp(this.mTrans.rotation, quaternion, Mathf.Clamp01(this.speed * Time.deltaTime));
+				Quaternion val2 = Quaternion.LookRotation(val);
+				mTrans.rotation = Quaternion.Slerp(mTrans.rotation, val2, Mathf.Clamp01(speed * Time.deltaTime));
 			}
 		}
 	}
-
-	// Token: 0x04000283 RID: 643
-	public int level;
-
-	// Token: 0x04000284 RID: 644
-	public Transform target;
-
-	// Token: 0x04000285 RID: 645
-	public float speed = 8f;
-
-	// Token: 0x04000286 RID: 646
-	private Transform mTrans;
 }

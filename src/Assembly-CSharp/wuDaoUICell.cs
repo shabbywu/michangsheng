@@ -1,118 +1,139 @@
-﻿using System;
 using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200050F RID: 1295
 public class wuDaoUICell : MonoBehaviour
 {
-	// Token: 0x0600299F RID: 10655 RVA: 0x00004095 File Offset: 0x00002295
+	public int ID;
+
+	public Image bg;
+
+	public Image icon;
+
+	public Text castNum;
+
+	public Text wuDaoName;
+
+	public Vector3 postion;
+
+	public JSONObject WuDaoJson => jsonData.instance.WuDaoJson[ID.ToString()];
+
 	private void Start()
 	{
 	}
 
-	// Token: 0x060029A0 RID: 10656 RVA: 0x0013E26E File Offset: 0x0013C46E
 	private void FixedUpdate()
 	{
-		this.postion = base.transform.position;
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		postion = ((Component)this).transform.position;
 	}
 
-	// Token: 0x060029A1 RID: 10657 RVA: 0x0013E281 File Offset: 0x0013C481
 	public void Click()
 	{
-		WuDaoUIMag.inst.wuDaoCellTooltip.open(this.ID, this.icon);
-		WuDaoUIMag.inst.wuDaoCellTooltip.action = delegate()
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Expected O, but got Unknown
+		WuDaoUIMag.inst.wuDaoCellTooltip.open(ID, icon);
+		WuDaoUIMag.inst.wuDaoCellTooltip.action = (UnityAction)delegate
 		{
-			if (this.CanStudyWuDao())
+			if (CanStudyWuDao())
 			{
-				this.studyWuDao();
+				studyWuDao();
 				WuDaoUIMag.inst.upWuDaoDate();
 			}
-			else if (this.IsStudy())
+			else if (IsStudy())
 			{
-				UIPopTip.Inst.Pop("已经领悟过该大道", PopTipIconType.叹号);
+				UIPopTip.Inst.Pop("已经领悟过该大道");
 			}
 			else
 			{
-				UIPopTip.Inst.Pop("未达到领悟条件", PopTipIconType.叹号);
+				UIPopTip.Inst.Pop("未达到领悟条件");
 			}
 			WuDaoUIMag.inst.ResetCellButton();
 		};
 	}
 
-	// Token: 0x060029A2 RID: 10658 RVA: 0x0013E2BC File Offset: 0x0013C4BC
 	public void studyWuDao()
 	{
 		Avatar player = Tools.instance.getPlayer();
-		JSONObject wuDaoJson = this.WuDaoJson;
-		foreach (JSONObject jsonobject in wuDaoJson["Type"].list)
+		JSONObject wuDaoJson = WuDaoJson;
+		foreach (JSONObject item in wuDaoJson["Type"].list)
 		{
-			player.wuDaoMag.addWuDaoSkill(jsonobject.I, wuDaoJson["id"].I);
+			player.wuDaoMag.addWuDaoSkill(item.I, wuDaoJson["id"].I);
 		}
 	}
 
-	// Token: 0x060029A3 RID: 10659 RVA: 0x0013E348 File Offset: 0x0013C548
 	public bool CanStudyWuDao()
 	{
-		JSONObject wuDaoJson = this.WuDaoJson;
+		JSONObject wuDaoJson = WuDaoJson;
 		Tools.instance.getPlayer();
-		if (this.IsStudy())
+		if (IsStudy())
 		{
 			return false;
 		}
 		bool flag = true;
-		foreach (JSONObject jsonobject in wuDaoJson["Type"].list)
+		foreach (JSONObject item in wuDaoJson["Type"].list)
 		{
-			if (!this.CanEx(jsonobject.I))
+			if (!CanEx(item.I))
 			{
 				return false;
 			}
-			if (this.CanLastWuDao(jsonobject.I))
+			if (CanLastWuDao(item.I))
 			{
 				flag = false;
 			}
 		}
-		return !flag && this.CanWuDaoDian();
+		if (flag)
+		{
+			return false;
+		}
+		if (!CanWuDaoDian())
+		{
+			return false;
+		}
+		return true;
 	}
 
-	// Token: 0x060029A4 RID: 10660 RVA: 0x0013E3F4 File Offset: 0x0013C5F4
 	public bool IsStudy()
 	{
-		using (List<SkillItem>.Enumerator enumerator = Tools.instance.getPlayer().wuDaoMag.GetAllWuDaoSkills().GetEnumerator())
+		foreach (SkillItem allWuDaoSkill in Tools.instance.getPlayer().wuDaoMag.GetAllWuDaoSkills())
 		{
-			while (enumerator.MoveNext())
+			if (allWuDaoSkill.itemId == ID)
 			{
-				if (enumerator.Current.itemId == this.ID)
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 		return false;
 	}
 
-	// Token: 0x060029A5 RID: 10661 RVA: 0x0013E464 File Offset: 0x0013C664
 	public bool CanEx(int WuDaoType)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(WuDaoType);
-		int i = this.WuDaoJson["Lv"].I;
-		return wuDaoLevelByType >= i;
+		int i = WuDaoJson["Lv"].I;
+		if (wuDaoLevelByType >= i)
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x060029A6 RID: 10662 RVA: 0x0013E4A4 File Offset: 0x0013C6A4
 	public bool CanWuDaoDian()
 	{
 		Avatar player = Tools.instance.getPlayer();
-		JSONObject wuDaoJson = this.WuDaoJson;
-		return player.wuDaoMag.GetNowWuDaoDian() >= wuDaoJson["Cast"].I;
+		JSONObject wuDaoJson = WuDaoJson;
+		if (player.wuDaoMag.GetNowWuDaoDian() >= wuDaoJson["Cast"].I)
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x060029A7 RID: 10663 RVA: 0x0013E4E4 File Offset: 0x0013C6E4
 	public bool CanLastWuDao(int wudaoType)
 	{
 		Avatar player = Tools.instance.getPlayer();
-		JSONObject wuDaoJson = this.WuDaoJson;
+		JSONObject wuDaoJson = WuDaoJson;
 		JSONObject wuDaoStudy = player.wuDaoMag.getWuDaoStudy(wudaoType);
 		int i = wuDaoJson["Lv"].I;
 		if (i == 1)
@@ -124,17 +145,17 @@ public class wuDaoUICell : MonoBehaviour
 		{
 			dictionary[j] = false;
 		}
-		foreach (JSONObject jsonobject in wuDaoStudy.list)
+		foreach (JSONObject item in wuDaoStudy.list)
 		{
-			JSONObject jsonobject2 = jsonData.instance.WuDaoJson[jsonobject.I.ToString()];
-			if (dictionary.ContainsKey(jsonobject2["Lv"].I) && !dictionary[jsonobject2["Lv"].I])
+			JSONObject jSONObject = jsonData.instance.WuDaoJson[item.I.ToString()];
+			if (dictionary.ContainsKey(jSONObject["Lv"].I) && !dictionary[jSONObject["Lv"].I])
 			{
-				dictionary[jsonobject2["Lv"].I] = true;
+				dictionary[jSONObject["Lv"].I] = true;
 			}
 		}
-		foreach (KeyValuePair<int, bool> keyValuePair in dictionary)
+		foreach (KeyValuePair<int, bool> item2 in dictionary)
 		{
-			if (!keyValuePair.Value)
+			if (!item2.Value)
 			{
 				return false;
 			}
@@ -142,36 +163,7 @@ public class wuDaoUICell : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x170002BC RID: 700
-	// (get) Token: 0x060029A8 RID: 10664 RVA: 0x0013E63C File Offset: 0x0013C83C
-	public JSONObject WuDaoJson
-	{
-		get
-		{
-			return jsonData.instance.WuDaoJson[this.ID.ToString()];
-		}
-	}
-
-	// Token: 0x060029A9 RID: 10665 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
-
-	// Token: 0x040025F9 RID: 9721
-	public int ID;
-
-	// Token: 0x040025FA RID: 9722
-	public Image bg;
-
-	// Token: 0x040025FB RID: 9723
-	public Image icon;
-
-	// Token: 0x040025FC RID: 9724
-	public Text castNum;
-
-	// Token: 0x040025FD RID: 9725
-	public Text wuDaoName;
-
-	// Token: 0x040025FE RID: 9726
-	public Vector3 postion;
 }

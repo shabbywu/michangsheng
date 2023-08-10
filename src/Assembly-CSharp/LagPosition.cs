@@ -1,48 +1,52 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000043 RID: 67
 [AddComponentMenu("NGUI/Examples/Lag Position")]
 public class LagPosition : MonoBehaviour
 {
-	// Token: 0x06000451 RID: 1105 RVA: 0x00017D32 File Offset: 0x00015F32
-	private void OnEnable()
-	{
-		this.mTrans = base.transform;
-		this.mAbsolute = this.mTrans.position;
-		this.mRelative = this.mTrans.localPosition;
-	}
-
-	// Token: 0x06000452 RID: 1106 RVA: 0x00017D64 File Offset: 0x00015F64
-	private void Update()
-	{
-		Transform parent = this.mTrans.parent;
-		if (parent != null)
-		{
-			float num = this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime;
-			Vector3 vector = parent.position + parent.rotation * this.mRelative;
-			this.mAbsolute.x = Mathf.Lerp(this.mAbsolute.x, vector.x, Mathf.Clamp01(num * this.speed.x));
-			this.mAbsolute.y = Mathf.Lerp(this.mAbsolute.y, vector.y, Mathf.Clamp01(num * this.speed.y));
-			this.mAbsolute.z = Mathf.Lerp(this.mAbsolute.z, vector.z, Mathf.Clamp01(num * this.speed.z));
-			this.mTrans.position = this.mAbsolute;
-		}
-	}
-
-	// Token: 0x04000276 RID: 630
 	public int updateOrder;
 
-	// Token: 0x04000277 RID: 631
 	public Vector3 speed = new Vector3(10f, 10f, 10f);
 
-	// Token: 0x04000278 RID: 632
 	public bool ignoreTimeScale;
 
-	// Token: 0x04000279 RID: 633
 	private Transform mTrans;
 
-	// Token: 0x0400027A RID: 634
 	private Vector3 mRelative;
 
-	// Token: 0x0400027B RID: 635
 	private Vector3 mAbsolute;
+
+	private void OnEnable()
+	{
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		mTrans = ((Component)this).transform;
+		mAbsolute = mTrans.position;
+		mRelative = mTrans.localPosition;
+	}
+
+	private void Update()
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		Transform parent = mTrans.parent;
+		if ((Object)(object)parent != (Object)null)
+		{
+			float num = (ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
+			Vector3 val = parent.position + parent.rotation * mRelative;
+			mAbsolute.x = Mathf.Lerp(mAbsolute.x, val.x, Mathf.Clamp01(num * speed.x));
+			mAbsolute.y = Mathf.Lerp(mAbsolute.y, val.y, Mathf.Clamp01(num * speed.y));
+			mAbsolute.z = Mathf.Lerp(mAbsolute.z, val.z, Mathf.Clamp01(num * speed.z));
+			mTrans.position = mAbsolute;
+		}
+	}
 }

@@ -1,46 +1,110 @@
-﻿using System;
+using System;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public class Attempt
 {
-	// Token: 0x020005CE RID: 1486
-	public class Attempt
+	private TryerDelegate m_Tryer;
+
+	private Action m_Listeners;
+
+	public void SetTryer(TryerDelegate tryer)
 	{
-		// Token: 0x06002FE6 RID: 12262 RVA: 0x0015958A File Offset: 0x0015778A
-		public void SetTryer(TryerDelegate tryer)
-		{
-			this.m_Tryer = tryer;
-		}
+		m_Tryer = tryer;
+	}
 
-		// Token: 0x06002FE7 RID: 12263 RVA: 0x00159593 File Offset: 0x00157793
-		public void AddListener(Action listener)
-		{
-			this.m_Listeners = (Action)Delegate.Combine(this.m_Listeners, listener);
-		}
+	public void AddListener(Action listener)
+	{
+		m_Listeners = (Action)Delegate.Combine(m_Listeners, listener);
+	}
 
-		// Token: 0x06002FE8 RID: 12264 RVA: 0x001595AC File Offset: 0x001577AC
-		public void RemoveListener(Action listener)
-		{
-			this.m_Listeners = (Action)Delegate.Remove(this.m_Listeners, listener);
-		}
+	public void RemoveListener(Action listener)
+	{
+		m_Listeners = (Action)Delegate.Remove(m_Listeners, listener);
+	}
 
-		// Token: 0x06002FE9 RID: 12265 RVA: 0x001595C5 File Offset: 0x001577C5
-		public bool Try()
+	public bool Try()
+	{
+		if (m_Tryer == null || m_Tryer())
 		{
-			if (this.m_Tryer == null || this.m_Tryer())
+			if (m_Listeners != null)
 			{
-				if (this.m_Listeners != null)
-				{
-					this.m_Listeners();
-				}
-				return true;
+				m_Listeners();
 			}
-			return false;
+			return true;
 		}
+		return false;
+	}
+}
+public class Attempt<T>
+{
+	public delegate bool GenericTryerDelegate(T arg);
 
-		// Token: 0x04002A5B RID: 10843
-		private TryerDelegate m_Tryer;
+	private GenericTryerDelegate m_Tryer;
 
-		// Token: 0x04002A5C RID: 10844
-		private Action m_Listeners;
+	private Action<T> m_Listeners;
+
+	public void SetTryer(GenericTryerDelegate tryer)
+	{
+		m_Tryer = tryer;
+	}
+
+	public void AddListener(Action<T> listener)
+	{
+		m_Listeners = (Action<T>)Delegate.Combine(m_Listeners, listener);
+	}
+
+	public void RemoveListener(Action<T> listener)
+	{
+		m_Listeners = (Action<T>)Delegate.Remove(m_Listeners, listener);
+	}
+
+	public bool Try(T arg)
+	{
+		if (m_Tryer != null && m_Tryer(arg))
+		{
+			if (m_Listeners != null)
+			{
+				m_Listeners(arg);
+			}
+			return true;
+		}
+		return false;
+	}
+}
+public class Attempt<T, V>
+{
+	public delegate bool GenericTryerDelegate(T arg1, V arg2);
+
+	private GenericTryerDelegate m_Tryer;
+
+	private Action<T, V> m_Listeners;
+
+	public void SetTryer(GenericTryerDelegate tryer)
+	{
+		m_Tryer = tryer;
+	}
+
+	public void AddListener(Action<T, V> listener)
+	{
+		m_Listeners = (Action<T, V>)Delegate.Combine(m_Listeners, listener);
+	}
+
+	public void RemoveListener(Action<T, V> listener)
+	{
+		m_Listeners = (Action<T, V>)Delegate.Remove(m_Listeners, listener);
+	}
+
+	public bool Try(T arg1, V arg2)
+	{
+		if (m_Tryer != null && m_Tryer(arg1, arg2))
+		{
+			if (m_Listeners != null)
+			{
+				m_Listeners(arg1, arg2);
+			}
+			return true;
+		}
+		return false;
 	}
 }

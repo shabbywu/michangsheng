@@ -1,18 +1,14 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
-{
-	// Token: 0x02000DDD RID: 3549
-	[Serializable]
-	public class InvokeMethodParameter
-	{
-		// Token: 0x0400569E RID: 22174
-		[SerializeField]
-		public ObjectValue objValue;
+namespace Fungus;
 
-		// Token: 0x0400569F RID: 22175
-		[SerializeField]
-		public string variableKey;
-	}
+[Serializable]
+public class InvokeMethodParameter
+{
+	[SerializeField]
+	public ObjectValue objValue;
+
+	[SerializeField]
+	public string variableKey;
 }

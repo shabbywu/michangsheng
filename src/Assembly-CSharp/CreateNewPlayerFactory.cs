@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using KBEngine;
@@ -6,36 +6,37 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020002B1 RID: 689
 public class CreateNewPlayerFactory
 {
-	// Token: 0x06001850 RID: 6224 RVA: 0x000A9A54 File Offset: 0x000A7C54
+	private Thread createAvatarThead;
+
+	public bool isCreateComplete;
+
 	public void createPlayer(int id, int index, string firstName, string lastName, Avatar avatar)
 	{
-		this.isCreateComplete = false;
+		isCreateComplete = false;
 		Tools.instance.NextSaveTime = DateTime.Now;
-		YSNewSaveSystem.Save("SaveAvatar.txt", 1, true);
+		YSNewSaveSystem.Save("SaveAvatar.txt", 1);
 		PlayerPrefs.SetInt("NowPlayerFileAvatar", id);
 		avatar.name = firstName + lastName;
 		avatar.firstName = firstName;
 		avatar.lastName = lastName;
-		YSNewSaveSystem.Save("FirstSetAvatarRandomJsonData.txt", 1, true);
+		YSNewSaveSystem.Save("FirstSetAvatarRandomJsonData.txt", 1);
 		Loom.RunAsync(delegate
 		{
 			Tools.instance.IsInDF = false;
 			jsonData.instance.AvatarBackpackJsonData = null;
 			FactoryManager.inst.npcFactory.firstCreateNpcs();
-			this.initAvatarFace(id, index, 1);
+			initAvatarFace(id, index);
 			jsonData.instance.AvatarRandomJsonData[string.Concat(1)].SetField("Name", avatar.name);
-			this.initChuanYingFu();
+			initChuanYingFu();
 			avatar.seaNodeMag.INITSEA();
-			NpcJieSuanManager.inst.NpcJieSuan(1, false);
-			this.isCreateComplete = true;
+			NpcJieSuanManager.inst.NpcJieSuan(1, isCanChanger: false);
+			isCreateComplete = true;
 		});
 		SceneManager.LoadScene("LoadingScreen");
 	}
 
-	// Token: 0x06001851 RID: 6225 RVA: 0x000A9B0C File Offset: 0x000A7D0C
 	private void initChuanYingFu()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -62,25 +63,24 @@ public class CreateNewPlayerFactory
 		}
 	}
 
-	// Token: 0x06001852 RID: 6226 RVA: 0x000A9C04 File Offset: 0x000A7E04
 	private void initAvatarFace(int id, int index, int startIndex = 1)
 	{
 		JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
 		JSONObject avatarRandomJsonData = jsonData.instance.AvatarRandomJsonData;
 		new JSONObject();
-		foreach (JSONObject jsonobject in avatarJsonData.list)
+		foreach (JSONObject item in avatarJsonData.list)
 		{
-			if (jsonobject["id"].I != 1 && jsonobject["id"].I >= startIndex)
+			if (item["id"].I != 1 && item["id"].I >= startIndex)
 			{
-				int i = jsonobject["id"].I;
-				if (!jsonobject.HasField("isImportant") || !jsonobject["isImportant"].b)
+				_ = item["id"].I;
+				if (!item.HasField("isImportant") || !item["isImportant"].b)
 				{
-					JSONObject jsonobject2 = jsonData.instance.randomAvatarFace(jsonobject, avatarRandomJsonData.HasField(string.Concat(jsonobject["id"].I)) ? avatarRandomJsonData[jsonobject["id"].I.ToString()] : null);
-					avatarRandomJsonData.SetField(string.Concat(jsonobject["id"].I), jsonobject2.Copy());
+					JSONObject jSONObject = jsonData.instance.randomAvatarFace(item, avatarRandomJsonData.HasField(string.Concat(item["id"].I)) ? avatarRandomJsonData[item["id"].I.ToString()] : null);
+					avatarRandomJsonData.SetField(string.Concat(item["id"].I), jSONObject.Copy());
 				}
 				else
 				{
-					avatarRandomJsonData.SetField(string.Concat(jsonobject["id"].I), avatarRandomJsonData[jsonobject["BindingNpcID"].I.ToString()]);
+					avatarRandomJsonData.SetField(string.Concat(item["id"].I), avatarRandomJsonData[item["BindingNpcID"].I.ToString()]);
 				}
 			}
 		}
@@ -88,47 +88,38 @@ public class CreateNewPlayerFactory
 		{
 			avatarRandomJsonData.SetField("10000", avatarRandomJsonData["1"]);
 		}
-		this.randomAvatarBackpack();
+		randomAvatarBackpack();
 		Tools.instance.getPlayer();
-		foreach (JSONObject jsonobject3 in avatarJsonData.list)
+		foreach (JSONObject item2 in avatarJsonData.list)
 		{
-			int i2 = jsonobject3["id"].I;
-			if (i2 >= 20000)
+			int i = item2["id"].I;
+			if (i >= 20000)
 			{
-				int i3 = jsonobject3["Type"].I;
-				FactoryManager.inst.npcFactory.InitAutoCreateNpcBackpack(jsonData.instance.AvatarBackpackJsonData, i2, null);
+				_ = item2["Type"].I;
+				FactoryManager.inst.npcFactory.InitAutoCreateNpcBackpack(jsonData.instance.AvatarBackpackJsonData, i);
 			}
 		}
 	}
 
-	// Token: 0x06001853 RID: 6227 RVA: 0x000A9E5C File Offset: 0x000A805C
 	private void randomAvatarBackpack()
 	{
-		JSONObject jsonobject = new JSONObject();
+		JSONObject jsondata = new JSONObject();
 		Avatar avatar = Tools.instance.getPlayer();
-		List<JToken> list = Tools.FindAllJTokens(jsonData.instance.ResetAvatarBackpackBanBen, (JToken aa) => (int)aa["BanBenID"] > avatar.BanBenHao);
-		foreach (JSONObject jsonobject2 in jsonData.instance.BackpackJsonData.list)
+		List<JToken> list = Tools.FindAllJTokens((JToken)(object)jsonData.instance.ResetAvatarBackpackBanBen, (JToken aa) => (int)aa[(object)"BanBenID"] > avatar.BanBenHao);
+		foreach (JSONObject item in jsonData.instance.BackpackJsonData.list)
 		{
-			int avatarID = jsonobject2["AvatrID"].I;
-			if (list.Find((JToken aa) => (int)aa["avatar"] == avatarID) == null && jsonData.instance.AvatarBackpackJsonData != null && jsonData.instance.AvatarBackpackJsonData.HasField(string.Concat(avatarID)))
+			int avatarID = item["AvatrID"].I;
+			if (list.Find((JToken aa) => (int)aa[(object)"avatar"] == avatarID) == null && jsonData.instance.AvatarBackpackJsonData != null && jsonData.instance.AvatarBackpackJsonData.HasField(string.Concat(avatarID)))
 			{
-				jsonobject.SetField(string.Concat(avatarID), jsonData.instance.AvatarBackpackJsonData[string.Concat(avatarID)]);
+				jsondata.SetField(string.Concat(avatarID), jsonData.instance.AvatarBackpackJsonData[string.Concat(avatarID)]);
+				continue;
 			}
-			else
+			if (!jsondata.HasField(string.Concat(avatarID)))
 			{
-				if (!jsonobject.HasField(string.Concat(avatarID)))
-				{
-					jsonData.instance.InitAvatarBackpack(ref jsonobject, avatarID);
-				}
-				jsonData.instance.AvatarAddBackpackByInfo(ref jsonobject, jsonobject2);
+				jsonData.instance.InitAvatarBackpack(ref jsondata, avatarID);
 			}
+			jsonData.instance.AvatarAddBackpackByInfo(ref jsondata, item);
 		}
-		jsonData.instance.AvatarBackpackJsonData = jsonobject;
+		jsonData.instance.AvatarBackpackJsonData = jsondata;
 	}
-
-	// Token: 0x04001365 RID: 4965
-	private Thread createAvatarThead;
-
-	// Token: 0x04001366 RID: 4966
-	public bool isCreateComplete;
 }

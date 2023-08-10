@@ -1,74 +1,67 @@
-﻿using System;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class OffsetEffect : IEffect
 {
-	// Token: 0x02000697 RID: 1687
-	public class OffsetEffect : IEffect
+	private Vector2 offset = Vector2.zero;
+
+	public float xMin = -5f;
+
+	public float yMin = -5f;
+
+	public float xMax = 5f;
+
+	public float yMax = 5f;
+
+	public float speed = 2f;
+
+	private Tweener tweener;
+
+	private Draw current;
+
+	public void UpdateEffect(Draw draw, float deltaTime)
 	{
-		// Token: 0x06003551 RID: 13649 RVA: 0x00170814 File Offset: 0x0016EA14
-		public void UpdateEffect(Draw draw, float deltaTime)
+		if (tweener == null)
 		{
-			if (this.tweener == null)
-			{
-				this.tweener = new Tweener();
-				this.tweener.method = Tweener.Method.EaseInOut;
-				this.tweener.style = Tweener.Style.PingPong;
-				this.tweener.duration = 1f;
-				this.tweener.OnUpdate = new Action<float, bool>(this.UpdateOffset);
-			}
-			this.current = draw;
-			this.tweener.Update(deltaTime);
-			this.current = null;
+			tweener = new Tweener();
+			tweener.method = Tweener.Method.EaseInOut;
+			tweener.style = Tweener.Style.PingPong;
+			tweener.duration = 1f;
+			tweener.OnUpdate = UpdateOffset;
 		}
+		current = draw;
+		tweener.Update(deltaTime);
+		current = null;
+	}
 
-		// Token: 0x06003552 RID: 13650 RVA: 0x00170890 File Offset: 0x0016EA90
-		private void UpdateOffset(float val, bool isFin)
+	private void UpdateOffset(float val, bool isFin)
+	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		offset = Vector2.Lerp(new Vector2(xMin, yMin), new Vector2(xMax, yMax), val);
+		Tools.UpdateRect(current.rectTransform, offset);
+	}
+
+	public void Release()
+	{
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		if (tweener != null)
 		{
-			this.offset = Vector2.Lerp(new Vector2(this.xMin, this.yMin), new Vector2(this.xMax, this.yMax), val);
-			Tools.UpdateRect(this.current.rectTransform, this.offset);
+			tweener.method = Tweener.Method.EaseInOut;
+			tweener.style = Tweener.Style.PingPong;
+			tweener.duration = 1f;
 		}
-
-		// Token: 0x06003553 RID: 13651 RVA: 0x001708E4 File Offset: 0x0016EAE4
-		public void Release()
-		{
-			if (this.tweener != null)
-			{
-				this.tweener.method = Tweener.Method.EaseInOut;
-				this.tweener.style = Tweener.Style.PingPong;
-				this.tweener.duration = 1f;
-			}
-			this.current = null;
-			this.xMin = -5f;
-			this.yMin = -5f;
-			this.xMax = 5f;
-			this.yMax = 5f;
-			this.speed = 2f;
-			this.offset = Vector2.zero;
-		}
-
-		// Token: 0x04002EF8 RID: 12024
-		private Vector2 offset = Vector2.zero;
-
-		// Token: 0x04002EF9 RID: 12025
-		public float xMin = -5f;
-
-		// Token: 0x04002EFA RID: 12026
-		public float yMin = -5f;
-
-		// Token: 0x04002EFB RID: 12027
-		public float xMax = 5f;
-
-		// Token: 0x04002EFC RID: 12028
-		public float yMax = 5f;
-
-		// Token: 0x04002EFD RID: 12029
-		public float speed = 2f;
-
-		// Token: 0x04002EFE RID: 12030
-		private Tweener tweener;
-
-		// Token: 0x04002EFF RID: 12031
-		private Draw current;
+		current = null;
+		xMin = -5f;
+		yMin = -5f;
+		xMax = 5f;
+		yMax = 5f;
+		speed = 2f;
+		offset = Vector2.zero;
 	}
 }

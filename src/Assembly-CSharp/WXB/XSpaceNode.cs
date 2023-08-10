@@ -1,60 +1,50 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class XSpaceNode : NodeBase
 {
-	// Token: 0x020006B2 RID: 1714
-	public class XSpaceNode : NodeBase
+	public float d_offset;
+
+	public override float getHeight()
 	{
-		// Token: 0x06003608 RID: 13832 RVA: 0x00172CA9 File Offset: 0x00170EA9
-		public override float getHeight()
-		{
-			return 0.01f;
-		}
+		return 0.01f;
+	}
 
-		// Token: 0x06003609 RID: 13833 RVA: 0x00172CB0 File Offset: 0x00170EB0
-		public override float getWidth()
-		{
-			return this.d_offset;
-		}
+	public override float getWidth()
+	{
+		return d_offset;
+	}
 
-		// Token: 0x0600360A RID: 13834 RVA: 0x00172CB8 File Offset: 0x00170EB8
-		public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
+	public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
+	{
+		Vector2 val = default(Vector2);
+		((Vector2)(ref val))._002Ector(x + offsetX, offsetY);
+		for (int i = 0; i < yline; i++)
 		{
-			Vector2 vector;
-			vector..ctor(x + offsetX, offsetY);
-			int num = 0;
-			while ((long)num < (long)((ulong)yline))
-			{
-				vector.y += lines[num].y;
-				num++;
-			}
-			float num2 = NodeBase.AlignedFormatting(this.owner, this.formatting, maxWidth, lines[(int)yline].x);
-			if (x + this.d_offset + num2 > maxWidth)
-			{
-				yline += 1U;
-				x = 0f;
-			}
-			else
-			{
-				x += this.d_offset;
-			}
-			if (this.d_bNewLine)
-			{
-				yline += 1U;
-				x = 0f;
-			}
+			val.y += lines[i].y;
 		}
-
-		// Token: 0x0600360B RID: 13835 RVA: 0x00172D5E File Offset: 0x00170F5E
-		public override void Release()
+		float num = NodeBase.AlignedFormatting(owner, formatting, maxWidth, lines[(int)yline].x);
+		if (x + d_offset + num > maxWidth)
 		{
-			base.Release();
-			this.d_offset = 0f;
+			yline++;
+			x = 0f;
 		}
+		else
+		{
+			x += d_offset;
+		}
+		if (d_bNewLine)
+		{
+			yline++;
+			x = 0f;
+		}
+	}
 
-		// Token: 0x04002F56 RID: 12118
-		public float d_offset;
+	public override void Release()
+	{
+		base.Release();
+		d_offset = 0f;
 	}
 }

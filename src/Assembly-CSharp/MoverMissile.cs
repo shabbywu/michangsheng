@@ -1,41 +1,88 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F3 RID: 243
 public class MoverMissile : MonoBehaviour
 {
-	// Token: 0x06000B8C RID: 2956 RVA: 0x0004679E File Offset: 0x0004499E
+	public GameObject target;
+
+	public string TargetTag;
+
+	public float damping = 3f;
+
+	public float Speed = 500f;
+
+	public float SpeedMax = 1000f;
+
+	public float SpeedMult = 1f;
+
+	public Vector3 Noise = new Vector3(20f, 20f, 20f);
+
+	public int distanceLock = 70;
+
+	public int DurationLock = 40;
+
+	public float targetlockdirection = 0.5f;
+
+	public bool Seeker;
+
+	public float LifeTime = 5f;
+
+	private int timetorock;
+
+	private bool locked;
+
 	private void Start()
 	{
-		Object.Destroy(base.gameObject, this.LifeTime);
+		Object.Destroy((Object)(object)((Component)this).gameObject, LifeTime);
 	}
 
-	// Token: 0x06000B8D RID: 2957 RVA: 0x000467B4 File Offset: 0x000449B4
 	private void Update()
 	{
-		if (this.Seeker)
+		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0245: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0106: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0110: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0151: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		if (Seeker)
 		{
-			if (this.timetorock > this.DurationLock)
+			if (timetorock > DurationLock)
 			{
-				if (!this.locked && !this.target)
+				if (!locked && !Object.op_Implicit((Object)(object)target))
 				{
 					float num = 2.1474836E+09f;
-					if (GameObject.FindGameObjectsWithTag(this.TargetTag).Length != 0)
+					if (GameObject.FindGameObjectsWithTag(TargetTag).Length != 0)
 					{
-						foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(this.TargetTag))
+						GameObject[] array = GameObject.FindGameObjectsWithTag(TargetTag);
+						foreach (GameObject val in array)
 						{
-							if (gameObject)
+							if (!Object.op_Implicit((Object)(object)val))
 							{
-								float num2 = Vector3.Distance(gameObject.transform.position, base.gameObject.transform.position);
-								if ((float)this.distanceLock > num2)
+								continue;
+							}
+							float num2 = Vector3.Distance(val.transform.position, ((Component)this).gameObject.transform.position);
+							if ((float)distanceLock > num2)
+							{
+								if (num > num2)
 								{
-									if (num > num2)
-									{
-										num = num2;
-										this.target = gameObject;
-									}
-									this.locked = true;
+									num = num2;
+									target = val;
 								}
+								locked = true;
 							}
 						}
 					}
@@ -43,71 +90,31 @@ public class MoverMissile : MonoBehaviour
 			}
 			else
 			{
-				this.timetorock++;
+				timetorock++;
 			}
-			if (this.target)
+			if (Object.op_Implicit((Object)(object)target))
 			{
-				this.damping += 0.9f;
-				Quaternion quaternion = Quaternion.LookRotation(this.target.transform.position - base.transform.transform.position);
-				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, quaternion, Time.deltaTime * this.damping);
-				if (Vector3.Dot((this.target.transform.position - base.transform.position).normalized, base.transform.forward) < this.targetlockdirection)
+				damping += 0.9f;
+				Quaternion val2 = Quaternion.LookRotation(target.transform.position - ((Component)((Component)this).transform).transform.position);
+				((Component)this).transform.rotation = Quaternion.Slerp(((Component)this).transform.rotation, val2, Time.deltaTime * damping);
+				Vector3 val3 = target.transform.position - ((Component)this).transform.position;
+				if (Vector3.Dot(((Vector3)(ref val3)).normalized, ((Component)this).transform.forward) < targetlockdirection)
 				{
-					this.target = null;
+					target = null;
 				}
 			}
 			else
 			{
-				this.locked = false;
+				locked = false;
 			}
 		}
-		this.Speed += this.SpeedMult;
-		if (this.Speed > this.SpeedMax)
+		Speed += SpeedMult;
+		if (Speed > SpeedMax)
 		{
-			this.Speed = this.SpeedMax;
+			Speed = SpeedMax;
 		}
-		base.GetComponent<Rigidbody>().velocity = this.Speed * Time.deltaTime * base.gameObject.transform.forward;
-		base.GetComponent<Rigidbody>().velocity += new Vector3(Random.Range(-this.Noise.x, this.Noise.x), Random.Range(-this.Noise.y, this.Noise.y), Random.Range(-this.Noise.z, this.Noise.z));
+		((Component)this).GetComponent<Rigidbody>().velocity = Speed * Time.deltaTime * ((Component)this).gameObject.transform.forward;
+		Rigidbody component = ((Component)this).GetComponent<Rigidbody>();
+		component.velocity += new Vector3(Random.Range(0f - Noise.x, Noise.x), Random.Range(0f - Noise.y, Noise.y), Random.Range(0f - Noise.z, Noise.z));
 	}
-
-	// Token: 0x040007C3 RID: 1987
-	public GameObject target;
-
-	// Token: 0x040007C4 RID: 1988
-	public string TargetTag;
-
-	// Token: 0x040007C5 RID: 1989
-	public float damping = 3f;
-
-	// Token: 0x040007C6 RID: 1990
-	public float Speed = 500f;
-
-	// Token: 0x040007C7 RID: 1991
-	public float SpeedMax = 1000f;
-
-	// Token: 0x040007C8 RID: 1992
-	public float SpeedMult = 1f;
-
-	// Token: 0x040007C9 RID: 1993
-	public Vector3 Noise = new Vector3(20f, 20f, 20f);
-
-	// Token: 0x040007CA RID: 1994
-	public int distanceLock = 70;
-
-	// Token: 0x040007CB RID: 1995
-	public int DurationLock = 40;
-
-	// Token: 0x040007CC RID: 1996
-	public float targetlockdirection = 0.5f;
-
-	// Token: 0x040007CD RID: 1997
-	public bool Seeker;
-
-	// Token: 0x040007CE RID: 1998
-	public float LifeTime = 5f;
-
-	// Token: 0x040007CF RID: 1999
-	private int timetorock;
-
-	// Token: 0x040007D0 RID: 2000
-	private bool locked;
 }

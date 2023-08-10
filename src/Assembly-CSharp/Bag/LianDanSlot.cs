@@ -1,151 +1,136 @@
-﻿using System;
-using script.NewLianDan;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using script.NewLianDan;
 
-namespace Bag
+namespace Bag;
+
+public class LianDanSlot : BaseSlot
 {
-	// Token: 0x020009C0 RID: 2496
-	public class LianDanSlot : BaseSlot
+	public bool IsInBag;
+
+	public bool IsLock;
+
+	private Text _yaoXin;
+
+	private GameObject _lock;
+
+	private GameObject _unLock;
+
+	private void Awake()
 	{
-		// Token: 0x06004571 RID: 17777 RVA: 0x001D73E0 File Offset: 0x001D55E0
-		private void Awake()
+		if (!IsInBag)
 		{
-			if (!this.IsInBag)
-			{
-				base.Get<FpBtn>("Null/UnLock").MouseUp = new UnityAction<PointerEventData>(this.OnPointerUp);
-			}
+			Get<FpBtn>("Null/UnLock").MouseUp = OnPointerUp;
 		}
+	}
 
-		// Token: 0x06004572 RID: 17778 RVA: 0x001D7407 File Offset: 0x001D5607
-		public override void SetSlotData(object data)
-		{
-			base.SetSlotData(data);
-			this.UpdateYaoXin();
-		}
+	public override void SetSlotData(object data)
+	{
+		base.SetSlotData(data);
+		UpdateYaoXin();
+	}
 
-		// Token: 0x06004573 RID: 17779 RVA: 0x001D7418 File Offset: 0x001D5618
-		public void UpdateYaoXin()
+	public void UpdateYaoXin()
+	{
+		if (Item == null)
 		{
-			if (this.Item == null)
+			if (((Object)this).name.Contains("主药") || ((Object)this).name.Contains("辅药"))
 			{
-				if (base.name.Contains("主药") || base.name.Contains("辅药"))
-				{
-					this._yaoXin.SetText("无");
-					return;
-				}
+				_yaoXin.SetText("无");
 			}
-			else
-			{
-				CaoYaoItem caoYaoItem = (CaoYaoItem)this.Item;
-				if (base.name.Contains("主药"))
-				{
-					this._yaoXin.SetText(caoYaoItem.GetZhuYao());
-					return;
-				}
-				if (base.name.Contains("辅药"))
-				{
-					this._yaoXin.SetText(caoYaoItem.GetFuYao());
-				}
-			}
+			return;
 		}
-
-		// Token: 0x06004574 RID: 17780 RVA: 0x001D74B8 File Offset: 0x001D56B8
-		public override void InitUI()
+		CaoYaoItem caoYaoItem = (CaoYaoItem)Item;
+		if (((Object)this).name.Contains("主药"))
 		{
-			base.InitUI();
-			if (!this.IsInBag)
-			{
-				if (base.name.Contains("主药") || base.name.Contains("辅药"))
-				{
-					this._yaoXin = base.Get<Text>("Bg/药性");
-				}
-				this._lock = base.Get("Null/Lock", true);
-				this._unLock = base.Get("Null/UnLock", true);
-			}
+			_yaoXin.SetText(caoYaoItem.GetZhuYao());
 		}
-
-		// Token: 0x06004575 RID: 17781 RVA: 0x001D752C File Offset: 0x001D572C
-		public void SetIsLock(bool value)
+		else if (((Object)this).name.Contains("辅药"))
 		{
-			this.IsLock = value;
-			if (this.IsLock)
+			_yaoXin.SetText(caoYaoItem.GetFuYao());
+		}
+	}
+
+	public override void InitUI()
+	{
+		base.InitUI();
+		if (!IsInBag)
+		{
+			if (((Object)this).name.Contains("主药") || ((Object)this).name.Contains("辅药"))
 			{
-				this._lock.SetActive(true);
-				this._unLock.SetActive(false);
-				this.SetNull();
+				_yaoXin = Get<Text>("Bg/药性");
+			}
+			_lock = Get("Null/Lock");
+			_unLock = Get("Null/UnLock");
+		}
+	}
+
+	public void SetIsLock(bool value)
+	{
+		IsLock = value;
+		if (IsLock)
+		{
+			_lock.SetActive(true);
+			_unLock.SetActive(false);
+			SetNull();
+		}
+		else
+		{
+			_lock.SetActive(false);
+			_unLock.SetActive(true);
+		}
+	}
+
+	public override void OnPointerUp(PointerEventData eventData)
+	{
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Invalid comparison between Unknown and I4
+		if (IsLock)
+		{
+			return;
+		}
+		if (IsInBag)
+		{
+			if (IsNull())
+			{
 				return;
 			}
-			this._lock.SetActive(false);
-			this._unLock.SetActive(true);
+			LianDanUIMag.Instance.LianDanPanel.PutCaoYao(this);
+			LianDanUIMag.Instance.CaoYaoBag.Close();
+			LianDanUIMag.Instance.LianDanPanel.CheckCanMade();
 		}
-
-		// Token: 0x06004576 RID: 17782 RVA: 0x001D7580 File Offset: 0x001D5780
-		public override void OnPointerUp(PointerEventData eventData)
+		else if ((int)eventData.button == 0)
 		{
-			if (this.IsLock)
+			LianDanUIMag.Instance.CaoYaoBag.ToSlot = this;
+			if (((Object)this).name.Contains("主药"))
 			{
-				return;
+				LianDanUIMag.Instance.CaoYaoBag.SelectWeiZhi(1);
 			}
-			if (this.IsInBag)
+			else if (((Object)this).name.Contains("辅药"))
 			{
-				if (base.IsNull())
-				{
-					return;
-				}
-				LianDanUIMag.Instance.LianDanPanel.PutCaoYao(this);
-				LianDanUIMag.Instance.CaoYaoBag.Close();
-				LianDanUIMag.Instance.LianDanPanel.CheckCanMade();
+				LianDanUIMag.Instance.CaoYaoBag.SelectWeiZhi(2);
 			}
-			else if (eventData.button == null)
+			else if (((Object)this).name.Contains("药引"))
 			{
-				LianDanUIMag.Instance.CaoYaoBag.ToSlot = this;
-				if (base.name.Contains("主药"))
-				{
-					LianDanUIMag.Instance.CaoYaoBag.SelectWeiZhi(1);
-				}
-				else if (base.name.Contains("辅药"))
-				{
-					LianDanUIMag.Instance.CaoYaoBag.SelectWeiZhi(2);
-				}
-				else if (base.name.Contains("药引"))
-				{
-					LianDanUIMag.Instance.CaoYaoBag.SelectWeiZhi(3);
-				}
-				LianDanUIMag.Instance.CaoYaoBag.Open();
+				LianDanUIMag.Instance.CaoYaoBag.SelectWeiZhi(3);
 			}
-			else if (eventData.button == 1 && !base.IsNull())
-			{
-				LianDanUIMag.Instance.LianDanPanel.BackCaoYao(this);
-			}
-			this._selectPanel.SetActive(false);
+			LianDanUIMag.Instance.CaoYaoBag.Open();
 		}
-
-		// Token: 0x06004577 RID: 17783 RVA: 0x001D769D File Offset: 0x001D589D
-		public override void SetNull()
+		else if ((int)eventData.button == 1 && !IsNull())
 		{
-			base.SetNull();
-			if (base.name.Contains("主药") || base.name.Contains("辅药"))
-			{
-				this._yaoXin.SetText("无");
-			}
+			LianDanUIMag.Instance.LianDanPanel.BackCaoYao(this);
 		}
+		_selectPanel.SetActive(false);
+	}
 
-		// Token: 0x040046FD RID: 18173
-		public bool IsInBag;
-
-		// Token: 0x040046FE RID: 18174
-		public bool IsLock;
-
-		// Token: 0x040046FF RID: 18175
-		private Text _yaoXin;
-
-		// Token: 0x04004700 RID: 18176
-		private GameObject _lock;
-
-		// Token: 0x04004701 RID: 18177
-		private GameObject _unLock;
+	public override void SetNull()
+	{
+		base.SetNull();
+		if (((Object)this).name.Contains("主药") || ((Object)this).name.Contains("辅药"))
+		{
+			_yaoXin.SetText("无");
+		}
 	}
 }

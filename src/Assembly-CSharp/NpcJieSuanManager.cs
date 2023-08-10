@@ -1,218 +1,288 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CaiJi;
 using JSONClass;
 using KBEngine;
-using script.MenPaiTask;
 using UnityEngine;
 using YSGame.TianJiDaBi;
+using script.MenPaiTask;
 
-// Token: 0x02000215 RID: 533
 public class NpcJieSuanManager : MonoBehaviour
 {
-	// Token: 0x0600154D RID: 5453 RVA: 0x00089544 File Offset: 0x00087744
+	public static NpcJieSuanManager inst;
+
+	public NpCFight npcFight;
+
+	private Random random;
+
+	public NPCXiuLian npcXiuLian;
+
+	public NPCTuPo npcTuPo;
+
+	public NpcSetField npcSetField;
+
+	public NPCShouJi npcShouJi;
+
+	public NPCFuYe npcFuYe;
+
+	public NPCUseItem npcUseItem;
+
+	public NPCLiLian npcLiLian;
+
+	public NPCStatus npcStatus;
+
+	public NpcTianJiGe npcTianJiGe;
+
+	public NPCTeShu npcTeShu;
+
+	public NPCNoteBook npcNoteBook;
+
+	public NPCMap npcMap;
+
+	public NPCSpeedJieSuan npcSpeedJieSuan;
+
+	public NPCDeath npcDeath;
+
+	public NPCChengHao npcChengHao;
+
+	public Dictionary<int, List<List<int>>> cyDictionary = new Dictionary<int, List<List<int>>>();
+
+	public List<CyPdData> cyPdAuToList;
+
+	public List<CyPdData> cyPdFungusList;
+
+	public Dictionary<int, Action<int>> ActionDictionary = new Dictionary<int, Action<int>>();
+
+	public Dictionary<int, Action<int>> NextActionDictionary = new Dictionary<int, Action<int>>();
+
+	public List<int> CurJieSuanNpcTaskList = new List<int>();
+
+	public Dictionary<int, int> ImportantNpcBangDingDictionary = new Dictionary<int, int>();
+
+	private Dictionary<int, int> NpcActionQuanZhongDictionary = new Dictionary<int, int>();
+
+	public Dictionary<int, List<int>> PaiMaiNpcDictionary = new Dictionary<int, List<int>>();
+
+	public List<int> allBigMapNpcList = new List<int>();
+
+	public List<int> JieShaNpcList = new List<int>();
+
+	public List<EmailData> lateEmailList = new List<EmailData>();
+
+	public Dictionary<int, EmailData> lateEmailDict = new Dictionary<int, EmailData>();
+
+	public List<int> lunDaoNpcList = new List<int>();
+
+	public List<List<int>> afterDeathList = new List<List<int>>();
+
+	[HideInInspector]
+	public List<string> EquipNameList = new List<string>();
+
+	public bool isUpDateNpcList;
+
+	public bool isCanJieSuan = true;
+
+	public bool JieSuanAnimation;
+
+	public int JieSuanTimes;
+
+	public string JieSuanTime = "0001-1-1";
+
+	public bool IsNoJieSuan;
+
 	private void Awake()
 	{
-		if (NpcJieSuanManager.inst != null)
+		if ((Object)(object)inst != (Object)null)
 		{
-			Object.Destroy(NpcJieSuanManager.inst.gameObject);
+			Object.Destroy((Object)(object)((Component)inst).gameObject);
 		}
-		NpcJieSuanManager.inst = this;
-		Object.DontDestroyOnLoad(NpcJieSuanManager.inst.gameObject);
+		inst = this;
+		Object.DontDestroyOnLoad((Object)(object)((Component)inst).gameObject);
 		jsonData.instance.init("Effect/json/d_avatar.py.datas", out jsonData.instance.AvatarJsonData);
-		this.random = new Random();
-		this.InitCyData();
+		random = new Random();
+		InitCyData();
 	}
 
-	// Token: 0x0600154E RID: 5454 RVA: 0x000895AC File Offset: 0x000877AC
 	public void InitCyData()
 	{
-		this.cyPdAuToList = new List<CyPdData>();
-		this.cyPdFungusList = new List<CyPdData>();
-		foreach (JSONObject jsonobject in jsonData.instance.CyNpcSendData.list)
+		cyPdAuToList = new List<CyPdData>();
+		cyPdFungusList = new List<CyPdData>();
+		foreach (JSONObject item3 in jsonData.instance.CyNpcSendData.list)
 		{
 			CyPdData cyPdData = new CyPdData();
-			cyPdData.id = jsonobject["id"].I;
-			cyPdData.npcActionList = jsonobject["NPCXingWei"].ToList();
-			cyPdData.npcType = jsonobject["NPCshenfen"].I;
-			cyPdData.minLevel = jsonobject["NPCLevel"][0].I;
-			cyPdData.maxLevel = jsonobject["NPCLevel"][1].I;
-			if (jsonobject["EventValue"].Count == 2)
+			cyPdData.id = item3["id"].I;
+			cyPdData.npcActionList = item3["NPCXingWei"].ToList();
+			cyPdData.npcType = item3["NPCshenfen"].I;
+			cyPdData.minLevel = item3["NPCLevel"][0].I;
+			cyPdData.maxLevel = item3["NPCLevel"][1].I;
+			if (item3["EventValue"].Count == 2)
 			{
-				cyPdData.staticId = jsonobject["EventValue"][0].I;
-				cyPdData.staticId = jsonobject["EventValue"][1].I;
-				cyPdData.SetStaticFuHao(jsonobject["fuhao1"].Str);
+				cyPdData.staticId = item3["EventValue"][0].I;
+				cyPdData.staticId = item3["EventValue"][1].I;
+				cyPdData.SetStaticFuHao(item3["fuhao1"].Str);
 			}
-			if (jsonobject["HaoGanDu"].I > 0)
+			if (item3["HaoGanDu"].I > 0)
 			{
-				cyPdData.needHaoGanDu = jsonobject["HaoGanDu"].I;
-				cyPdData.SetHaoGanFuHao(jsonobject["fuhao2"].Str);
+				cyPdData.needHaoGanDu = item3["HaoGanDu"].I;
+				cyPdData.SetHaoGanFuHao(item3["fuhao2"].Str);
 			}
-			if (jsonobject["StarTime"].Str != "")
+			if (item3["StarTime"].Str != "")
 			{
-				cyPdData.startTime = jsonobject["StarTime"].Str;
-				cyPdData.endTime = jsonobject["EndTime"].Str;
+				cyPdData.startTime = item3["StarTime"].Str;
+				cyPdData.endTime = item3["EndTime"].Str;
 			}
-			cyPdData.npcState = jsonobject["ZhuangTaiInfo"].I;
-			cyPdData.isOnly = (jsonobject["IsOnly"].I == 1);
-			cyPdData.cyType = jsonobject["XiaoXiType"].I;
-			cyPdData.baseRate = jsonobject["Rate"].I;
-			cyPdData.actionId = jsonobject["XingWeiType"].I;
-			cyPdData.qingFen = jsonobject["QingFen"].I;
+			cyPdData.npcState = item3["ZhuangTaiInfo"].I;
+			cyPdData.isOnly = item3["IsOnly"].I == 1;
+			cyPdData.cyType = item3["XiaoXiType"].I;
+			cyPdData.baseRate = item3["Rate"].I;
+			cyPdData.actionId = item3["XingWeiType"].I;
+			cyPdData.qingFen = item3["QingFen"].I;
 			if (cyPdData.actionId != 0)
 			{
-				cyPdData.itemPrice = jsonobject["ItemJiaGe"].I;
+				cyPdData.itemPrice = item3["ItemJiaGe"].I;
 			}
-			cyPdData.outTime = jsonobject["GuoQiShiJian"].I;
-			cyPdData.addHaoGan = jsonobject["HaoGanDuChange"].I;
-			cyPdData.talkId = jsonobject["DuiBaiType"].I;
+			cyPdData.outTime = item3["GuoQiShiJian"].I;
+			cyPdData.addHaoGan = item3["HaoGanDuChange"].I;
+			cyPdData.talkId = item3["DuiBaiType"].I;
 			if (cyPdData.actionId != 0)
 			{
-				int num = 0;
-				while (num + 1 < jsonobject["RandomItemID"].Count)
+				for (int i = 0; i + 1 < item3["RandomItemID"].Count; i += 2)
 				{
-					if (this.cyDictionary.ContainsKey(cyPdData.id))
+					if (cyDictionary.ContainsKey(cyPdData.id))
 					{
 						List<int> item = new List<int>
 						{
-							jsonobject["RandomItemID"][num].I,
-							jsonobject["RandomItemID"][num + 1].I
+							item3["RandomItemID"][i].I,
+							item3["RandomItemID"][i + 1].I
 						};
-						this.cyDictionary[cyPdData.id].Add(item);
+						cyDictionary[cyPdData.id].Add(item);
 					}
 					else
 					{
 						List<int> item2 = new List<int>
 						{
-							jsonobject["RandomItemID"][num].I,
-							jsonobject["RandomItemID"][num + 1].I
+							item3["RandomItemID"][i].I,
+							item3["RandomItemID"][i + 1].I
 						};
-						this.cyDictionary.Add(cyPdData.id, new List<List<int>>
-						{
-							item2
-						});
+						cyDictionary.Add(cyPdData.id, new List<List<int>> { item2 });
 					}
-					num += 2;
 				}
 			}
-			if (jsonobject["IsChuFa"].I == 1)
+			if (item3["IsChuFa"].I == 1)
 			{
-				this.cyPdFungusList.Add(cyPdData);
+				cyPdFungusList.Add(cyPdData);
 			}
-			else if (jsonobject["IsChuFa"].I == 0)
+			else if (item3["IsChuFa"].I == 0)
 			{
-				this.cyPdAuToList.Add(cyPdData);
+				cyPdAuToList.Add(cyPdData);
 			}
 		}
 	}
 
-	// Token: 0x0600154F RID: 5455 RVA: 0x000899B8 File Offset: 0x00087BB8
 	private void Start()
 	{
-		this.npcFight = new NpCFight();
-		this.npcXiuLian = new NPCXiuLian();
-		this.npcTuPo = new NPCTuPo();
-		this.npcTianJiGe = new NpcTianJiGe();
-		this.npcShouJi = new NPCShouJi();
-		this.npcUseItem = new NPCUseItem();
-		this.npcLiLian = new NPCLiLian();
-		this.npcFuYe = new NPCFuYe();
-		this.npcNoteBook = new NPCNoteBook();
-		this.npcStatus = new NPCStatus();
-		this.npcMap = new NPCMap();
-		this.npcDeath = new NPCDeath();
-		this.npcChengHao = new NPCChengHao();
-		this.npcSetField = new NpcSetField();
-		this.npcTeShu = new NPCTeShu();
-		this.npcSpeedJieSuan = new NPCSpeedJieSuan();
-		this.initNpcAction();
-		this.EquipNameList.Add("equipWeaponPianHao");
-		this.EquipNameList.Add("equipClothingPianHao");
-		this.EquipNameList.Add("equipRingPianHao");
-		this.EquipNameList.Add("equipWeapon2PianHao");
+		npcFight = new NpCFight();
+		npcXiuLian = new NPCXiuLian();
+		npcTuPo = new NPCTuPo();
+		npcTianJiGe = new NpcTianJiGe();
+		npcShouJi = new NPCShouJi();
+		npcUseItem = new NPCUseItem();
+		npcLiLian = new NPCLiLian();
+		npcFuYe = new NPCFuYe();
+		npcNoteBook = new NPCNoteBook();
+		npcStatus = new NPCStatus();
+		npcMap = new NPCMap();
+		npcDeath = new NPCDeath();
+		npcChengHao = new NPCChengHao();
+		npcSetField = new NpcSetField();
+		npcTeShu = new NPCTeShu();
+		npcSpeedJieSuan = new NPCSpeedJieSuan();
+		initNpcAction();
+		EquipNameList.Add("equipWeaponPianHao");
+		EquipNameList.Add("equipClothingPianHao");
+		EquipNameList.Add("equipRingPianHao");
+		EquipNameList.Add("equipWeapon2PianHao");
 	}
 
-	// Token: 0x06001550 RID: 5456 RVA: 0x00089ABB File Offset: 0x00087CBB
 	public DateTime GetNowTime()
 	{
-		return DateTime.Parse(this.JieSuanTime);
+		return DateTime.Parse(JieSuanTime);
 	}
 
-	// Token: 0x06001551 RID: 5457 RVA: 0x00089AC8 File Offset: 0x00087CC8
 	public void initNpcAction()
 	{
-		this.ActionDictionary.Add(1, new Action<int>(this.DoNothing));
-		this.ActionDictionary.Add(2, new Action<int>(this.npcXiuLian.NpcBiGuan));
-		this.ActionDictionary.Add(3, new Action<int>(this.npcShouJi.NpcCaiYao));
-		this.ActionDictionary.Add(4, new Action<int>(this.npcShouJi.NpcCaiKuang));
-		this.ActionDictionary.Add(5, new Action<int>(this.npcFuYe.NpcLianDan));
-		this.ActionDictionary.Add(6, new Action<int>(this.npcFuYe.NpcLianQi));
-		this.ActionDictionary.Add(7, new Action<int>(this.npcXiuLian.NpcXiuLianShenTong));
-		this.ActionDictionary.Add(8, new Action<int>(this.npcShouJi.NpcBuyMiJi));
-		this.ActionDictionary.Add(9, new Action<int>(this.npcShouJi.NpcBuyFaBao));
-		this.ActionDictionary.Add(10, new Action<int>(this.npcXiuLian.NpcLunDao));
-		this.ActionDictionary.Add(11, new Action<int>(this.npcShouJi.NpcBuyDanYao));
-		this.ActionDictionary.Add(30, new Action<int>(this.npcLiLian.NPCNingZhouKillYaoShou));
-		this.ActionDictionary.Add(31, new Action<int>(this.npcLiLian.NPCDoZhuChengTask));
-		this.ActionDictionary.Add(33, new Action<int>(this.npcLiLian.NPCNingZhouYouLi));
-		this.ActionDictionary.Add(34, new Action<int>(this.npcTeShu.NpcToJieSha));
-		this.ActionDictionary.Add(35, new Action<int>(this.npcLiLian.NPCDoMenPaiTask));
-		this.ActionDictionary.Add(36, new Action<int>(this.npcShouJi.NpcShouJiTuPoItem));
-		this.ActionDictionary.Add(37, new Action<int>(this.npcShouJi.NpcSpeedDeath));
-		this.NextActionDictionary.Add(36, new Action<int>(this.npcShouJi.NextNpcShouJiTuPoItem));
-		this.ActionDictionary.Add(50, new Action<int>(this.npcTuPo.NpcBigTuPo));
-		this.ActionDictionary.Add(41, new Action<int>(this.npcLiLian.NPCHaiShangKillYaoShou));
-		this.ActionDictionary.Add(42, new Action<int>(this.npcLiLian.NpcHaiShangYouLi));
-		this.ActionDictionary.Add(43, new Action<int>(this.npcTeShu.NpcSuiXingDaoJinHuo));
-		this.ActionDictionary.Add(44, new Action<int>(this.npcTeShu.NpcToGangKou));
-		this.ActionDictionary.Add(45, new Action<int>(this.npcFuYe.NpcCreateZhenQi));
-		this.ActionDictionary.Add(51, new Action<int>(this.npcTeShu.NpcToDongShiGuShiFang));
-		this.ActionDictionary.Add(52, new Action<int>(this.npcTeShu.NpcToTianXingShiFang));
-		this.ActionDictionary.Add(53, new Action<int>(this.npcTeShu.NpcToHaiShangShiFang));
-		this.NextActionDictionary.Add(51, new Action<int>(this.npcTeShu.NextNpcShiFang));
-		this.NextActionDictionary.Add(52, new Action<int>(this.npcTeShu.NextNpcShiFang));
-		this.NextActionDictionary.Add(53, new Action<int>(this.npcTeShu.NextNpcShiFang));
-		this.ActionDictionary.Add(54, new Action<int>(this.npcTeShu.NpcToDongShiGuPaiMai));
-		this.ActionDictionary.Add(55, new Action<int>(this.npcTeShu.NpcToTianJiGePaiMai));
-		this.ActionDictionary.Add(56, new Action<int>(this.npcTeShu.NpcToHaiShangPaiMai));
-		this.ActionDictionary.Add(57, new Action<int>(this.npcTeShu.NpcToNanYaChengPaiMai));
-		this.ActionDictionary.Add(100, new Action<int>(this.npcXiuLian.NpcBiGuan));
-		this.ActionDictionary.Add(101, new Action<int>(this.npcTeShu.NpcToGuangChang));
-		this.ActionDictionary.Add(102, new Action<int>(this.npcTeShu.NpcZhangLaoToDaDian));
-		this.ActionDictionary.Add(103, new Action<int>(this.npcTeShu.NpcZhangMenToDaDian));
-		this.ActionDictionary.Add(111, new Action<int>(this.npcTianJiGe.TianJiGePaoShang));
-		this.ActionDictionary.Add(112, new Action<int>(this.npcTianJiGe.TianJiGeJinHuo));
-		this.ActionDictionary.Add(113, new Action<int>(this.npcTeShu.NpcFriendToDongFu));
-		this.ActionDictionary.Add(114, new Action<int>(this.npcTeShu.NpcDaoLuToDongFu));
-		this.ActionDictionary.Add(115, new Action<int>(this.npcTeShu.NpcToSuiXingShop));
-		this.ActionDictionary.Add(116, new Action<int>(this.npcTeShu.NpcToSuiXingFaZhan));
-		this.ActionDictionary.Add(121, new Action<int>(this.npcShouJi.NpcToLingHe1));
-		this.ActionDictionary.Add(122, new Action<int>(this.npcShouJi.NpcToLingHe2));
-		this.ActionDictionary.Add(123, new Action<int>(this.npcShouJi.NpcToLingHe3));
-		this.ActionDictionary.Add(124, new Action<int>(this.npcShouJi.NpcToLingHe4));
-		this.ActionDictionary.Add(125, new Action<int>(this.npcShouJi.NpcToLingHe5));
-		this.ActionDictionary.Add(126, new Action<int>(this.npcShouJi.NpcToLingHe6));
+		ActionDictionary.Add(1, DoNothing);
+		ActionDictionary.Add(2, npcXiuLian.NpcBiGuan);
+		ActionDictionary.Add(3, npcShouJi.NpcCaiYao);
+		ActionDictionary.Add(4, npcShouJi.NpcCaiKuang);
+		ActionDictionary.Add(5, npcFuYe.NpcLianDan);
+		ActionDictionary.Add(6, npcFuYe.NpcLianQi);
+		ActionDictionary.Add(7, npcXiuLian.NpcXiuLianShenTong);
+		ActionDictionary.Add(8, npcShouJi.NpcBuyMiJi);
+		ActionDictionary.Add(9, npcShouJi.NpcBuyFaBao);
+		ActionDictionary.Add(10, npcXiuLian.NpcLunDao);
+		ActionDictionary.Add(11, npcShouJi.NpcBuyDanYao);
+		ActionDictionary.Add(30, npcLiLian.NPCNingZhouKillYaoShou);
+		ActionDictionary.Add(31, npcLiLian.NPCDoZhuChengTask);
+		ActionDictionary.Add(33, npcLiLian.NPCNingZhouYouLi);
+		ActionDictionary.Add(34, npcTeShu.NpcToJieSha);
+		ActionDictionary.Add(35, npcLiLian.NPCDoMenPaiTask);
+		ActionDictionary.Add(36, npcShouJi.NpcShouJiTuPoItem);
+		ActionDictionary.Add(37, npcShouJi.NpcSpeedDeath);
+		NextActionDictionary.Add(36, npcShouJi.NextNpcShouJiTuPoItem);
+		ActionDictionary.Add(50, npcTuPo.NpcBigTuPo);
+		ActionDictionary.Add(41, npcLiLian.NPCHaiShangKillYaoShou);
+		ActionDictionary.Add(42, npcLiLian.NpcHaiShangYouLi);
+		ActionDictionary.Add(43, npcTeShu.NpcSuiXingDaoJinHuo);
+		ActionDictionary.Add(44, npcTeShu.NpcToGangKou);
+		ActionDictionary.Add(45, npcFuYe.NpcCreateZhenQi);
+		ActionDictionary.Add(51, npcTeShu.NpcToDongShiGuShiFang);
+		ActionDictionary.Add(52, npcTeShu.NpcToTianXingShiFang);
+		ActionDictionary.Add(53, npcTeShu.NpcToHaiShangShiFang);
+		NextActionDictionary.Add(51, npcTeShu.NextNpcShiFang);
+		NextActionDictionary.Add(52, npcTeShu.NextNpcShiFang);
+		NextActionDictionary.Add(53, npcTeShu.NextNpcShiFang);
+		ActionDictionary.Add(54, npcTeShu.NpcToDongShiGuPaiMai);
+		ActionDictionary.Add(55, npcTeShu.NpcToTianJiGePaiMai);
+		ActionDictionary.Add(56, npcTeShu.NpcToHaiShangPaiMai);
+		ActionDictionary.Add(57, npcTeShu.NpcToNanYaChengPaiMai);
+		ActionDictionary.Add(100, npcXiuLian.NpcBiGuan);
+		ActionDictionary.Add(101, npcTeShu.NpcToGuangChang);
+		ActionDictionary.Add(102, npcTeShu.NpcZhangLaoToDaDian);
+		ActionDictionary.Add(103, npcTeShu.NpcZhangMenToDaDian);
+		ActionDictionary.Add(111, npcTianJiGe.TianJiGePaoShang);
+		ActionDictionary.Add(112, npcTianJiGe.TianJiGeJinHuo);
+		ActionDictionary.Add(113, npcTeShu.NpcFriendToDongFu);
+		ActionDictionary.Add(114, npcTeShu.NpcDaoLuToDongFu);
+		ActionDictionary.Add(115, npcTeShu.NpcToSuiXingShop);
+		ActionDictionary.Add(116, npcTeShu.NpcToSuiXingFaZhan);
+		ActionDictionary.Add(121, npcShouJi.NpcToLingHe1);
+		ActionDictionary.Add(122, npcShouJi.NpcToLingHe2);
+		ActionDictionary.Add(123, npcShouJi.NpcToLingHe3);
+		ActionDictionary.Add(124, npcShouJi.NpcToLingHe4);
+		ActionDictionary.Add(125, npcShouJi.NpcToLingHe5);
+		ActionDictionary.Add(126, npcShouJi.NpcToLingHe6);
 	}
 
-	// Token: 0x06001552 RID: 5458 RVA: 0x0008A0C4 File Offset: 0x000882C4
 	public void NpcJieSuan(int times, bool isCanChanger = true)
 	{
 		int num = 0;
-		foreach (int num2 in PlayerEx.Player.emailDateMag.cyNpcList)
+		foreach (int cyNpc in PlayerEx.Player.emailDateMag.cyNpcList)
 		{
+			_ = cyNpc;
 			if (!NPCEx.IsDeath(num))
 			{
 				num++;
 			}
 		}
-		if (this.IsNoJieSuan)
+		if (IsNoJieSuan)
 		{
-			this.IsNoJieSuan = false;
+			IsNoJieSuan = false;
 			return;
 		}
-		this.isCanJieSuan = false;
-		DateTime tempTime = DateTime.Parse(this.JieSuanTime).AddMonths(times);
+		isCanJieSuan = false;
+		DateTime tempTime = DateTime.Parse(JieSuanTime).AddMonths(times);
 		int actionTimes = 0;
 		if (isCanChanger)
 		{
@@ -222,194 +292,187 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			try
 			{
-				if (!GameVersion.inst.realTest)
+				if (GameVersion.inst.realTest || actionTimes == 2)
 				{
-					if (actionTimes != 2)
+					while (times > 0)
 					{
-						if (times > 120)
-						{
-							int num3 = 12;
-							if (actionTimes == 1)
-							{
-								num3 *= 2;
-							}
-							int i = times - num3;
-							int num4 = i / num3;
-							num3--;
-							while (i >= num4)
-							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num4);
-								this.JieSuanTimes += num4;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num4).ToString();
-								i -= num4;
-								if (num3 > 0)
-								{
-									this.RandomNpcAction();
-									this.JieSuanTimes++;
-									this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-									num3--;
-								}
-							}
-							if (i > 0)
-							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(i);
-								this.JieSuanTimes += i;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(i).ToString();
-							}
-							for (int j = 0; j < num3; j++)
-							{
-								this.RandomNpcAction();
-								this.JieSuanTimes++;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-							}
-							this.RandomNpcAction();
-							this.JieSuanTimes++;
-							this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-							goto IL_77C;
-						}
-						if (times > 12 && times <= 120)
-						{
-							int num5 = 6;
-							if (actionTimes == 1)
-							{
-								num5 *= 2;
-							}
-							int num6 = times - num5;
-							int num7 = num6 / num5;
-							num5--;
-							while (num7 > 0 && num6 >= num7)
-							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num7);
-								this.JieSuanTimes += num7;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num7).ToString();
-								num6 -= num7;
-								if (num5 > 0)
-								{
-									this.RandomNpcAction();
-									this.JieSuanTimes++;
-									this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-									num5--;
-								}
-							}
-							if (num6 > 0)
-							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num6);
-								this.JieSuanTimes += num6;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num6).ToString();
-							}
-							for (int k = 0; k < num5; k++)
-							{
-								this.RandomNpcAction();
-								this.JieSuanTimes++;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-							}
-							this.RandomNpcAction();
-							this.JieSuanTimes++;
-							this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-							goto IL_77C;
-						}
-						if (times > 6 && times <= 12)
-						{
-							int num8 = times / 2;
-							if (actionTimes == 1)
-							{
-								num8 *= 2;
-								num8--;
-							}
-							int num9 = times - num8;
-							int num10 = num9 / num8;
-							num8--;
-							while (num10 > 0 && num9 >= num10)
-							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num10);
-								this.JieSuanTimes += num10;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num10).ToString();
-								num9 -= num10;
-								if (num8 > 0)
-								{
-									this.RandomNpcAction();
-									this.JieSuanTimes++;
-									this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-									num8--;
-								}
-							}
-							if (num9 > 0)
-							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num9);
-								this.JieSuanTimes += num9;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num9).ToString();
-							}
-							for (int l = 0; l < num8; l++)
-							{
-								this.RandomNpcAction();
-								this.JieSuanTimes++;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-							}
-							this.RandomNpcAction();
-							this.JieSuanTimes++;
-							this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-							goto IL_77C;
-						}
-						while (times > 0)
-						{
-							int times2 = times;
-							times = times2 - 1;
-							this.RandomNpcAction();
-							this.JieSuanTimes++;
-							this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-						}
-						goto IL_77C;
+						times--;
+						RandomNpcAction();
+						JieSuanTimes++;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
 					}
 				}
-				while (times > 0)
+				else if (times > 120)
 				{
-					int times2 = times;
-					times = times2 - 1;
-					this.RandomNpcAction();
-					this.JieSuanTimes++;
-					this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
+					int num2 = 12;
+					if (actionTimes == 1)
+					{
+						num2 *= 2;
+					}
+					int num3 = times - num2;
+					int num4 = num3 / num2;
+					num2--;
+					while (num3 >= num4)
+					{
+						npcSpeedJieSuan.DoSpeedJieSuan(num4);
+						JieSuanTimes += num4;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(num4).ToString();
+						num3 -= num4;
+						if (num2 > 0)
+						{
+							RandomNpcAction();
+							JieSuanTimes++;
+							JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+							num2--;
+						}
+					}
+					if (num3 > 0)
+					{
+						npcSpeedJieSuan.DoSpeedJieSuan(num3);
+						JieSuanTimes += num3;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(num3).ToString();
+					}
+					for (int i = 0; i < num2; i++)
+					{
+						RandomNpcAction();
+						JieSuanTimes++;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+					}
+					RandomNpcAction();
+					JieSuanTimes++;
+					JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
 				}
-				IL_77C:
-				while (DateTime.Parse(this.JieSuanTime) >= DateTime.Parse(Tools.instance.getPlayer().NextCreateTime))
+				else if (times > 12 && times <= 120)
+				{
+					int num5 = 6;
+					if (actionTimes == 1)
+					{
+						num5 *= 2;
+					}
+					int num6 = times - num5;
+					int num7 = num6 / num5;
+					num5--;
+					while (num7 > 0 && num6 >= num7)
+					{
+						npcSpeedJieSuan.DoSpeedJieSuan(num7);
+						JieSuanTimes += num7;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(num7).ToString();
+						num6 -= num7;
+						if (num5 > 0)
+						{
+							RandomNpcAction();
+							JieSuanTimes++;
+							JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+							num5--;
+						}
+					}
+					if (num6 > 0)
+					{
+						npcSpeedJieSuan.DoSpeedJieSuan(num6);
+						JieSuanTimes += num6;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(num6).ToString();
+					}
+					for (int j = 0; j < num5; j++)
+					{
+						RandomNpcAction();
+						JieSuanTimes++;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+					}
+					RandomNpcAction();
+					JieSuanTimes++;
+					JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+				}
+				else if (times > 6 && times <= 12)
+				{
+					int num8 = times / 2;
+					if (actionTimes == 1)
+					{
+						num8 *= 2;
+						num8--;
+					}
+					int num9 = times - num8;
+					int num10 = num9 / num8;
+					num8--;
+					while (num10 > 0 && num9 >= num10)
+					{
+						npcSpeedJieSuan.DoSpeedJieSuan(num10);
+						JieSuanTimes += num10;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(num10).ToString();
+						num9 -= num10;
+						if (num8 > 0)
+						{
+							RandomNpcAction();
+							JieSuanTimes++;
+							JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+							num8--;
+						}
+					}
+					if (num9 > 0)
+					{
+						npcSpeedJieSuan.DoSpeedJieSuan(num9);
+						JieSuanTimes += num9;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(num9).ToString();
+					}
+					for (int k = 0; k < num8; k++)
+					{
+						RandomNpcAction();
+						JieSuanTimes++;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+					}
+					RandomNpcAction();
+					JieSuanTimes++;
+					JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+				}
+				else
+				{
+					while (times > 0)
+					{
+						times--;
+						RandomNpcAction();
+						JieSuanTimes++;
+						JieSuanTime = DateTime.Parse(JieSuanTime).AddMonths(1).ToString();
+					}
+				}
+				while (DateTime.Parse(JieSuanTime) >= DateTime.Parse(Tools.instance.getPlayer().NextCreateTime))
 				{
 					Tools.instance.getPlayer().NextCreateTime = DateTime.Parse(Tools.instance.getPlayer().NextCreateTime).AddYears(20).ToString();
 					FactoryManager.inst.npcFactory.AuToCreateNpcs();
 				}
-				for (int m = 0; m < this.afterDeathList.Count; m++)
+				for (int l = 0; l < afterDeathList.Count; l++)
 				{
-					this.npcDeath.SetNpcDeath(this.afterDeathList[m][0], this.afterDeathList[m][1], this.afterDeathList[m][2], false);
+					npcDeath.SetNpcDeath(afterDeathList[l][0], afterDeathList[l][1], afterDeathList[l][2]);
 				}
 				TianJiDaBiManager.OnAddTime();
 			}
 			catch (Exception ex)
 			{
-				if (tempTime > DateTime.Parse(this.JieSuanTime))
+				if (tempTime > DateTime.Parse(JieSuanTime))
 				{
-					this.JieSuanTime = tempTime.ToString();
+					JieSuanTime = tempTime.ToString();
 				}
-				Debug.LogError("结算出错");
+				Debug.LogError((object)"结算出错");
 				Debug.LogException(ex);
-				this.FixNpcData();
+				FixNpcData();
 			}
 			finally
 			{
-				this.afterDeathList = new List<List<int>>();
+				afterDeathList = new List<List<int>>();
 				try
 				{
 					Tools.instance.getPlayer().setMonstarDeath();
 				}
 				catch (Exception ex2)
 				{
-					Debug.LogError(ex2);
-					Debug.LogError("设置Npc死亡出错");
+					Debug.LogError((object)ex2);
+					Debug.LogError((object)"设置Npc死亡出错");
 				}
-				this.CurJieSuanNpcTaskList = new List<int>();
-				this.isUpDateNpcList = true;
-				this.isCanJieSuan = true;
-				this.JieSuanAnimation = true;
-				Loom.QueueOnMainThread(delegate(object obj)
+				CurJieSuanNpcTaskList = new List<int>();
+				isUpDateNpcList = true;
+				isCanJieSuan = true;
+				JieSuanAnimation = true;
+				Loom.QueueOnMainThread(delegate
 				{
-					MessageMag.Instance.Send("MSG_Npc_JieSuan_COMPLETE", null);
+					MessageMag.Instance.Send("MSG_Npc_JieSuan_COMPLETE");
 					if (PlayerEx.Player.TianJie != null && PlayerEx.Player.TianJie.HasField("ShowTianJieCD"))
 					{
 						TianJieManager.OnAddTime();
@@ -419,166 +482,174 @@ public class NpcJieSuanManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001553 RID: 5459 RVA: 0x0008A1A0 File Offset: 0x000883A0
 	public void FixNpcData()
 	{
 		JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
-		foreach (string text in avatarJsonData.keys)
+		foreach (string key in avatarJsonData.keys)
 		{
-			if (int.Parse(text) >= 20000)
+			if (int.Parse(key) < 20000)
 			{
-				if (!jsonData.instance.AvatarRandomJsonData.HasField(text))
+				continue;
+			}
+			if (!jsonData.instance.AvatarRandomJsonData.HasField(key))
+			{
+				if (avatarJsonData[key]["isImportant"].b)
 				{
-					if (avatarJsonData[text]["isImportant"].b)
-					{
-						jsonData.instance.AvatarRandomJsonData.SetField(avatarJsonData[text]["id"].I.ToString(), jsonData.instance.AvatarRandomJsonData[avatarJsonData[text]["BindingNpcID"].I.ToString()]);
-					}
-					else
-					{
-						JSONObject jsonobject = jsonData.instance.randomAvatarFace(avatarJsonData[text], null);
-						jsonData.instance.AvatarRandomJsonData.SetField(string.Concat(avatarJsonData[text]["id"].I), jsonobject.Copy());
-					}
+					jsonData.instance.AvatarRandomJsonData.SetField(avatarJsonData[key]["id"].I.ToString(), jsonData.instance.AvatarRandomJsonData[avatarJsonData[key]["BindingNpcID"].I.ToString()]);
 				}
-				if (!jsonData.instance.AvatarBackpackJsonData.HasField(text))
+				else
 				{
-					FactoryManager.inst.npcFactory.InitAutoCreateNpcBackpack(jsonData.instance.AvatarBackpackJsonData, avatarJsonData[text]["id"].I, avatarJsonData[text]);
+					JSONObject jSONObject = jsonData.instance.randomAvatarFace(avatarJsonData[key]);
+					jsonData.instance.AvatarRandomJsonData.SetField(string.Concat(avatarJsonData[key]["id"].I), jSONObject.Copy());
 				}
+			}
+			if (!jsonData.instance.AvatarBackpackJsonData.HasField(key))
+			{
+				FactoryManager.inst.npcFactory.InitAutoCreateNpcBackpack(jsonData.instance.AvatarBackpackJsonData, avatarJsonData[key]["id"].I, avatarJsonData[key]);
 			}
 		}
 	}
 
-	// Token: 0x06001554 RID: 5460 RVA: 0x0008A334 File Offset: 0x00088534
 	public void PaiMaiAction()
 	{
-		if (this.PaiMaiNpcDictionary.Count > 0)
+		if (PaiMaiNpcDictionary.Count > 0)
 		{
-			this.npcTeShu.NextNpcPaiMai();
-			this.PaiMaiNpcDictionary = new Dictionary<int, List<int>>();
+			npcTeShu.NextNpcPaiMai();
+			PaiMaiNpcDictionary = new Dictionary<int, List<int>>();
 		}
 	}
 
-	// Token: 0x06001555 RID: 5461 RVA: 0x0008A35A File Offset: 0x0008855A
 	public void LunDaoAction()
 	{
-		if (this.lunDaoNpcList.Count >= 2)
+		if (lunDaoNpcList.Count >= 2)
 		{
-			this.npcXiuLian.NextNpcLunDao();
-			return;
+			npcXiuLian.NextNpcLunDao();
 		}
-		this.lunDaoNpcList = new List<int>();
+		else
+		{
+			lunDaoNpcList = new List<int>();
+		}
 	}
 
-	// Token: 0x06001556 RID: 5462 RVA: 0x0008A384 File Offset: 0x00088584
 	public void RandomNpcAction()
 	{
-		this.PaiMaiAction();
-		this.LunDaoAction();
-		this.npcTeShu.NextJieSha();
+		PaiMaiAction();
+		LunDaoAction();
+		npcTeShu.NextJieSha();
 		Avatar player = Tools.instance.getPlayer();
-		this.npcMap.RestartMap();
-		if (this.NpcActionQuanZhongDictionary.Count < 1)
+		npcMap.RestartMap();
+		if (NpcActionQuanZhongDictionary.Count < 1)
 		{
-			foreach (string text in jsonData.instance.NPCActionDate.keys)
+			foreach (string key in jsonData.instance.NPCActionDate.keys)
 			{
-				this.NpcActionQuanZhongDictionary.Add(int.Parse(text), jsonData.instance.NPCActionDate[text]["QuanZhong"].I);
+				NpcActionQuanZhongDictionary.Add(int.Parse(key), jsonData.instance.NPCActionDate[key]["QuanZhong"].I);
 			}
 		}
 		List<int> list = new List<int>();
 		new Dictionary<int, int>();
 		JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
 		List<string> keys = jsonData.instance.AvatarJsonData.keys;
+		int num = 0;
 		for (int i = 0; i < keys.Count; i++)
 		{
-			string text2 = keys[i];
-			int num = int.Parse(text2);
-			if (num >= 20000 && !avatarJsonData[text2].HasField("IsFly"))
+			string text = keys[i];
+			int num2 = int.Parse(text);
+			if (num2 < 20000 || avatarJsonData[text].HasField("IsFly"))
 			{
-				Dictionary<int, int> dictionary = new Dictionary<int, int>(this.NpcActionQuanZhongDictionary);
-				dictionary = this.getFinallyNpcActionQuanZhongDictionary(avatarJsonData[text2], dictionary);
-				int randomActionID = this.getRandomActionID(dictionary);
-				if (this.ActionDictionary.ContainsKey(randomActionID) && !this.npcDeath.NpcYiWaiPanDing(randomActionID, num) && this.npcSetField.AddNpcAge(num, 1))
-				{
-					this.npcStatus.ReduceStatusTime(num, 1);
-					int i2 = avatarJsonData[num.ToString()]["ActionId"].I;
-					if (this.NextActionDictionary.ContainsKey(i2))
-					{
-						this.NextActionDictionary[i2](num);
-					}
-					int i3 = avatarJsonData[num.ToString()]["Status"]["StatusId"].I;
-					if (avatarJsonData[num.ToString()]["Status"]["StatusId"].I == 20)
-					{
-						this.npcTeShu.NpcFriendToDongFu(num);
-						avatarJsonData[num.ToString()].SetField("ActionId", 113);
-					}
-					else if (avatarJsonData[num.ToString()]["Status"]["StatusId"].I == 21)
-					{
-						this.npcTeShu.NpcDaoLuToDongFu(num);
-						avatarJsonData[num.ToString()].SetField("ActionId", 114);
-					}
-					else if (!Tools.instance.getPlayer().ElderTaskMag.GetExecutingTaskNpcIdList().Contains(num))
-					{
-						if (avatarJsonData[num.ToString()]["isImportant"].b && avatarJsonData[num.ToString()].HasField("BindingNpcID"))
-						{
-							if (!this.ImprotantNpcActionPanDing(num))
-							{
-								avatarJsonData[num.ToString()].SetField("ActionId", randomActionID);
-								this.ActionDictionary[randomActionID](num);
-								avatarJsonData[num.ToString()].SetField("IsNeedHelp", this.IsNeedHelp());
-							}
-						}
-						else
-						{
-							avatarJsonData[num.ToString()].SetField("ActionId", randomActionID);
-							this.ActionDictionary[randomActionID](num);
-							avatarJsonData[num.ToString()].SetField("IsNeedHelp", this.IsNeedHelp());
-						}
-						if (randomActionID == 35 && !list.Contains(num))
-						{
-							list.Add(num);
-						}
-						this.SendMessage(num);
-						this.SendCy(num);
-					}
-					this.GuDingAddExp(num, 1f);
-				}
+				continue;
 			}
+			Dictionary<int, int> dictionary = new Dictionary<int, int>(NpcActionQuanZhongDictionary);
+			dictionary = getFinallyNpcActionQuanZhongDictionary(avatarJsonData[text], dictionary);
+			num = getRandomActionID(dictionary);
+			if (!ActionDictionary.ContainsKey(num) || npcDeath.NpcYiWaiPanDing(num, num2) || !npcSetField.AddNpcAge(num2, 1))
+			{
+				continue;
+			}
+			npcStatus.ReduceStatusTime(num2, 1);
+			int i2 = avatarJsonData[num2.ToString()]["ActionId"].I;
+			if (NextActionDictionary.ContainsKey(i2))
+			{
+				NextActionDictionary[i2](num2);
+			}
+			_ = avatarJsonData[num2.ToString()]["Status"]["StatusId"].I;
+			if (avatarJsonData[num2.ToString()]["Status"]["StatusId"].I == 20)
+			{
+				npcTeShu.NpcFriendToDongFu(num2);
+				avatarJsonData[num2.ToString()].SetField("ActionId", 113);
+				num = 113;
+			}
+			else if (avatarJsonData[num2.ToString()]["Status"]["StatusId"].I == 21)
+			{
+				npcTeShu.NpcDaoLuToDongFu(num2);
+				num = 114;
+				avatarJsonData[num2.ToString()].SetField("ActionId", 114);
+			}
+			else if (Tools.instance.getPlayer().ElderTaskMag.GetExecutingTaskNpcIdList().Contains(num2))
+			{
+				num = 35;
+			}
+			else
+			{
+				if (avatarJsonData[num2.ToString()]["isImportant"].b && avatarJsonData[num2.ToString()].HasField("BindingNpcID"))
+				{
+					if (!ImprotantNpcActionPanDing(num2))
+					{
+						avatarJsonData[num2.ToString()].SetField("ActionId", num);
+						ActionDictionary[num](num2);
+						avatarJsonData[num2.ToString()].SetField("IsNeedHelp", IsNeedHelp());
+					}
+				}
+				else
+				{
+					avatarJsonData[num2.ToString()].SetField("ActionId", num);
+					ActionDictionary[num](num2);
+					avatarJsonData[num2.ToString()].SetField("IsNeedHelp", IsNeedHelp());
+				}
+				if (num == 35 && !list.Contains(num2))
+				{
+					list.Add(num2);
+				}
+				SendMessage(num2);
+				SendCy(num2);
+			}
+			GuDingAddExp(num2);
 		}
 		if (!player.emailDateMag.IsStopAll)
 		{
-			if (this.lateEmailList.Count > 0)
+			if (lateEmailList.Count > 0)
 			{
-				foreach (EmailData emailData in this.lateEmailList)
+				foreach (EmailData lateEmail in lateEmailList)
 				{
-					player.emailDateMag.AddNewEmail(emailData.npcId.ToString(), emailData);
+					player.emailDateMag.AddNewEmail(lateEmail.npcId.ToString(), lateEmail);
 				}
-				this.lateEmailList = new List<EmailData>();
+				lateEmailList = new List<EmailData>();
 			}
-			if (this.lateEmailDict.Keys.Count > 0)
+			if (lateEmailDict.Keys.Count > 0)
 			{
 				List<int> list2 = new List<int>();
-				foreach (int num2 in this.lateEmailDict.Keys)
+				foreach (int key2 in lateEmailDict.Keys)
 				{
-					EmailData emailData2 = this.lateEmailDict[num2];
-					if (emailData2.RandomTask != null)
+					EmailData emailData = lateEmailDict[key2];
+					if (emailData.RandomTask != null)
 					{
-						DateTime dateTime = DateTime.Parse(emailData2.sendTime);
-						if (this.GetNowTime() < dateTime)
+						DateTime dateTime = DateTime.Parse(emailData.sendTime);
+						if (GetNowTime() < dateTime)
 						{
 							continue;
 						}
-						RandomTask randomTask = emailData2.RandomTask;
+						RandomTask randomTask = emailData.RandomTask;
 						if (randomTask.TaskId != 0)
 						{
-							player.StreamData.TaskMag.AddTask(randomTask.TaskId, randomTask.TaskType, randomTask.CyId, emailData2.npcId, randomTask.TaskValue, dateTime);
+							player.StreamData.TaskMag.AddTask(randomTask.TaskId, randomTask.TaskType, randomTask.CyId, emailData.npcId, randomTask.TaskValue, dateTime);
 							if (randomTask.TaskType == 1 && randomTask.LockActionId > 0)
 							{
-								this.GetNpcData(emailData2.npcId).SetField("ActionId", randomTask.LockActionId);
-								this.GetNpcData(emailData2.npcId).SetField("LockAction", randomTask.LockActionId);
+								GetNpcData(emailData.npcId).SetField("ActionId", randomTask.LockActionId);
+								GetNpcData(emailData.npcId).SetField("LockAction", randomTask.LockActionId);
 							}
 						}
 						if (randomTask.TaskValue != 0)
 						{
-							GlobalValue.Set(randomTask.TaskValue, emailData2.npcId, "NpcJieSuanManager.RandomNpcAction 传音符相关全局变量A");
+							GlobalValue.Set(randomTask.TaskValue, emailData.npcId, "NpcJieSuanManager.RandomNpcAction 传音符相关全局变量A");
 						}
 						if (randomTask.StaticId.Count > 0)
 						{
@@ -588,26 +659,25 @@ public class NpcJieSuanManager : MonoBehaviour
 							}
 						}
 					}
-					list2.Add(num2);
-					player.emailDateMag.AddNewEmail(emailData2.npcId.ToString(), emailData2);
+					list2.Add(key2);
+					player.emailDateMag.AddNewEmail(emailData.npcId.ToString(), emailData);
 				}
-				foreach (int key in list2)
+				foreach (int item in list2)
 				{
-					this.lateEmailDict.Remove(key);
+					lateEmailDict.Remove(item);
 				}
 			}
 		}
 		Tools.instance.getPlayer().StreamData.TaskMag.CheckHasOut();
-		this.CheckMenPaiTask();
+		CheckMenPaiTask();
 		Tools.instance.getPlayer().ElderTaskMag.UpdateTaskProcess.CheckHasExecutingTask();
-		foreach (int npcId in list)
+		foreach (int item2 in list)
 		{
-			Tools.instance.getPlayer().ElderTaskMag.AddCanAccpetNpcIdList(npcId);
+			Tools.instance.getPlayer().ElderTaskMag.AddCanAccpetNpcIdList(item2);
 		}
 		Tools.instance.getPlayer().ElderTaskMag.AllotTask.GetCanAccpetNpcList();
 	}
 
-	// Token: 0x06001557 RID: 5463 RVA: 0x0008AAF0 File Offset: 0x00088CF0
 	public void CheckMenPaiTask()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -615,14 +685,14 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			return;
 		}
-		int zhangMenId = this.GetZhangMenId((int)player.menPai);
+		int zhangMenId = GetZhangMenId(player.menPai);
 		Dictionary<int, MenPaiFengLuBiao> dataDict = MenPaiFengLuBiao.DataDict;
 		if (player.chengHao >= 6 && player.chengHao <= 9 && PlayerEx.GetMenPaiShengWang() < dataDict[player.chengHao].MenKan)
 		{
 			player.chengHao = 5;
-			PlayerEx.SetShiLiChengHaoLevel((int)player.menPai, 6);
+			PlayerEx.SetShiLiChengHaoLevel(player.menPai, 6);
 			player.AddFriend(zhangMenId);
-			player.emailDateMag.AuToSendToPlayer(zhangMenId, 996, 996, NpcJieSuanManager.inst.JieSuanTime, null);
+			player.emailDateMag.AuToSendToPlayer(zhangMenId, 996, 996, inst.JieSuanTime);
 			return;
 		}
 		MenPaiTaskMag menPaiTaskMag = player.StreamData.MenPaiTaskMag;
@@ -633,7 +703,6 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001558 RID: 5464 RVA: 0x0008ABB0 File Offset: 0x00088DB0
 	private int GetZhangMenId(int shili)
 	{
 		int num = Tools.instance.getPlayer().GetZhangMenChengHaoId(shili);
@@ -641,229 +710,189 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			num--;
 		}
-		foreach (JSONObject jsonobject in jsonData.instance.AvatarJsonData.list)
+		int num2 = 0;
+		foreach (JSONObject item in jsonData.instance.AvatarJsonData.list)
 		{
-			int i = jsonobject["id"].I;
-			if (i >= 20000 && jsonobject["ChengHaoID"].I == num)
+			num2 = item["id"].I;
+			if (num2 >= 20000 && item["ChengHaoID"].I == num)
 			{
-				return i;
+				return num2;
 			}
 		}
-		Debug.LogError(string.Format("不存在当前势力的掌门，势力Id{0}", shili));
+		Debug.LogError((object)$"不存在当前势力的掌门，势力Id{shili}");
 		return -1;
 	}
 
-	// Token: 0x06001559 RID: 5465 RVA: 0x0008AC78 File Offset: 0x00088E78
 	public Dictionary<int, int> getFinallyNpcActionQuanZhongDictionary(JSONObject npcDate, Dictionary<int, int> dictionary)
 	{
 		int i = npcDate["NPCTag"].I;
-		NPCTagDate npctagDate = NPCTagDate.DataDict[i];
-		for (int j = 0; j < npctagDate.Change.Count; j++)
+		NPCTagDate nPCTagDate = NPCTagDate.DataDict[i];
+		for (int j = 0; j < nPCTagDate.Change.Count; j++)
 		{
-			if (dictionary.ContainsKey(npctagDate.Change[j]))
+			if (dictionary.ContainsKey(nPCTagDate.Change[j]))
 			{
-				int key;
-				if (npctagDate.Change[j] == 35 && Tools.instance.getPlayer().ElderTaskMag.GetWaitAcceptTaskList().Count > 0)
+				if (nPCTagDate.Change[j] == 35 && Tools.instance.getPlayer().ElderTaskMag.GetWaitAcceptTaskList().Count > 0)
 				{
-					key = npctagDate.Change[j];
-					dictionary[key] += npctagDate.ChangeTo[j];
+					dictionary[nPCTagDate.Change[j]] += nPCTagDate.ChangeTo[j];
 				}
-				key = npctagDate.Change[j];
-				dictionary[key] += npctagDate.ChangeTo[j];
-				if (dictionary[npctagDate.Change[j]] < 0)
+				dictionary[nPCTagDate.Change[j]] += nPCTagDate.ChangeTo[j];
+				if (dictionary[nPCTagDate.Change[j]] < 0)
 				{
-					dictionary[npctagDate.Change[j]] = 0;
+					dictionary[nPCTagDate.Change[j]] = 0;
 				}
 			}
 		}
-		NPCChengHaoData npcchengHaoData = NPCChengHaoData.DataDict[npcDate["ChengHaoID"].I];
-		if (npcchengHaoData.ChengHao != npcDate["Title"].Str)
+		NPCChengHaoData nPCChengHaoData = NPCChengHaoData.DataDict[npcDate["ChengHaoID"].I];
+		if (nPCChengHaoData.ChengHao != npcDate["Title"].Str)
 		{
-			foreach (NPCChengHaoData npcchengHaoData2 in NPCChengHaoData.DataList)
+			foreach (NPCChengHaoData data in NPCChengHaoData.DataList)
 			{
-				if (npcchengHaoData2.ChengHao == npcDate["Title"].Str)
+				if (data.ChengHao == npcDate["Title"].Str)
 				{
-					npcDate.SetField("ChengHaoID", npcchengHaoData2.id);
+					npcDate.SetField("ChengHaoID", data.id);
 					break;
 				}
 			}
 		}
-		for (int k = 0; k < npcchengHaoData.Change.Count; k++)
+		for (int k = 0; k < nPCChengHaoData.Change.Count; k++)
 		{
-			int key = npcchengHaoData.Change[k];
-			dictionary[key] += npcchengHaoData.ChangeTo[k];
-			if (dictionary[npcchengHaoData.Change[k]] < 0)
+			dictionary[nPCChengHaoData.Change[k]] += nPCChengHaoData.ChangeTo[k];
+			if (dictionary[nPCChengHaoData.Change[k]] < 0)
 			{
-				dictionary[npcchengHaoData.Change[k]] = 0;
+				dictionary[nPCChengHaoData.Change[k]] = 0;
 			}
 		}
 		List<int> list = new List<int>();
-		foreach (int item in dictionary.Keys)
+		foreach (int key2 in dictionary.Keys)
 		{
-			list.Add(item);
+			list.Add(key2);
 		}
 		for (int l = 0; l < list.Count; l++)
 		{
-			int num = list[l];
-			int i2 = jsonData.instance.NPCActionDate[num.ToString()]["PanDing"].I;
-			if (i2 > 0)
+			int key = list[l];
+			int i2 = jsonData.instance.NPCActionDate[key.ToString()]["PanDing"].I;
+			switch (i2)
 			{
-				switch (i2)
+			case 1:
+				if (npcTuPo.IsCanBigTuPo(npcDate["id"].I))
 				{
-				case 1:
-					if (this.npcTuPo.IsCanBigTuPo(npcDate["id"].I))
-					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 2:
-				{
-					int month = this.GetNowTime().Month;
-					if (npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && this.GetNpcBeiBaoAllItemSum(npcDate["id"].I) >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["BeiBao"].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I && month >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["YueFen"][0].I && month <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["YueFen"][1].I && npcDate["paimaifenzu"][this.getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I == jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiType"].I)
-					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
 				}
-				case 3:
-				case 4:
-					if (npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && this.GetNpcBeiBaoAllItemSum(npcDate["id"].I) >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["BeiBao"].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I && npcDate["paimaifenzu"][this.getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I == jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiType"].I)
+				break;
+			case 2:
+			{
+				int month = GetNowTime().Month;
+				if (npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && GetNpcBeiBaoAllItemSum(npcDate["id"].I) >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["BeiBao"].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I && month >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["YueFen"][0].I && month <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["YueFen"][1].I && npcDate["paimaifenzu"][getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I == jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiType"].I)
+				{
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
+				}
+				break;
+			}
+			case 3:
+			case 4:
+				if (npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && GetNpcBeiBaoAllItemSum(npcDate["id"].I) >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["BeiBao"].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I && npcDate["paimaifenzu"][getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I == jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiType"].I)
+				{
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
+				}
+				break;
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+				if (PaiMaiIsOpen(jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiTime"].I) && jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["LingShi"].I && npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I && npcDate["paimaifenzu"][getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I == jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiType"].I)
+				{
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
+				}
+				break;
+			case 9:
+				if (IsCanChangeEquip(npcDate) != 0)
+				{
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
+				}
+				break;
+			case 10:
+				if (!IsCanLianDan(npcDate["id"].I))
+				{
+					dictionary[key] = 0;
+				}
+				break;
+			case 11:
+				if (!IsCanLianQi(npcDate["id"].I))
+				{
+					dictionary[key] = 0;
+				}
+				break;
+			case 12:
+				if (npcStatus.IsInTargetStatus(npcDate["id"].I, 2) && jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I >= jsonData.instance.NPCTuPuoDate[npcDate["Level"].I.ToString()]["LingShiPanDuan"].I && !npcDate["isImportant"].b)
+				{
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
+				}
+				break;
+			case 13:
+				if (npcStatus.IsInTargetStatus(npcDate["id"].I, 2))
+				{
+					dictionary[1] = 0;
+				}
+				break;
+			case 14:
+				if (GetNpcShengYuTime(npcDate["id"].I) < 10)
+				{
+					dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
+				}
+				break;
+			case 15:
+				if (npcDate["Level"].I == 1)
+				{
+					dictionary[key] = 0;
+				}
+				break;
+			case 17:
+			case 18:
+			case 19:
+			case 20:
+			case 21:
+			case 22:
+				if (NPCActionPanDingDate.DataDict[i2].JingJie[0] > npcDate["Level"].I || NPCActionPanDingDate.DataDict[i2].JingJie[1] < npcDate["Level"].I || npcDate["paimaifenzu"][getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I != NPCActionPanDingDate.DataDict[i2].PaiMaiType)
+				{
+					break;
+				}
+				if (!npcMap.fuBenNPCDictionary.ContainsKey("F" + 26))
+				{
+					dictionary[key] += NPCActionPanDingDate.DataDict[i2].ChangeTo;
+					break;
+				}
+				foreach (int item in NPCActionPanDingDate.DataDict[i2].LingHeDianWei)
+				{
+					if (!npcMap.fuBenNPCDictionary["F" + 26].Keys.Contains(item) && (!((Object)(object)LingHeCaiJiUIMag.inst != (Object)null) || item != LingHeCaiJiUIMag.inst.nowMapIndex))
 					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 5:
-				case 6:
-				case 7:
-				case 8:
-					if (this.PaiMaiIsOpen(jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiTime"].I) && jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["LingShi"].I && npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I && npcDate["paimaifenzu"][this.getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I == jsonData.instance.NPCActionPanDingDate[i2.ToString()]["PaiMaiType"].I)
-					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 9:
-					if (this.IsCanChangeEquip(npcDate) != 0)
-					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 10:
-					if (!this.IsCanLianDan(npcDate["id"].I))
-					{
-						dictionary[num] = 0;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 11:
-					if (!this.IsCanLianQi(npcDate["id"].I))
-					{
-						dictionary[num] = 0;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 12:
-					if (this.npcStatus.IsInTargetStatus(npcDate["id"].I, 2) && jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I >= jsonData.instance.NPCTuPuoDate[npcDate["Level"].I.ToString()]["LingShiPanDuan"].I && !npcDate["isImportant"].b)
-					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 13:
-					if (this.npcStatus.IsInTargetStatus(npcDate["id"].I, 2))
-					{
-						dictionary[1] = 0;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 14:
-					if (this.GetNpcShengYuTime(npcDate["id"].I) < 10)
-					{
-						int key = num;
-						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 15:
-					if (npcDate["Level"].I == 1)
-					{
-						dictionary[num] = 0;
-						goto IL_CDD;
-					}
-					goto IL_CDD;
-				case 16:
-					goto IL_CDD;
-				case 17:
-				case 18:
-				case 19:
-				case 20:
-				case 21:
-				case 22:
-					if (NPCActionPanDingDate.DataDict[i2].JingJie[0] > npcDate["Level"].I || NPCActionPanDingDate.DataDict[i2].JingJie[1] < npcDate["Level"].I || npcDate["paimaifenzu"][this.getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I != NPCActionPanDingDate.DataDict[i2].PaiMaiType)
-					{
-						goto IL_CDD;
-					}
-					if (!this.npcMap.fuBenNPCDictionary.ContainsKey("F" + 26))
-					{
-						int key = num;
 						dictionary[key] += NPCActionPanDingDate.DataDict[i2].ChangeTo;
-						goto IL_CDD;
+						break;
 					}
-					using (List<int>.Enumerator enumerator3 = NPCActionPanDingDate.DataDict[i2].LingHeDianWei.GetEnumerator())
-					{
-						while (enumerator3.MoveNext())
-						{
-							int num2 = enumerator3.Current;
-							if (!this.npcMap.fuBenNPCDictionary["F" + 26].Keys.Contains(num2) && (!(LingHeCaiJiUIMag.inst != null) || num2 != LingHeCaiJiUIMag.inst.nowMapIndex))
-							{
-								int key = num;
-								dictionary[key] += NPCActionPanDingDate.DataDict[i2].ChangeTo;
-								break;
-							}
-						}
-						goto IL_CDD;
-					}
-					break;
-				case 23:
-					break;
-				default:
-					goto IL_CDD;
 				}
+				break;
+			case 23:
 				if (npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I)
 				{
-					int key = num;
 					dictionary[key] += NPCActionPanDingDate.DataDict[i2].ChangeTo;
 				}
+				break;
 			}
-			IL_CDD:;
 		}
 		return dictionary;
 	}
 
-	// Token: 0x0600155A RID: 5466 RVA: 0x0008B9A0 File Offset: 0x00089BA0
 	public bool PaiMaiIsOpen(int paimaiHangID)
 	{
 		string str = jsonData.instance.PaiMaiBiao[paimaiHangID.ToString()]["StarTime"].str;
 		string str2 = jsonData.instance.PaiMaiBiao[paimaiHangID.ToString()]["EndTime"].str;
 		int i = jsonData.instance.PaiMaiBiao[paimaiHangID.ToString()]["circulation"].I;
-		return Tools.instance.IsInTime(DateTime.Parse(this.JieSuanTime), DateTime.Parse(str), DateTime.Parse(str2), i);
+		return Tools.instance.IsInTime(DateTime.Parse(JieSuanTime), DateTime.Parse(str), DateTime.Parse(str2), i);
 	}
 
-	// Token: 0x0600155B RID: 5467 RVA: 0x0008BA44 File Offset: 0x00089C44
 	public int IsCanChangeEquip(JSONObject npcDate)
 	{
 		int i = jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I;
-		int num = (int)jsonData.instance.LianQiWuQiQuality[npcDate["Level"].I.ToString()]["price"];
+		int num = (int)jsonData.instance.LianQiWuQiQuality[npcDate["Level"].I.ToString()][(object)"price"];
 		int i2 = npcDate["Level"].I;
 		int i3 = jsonData.instance.NpcLevelShouYiDate[i2.ToString()]["fabao"].I;
 		if (i < num)
@@ -923,7 +952,6 @@ public class NpcJieSuanManager : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x0600155C RID: 5468 RVA: 0x0008BC60 File Offset: 0x00089E60
 	public int GetChangeEquipWeapon(JSONObject npcDate)
 	{
 		int i = npcDate["Level"].I;
@@ -960,69 +988,62 @@ public class NpcJieSuanManager : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x0600155D RID: 5469 RVA: 0x0008BD78 File Offset: 0x00089F78
 	public int GetNpcBeiBaoAllItemSum(int npcID)
 	{
 		int num = 0;
-		int index = NpcJieSuanManager.inst.GetNpcBigLevel(npcID) - 1;
-		NPCTuPuoDate npctuPuoDate = NPCTuPuoDate.DataList[index];
+		int index = inst.GetNpcBigLevel(npcID) - 1;
+		NPCTuPuoDate nPCTuPuoDate = NPCTuPuoDate.DataList[index];
 		List<int> list = new List<int>();
-		foreach (int item in npctuPuoDate.ShouJiItem)
+		foreach (int item in nPCTuPuoDate.ShouJiItem)
 		{
 			list.Add(item);
 		}
-		foreach (int item2 in npctuPuoDate.TuPoItem)
+		foreach (int item2 in nPCTuPuoDate.TuPoItem)
 		{
 			list.Add(item2);
 		}
-		foreach (JSONObject jsonobject in jsonData.instance.AvatarBackpackJsonData[string.Concat(npcID)]["Backpack"].list)
+		foreach (JSONObject item3 in jsonData.instance.AvatarBackpackJsonData[string.Concat(npcID)]["Backpack"].list)
 		{
-			if (!list.Contains(jsonobject["ItemID"].I) && jsonobject["Num"].I > 0)
+			if (!list.Contains(item3["ItemID"].I) && item3["Num"].I > 0)
 			{
-				num += jsonobject["Num"].I;
+				num += item3["Num"].I;
 			}
 		}
 		return num;
 	}
 
-	// Token: 0x0600155E RID: 5470 RVA: 0x0008BED8 File Offset: 0x0008A0D8
 	public Dictionary<int, int> GetNpcBaiBaoItemSum(int npcId, List<int> itemList)
 	{
 		List<JSONObject> list = jsonData.instance.AvatarBackpackJsonData[string.Concat(npcId)]["Backpack"].list;
 		Dictionary<int, int> dictionary = new Dictionary<int, int>();
 		new List<int>();
-		foreach (JSONObject jsonobject in list)
+		foreach (JSONObject item in list)
 		{
-			if (itemList.Contains(jsonobject["ItemID"].I))
+			if (itemList.Contains(item["ItemID"].I))
 			{
-				if (dictionary.ContainsKey(jsonobject["ItemID"].I))
+				if (dictionary.ContainsKey(item["ItemID"].I))
 				{
-					Dictionary<int, int> dictionary2 = dictionary;
-					int i = jsonobject["ItemID"].I;
-					dictionary2[i] += jsonobject["Num"].I;
+					dictionary[item["ItemID"].I] += item["Num"].I;
 				}
 				else
 				{
-					dictionary.Add(jsonobject["ItemID"].I, jsonobject["Num"].I);
+					dictionary.Add(item["ItemID"].I, item["Num"].I);
 				}
 			}
 		}
 		return dictionary;
 	}
 
-	// Token: 0x0600155F RID: 5471 RVA: 0x0008BFE8 File Offset: 0x0008A1E8
 	public int GetEquipLevel(int quality, int shangXia)
 	{
 		return quality * 3 - (3 - shangXia);
 	}
 
-	// Token: 0x06001560 RID: 5472 RVA: 0x0008BFF1 File Offset: 0x0008A1F1
 	public int getRandomInt(int min, int max)
 	{
-		return this.random.Next(min, max + 1);
+		return random.Next(min, max + 1);
 	}
 
-	// Token: 0x06001561 RID: 5473 RVA: 0x0008C004 File Offset: 0x0008A204
 	public int getRandomActionID(Dictionary<int, int> dictionary)
 	{
 		int num = 0;
@@ -1030,89 +1051,89 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			num += dictionary[key];
 		}
-		int randomInt = this.getRandomInt(1, num);
+		int randomInt = getRandomInt(1, num);
 		int result = -1;
 		int num2 = 0;
-		foreach (int num3 in dictionary.Keys)
+		foreach (int key2 in dictionary.Keys)
 		{
-			num2 += dictionary[num3];
+			num2 += dictionary[key2];
 			if (num2 >= randomInt)
 			{
-				result = num3;
+				result = key2;
 				break;
 			}
 		}
 		return result;
 	}
 
-	// Token: 0x06001562 RID: 5474 RVA: 0x0008C0C0 File Offset: 0x0008A2C0
 	public JSONObject AddItemToNpcBackpack(int npcId, int itemID, int num, JSONObject seid = null, bool isPaiMai = false)
 	{
-		JSONObject jsonobject = jsonData.instance.setAvatarBackpack(Tools.getUUID(), itemID, num, 1, 100, 1, (seid == null) ? Tools.CreateItemSeid(itemID) : seid, 0);
-		if (isPaiMai && jsonobject["Seid"] != null)
+		JSONObject jSONObject = jsonData.instance.setAvatarBackpack(Tools.getUUID(), itemID, num, 1, 100, 1, (seid == null) ? Tools.CreateItemSeid(itemID) : seid);
+		if (isPaiMai && jSONObject["Seid"] != null)
 		{
-			jsonobject["Seid"].SetField("isPaiMai", true);
+			jSONObject["Seid"].SetField("isPaiMai", val: true);
 		}
-		jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"].Add(jsonobject);
-		return jsonobject;
+		jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"].Add(jSONObject);
+		return jSONObject;
 	}
 
-	// Token: 0x06001563 RID: 5475 RVA: 0x0008C140 File Offset: 0x0008A340
 	public void RemoveNpcItem(int npcId, int itemId)
 	{
-		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
-		JSONObject jsonobject2 = new JSONObject();
-		foreach (JSONObject jsonobject3 in jsonobject.list)
+		JSONObject jSONObject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
+		JSONObject jSONObject2 = new JSONObject();
+		foreach (JSONObject item in jSONObject.list)
 		{
-			if (jsonobject3["ItemID"].I == itemId)
+			if (item["ItemID"].I == itemId)
 			{
-				jsonobject2 = jsonobject3;
+				jSONObject2 = item;
 				break;
 			}
 		}
-		int num = jsonobject2["Num"].I - 1;
+		int num = jSONObject2["Num"].I - 1;
 		if (num <= 0)
 		{
-			jsonobject.list.Remove(jsonobject2);
-			return;
+			jSONObject.list.Remove(jSONObject2);
 		}
-		jsonobject2.SetField("Num", num);
+		else
+		{
+			jSONObject2.SetField("Num", num);
+		}
 	}
 
-	// Token: 0x06001564 RID: 5476 RVA: 0x0008C200 File Offset: 0x0008A400
 	private void RemoveItemByUid(int npcId, string uid)
 	{
-		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
-		JSONObject jsonobject2 = new JSONObject();
-		foreach (JSONObject jsonobject3 in jsonobject.list)
+		JSONObject jSONObject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
+		JSONObject jSONObject2 = new JSONObject();
+		foreach (JSONObject item in jSONObject.list)
 		{
-			if (jsonobject3["UUID"].Str == uid)
+			if (item["UUID"].Str == uid)
 			{
-				jsonobject2 = jsonobject3;
+				jSONObject2 = item;
 				break;
 			}
 		}
-		int num = jsonobject2["Num"].I - 1;
+		int num = jSONObject2["Num"].I - 1;
 		if (num <= 0)
 		{
-			jsonobject.list.Remove(jsonobject2);
-			return;
+			jSONObject.list.Remove(jSONObject2);
 		}
-		jsonobject2.SetField("Num", num);
+		else
+		{
+			jSONObject2.SetField("Num", num);
+		}
 	}
 
-	// Token: 0x06001565 RID: 5477 RVA: 0x0008C2C4 File Offset: 0x0008A4C4
 	private void RemoveItemById(int npcId, int itemId, int count)
 	{
-		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
+		JSONObject jSONObject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
 		List<JSONObject> list = new List<JSONObject>();
 		int num = 0;
-		foreach (JSONObject jsonobject2 in jsonobject.list)
+		foreach (JSONObject item in jSONObject.list)
 		{
-			if (jsonobject2["ItemID"].I == itemId)
+			if (item["ItemID"].I == itemId)
 			{
-				list.Add(jsonobject2);
-				num += jsonobject2["Num"].I;
+				list.Add(item);
+				num += item["Num"].I;
 			}
 		}
 		num -= count;
@@ -1121,209 +1142,198 @@ public class NpcJieSuanManager : MonoBehaviour
 			list[0].SetField("Num", num);
 			list.RemoveAt(0);
 		}
-		if (list.Count > 0)
+		if (list.Count <= 0)
 		{
-			foreach (JSONObject item in list)
-			{
-				jsonobject.list.Remove(item);
-			}
+			return;
+		}
+		foreach (JSONObject item2 in list)
+		{
+			jSONObject.list.Remove(item2);
 		}
 	}
 
-	// Token: 0x06001566 RID: 5478 RVA: 0x0008C3DC File Offset: 0x0008A5DC
 	public void RemoveItem(int npcId, int itemId, int count, string uid)
 	{
 		if (count == 1)
 		{
-			this.RemoveItemByUid(npcId, uid);
-			return;
+			RemoveItemByUid(npcId, uid);
 		}
-		this.RemoveItemById(npcId, itemId, count);
+		else
+		{
+			RemoveItemById(npcId, itemId, count);
+		}
 	}
 
-	// Token: 0x06001567 RID: 5479 RVA: 0x0008C3F8 File Offset: 0x0008A5F8
 	public void SortNpcPack(int npcId)
 	{
-		if (!this.isCanJieSuan)
+		if (!isCanJieSuan)
 		{
-			Debug.Log("正在结算中，不能整理");
+			Debug.Log((object)"正在结算中，不能整理");
 			return;
 		}
-		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
-		if (jsonobject.Count < 1)
+		JSONObject jSONObject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
+		if (jSONObject.Count < 1)
 		{
 			return;
 		}
 		Dictionary<int, JSONObject> dictionary = new Dictionary<int, JSONObject>();
 		List<JSONObject> list = new List<JSONObject>();
-		foreach (JSONObject jsonobject2 in jsonobject.list)
+		int num = 0;
+		foreach (JSONObject item in jSONObject.list)
 		{
-			if (!jsonobject2.HasField("ItemID"))
+			if (!item.HasField("ItemID"))
 			{
-				Debug.LogError("整理NPC背包出错");
-				Debug.LogError(string.Format("npcId为：{0},物品数据没有ItemID", npcId));
+				Debug.LogError((object)"整理NPC背包出错");
+				Debug.LogError((object)$"npcId为：{npcId},物品数据没有ItemID");
 				return;
 			}
-			int i = jsonobject2["ItemID"].I;
-			if (i < 1)
+			num = item["ItemID"].I;
+			if (num < 1)
 			{
-				Debug.LogError("整理NPC背包出错");
-				Debug.LogError(string.Format("npcId为：{0},itemId小于1", npcId));
+				Debug.LogError((object)"整理NPC背包出错");
+				Debug.LogError((object)$"npcId为：{npcId},itemId小于1");
 				return;
 			}
-			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[i];
+			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[num];
 			if (itemJsonData.maxNum > 1)
 			{
 				if (dictionary.ContainsKey(itemJsonData.id))
 				{
-					dictionary[itemJsonData.id].SetField("Num", dictionary[itemJsonData.id]["Num"].I + jsonobject2["Num"].I);
+					dictionary[itemJsonData.id].SetField("Num", dictionary[itemJsonData.id]["Num"].I + item["Num"].I);
 				}
 				else
 				{
-					dictionary.Add(itemJsonData.id, jsonobject2.Copy());
+					dictionary.Add(itemJsonData.id, item.Copy());
 				}
 			}
 			else
 			{
-				list.Add(jsonobject2.Copy());
+				list.Add(item.Copy());
 			}
 		}
 		jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"] = new JSONObject();
-		jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
-		foreach (JSONObject obj in list)
+		jSONObject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
+		foreach (JSONObject item2 in list)
 		{
-			jsonobject.Add(obj);
+			jSONObject.Add(item2);
 		}
 		foreach (int key in dictionary.Keys)
 		{
-			jsonobject.Add(dictionary[key]);
+			jSONObject.Add(dictionary[key]);
 		}
 	}
 
-	// Token: 0x06001568 RID: 5480 RVA: 0x0008C68C File Offset: 0x0008A88C
 	public void AddNpcEquip(int npcId, int equipType, bool isLianQi = false)
 	{
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
-		string index = this.EquipNameList[equipType - 1];
-		int i = jsonobject["Level"].I;
-		int i2 = jsonobject[index][this.getRandomInt(0, jsonobject[index].Count - 1)].I;
-		int itemID = 0;
-		int i3 = jsonData.instance.NpcLevelShouYiDate[i.ToString()]["fabao"].I;
-		JSONObject jsonobject2 = new JSONObject();
-		RandomNPCEquip.CreateLoveEquip(ref itemID, ref jsonobject2, i2, null, i3);
-		JSONObject item = this.AddItemToNpcBackpack(npcId, itemID, 1, jsonobject2, false);
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData[npcId.ToString()];
+		string index = EquipNameList[equipType - 1];
+		int i = jSONObject["Level"].I;
+		int num = 0;
+		num = jSONObject[index][getRandomInt(0, jSONObject[index].Count - 1)].I;
+		int ItemID = 0;
+		int i2 = jsonData.instance.NpcLevelShouYiDate[i.ToString()]["fabao"].I;
+		JSONObject ItemJson = new JSONObject();
+		RandomNPCEquip.CreateLoveEquip(ref ItemID, ref ItemJson, num, null, i2);
+		JSONObject item = AddItemToNpcBackpack(npcId, ItemID, 1, ItemJson);
 		if (isLianQi)
 		{
-			this.npcNoteBook.NoteLianQi(npcId, i3, (equipType == 4) ? 1 : equipType, jsonobject2["Name"].str);
-			int i4 = jsonData.instance.LianQiJieSuanBiao[i3.ToString()]["exp"].I;
-			this.npcSetField.AddNpcWuDaoExp(npcId, 22, i4);
+			npcNoteBook.NoteLianQi(npcId, i2, (equipType == 4) ? 1 : equipType, ItemJson["Name"].str);
+			int i3 = jsonData.instance.LianQiJieSuanBiao[i2.ToString()]["exp"].I;
+			npcSetField.AddNpcWuDaoExp(npcId, 22, i3);
 		}
-		this.npcUseItem.UseItem(npcId, item, false);
-		int num = (int)jsonData.instance.LianQiWuQiQuality[jsonobject["Level"].I.ToString()]["price"];
-		this.npcSetField.AddNpcMoney(npcId, -num);
+		npcUseItem.UseItem(npcId, item);
+		int num2 = (int)jsonData.instance.LianQiWuQiQuality[jSONObject["Level"].I.ToString()][(object)"price"];
+		npcSetField.AddNpcMoney(npcId, -num2);
 	}
 
-	// Token: 0x06001569 RID: 5481 RVA: 0x0008C800 File Offset: 0x0008AA00
 	public void UpdateNpcWuDao(int npcId)
 	{
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
-		int i = jsonobject["wudaoType"].I;
-		int i2 = jsonobject["Level"].I;
-		JSONObject npcwuDaoJson = jsonData.instance.NPCWuDaoJson;
-		for (int j = 0; j < npcwuDaoJson.Count; j++)
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData[npcId.ToString()];
+		int i = jSONObject["wudaoType"].I;
+		int i2 = jSONObject["Level"].I;
+		JSONObject nPCWuDaoJson = jsonData.instance.NPCWuDaoJson;
+		for (int j = 0; j < nPCWuDaoJson.Count; j++)
 		{
-			if (npcwuDaoJson[j]["Type"].I == i && npcwuDaoJson[j]["lv"].I == i2)
+			if (nPCWuDaoJson[j]["Type"].I != i || nPCWuDaoJson[j]["lv"].I != i2)
 			{
-				for (int k = 0; k < npcwuDaoJson[j]["wudaoID"].Count; k++)
-				{
-					int i3 = npcwuDaoJson[j]["wudaoID"][k].I;
-					if (!jsonobject["wuDaoSkillList"].ToList().Contains(i3))
-					{
-						try
-						{
-							jsonobject["wuDaoSkillList"].Add(i3);
-						}
-						catch (Exception ex)
-						{
-							Debug.LogError(ex);
-						}
-					}
-				}
-				for (int l = 1; l <= 12; l++)
-				{
-					int num = (l <= 10) ? l : (l + 10);
-					if (jsonobject["wuDaoJson"][num.ToString()]["level"].I < npcwuDaoJson[j]["value" + l].I)
-					{
-						jsonobject["wuDaoJson"][num.ToString()].SetField("level", npcwuDaoJson[j]["value" + l].I);
-						int num2 = jsonobject["wuDaoJson"][num.ToString()]["level"].I - 1;
-						int val = 0;
-						if (num2 != 0)
-						{
-							val = jsonData.instance.WuDaoJinJieJson[num2.ToString()]["Max"].I;
-						}
-						jsonobject["wuDaoJson"][num.ToString()].SetField("exp", val);
-					}
-				}
-				return;
+				continue;
 			}
+			for (int k = 0; k < nPCWuDaoJson[j]["wudaoID"].Count; k++)
+			{
+				int i3 = nPCWuDaoJson[j]["wudaoID"][k].I;
+				if (!jSONObject["wuDaoSkillList"].ToList().Contains(i3))
+				{
+					try
+					{
+						jSONObject["wuDaoSkillList"].Add(i3);
+					}
+					catch (Exception ex)
+					{
+						Debug.LogError((object)ex);
+					}
+				}
+			}
+			for (int l = 1; l <= 12; l++)
+			{
+				int num = ((l <= 10) ? l : (l + 10));
+				if (jSONObject["wuDaoJson"][num.ToString()]["level"].I < nPCWuDaoJson[j]["value" + l].I)
+				{
+					jSONObject["wuDaoJson"][num.ToString()].SetField("level", nPCWuDaoJson[j]["value" + l].I);
+					int num2 = jSONObject["wuDaoJson"][num.ToString()]["level"].I - 1;
+					int val = 0;
+					if (num2 != 0)
+					{
+						val = jsonData.instance.WuDaoJinJieJson[num2.ToString()]["Max"].I;
+					}
+					jSONObject["wuDaoJson"][num.ToString()].SetField("exp", val);
+				}
+			}
+			break;
 		}
 	}
 
-	// Token: 0x0600156A RID: 5482 RVA: 0x0008CA68 File Offset: 0x0008AC68
 	public bool IsCanLianDan(int npcId)
 	{
-		bool result;
 		try
 		{
 			int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"]["21"]["level"].I;
 			if (jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["money"].I >= jsonData.instance.WuDaoJinJieJson[i.ToString()]["LianDan"].I)
 			{
-				result = true;
+				return true;
 			}
-			else
-			{
-				result = false;
-			}
+			return false;
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError(ex.Message);
-			Debug.LogError(ex.StackTrace);
-			result = false;
+			Debug.LogError((object)ex.Message);
+			Debug.LogError((object)ex.StackTrace);
+			return false;
 		}
-		return result;
 	}
 
-	// Token: 0x0600156B RID: 5483 RVA: 0x0008CB30 File Offset: 0x0008AD30
 	public bool IsCanLianQi(int npcId)
 	{
-		bool result;
 		try
 		{
 			int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"]["22"]["level"].I;
 			if (i == 0)
 			{
-				result = false;
+				return false;
 			}
-			else if (jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["money"].I >= jsonData.instance.WuDaoJinJieJson[i.ToString()]["LianQi"].I)
+			if (jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["money"].I >= jsonData.instance.WuDaoJinJieJson[i.ToString()]["LianQi"].I)
 			{
-				result = true;
+				return true;
 			}
-			else
-			{
-				result = false;
-			}
+			return false;
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError(ex.Message);
-			Debug.LogError(ex.StackTrace);
-			result = false;
+			Debug.LogError((object)ex.Message);
+			Debug.LogError((object)ex.StackTrace);
+			return false;
 		}
-		return result;
 	}
 
-	// Token: 0x0600156C RID: 5484 RVA: 0x0008CBFC File Offset: 0x0008ADFC
 	public int GetNpcBigLevel(int npcId)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["Level"].I;
@@ -1335,13 +1345,11 @@ public class NpcJieSuanManager : MonoBehaviour
 		return num + 1;
 	}
 
-	// Token: 0x0600156D RID: 5485 RVA: 0x0008CC3F File Offset: 0x0008AE3F
 	public void DoNothing(int npcId)
 	{
-		this.npcTeShu.NpcAddDoSomething(npcId);
+		npcTeShu.NpcAddDoSomething(npcId);
 	}
 
-	// Token: 0x0600156E RID: 5486 RVA: 0x0008CC4D File Offset: 0x0008AE4D
 	public JSONObject GetNpcData(int npcId)
 	{
 		if (jsonData.instance.AvatarJsonData.HasField(npcId.ToString()))
@@ -1351,95 +1359,103 @@ public class NpcJieSuanManager : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600156F RID: 5487 RVA: 0x0008CC7F File Offset: 0x0008AE7F
 	public bool IsInScope(int cur, int min, int max)
 	{
-		return cur >= min && cur <= max;
-	}
-
-	// Token: 0x06001570 RID: 5488 RVA: 0x0008CC8C File Offset: 0x0008AE8C
-	public bool ImprotantNpcActionPanDing(int npcId)
-	{
-		JSONObject npcData = this.GetNpcData(npcId);
-		JSONObject npcImprotantPanDingData = jsonData.instance.NpcImprotantPanDingData;
-		if (npcData["isImportant"].b && npcData.HasField("BindingNpcID"))
+		if (cur >= min && cur <= max)
 		{
-			int i = npcData["BindingNpcID"].I;
-			foreach (JSONObject jsonobject in npcImprotantPanDingData.list)
-			{
-				if (jsonobject["NPC"].I == i)
-				{
-					string str = jsonobject["StartTime"].str;
-					string str2 = jsonobject["EndTime"].str;
-					if (Tools.instance.IsInTime(DateTime.Parse(this.JieSuanTime), DateTime.Parse(str), DateTime.Parse(str2), 0))
-					{
-						if (jsonobject["EventValue"].Count <= 0)
-						{
-							npcData.SetField("ActionId", jsonobject["XingWei"].I);
-							return true;
-						}
-						string str3 = jsonobject["fuhao"].str;
-						int num = GlobalValue.Get(jsonobject["EventValue"][0].I, string.Format("NpcJieSuanManager.ImprotantNpcActionPanDing({0})", npcId));
-						if (str3 == "=")
-						{
-							if (num == jsonobject["EventValue"][1].I)
-							{
-								npcData.SetField("ActionId", jsonobject["XingWei"].I);
-								return true;
-							}
-						}
-						else if (str3 == "<")
-						{
-							if (num < jsonobject["EventValue"][1].I)
-							{
-								npcData.SetField("ActionId", jsonobject["XingWei"].I);
-								return true;
-							}
-						}
-						else if (str3 == ">" && num > jsonobject["EventValue"][1].I)
-						{
-							npcData.SetField("ActionId", jsonobject["XingWei"].I);
-							return true;
-						}
-					}
-				}
-			}
-			return false;
+			return true;
 		}
 		return false;
 	}
 
-	// Token: 0x06001571 RID: 5489 RVA: 0x0008CF14 File Offset: 0x0008B114
+	public bool ImprotantNpcActionPanDing(int npcId)
+	{
+		JSONObject npcData = GetNpcData(npcId);
+		JSONObject npcImprotantPanDingData = jsonData.instance.NpcImprotantPanDingData;
+		if (npcData["isImportant"].b && npcData.HasField("BindingNpcID"))
+		{
+			string text = "";
+			string text2 = "";
+			string text3 = "";
+			int i = npcData["BindingNpcID"].I;
+			foreach (JSONObject item in npcImprotantPanDingData.list)
+			{
+				if (item["NPC"].I != i)
+				{
+					continue;
+				}
+				text = item["StartTime"].str;
+				text2 = item["EndTime"].str;
+				if (!Tools.instance.IsInTime(DateTime.Parse(JieSuanTime), DateTime.Parse(text), DateTime.Parse(text2)))
+				{
+					continue;
+				}
+				if (item["EventValue"].Count > 0)
+				{
+					text3 = item["fuhao"].str;
+					int num = GlobalValue.Get(item["EventValue"][0].I, $"NpcJieSuanManager.ImprotantNpcActionPanDing({npcId})");
+					switch (text3)
+					{
+					case "=":
+						if (num == item["EventValue"][1].I)
+						{
+							npcData.SetField("ActionId", item["XingWei"].I);
+							return true;
+						}
+						break;
+					case "<":
+						if (num < item["EventValue"][1].I)
+						{
+							npcData.SetField("ActionId", item["XingWei"].I);
+							return true;
+						}
+						break;
+					case ">":
+						if (num > item["EventValue"][1].I)
+						{
+							npcData.SetField("ActionId", item["XingWei"].I);
+							return true;
+						}
+						break;
+					}
+					continue;
+				}
+				npcData.SetField("ActionId", item["XingWei"].I);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public int GetNpcShengYuTime(int npcId)
 	{
-		JSONObject npcData = this.GetNpcData(npcId);
+		JSONObject npcData = GetNpcData(npcId);
 		int num = npcData["age"].I / 12;
 		return npcData["shouYuan"].I - num;
 	}
 
-	// Token: 0x06001572 RID: 5490 RVA: 0x0008CF50 File Offset: 0x0008B150
 	public void GuDingAddExp(int npcId, float times = 1f)
 	{
-		JSONObject npcData = this.GetNpcData(npcId);
-		npcData.SetField("isTanChaUnlock", false);
+		JSONObject npcData = GetNpcData(npcId);
+		npcData.SetField("isTanChaUnlock", val: false);
 		if (npcData["isImportant"].b)
 		{
-			int npcBigLevel = this.GetNpcBigLevel(npcId);
+			int npcBigLevel = GetNpcBigLevel(npcId);
 			if (npcBigLevel == 1 && npcData.HasField("LianQiAddSpeed"))
 			{
-				this.npcSetField.AddNpcExp(npcId, (int)((float)npcData["LianQiAddSpeed"].I * times));
+				npcSetField.AddNpcExp(npcId, (int)((float)npcData["LianQiAddSpeed"].I * times));
 			}
 			else if (npcBigLevel == 2 && npcData.HasField("ZhuJiAddSpeed"))
 			{
-				this.npcSetField.AddNpcExp(npcId, (int)((float)npcData["ZhuJiAddSpeed"].I * times));
+				npcSetField.AddNpcExp(npcId, (int)((float)npcData["ZhuJiAddSpeed"].I * times));
 			}
 			else if (npcBigLevel == 3 && npcData.HasField("JinDanAddSpeed"))
 			{
-				this.npcSetField.AddNpcExp(npcId, (int)((float)npcData["JinDanAddSpeed"].I * times));
+				npcSetField.AddNpcExp(npcId, (int)((float)npcData["JinDanAddSpeed"].I * times));
 			}
 			else if (npcBigLevel == 4 && npcData.HasField("HuaShengTime") && npcData.HasField("YuanYingAddSpeed"))
 			{
-				this.npcSetField.AddNpcExp(npcId, (int)((float)npcData["YuanYingAddSpeed"].I * times));
+				npcSetField.AddNpcExp(npcId, (int)((float)npcData["YuanYingAddSpeed"].I * times));
 			}
 		}
 		int num = npcData["xiuLianSpeed"].I;
@@ -1448,112 +1464,117 @@ public class NpcJieSuanManager : MonoBehaviour
 			float num2 = npcData["JinDanData"]["JinDanAddSpeed"].f / 100f;
 			num += (int)(num2 * (float)num);
 		}
-		this.npcSetField.AddNpcExp(npcId, (int)((float)num * times));
+		npcSetField.AddNpcExp(npcId, (int)((float)num * times));
 	}
 
-	// Token: 0x06001573 RID: 5491 RVA: 0x0008D0C0 File Offset: 0x0008B2C0
 	public List<int> GetPaiMaiListByPaiMaiId(int paiMaiId)
 	{
 		List<int> list = new List<int>();
 		string changJing = PaiMaiBiao.DataDict[paiMaiId].ChangJing;
-		if (this.npcMap.threeSenceNPCDictionary.ContainsKey(changJing))
+		if (npcMap.threeSenceNPCDictionary.ContainsKey(changJing))
 		{
-			list.AddRange(this.npcMap.threeSenceNPCDictionary[changJing]);
+			list.AddRange(npcMap.threeSenceNPCDictionary[changJing]);
 		}
-		if (this.PaiMaiNpcDictionary.ContainsKey(paiMaiId))
+		if (PaiMaiNpcDictionary.ContainsKey(paiMaiId))
 		{
-			this.PaiMaiNpcDictionary[paiMaiId] = new List<int>();
+			PaiMaiNpcDictionary[paiMaiId] = new List<int>();
 		}
 		return list;
 	}
 
-	// Token: 0x06001574 RID: 5492 RVA: 0x0008D130 File Offset: 0x0008B330
 	public void CheckImportantEvent(string nowTime)
 	{
-		DateTime t = DateTime.Parse(nowTime);
+		DateTime dateTime = DateTime.Parse(nowTime);
 		Tools.instance.getPlayer();
-		foreach (JSONObject jsonobject in jsonData.instance.NpcImprotantEventData.list)
+		foreach (JSONObject item in jsonData.instance.NpcImprotantEventData.list)
 		{
-			if (this.ImportantNpcBangDingDictionary.ContainsKey(jsonobject["ImportantNPC"].I))
+			if (!ImportantNpcBangDingDictionary.ContainsKey(item["ImportantNPC"].I))
 			{
-				int npcId = this.ImportantNpcBangDingDictionary[jsonobject["ImportantNPC"].I];
-				JSONObject npcData = this.GetNpcData(npcId);
-				DateTime t2 = DateTime.Parse(jsonobject["Time"].str);
-				if (t >= t2)
+				continue;
+			}
+			int npcId = ImportantNpcBangDingDictionary[item["ImportantNPC"].I];
+			JSONObject npcData = GetNpcData(npcId);
+			DateTime dateTime2 = DateTime.Parse(item["Time"].str);
+			if (!(dateTime >= dateTime2))
+			{
+				continue;
+			}
+			if (item["EventLv"].Count > 0)
+			{
+				bool flag = false;
+				int num = GlobalValue.Get(item["EventLv"][0].I, "NpcJieSuanManager.CheckImportantEvent(" + nowTime + ")");
+				if (item["fuhao"].str == "=")
 				{
-					if (jsonobject["EventLv"].Count > 0)
+					if (num == item["EventLv"][1].I)
 					{
-						bool flag = false;
-						int num = GlobalValue.Get(jsonobject["EventLv"][0].I, "NpcJieSuanManager.CheckImportantEvent(" + nowTime + ")");
-						if (jsonobject["fuhao"].str == "=")
-						{
-							if (num == jsonobject["EventLv"][1].I)
-							{
-								flag = true;
-							}
-						}
-						else if (jsonobject["fuhao"].Str == ">")
-						{
-							if (num > jsonobject["EventLv"][1].I)
-							{
-								flag = true;
-							}
-						}
-						else if (jsonobject["fuhao"].Str == "<" && num < jsonobject["EventLv"][1].I)
-						{
-							flag = true;
-						}
-						if (!flag)
-						{
-							continue;
-						}
-					}
-					if (npcData["NoteBook"].HasField("101"))
-					{
-						bool flag2 = true;
-						using (List<JSONObject>.Enumerator enumerator2 = npcData["NoteBook"]["101"].list.GetEnumerator())
-						{
-							while (enumerator2.MoveNext())
-							{
-								if (enumerator2.Current["gudingshijian"].I == jsonobject["id"].I)
-								{
-									flag2 = false;
-								}
-							}
-						}
-						if (flag2)
-						{
-							this.npcNoteBook.NoteImprotantEvent(npcId, jsonobject["id"].I, jsonobject["Time"].Str);
-						}
-					}
-					else
-					{
-						this.npcNoteBook.NoteImprotantEvent(npcId, jsonobject["id"].I, jsonobject["Time"].Str);
+						flag = true;
 					}
 				}
+				else if (item["fuhao"].Str == ">")
+				{
+					if (num > item["EventLv"][1].I)
+					{
+						flag = true;
+					}
+				}
+				else if (item["fuhao"].Str == "<" && num < item["EventLv"][1].I)
+				{
+					flag = true;
+				}
+				if (!flag)
+				{
+					continue;
+				}
+			}
+			if (npcData["NoteBook"].HasField("101"))
+			{
+				bool flag2 = true;
+				foreach (JSONObject item2 in npcData["NoteBook"]["101"].list)
+				{
+					if (item2["gudingshijian"].I == item["id"].I)
+					{
+						flag2 = false;
+					}
+				}
+				if (flag2)
+				{
+					npcNoteBook.NoteImprotantEvent(npcId, item["id"].I, item["Time"].Str);
+				}
+			}
+			else
+			{
+				npcNoteBook.NoteImprotantEvent(npcId, item["id"].I, item["Time"].Str);
 			}
 		}
 	}
 
-	// Token: 0x06001575 RID: 5493 RVA: 0x0008D40C File Offset: 0x0008B60C
 	public bool IsNeedHelp()
 	{
-		return this.getRandomInt(0, 100) <= 30;
+		if (getRandomInt(0, 100) <= 30)
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x06001576 RID: 5494 RVA: 0x0008D420 File Offset: 0x0008B620
 	public bool IsDeath(int npcId)
 	{
-		return this.npcDeath.npcDeathJson.HasField(npcId.ToString()) || (this.npcDeath.npcDeathJson.HasField("deathImportantList") && this.npcDeath.npcDeathJson["deathImportantList"].ToList().Contains(npcId));
+		if (npcDeath.npcDeathJson.HasField(npcId.ToString()) || (npcDeath.npcDeathJson.HasField("deathImportantList") && npcDeath.npcDeathJson["deathImportantList"].ToList().Contains(npcId)))
+		{
+			return true;
+		}
+		return false;
 	}
 
-	// Token: 0x06001577 RID: 5495 RVA: 0x0008D482 File Offset: 0x0008B682
 	public bool IsFly(int npcId)
 	{
-		return jsonData.instance.AvatarJsonData.HasField(npcId.ToString()) && this.GetNpcData(npcId).HasField("IsFly");
+		if (!jsonData.instance.AvatarJsonData.HasField(npcId.ToString()))
+		{
+			return false;
+		}
+		return GetNpcData(npcId).HasField("IsFly");
 	}
 
-	// Token: 0x06001578 RID: 5496 RVA: 0x0008D4B0 File Offset: 0x0008B6B0
 	public void SendMessage(int npcId)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1561,79 +1582,79 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			return;
 		}
-		JSONObject npcData = this.GetNpcData(npcId);
+		JSONObject npcData = GetNpcData(npcId);
 		int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
-		if (player.emailDateMag.cyNpcList.Contains(npcId))
+		if (!player.emailDateMag.cyNpcList.Contains(npcId))
 		{
-			foreach (CyPdData cyPdData in this.cyPdAuToList)
+			return;
+		}
+		foreach (CyPdData cyPdAuTo in cyPdAuToList)
+		{
+			if ((cyPdAuTo.isOnly && npcData.HasField("CyList") && npcData["CyList"].ToList().Contains(cyPdAuTo.cyType)) || !cyPdAuTo.npcActionList.Contains(npcData["ActionId"].I) || (cyPdAuTo.npcType != 0 && cyPdAuTo.npcType != npcData["Type"].I) || npcData["Level"].I < cyPdAuTo.minLevel || npcData["Level"].I > cyPdAuTo.maxLevel || (cyPdAuTo.staticFuHao > 0 && !cyPdAuTo.StaticValuePd()) || (cyPdAuTo.needHaoGanDu > 0 && !cyPdAuTo.HaoGanPd(i)) || !cyPdAuTo.IsinTime() || (cyPdAuTo.npcState != 0 && cyPdAuTo.npcState != npcData["Status"]["StatusId"].I))
 			{
-				if ((!cyPdData.isOnly || !npcData.HasField("CyList") || !npcData["CyList"].ToList().Contains(cyPdData.cyType)) && cyPdData.npcActionList.Contains(npcData["ActionId"].I) && (cyPdData.npcType == 0 || cyPdData.npcType == npcData["Type"].I) && npcData["Level"].I >= cyPdData.minLevel && npcData["Level"].I <= cyPdData.maxLevel && (cyPdData.staticFuHao <= 0 || cyPdData.StaticValuePd()) && (cyPdData.needHaoGanDu <= 0 || cyPdData.HaoGanPd(i)) && cyPdData.IsinTime() && (cyPdData.npcState == 0 || cyPdData.npcState == npcData["Status"]["StatusId"].I))
+				continue;
+			}
+			if (cyPdAuTo.actionId == 1)
+			{
+				if (getRandomInt(0, 100) > cyPdAuTo.baseRate)
 				{
-					if (cyPdData.actionId == 1)
-					{
-						if (this.getRandomInt(0, 100) > cyPdData.baseRate)
-						{
-							continue;
-						}
-					}
-					else
-					{
-						int num = player.AliveFriendCount - 3;
-						if (num <= 0)
-						{
-							num = 1;
-						}
-						if (this.getRandomInt(0, 100) > cyPdData.baseRate / num)
-						{
-							continue;
-						}
-					}
-					if (cyPdData.qingFen != 1 || npcData.TryGetField("QingFen").I >= cyPdData.itemPrice)
-					{
-						int randomInt = this.getRandomInt(1, 3);
-						int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyPdData.talkId);
-						if (cyPdData.actionId != 0)
-						{
-							List<int> item = cyPdData.GetItem(npcId);
-							if (item.Count < 1)
-							{
-								continue;
-							}
-							player.emailDateMag.SendToPlayer(npcId, duiBaiId, randomInt, cyPdData.actionId, item[0], item[1], cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
-							if (cyPdData.qingFen == 1)
-							{
-								NPCEx.AddQingFen(npcData["id"].I, -jsonData.instance.ItemJsonData[item[0].ToString()]["price"].I * item[1], false);
-								Debug.Log(string.Format("{0}的情分减少{1}", npcData["id"].I, jsonData.instance.ItemJsonData[item[0].ToString()]["price"].I * item[1]));
-							}
-						}
-						else
-						{
-							player.emailDateMag.SendToPlayer(npcId, duiBaiId, randomInt, cyPdData.actionId, 0, 0, cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
-						}
-						if (cyPdData.isOnly)
-						{
-							if (npcData.HasField("CyList"))
-							{
-								npcData["CyList"].Add(cyPdData.cyType);
-							}
-							else
-							{
-								JSONObject arr = JSONObject.arr;
-								arr.Add(cyPdData.cyType);
-								npcData.SetField("CyList", arr);
-							}
-						}
-						break;
-					}
+					continue;
 				}
 			}
+			else
+			{
+				int num = player.AliveFriendCount - 3;
+				if (num <= 0)
+				{
+					num = 1;
+				}
+				if (getRandomInt(0, 100) > cyPdAuTo.baseRate / num)
+				{
+					continue;
+				}
+			}
+			if (cyPdAuTo.qingFen == 1 && npcData.TryGetField("QingFen").I < cyPdAuTo.itemPrice)
+			{
+				continue;
+			}
+			int randomInt = getRandomInt(1, 3);
+			int duiBaiId = GetDuiBaiId(npcData["XingGe"].I, cyPdAuTo.talkId);
+			if (cyPdAuTo.actionId != 0)
+			{
+				List<int> item = cyPdAuTo.GetItem(npcId);
+				if (item.Count < 1)
+				{
+					continue;
+				}
+				player.emailDateMag.SendToPlayer(npcId, duiBaiId, randomInt, cyPdAuTo.actionId, item[0], item[1], cyPdAuTo.outTime, cyPdAuTo.addHaoGan, JieSuanTime);
+				if (cyPdAuTo.qingFen == 1)
+				{
+					NPCEx.AddQingFen(npcData["id"].I, -jsonData.instance.ItemJsonData[item[0].ToString()]["price"].I * item[1]);
+					Debug.Log((object)string.Format("{0}的情分减少{1}", npcData["id"].I, jsonData.instance.ItemJsonData[item[0].ToString()]["price"].I * item[1]));
+				}
+			}
+			else
+			{
+				player.emailDateMag.SendToPlayer(npcId, duiBaiId, randomInt, cyPdAuTo.actionId, 0, 0, cyPdAuTo.outTime, cyPdAuTo.addHaoGan, JieSuanTime);
+			}
+			if (cyPdAuTo.isOnly)
+			{
+				if (npcData.HasField("CyList"))
+				{
+					npcData["CyList"].Add(cyPdAuTo.cyType);
+					break;
+				}
+				JSONObject arr = JSONObject.arr;
+				arr.Add(cyPdAuTo.cyType);
+				npcData.SetField("CyList", arr);
+			}
+			break;
 		}
 	}
 
-	// Token: 0x06001579 RID: 5497 RVA: 0x0008D8C4 File Offset: 0x0008BAC4
 	public void SendFungusCyFu(int cytype)
 	{
-		if (!this.isCanJieSuan)
+		if (!isCanJieSuan)
 		{
 			return;
 		}
@@ -1642,103 +1663,102 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			return;
 		}
-		foreach (CyPdData cyPdData in this.cyPdFungusList)
+		foreach (CyPdData cyPdFungus in cyPdFungusList)
 		{
-			if (cyPdData.cyType == cytype)
+			if (cyPdFungus.cyType != cytype)
 			{
-				foreach (int num in player.emailDateMag.cyNpcList)
+				continue;
+			}
+			foreach (int cyNpc in player.emailDateMag.cyNpcList)
+			{
+				if (cyNpc < 20000 || IsDeath(cyNpc))
 				{
-					if (num >= 20000 && !this.IsDeath(num))
+					continue;
+				}
+				JSONObject npcData = GetNpcData(cyNpc);
+				int i = jsonData.instance.AvatarRandomJsonData[cyNpc.ToString()]["HaoGanDu"].I;
+				if ((cyPdFungus.isOnly && npcData.HasField("CyList") && npcData["CyList"].ToList().Contains(cyPdFungus.cyType)) || !cyPdFungus.npcActionList.Contains(npcData["ActionId"].I) || (cyPdFungus.npcType != 0 && cyPdFungus.npcType != npcData["Type"].I) || npcData["Level"].I < cyPdFungus.minLevel || npcData["Level"].I > cyPdFungus.maxLevel || (cyPdFungus.staticFuHao > 0 && !cyPdFungus.StaticValuePd()) || (cyPdFungus.needHaoGanDu > 0 && !cyPdFungus.HaoGanPd(i)) || !cyPdFungus.IsinTime() || (cyPdFungus.npcState != 0 && cyPdFungus.npcState != npcData["Status"]["StatusId"].I) || getRandomInt(0, 100) > cyPdFungus.GetRate(i))
+				{
+					continue;
+				}
+				int randomInt = getRandomInt(1, 3);
+				int duiBaiId = GetDuiBaiId(npcData["XingGe"].I, cyPdFungus.talkId);
+				if (cyPdFungus.actionId != 0)
+				{
+					List<int> item = cyPdFungus.GetItem(cyNpc);
+					if (item.Count < 1)
 					{
-						JSONObject npcData = this.GetNpcData(num);
-						int i = jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I;
-						if ((!cyPdData.isOnly || !npcData.HasField("CyList") || !npcData["CyList"].ToList().Contains(cyPdData.cyType)) && cyPdData.npcActionList.Contains(npcData["ActionId"].I) && (cyPdData.npcType == 0 || cyPdData.npcType == npcData["Type"].I) && npcData["Level"].I >= cyPdData.minLevel && npcData["Level"].I <= cyPdData.maxLevel && (cyPdData.staticFuHao <= 0 || cyPdData.StaticValuePd()) && (cyPdData.needHaoGanDu <= 0 || cyPdData.HaoGanPd(i)) && cyPdData.IsinTime() && (cyPdData.npcState == 0 || cyPdData.npcState == npcData["Status"]["StatusId"].I) && this.getRandomInt(0, 100) <= cyPdData.GetRate(i))
-						{
-							int randomInt = this.getRandomInt(1, 3);
-							int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyPdData.talkId);
-							if (cyPdData.actionId != 0)
-							{
-								List<int> item = cyPdData.GetItem(num);
-								if (item.Count < 1)
-								{
-									continue;
-								}
-								player.emailDateMag.SendToPlayerLate(num, duiBaiId, randomInt, cyPdData.actionId, item[0], item[1], cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
-							}
-							else
-							{
-								player.emailDateMag.SendToPlayerLate(num, duiBaiId, randomInt, cyPdData.actionId, 0, 0, cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
-							}
-							if (cyPdData.isOnly)
-							{
-								if (npcData.HasField("CyList"))
-								{
-									npcData["CyList"].Add(cyPdData.cyType);
-								}
-								else
-								{
-									JSONObject arr = JSONObject.arr;
-									arr.Add(cyPdData.cyType);
-									npcData.SetField("CyList", arr);
-								}
-							}
-						}
+						continue;
 					}
+					player.emailDateMag.SendToPlayerLate(cyNpc, duiBaiId, randomInt, cyPdFungus.actionId, item[0], item[1], cyPdFungus.outTime, cyPdFungus.addHaoGan, JieSuanTime);
+				}
+				else
+				{
+					player.emailDateMag.SendToPlayerLate(cyNpc, duiBaiId, randomInt, cyPdFungus.actionId, 0, 0, cyPdFungus.outTime, cyPdFungus.addHaoGan, JieSuanTime);
+				}
+				if (cyPdFungus.isOnly)
+				{
+					if (npcData.HasField("CyList"))
+					{
+						npcData["CyList"].Add(cyPdFungus.cyType);
+						continue;
+					}
+					JSONObject arr = JSONObject.arr;
+					arr.Add(cyPdFungus.cyType);
+					npcData.SetField("CyList", arr);
 				}
 			}
 		}
 	}
 
-	// Token: 0x0600157A RID: 5498 RVA: 0x0008DC1C File Offset: 0x0008BE1C
 	public void SendFungusCyByNpcId(int cytype, int npcId)
 	{
-		if (!this.isCanJieSuan)
+		if (!isCanJieSuan)
 		{
 			return;
 		}
 		Avatar player = Tools.instance.getPlayer();
-		foreach (CyPdData cyPdData in this.cyPdFungusList)
+		foreach (CyPdData cyPdFungus in cyPdFungusList)
 		{
-			if (cyPdData.cyType == cytype)
+			if (cyPdFungus.cyType != cytype)
 			{
-				JSONObject npcData = this.GetNpcData(npcId);
-				int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
-				if ((!cyPdData.isOnly || !npcData.HasField("CyList") || !npcData["CyList"].ToList().Contains(cyPdData.cyType)) && cyPdData.npcActionList.Contains(npcData["ActionId"].I) && (cyPdData.npcType == 0 || cyPdData.npcType == npcData["Type"].I) && npcData["Level"].I >= cyPdData.minLevel && npcData["Level"].I <= cyPdData.maxLevel && (cyPdData.staticFuHao <= 0 || cyPdData.StaticValuePd()) && (cyPdData.needHaoGanDu <= 0 || cyPdData.HaoGanPd(i)) && cyPdData.IsinTime() && (cyPdData.npcState == 0 || cyPdData.npcState == npcData["Status"]["StatusId"].I) && this.getRandomInt(0, 100) <= cyPdData.GetRate(i))
+				continue;
+			}
+			JSONObject npcData = GetNpcData(npcId);
+			int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
+			if ((cyPdFungus.isOnly && npcData.HasField("CyList") && npcData["CyList"].ToList().Contains(cyPdFungus.cyType)) || !cyPdFungus.npcActionList.Contains(npcData["ActionId"].I) || (cyPdFungus.npcType != 0 && cyPdFungus.npcType != npcData["Type"].I) || npcData["Level"].I < cyPdFungus.minLevel || npcData["Level"].I > cyPdFungus.maxLevel || (cyPdFungus.staticFuHao > 0 && !cyPdFungus.StaticValuePd()) || (cyPdFungus.needHaoGanDu > 0 && !cyPdFungus.HaoGanPd(i)) || !cyPdFungus.IsinTime() || (cyPdFungus.npcState != 0 && cyPdFungus.npcState != npcData["Status"]["StatusId"].I) || getRandomInt(0, 100) > cyPdFungus.GetRate(i))
+			{
+				continue;
+			}
+			int randomInt = getRandomInt(1, 3);
+			int duiBaiId = GetDuiBaiId(npcData["XingGe"].I, cyPdFungus.talkId);
+			if (cyPdFungus.actionId != 0)
+			{
+				List<int> item = cyPdFungus.GetItem(npcId);
+				if (item.Count < 1)
 				{
-					int randomInt = this.getRandomInt(1, 3);
-					int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyPdData.talkId);
-					if (cyPdData.actionId != 0)
-					{
-						List<int> item = cyPdData.GetItem(npcId);
-						if (item.Count < 1)
-						{
-							continue;
-						}
-						player.emailDateMag.SendToPlayerLate(npcId, duiBaiId, randomInt, cyPdData.actionId, item[0], item[1], cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
-					}
-					else
-					{
-						player.emailDateMag.SendToPlayerLate(npcId, duiBaiId, randomInt, cyPdData.actionId, 0, 0, cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
-					}
-					if (cyPdData.isOnly)
-					{
-						if (npcData.HasField("CyList"))
-						{
-							npcData["CyList"].Add(cyPdData.cyType);
-						}
-						else
-						{
-							JSONObject arr = JSONObject.arr;
-							arr.Add(cyPdData.cyType);
-							npcData.SetField("CyList", arr);
-						}
-					}
+					continue;
 				}
+				player.emailDateMag.SendToPlayerLate(npcId, duiBaiId, randomInt, cyPdFungus.actionId, item[0], item[1], cyPdFungus.outTime, cyPdFungus.addHaoGan, JieSuanTime);
+			}
+			else
+			{
+				player.emailDateMag.SendToPlayerLate(npcId, duiBaiId, randomInt, cyPdFungus.actionId, 0, 0, cyPdFungus.outTime, cyPdFungus.addHaoGan, JieSuanTime);
+			}
+			if (cyPdFungus.isOnly)
+			{
+				if (npcData.HasField("CyList"))
+				{
+					npcData["CyList"].Add(cyPdFungus.cyType);
+					continue;
+				}
+				JSONObject arr = JSONObject.arr;
+				arr.Add(cyPdFungus.cyType);
+				npcData.SetField("CyList", arr);
 			}
 		}
 	}
 
-	// Token: 0x0600157B RID: 5499 RVA: 0x0008DEEC File Offset: 0x0008C0EC
 	public void SendCy(int npcId)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1746,172 +1766,173 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			return;
 		}
-		JSONObject npcData = this.GetNpcData(npcId);
-		DateTime nowTime = this.GetNowTime();
+		JSONObject npcData = GetNpcData(npcId);
+		DateTime nowTime = GetNowTime();
 		if (!player.emailDateMag.cyNpcList.Contains(npcId))
 		{
 			return;
 		}
-		foreach (CyRandomTaskData cyRandomTaskData in CyRandomTaskData.DataList)
+		foreach (CyRandomTaskData data in CyRandomTaskData.DataList)
 		{
-			if (this.CurJieSuanNpcTaskList.Contains(npcId))
+			if (CurJieSuanNpcTaskList.Contains(npcId))
 			{
 				break;
 			}
-			DateTime t;
-			DateTime t2;
-			if (cyRandomTaskData.Type != 3 && (cyRandomTaskData.IsZhongYaoNPC != 0 || !npcData.HasField("isImportant") || !npcData["isImportant"].b) && (cyRandomTaskData.NPCLiuPai.Count <= 0 || cyRandomTaskData.NPCLiuPai.Contains(npcData.TryGetField("LiuPai").I)) && !this.lateEmailDict.ContainsKey(cyRandomTaskData.id) && !player.StreamData.TaskMag.HasTaskNpcList.Contains(npcId) && (cyRandomTaskData.IsOnly != 1 || !player.emailDateMag.HasReceiveList.Contains(cyRandomTaskData.id)) && (!DateTime.TryParse(cyRandomTaskData.StarTime, out t) || !DateTime.TryParse(cyRandomTaskData.EndTime, out t2) || (!(nowTime < t) && !(nowTime > t2))) && (cyRandomTaskData.Level.Count <= 0 || ((int)player.level >= cyRandomTaskData.Level[0] && (int)player.level <= cyRandomTaskData.Level[1])) && (cyRandomTaskData.NPCLevel.Count <= 0 || (npcData["Level"].I >= cyRandomTaskData.NPCLevel[0] && npcData["Level"].I <= cyRandomTaskData.NPCLevel[1])) && (cyRandomTaskData.NPCXingGe.Count <= 0 || cyRandomTaskData.NPCXingGe.Contains(npcData["XingGe"].I)) && (cyRandomTaskData.NPCType.Count <= 0 || cyRandomTaskData.NPCType.Contains(npcData["Type"].I)) && (cyRandomTaskData.NPCTag.Count <= 0 || cyRandomTaskData.NPCTag.Contains(npcData["NPCTag"].I)) && (cyRandomTaskData.NPCXingWei.Count <= 0 || cyRandomTaskData.NPCXingWei.Contains(npcData["ActionId"].I)) && (cyRandomTaskData.NPCXingWei.Count <= 0 || cyRandomTaskData.NPCXingWei.Contains(npcData["ActionId"].I)))
+			if (data.Type == 3 || (data.IsZhongYaoNPC == 0 && npcData.HasField("isImportant") && npcData["isImportant"].b) || (data.NPCLiuPai.Count > 0 && !data.NPCLiuPai.Contains(npcData.TryGetField("LiuPai").I)) || lateEmailDict.ContainsKey(data.id) || player.StreamData.TaskMag.HasTaskNpcList.Contains(npcId) || (data.IsOnly == 1 && player.emailDateMag.HasReceiveList.Contains(data.id)) || (DateTime.TryParse(data.StarTime, out var result) && DateTime.TryParse(data.EndTime, out var result2) && (nowTime < result || nowTime > result2)) || (data.Level.Count > 0 && (player.level < data.Level[0] || player.level > data.Level[1])) || (data.NPCLevel.Count > 0 && (npcData["Level"].I < data.NPCLevel[0] || npcData["Level"].I > data.NPCLevel[1])) || (data.NPCXingGe.Count > 0 && !data.NPCXingGe.Contains(npcData["XingGe"].I)) || (data.NPCType.Count > 0 && !data.NPCType.Contains(npcData["Type"].I)) || (data.NPCTag.Count > 0 && !data.NPCTag.Contains(npcData["NPCTag"].I)) || (data.NPCXingWei.Count > 0 && !data.NPCXingWei.Contains(npcData["ActionId"].I)) || (data.NPCXingWei.Count > 0 && !data.NPCXingWei.Contains(npcData["ActionId"].I)))
 			{
-				if (cyRandomTaskData.NPCGuanXi.Count > 0)
+				continue;
+			}
+			if (data.NPCGuanXi.Count > 0)
+			{
+				bool flag = false;
+				foreach (int item in data.NPCGuanXi)
 				{
-					bool flag = false;
-					foreach (int num in cyRandomTaskData.NPCGuanXi)
+					if (flag)
 					{
-						if (flag)
-						{
-							break;
-						}
-						switch (num)
-						{
-						case 1:
-							if (PlayerEx.IsTheather(npcId))
-							{
-								flag = true;
-							}
-							break;
-						case 2:
-							if (PlayerEx.IsDaoLv(npcId))
-							{
-								flag = true;
-							}
-							break;
-						case 3:
-							if (PlayerEx.IsBrother(npcId))
-							{
-								flag = true;
-							}
-							break;
-						}
+						break;
 					}
-					if (!flag)
+					switch (item)
 					{
-						continue;
+					case 1:
+						if (PlayerEx.IsTheather(npcId))
+						{
+							flag = true;
+						}
+						break;
+					case 2:
+						if (PlayerEx.IsDaoLv(npcId))
+						{
+							flag = true;
+						}
+						break;
+					case 3:
+						if (PlayerEx.IsBrother(npcId))
+						{
+							flag = true;
+						}
+						break;
 					}
 				}
-				if (cyRandomTaskData.NPCGuanXiNot.Count > 0)
+				if (!flag)
 				{
-					bool flag2 = false;
-					foreach (int num2 in cyRandomTaskData.NPCGuanXiNot)
-					{
-						if (flag2)
-						{
-							break;
-						}
-						switch (num2)
-						{
-						case 1:
-							if (PlayerEx.IsTheather(npcId))
-							{
-								flag2 = true;
-							}
-							break;
-						case 2:
-							if (PlayerEx.IsDaoLv(npcId))
-							{
-								flag2 = true;
-							}
-							break;
-						case 3:
-							if (PlayerEx.IsBrother(npcId))
-							{
-								flag2 = true;
-							}
-							break;
-						}
-					}
+					continue;
+				}
+			}
+			if (data.NPCGuanXiNot.Count > 0)
+			{
+				bool flag2 = false;
+				foreach (int item2 in data.NPCGuanXiNot)
+				{
 					if (flag2)
 					{
-						continue;
+						break;
 					}
-				}
-				if (cyRandomTaskData.HaoGanDu.Count > 0)
-				{
-					int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
-					if (i < cyRandomTaskData.HaoGanDu[0] || i > cyRandomTaskData.HaoGanDu[1])
+					switch (item2)
 					{
-						continue;
-					}
-				}
-				if (cyRandomTaskData.WuDaoType.Count > 0)
-				{
-					bool flag3 = true;
-					for (int j = 0; j < cyRandomTaskData.WuDaoType.Count; j++)
-					{
-						if (npcData["wuDaoJson"][cyRandomTaskData.WuDaoType[j].ToString()]["level"].I < cyRandomTaskData.WuDaoLevel[j])
+					case 1:
+						if (PlayerEx.IsTheather(npcId))
 						{
-							flag3 = false;
-							break;
+							flag2 = true;
 						}
-					}
-					if (!flag3)
-					{
-						continue;
-					}
-				}
-				if (cyRandomTaskData.EventValue.Count > 0)
-				{
-					bool flag4 = true;
-					for (int k = 0; k < cyRandomTaskData.EventValue.Count; k++)
-					{
-						int num3 = cyRandomTaskData.fuhao[k];
-						int id = cyRandomTaskData.EventValue[k];
-						int num4 = cyRandomTaskData.EventValueNum[k];
-						int num5 = GlobalValue.Get(id, string.Format("NpcJieSuanManager.SendCy({0}) 第三代传音符变量判定", npcId));
-						switch (num3)
+						break;
+					case 2:
+						if (PlayerEx.IsDaoLv(npcId))
 						{
-						case 1:
-							if (num5 != num4)
-							{
-								flag4 = false;
-							}
-							break;
-						case 2:
-							if (num5 <= num4)
-							{
-								flag4 = false;
-							}
-							break;
-						case 3:
-							if (num5 >= num4)
-							{
-								flag4 = false;
-							}
-							break;
+							flag2 = true;
 						}
+						break;
+					case 3:
+						if (PlayerEx.IsBrother(npcId))
+						{
+							flag2 = true;
+						}
+						break;
 					}
-					if (!flag4)
-					{
-						continue;
-					}
 				}
-				if (cyRandomTaskData.TaskType == 1 && !this.CurJieSuanNpcTaskList.Contains(npcId))
+				if (flag2)
 				{
-					this.CurJieSuanNpcTaskList.Add(npcId);
+					continue;
 				}
-				int randomInt = this.getRandomInt(1, 3);
-				int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyRandomTaskData.info);
-				DateTime dateTime = this.GetNowTime().AddDays((double)Tools.instance.GetRandomInt(cyRandomTaskData.DelayTime[0], cyRandomTaskData.DelayTime[0]));
-				if (cyRandomTaskData.Type == 1)
-				{
-					dateTime = DateTime.Parse(cyRandomTaskData.StarTime).AddDays((double)Tools.instance.GetRandomInt(cyRandomTaskData.DelayTime[0], cyRandomTaskData.DelayTime[0]));
-				}
-				RandomTask randomTask = new RandomTask(cyRandomTaskData.id, cyRandomTaskData.TaskID, cyRandomTaskData.TaskType, cyRandomTaskData.Taskvalue, cyRandomTaskData.NPCxingdong, cyRandomTaskData.valueID, cyRandomTaskData.value);
-				player.emailDateMag.RandomTaskSendToPlayer(randomTask, npcId, duiBaiId, randomInt, cyRandomTaskData.XingWeiType, cyRandomTaskData.ItemID, cyRandomTaskData.ItemNum, dateTime.ToString());
 			}
+			if (data.HaoGanDu.Count > 0)
+			{
+				int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
+				if (i < data.HaoGanDu[0] || i > data.HaoGanDu[1])
+				{
+					continue;
+				}
+			}
+			if (data.WuDaoType.Count > 0)
+			{
+				bool flag3 = true;
+				for (int j = 0; j < data.WuDaoType.Count; j++)
+				{
+					if (npcData["wuDaoJson"][data.WuDaoType[j].ToString()]["level"].I < data.WuDaoLevel[j])
+					{
+						flag3 = false;
+						break;
+					}
+				}
+				if (!flag3)
+				{
+					continue;
+				}
+			}
+			if (data.EventValue.Count > 0)
+			{
+				int num = 0;
+				int num2 = 0;
+				int num3 = 0;
+				bool flag4 = true;
+				for (int k = 0; k < data.EventValue.Count; k++)
+				{
+					num = data.fuhao[k];
+					int id = data.EventValue[k];
+					num2 = data.EventValueNum[k];
+					num3 = GlobalValue.Get(id, $"NpcJieSuanManager.SendCy({npcId}) 第三代传音符变量判定");
+					switch (num)
+					{
+					case 1:
+						if (num3 != num2)
+						{
+							flag4 = false;
+						}
+						break;
+					case 2:
+						if (num3 <= num2)
+						{
+							flag4 = false;
+						}
+						break;
+					case 3:
+						if (num3 >= num2)
+						{
+							flag4 = false;
+						}
+						break;
+					}
+				}
+				if (!flag4)
+				{
+					continue;
+				}
+			}
+			if (data.TaskType == 1 && !CurJieSuanNpcTaskList.Contains(npcId))
+			{
+				CurJieSuanNpcTaskList.Add(npcId);
+			}
+			int randomInt = getRandomInt(1, 3);
+			int duiBaiId = GetDuiBaiId(npcData["XingGe"].I, data.info);
+			DateTime dateTime = GetNowTime().AddDays(Tools.instance.GetRandomInt(data.DelayTime[0], data.DelayTime[0]));
+			if (data.Type == 1)
+			{
+				dateTime = DateTime.Parse(data.StarTime).AddDays(Tools.instance.GetRandomInt(data.DelayTime[0], data.DelayTime[0]));
+			}
+			RandomTask randomTask = new RandomTask(data.id, data.TaskID, data.TaskType, data.Taskvalue, data.NPCxingdong, data.valueID, data.value);
+			player.emailDateMag.RandomTaskSendToPlayer(randomTask, npcId, duiBaiId, randomInt, data.XingWeiType, data.ItemID, data.ItemNum, dateTime.ToString());
 		}
 	}
 
-	// Token: 0x0600157C RID: 5500 RVA: 0x0008E62C File Offset: 0x0008C82C
 	public void SendFungusCy(int cyId)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1920,291 +1941,170 @@ public class NpcJieSuanManager : MonoBehaviour
 			return;
 		}
 		CyRandomTaskData cyRandomTaskData = CyRandomTaskData.DataDict[cyId];
-		JSONObject jsonobject = null;
-		DateTime nowTime = this.GetNowTime();
-		foreach (int num in player.emailDateMag.cyNpcList)
+		JSONObject jSONObject = null;
+		DateTime nowTime = GetNowTime();
+		foreach (int cyNpc in player.emailDateMag.cyNpcList)
 		{
-			if (num >= 20000)
+			if (cyNpc < 20000)
 			{
-				jsonobject = this.GetNpcData(num);
-				DateTime t;
-				DateTime t2;
-				if (jsonobject != null && cyRandomTaskData.Type == 3 && (cyRandomTaskData.IsOnly != 1 || !player.emailDateMag.HasReceiveList.Contains(cyRandomTaskData.id)) && (cyRandomTaskData.IsZhongYaoNPC != 0 || !jsonobject.HasField("isImportant") || !jsonobject["isImportant"].b) && (cyRandomTaskData.NPCLiuPai.Count <= 0 || cyRandomTaskData.NPCLiuPai.Contains(jsonobject.TryGetField("LiuPai").I)) && !this.lateEmailDict.ContainsKey(cyRandomTaskData.id) && !player.StreamData.TaskMag.HasTaskNpcList.Contains(num) && (!DateTime.TryParse(cyRandomTaskData.StarTime, out t) || !DateTime.TryParse(cyRandomTaskData.EndTime, out t2) || (!(nowTime < t) && !(nowTime > t2))) && (cyRandomTaskData.Level.Count <= 0 || ((int)player.level >= cyRandomTaskData.Level[0] && (int)player.level <= cyRandomTaskData.Level[1])) && (cyRandomTaskData.NPCLevel.Count <= 0 || (jsonobject["Level"].I >= cyRandomTaskData.NPCLevel[0] && jsonobject["Level"].I <= cyRandomTaskData.NPCLevel[1])) && (cyRandomTaskData.NPCXingGe.Count <= 0 || cyRandomTaskData.NPCXingGe.Contains(jsonobject["XingGe"].I)) && (cyRandomTaskData.NPCType.Count <= 0 || cyRandomTaskData.NPCType.Contains(jsonobject["Type"].I)) && (cyRandomTaskData.NPCTag.Count <= 0 || cyRandomTaskData.NPCTag.Contains(jsonobject["NPCTag"].I)) && (cyRandomTaskData.NPCXingWei.Count <= 0 || cyRandomTaskData.NPCXingWei.Contains(jsonobject["ActionId"].I)) && (cyRandomTaskData.NPCXingWei.Count <= 0 || cyRandomTaskData.NPCXingWei.Contains(jsonobject["ActionId"].I)))
+				continue;
+			}
+			jSONObject = GetNpcData(cyNpc);
+			if (jSONObject == null || cyRandomTaskData.Type != 3 || (cyRandomTaskData.IsOnly == 1 && player.emailDateMag.HasReceiveList.Contains(cyRandomTaskData.id)) || (cyRandomTaskData.IsZhongYaoNPC == 0 && jSONObject.HasField("isImportant") && jSONObject["isImportant"].b) || (cyRandomTaskData.NPCLiuPai.Count > 0 && !cyRandomTaskData.NPCLiuPai.Contains(jSONObject.TryGetField("LiuPai").I)) || lateEmailDict.ContainsKey(cyRandomTaskData.id) || player.StreamData.TaskMag.HasTaskNpcList.Contains(cyNpc) || (DateTime.TryParse(cyRandomTaskData.StarTime, out var result) && DateTime.TryParse(cyRandomTaskData.EndTime, out var result2) && (nowTime < result || nowTime > result2)) || (cyRandomTaskData.Level.Count > 0 && (player.level < cyRandomTaskData.Level[0] || player.level > cyRandomTaskData.Level[1])) || (cyRandomTaskData.NPCLevel.Count > 0 && (jSONObject["Level"].I < cyRandomTaskData.NPCLevel[0] || jSONObject["Level"].I > cyRandomTaskData.NPCLevel[1])) || (cyRandomTaskData.NPCXingGe.Count > 0 && !cyRandomTaskData.NPCXingGe.Contains(jSONObject["XingGe"].I)) || (cyRandomTaskData.NPCType.Count > 0 && !cyRandomTaskData.NPCType.Contains(jSONObject["Type"].I)) || (cyRandomTaskData.NPCTag.Count > 0 && !cyRandomTaskData.NPCTag.Contains(jSONObject["NPCTag"].I)) || (cyRandomTaskData.NPCXingWei.Count > 0 && !cyRandomTaskData.NPCXingWei.Contains(jSONObject["ActionId"].I)) || (cyRandomTaskData.NPCXingWei.Count > 0 && !cyRandomTaskData.NPCXingWei.Contains(jSONObject["ActionId"].I)))
+			{
+				continue;
+			}
+			if (cyRandomTaskData.NPCGuanXi.Count > 0)
+			{
+				bool flag = false;
+				foreach (int item in cyRandomTaskData.NPCGuanXi)
 				{
-					if (cyRandomTaskData.NPCGuanXi.Count > 0)
+					if (flag)
 					{
-						bool flag = false;
-						foreach (int num2 in cyRandomTaskData.NPCGuanXi)
-						{
-							if (flag)
-							{
-								break;
-							}
-							switch (num2)
-							{
-							case 1:
-								if (PlayerEx.IsTheather(num))
-								{
-									flag = true;
-								}
-								break;
-							case 2:
-								if (PlayerEx.IsDaoLv(num))
-								{
-									flag = true;
-								}
-								break;
-							case 3:
-								if (PlayerEx.IsBrother(num))
-								{
-									flag = true;
-								}
-								break;
-							}
-						}
-						if (!flag)
-						{
-							continue;
-						}
+						break;
 					}
-					if (cyRandomTaskData.HaoGanDu.Count > 0)
+					switch (item)
 					{
-						int i = jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I;
-						if (i < cyRandomTaskData.HaoGanDu[0] || i > cyRandomTaskData.HaoGanDu[1])
+					case 1:
+						if (PlayerEx.IsTheather(cyNpc))
 						{
-							continue;
+							flag = true;
 						}
+						break;
+					case 2:
+						if (PlayerEx.IsDaoLv(cyNpc))
+						{
+							flag = true;
+						}
+						break;
+					case 3:
+						if (PlayerEx.IsBrother(cyNpc))
+						{
+							flag = true;
+						}
+						break;
 					}
-					if (cyRandomTaskData.WuDaoType.Count > 0)
-					{
-						bool flag2 = true;
-						for (int j = 0; j < cyRandomTaskData.WuDaoType.Count; j++)
-						{
-							if (jsonobject["wuDaoJson"][cyRandomTaskData.WuDaoType[j].ToString()]["level"].I < cyRandomTaskData.WuDaoLevel[j])
-							{
-								flag2 = false;
-								break;
-							}
-						}
-						if (!flag2)
-						{
-							continue;
-						}
-					}
-					if (cyRandomTaskData.EventValue.Count > 0)
-					{
-						bool flag3 = true;
-						for (int k = 0; k < cyRandomTaskData.EventValue.Count; k++)
-						{
-							int num3 = cyRandomTaskData.fuhao[k];
-							int id = cyRandomTaskData.EventValue[k];
-							int num4 = cyRandomTaskData.EventValueNum[k];
-							int num5 = GlobalValue.Get(id, string.Format("NpcJieSuanManager.SendFungusCy({0}) 第三代传音符fungus发送 变量判定", cyId));
-							switch (num3)
-							{
-							case 1:
-								if (num5 != num4)
-								{
-									flag3 = false;
-								}
-								break;
-							case 2:
-								if (num5 <= num4)
-								{
-									flag3 = false;
-								}
-								break;
-							case 3:
-								if (num5 >= num4)
-								{
-									flag3 = false;
-								}
-								break;
-							}
-						}
-						if (!flag3)
-						{
-							continue;
-						}
-					}
-					int randomInt = this.getRandomInt(1, 3);
-					int duiBaiId = this.GetDuiBaiId(jsonobject["XingGe"].I, cyRandomTaskData.info);
-					DateTime dateTime = this.GetNowTime().AddDays((double)Tools.instance.GetRandomInt(cyRandomTaskData.DelayTime[0], cyRandomTaskData.DelayTime[0]));
-					RandomTask randomTask = new RandomTask(cyRandomTaskData.id, cyRandomTaskData.TaskID, cyRandomTaskData.TaskType, cyRandomTaskData.Taskvalue, cyRandomTaskData.NPCxingdong, cyRandomTaskData.valueID, cyRandomTaskData.value);
-					player.emailDateMag.RandomTaskSendToPlayer(randomTask, num, duiBaiId, randomInt, cyRandomTaskData.XingWeiType, cyRandomTaskData.ItemID, cyRandomTaskData.ItemNum, dateTime.ToString());
+				}
+				if (!flag)
+				{
+					continue;
 				}
 			}
+			if (cyRandomTaskData.HaoGanDu.Count > 0)
+			{
+				int i = jsonData.instance.AvatarRandomJsonData[cyNpc.ToString()]["HaoGanDu"].I;
+				if (i < cyRandomTaskData.HaoGanDu[0] || i > cyRandomTaskData.HaoGanDu[1])
+				{
+					continue;
+				}
+			}
+			if (cyRandomTaskData.WuDaoType.Count > 0)
+			{
+				bool flag2 = true;
+				for (int j = 0; j < cyRandomTaskData.WuDaoType.Count; j++)
+				{
+					if (jSONObject["wuDaoJson"][cyRandomTaskData.WuDaoType[j].ToString()]["level"].I < cyRandomTaskData.WuDaoLevel[j])
+					{
+						flag2 = false;
+						break;
+					}
+				}
+				if (!flag2)
+				{
+					continue;
+				}
+			}
+			if (cyRandomTaskData.EventValue.Count > 0)
+			{
+				int num = 0;
+				int num2 = 0;
+				int num3 = 0;
+				bool flag3 = true;
+				for (int k = 0; k < cyRandomTaskData.EventValue.Count; k++)
+				{
+					num = cyRandomTaskData.fuhao[k];
+					int id = cyRandomTaskData.EventValue[k];
+					num2 = cyRandomTaskData.EventValueNum[k];
+					num3 = GlobalValue.Get(id, $"NpcJieSuanManager.SendFungusCy({cyId}) 第三代传音符fungus发送 变量判定");
+					switch (num)
+					{
+					case 1:
+						if (num3 != num2)
+						{
+							flag3 = false;
+						}
+						break;
+					case 2:
+						if (num3 <= num2)
+						{
+							flag3 = false;
+						}
+						break;
+					case 3:
+						if (num3 >= num2)
+						{
+							flag3 = false;
+						}
+						break;
+					}
+				}
+				if (!flag3)
+				{
+					continue;
+				}
+			}
+			int randomInt = getRandomInt(1, 3);
+			int duiBaiId = GetDuiBaiId(jSONObject["XingGe"].I, cyRandomTaskData.info);
+			DateTime dateTime = GetNowTime().AddDays(Tools.instance.GetRandomInt(cyRandomTaskData.DelayTime[0], cyRandomTaskData.DelayTime[0]));
+			RandomTask randomTask = new RandomTask(cyRandomTaskData.id, cyRandomTaskData.TaskID, cyRandomTaskData.TaskType, cyRandomTaskData.Taskvalue, cyRandomTaskData.NPCxingdong, cyRandomTaskData.valueID, cyRandomTaskData.value);
+			player.emailDateMag.RandomTaskSendToPlayer(randomTask, cyNpc, duiBaiId, randomInt, cyRandomTaskData.XingWeiType, cyRandomTaskData.ItemID, cyRandomTaskData.ItemNum, dateTime.ToString());
 		}
 	}
 
-	// Token: 0x0600157D RID: 5501 RVA: 0x0008EC30 File Offset: 0x0008CE30
 	public List<int> GetJieShaNpcList(int index)
 	{
 		List<int> list = new List<int>();
-		if (this.npcMap.bigMapNPCDictionary.ContainsKey(index) && this.npcMap.bigMapNPCDictionary[index].Count > 0)
+		if (npcMap.bigMapNPCDictionary.ContainsKey(index) && npcMap.bigMapNPCDictionary[index].Count > 0)
 		{
-			foreach (int num in this.npcMap.bigMapNPCDictionary[index])
+			foreach (int item in npcMap.bigMapNPCDictionary[index])
 			{
-				if (this.GetNpcBigLevel(num) == Tools.instance.getPlayer().getLevelType() && jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I < 50 && this.GetNpcData(num)["ActionId"].I == 34)
+				if (GetNpcBigLevel(item) == Tools.instance.getPlayer().getLevelType() && jsonData.instance.AvatarRandomJsonData[item.ToString()]["HaoGanDu"].I < 50 && GetNpcData(item)["ActionId"].I == 34)
 				{
-					list.Add(num);
+					list.Add(item);
 				}
 			}
 		}
 		return list;
 	}
 
-	// Token: 0x0600157E RID: 5502 RVA: 0x0008ED24 File Offset: 0x0008CF24
 	public List<int> GetXunLuoNpcList(string fubenName, int index)
 	{
 		List<int> list = new List<int>();
 		Avatar player = Tools.instance.getPlayer();
-		if (this.npcMap.fuBenNPCDictionary.ContainsKey(fubenName) && this.npcMap.fuBenNPCDictionary[fubenName].ContainsKey(index))
+		if (npcMap.fuBenNPCDictionary.ContainsKey(fubenName) && npcMap.fuBenNPCDictionary[fubenName].ContainsKey(index))
 		{
-			foreach (int num in this.npcMap.fuBenNPCDictionary[fubenName][index])
+			foreach (int item in npcMap.fuBenNPCDictionary[fubenName][index])
 			{
-				JSONObject npcData = this.GetNpcData(num);
-				if (npcData["MenPai"].I != (int)player.menPai && player.shengShi <= npcData["shengShi"].I)
+				JSONObject npcData = GetNpcData(item);
+				if (npcData["MenPai"].I != player.menPai && player.shengShi <= npcData["shengShi"].I)
 				{
-					list.Add(num);
+					list.Add(item);
 				}
 			}
 		}
 		return list;
 	}
 
-	// Token: 0x0600157F RID: 5503 RVA: 0x0008EE08 File Offset: 0x0008D008
 	public int GetDuiBaiId(int XingGe, int type)
 	{
 		int result = 0;
-		foreach (JSONObject jsonobject in jsonData.instance.CyNpcDuiBaiData.list)
+		foreach (JSONObject item in jsonData.instance.CyNpcDuiBaiData.list)
 		{
-			if (jsonobject["XingGe"].I == XingGe && jsonobject["Type"].I == type)
+			if (item["XingGe"].I == XingGe && item["Type"].I == type)
 			{
-				result = jsonobject["id"].I;
+				result = item["id"].I;
 			}
 		}
 		return result;
 	}
-
-	// Token: 0x04000FE9 RID: 4073
-	public static NpcJieSuanManager inst;
-
-	// Token: 0x04000FEA RID: 4074
-	public NpCFight npcFight;
-
-	// Token: 0x04000FEB RID: 4075
-	private Random random;
-
-	// Token: 0x04000FEC RID: 4076
-	public NPCXiuLian npcXiuLian;
-
-	// Token: 0x04000FED RID: 4077
-	public NPCTuPo npcTuPo;
-
-	// Token: 0x04000FEE RID: 4078
-	public NpcSetField npcSetField;
-
-	// Token: 0x04000FEF RID: 4079
-	public NPCShouJi npcShouJi;
-
-	// Token: 0x04000FF0 RID: 4080
-	public NPCFuYe npcFuYe;
-
-	// Token: 0x04000FF1 RID: 4081
-	public NPCUseItem npcUseItem;
-
-	// Token: 0x04000FF2 RID: 4082
-	public NPCLiLian npcLiLian;
-
-	// Token: 0x04000FF3 RID: 4083
-	public NPCStatus npcStatus;
-
-	// Token: 0x04000FF4 RID: 4084
-	public NpcTianJiGe npcTianJiGe;
-
-	// Token: 0x04000FF5 RID: 4085
-	public NPCTeShu npcTeShu;
-
-	// Token: 0x04000FF6 RID: 4086
-	public NPCNoteBook npcNoteBook;
-
-	// Token: 0x04000FF7 RID: 4087
-	public NPCMap npcMap;
-
-	// Token: 0x04000FF8 RID: 4088
-	public NPCSpeedJieSuan npcSpeedJieSuan;
-
-	// Token: 0x04000FF9 RID: 4089
-	public NPCDeath npcDeath;
-
-	// Token: 0x04000FFA RID: 4090
-	public NPCChengHao npcChengHao;
-
-	// Token: 0x04000FFB RID: 4091
-	public Dictionary<int, List<List<int>>> cyDictionary = new Dictionary<int, List<List<int>>>();
-
-	// Token: 0x04000FFC RID: 4092
-	public List<CyPdData> cyPdAuToList;
-
-	// Token: 0x04000FFD RID: 4093
-	public List<CyPdData> cyPdFungusList;
-
-	// Token: 0x04000FFE RID: 4094
-	public Dictionary<int, Action<int>> ActionDictionary = new Dictionary<int, Action<int>>();
-
-	// Token: 0x04000FFF RID: 4095
-	public Dictionary<int, Action<int>> NextActionDictionary = new Dictionary<int, Action<int>>();
-
-	// Token: 0x04001000 RID: 4096
-	public List<int> CurJieSuanNpcTaskList = new List<int>();
-
-	// Token: 0x04001001 RID: 4097
-	public Dictionary<int, int> ImportantNpcBangDingDictionary = new Dictionary<int, int>();
-
-	// Token: 0x04001002 RID: 4098
-	private Dictionary<int, int> NpcActionQuanZhongDictionary = new Dictionary<int, int>();
-
-	// Token: 0x04001003 RID: 4099
-	public Dictionary<int, List<int>> PaiMaiNpcDictionary = new Dictionary<int, List<int>>();
-
-	// Token: 0x04001004 RID: 4100
-	public List<int> allBigMapNpcList = new List<int>();
-
-	// Token: 0x04001005 RID: 4101
-	public List<int> JieShaNpcList = new List<int>();
-
-	// Token: 0x04001006 RID: 4102
-	public List<EmailData> lateEmailList = new List<EmailData>();
-
-	// Token: 0x04001007 RID: 4103
-	public Dictionary<int, EmailData> lateEmailDict = new Dictionary<int, EmailData>();
-
-	// Token: 0x04001008 RID: 4104
-	public List<int> lunDaoNpcList = new List<int>();
-
-	// Token: 0x04001009 RID: 4105
-	public List<List<int>> afterDeathList = new List<List<int>>();
-
-	// Token: 0x0400100A RID: 4106
-	[HideInInspector]
-	public List<string> EquipNameList = new List<string>();
-
-	// Token: 0x0400100B RID: 4107
-	public bool isUpDateNpcList;
-
-	// Token: 0x0400100C RID: 4108
-	public bool isCanJieSuan = true;
-
-	// Token: 0x0400100D RID: 4109
-	public bool JieSuanAnimation;
-
-	// Token: 0x0400100E RID: 4110
-	public int JieSuanTimes;
-
-	// Token: 0x0400100F RID: 4111
-	public string JieSuanTime = "0001-1-1";
-
-	// Token: 0x04001010 RID: 4112
-	public bool IsNoJieSuan;
 }

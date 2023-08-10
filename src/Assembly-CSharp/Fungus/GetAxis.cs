@@ -1,57 +1,53 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Input", "GetAxis", "Store Input.GetAxis in a variable", 0)]
+[AddComponentMenu("")]
+public class GetAxis : Command
 {
-	// Token: 0x02000DD8 RID: 3544
-	[CommandInfo("Input", "GetAxis", "Store Input.GetAxis in a variable", 0)]
-	[AddComponentMenu("")]
-	public class GetAxis : Command
+	[SerializeField]
+	protected StringData axisName;
+
+	[Tooltip("If true, calls GetAxisRaw instead of GetAxis")]
+	[SerializeField]
+	protected bool axisRaw;
+
+	[Tooltip("Float to store the value of the GetAxis")]
+	[SerializeField]
+	protected FloatData outValue;
+
+	public override void OnEnter()
 	{
-		// Token: 0x060064A2 RID: 25762 RVA: 0x0027F8DC File Offset: 0x0027DADC
-		public override void OnEnter()
+		if (axisRaw)
 		{
-			if (this.axisRaw)
-			{
-				this.outValue.Value = Input.GetAxisRaw(this.axisName.Value);
-			}
-			else
-			{
-				this.outValue.Value = Input.GetAxis(this.axisName.Value);
-			}
-			this.Continue();
+			outValue.Value = Input.GetAxisRaw(axisName.Value);
 		}
-
-		// Token: 0x060064A3 RID: 25763 RVA: 0x0027F92F File Offset: 0x0027DB2F
-		public override string GetSummary()
+		else
 		{
-			return this.axisName + (this.axisRaw ? " Raw" : "");
+			outValue.Value = Input.GetAxis(axisName.Value);
 		}
+		Continue();
+	}
 
-		// Token: 0x060064A4 RID: 25764 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override string GetSummary()
+	{
+		return string.Concat(axisName, axisRaw ? " Raw" : "");
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if ((Object)(object)axisName.stringRef == (Object)(object)variable || (Object)(object)outValue.floatRef == (Object)(object)variable)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return true;
 		}
-
-		// Token: 0x060064A5 RID: 25765 RVA: 0x0027F955 File Offset: 0x0027DB55
-		public override bool HasReference(Variable variable)
-		{
-			return this.axisName.stringRef == variable || this.outValue.floatRef == variable;
-		}
-
-		// Token: 0x04005672 RID: 22130
-		[SerializeField]
-		protected StringData axisName;
-
-		// Token: 0x04005673 RID: 22131
-		[Tooltip("If true, calls GetAxisRaw instead of GetAxis")]
-		[SerializeField]
-		protected bool axisRaw;
-
-		// Token: 0x04005674 RID: 22132
-		[Tooltip("Float to store the value of the GetAxis")]
-		[SerializeField]
-		protected FloatData outValue;
+		return false;
 	}
 }

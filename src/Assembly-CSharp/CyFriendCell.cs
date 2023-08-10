@@ -1,208 +1,191 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JSONClass;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020002A2 RID: 674
 public class CyFriendCell : MonoBehaviour
 {
-	// Token: 0x0600180A RID: 6154 RVA: 0x000A7B20 File Offset: 0x000A5D20
+	public Image bg;
+
+	public Image tagImage;
+
+	public Text npcName;
+
+	public Text chengHao;
+
+	public Image deathImage;
+
+	public BtnCell tagBtnCell;
+
+	public BtnCell btnCell;
+
+	public UINPCHeadFavor favor;
+
+	public int npcId = -1;
+
+	public bool isTag;
+
+	public bool isSelect;
+
+	public bool isDeath;
+
+	public bool IsFly;
+
+	public UINPCData npcData;
+
+	public GameObject redDian;
+
 	public void Init(int npcId)
 	{
-		this.isSelect = false;
+		//IL_0241: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024b: Expected O, but got Unknown
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0267: Expected O, but got Unknown
+		isSelect = false;
 		this.npcId = npcId;
-		this.isDeath = NpcJieSuanManager.inst.IsDeath(npcId);
-		if (!this.isDeath)
+		isDeath = NpcJieSuanManager.inst.IsDeath(npcId);
+		if (!isDeath)
 		{
-			this.IsFly = NpcJieSuanManager.inst.IsFly(npcId);
+			IsFly = NpcJieSuanManager.inst.IsFly(npcId);
 		}
-		if (this.isDeath)
+		if (isDeath)
 		{
-			this.favor.gameObject.SetActive(false);
-			this.deathImage.gameObject.SetActive(true);
-			this.btnCell = base.GetComponent<BtnCell>();
+			((Component)favor).gameObject.SetActive(false);
+			((Component)deathImage).gameObject.SetActive(true);
+			btnCell = ((Component)this).GetComponent<BtnCell>();
 			if (npcId < 20000)
 			{
-				this.npcName.text = AvatarJsonData.DataDict[npcId].Name;
-				this.chengHao.text = AvatarJsonData.DataDict[npcId].Title;
+				npcName.text = AvatarJsonData.DataDict[npcId].Name;
+				chengHao.text = AvatarJsonData.DataDict[npcId].Title;
 			}
 			else
 			{
-				JSONObject jsonobject = NpcJieSuanManager.inst.npcDeath.npcDeathJson[npcId.ToString()];
-				this.npcName.text = jsonobject["deathName"].Str;
-				this.chengHao.text = jsonobject["deathChengHao"].Str;
+				JSONObject jSONObject = NpcJieSuanManager.inst.npcDeath.npcDeathJson[npcId.ToString()];
+				npcName.text = jSONObject["deathName"].Str;
+				chengHao.text = jSONObject["deathChengHao"].Str;
 			}
 		}
 		else
 		{
-			this.npcData = new UINPCData(npcId, false);
+			npcData = new UINPCData(npcId);
 			try
 			{
-				this.npcData.RefreshData();
+				npcData.RefreshData();
 			}
 			catch (Exception)
 			{
-				Debug.LogError(npcId);
+				Debug.LogError((object)npcId);
 			}
-			if (this.IsFly)
+			if (IsFly)
 			{
-				this.favor.gameObject.SetActive(false);
-				this.deathImage.gameObject.SetActive(true);
+				((Component)favor).gameObject.SetActive(false);
+				((Component)deathImage).gameObject.SetActive(true);
 			}
 			else
 			{
-				this.favor.SetFavor(this.npcData.Favor);
+				favor.SetFavor(npcData.Favor);
 			}
 			this.npcId = npcId;
-			this.btnCell = base.GetComponent<BtnCell>();
-			this.npcName.text = this.npcData.Name;
-			this.chengHao.text = this.npcData.Title;
-			this.isTag = Tools.instance.getPlayer().emailDateMag.TagNpcList.Contains(npcId);
+			btnCell = ((Component)this).GetComponent<BtnCell>();
+			npcName.text = npcData.Name;
+			chengHao.text = npcData.Title;
+			isTag = Tools.instance.getPlayer().emailDateMag.TagNpcList.Contains(npcId);
 		}
-		if (this.isTag)
+		if (isTag)
 		{
-			this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[2];
+			bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[2];
 		}
 		else
 		{
-			this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[0];
+			bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[0];
 		}
-		this.tagImage.gameObject.SetActive(false);
-		this.btnCell.mouseUp.AddListener(new UnityAction(this.Click));
-		this.tagBtnCell.mouseUp.AddListener(new UnityAction(this.ClickTag));
-		this.updateState();
-		base.gameObject.SetActive(true);
+		((Component)tagImage).gameObject.SetActive(false);
+		btnCell.mouseUp.AddListener(new UnityAction(Click));
+		tagBtnCell.mouseUp.AddListener(new UnityAction(ClickTag));
+		updateState();
+		((Component)this).gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600180B RID: 6155 RVA: 0x000A7DB8 File Offset: 0x000A5FB8
 	public void Click()
 	{
-		if (!this.isSelect)
+		if (!isSelect)
 		{
-			this.isSelect = true;
-			if (this.isSelect)
+			isSelect = true;
+			if (isSelect)
 			{
 				CyUIMag.inst.npcList.ClickCallBack();
 				CyUIMag.inst.npcList.curSelectFriend = this;
 				CyUIMag.inst.No.SetActive(false);
-				this.updateState();
+				updateState();
 				CyUIMag.inst.cyEmail.cySendBtn.Hide();
-				CyUIMag.inst.cyEmail.Init(this.npcId);
-				this.redDian.SetActive(false);
+				CyUIMag.inst.cyEmail.Init(npcId);
+				redDian.SetActive(false);
 			}
-			return;
 		}
 	}
 
-	// Token: 0x0600180C RID: 6156 RVA: 0x000A7E4C File Offset: 0x000A604C
 	public void updateState()
 	{
-		if (this.isSelect)
+		if (isSelect)
 		{
-			if (!this.isTag)
+			if (!isTag)
 			{
-				this.tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[0];
-				this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[1];
-				if (!this.isDeath)
+				tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[0];
+				bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[1];
+				if (!isDeath)
 				{
-					this.tagImage.gameObject.SetActive(true);
-					return;
+					((Component)tagImage).gameObject.SetActive(true);
 				}
 			}
 			else
 			{
-				this.tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[1];
-				this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[3];
-				if (!this.isDeath)
+				tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[1];
+				bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[3];
+				if (!isDeath)
 				{
-					this.tagImage.gameObject.SetActive(true);
-					return;
+					((Component)tagImage).gameObject.SetActive(true);
 				}
 			}
 		}
 		else
 		{
-			this.tagImage.gameObject.SetActive(false);
-			if (this.isTag)
+			((Component)tagImage).gameObject.SetActive(false);
+			if (isTag)
 			{
-				this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[2];
-				return;
+				bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[2];
 			}
-			this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[0];
+			else
+			{
+				bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[0];
+			}
 		}
 	}
 
-	// Token: 0x0600180D RID: 6157 RVA: 0x000A7F80 File Offset: 0x000A6180
 	public void ClickTag()
 	{
-		if (NpcJieSuanManager.inst.IsDeath(this.npcId))
+		if (NpcJieSuanManager.inst.IsDeath(npcId))
 		{
 			UIPopTip.Inst.Pop("人死如灯灭,无法标记", PopTipIconType.传音符);
 			return;
 		}
 		List<int> tagNpcList = Tools.instance.getPlayer().emailDateMag.TagNpcList;
-		this.isTag = !this.isTag;
-		this.npcData.IsTag = this.isTag;
-		NpcJieSuanManager.inst.npcSetField.SetTag(this.npcId, this.isTag);
-		if (!this.isTag)
+		isTag = !isTag;
+		npcData.IsTag = isTag;
+		NpcJieSuanManager.inst.npcSetField.SetTag(npcId, isTag);
+		if (!isTag)
 		{
-			tagNpcList.Remove(this.npcId);
-			this.tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[0];
-			this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[1];
+			tagNpcList.Remove(npcId);
+			tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[0];
+			bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[1];
 			return;
 		}
-		if (!tagNpcList.Contains(this.npcId))
+		if (!tagNpcList.Contains(npcId))
 		{
-			tagNpcList.Add(this.npcId);
+			tagNpcList.Add(npcId);
 		}
-		this.tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[1];
-		this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[3];
+		tagImage.sprite = CyUIMag.inst.npcList.tagSpriteList[1];
+		bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[3];
 	}
-
-	// Token: 0x04001307 RID: 4871
-	public Image bg;
-
-	// Token: 0x04001308 RID: 4872
-	public Image tagImage;
-
-	// Token: 0x04001309 RID: 4873
-	public Text npcName;
-
-	// Token: 0x0400130A RID: 4874
-	public Text chengHao;
-
-	// Token: 0x0400130B RID: 4875
-	public Image deathImage;
-
-	// Token: 0x0400130C RID: 4876
-	public BtnCell tagBtnCell;
-
-	// Token: 0x0400130D RID: 4877
-	public BtnCell btnCell;
-
-	// Token: 0x0400130E RID: 4878
-	public UINPCHeadFavor favor;
-
-	// Token: 0x0400130F RID: 4879
-	public int npcId = -1;
-
-	// Token: 0x04001310 RID: 4880
-	public bool isTag;
-
-	// Token: 0x04001311 RID: 4881
-	public bool isSelect;
-
-	// Token: 0x04001312 RID: 4882
-	public bool isDeath;
-
-	// Token: 0x04001313 RID: 4883
-	public bool IsFly;
-
-	// Token: 0x04001314 RID: 4884
-	public UINPCData npcData;
-
-	// Token: 0x04001315 RID: 4885
-	public GameObject redDian;
 }

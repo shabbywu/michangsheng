@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JSONClass;
 using KBEngine;
@@ -6,296 +6,281 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Tab
+namespace Tab;
+
+[Serializable]
+public class TabShuXingPanel : ITabPanelBase
 {
-	// Token: 0x020006FB RID: 1787
-	[Serializable]
-	public class TabShuXingPanel : ITabPanelBase
+	private Dictionary<string, Sprite> _levelImgDict1;
+
+	private Dictionary<string, Sprite> _levelImgDict2;
+
+	private Dictionary<string, Sprite> _xinJingImgDict;
+
+	private Dictionary<int, Color32> _xinJingColor;
+
+	private Dictionary<string, Sprite> _danDuImgDict;
+
+	private Dictionary<int, Color32> _danDuImgColor;
+
+	private Dictionary<string, Sprite> _lingGanImgDict;
+
+	private Dictionary<int, Color32> _lingGanColor;
+
+	private Avatar _player;
+
+	private bool _isInit;
+
+	private Text _levelName;
+
+	private Image _levelImg1;
+
+	private Image _levelImg2;
+
+	private FpBtn _levelBtn;
+
+	private Text _age;
+
+	private Text _shouYuan;
+
+	private Text _ziZi;
+
+	private Text _shenShi;
+
+	private Text _wuXing;
+
+	private Text _dunSu;
+
+	private Text _xiuLianSpeed;
+
+	private Text _xinJingValueName;
+
+	private Text _xinJingValue;
+
+	private Image _xinJingImg;
+
+	private Text _danduValueName;
+
+	private Text _danduValue;
+
+	private Image _danduImg;
+
+	private Text _lingganValueName;
+
+	private Text _lingganValue;
+
+	private Image _lingganImg;
+
+	private Text _menPaiValue;
+
+	private Text _menPaiShengWangValue;
+
+	private Text _zhiWeiValue;
+
+	private Text _fengLuValue;
+
+	private Text _jin;
+
+	private Text _mu;
+
+	private Text _shui;
+
+	private Text _huo;
+
+	private Text _tu;
+
+	public TabShuXingPanel(GameObject gameObject)
 	{
-		// Token: 0x0600396B RID: 14699 RVA: 0x001888D8 File Offset: 0x00186AD8
-		public TabShuXingPanel(GameObject gameObject)
-		{
-			this.HasHp = true;
-			this._go = gameObject;
-			this._player = Tools.instance.getPlayer();
-		}
+		HasHp = true;
+		_go = gameObject;
+		_player = Tools.instance.getPlayer();
+	}
 
-		// Token: 0x0600396C RID: 14700 RVA: 0x00188900 File Offset: 0x00186B00
-		private void Init()
+	private void Init()
+	{
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0277: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0296: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0348: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0352: Expected O, but got Unknown
+		//IL_0364: Unknown result type (might be due to invalid IL or missing references)
+		//IL_036e: Expected O, but got Unknown
+		//IL_0509: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0521: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052b: Expected O, but got Unknown
+		//IL_0547: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0551: Expected O, but got Unknown
+		_levelImgDict1 = ResManager.inst.LoadSpriteAtlas("NewTab/LevelImg1");
+		_levelImgDict2 = ResManager.inst.LoadSpriteAtlas("NewTab/LevelImg2");
+		_xinJingImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/XinJingImg");
+		_xinJingColor = new Dictionary<int, Color32>();
+		_xinJingColor.Add(1, new Color32(byte.MaxValue, (byte)142, (byte)100, byte.MaxValue));
+		_xinJingColor.Add(2, new Color32((byte)227, (byte)199, (byte)108, byte.MaxValue));
+		_xinJingColor.Add(3, new Color32((byte)218, (byte)227, (byte)108, byte.MaxValue));
+		_xinJingColor.Add(4, new Color32((byte)197, (byte)224, (byte)91, byte.MaxValue));
+		_xinJingColor.Add(5, new Color32((byte)124, (byte)234, (byte)150, byte.MaxValue));
+		_xinJingColor.Add(6, new Color32((byte)124, (byte)234, (byte)232, byte.MaxValue));
+		_xinJingColor.Add(7, new Color32((byte)159, (byte)201, byte.MaxValue, byte.MaxValue));
+		_danDuImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/DanDuImg");
+		_danDuImgColor = new Dictionary<int, Color32>();
+		_danDuImgColor.Add(1, new Color32((byte)233, (byte)228, (byte)164, byte.MaxValue));
+		_danDuImgColor.Add(2, new Color32((byte)233, (byte)228, (byte)164, byte.MaxValue));
+		_danDuImgColor.Add(3, new Color32((byte)233, (byte)211, (byte)164, byte.MaxValue));
+		_danDuImgColor.Add(4, new Color32((byte)244, (byte)180, (byte)123, byte.MaxValue));
+		_danDuImgColor.Add(5, new Color32((byte)211, (byte)135, (byte)178, byte.MaxValue));
+		_lingGanImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/LingGanImg");
+		_lingGanColor = new Dictionary<int, Color32>();
+		_lingGanColor.Add(4, new Color32((byte)170, (byte)171, (byte)150, byte.MaxValue));
+		_lingGanColor.Add(3, new Color32((byte)233, (byte)228, (byte)164, byte.MaxValue));
+		_lingGanColor.Add(2, new Color32((byte)100, (byte)201, (byte)122, byte.MaxValue));
+		_lingGanColor.Add(1, new Color32((byte)141, (byte)241, (byte)236, byte.MaxValue));
+		Get<Text>("PlayerName/Name_Text").text = _player.name;
+		_levelName = Get<Text>("Level/Level_Name");
+		_levelImg1 = Get<Image>("Level/Level_Name/Level_Img1");
+		_levelImg2 = Get<Image>("Level/Level_Img2");
+		_levelBtn = Get<FpBtn>("Level/Level_Img2/Listener");
+		LevelTips levelTips = new LevelTips(Get("Level/LevelTips"));
+		_levelBtn.mouseEnterEvent.AddListener(new UnityAction(levelTips.Show));
+		_levelBtn.mouseOutEvent.AddListener(new UnityAction(levelTips.Hide));
+		_age = Get<Text>("BaseData/年龄/Value");
+		_shouYuan = Get<Text>("BaseData/寿元/Value");
+		_ziZi = Get<Text>("BaseData/资质/Value");
+		_shenShi = Get<Text>("BaseData/神识/Value");
+		_wuXing = Get<Text>("BaseData/悟性/Value");
+		_dunSu = Get<Text>("BaseData/遁速/Value");
+		_xiuLianSpeed = Get<Text>("BaseData/修炼速度/Value");
+		_xinJingImg = Get<Image>("BaseData/心境/BG");
+		_xinJingValueName = Get<Text>("BaseData/心境/ValueName");
+		_xinJingValue = Get<Text>("BaseData/心境/Value");
+		_danduImg = Get<Image>("BaseData/丹毒/BG");
+		_danduValueName = Get<Text>("BaseData/丹毒/ValueName");
+		_danduValue = Get<Text>("BaseData/丹毒/Value");
+		_lingganImg = Get<Image>("BaseData/灵感/BG");
+		_lingganValueName = Get<Text>("BaseData/灵感/ValueName");
+		_lingganValue = Get<Text>("BaseData/灵感/Value");
+		BaseDataTips dataTips = new BaseDataTips(Get("BaseData/BaseDataTips"));
+		GameObject val = null;
+		foreach (TianFuDescJsonData data in TianFuDescJsonData.DataList)
 		{
-			this._levelImgDict1 = ResManager.inst.LoadSpriteAtlas("NewTab/LevelImg1");
-			this._levelImgDict2 = ResManager.inst.LoadSpriteAtlas("NewTab/LevelImg2");
-			this._xinJingImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/XinJingImg");
-			this._xinJingColor = new Dictionary<int, Color32>();
-			this._xinJingColor.Add(1, new Color32(byte.MaxValue, 142, 100, byte.MaxValue));
-			this._xinJingColor.Add(2, new Color32(227, 199, 108, byte.MaxValue));
-			this._xinJingColor.Add(3, new Color32(218, 227, 108, byte.MaxValue));
-			this._xinJingColor.Add(4, new Color32(197, 224, 91, byte.MaxValue));
-			this._xinJingColor.Add(5, new Color32(124, 234, 150, byte.MaxValue));
-			this._xinJingColor.Add(6, new Color32(124, 234, 232, byte.MaxValue));
-			this._xinJingColor.Add(7, new Color32(159, 201, byte.MaxValue, byte.MaxValue));
-			this._danDuImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/DanDuImg");
-			this._danDuImgColor = new Dictionary<int, Color32>();
-			this._danDuImgColor.Add(1, new Color32(233, 228, 164, byte.MaxValue));
-			this._danDuImgColor.Add(2, new Color32(233, 228, 164, byte.MaxValue));
-			this._danDuImgColor.Add(3, new Color32(233, 211, 164, byte.MaxValue));
-			this._danDuImgColor.Add(4, new Color32(244, 180, 123, byte.MaxValue));
-			this._danDuImgColor.Add(5, new Color32(211, 135, 178, byte.MaxValue));
-			this._lingGanImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/LingGanImg");
-			this._lingGanColor = new Dictionary<int, Color32>();
-			this._lingGanColor.Add(4, new Color32(170, 171, 150, byte.MaxValue));
-			this._lingGanColor.Add(3, new Color32(233, 228, 164, byte.MaxValue));
-			this._lingGanColor.Add(2, new Color32(100, 201, 122, byte.MaxValue));
-			this._lingGanColor.Add(1, new Color32(141, 241, 236, byte.MaxValue));
-			base.Get<Text>("PlayerName/Name_Text").text = this._player.name;
-			this._levelName = base.Get<Text>("Level/Level_Name");
-			this._levelImg1 = base.Get<Image>("Level/Level_Name/Level_Img1");
-			this._levelImg2 = base.Get<Image>("Level/Level_Img2");
-			this._levelBtn = base.Get<FpBtn>("Level/Level_Img2/Listener");
-			LevelTips levelTips = new LevelTips(base.Get("Level/LevelTips", true));
-			this._levelBtn.mouseEnterEvent.AddListener(new UnityAction(levelTips.Show));
-			this._levelBtn.mouseOutEvent.AddListener(new UnityAction(levelTips.Hide));
-			this._age = base.Get<Text>("BaseData/年龄/Value");
-			this._shouYuan = base.Get<Text>("BaseData/寿元/Value");
-			this._ziZi = base.Get<Text>("BaseData/资质/Value");
-			this._shenShi = base.Get<Text>("BaseData/神识/Value");
-			this._wuXing = base.Get<Text>("BaseData/悟性/Value");
-			this._dunSu = base.Get<Text>("BaseData/遁速/Value");
-			this._xiuLianSpeed = base.Get<Text>("BaseData/修炼速度/Value");
-			this._xinJingImg = base.Get<Image>("BaseData/心境/BG");
-			this._xinJingValueName = base.Get<Text>("BaseData/心境/ValueName");
-			this._xinJingValue = base.Get<Text>("BaseData/心境/Value");
-			this._danduImg = base.Get<Image>("BaseData/丹毒/BG");
-			this._danduValueName = base.Get<Text>("BaseData/丹毒/ValueName");
-			this._danduValue = base.Get<Text>("BaseData/丹毒/Value");
-			this._lingganImg = base.Get<Image>("BaseData/灵感/BG");
-			this._lingganValueName = base.Get<Text>("BaseData/灵感/ValueName");
-			this._lingganValue = base.Get<Text>("BaseData/灵感/Value");
-			BaseDataTips dataTips = new BaseDataTips(base.Get("BaseData/BaseDataTips", true));
-			using (List<TianFuDescJsonData>.Enumerator enumerator = TianFuDescJsonData.DataList.GetEnumerator())
+			val = Get("BaseData/" + data.Title, showError: false);
+			if ((Object)(object)val != (Object)null)
 			{
-				while (enumerator.MoveNext())
+				UIListener uIListener = val.AddComponent<UIListener>();
+				Vector3 position = val.transform.position;
+				uIListener.mouseEnterEvent.AddListener((UnityAction)delegate
 				{
-					TianFuDescJsonData data = enumerator.Current;
-					GameObject gameObject = base.Get("BaseData/" + data.Title, false);
-					if (gameObject != null)
-					{
-						UIListener uilistener = gameObject.AddComponent<UIListener>();
-						Vector3 position = gameObject.transform.position;
-						uilistener.mouseEnterEvent.AddListener(delegate()
-						{
-							dataTips.Show(data.Desc, position);
-						});
-						uilistener.mouseOutEvent.AddListener(new UnityAction(dataTips.Hide));
-					}
-				}
+					//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+					dataTips.Show(data.Desc, position);
+				});
+				uIListener.mouseOutEvent.AddListener(new UnityAction(dataTips.Hide));
 			}
-			this._menPaiValue = base.Get<Text>("BaseData/门派/Value");
-			this._menPaiShengWangValue = base.Get<Text>("BaseData/门派声望/Value");
-			this._zhiWeiValue = base.Get<Text>("BaseData/职位/Value");
-			this._fengLuValue = base.Get<Text>("BaseData/俸禄/Value");
-			this._jin = base.Get<Text>("LingGen/金灵根/Value");
-			this._mu = base.Get<Text>("LingGen/木灵根/Value");
-			this._shui = base.Get<Text>("LingGen/水灵根/Value");
-			this._huo = base.Get<Text>("LingGen/火灵根/Value");
-			this._tu = base.Get<Text>("LingGen/土灵根/Value");
 		}
+		_menPaiValue = Get<Text>("BaseData/门派/Value");
+		_menPaiShengWangValue = Get<Text>("BaseData/门派声望/Value");
+		_zhiWeiValue = Get<Text>("BaseData/职位/Value");
+		_fengLuValue = Get<Text>("BaseData/俸禄/Value");
+		_jin = Get<Text>("LingGen/金灵根/Value");
+		_mu = Get<Text>("LingGen/木灵根/Value");
+		_shui = Get<Text>("LingGen/水灵根/Value");
+		_huo = Get<Text>("LingGen/火灵根/Value");
+		_tu = Get<Text>("LingGen/土灵根/Value");
+	}
 
-		// Token: 0x0600396D RID: 14701 RVA: 0x00188F24 File Offset: 0x00187124
-		private void UpdateUI()
+	private void UpdateUI()
+	{
+		//IL_0347: Unknown result type (might be due to invalid IL or missing references)
+		//IL_034c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0442: Unknown result type (might be due to invalid IL or missing references)
+		_levelName.text = LevelUpDataJsonData.DataDict[_player.level].Name.Insert(2, "   ");
+		_levelImg1.sprite = _levelImgDict1[_player.level.ToString()];
+		if (_player.level < 13)
 		{
-			this._levelName.text = LevelUpDataJsonData.DataDict[(int)this._player.level].Name.Insert(2, "   ");
-			this._levelImg1.sprite = this._levelImgDict1[this._player.level.ToString()];
-			if (this._player.level < 13)
+			string text = $"{_player.level}-";
+			_levelImg2.sprite = _levelImgDict2[text + "1"];
+			_levelBtn.nomalSprite = _levelImgDict2[text + "1"];
+			_levelBtn.mouseEnterSprite = _levelImgDict2[text + "2"];
+		}
+		else
+		{
+			string arg = ((_player.Sex == 1) ? "huashen-nan" : "huashen-nv");
+			int i = _player.HuaShenWuDao.I;
+			i = Mathf.Max(i, 1);
+			string text2 = $"{arg}-{i}-";
+			_levelImg2.sprite = _levelImgDict2[text2 + "1"];
+			_levelBtn.nomalSprite = _levelImgDict2[text2 + "1"];
+			_levelBtn.mouseEnterSprite = _levelImgDict2[text2 + "2"];
+		}
+		_age.text = _player.age.ToString();
+		_shouYuan.text = _player.shouYuan.ToString();
+		_ziZi.text = _player.ZiZhi.ToString();
+		_shenShi.text = _player.shengShi.ToString();
+		_wuXing.text = _player.wuXin.ToString();
+		_dunSu.text = _player.dunSu.ToString();
+		_xiuLianSpeed.text = $"{(int)_player.getTimeExpSpeed()}/月";
+		int xinJingLevel = _player.GetXinJingLevel();
+		if (XinJinJsonData.DataDict[xinJingLevel].Max > 0)
+		{
+			if (xinJingLevel == 7)
 			{
-				string str = string.Format("{0}-", this._player.level);
-				this._levelImg2.sprite = this._levelImgDict2[str + "1"];
-				this._levelBtn.nomalSprite = this._levelImgDict2[str + "1"];
-				this._levelBtn.mouseEnterSprite = this._levelImgDict2[str + "2"];
+				_xinJingValue.text = $"{_player.xinjin}/-";
 			}
 			else
 			{
-				string arg = (this._player.Sex == 1) ? "huashen-nan" : "huashen-nv";
-				int num = this._player.HuaShenWuDao.I;
-				num = Mathf.Max(num, 1);
-				string str2 = string.Format("{0}-{1}-", arg, num);
-				this._levelImg2.sprite = this._levelImgDict2[str2 + "1"];
-				this._levelBtn.nomalSprite = this._levelImgDict2[str2 + "1"];
-				this._levelBtn.mouseEnterSprite = this._levelImgDict2[str2 + "2"];
+				_xinJingValue.text = $"{_player.xinjin}/{XinJinJsonData.DataDict[xinJingLevel].Max}";
 			}
-			this._age.text = this._player.age.ToString();
-			this._shouYuan.text = this._player.shouYuan.ToString();
-			this._ziZi.text = this._player.ZiZhi.ToString();
-			this._shenShi.text = this._player.shengShi.ToString();
-			this._wuXing.text = this._player.wuXin.ToString();
-			this._dunSu.text = this._player.dunSu.ToString();
-			this._xiuLianSpeed.text = string.Format("{0}/月", (int)this._player.getTimeExpSpeed());
-			int xinJingLevel = this._player.GetXinJingLevel();
-			if (XinJinJsonData.DataDict[xinJingLevel].Max > 0)
-			{
-				if (xinJingLevel == 7)
-				{
-					this._xinJingValue.text = string.Format("{0}/-", this._player.xinjin);
-				}
-				else
-				{
-					this._xinJingValue.text = string.Format("{0}/{1}", this._player.xinjin, XinJinJsonData.DataDict[xinJingLevel].Max);
-				}
-			}
-			else
-			{
-				this._xinJingValue.text = string.Format("{0}/0", this._player.xinjin);
-			}
-			this._xinJingValueName.text = XinJinJsonData.DataDict[xinJingLevel].Text;
-			this._xinJingValueName.color = this._xinJingColor[xinJingLevel];
-			this._xinJingImg.sprite = this._xinJingImgDict[xinJingLevel.ToString()];
-			int danDuLevel = this._player.GetDanDuLevel();
-			this._danduValue.text = string.Format("{0}/120", this._player.Dandu);
-			this._danduImg.sprite = this._danDuImgDict[(danDuLevel + 1).ToString()];
-			this._danduValueName.color = this._danDuImgColor[danDuLevel + 1];
-			this._danduValueName.text = DanduMiaoShu.DataDict[danDuLevel + 1].name;
-			this._lingganValueName.text = LunDaoStateData.DataDict[this._player.LunDaoState].ZhuangTaiInfo;
-			this._lingganValueName.color = this._lingGanColor[this._player.LunDaoState];
-			this._lingganValue.text = string.Format("{0}/{1}", this._player.LingGan, this._player.GetLingGanMax());
-			this._lingganImg.sprite = this._lingGanImgDict[this._player.LunDaoState.ToString()];
-			this._menPaiValue.text = Tools.getStr("menpai" + this._player.menPai);
-			this._menPaiShengWangValue.text = PlayerEx.GetMenPaiShengWang().ToString();
-			this._zhiWeiValue.text = PlayerEx.GetMenPaiChengHao();
-			this._fengLuValue.text = this._player.chenghaomag.GetOneYearAddMoney() + "灵石/年";
-			this._jin.text = this._player.GetLingGeng[0].ToString();
-			this._mu.text = this._player.GetLingGeng[1].ToString();
-			this._shui.text = this._player.GetLingGeng[2].ToString();
-			this._huo.text = this._player.GetLingGeng[3].ToString();
-			this._tu.text = this._player.GetLingGeng[4].ToString();
 		}
-
-		// Token: 0x0600396E RID: 14702 RVA: 0x0018950E File Offset: 0x0018770E
-		public override void Show()
+		else
 		{
-			if (!this._isInit)
-			{
-				this.Init();
-				this._isInit = true;
-			}
-			this._go.SetActive(true);
-			this.UpdateUI();
+			_xinJingValue.text = $"{_player.xinjin}/0";
 		}
+		_xinJingValueName.text = XinJinJsonData.DataDict[xinJingLevel].Text;
+		((Graphic)_xinJingValueName).color = Color32.op_Implicit(_xinJingColor[xinJingLevel]);
+		_xinJingImg.sprite = _xinJingImgDict[xinJingLevel.ToString()];
+		int danDuLevel = _player.GetDanDuLevel();
+		_danduValue.text = $"{_player.Dandu}/120";
+		_danduImg.sprite = _danDuImgDict[(danDuLevel + 1).ToString()];
+		((Graphic)_danduValueName).color = Color32.op_Implicit(_danDuImgColor[danDuLevel + 1]);
+		_danduValueName.text = DanduMiaoShu.DataDict[danDuLevel + 1].name;
+		_lingganValueName.text = LunDaoStateData.DataDict[_player.LunDaoState].ZhuangTaiInfo;
+		((Graphic)_lingganValueName).color = Color32.op_Implicit(_lingGanColor[_player.LunDaoState]);
+		_lingganValue.text = $"{_player.LingGan}/{_player.GetLingGanMax()}";
+		_lingganImg.sprite = _lingGanImgDict[_player.LunDaoState.ToString()];
+		_menPaiValue.text = Tools.getStr("menpai" + _player.menPai);
+		_menPaiShengWangValue.text = PlayerEx.GetMenPaiShengWang().ToString();
+		_zhiWeiValue.text = PlayerEx.GetMenPaiChengHao();
+		_fengLuValue.text = _player.chenghaomag.GetOneYearAddMoney() + "灵石/年";
+		_jin.text = _player.GetLingGeng[0].ToString();
+		_mu.text = _player.GetLingGeng[1].ToString();
+		_shui.text = _player.GetLingGeng[2].ToString();
+		_huo.text = _player.GetLingGeng[3].ToString();
+		_tu.text = _player.GetLingGeng[4].ToString();
+	}
 
-		// Token: 0x04003169 RID: 12649
-		private Dictionary<string, Sprite> _levelImgDict1;
-
-		// Token: 0x0400316A RID: 12650
-		private Dictionary<string, Sprite> _levelImgDict2;
-
-		// Token: 0x0400316B RID: 12651
-		private Dictionary<string, Sprite> _xinJingImgDict;
-
-		// Token: 0x0400316C RID: 12652
-		private Dictionary<int, Color32> _xinJingColor;
-
-		// Token: 0x0400316D RID: 12653
-		private Dictionary<string, Sprite> _danDuImgDict;
-
-		// Token: 0x0400316E RID: 12654
-		private Dictionary<int, Color32> _danDuImgColor;
-
-		// Token: 0x0400316F RID: 12655
-		private Dictionary<string, Sprite> _lingGanImgDict;
-
-		// Token: 0x04003170 RID: 12656
-		private Dictionary<int, Color32> _lingGanColor;
-
-		// Token: 0x04003171 RID: 12657
-		private Avatar _player;
-
-		// Token: 0x04003172 RID: 12658
-		private bool _isInit;
-
-		// Token: 0x04003173 RID: 12659
-		private Text _levelName;
-
-		// Token: 0x04003174 RID: 12660
-		private Image _levelImg1;
-
-		// Token: 0x04003175 RID: 12661
-		private Image _levelImg2;
-
-		// Token: 0x04003176 RID: 12662
-		private FpBtn _levelBtn;
-
-		// Token: 0x04003177 RID: 12663
-		private Text _age;
-
-		// Token: 0x04003178 RID: 12664
-		private Text _shouYuan;
-
-		// Token: 0x04003179 RID: 12665
-		private Text _ziZi;
-
-		// Token: 0x0400317A RID: 12666
-		private Text _shenShi;
-
-		// Token: 0x0400317B RID: 12667
-		private Text _wuXing;
-
-		// Token: 0x0400317C RID: 12668
-		private Text _dunSu;
-
-		// Token: 0x0400317D RID: 12669
-		private Text _xiuLianSpeed;
-
-		// Token: 0x0400317E RID: 12670
-		private Text _xinJingValueName;
-
-		// Token: 0x0400317F RID: 12671
-		private Text _xinJingValue;
-
-		// Token: 0x04003180 RID: 12672
-		private Image _xinJingImg;
-
-		// Token: 0x04003181 RID: 12673
-		private Text _danduValueName;
-
-		// Token: 0x04003182 RID: 12674
-		private Text _danduValue;
-
-		// Token: 0x04003183 RID: 12675
-		private Image _danduImg;
-
-		// Token: 0x04003184 RID: 12676
-		private Text _lingganValueName;
-
-		// Token: 0x04003185 RID: 12677
-		private Text _lingganValue;
-
-		// Token: 0x04003186 RID: 12678
-		private Image _lingganImg;
-
-		// Token: 0x04003187 RID: 12679
-		private Text _menPaiValue;
-
-		// Token: 0x04003188 RID: 12680
-		private Text _menPaiShengWangValue;
-
-		// Token: 0x04003189 RID: 12681
-		private Text _zhiWeiValue;
-
-		// Token: 0x0400318A RID: 12682
-		private Text _fengLuValue;
-
-		// Token: 0x0400318B RID: 12683
-		private Text _jin;
-
-		// Token: 0x0400318C RID: 12684
-		private Text _mu;
-
-		// Token: 0x0400318D RID: 12685
-		private Text _shui;
-
-		// Token: 0x0400318E RID: 12686
-		private Text _huo;
-
-		// Token: 0x0400318F RID: 12687
-		private Text _tu;
+	public override void Show()
+	{
+		if (!_isInit)
+		{
+			Init();
+			_isInit = true;
+		}
+		_go.SetActive(true);
+		UpdateUI();
 	}
 }

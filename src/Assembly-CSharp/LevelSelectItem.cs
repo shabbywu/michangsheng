@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
@@ -6,335 +5,299 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000104 RID: 260
 public class LevelSelectItem : MonoBehaviour
 {
-	// Token: 0x06000BE6 RID: 3046 RVA: 0x00047F81 File Offset: 0x00046181
+	[Header("UI References")]
+	public Image LevelImage;
+
+	public Text levelCount;
+
+	public Text levelName;
+
+	public Text levelSubName;
+
+	public Text LevelLv;
+
+	public GameObject lockIcon;
+
+	public bool isLocked;
+
+	public string levelToLoad;
+
+	public bool hasAvatar;
+
+	public int index;
+
+	public int SelectType;
+
+	public PlayerSetRandomFace playerSetRandomFace;
+
+	public bool isDF;
+
+	public Image Level_Image;
+
+	public GameObject HasAvatarItem;
+
+	public GameObject NoAvatarItem;
+
+	public Text Level_Text;
+
+	private LevelSelectManager levelSelectManager;
+
 	private void Start()
 	{
-		this.levelSelectManager = GameObject.Find("Main Menu/MainMenuCanvas").GetComponent<LevelSelectManager>();
+		levelSelectManager = GameObject.Find("Main Menu/MainMenuCanvas").GetComponent<LevelSelectManager>();
 	}
 
-	// Token: 0x06000BE7 RID: 3047 RVA: 0x00047F98 File Offset: 0x00046198
 	public void setLevelItem(Sprite levelImg, int levelC, string levelNm, bool hasSubName, string levelSubName, string levelToLoad, bool locked, bool hasavatar, int _index)
 	{
-		base.gameObject.SetActive(true);
-		this.LevelImage.sprite = levelImg;
-		this.levelCount.text = string.Concat(levelC);
-		this.levelName.text = levelNm;
-		this.hasAvatar = hasavatar;
-		this.index = _index;
-		this.playerSetRandomFace.faceID = _index;
+		((Component)this).gameObject.SetActive(true);
+		LevelImage.sprite = levelImg;
+		levelCount.text = string.Concat(levelC);
+		levelName.text = levelNm;
+		hasAvatar = hasavatar;
+		index = _index;
+		playerSetRandomFace.faceID = _index;
 		if (hasSubName)
 		{
 			this.levelSubName.text = levelSubName;
 		}
 		else
 		{
-			this.levelSubName.gameObject.SetActive(false);
+			((Component)this.levelSubName).gameObject.SetActive(false);
 		}
-		this.isLocked = locked;
+		isLocked = locked;
 		this.levelToLoad = levelToLoad;
-		if (this.isLocked)
+		if (isLocked)
 		{
-			this.lockIcon.SetActive(true);
+			lockIcon.SetActive(true);
 		}
 		else
 		{
-			this.lockIcon.SetActive(false);
+			lockIcon.SetActive(false);
 		}
-		if (this.hasAvatar)
+		if (hasAvatar)
 		{
-			this.HasAvatarItem.SetActive(true);
-			this.NoAvatarItem.SetActive(false);
-			if (!YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(this.index, 0)))
+			HasAvatarItem.SetActive(true);
+			NoAvatarItem.SetActive(false);
+			if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(index, 0)))
 			{
-				Avatar avatar = new Avatar();
-				Tools.GetValue<Avatar>("Avatar" + Tools.instance.getSaveID(this.index, 0), avatar);
-				base.transform.Find("Text").GetComponent<Text>().text = Tools.Code64(jsonData.instance.LevelUpDataJsonData[avatar.level.ToString()]["Name"].str);
-				if (this.Level_Image != null)
+				int i = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(index, 0))["avatarLevel"].I;
+				((Component)((Component)this).transform.Find("Text")).GetComponent<Text>().text = Tools.Code64(jsonData.instance.LevelUpDataJsonData[i.ToString()]["Name"].str);
+				if ((Object)(object)Level_Image != (Object)null)
 				{
-					this.Level_Image.gameObject.SetActive(true);
-					this.Level_Image.sprite = ResManager.inst.LoadSprite(string.Format("NewUI/Fight/LevelIcon/icon_{0}", avatar.level));
+					((Component)Level_Image).gameObject.SetActive(true);
+					Level_Image.sprite = ResManager.inst.LoadSprite($"NewUI/Fight/LevelIcon/icon_{i}");
 				}
-				if (this.Level_Text != null)
+				if ((Object)(object)Level_Text != (Object)null)
 				{
-					this.Level_Text.gameObject.SetActive(true);
+					((Component)Level_Text).gameObject.SetActive(true);
 				}
-				if (this.isDF)
+				if (CreateAvatarMag.inst.maxLevel < i)
 				{
-					base.transform.Find("Add").gameObject.SetActive(false);
-					this.levelName.text = Tools.Code64(jsonData.instance.AvatarJsonData[(10001 + (_index - 100)).ToString()]["Name"].str);
+					CreateAvatarMag.inst.maxLevel = i;
 				}
-				JSONObject jsonobject = new JSONObject();
-				jsonobject.SetField("firstName", avatar.firstName);
-				jsonobject.SetField("lastName", avatar.lastName);
-				jsonobject.SetField("gameTime", avatar.worldTimeMag.nowTime);
-				jsonobject.SetField("avatarLevel", (int)avatar.level);
-				if (CreateAvatarMag.inst.maxLevel < (int)avatar.level)
-				{
-					CreateAvatarMag.inst.maxLevel = (int)avatar.level;
-				}
-				YSSaveGame.save("AvatarInfo" + Tools.instance.getSaveID(this.index, 0), jsonobject, Paths.GetSavePath());
 				return;
 			}
-			int i = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(this.index, 0), null)["avatarLevel"].I;
-			base.transform.Find("Text").GetComponent<Text>().text = Tools.Code64(jsonData.instance.LevelUpDataJsonData[i.ToString()]["Name"].str);
-			if (this.Level_Image != null)
+			Avatar avatar = new Avatar();
+			Tools.GetValue<Avatar>("Avatar" + Tools.instance.getSaveID(index, 0), avatar);
+			((Component)((Component)this).transform.Find("Text")).GetComponent<Text>().text = Tools.Code64(jsonData.instance.LevelUpDataJsonData[avatar.level.ToString()]["Name"].str);
+			if ((Object)(object)Level_Image != (Object)null)
 			{
-				this.Level_Image.gameObject.SetActive(true);
-				this.Level_Image.sprite = ResManager.inst.LoadSprite(string.Format("NewUI/Fight/LevelIcon/icon_{0}", i));
+				((Component)Level_Image).gameObject.SetActive(true);
+				Level_Image.sprite = ResManager.inst.LoadSprite($"NewUI/Fight/LevelIcon/icon_{avatar.level}");
 			}
-			if (this.Level_Text != null)
+			if ((Object)(object)Level_Text != (Object)null)
 			{
-				this.Level_Text.gameObject.SetActive(true);
+				((Component)Level_Text).gameObject.SetActive(true);
 			}
-			if (CreateAvatarMag.inst.maxLevel < i)
+			if (isDF)
 			{
-				CreateAvatarMag.inst.maxLevel = i;
-				return;
+				((Component)((Component)this).transform.Find("Add")).gameObject.SetActive(false);
+				levelName.text = Tools.Code64(jsonData.instance.AvatarJsonData[(10001 + (_index - 100)).ToString()]["Name"].str);
 			}
+			JSONObject jSONObject = new JSONObject();
+			jSONObject.SetField("firstName", avatar.firstName);
+			jSONObject.SetField("lastName", avatar.lastName);
+			jSONObject.SetField("gameTime", avatar.worldTimeMag.nowTime);
+			jSONObject.SetField("avatarLevel", avatar.level);
+			if (CreateAvatarMag.inst.maxLevel < avatar.level)
+			{
+				CreateAvatarMag.inst.maxLevel = avatar.level;
+			}
+			YSSaveGame.save("AvatarInfo" + Tools.instance.getSaveID(index, 0), jSONObject, Paths.GetSavePath());
 		}
 		else
 		{
-			this.HasAvatarItem.SetActive(false);
-			this.NoAvatarItem.SetActive(true);
-			if (this.isDF)
+			HasAvatarItem.SetActive(false);
+			NoAvatarItem.SetActive(true);
+			if (isDF)
 			{
-				base.transform.Find("dengji").gameObject.SetActive(true);
-				base.transform.Find("Text").gameObject.SetActive(true);
-				base.transform.Find("Image").gameObject.SetActive(true);
-				base.transform.Find("LevelNameContainer").gameObject.SetActive(true);
-				base.transform.Find("Text").GetComponent<Text>().text = Tools.Code64(jsonData.instance.LevelUpDataJsonData[((_index - 99) * 3).ToString()]["Name"].str);
+				((Component)((Component)this).transform.Find("dengji")).gameObject.SetActive(true);
+				((Component)((Component)this).transform.Find("Text")).gameObject.SetActive(true);
+				((Component)((Component)this).transform.Find("Image")).gameObject.SetActive(true);
+				((Component)((Component)this).transform.Find("LevelNameContainer")).gameObject.SetActive(true);
+				((Component)((Component)this).transform.Find("Text")).GetComponent<Text>().text = Tools.Code64(jsonData.instance.LevelUpDataJsonData[((_index - 99) * 3).ToString()]["Name"].str);
 			}
-			if (this.Level_Image != null)
+			if ((Object)(object)Level_Image != (Object)null)
 			{
-				this.Level_Image.gameObject.SetActive(false);
+				((Component)Level_Image).gameObject.SetActive(false);
 			}
-			if (this.Level_Text != null)
+			if ((Object)(object)Level_Text != (Object)null)
 			{
-				this.Level_Text.gameObject.SetActive(false);
+				((Component)Level_Text).gameObject.SetActive(false);
 			}
 		}
 	}
 
-	// Token: 0x06000BE8 RID: 3048 RVA: 0x0004847F File Offset: 0x0004667F
 	public void NewSetName()
 	{
-		if (!this.hasAvatar)
+		if (!hasAvatar)
 		{
-			this.showSetPlayerName();
+			showSetPlayerName();
 		}
 	}
 
-	// Token: 0x06000BE9 RID: 3049 RVA: 0x0004848F File Offset: 0x0004668F
 	public void openSetName()
 	{
-		if (!this.hasAvatar)
+		if (!hasAvatar)
 		{
-			this.showSetPlayerName();
-			return;
+			showSetPlayerName();
 		}
-		selectBox.instence.setChoice("是否将该角色打入轮回", new EventDelegate(new EventDelegate.Callback(this.clickRemoveOk)), null);
+		else
+		{
+			selectBox.instence.setChoice("是否将该角色打入轮回", new EventDelegate(clickRemoveOk), null);
+		}
 	}
 
-	// Token: 0x06000BEA RID: 3050 RVA: 0x000484C4 File Offset: 0x000466C4
 	public void openLoad()
 	{
-		if (!this.hasAvatar)
+		if (hasAvatar)
 		{
-			return;
+			PlayerPrefs.SetInt("NowPlayerFileAvatar", index);
+			MainMenuController mainMenuController = Object.FindObjectOfType<MainMenuController>();
+			AvatarInfoFile componentInChildren = mainMenuController.LoadAvatarCellPanel.GetComponentInChildren<AvatarInfoFile>();
+			mainMenuController.LoadAvatarCellPanel.gameObject.SetActive(true);
+			componentInChildren.showLoad();
 		}
-		PlayerPrefs.SetInt("NowPlayerFileAvatar", this.index);
-		MainMenuController mainMenuController = Object.FindObjectOfType<MainMenuController>();
-		AvatarInfoFile componentInChildren = mainMenuController.LoadAvatarCellPanel.GetComponentInChildren<AvatarInfoFile>();
-		mainMenuController.LoadAvatarCellPanel.gameObject.SetActive(true);
-		componentInChildren.showLoad();
 	}
 
-	// Token: 0x06000BEB RID: 3051 RVA: 0x00048514 File Offset: 0x00046714
 	public void LoadDF()
 	{
-		if (!this.hasAvatar)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		if (!hasAvatar)
 		{
 			return;
 		}
-		PlayerPrefs.SetInt("NowPlayerFileAvatar", this.index);
+		PlayerPrefs.SetInt("NowPlayerFileAvatar", index);
 		int @int = PlayerPrefs.GetInt("NowPlayerFileAvatar");
 		KBEngineApp.app.entities.Remove(10);
-		GameObject gameObject = new GameObject();
-		gameObject.AddComponent<StartGame>();
-		if (YSSaveGame.GetInt("SaveDFAvatar" + this.index, 0) == 2)
+		GameObject val = new GameObject();
+		val.AddComponent<StartGame>();
+		if (YSSaveGame.GetInt("SaveDFAvatar" + index) == 2)
 		{
-			YSSaveGame.save("SaveDFAvatar" + this.index, 1, "-1");
+			YSSaveGame.save("SaveDFAvatar" + index, 1);
 			MusicMag.instance.stopMusic();
-			this.firesetSetDFInfo();
-			PlayerPrefs.SetString("sceneToLoad", "S" + (10000 + this.index - 100));
+			firesetSetDFInfo();
+			PlayerPrefs.SetString("sceneToLoad", "S" + (10000 + index - 100));
 		}
-		gameObject.GetComponent<StartGame>().startGame(@int, 0, 10000 + this.index - 100);
+		val.GetComponent<StartGame>().startGame(@int, 0, 10000 + index - 100);
 		Avatar player = Tools.instance.getPlayer();
 		for (int i = 10101; i <= 10105; i++)
 		{
-			jsonData.instance.setMonstarDeath(i, true);
+			jsonData.instance.setMonstarDeath(i);
 		}
-		foreach (JSONObject jsonobject in jsonData.instance.WuDaoAllTypeJson.list)
+		foreach (JSONObject item in jsonData.instance.WuDaoAllTypeJson.list)
 		{
-			player.wuDaoMag.SetWuDaoEx(jsonobject["id"].I, 999999);
+			player.wuDaoMag.SetWuDaoEx(item["id"].I, 999999);
 		}
-		using (Dictionary<string, JSONObject>.Enumerator enumerator2 = jsonData.instance.skillJsonData.GetEnumerator())
+		foreach (KeyValuePair<string, JSONObject> skill2 in jsonData.instance.skillJsonData)
 		{
-			while (enumerator2.MoveNext())
+			if ((int)skill2.Value["DF"].n == 1 && player.hasSkillList.Find((SkillItem aa) => aa.itemId == skill2.Value["Skill_ID"].I) == null)
 			{
-				KeyValuePair<string, JSONObject> skill = enumerator2.Current;
-				if ((int)skill.Value["DF"].n == 1 && player.hasSkillList.Find((SkillItem aa) => aa.itemId == skill.Value["Skill_ID"].I) == null)
-				{
-					player.addHasSkillList(skill.Value["Skill_ID"].I);
-				}
+				player.addHasSkillList(skill2.Value["Skill_ID"].I);
 			}
 		}
-		using (List<JSONObject>.Enumerator enumerator = jsonData.instance.StaticSkillJsonData.list.GetEnumerator())
+		foreach (JSONObject skill in jsonData.instance.StaticSkillJsonData.list)
 		{
-			while (enumerator.MoveNext())
+			if ((int)skill["DF"].n == 1 && player.hasStaticSkillList.Find((SkillItem aa) => aa.itemId == skill["Skill_ID"].I) == null)
 			{
-				JSONObject skill = enumerator.Current;
-				if ((int)skill["DF"].n == 1 && player.hasStaticSkillList.Find((SkillItem aa) => aa.itemId == skill["Skill_ID"].I) == null)
-				{
-					int level = (int)jsonData.instance.StaticLVToLevelJsonData[player.getLevelType().ToString()]["Max" + (int)skill["Skill_LV"].n].n;
-					player.addHasStaticSkillList(skill["Skill_ID"].I, level);
-				}
+				int level = (int)jsonData.instance.StaticLVToLevelJsonData[player.getLevelType().ToString()]["Max" + (int)skill["Skill_LV"].n].n;
+				player.addHasStaticSkillList(skill["Skill_ID"].I, level);
 			}
 		}
 	}
 
-	// Token: 0x06000BEC RID: 3052 RVA: 0x00048830 File Offset: 0x00046A30
 	public void clickRemoveOk()
 	{
-		this.levelSelectManager.closeRemoveAvatar();
-		this.HasAvatarItem.SetActive(false);
-		this.NoAvatarItem.SetActive(true);
-		this.hasAvatar = false;
+		levelSelectManager.closeRemoveAvatar();
+		HasAvatarItem.SetActive(false);
+		NoAvatarItem.SetActive(true);
+		hasAvatar = false;
 		for (int i = 0; i < 6; i++)
 		{
-			if (YSSaveGame.GetInt("SaveAvatar" + Tools.instance.getSaveID(this.index, i), 0) == 1)
+			if (YSSaveGame.GetInt("SaveAvatar" + Tools.instance.getSaveID(index, i)) == 1)
 			{
-				YSSaveGame.save("SaveAvatar" + Tools.instance.getSaveID(this.index, i), 0, "-1");
+				YSSaveGame.save("SaveAvatar" + Tools.instance.getSaveID(index, i), 0);
 			}
 		}
-		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(this.index, 0), 0, "-1");
-		YSSaveGame.save("SaveAvatar" + this.index, 0, "-1");
-		YSSaveGame.save("PlayerAvatarName" + this.index, "空", "-1");
-		if (this.Level_Image != null)
+		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(index, 0), 0);
+		YSSaveGame.save("SaveAvatar" + index, 0);
+		YSSaveGame.save("PlayerAvatarName" + index, "空");
+		if ((Object)(object)Level_Image != (Object)null)
 		{
-			this.Level_Image.gameObject.SetActive(false);
+			((Component)Level_Image).gameObject.SetActive(false);
 		}
-		if (this.Level_Text != null)
+		if ((Object)(object)Level_Text != (Object)null)
 		{
-			this.Level_Text.gameObject.SetActive(false);
+			((Component)Level_Text).gameObject.SetActive(false);
 		}
-		this.showSetPlayerName();
+		showSetPlayerName();
 	}
 
-	// Token: 0x06000BED RID: 3053 RVA: 0x0004896C File Offset: 0x00046B6C
 	public void showSetPlayerName()
 	{
-		GameObject setPlayerName = this.levelSelectManager.setPlayerName;
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Expected O, but got Unknown
+		GameObject setPlayerName = levelSelectManager.setPlayerName;
 		setPlayerName.gameObject.SetActive(true);
-		this.levelSelectManager.randomPlayerName();
-		Button component = setPlayerName.transform.Find("ok").GetComponent<Button>();
-		component.onClick.RemoveAllListeners();
-		component.onClick.AddListener(new UnityAction(this.clickOk));
+		levelSelectManager.randomPlayerName();
+		Button component = ((Component)setPlayerName.transform.Find("ok")).GetComponent<Button>();
+		((UnityEventBase)component.onClick).RemoveAllListeners();
+		((UnityEvent)component.onClick).AddListener(new UnityAction(clickOk));
 	}
 
-	// Token: 0x06000BEE RID: 3054 RVA: 0x000489D0 File Offset: 0x00046BD0
 	public void clickOk()
 	{
-		CreateAvatarMag.inst.startGameClick(new CreateAvatarMag.createAvatardelegate(this.loadThisLevel));
+		CreateAvatarMag.inst.startGameClick(loadThisLevel);
 	}
 
-	// Token: 0x06000BEF RID: 3055 RVA: 0x000489E8 File Offset: 0x00046BE8
 	public void loadThisLevel()
 	{
-		if (!this.isLocked)
+		if (!isLocked)
 		{
-			PlayerPrefs.SetString("sceneToLoad", this.levelToLoad);
-			this.loadScreen();
+			PlayerPrefs.SetString("sceneToLoad", levelToLoad);
+			loadScreen();
 		}
 	}
 
-	// Token: 0x06000BF0 RID: 3056 RVA: 0x00048A08 File Offset: 0x00046C08
 	public void loadScreen()
 	{
 		Tools.instance.isNewAvatar = true;
 		MusicMag.instance.stopMusic();
-		this.FirstsetPlayerInfo();
+		FirstsetPlayerInfo();
 	}
 
-	// Token: 0x06000BF1 RID: 3057 RVA: 0x00048A28 File Offset: 0x00046C28
 	public void firesetSetDFInfo()
 	{
-		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(this.index, 0), 0, "-1");
-		GameObject.Find("Main Menu").GetComponent<StartGame>().AddDouFaPlayerInfo(this.index - 100);
+		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(index, 0), 0);
+		GameObject.Find("Main Menu").GetComponent<StartGame>().AddDouFaPlayerInfo(index - 100);
 	}
 
-	// Token: 0x06000BF2 RID: 3058 RVA: 0x00048A78 File Offset: 0x00046C78
 	public void FirstsetPlayerInfo()
 	{
-		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(this.index, 0), 0, "-1");
-		GameObject.Find("Main Menu").GetComponent<StartGame>().firstAddAvatar(this.index, 0, this.levelSelectManager.getFirstName(), this.levelSelectManager.getLastName());
+		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(index, 0), 0);
+		GameObject.Find("Main Menu").GetComponent<StartGame>().firstAddAvatar(index, 0, levelSelectManager.getFirstName(), levelSelectManager.getLastName());
 	}
-
-	// Token: 0x04000839 RID: 2105
-	[Header("UI References")]
-	public Image LevelImage;
-
-	// Token: 0x0400083A RID: 2106
-	public Text levelCount;
-
-	// Token: 0x0400083B RID: 2107
-	public Text levelName;
-
-	// Token: 0x0400083C RID: 2108
-	public Text levelSubName;
-
-	// Token: 0x0400083D RID: 2109
-	public Text LevelLv;
-
-	// Token: 0x0400083E RID: 2110
-	public GameObject lockIcon;
-
-	// Token: 0x0400083F RID: 2111
-	public bool isLocked;
-
-	// Token: 0x04000840 RID: 2112
-	public string levelToLoad;
-
-	// Token: 0x04000841 RID: 2113
-	public bool hasAvatar;
-
-	// Token: 0x04000842 RID: 2114
-	public int index;
-
-	// Token: 0x04000843 RID: 2115
-	public int SelectType;
-
-	// Token: 0x04000844 RID: 2116
-	public PlayerSetRandomFace playerSetRandomFace;
-
-	// Token: 0x04000845 RID: 2117
-	public bool isDF;
-
-	// Token: 0x04000846 RID: 2118
-	public Image Level_Image;
-
-	// Token: 0x04000847 RID: 2119
-	public GameObject HasAvatarItem;
-
-	// Token: 0x04000848 RID: 2120
-	public GameObject NoAvatarItem;
-
-	// Token: 0x04000849 RID: 2121
-	public Text Level_Text;
-
-	// Token: 0x0400084A RID: 2122
-	private LevelSelectManager levelSelectManager;
 }

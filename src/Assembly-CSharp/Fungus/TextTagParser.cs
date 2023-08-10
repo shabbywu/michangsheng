@@ -1,240 +1,234 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace Fungus
-{
-	// Token: 0x02000ECE RID: 3790
-	public static class TextTagParser
-	{
-		// Token: 0x06006B07 RID: 27399 RVA: 0x00295194 File Offset: 0x00293394
-		private static void AddWordsToken(List<TextTagToken> tokenList, string words)
-		{
-			tokenList.Add(new TextTagToken
-			{
-				type = TokenType.Words,
-				paramList = new List<string>(),
-				paramList = 
-				{
-					words
-				}
-			});
-		}
+namespace Fungus;
 
-		// Token: 0x06006B08 RID: 27400 RVA: 0x002951CC File Offset: 0x002933CC
-		private static void AddTagToken(List<TextTagToken> tokenList, string tagText)
+public static class TextTagParser
+{
+	private const string TextTokenRegexString = "\\{.*?\\}";
+
+	private static void AddWordsToken(List<TextTagToken> tokenList, string words)
+	{
+		TextTagToken textTagToken = new TextTagToken();
+		textTagToken.type = TokenType.Words;
+		textTagToken.paramList = new List<string>();
+		textTagToken.paramList.Add(words);
+		tokenList.Add(textTagToken);
+	}
+
+	private static void AddTagToken(List<TextTagToken> tokenList, string tagText)
+	{
+		if (tagText.Length < 3 || tagText.Substring(0, 1) != "{" || tagText.Substring(tagText.Length - 1, 1) != "}")
 		{
-			if (tagText.Length < 3 || tagText.Substring(0, 1) != "{" || tagText.Substring(tagText.Length - 1, 1) != "}")
-			{
-				return;
-			}
-			string text = tagText.Substring(1, tagText.Length - 2);
-			TokenType tokenType = TokenType.Invalid;
-			List<string> paramList = TextTagParser.ExtractParameters(text);
-			if (text == "b")
-			{
-				tokenType = TokenType.BoldStart;
-			}
-			else if (text == "/b")
-			{
-				tokenType = TokenType.BoldEnd;
-			}
-			else if (text == "i")
-			{
-				tokenType = TokenType.ItalicStart;
-			}
-			else if (text == "/i")
-			{
-				tokenType = TokenType.ItalicEnd;
-			}
-			else if (text.StartsWith("color="))
+			return;
+		}
+		string text = tagText.Substring(1, tagText.Length - 2);
+		TokenType tokenType = TokenType.Invalid;
+		List<string> paramList = ExtractParameters(text);
+		switch (text)
+		{
+		case "b":
+			tokenType = TokenType.BoldStart;
+			break;
+		case "/b":
+			tokenType = TokenType.BoldEnd;
+			break;
+		case "i":
+			tokenType = TokenType.ItalicStart;
+			break;
+		case "/i":
+			tokenType = TokenType.ItalicEnd;
+			break;
+		default:
+			if (text.StartsWith("color="))
 			{
 				tokenType = TokenType.ColorStart;
+				break;
 			}
-			else if (text == "/color")
+			if (text == "/color")
 			{
 				tokenType = TokenType.ColorEnd;
+				break;
 			}
-			else if (text.StartsWith("size="))
+			if (text.StartsWith("size="))
 			{
 				tokenType = TokenType.SizeStart;
+				break;
 			}
-			else if (text == "/size")
+			switch (text)
 			{
+			case "/size":
 				tokenType = TokenType.SizeEnd;
-			}
-			else if (text == "wi")
-			{
+				break;
+			case "wi":
 				tokenType = TokenType.WaitForInputNoClear;
-			}
-			else if (text == "wc")
-			{
+				break;
+			case "wc":
 				tokenType = TokenType.WaitForInputAndClear;
-			}
-			else if (text == "wvo")
-			{
+				break;
+			case "wvo":
 				tokenType = TokenType.WaitForVoiceOver;
-			}
-			else if (text.StartsWith("wp="))
-			{
-				tokenType = TokenType.WaitOnPunctuationStart;
-			}
-			else if (text == "wp")
-			{
-				tokenType = TokenType.WaitOnPunctuationStart;
-			}
-			else if (text == "/wp")
-			{
-				tokenType = TokenType.WaitOnPunctuationEnd;
-			}
-			else if (text.StartsWith("w="))
-			{
-				tokenType = TokenType.Wait;
-			}
-			else if (text == "w")
-			{
-				tokenType = TokenType.Wait;
-			}
-			else if (text == "c")
-			{
-				tokenType = TokenType.Clear;
-			}
-			else if (text.StartsWith("s="))
-			{
-				tokenType = TokenType.SpeedStart;
-			}
-			else if (text == "s")
-			{
-				tokenType = TokenType.SpeedStart;
-			}
-			else if (text == "/s")
-			{
-				tokenType = TokenType.SpeedEnd;
-			}
-			else if (text == "x")
-			{
-				tokenType = TokenType.Exit;
-			}
-			else if (text.StartsWith("m="))
-			{
-				tokenType = TokenType.Message;
-			}
-			else if (text.StartsWith("vpunch") || text.StartsWith("vpunch="))
-			{
-				tokenType = TokenType.VerticalPunch;
-			}
-			else if (text.StartsWith("hpunch") || text.StartsWith("hpunch="))
-			{
-				tokenType = TokenType.HorizontalPunch;
-			}
-			else if (text.StartsWith("punch") || text.StartsWith("punch="))
-			{
-				tokenType = TokenType.Punch;
-			}
-			else if (text.StartsWith("flash") || text.StartsWith("flash="))
-			{
-				tokenType = TokenType.Flash;
-			}
-			else if (text.StartsWith("audio="))
-			{
-				tokenType = TokenType.Audio;
-			}
-			else if (text.StartsWith("audioloop="))
-			{
-				tokenType = TokenType.AudioLoop;
-			}
-			else if (text.StartsWith("audiopause="))
-			{
-				tokenType = TokenType.AudioPause;
-			}
-			else if (text.StartsWith("audiostop="))
-			{
-				tokenType = TokenType.AudioStop;
-			}
-			if (tokenType != TokenType.Invalid)
-			{
-				tokenList.Add(new TextTagToken
+				break;
+			default:
+				if (text.StartsWith("wp="))
 				{
-					type = tokenType,
-					paramList = paramList
-				});
-				return;
-			}
-			Debug.LogWarning("Invalid text tag " + text);
-		}
-
-		// Token: 0x06006B09 RID: 27401 RVA: 0x002954EC File Offset: 0x002936EC
-		private static List<string> ExtractParameters(string input)
-		{
-			List<string> list = new List<string>();
-			int num = input.IndexOf('=');
-			if (num == -1)
-			{
-				return list;
-			}
-			foreach (string text in input.Substring(num + 1).Split(new char[]
-			{
-				','
-			}))
-			{
-				list.Add(text.Trim());
-			}
-			return list;
-		}
-
-		// Token: 0x06006B0A RID: 27402 RVA: 0x00295549 File Offset: 0x00293749
-		public static string GetTagHelp()
-		{
-			return "\t{b} Bold Text {/b}\n\t{i} Italic Text {/i}\n\t{color=red} Color Text (color){/color}\n\t{size=30} Text size {/size}\n\n\t{s}, {s=60} Writing speed (chars per sec){/s}\n\t{w}, {w=0.5} Wait (seconds)\n\t{wi} Wait for input\n\t{wc} Wait for input and clear\n\t{wvo} Wait for voice over line to complete\n\t{wp}, {wp=0.5} Wait on punctuation (seconds){/wp}\n\t{c} Clear\n\t{x} Exit, advance to the next command without waiting for input\n\n\t{vpunch=10,0.5} Vertically punch screen (intensity,time)\n\t{hpunch=10,0.5} Horizontally punch screen (intensity,time)\n\t{punch=10,0.5} Punch screen (intensity,time)\n\t{flash=0.5} Flash screen (duration)\n\n\t{audio=AudioObjectName} Play Audio Once\n\t{audioloop=AudioObjectName} Play Audio Loop\n\t{audiopause=AudioObjectName} Pause Audio\n\t{audiostop=AudioObjectName} Stop Audio\n\n\t{m=MessageName} Broadcast message\n\t{$VarName} Substitute variable";
-		}
-
-		// Token: 0x06006B0B RID: 27403 RVA: 0x00295550 File Offset: 0x00293750
-		public static List<TextTagToken> Tokenize(string storyText)
-		{
-			List<TextTagToken> list = new List<TextTagToken>();
-			Match match = new Regex("\\{.*?\\}").Match(storyText);
-			int num = 0;
-			while (match.Success)
-			{
-				string text = storyText.Substring(num, match.Index - num);
-				string value = match.Value;
-				if (text != "")
-				{
-					TextTagParser.AddWordsToken(list, text);
+					tokenType = TokenType.WaitOnPunctuationStart;
+					break;
 				}
-				TextTagParser.AddTagToken(list, value);
-				num = match.Index + value.Length;
-				match = match.NextMatch();
-			}
-			if (num < storyText.Length)
-			{
-				string text2 = storyText.Substring(num, storyText.Length - num);
-				if (text2.Length > 0)
+				if (text == "wp")
 				{
-					TextTagParser.AddWordsToken(list, text2);
+					tokenType = TokenType.WaitOnPunctuationStart;
+					break;
 				}
-			}
-			bool flag = false;
-			for (int i = 0; i < list.Count; i++)
-			{
-				TextTagToken textTagToken = list[i];
-				if (flag && textTagToken.type == TokenType.Words)
+				if (text == "/wp")
 				{
-					textTagToken.paramList[0] = textTagToken.paramList[0].TrimStart(new char[]
+					tokenType = TokenType.WaitOnPunctuationEnd;
+					break;
+				}
+				if (text.StartsWith("w="))
+				{
+					tokenType = TokenType.Wait;
+					break;
+				}
+				if (text == "w")
+				{
+					tokenType = TokenType.Wait;
+					break;
+				}
+				if (text == "c")
+				{
+					tokenType = TokenType.Clear;
+					break;
+				}
+				if (text.StartsWith("s="))
+				{
+					tokenType = TokenType.SpeedStart;
+					break;
+				}
+				switch (text)
+				{
+				case "s":
+					tokenType = TokenType.SpeedStart;
+					break;
+				case "/s":
+					tokenType = TokenType.SpeedEnd;
+					break;
+				case "x":
+					tokenType = TokenType.Exit;
+					break;
+				default:
+					if (text.StartsWith("m="))
 					{
-						' ',
-						'\t',
-						'\r',
-						'\n'
-					});
+						tokenType = TokenType.Message;
+					}
+					else if (text.StartsWith("vpunch") || text.StartsWith("vpunch="))
+					{
+						tokenType = TokenType.VerticalPunch;
+					}
+					else if (text.StartsWith("hpunch") || text.StartsWith("hpunch="))
+					{
+						tokenType = TokenType.HorizontalPunch;
+					}
+					else if (text.StartsWith("punch") || text.StartsWith("punch="))
+					{
+						tokenType = TokenType.Punch;
+					}
+					else if (text.StartsWith("flash") || text.StartsWith("flash="))
+					{
+						tokenType = TokenType.Flash;
+					}
+					else if (text.StartsWith("audio="))
+					{
+						tokenType = TokenType.Audio;
+					}
+					else if (text.StartsWith("audioloop="))
+					{
+						tokenType = TokenType.AudioLoop;
+					}
+					else if (text.StartsWith("audiopause="))
+					{
+						tokenType = TokenType.AudioPause;
+					}
+					else if (text.StartsWith("audiostop="))
+					{
+						tokenType = TokenType.AudioStop;
+					}
+					break;
 				}
-				flag = (textTagToken.type == TokenType.Clear || textTagToken.type == TokenType.WaitForInputAndClear);
+				break;
 			}
+			break;
+		}
+		if (tokenType != 0)
+		{
+			TextTagToken textTagToken = new TextTagToken();
+			textTagToken.type = tokenType;
+			textTagToken.paramList = paramList;
+			tokenList.Add(textTagToken);
+		}
+		else
+		{
+			Debug.LogWarning((object)("Invalid text tag " + text));
+		}
+	}
+
+	private static List<string> ExtractParameters(string input)
+	{
+		List<string> list = new List<string>();
+		int num = input.IndexOf('=');
+		if (num == -1)
+		{
 			return list;
 		}
+		string[] array = input.Substring(num + 1).Split(new char[1] { ',' });
+		foreach (string text in array)
+		{
+			list.Add(text.Trim());
+		}
+		return list;
+	}
 
-		// Token: 0x04005A41 RID: 23105
-		private const string TextTokenRegexString = "\\{.*?\\}";
+	public static string GetTagHelp()
+	{
+		return "\t{b} Bold Text {/b}\n\t{i} Italic Text {/i}\n\t{color=red} Color Text (color){/color}\n\t{size=30} Text size {/size}\n\n\t{s}, {s=60} Writing speed (chars per sec){/s}\n\t{w}, {w=0.5} Wait (seconds)\n\t{wi} Wait for input\n\t{wc} Wait for input and clear\n\t{wvo} Wait for voice over line to complete\n\t{wp}, {wp=0.5} Wait on punctuation (seconds){/wp}\n\t{c} Clear\n\t{x} Exit, advance to the next command without waiting for input\n\n\t{vpunch=10,0.5} Vertically punch screen (intensity,time)\n\t{hpunch=10,0.5} Horizontally punch screen (intensity,time)\n\t{punch=10,0.5} Punch screen (intensity,time)\n\t{flash=0.5} Flash screen (duration)\n\n\t{audio=AudioObjectName} Play Audio Once\n\t{audioloop=AudioObjectName} Play Audio Loop\n\t{audiopause=AudioObjectName} Pause Audio\n\t{audiostop=AudioObjectName} Stop Audio\n\n\t{m=MessageName} Broadcast message\n\t{$VarName} Substitute variable";
+	}
+
+	public static List<TextTagToken> Tokenize(string storyText)
+	{
+		List<TextTagToken> list = new List<TextTagToken>();
+		Match match = new Regex("\\{.*?\\}").Match(storyText);
+		int num = 0;
+		while (match.Success)
+		{
+			string text = storyText.Substring(num, match.Index - num);
+			string value = match.Value;
+			if (text != "")
+			{
+				AddWordsToken(list, text);
+			}
+			AddTagToken(list, value);
+			num = match.Index + value.Length;
+			match = match.NextMatch();
+		}
+		if (num < storyText.Length)
+		{
+			string text2 = storyText.Substring(num, storyText.Length - num);
+			if (text2.Length > 0)
+			{
+				AddWordsToken(list, text2);
+			}
+		}
+		bool flag = false;
+		for (int i = 0; i < list.Count; i++)
+		{
+			TextTagToken textTagToken = list[i];
+			if (flag && textTagToken.type == TokenType.Words)
+			{
+				textTagToken.paramList[0] = textTagToken.paramList[0].TrimStart(' ', '\t', '\r', '\n');
+			}
+			flag = ((textTagToken.type == TokenType.Clear || textTagToken.type == TokenType.WaitForInputAndClear) ? true : false);
+		}
+		return list;
 	}
 }

@@ -1,86 +1,91 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000429 RID: 1065
 public class TooltipBase : MonoBehaviour
 {
-	// Token: 0x06002206 RID: 8710 RVA: 0x000EA55C File Offset: 0x000E875C
+	public bool showTooltip;
+
+	public UITexture childTexture;
+
+	public int showType = 1;
+
+	protected Vector3 NowClickPositon = Vector3.zero;
+
+	public bool shoudSetPos = true;
+
 	protected virtual void Start()
 	{
-		this.childTexture = base.transform.GetChild(0).GetComponent<UITexture>();
+		childTexture = ((Component)((Component)this).transform.GetChild(0)).GetComponent<UITexture>();
 	}
 
-	// Token: 0x06002207 RID: 8711 RVA: 0x000EA575 File Offset: 0x000E8775
 	protected virtual void Update()
 	{
-		if (this.shoudSetPos)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		if (shoudSetPos)
 		{
-			if (this.showTooltip)
+			if (showTooltip)
 			{
-				this.MobileSetPosition();
-				return;
+				MobileSetPosition();
 			}
-			base.transform.position = new Vector3(0f, 10000f, 0f);
+			else
+			{
+				((Component)this).transform.position = new Vector3(0f, 10000f, 0f);
+			}
 		}
 	}
 
-	// Token: 0x06002208 RID: 8712 RVA: 0x000EA5B0 File Offset: 0x000E87B0
 	public virtual void MobileSetPosition()
 	{
-		if (this.showType == 2)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		if (showType == 2)
 		{
-			this.PCSetPosition();
+			PCSetPosition();
 			return;
 		}
-		if (this.showType == 3)
+		if (showType == 3)
 		{
 			float num = (float)(Screen.height / 2) * 1.24f;
-			base.transform.position = UICamera.currentCamera.ScreenToWorldPoint(new Vector3((float)(Screen.width / 2), num, 0f));
+			((Component)this).transform.position = UICamera.currentCamera.ScreenToWorldPoint(new Vector3((float)(Screen.width / 2), num, 0f));
 			return;
 		}
 		int num2 = Screen.width / 2;
-		float num3 = (Input.mousePosition.x < (float)num2) ? ((float)num2 * 1.35f) : ((float)num2 * 0.52f);
+		float num3 = ((Input.mousePosition.x < (float)num2) ? ((float)num2 * 1.35f) : ((float)num2 * 0.52f));
 		float num4 = (float)(Screen.height / 2) * 1.24f;
-		base.transform.position = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(num3, num4, 0f));
+		((Component)this).transform.position = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(num3, num4, 0f));
 	}
 
-	// Token: 0x06002209 RID: 8713 RVA: 0x000EA667 File Offset: 0x000E8867
 	public Vector3 getMousePosition()
 	{
-		Vector3 mousePosition = Input.mousePosition;
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		_ = Input.mousePosition;
 		return Input.mousePosition;
 	}
 
-	// Token: 0x0600220A RID: 8714 RVA: 0x000EA674 File Offset: 0x000E8874
 	public virtual void PCSetPosition()
 	{
-		Vector3 vector;
-		vector..ctor(this.getMousePosition().x, this.getMousePosition().y, this.getMousePosition().z);
-		vector.x += (float)(this.childTexture.width / 2);
-		vector.y -= (float)(this.childTexture.height / 2);
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = default(Vector3);
+		((Vector3)(ref val))._002Ector(getMousePosition().x, getMousePosition().y, getMousePosition().z);
+		val.x += childTexture.width / 2;
+		val.y -= childTexture.height / 2;
 		if (Input.mousePosition.x > (float)(Screen.width / 2))
 		{
-			vector.x -= (float)this.childTexture.width;
+			val.x -= childTexture.width;
 		}
 		if (Input.mousePosition.y < (float)(Screen.height / 2))
 		{
-			vector.y += (float)this.childTexture.height;
+			val.y += childTexture.height;
 		}
-		base.transform.position = UICamera.currentCamera.ScreenToWorldPoint(vector);
+		((Component)this).transform.position = UICamera.currentCamera.ScreenToWorldPoint(val);
 	}
-
-	// Token: 0x04001B6D RID: 7021
-	public bool showTooltip;
-
-	// Token: 0x04001B6E RID: 7022
-	public UITexture childTexture;
-
-	// Token: 0x04001B6F RID: 7023
-	public int showType = 1;
-
-	// Token: 0x04001B70 RID: 7024
-	protected Vector3 NowClickPositon = Vector3.zero;
-
-	// Token: 0x04001B71 RID: 7025
-	public bool shoudSetPos = true;
 }

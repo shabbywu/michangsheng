@@ -1,74 +1,60 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class NpcTalkGuanYuTuPoData : IJSONClass
 {
-	// Token: 0x020008AE RID: 2222
-	public class NpcTalkGuanYuTuPoData : IJSONClass
+	public static Dictionary<int, NpcTalkGuanYuTuPoData> DataDict = new Dictionary<int, NpcTalkGuanYuTuPoData>();
+
+	public static List<NpcTalkGuanYuTuPoData> DataList = new List<NpcTalkGuanYuTuPoData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int WanJiaJingJie;
+
+	public int JingJie;
+
+	public int XingGe;
+
+	public string TuPoTalk;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x060040CB RID: 16587 RVA: 0x001BAF88 File Offset: 0x001B9188
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.NpcTalkGuanYuTuPoData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.NpcTalkGuanYuTuPoData.list)
+			try
 			{
-				try
+				NpcTalkGuanYuTuPoData npcTalkGuanYuTuPoData = new NpcTalkGuanYuTuPoData();
+				npcTalkGuanYuTuPoData.id = item["id"].I;
+				npcTalkGuanYuTuPoData.WanJiaJingJie = item["WanJiaJingJie"].I;
+				npcTalkGuanYuTuPoData.JingJie = item["JingJie"].I;
+				npcTalkGuanYuTuPoData.XingGe = item["XingGe"].I;
+				npcTalkGuanYuTuPoData.TuPoTalk = item["TuPoTalk"].Str;
+				if (DataDict.ContainsKey(npcTalkGuanYuTuPoData.id))
 				{
-					NpcTalkGuanYuTuPoData npcTalkGuanYuTuPoData = new NpcTalkGuanYuTuPoData();
-					npcTalkGuanYuTuPoData.id = jsonobject["id"].I;
-					npcTalkGuanYuTuPoData.WanJiaJingJie = jsonobject["WanJiaJingJie"].I;
-					npcTalkGuanYuTuPoData.JingJie = jsonobject["JingJie"].I;
-					npcTalkGuanYuTuPoData.XingGe = jsonobject["XingGe"].I;
-					npcTalkGuanYuTuPoData.TuPoTalk = jsonobject["TuPoTalk"].Str;
-					if (NpcTalkGuanYuTuPoData.DataDict.ContainsKey(npcTalkGuanYuTuPoData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典NpcTalkGuanYuTuPoData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", npcTalkGuanYuTuPoData.id));
-					}
-					else
-					{
-						NpcTalkGuanYuTuPoData.DataDict.Add(npcTalkGuanYuTuPoData.id, npcTalkGuanYuTuPoData);
-						NpcTalkGuanYuTuPoData.DataList.Add(npcTalkGuanYuTuPoData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典NpcTalkGuanYuTuPoData.DataDict添加数据时出现重复的键，Key:{npcTalkGuanYuTuPoData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典NpcTalkGuanYuTuPoData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(npcTalkGuanYuTuPoData.id, npcTalkGuanYuTuPoData);
+				DataList.Add(npcTalkGuanYuTuPoData);
 			}
-			if (NpcTalkGuanYuTuPoData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				NpcTalkGuanYuTuPoData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典NpcTalkGuanYuTuPoData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x060040CC RID: 16588 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003EF5 RID: 16117
-		public static Dictionary<int, NpcTalkGuanYuTuPoData> DataDict = new Dictionary<int, NpcTalkGuanYuTuPoData>();
-
-		// Token: 0x04003EF6 RID: 16118
-		public static List<NpcTalkGuanYuTuPoData> DataList = new List<NpcTalkGuanYuTuPoData>();
-
-		// Token: 0x04003EF7 RID: 16119
-		public static Action OnInitFinishAction = new Action(NpcTalkGuanYuTuPoData.OnInitFinish);
-
-		// Token: 0x04003EF8 RID: 16120
-		public int id;
-
-		// Token: 0x04003EF9 RID: 16121
-		public int WanJiaJingJie;
-
-		// Token: 0x04003EFA RID: 16122
-		public int JingJie;
-
-		// Token: 0x04003EFB RID: 16123
-		public int XingGe;
-
-		// Token: 0x04003EFC RID: 16124
-		public string TuPoTalk;
+	private static void OnInitFinish()
+	{
 	}
 }

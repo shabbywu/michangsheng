@@ -1,35 +1,30 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Add", "AddEXP", "增加经验", 0)]
+[AddComponentMenu("")]
+public class AddEXP : Command
 {
-	// Token: 0x02000F28 RID: 3880
-	[CommandInfo("YSNew/Add", "AddEXP", "增加经验", 0)]
-	[AddComponentMenu("")]
-	public class AddEXP : Command
+	[Tooltip("增加经验的数量")]
+	[SerializeField]
+	public int AddEXPNum;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006DE9 RID: 28137 RVA: 0x002A4032 File Offset: 0x002A2232
-		public override void OnEnter()
-		{
-			UIPopTip.Inst.Pop("你的修为提升了" + this.AddEXPNum, PopTipIconType.上箭头);
-			Tools.instance.getPlayer().addEXP(this.AddEXPNum);
-			this.Continue();
-		}
+		UIPopTip.Inst.Pop("你的修为提升了" + AddEXPNum, PopTipIconType.上箭头);
+		Tools.instance.getPlayer().addEXP(AddEXPNum);
+		Continue();
+	}
 
-		// Token: 0x06006DEA RID: 28138 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006DEB RID: 28139 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005B64 RID: 23396
-		[Tooltip("增加经验的数量")]
-		[SerializeField]
-		public int AddEXPNum;
+	public override void OnReset()
+	{
 	}
 }

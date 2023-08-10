@@ -1,485 +1,438 @@
-﻿using System;
 using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class ItemCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x02000A5C RID: 2652
-	public class ItemCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
+	public GameObject Icon;
+
+	public GameObject Num;
+
+	public GameObject PingZhi;
+
+	public GameObject PingZhiUI;
+
+	public ItemDatebase itemDatebase;
+
+	public bool JustShow;
+
+	public bool isPlayer = true;
+
+	public bool isUGUI;
+
+	public Inventory2 inventory;
+
+	public GameObject YiWu;
+
+	public GameObject NaiYao;
+
+	public string Btn1Text = "";
+
+	public bool AutoSetBtnText;
+
+	public bool CanShowTooltips = true;
+
+	public bool CanDrawItem;
+
+	protected item Item = new item();
+
+	public bool ISPrepare;
+
+	public GameObject KeyObject;
+
+	public UILabel KeyName;
+
+	private float refreshCD;
+
+	public item GetItem => Item;
+
+	private void Start()
 	{
-		// Token: 0x170005CF RID: 1487
-		// (get) Token: 0x06004A61 RID: 19041 RVA: 0x001F9334 File Offset: 0x001F7534
-		public item GetItem
+		if ((Object)(object)inventory == (Object)null)
 		{
-			get
-			{
-				return this.Item;
-			}
+			inventory = Singleton.inventory;
 		}
+		Item = inventory.inventory[int.Parse(((Object)this).name)];
+	}
 
-		// Token: 0x06004A62 RID: 19042 RVA: 0x001F933C File Offset: 0x001F753C
-		private void Start()
+	public void ShowName()
+	{
+		if (Item.itemID != -1 && (Object)(object)KeyName != (Object)null && (Object)(object)KeyObject != (Object)null)
 		{
-			if (this.inventory == null)
-			{
-				this.inventory = Singleton.inventory;
-			}
-			this.Item = this.inventory.inventory[int.Parse(base.name)];
+			JSONObject jSONObject = jsonData.instance.ItemJsonData[Item.itemID.ToString()];
+			KeyName.text = "[" + jsonData.instance.NameColor[Inventory2.GetItemQuality(Item, jSONObject["quality"].I) - 1] + "]" + Inventory2.GetItemName(Item, Tools.instance.Code64ToString(jSONObject["name"].str)) + "[-]";
+			KeyObject.SetActive(true);
 		}
-
-		// Token: 0x06004A63 RID: 19043 RVA: 0x001F9378 File Offset: 0x001F7578
-		public void ShowName()
+		else if ((Object)(object)KeyObject != (Object)null)
 		{
-			if (this.Item.itemID != -1 && this.KeyName != null && this.KeyObject != null)
-			{
-				JSONObject jsonobject = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()];
-				this.KeyName.text = string.Concat(new string[]
-				{
-					"[",
-					jsonData.instance.NameColor[Inventory2.GetItemQuality(this.Item, jsonobject["quality"].I) - 1],
-					"]",
-					Inventory2.GetItemName(this.Item, Tools.instance.Code64ToString(jsonobject["name"].str)),
-					"[-]"
-				});
-				this.KeyObject.SetActive(true);
-				return;
-			}
-			if (this.KeyObject != null)
-			{
-				this.KeyObject.SetActive(false);
-			}
+			KeyObject.SetActive(false);
 		}
+	}
 
-		// Token: 0x06004A64 RID: 19044 RVA: 0x001F9484 File Offset: 0x001F7684
-		private void Update()
+	private void Update()
+	{
+		if (refreshCD < 0f)
 		{
-			if (this.refreshCD < 0f)
-			{
-				this.UpdateRefresh();
-				this.refreshCD = 0.2f;
-				return;
-			}
-			this.refreshCD -= Time.deltaTime;
+			UpdateRefresh();
+			refreshCD = 0.2f;
 		}
-
-		// Token: 0x06004A65 RID: 19045 RVA: 0x001F94B8 File Offset: 0x001F76B8
-		public void UpdateRefresh()
+		else
 		{
-			this.Item = this.inventory.inventory[int.Parse(base.name)];
-			if (!this.isUGUI)
+			refreshCD -= Time.deltaTime;
+		}
+	}
+
+	public void UpdateRefresh()
+	{
+		//IL_0267: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0276: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
+		Item = inventory.inventory[int.Parse(((Object)this).name)];
+		if (!isUGUI)
+		{
+			Icon.GetComponent<UITexture>().mainTexture = (Texture)(object)inventory.inventory[int.Parse(((Object)this).name)].itemIcon;
+			if (Item.Seid != null && Item.Seid.HasField("quality"))
 			{
-				this.Icon.GetComponent<UITexture>().mainTexture = this.inventory.inventory[int.Parse(base.name)].itemIcon;
-				if (this.Item.Seid != null && this.Item.Seid.HasField("quality"))
+				int i = Item.Seid["quality"].I;
+				if ((Object)(object)itemDatebase == (Object)null)
 				{
-					int i = this.Item.Seid["quality"].I;
-					if (this.itemDatebase == null)
-					{
-						this.itemDatebase = jsonData.instance.gameObject.GetComponent<ItemDatebase>();
-					}
-					this.PingZhi.GetComponent<UITexture>().mainTexture = this.itemDatebase.PingZhi[i];
-					if (this.PingZhiUI != null)
-					{
-						this.PingZhiUI.GetComponent<UI2DSprite>().sprite2D = this.itemDatebase.PingZhiUp[i];
-					}
+					itemDatebase = ((Component)jsonData.instance).gameObject.GetComponent<ItemDatebase>();
 				}
-				else
+				PingZhi.GetComponent<UITexture>().mainTexture = (Texture)(object)itemDatebase.PingZhi[i];
+				if ((Object)(object)PingZhiUI != (Object)null)
 				{
-					this.PingZhi.GetComponent<UITexture>().mainTexture = this.inventory.inventory[int.Parse(base.name)].itemPingZhi;
-					if (this.PingZhiUI != null)
-					{
-						this.PingZhiUI.GetComponent<UI2DSprite>().sprite2D = this.inventory.inventory[int.Parse(base.name)].itemPingZhiUP;
-					}
+					PingZhiUI.GetComponent<UI2DSprite>().sprite2D = itemDatebase.PingZhiUp[i];
 				}
-				if (this.inventory.inventory[int.Parse(base.name)].itemNum > 1)
-				{
-					this.Num.GetComponent<UILabel>().text = this.inventory.inventory[int.Parse(base.name)].itemNum.ToString();
-				}
-				else
-				{
-					this.Num.GetComponent<UILabel>().text = "";
-				}
-				this.showYiWu();
 			}
 			else
 			{
-				Texture2D itemIcon = this.inventory.inventory[int.Parse(base.name)].itemIcon;
-				Texture2D itemPingZhi = this.inventory.inventory[int.Parse(base.name)].itemPingZhi;
-				this.Icon.GetComponent<Image>().sprite = Sprite.Create(itemIcon, new Rect(0f, 0f, (float)itemIcon.width, (float)itemIcon.height), new Vector2(0.5f, 0.5f));
-				this.PingZhi.GetComponent<Image>().sprite = Sprite.Create(itemPingZhi, new Rect(0f, 0f, (float)itemPingZhi.width, (float)itemPingZhi.height), new Vector2(0.5f, 0.5f));
-				if (this.inventory.inventory[int.Parse(base.name)].itemNum > 1)
+				PingZhi.GetComponent<UITexture>().mainTexture = (Texture)(object)inventory.inventory[int.Parse(((Object)this).name)].itemPingZhi;
+				if ((Object)(object)PingZhiUI != (Object)null)
 				{
-					this.Num.GetComponent<Text>().text = this.inventory.inventory[int.Parse(base.name)].itemNum.ToString();
-				}
-				else
-				{
-					this.Num.GetComponent<Text>().text = "";
+					PingZhiUI.GetComponent<UI2DSprite>().sprite2D = inventory.inventory[int.Parse(((Object)this).name)].itemPingZhiUP;
 				}
 			}
-			this.ShowName();
-		}
-
-		// Token: 0x06004A66 RID: 19046 RVA: 0x001F9804 File Offset: 0x001F7A04
-		public void showYiWu()
-		{
-			if (this.YiWu != null)
+			if (inventory.inventory[int.Parse(((Object)this).name)].itemNum > 1)
 			{
-				if (this.inventory.inventory[int.Parse(base.name)].itemName != null && this.inventory.inventory[int.Parse(base.name)].itemID != -1)
+				Num.GetComponent<UILabel>().text = inventory.inventory[int.Parse(((Object)this).name)].itemNum.ToString();
+			}
+			else
+			{
+				Num.GetComponent<UILabel>().text = "";
+			}
+			showYiWu();
+		}
+		else
+		{
+			Texture2D itemIcon = inventory.inventory[int.Parse(((Object)this).name)].itemIcon;
+			Texture2D itemPingZhi = inventory.inventory[int.Parse(((Object)this).name)].itemPingZhi;
+			Icon.GetComponent<Image>().sprite = Sprite.Create(itemIcon, new Rect(0f, 0f, (float)((Texture)itemIcon).width, (float)((Texture)itemIcon).height), new Vector2(0.5f, 0.5f));
+			PingZhi.GetComponent<Image>().sprite = Sprite.Create(itemPingZhi, new Rect(0f, 0f, (float)((Texture)itemPingZhi).width, (float)((Texture)itemPingZhi).height), new Vector2(0.5f, 0.5f));
+			if (inventory.inventory[int.Parse(((Object)this).name)].itemNum > 1)
+			{
+				Num.GetComponent<Text>().text = inventory.inventory[int.Parse(((Object)this).name)].itemNum.ToString();
+			}
+			else
+			{
+				Num.GetComponent<Text>().text = "";
+			}
+		}
+		ShowName();
+	}
+
+	public void showYiWu()
+	{
+		if ((Object)(object)YiWu != (Object)null)
+		{
+			if (inventory.inventory[int.Parse(((Object)this).name)].itemName != null && inventory.inventory[int.Parse(((Object)this).name)].itemID != -1)
+			{
+				item item2 = inventory.inventory[int.Parse(((Object)this).name)];
+				JSONObject jSONObject = jsonData.instance.ItemJsonData[item2.itemID.ToString()];
+				if ((int)jSONObject["type"].n == 3)
 				{
-					item item = this.inventory.inventory[int.Parse(base.name)];
-					JSONObject jsonobject = jsonData.instance.ItemJsonData[item.itemID.ToString()];
-					if ((int)jsonobject["type"].n == 3)
+					int getskillID2 = 0;
+					try
 					{
-						int getskillID = 0;
-						try
+						if (item2.itemID > jsonData.QingJiaoItemIDSegment)
 						{
-							if (item.itemID > jsonData.QingJiaoItemIDSegment)
-							{
-								JSONObject jsonobject2 = jsonData.instance.ItemsSeidJsonData[1][(item.itemID - jsonData.QingJiaoItemIDSegment).ToString()];
-								getskillID = jsonobject2["value1"].I;
-							}
-							else
-							{
-								JSONObject jsonobject2 = jsonData.instance.ItemsSeidJsonData[1][item.itemID.ToString()];
-								getskillID = jsonobject2["value1"].I;
-							}
-						}
-						catch
-						{
-							Debug.LogError(string.Format("获取神通特性出错，请检查消耗品特性表1，物品ID{0}", item.itemID));
-						}
-						if (Tools.instance.getPlayer().hasSkillList.Find((SkillItem aa) => aa.itemId == getskillID) != null)
-						{
-							this.YiWu.SetActive(true);
+							JSONObject jSONObject2 = jsonData.instance.ItemsSeidJsonData[1][(item2.itemID - jsonData.QingJiaoItemIDSegment).ToString()];
+							getskillID2 = jSONObject2["value1"].I;
 						}
 						else
 						{
-							this.YiWu.SetActive(false);
+							JSONObject jSONObject2 = jsonData.instance.ItemsSeidJsonData[1][item2.itemID.ToString()];
+							getskillID2 = jSONObject2["value1"].I;
 						}
 					}
-					else if ((int)jsonobject["type"].n == 4)
+					catch
 					{
-						int getskillID = 0;
-						try
-						{
-							if (item.itemID > jsonData.QingJiaoItemIDSegment)
-							{
-								JSONObject jsonobject3 = jsonData.instance.ItemsSeidJsonData[2][(item.itemID - jsonData.QingJiaoItemIDSegment).ToString()];
-								getskillID = jsonobject3["value1"].I;
-							}
-							else
-							{
-								JSONObject jsonobject3 = jsonData.instance.ItemsSeidJsonData[2][item.itemID.ToString()];
-								getskillID = jsonobject3["value1"].I;
-							}
-						}
-						catch
-						{
-							Debug.LogError(string.Format("获取功法特性出错，请检查消耗品特性表2，物品ID{0}", item.itemID));
-						}
-						if (Tools.instance.getPlayer().hasStaticSkillList.Find((SkillItem aa) => aa.itemId == getskillID) != null)
-						{
-							this.YiWu.SetActive(true);
-						}
-						else
-						{
-							this.YiWu.SetActive(false);
-						}
+						Debug.LogError((object)$"获取神通特性出错，请检查消耗品特性表1，物品ID{item2.itemID}");
 					}
-					else if ((int)jsonobject["type"].n == 10)
+					if (Tools.instance.getPlayer().hasSkillList.Find((SkillItem aa) => aa.itemId == getskillID2) != null)
 					{
-						int id = (int)jsonData.instance.ItemsSeidJsonData[13][string.Concat(item.itemID)]["value1"].n;
-						if (Tools.instance.getPlayer().ISStudyDanFan(id))
-						{
-							this.YiWu.SetActive(true);
-						}
-						else
-						{
-							this.YiWu.SetActive(false);
-						}
+						YiWu.SetActive(true);
 					}
 					else
 					{
-						this.YiWu.SetActive(false);
+						YiWu.SetActive(false);
 					}
 				}
-				else
+				else if ((int)jSONObject["type"].n == 4)
 				{
-					this.YiWu.SetActive(false);
-				}
-			}
-			if (this.NaiYao != null)
-			{
-				if (this.inventory.inventory[int.Parse(base.name)].itemName != null && this.inventory.inventory[int.Parse(base.name)].itemID != -1)
-				{
-					item item2 = this.inventory.inventory[int.Parse(base.name)];
-					if ((int)jsonData.instance.ItemJsonData[item2.itemID.ToString()]["type"].n != 5)
+					int getskillID = 0;
+					try
 					{
-						this.NaiYao.SetActive(false);
-						return;
-					}
-					int jsonobject4 = Tools.getJsonobject(Tools.instance.getPlayer().NaiYaoXin, item2.itemID.ToString());
-					int itemCanUseNum = item.GetItemCanUseNum(this.Item.itemID);
-					if (jsonobject4 >= itemCanUseNum)
-					{
-						this.NaiYao.SetActive(true);
-						return;
-					}
-					this.NaiYao.SetActive(false);
-					return;
-				}
-				else
-				{
-					this.NaiYao.SetActive(false);
-				}
-			}
-		}
-
-		// Token: 0x06004A67 RID: 19047 RVA: 0x001F9C78 File Offset: 0x001F7E78
-		private void OnDrop(GameObject obj)
-		{
-			if (Input.GetMouseButtonUp(0) && !this.JustShow)
-			{
-				this.chengeItem();
-			}
-		}
-
-		// Token: 0x06004A68 RID: 19048 RVA: 0x001F9C90 File Offset: 0x001F7E90
-		private void OnPress()
-		{
-			this.PCOnPress();
-		}
-
-		// Token: 0x06004A69 RID: 19049 RVA: 0x001F9C98 File Offset: 0x001F7E98
-		public virtual void MobilePress()
-		{
-			if (this.Item.itemID == -1)
-			{
-				return;
-			}
-			if (!this.CanShowTooltips)
-			{
-				return;
-			}
-			this.PCOnHover(true);
-			Singleton.ToolTipsBackGround.openTooltips();
-			TooltipsBackgroundi toolTipsBackGround = Singleton.ToolTipsBackGround;
-			toolTipsBackGround.CloseAction = delegate()
-			{
-				this.PCOnHover(false);
-			};
-			toolTipsBackGround.UseAction = delegate()
-			{
-				this.ClickUseItem();
-			};
-		}
-
-		// Token: 0x06004A6A RID: 19050 RVA: 0x001F9CF8 File Offset: 0x001F7EF8
-		public virtual void PCOnPress()
-		{
-			if (this.JustShow)
-			{
-				return;
-			}
-			this.Item = this.inventory.inventory[int.Parse(base.name)];
-			if (Input.GetMouseButtonDown(1) && this.Item.itemName != null && !this.inventory.draggingItem)
-			{
-				this.ClickUseItem();
-			}
-			if (this.ISPrepare)
-			{
-				return;
-			}
-			if (Input.GetMouseButtonDown(0))
-			{
-				this.chengeItem();
-			}
-		}
-
-		// Token: 0x06004A6B RID: 19051 RVA: 0x001F9D70 File Offset: 0x001F7F70
-		public void ClickUseItem()
-		{
-			int num = (int)jsonData.instance.ItemJsonData[this.inventory.inventory[int.Parse(base.name)].itemID.ToString()]["type"].n;
-			if ((num == 6 || num == 8) && (int)jsonData.instance.ItemJsonData[this.inventory.inventory[int.Parse(base.name)].itemID.ToString()]["vagueType"].n == 0)
-			{
-				return;
-			}
-			if (num == 7 || num == 9)
-			{
-				return;
-			}
-			if (num - 3 <= 1 || num == 13)
-			{
-				UIPopTip.Inst.Pop("需要在洞府或客栈中闭关领悟", PopTipIconType.叹号);
-				return;
-			}
-			this.inventory.UseItem(int.Parse(base.name));
-		}
-
-		// Token: 0x06004A6C RID: 19052 RVA: 0x001F9E50 File Offset: 0x001F8050
-		private void chengeItem()
-		{
-			if (!this.inventory.CanClick())
-			{
-				return;
-			}
-			if (!Singleton.key.draggingKey)
-			{
-				if (this.Item.itemName != null)
-				{
-					if (!this.inventory.draggingItem)
-					{
-						this.inventory.dragedID = int.Parse(base.name);
-						this.inventory.draggingItem = true;
-						this.inventory.dragedItem = this.inventory.inventory[int.Parse(base.name)];
-						this.inventory.inventory[int.Parse(base.name)] = new item();
-						return;
-					}
-					if (Singleton.equip.is_draged && this.inventory.dragedItem.itemType != this.Item.itemType)
-					{
-						for (int i = 0; i < this.inventory.inventory.Count; i++)
+						if (item2.itemID > jsonData.QingJiaoItemIDSegment)
 						{
-							if (this.inventory.inventory[i].itemID == -1)
-							{
-								this.inventory.inventory[i] = this.inventory.dragedItem;
-								this.inventory.Clear_dragedItem();
-								Singleton.equip.is_draged = false;
-							}
+							JSONObject jSONObject3 = jsonData.instance.ItemsSeidJsonData[2][(item2.itemID - jsonData.QingJiaoItemIDSegment).ToString()];
+							getskillID = jSONObject3["value1"].I;
 						}
-						return;
+						else
+						{
+							JSONObject jSONObject3 = jsonData.instance.ItemsSeidJsonData[2][item2.itemID.ToString()];
+							getskillID = jSONObject3["value1"].I;
+						}
 					}
-					this.inventory.ChangeItem(ref this.Item, ref Singleton.inventory.dragedItem);
-					this.inventory.inventory[int.Parse(base.name)] = this.Item;
-					return;
+					catch
+					{
+						Debug.LogError((object)$"获取功法特性出错，请检查消耗品特性表2，物品ID{item2.itemID}");
+					}
+					if (Tools.instance.getPlayer().hasStaticSkillList.Find((SkillItem aa) => aa.itemId == getskillID) != null)
+					{
+						YiWu.SetActive(true);
+					}
+					else
+					{
+						YiWu.SetActive(false);
+					}
 				}
-				else if (this.inventory.draggingItem)
+				else if ((int)jSONObject["type"].n == 10)
 				{
-					this.inventory.ChangeItem(ref this.Item, ref this.inventory.dragedItem);
-					this.inventory.inventory[int.Parse(base.name)] = this.Item;
-					this.inventory.Temp.GetComponent<UITexture>().mainTexture = this.inventory.dragedItem.itemIcon;
-					this.inventory.draggingItem = false;
-					Singleton.equip.is_draged = false;
-					return;
+					int id = (int)jsonData.instance.ItemsSeidJsonData[13][string.Concat(item2.itemID)]["value1"].n;
+					if (Tools.instance.getPlayer().ISStudyDanFan(id))
+					{
+						YiWu.SetActive(true);
+					}
+					else
+					{
+						YiWu.SetActive(false);
+					}
+				}
+				else
+				{
+					YiWu.SetActive(false);
 				}
 			}
 			else
 			{
-				this.inventory.Clear_dragedItem();
+				YiWu.SetActive(false);
 			}
 		}
-
-		// Token: 0x06004A6D RID: 19053 RVA: 0x001FA068 File Offset: 0x001F8268
-		public virtual int getItemPrice()
+		if (!((Object)(object)NaiYao != (Object)null))
 		{
-			int num = (int)jsonData.instance.ItemJsonData[string.Concat(this.inventory.inventory[int.Parse(base.name)].itemID)]["price"].n;
-			if (this.inventory.inventory[int.Parse(base.name)].Seid != null && this.inventory.inventory[int.Parse(base.name)].Seid.HasField("Money"))
+			return;
+		}
+		if (inventory.inventory[int.Parse(((Object)this).name)].itemName != null && inventory.inventory[int.Parse(((Object)this).name)].itemID != -1)
+		{
+			item item3 = inventory.inventory[int.Parse(((Object)this).name)];
+			if ((int)jsonData.instance.ItemJsonData[item3.itemID.ToString()]["type"].n == 5)
 			{
-				num = this.inventory.inventory[int.Parse(base.name)].Seid["Money"].I;
+				int jsonobject = Tools.getJsonobject(Tools.instance.getPlayer().NaiYaoXin, item3.itemID.ToString());
+				int itemCanUseNum = item.GetItemCanUseNum(Item.itemID);
+				if (jsonobject >= itemCanUseNum)
+				{
+					NaiYao.SetActive(true);
+				}
+				else
+				{
+					NaiYao.SetActive(false);
+				}
 			}
-			return (int)((float)num * 0.5f);
-		}
-
-		// Token: 0x06004A6E RID: 19054 RVA: 0x001FA146 File Offset: 0x001F8346
-		private void OnHover(bool isOver)
-		{
-			this.PCOnHover(isOver);
-		}
-
-		// Token: 0x06004A6F RID: 19055 RVA: 0x0000280F File Offset: 0x00000A0F
-		public virtual int MoneyPercent(item a)
-		{
-			return 0;
-		}
-
-		// Token: 0x06004A70 RID: 19056 RVA: 0x001FA150 File Offset: 0x001F8350
-		public virtual void PCOnHover(bool isOver)
-		{
-			if (isOver && this.inventory.inventory[int.Parse(base.name)].itemName != null)
+			else
 			{
-				this.inventory.Show_Tooltip(this.inventory.inventory[int.Parse(base.name)], this.getItemPrice(), this.MoneyPercent(this.inventory.inventory[int.Parse(base.name)]));
-				this.inventory.showTooltip = true;
-				return;
+				NaiYao.SetActive(false);
 			}
-			this.inventory.showTooltip = false;
 		}
-
-		// Token: 0x06004A71 RID: 19057 RVA: 0x001FA1E8 File Offset: 0x001F83E8
-		public void OnPointerExit(PointerEventData eventData)
+		else
 		{
-			if (this.isUGUI)
-			{
-				this.OnHover(false);
-			}
+			NaiYao.SetActive(false);
 		}
+	}
 
-		// Token: 0x06004A72 RID: 19058 RVA: 0x001FA1F9 File Offset: 0x001F83F9
-		public void OnPointerEnter(PointerEventData eventData)
+	private void OnDrop(GameObject obj)
+	{
+		if (Input.GetMouseButtonUp(0) && !JustShow)
 		{
-			if (this.isUGUI)
+			chengeItem();
+		}
+	}
+
+	private void OnPress()
+	{
+		PCOnPress();
+	}
+
+	public virtual void MobilePress()
+	{
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Expected O, but got Unknown
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Expected O, but got Unknown
+		if (Item.itemID != -1 && CanShowTooltips)
+		{
+			PCOnHover(isOver: true);
+			Singleton.ToolTipsBackGround.openTooltips();
+			TooltipsBackgroundi toolTipsBackGround = Singleton.ToolTipsBackGround;
+			toolTipsBackGround.CloseAction = (UnityAction)delegate
 			{
-				this.OnHover(true);
+				PCOnHover(isOver: false);
+			};
+			toolTipsBackGround.UseAction = (UnityAction)delegate
+			{
+				ClickUseItem();
+			};
+		}
+	}
+
+	public virtual void PCOnPress()
+	{
+		if (!JustShow)
+		{
+			Item = inventory.inventory[int.Parse(((Object)this).name)];
+			if (Input.GetMouseButtonDown(1) && Item.itemName != null && !inventory.draggingItem)
+			{
+				ClickUseItem();
+			}
+			if (!ISPrepare && Input.GetMouseButtonDown(0))
+			{
+				chengeItem();
 			}
 		}
+	}
 
-		// Token: 0x04004999 RID: 18841
-		public GameObject Icon;
+	public void ClickUseItem()
+	{
+		int num = (int)jsonData.instance.ItemJsonData[inventory.inventory[int.Parse(((Object)this).name)].itemID.ToString()]["type"].n;
+		if ((num != 6 && num != 8) || (int)jsonData.instance.ItemJsonData[inventory.inventory[int.Parse(((Object)this).name)].itemID.ToString()]["vagueType"].n != 0)
+		{
+			switch (num)
+			{
+			case 7:
+			case 9:
+				break;
+			case 3:
+			case 4:
+			case 13:
+				UIPopTip.Inst.Pop("需要在洞府或客栈中闭关领悟");
+				break;
+			default:
+				inventory.UseItem(int.Parse(((Object)this).name));
+				break;
+			}
+		}
+	}
 
-		// Token: 0x0400499A RID: 18842
-		public GameObject Num;
+	private void chengeItem()
+	{
+		if (!inventory.CanClick())
+		{
+			return;
+		}
+		if (!Singleton.key.draggingKey)
+		{
+			if (Item.itemName != null)
+			{
+				if (!inventory.draggingItem)
+				{
+					inventory.dragedID = int.Parse(((Object)this).name);
+					inventory.draggingItem = true;
+					inventory.dragedItem = inventory.inventory[int.Parse(((Object)this).name)];
+					inventory.inventory[int.Parse(((Object)this).name)] = new item();
+				}
+				else if (Singleton.equip.is_draged && inventory.dragedItem.itemType != Item.itemType)
+				{
+					for (int i = 0; i < inventory.inventory.Count; i++)
+					{
+						if (inventory.inventory[i].itemID == -1)
+						{
+							inventory.inventory[i] = inventory.dragedItem;
+							inventory.Clear_dragedItem();
+							Singleton.equip.is_draged = false;
+						}
+					}
+				}
+				else
+				{
+					inventory.ChangeItem(ref Item, ref Singleton.inventory.dragedItem);
+					inventory.inventory[int.Parse(((Object)this).name)] = Item;
+				}
+			}
+			else if (inventory.draggingItem)
+			{
+				inventory.ChangeItem(ref Item, ref inventory.dragedItem);
+				inventory.inventory[int.Parse(((Object)this).name)] = Item;
+				inventory.Temp.GetComponent<UITexture>().mainTexture = (Texture)(object)inventory.dragedItem.itemIcon;
+				inventory.draggingItem = false;
+				Singleton.equip.is_draged = false;
+			}
+		}
+		else
+		{
+			inventory.Clear_dragedItem();
+		}
+	}
 
-		// Token: 0x0400499B RID: 18843
-		public GameObject PingZhi;
+	public virtual int getItemPrice()
+	{
+		int num = (int)jsonData.instance.ItemJsonData[string.Concat(inventory.inventory[int.Parse(((Object)this).name)].itemID)]["price"].n;
+		if (inventory.inventory[int.Parse(((Object)this).name)].Seid != null && inventory.inventory[int.Parse(((Object)this).name)].Seid.HasField("Money"))
+		{
+			num = inventory.inventory[int.Parse(((Object)this).name)].Seid["Money"].I;
+		}
+		return (int)((float)num * 0.5f);
+	}
 
-		// Token: 0x0400499C RID: 18844
-		public GameObject PingZhiUI;
+	private void OnHover(bool isOver)
+	{
+		PCOnHover(isOver);
+	}
 
-		// Token: 0x0400499D RID: 18845
-		public ItemDatebase itemDatebase;
+	public virtual int MoneyPercent(item a)
+	{
+		return 0;
+	}
 
-		// Token: 0x0400499E RID: 18846
-		public bool JustShow;
+	public virtual void PCOnHover(bool isOver)
+	{
+		if (isOver && inventory.inventory[int.Parse(((Object)this).name)].itemName != null)
+		{
+			inventory.Show_Tooltip(inventory.inventory[int.Parse(((Object)this).name)], getItemPrice(), MoneyPercent(inventory.inventory[int.Parse(((Object)this).name)]));
+			inventory.showTooltip = true;
+		}
+		else
+		{
+			inventory.showTooltip = false;
+		}
+	}
 
-		// Token: 0x0400499F RID: 18847
-		public bool isPlayer = true;
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		if (isUGUI)
+		{
+			OnHover(isOver: false);
+		}
+	}
 
-		// Token: 0x040049A0 RID: 18848
-		public bool isUGUI;
-
-		// Token: 0x040049A1 RID: 18849
-		public Inventory2 inventory;
-
-		// Token: 0x040049A2 RID: 18850
-		public GameObject YiWu;
-
-		// Token: 0x040049A3 RID: 18851
-		public GameObject NaiYao;
-
-		// Token: 0x040049A4 RID: 18852
-		public string Btn1Text = "";
-
-		// Token: 0x040049A5 RID: 18853
-		public bool AutoSetBtnText;
-
-		// Token: 0x040049A6 RID: 18854
-		public bool CanShowTooltips = true;
-
-		// Token: 0x040049A7 RID: 18855
-		public bool CanDrawItem;
-
-		// Token: 0x040049A8 RID: 18856
-		protected item Item = new item();
-
-		// Token: 0x040049A9 RID: 18857
-		public bool ISPrepare;
-
-		// Token: 0x040049AA RID: 18858
-		public GameObject KeyObject;
-
-		// Token: 0x040049AB RID: 18859
-		public UILabel KeyName;
-
-		// Token: 0x040049AC RID: 18860
-		private float refreshCD;
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		if (isUGUI)
+		{
+			OnHover(isOver: true);
+		}
 	}
 }

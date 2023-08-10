@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using JSONClass;
 using MoonSharp.Interpreter;
@@ -6,152 +6,137 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000194 RID: 404
 public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 {
-	// Token: 0x06001137 RID: 4407 RVA: 0x00067830 File Offset: 0x00065A30
+	private SkeletonAnimation skeAnim;
+
+	private ExposedList<Animation> spineAnims;
+
+	private Animation nowSpineAnim;
+
+	private float stateTimer;
+
+	private float lastTime;
+
+	private bool animLoopStart;
+
+	private Script luaScript;
+
+	private string onMoveEnterScript = "";
+
+	private string onMoveExitScript = "";
+
+	private string onLoopMoveEnterScript = "";
+
+	private string onLoopMoveExitScript = "";
+
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
 		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null)
 		{
 			return;
 		}
-		this.luaScript = new Script();
-		this.luaScript.Globals["CreateObj"] = new Action<string>(this.CreateObj);
+		luaScript = new Script();
+		luaScript.Globals["CreateObj"] = new Action<string>(CreateObj);
 		StaticSkillSeidJsonData9 nowDunShuSpineSeid = MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid;
-		this.onMoveEnterScript = nowDunShuSpineSeid.OnMoveEnter;
-		this.onMoveExitScript = nowDunShuSpineSeid.OnMoveExit;
-		this.onLoopMoveEnterScript = nowDunShuSpineSeid.OnLoopMoveEnter;
-		this.onLoopMoveExitScript = nowDunShuSpineSeid.OnLoopMoveExit;
-		this.skeAnim = MapPlayerNormalMoveAnimBehaviour.GetSkeAnim(animator);
-		this.spineAnims = this.skeAnim.skeletonDataAsset.GetSkeletonData(false).Animations;
-		this.nowSpineAnim = null;
-		foreach (Animation animation in this.spineAnims)
+		onMoveEnterScript = nowDunShuSpineSeid.OnMoveEnter;
+		onMoveExitScript = nowDunShuSpineSeid.OnMoveExit;
+		onLoopMoveEnterScript = nowDunShuSpineSeid.OnLoopMoveEnter;
+		onLoopMoveExitScript = nowDunShuSpineSeid.OnLoopMoveExit;
+		skeAnim = GetSkeAnim(animator);
+		spineAnims = ((SkeletonRenderer)skeAnim).skeletonDataAsset.GetSkeletonData(false).Animations;
+		nowSpineAnim = null;
+		Enumerator<Animation> enumerator = spineAnims.GetEnumerator();
+		try
 		{
-			if (stateInfo.IsName(animation.Name))
+			while (enumerator.MoveNext())
 			{
-				this.nowSpineAnim = animation;
-				break;
+				Animation current = enumerator.Current;
+				if (((AnimatorStateInfo)(ref stateInfo)).IsName(current.Name))
+				{
+					nowSpineAnim = current;
+					break;
+				}
 			}
 		}
-		this.stateTimer = 0f;
-		this.lastTime = Time.time;
-		this.animLoopStart = true;
-		if (!string.IsNullOrWhiteSpace(this.onMoveEnterScript))
+		finally
 		{
-			this.luaScript.DoString(this.onMoveEnterScript, null, null);
+			((IDisposable)enumerator).Dispose();
+		}
+		stateTimer = 0f;
+		lastTime = Time.time;
+		animLoopStart = true;
+		if (!string.IsNullOrWhiteSpace(onMoveEnterScript))
+		{
+			luaScript.DoString(onMoveEnterScript);
 		}
 	}
 
-	// Token: 0x06001138 RID: 4408 RVA: 0x00067980 File Offset: 0x00065B80
 	public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null)
+		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid != null && !string.IsNullOrWhiteSpace(onMoveExitScript))
 		{
-			return;
-		}
-		if (!string.IsNullOrWhiteSpace(this.onMoveExitScript))
-		{
-			this.luaScript.DoString(this.onMoveExitScript, null, null);
+			luaScript.DoString(onMoveExitScript);
 		}
 	}
 
-	// Token: 0x06001139 RID: 4409 RVA: 0x000679B8 File Offset: 0x00065BB8
 	public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null)
+		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null || nowSpineAnim == null)
 		{
 			return;
 		}
-		if (this.nowSpineAnim != null)
+		if (animLoopStart)
 		{
-			if (this.animLoopStart)
+			animLoopStart = false;
+			if (!string.IsNullOrWhiteSpace(onLoopMoveEnterScript))
 			{
-				this.animLoopStart = false;
-				if (!string.IsNullOrWhiteSpace(this.onLoopMoveEnterScript))
-				{
-					this.luaScript.DoString(this.onLoopMoveEnterScript, null, null);
-				}
+				luaScript.DoString(onLoopMoveEnterScript);
 			}
-			this.stateTimer += Time.time - this.lastTime;
-			this.lastTime = Time.time;
-			if (this.stateTimer >= this.nowSpineAnim.Duration)
+		}
+		stateTimer += Time.time - lastTime;
+		lastTime = Time.time;
+		if (stateTimer >= nowSpineAnim.Duration)
+		{
+			stateTimer -= nowSpineAnim.Duration;
+			if (!string.IsNullOrWhiteSpace(onLoopMoveExitScript))
 			{
-				this.stateTimer -= this.nowSpineAnim.Duration;
-				if (!string.IsNullOrWhiteSpace(this.onLoopMoveExitScript))
-				{
-					this.luaScript.DoString(this.onLoopMoveExitScript, null, null);
-				}
-				this.animLoopStart = true;
+				luaScript.DoString(onLoopMoveExitScript);
 			}
+			animLoopStart = true;
 		}
 	}
 
-	// Token: 0x0600113A RID: 4410 RVA: 0x00067A8C File Offset: 0x00065C8C
 	private static SkeletonAnimation GetSkeAnim(Animator animator)
 	{
-		SkeletonAnimation skeletonAnimation = animator.GetComponent<SkeletonAnimation>();
-		if (skeletonAnimation == null)
+		SkeletonAnimation val = ((Component)animator).GetComponent<SkeletonAnimation>();
+		if ((Object)(object)val == (Object)null)
 		{
-			skeletonAnimation = animator.GetComponentInChildren<SkeletonAnimation>();
+			val = ((Component)animator).GetComponentInChildren<SkeletonAnimation>();
 		}
-		return skeletonAnimation;
+		return val;
 	}
 
-	// Token: 0x0600113B RID: 4411 RVA: 0x00067AB1 File Offset: 0x00065CB1
 	private IEnumerator DelaySetObjTransform(GameObject obj, Transform target)
 	{
 		obj.transform.position = new Vector3(999999f, 999999f, 0f);
-		yield return new WaitForEndOfFrame();
+		yield return (object)new WaitForEndOfFrame();
 		obj.transform.position = target.position;
 		obj.transform.rotation = target.rotation;
 		obj.transform.localScale = target.localScale;
-		yield break;
 	}
 
-	// Token: 0x0600113C RID: 4412 RVA: 0x00067AC8 File Offset: 0x00065CC8
 	public void CreateObj(string path)
 	{
-		GameObject gameObject = Resources.Load<GameObject>(path);
-		if (gameObject == null)
+		GameObject val = Resources.Load<GameObject>(path);
+		if ((Object)(object)val == (Object)null)
 		{
-			Debug.LogError("在遁术的绑定脚本中出现错误，CreateObj指令找不到预制体，path:" + path);
+			Debug.LogError((object)("在遁术的绑定脚本中出现错误，CreateObj指令找不到预制体，path:" + path));
 			return;
 		}
-		GameObject obj = Object.Instantiate<GameObject>(gameObject);
-		MapPlayerController.Inst.StartCoroutine(this.DelaySetObjTransform(obj, MapPlayerController.Inst.NormalShow.Anim.transform));
+		GameObject obj = Object.Instantiate<GameObject>(val);
+		((MonoBehaviour)MapPlayerController.Inst).StartCoroutine(DelaySetObjTransform(obj, ((Component)MapPlayerController.Inst.NormalShow.Anim).transform));
 	}
-
-	// Token: 0x04000C58 RID: 3160
-	private SkeletonAnimation skeAnim;
-
-	// Token: 0x04000C59 RID: 3161
-	private ExposedList<Animation> spineAnims;
-
-	// Token: 0x04000C5A RID: 3162
-	private Animation nowSpineAnim;
-
-	// Token: 0x04000C5B RID: 3163
-	private float stateTimer;
-
-	// Token: 0x04000C5C RID: 3164
-	private float lastTime;
-
-	// Token: 0x04000C5D RID: 3165
-	private bool animLoopStart;
-
-	// Token: 0x04000C5E RID: 3166
-	private Script luaScript;
-
-	// Token: 0x04000C5F RID: 3167
-	private string onMoveEnterScript = "";
-
-	// Token: 0x04000C60 RID: 3168
-	private string onMoveExitScript = "";
-
-	// Token: 0x04000C61 RID: 3169
-	private string onLoopMoveEnterScript = "";
-
-	// Token: 0x04000C62 RID: 3170
-	private string onLoopMoveExitScript = "";
 }

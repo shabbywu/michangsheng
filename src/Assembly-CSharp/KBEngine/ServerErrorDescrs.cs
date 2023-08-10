@@ -1,232 +1,222 @@
-﻿using System;
 using System.Collections.Generic;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class ServerErrorDescrs
 {
-	// Token: 0x02000C61 RID: 3169
-	public class ServerErrorDescrs
+	public static Dictionary<ushort, ServerErr> serverErrs = new Dictionary<ushort, ServerErr>();
+
+	public ServerErrorDescrs()
 	{
-		// Token: 0x0600561F RID: 22047 RVA: 0x0023C238 File Offset: 0x0023A438
-		public ServerErrorDescrs()
-		{
-			ServerErr serverErr;
-			serverErr.id = 0;
-			serverErr.name = "SUCCESS";
-			serverErr.descr = "成功。";
-			ServerErrorDescrs.serverErrs.Add(serverErr.id, serverErr);
-			ServerErr serverErr2;
-			serverErr2.id = 1;
-			serverErr2.name = "SERVER_ERR_SRV_NO_READY";
-			serverErr2.descr = "服务器没有准备好。";
-			ServerErrorDescrs.serverErrs.Add(serverErr2.id, serverErr2);
-			ServerErr serverErr3;
-			serverErr3.id = 2;
-			serverErr3.name = "SERVER_ERR_SRV_OVERLOAD";
-			serverErr3.descr = "服务器负载过重。";
-			ServerErrorDescrs.serverErrs.Add(serverErr3.id, serverErr3);
-			ServerErr serverErr4;
-			serverErr4.id = 3;
-			serverErr4.name = "SERVER_ERR_ILLEGAL_LOGIN";
-			serverErr4.descr = "非法登录。";
-			ServerErrorDescrs.serverErrs.Add(serverErr4.id, serverErr4);
-			ServerErr serverErr5;
-			serverErr5.id = 4;
-			serverErr5.name = "SERVER_ERR_NAME_PASSWORD";
-			serverErr5.descr = "用户名或者密码不正确。";
-			ServerErrorDescrs.serverErrs.Add(serverErr5.id, serverErr5);
-			ServerErr serverErr6;
-			serverErr6.id = 5;
-			serverErr6.name = "SERVER_ERR_NAME";
-			serverErr6.descr = "用户名不正确。";
-			ServerErrorDescrs.serverErrs.Add(serverErr6.id, serverErr6);
-			ServerErr serverErr7;
-			serverErr7.id = 6;
-			serverErr7.name = "SERVER_ERR_PASSWORD";
-			serverErr7.descr = "密码不正确。";
-			ServerErrorDescrs.serverErrs.Add(serverErr7.id, serverErr7);
-			ServerErr serverErr8;
-			serverErr8.id = 7;
-			serverErr8.name = "SERVER_ERR_ACCOUNT_CREATE_FAILED";
-			serverErr8.descr = "创建账号失败（已经存在一个相同的账号）。";
-			ServerErrorDescrs.serverErrs.Add(serverErr8.id, serverErr8);
-			ServerErr serverErr9;
-			serverErr9.id = 8;
-			serverErr9.name = "SERVER_ERR_BUSY";
-			serverErr9.descr = "操作过于繁忙(例如：在服务器前一次请求未执行完毕的情况下连续N次创建账号)。";
-			ServerErrorDescrs.serverErrs.Add(serverErr9.id, serverErr9);
-			ServerErr serverErr10;
-			serverErr10.id = 9;
-			serverErr10.name = "SERVER_ERR_ACCOUNT_LOGIN_ANOTHER";
-			serverErr10.descr = "当前账号在另一处登录了。";
-			ServerErrorDescrs.serverErrs.Add(serverErr10.id, serverErr10);
-			ServerErr serverErr11;
-			serverErr11.id = 10;
-			serverErr11.name = "SERVER_ERR_ACCOUNT_IS_ONLINE";
-			serverErr11.descr = "账号已登陆。";
-			ServerErrorDescrs.serverErrs.Add(serverErr11.id, serverErr11);
-			ServerErr serverErr12;
-			serverErr12.id = 11;
-			serverErr12.name = "SERVER_ERR_PROXY_DESTROYED";
-			serverErr12.descr = "与客户端关联的proxy在服务器上已经销毁。";
-			ServerErrorDescrs.serverErrs.Add(serverErr12.id, serverErr12);
-			ServerErr serverErr13;
-			serverErr13.id = 12;
-			serverErr13.name = "SERVER_ERR_ENTITYDEFS_NOT_MATCH";
-			serverErr13.descr = "EntityDefs不匹配。";
-			ServerErrorDescrs.serverErrs.Add(serverErr13.id, serverErr13);
-			ServerErr serverErr14;
-			serverErr14.id = 13;
-			serverErr14.name = "SERVER_ERR_SERVER_IN_SHUTTINGDOWN";
-			serverErr14.descr = "服务器正在关闭中。";
-			ServerErrorDescrs.serverErrs.Add(serverErr14.id, serverErr14);
-			ServerErr serverErr15;
-			serverErr15.id = 14;
-			serverErr15.name = "SERVER_ERR_NAME_MAIL";
-			serverErr15.descr = "Email地址错误。";
-			ServerErrorDescrs.serverErrs.Add(serverErr15.id, serverErr15);
-			ServerErr serverErr16;
-			serverErr16.id = 15;
-			serverErr16.name = "SERVER_ERR_ACCOUNT_LOCK";
-			serverErr16.descr = "账号被冻结。";
-			ServerErrorDescrs.serverErrs.Add(serverErr16.id, serverErr16);
-			ServerErr serverErr17;
-			serverErr17.id = 16;
-			serverErr17.name = "SERVER_ERR_ACCOUNT_DEADLINE";
-			serverErr17.descr = "账号已过期。";
-			ServerErrorDescrs.serverErrs.Add(serverErr17.id, serverErr17);
-			ServerErr serverErr18;
-			serverErr18.id = 17;
-			serverErr18.name = "SERVER_ERR_ACCOUNT_NOT_ACTIVATED";
-			serverErr18.descr = "账号未激活。";
-			ServerErrorDescrs.serverErrs.Add(serverErr18.id, serverErr18);
-			ServerErr serverErr19;
-			serverErr19.id = 18;
-			serverErr19.name = "SERVER_ERR_VERSION_NOT_MATCH";
-			serverErr19.descr = "与服务端的版本不匹配。";
-			ServerErrorDescrs.serverErrs.Add(serverErr19.id, serverErr19);
-			ServerErr serverErr20;
-			serverErr20.id = 19;
-			serverErr20.name = "SERVER_ERR_OP_FAILED";
-			serverErr20.descr = "操作失败。";
-			ServerErrorDescrs.serverErrs.Add(serverErr20.id, serverErr20);
-			ServerErr serverErr21;
-			serverErr21.id = 20;
-			serverErr21.name = "SERVER_ERR_SRV_STARTING";
-			serverErr21.descr = "服务器正在启动中。";
-			ServerErrorDescrs.serverErrs.Add(serverErr21.id, serverErr21);
-			ServerErr serverErr22;
-			serverErr22.id = 21;
-			serverErr22.name = "SERVER_ERR_ACCOUNT_REGISTER_NOT_AVAILABLE";
-			serverErr22.descr = "未开放账号注册功能。";
-			ServerErrorDescrs.serverErrs.Add(serverErr22.id, serverErr22);
-			ServerErr serverErr23;
-			serverErr23.id = 22;
-			serverErr23.name = "SERVER_ERR_CANNOT_USE_MAIL";
-			serverErr23.descr = "不能使用email地址。";
-			ServerErrorDescrs.serverErrs.Add(serverErr23.id, serverErr23);
-			ServerErr serverErr24;
-			serverErr24.id = 23;
-			serverErr24.name = "SERVER_ERR_NOT_FOUND_ACCOUNT";
-			serverErr24.descr = "找不到此账号。";
-			ServerErrorDescrs.serverErrs.Add(serverErr24.id, serverErr24);
-			ServerErr serverErr25;
-			serverErr25.id = 24;
-			serverErr25.name = "SERVER_ERR_DB";
-			serverErr25.descr = "数据库错误(请检查dbmgr日志和DB)。";
-			ServerErrorDescrs.serverErrs.Add(serverErr25.id, serverErr25);
-			ServerErr serverErr26;
-			serverErr26.id = 25;
-			serverErr26.name = "SERVER_ERR_USER1";
-			serverErr26.descr = "用户自定义错误码1。";
-			ServerErrorDescrs.serverErrs.Add(serverErr26.id, serverErr26);
-			ServerErr serverErr27;
-			serverErr27.id = 26;
-			serverErr27.name = "SERVER_ERR_USER2";
-			serverErr27.descr = "用户自定义错误码2。";
-			ServerErrorDescrs.serverErrs.Add(serverErr27.id, serverErr27);
-			ServerErr serverErr28;
-			serverErr28.id = 27;
-			serverErr28.name = "SERVER_ERR_USER3";
-			serverErr28.descr = "用户自定义错误码3。";
-			ServerErrorDescrs.serverErrs.Add(serverErr28.id, serverErr28);
-			ServerErr serverErr29;
-			serverErr29.id = 28;
-			serverErr29.name = "SERVER_ERR_USER4";
-			serverErr29.descr = "用户自定义错误码4。";
-			ServerErrorDescrs.serverErrs.Add(serverErr29.id, serverErr29);
-			ServerErr serverErr30;
-			serverErr30.id = 29;
-			serverErr30.name = "SERVER_ERR_USER5";
-			serverErr30.descr = "用户自定义错误码5。";
-			ServerErrorDescrs.serverErrs.Add(serverErr30.id, serverErr30);
-			ServerErr serverErr31;
-			serverErr31.id = 30;
-			serverErr31.name = "SERVER_ERR_USER6";
-			serverErr31.descr = "用户自定义错误码6。";
-			ServerErrorDescrs.serverErrs.Add(serverErr31.id, serverErr31);
-			ServerErr serverErr32;
-			serverErr32.id = 31;
-			serverErr32.name = "SERVER_ERR_USER7";
-			serverErr32.descr = "用户自定义错误码7。";
-			ServerErrorDescrs.serverErrs.Add(serverErr32.id, serverErr32);
-			ServerErr serverErr33;
-			serverErr33.id = 32;
-			serverErr33.name = "SERVER_ERR_USER8";
-			serverErr33.descr = "用户自定义错误码8。";
-			ServerErrorDescrs.serverErrs.Add(serverErr33.id, serverErr33);
-			ServerErr serverErr34;
-			serverErr34.id = 33;
-			serverErr34.name = "SERVER_ERR_USER9";
-			serverErr34.descr = "用户自定义错误码9。";
-			ServerErrorDescrs.serverErrs.Add(serverErr34.id, serverErr34);
-			ServerErr serverErr35;
-			serverErr35.id = 34;
-			serverErr35.name = "SERVER_ERR_USER10";
-			serverErr35.descr = "用户自定义错误码10。";
-			ServerErrorDescrs.serverErrs.Add(serverErr35.id, serverErr35);
-			ServerErr serverErr36;
-			serverErr36.id = 35;
-			serverErr36.name = "SERVER_ERR_LOCAL_PROCESSING";
-			serverErr36.descr = "本地处理，通常为某件事情不由第三方处理而是由KBE服务器处理。";
-			ServerErrorDescrs.serverErrs.Add(serverErr36.id, serverErr36);
-			ServerErr serverErr37;
-			serverErr37.id = 36;
-			serverErr37.name = "SERVER_ERR_ACCOUNT_RESET_PASSWORD_NOT_AVAILABLE";
-			serverErr37.descr = "未开放账号重置密码功能。";
-			ServerErrorDescrs.serverErrs.Add(serverErr37.id, serverErr37);
-			ServerErr serverErr38;
-			serverErr38.id = 37;
-			serverErr38.name = "SERVER_ERR_ACCOUNT_LOGIN_ANOTHER_SERVER";
-			serverErr38.descr = "当前账号在其他服务器登陆了。";
-			ServerErrorDescrs.serverErrs.Add(serverErr38.id, serverErr38);
-		}
+		ServerErr value = default(ServerErr);
+		value.id = 0;
+		value.name = "SUCCESS";
+		value.descr = "成功。";
+		serverErrs.Add(value.id, value);
+		ServerErr value2 = default(ServerErr);
+		value2.id = 1;
+		value2.name = "SERVER_ERR_SRV_NO_READY";
+		value2.descr = "服务器没有准备好。";
+		serverErrs.Add(value2.id, value2);
+		ServerErr value3 = default(ServerErr);
+		value3.id = 2;
+		value3.name = "SERVER_ERR_SRV_OVERLOAD";
+		value3.descr = "服务器负载过重。";
+		serverErrs.Add(value3.id, value3);
+		ServerErr value4 = default(ServerErr);
+		value4.id = 3;
+		value4.name = "SERVER_ERR_ILLEGAL_LOGIN";
+		value4.descr = "非法登录。";
+		serverErrs.Add(value4.id, value4);
+		ServerErr value5 = default(ServerErr);
+		value5.id = 4;
+		value5.name = "SERVER_ERR_NAME_PASSWORD";
+		value5.descr = "用户名或者密码不正确。";
+		serverErrs.Add(value5.id, value5);
+		ServerErr value6 = default(ServerErr);
+		value6.id = 5;
+		value6.name = "SERVER_ERR_NAME";
+		value6.descr = "用户名不正确。";
+		serverErrs.Add(value6.id, value6);
+		ServerErr value7 = default(ServerErr);
+		value7.id = 6;
+		value7.name = "SERVER_ERR_PASSWORD";
+		value7.descr = "密码不正确。";
+		serverErrs.Add(value7.id, value7);
+		ServerErr value8 = default(ServerErr);
+		value8.id = 7;
+		value8.name = "SERVER_ERR_ACCOUNT_CREATE_FAILED";
+		value8.descr = "创建账号失败（已经存在一个相同的账号）。";
+		serverErrs.Add(value8.id, value8);
+		ServerErr value9 = default(ServerErr);
+		value9.id = 8;
+		value9.name = "SERVER_ERR_BUSY";
+		value9.descr = "操作过于繁忙(例如：在服务器前一次请求未执行完毕的情况下连续N次创建账号)。";
+		serverErrs.Add(value9.id, value9);
+		ServerErr value10 = default(ServerErr);
+		value10.id = 9;
+		value10.name = "SERVER_ERR_ACCOUNT_LOGIN_ANOTHER";
+		value10.descr = "当前账号在另一处登录了。";
+		serverErrs.Add(value10.id, value10);
+		ServerErr value11 = default(ServerErr);
+		value11.id = 10;
+		value11.name = "SERVER_ERR_ACCOUNT_IS_ONLINE";
+		value11.descr = "账号已登陆。";
+		serverErrs.Add(value11.id, value11);
+		ServerErr value12 = default(ServerErr);
+		value12.id = 11;
+		value12.name = "SERVER_ERR_PROXY_DESTROYED";
+		value12.descr = "与客户端关联的proxy在服务器上已经销毁。";
+		serverErrs.Add(value12.id, value12);
+		ServerErr value13 = default(ServerErr);
+		value13.id = 12;
+		value13.name = "SERVER_ERR_ENTITYDEFS_NOT_MATCH";
+		value13.descr = "EntityDefs不匹配。";
+		serverErrs.Add(value13.id, value13);
+		ServerErr value14 = default(ServerErr);
+		value14.id = 13;
+		value14.name = "SERVER_ERR_SERVER_IN_SHUTTINGDOWN";
+		value14.descr = "服务器正在关闭中。";
+		serverErrs.Add(value14.id, value14);
+		ServerErr value15 = default(ServerErr);
+		value15.id = 14;
+		value15.name = "SERVER_ERR_NAME_MAIL";
+		value15.descr = "Email地址错误。";
+		serverErrs.Add(value15.id, value15);
+		ServerErr value16 = default(ServerErr);
+		value16.id = 15;
+		value16.name = "SERVER_ERR_ACCOUNT_LOCK";
+		value16.descr = "账号被冻结。";
+		serverErrs.Add(value16.id, value16);
+		ServerErr value17 = default(ServerErr);
+		value17.id = 16;
+		value17.name = "SERVER_ERR_ACCOUNT_DEADLINE";
+		value17.descr = "账号已过期。";
+		serverErrs.Add(value17.id, value17);
+		ServerErr value18 = default(ServerErr);
+		value18.id = 17;
+		value18.name = "SERVER_ERR_ACCOUNT_NOT_ACTIVATED";
+		value18.descr = "账号未激活。";
+		serverErrs.Add(value18.id, value18);
+		ServerErr value19 = default(ServerErr);
+		value19.id = 18;
+		value19.name = "SERVER_ERR_VERSION_NOT_MATCH";
+		value19.descr = "与服务端的版本不匹配。";
+		serverErrs.Add(value19.id, value19);
+		ServerErr value20 = default(ServerErr);
+		value20.id = 19;
+		value20.name = "SERVER_ERR_OP_FAILED";
+		value20.descr = "操作失败。";
+		serverErrs.Add(value20.id, value20);
+		ServerErr value21 = default(ServerErr);
+		value21.id = 20;
+		value21.name = "SERVER_ERR_SRV_STARTING";
+		value21.descr = "服务器正在启动中。";
+		serverErrs.Add(value21.id, value21);
+		ServerErr value22 = default(ServerErr);
+		value22.id = 21;
+		value22.name = "SERVER_ERR_ACCOUNT_REGISTER_NOT_AVAILABLE";
+		value22.descr = "未开放账号注册功能。";
+		serverErrs.Add(value22.id, value22);
+		ServerErr value23 = default(ServerErr);
+		value23.id = 22;
+		value23.name = "SERVER_ERR_CANNOT_USE_MAIL";
+		value23.descr = "不能使用email地址。";
+		serverErrs.Add(value23.id, value23);
+		ServerErr value24 = default(ServerErr);
+		value24.id = 23;
+		value24.name = "SERVER_ERR_NOT_FOUND_ACCOUNT";
+		value24.descr = "找不到此账号。";
+		serverErrs.Add(value24.id, value24);
+		ServerErr value25 = default(ServerErr);
+		value25.id = 24;
+		value25.name = "SERVER_ERR_DB";
+		value25.descr = "数据库错误(请检查dbmgr日志和DB)。";
+		serverErrs.Add(value25.id, value25);
+		ServerErr value26 = default(ServerErr);
+		value26.id = 25;
+		value26.name = "SERVER_ERR_USER1";
+		value26.descr = "用户自定义错误码1。";
+		serverErrs.Add(value26.id, value26);
+		ServerErr value27 = default(ServerErr);
+		value27.id = 26;
+		value27.name = "SERVER_ERR_USER2";
+		value27.descr = "用户自定义错误码2。";
+		serverErrs.Add(value27.id, value27);
+		ServerErr value28 = default(ServerErr);
+		value28.id = 27;
+		value28.name = "SERVER_ERR_USER3";
+		value28.descr = "用户自定义错误码3。";
+		serverErrs.Add(value28.id, value28);
+		ServerErr value29 = default(ServerErr);
+		value29.id = 28;
+		value29.name = "SERVER_ERR_USER4";
+		value29.descr = "用户自定义错误码4。";
+		serverErrs.Add(value29.id, value29);
+		ServerErr value30 = default(ServerErr);
+		value30.id = 29;
+		value30.name = "SERVER_ERR_USER5";
+		value30.descr = "用户自定义错误码5。";
+		serverErrs.Add(value30.id, value30);
+		ServerErr value31 = default(ServerErr);
+		value31.id = 30;
+		value31.name = "SERVER_ERR_USER6";
+		value31.descr = "用户自定义错误码6。";
+		serverErrs.Add(value31.id, value31);
+		ServerErr value32 = default(ServerErr);
+		value32.id = 31;
+		value32.name = "SERVER_ERR_USER7";
+		value32.descr = "用户自定义错误码7。";
+		serverErrs.Add(value32.id, value32);
+		ServerErr value33 = default(ServerErr);
+		value33.id = 32;
+		value33.name = "SERVER_ERR_USER8";
+		value33.descr = "用户自定义错误码8。";
+		serverErrs.Add(value33.id, value33);
+		ServerErr value34 = default(ServerErr);
+		value34.id = 33;
+		value34.name = "SERVER_ERR_USER9";
+		value34.descr = "用户自定义错误码9。";
+		serverErrs.Add(value34.id, value34);
+		ServerErr value35 = default(ServerErr);
+		value35.id = 34;
+		value35.name = "SERVER_ERR_USER10";
+		value35.descr = "用户自定义错误码10。";
+		serverErrs.Add(value35.id, value35);
+		ServerErr value36 = default(ServerErr);
+		value36.id = 35;
+		value36.name = "SERVER_ERR_LOCAL_PROCESSING";
+		value36.descr = "本地处理，通常为某件事情不由第三方处理而是由KBE服务器处理。";
+		serverErrs.Add(value36.id, value36);
+		ServerErr value37 = default(ServerErr);
+		value37.id = 36;
+		value37.name = "SERVER_ERR_ACCOUNT_RESET_PASSWORD_NOT_AVAILABLE";
+		value37.descr = "未开放账号重置密码功能。";
+		serverErrs.Add(value37.id, value37);
+		ServerErr value38 = default(ServerErr);
+		value38.id = 37;
+		value38.name = "SERVER_ERR_ACCOUNT_LOGIN_ANOTHER_SERVER";
+		value38.descr = "当前账号在其他服务器登陆了。";
+		serverErrs.Add(value38.id, value38);
+	}
 
-		// Token: 0x06005620 RID: 22048 RVA: 0x0023C9F2 File Offset: 0x0023ABF2
-		public void Clear()
-		{
-			ServerErrorDescrs.serverErrs.Clear();
-		}
+	public void Clear()
+	{
+		serverErrs.Clear();
+	}
 
-		// Token: 0x06005621 RID: 22049 RVA: 0x0023CA00 File Offset: 0x0023AC00
-		public string serverErrStr(ushort id)
+	public string serverErrStr(ushort id)
+	{
+		if (!serverErrs.TryGetValue(id, out var value))
 		{
-			ServerErr serverErr;
-			if (!ServerErrorDescrs.serverErrs.TryGetValue(id, out serverErr))
-			{
-				return "";
-			}
-			return serverErr.name + "[" + serverErr.descr + "]";
+			return "";
 		}
+		return value.name + "[" + value.descr + "]";
+	}
 
-		// Token: 0x06005622 RID: 22050 RVA: 0x0023CA40 File Offset: 0x0023AC40
-		public ServerErr serverErr(ushort id)
-		{
-			ServerErr result;
-			ServerErrorDescrs.serverErrs.TryGetValue(id, out result);
-			return result;
-		}
-
-		// Token: 0x04005107 RID: 20743
-		public static Dictionary<ushort, ServerErr> serverErrs = new Dictionary<ushort, ServerErr>();
+	public ServerErr serverErr(ushort id)
+	{
+		serverErrs.TryGetValue(id, out var value);
+		return value;
 	}
 }

@@ -1,80 +1,74 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Flow", "Load Scene", "Loads a new Unity scene and displays an optional loading image. This is useful for splitting a large game across multiple scene files to reduce peak memory usage. Previously loaded assets will be released before loading the scene to free up memory.The scene to be loaded must be added to the scene list in Build Settings.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class LoadScene : Command
 {
-	// Token: 0x02000DE9 RID: 3561
-	[CommandInfo("Flow", "Load Scene", "Loads a new Unity scene and displays an optional loading image. This is useful for splitting a large game across multiple scene files to reduce peak memory usage. Previously loaded assets will be released before loading the scene to free up memory.The scene to be loaded must be added to the scene list in Build Settings.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class LoadScene : Command
+	[Tooltip("Name of the scene to load. The scene must also be added to the build settings.")]
+	[SerializeField]
+	protected StringData _sceneName = new StringData("");
+
+	[Tooltip("Image to display while loading the scene")]
+	[SerializeField]
+	protected Texture2D loadingImage;
+
+	[Tooltip("是否重新設置返回的上一個場景為當前設置的值")]
+	[SerializeField]
+	protected bool ResetLastScene = true;
+
+	[HideInInspector]
+	[FormerlySerializedAs("sceneName")]
+	public string sceneNameOLD = "";
+
+	public override void OnEnter()
 	{
-		// Token: 0x060064EE RID: 25838 RVA: 0x00281364 File Offset: 0x0027F564
-		public override void OnEnter()
+		Tools.instance.getPlayer().zulinContorl.kezhanLastScence = Tools.getScreenName();
+		if (_sceneName.Value == "LianDan")
 		{
-			Tools.instance.getPlayer().zulinContorl.kezhanLastScence = Tools.getScreenName();
-			if (this._sceneName.Value == "LianDan")
-			{
-				PanelMamager.inst.OpenPanel(PanelMamager.PanelType.炼丹, 0);
-			}
-			else
-			{
-				Tools.instance.loadMapScenes(this._sceneName.Value, this.ResetLastScene);
-			}
-			this.Continue();
+			PanelMamager.inst.OpenPanel(PanelMamager.PanelType.炼丹);
 		}
-
-		// Token: 0x060064EF RID: 25839 RVA: 0x002813D0 File Offset: 0x0027F5D0
-		public override string GetSummary()
+		else
 		{
-			if (this._sceneName.Value.Length == 0)
-			{
-				return "Error: No scene name selected";
-			}
-			return this._sceneName.Value;
+			Tools.instance.loadMapScenes(_sceneName.Value, ResetLastScene);
 		}
+		Continue();
+	}
 
-		// Token: 0x060064F0 RID: 25840 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override string GetSummary()
+	{
+		if (_sceneName.Value.Length == 0)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return "Error: No scene name selected";
 		}
+		return _sceneName.Value;
+	}
 
-		// Token: 0x060064F1 RID: 25841 RVA: 0x002813F5 File Offset: 0x0027F5F5
-		public override bool HasReference(Variable variable)
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_sceneName.stringRef == (Object)(object)variable))
 		{
-			return this._sceneName.stringRef == variable || base.HasReference(variable);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x060064F2 RID: 25842 RVA: 0x00281413 File Offset: 0x0027F613
-		protected virtual void OnEnable()
+	protected virtual void OnEnable()
+	{
+		if (sceneNameOLD != "")
 		{
-			if (this.sceneNameOLD != "")
-			{
-				this._sceneName.Value = this.sceneNameOLD;
-				this.sceneNameOLD = "";
-			}
+			_sceneName.Value = sceneNameOLD;
+			sceneNameOLD = "";
 		}
-
-		// Token: 0x040056D5 RID: 22229
-		[Tooltip("Name of the scene to load. The scene must also be added to the build settings.")]
-		[SerializeField]
-		protected StringData _sceneName = new StringData("");
-
-		// Token: 0x040056D6 RID: 22230
-		[Tooltip("Image to display while loading the scene")]
-		[SerializeField]
-		protected Texture2D loadingImage;
-
-		// Token: 0x040056D7 RID: 22231
-		[Tooltip("是否重新設置返回的上一個場景為當前設置的值")]
-		[SerializeField]
-		protected bool ResetLastScene = true;
-
-		// Token: 0x040056D8 RID: 22232
-		[HideInInspector]
-		[FormerlySerializedAs("sceneName")]
-		public string sceneNameOLD = "";
 	}
 }

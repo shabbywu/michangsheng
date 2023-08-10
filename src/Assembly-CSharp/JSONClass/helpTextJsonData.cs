@@ -1,70 +1,57 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class helpTextJsonData : IJSONClass
 {
-	// Token: 0x02000847 RID: 2119
-	public class helpTextJsonData : IJSONClass
+	public static Dictionary<int, helpTextJsonData> DataDict = new Dictionary<int, helpTextJsonData>();
+
+	public static List<helpTextJsonData> DataList = new List<helpTextJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int link;
+
+	public string Titile;
+
+	public string desc;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003F2E RID: 16174 RVA: 0x001AFAF4 File Offset: 0x001ADCF4
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.helpTextJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.helpTextJsonData.list)
+			try
 			{
-				try
+				helpTextJsonData helpTextJsonData2 = new helpTextJsonData();
+				helpTextJsonData2.id = item["id"].I;
+				helpTextJsonData2.link = item["link"].I;
+				helpTextJsonData2.Titile = item["Titile"].Str;
+				helpTextJsonData2.desc = item["desc"].Str;
+				if (DataDict.ContainsKey(helpTextJsonData2.id))
 				{
-					helpTextJsonData helpTextJsonData = new helpTextJsonData();
-					helpTextJsonData.id = jsonobject["id"].I;
-					helpTextJsonData.link = jsonobject["link"].I;
-					helpTextJsonData.Titile = jsonobject["Titile"].Str;
-					helpTextJsonData.desc = jsonobject["desc"].Str;
-					if (helpTextJsonData.DataDict.ContainsKey(helpTextJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典helpTextJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", helpTextJsonData.id));
-					}
-					else
-					{
-						helpTextJsonData.DataDict.Add(helpTextJsonData.id, helpTextJsonData);
-						helpTextJsonData.DataList.Add(helpTextJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典helpTextJsonData.DataDict添加数据时出现重复的键，Key:{helpTextJsonData2.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典helpTextJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(helpTextJsonData2.id, helpTextJsonData2);
+				DataList.Add(helpTextJsonData2);
 			}
-			if (helpTextJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				helpTextJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典helpTextJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003F2F RID: 16175 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003B3A RID: 15162
-		public static Dictionary<int, helpTextJsonData> DataDict = new Dictionary<int, helpTextJsonData>();
-
-		// Token: 0x04003B3B RID: 15163
-		public static List<helpTextJsonData> DataList = new List<helpTextJsonData>();
-
-		// Token: 0x04003B3C RID: 15164
-		public static Action OnInitFinishAction = new Action(helpTextJsonData.OnInitFinish);
-
-		// Token: 0x04003B3D RID: 15165
-		public int id;
-
-		// Token: 0x04003B3E RID: 15166
-		public int link;
-
-		// Token: 0x04003B3F RID: 15167
-		public string Titile;
-
-		// Token: 0x04003B40 RID: 15168
-		public string desc;
+	private static void OnInitFinish()
+	{
 	}
 }

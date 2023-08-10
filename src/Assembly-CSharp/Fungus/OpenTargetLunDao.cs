@@ -1,48 +1,44 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTools", "指定论道题目", "指定论道题目", 0)]
+[AddComponentMenu("")]
+public class OpenTargetLunDao : Command
 {
-	// Token: 0x02000F9B RID: 3995
-	[CommandInfo("YSTools", "指定论道题目", "指定论道题目", 0)]
-	[AddComponentMenu("")]
-	public class OpenTargetLunDao : Command
+	[Tooltip("npcId")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable npcId;
+
+	[Tooltip("随机论题数目")]
+	[SerializeField]
+	protected List<int> list;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006F98 RID: 28568 RVA: 0x002A71DC File Offset: 0x002A53DC
-		public override void OnEnter()
-		{
-			Tools.instance.FinalScene = SceneManager.GetActiveScene().name;
-			Tools.instance.LunDaoNpcId = this.npcId.Value;
-			Tools.instance.LunTiList = new List<int>(this.list);
-			Tools.instance.loadOtherScenes("LunDao");
-			this.Continue();
-		}
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		Tools instance = Tools.instance;
+		Scene activeScene = SceneManager.GetActiveScene();
+		instance.FinalScene = ((Scene)(ref activeScene)).name;
+		Tools.instance.LunDaoNpcId = npcId.Value;
+		Tools.instance.LunTiList = new List<int>(list);
+		Tools.instance.loadOtherScenes("LunDao");
+		Continue();
+	}
 
-		// Token: 0x06006F99 RID: 28569 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006F9A RID: 28570 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005C1A RID: 23578
-		[Tooltip("npcId")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable npcId;
-
-		// Token: 0x04005C1B RID: 23579
-		[Tooltip("随机论题数目")]
-		[SerializeField]
-		protected List<int> list;
+	public override void OnReset()
+	{
 	}
 }

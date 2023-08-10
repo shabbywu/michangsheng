@@ -1,36 +1,34 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Scene", "Reload", "Reload the current scene", 0)]
+[AddComponentMenu("")]
+public class ReloadScene : Command
 {
-	// Token: 0x02000E2B RID: 3627
-	[CommandInfo("Scene", "Reload", "Reload the current scene", 0)]
-	[AddComponentMenu("")]
-	public class ReloadScene : Command
+	[Tooltip("Image to display while loading the scene")]
+	[SerializeField]
+	protected Texture2D loadingImage;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006639 RID: 26169 RVA: 0x00285C38 File Offset: 0x00283E38
-		public override void OnEnter()
-		{
-			SceneLoader.LoadScene(SceneManager.GetActiveScene().name, this.loadingImage);
-			this.Continue();
-		}
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		Scene activeScene = SceneManager.GetActiveScene();
+		SceneLoader.LoadScene(((Scene)(ref activeScene)).name, loadingImage);
+		Continue();
+	}
 
-		// Token: 0x0600663A RID: 26170 RVA: 0x001D84A0 File Offset: 0x001D66A0
-		public override string GetSummary()
-		{
-			return "";
-		}
+	public override string GetSummary()
+	{
+		return "";
+	}
 
-		// Token: 0x0600663B RID: 26171 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
-		{
-			return new Color32(235, 191, 217, byte.MaxValue);
-		}
-
-		// Token: 0x040057AA RID: 22442
-		[Tooltip("Image to display while loading the scene")]
-		[SerializeField]
-		protected Texture2D loadingImage;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
 	}
 }

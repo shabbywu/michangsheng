@@ -1,33 +1,37 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000159 RID: 345
 public class TDGAMission
 {
-	// Token: 0x06000F18 RID: 3864 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnBegin(string missionId)
 	{
-		if (Application.platform != null)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
-			RuntimePlatform platform = Application.platform;
+			_ = Application.platform;
+			_ = 7;
 		}
 	}
 
-	// Token: 0x06000F19 RID: 3865 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnCompleted(string missionId)
 	{
-		if (Application.platform != null)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
-			RuntimePlatform platform = Application.platform;
+			_ = Application.platform;
+			_ = 7;
 		}
 	}
 
-	// Token: 0x06000F1A RID: 3866 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnFailed(string missionId, string failedCause)
 	{
-		if (Application.platform != null)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
-			RuntimePlatform platform = Application.platform;
+			_ = Application.platform;
+			_ = 7;
 		}
 	}
 }

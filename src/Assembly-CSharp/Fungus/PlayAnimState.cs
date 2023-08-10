@@ -1,63 +1,58 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Animation", "Play Anim State", "Plays a state of an animator according to the state name", 0)]
+[AddComponentMenu("")]
+public class PlayAnimState : Command
 {
-	// Token: 0x02000E0C RID: 3596
-	[CommandInfo("Animation", "Play Anim State", "Plays a state of an animator according to the state name", 0)]
-	[AddComponentMenu("")]
-	public class PlayAnimState : Command
+	[Tooltip("Reference to an Animator component in a game object")]
+	[SerializeField]
+	protected AnimatorData animator;
+
+	[Tooltip("Name of the state you want to play")]
+	[SerializeField]
+	protected StringData stateName;
+
+	[Tooltip("Layer to play animation on")]
+	[SerializeField]
+	protected IntegerData layer = new IntegerData(-1);
+
+	[Tooltip("Start time of animation")]
+	[SerializeField]
+	protected FloatData time = new FloatData(0f);
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006588 RID: 25992 RVA: 0x00283610 File Offset: 0x00281810
-		public override void OnEnter()
+		if ((Object)(object)animator.Value != (Object)null)
 		{
-			if (this.animator.Value != null)
-			{
-				this.animator.Value.Play(this.stateName.Value, this.layer.Value, this.time.Value);
-			}
-			this.Continue();
+			animator.Value.Play(stateName.Value, layer.Value, time.Value);
 		}
+		Continue();
+	}
 
-		// Token: 0x06006589 RID: 25993 RVA: 0x00283668 File Offset: 0x00281868
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)animator.Value == (Object)null)
 		{
-			if (this.animator.Value == null)
-			{
-				return "Error: No animator selected";
-			}
-			return this.animator.Value.name + " (" + this.stateName.Value + ")";
+			return "Error: No animator selected";
 		}
+		return ((Object)animator.Value).name + " (" + stateName.Value + ")";
+	}
 
-		// Token: 0x0600658A RID: 25994 RVA: 0x002836B8 File Offset: 0x002818B8
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)170, (byte)204, (byte)169, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)animator.animatorRef == (Object)(object)variable) && !((Object)(object)stateName.stringRef == (Object)(object)variable) && !((Object)(object)layer.integerRef == (Object)(object)variable) && !((Object)(object)time.floatRef == (Object)(object)variable))
 		{
-			return new Color32(170, 204, 169, byte.MaxValue);
+			return base.HasReference(variable);
 		}
-
-		// Token: 0x0600658B RID: 25995 RVA: 0x002836D8 File Offset: 0x002818D8
-		public override bool HasReference(Variable variable)
-		{
-			return this.animator.animatorRef == variable || this.stateName.stringRef == variable || this.layer.integerRef == variable || this.time.floatRef == variable || base.HasReference(variable);
-		}
-
-		// Token: 0x04005734 RID: 22324
-		[Tooltip("Reference to an Animator component in a game object")]
-		[SerializeField]
-		protected AnimatorData animator;
-
-		// Token: 0x04005735 RID: 22325
-		[Tooltip("Name of the state you want to play")]
-		[SerializeField]
-		protected StringData stateName;
-
-		// Token: 0x04005736 RID: 22326
-		[Tooltip("Layer to play animation on")]
-		[SerializeField]
-		protected IntegerData layer = new IntegerData(-1);
-
-		// Token: 0x04005737 RID: 22327
-		[Tooltip("Start time of animation")]
-		[SerializeField]
-		protected FloatData time = new FloatData(0f);
+		return true;
 	}
 }

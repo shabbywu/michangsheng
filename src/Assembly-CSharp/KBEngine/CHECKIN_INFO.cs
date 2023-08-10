@@ -1,17 +1,10 @@
-﻿using System;
+namespace KBEngine;
 
-namespace KBEngine
+public class CHECKIN_INFO
 {
-	// Token: 0x02000BD5 RID: 3029
-	public class CHECKIN_INFO
-	{
-		// Token: 0x04005071 RID: 20593
-		public ushort type;
+	public ushort type;
 
-		// Token: 0x04005072 RID: 20594
-		public ushort count;
+	public ushort count;
 
-		// Token: 0x04005073 RID: 20595
-		public uint time;
-	}
+	public uint time;
 }

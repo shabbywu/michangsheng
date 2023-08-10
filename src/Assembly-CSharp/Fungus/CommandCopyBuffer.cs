@@ -1,64 +1,57 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[AddComponentMenu("")]
+public class CommandCopyBuffer : Block
 {
-	// Token: 0x02000E69 RID: 3689
-	[AddComponentMenu("")]
-	public class CommandCopyBuffer : Block
+	protected static CommandCopyBuffer instance;
+
+	protected virtual void Start()
 	{
-		// Token: 0x060067E2 RID: 26594 RVA: 0x0028B4E2 File Offset: 0x002896E2
-		protected virtual void Start()
+		if (Application.isPlaying)
 		{
-			if (Application.isPlaying)
+			Object.Destroy((Object)(object)((Component)this).gameObject);
+		}
+	}
+
+	public static CommandCopyBuffer GetInstance()
+	{
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Expected O, but got Unknown
+		if ((Object)(object)instance == (Object)null)
+		{
+			GameObject val = GameObject.Find("_CommandCopyBuffer");
+			if ((Object)(object)val == (Object)null)
 			{
-				Object.Destroy(base.gameObject);
+				val = new GameObject("_CommandCopyBuffer");
+				((Object)val).hideFlags = (HideFlags)61;
+			}
+			instance = val.GetComponent<CommandCopyBuffer>();
+			if ((Object)(object)instance == (Object)null)
+			{
+				instance = val.AddComponent<CommandCopyBuffer>();
 			}
 		}
+		return instance;
+	}
 
-		// Token: 0x060067E3 RID: 26595 RVA: 0x0028B4F8 File Offset: 0x002896F8
-		public static CommandCopyBuffer GetInstance()
+	public virtual bool HasCommands()
+	{
+		return GetCommands().Length != 0;
+	}
+
+	public virtual Command[] GetCommands()
+	{
+		return ((Component)this).GetComponents<Command>();
+	}
+
+	public virtual void Clear()
+	{
+		Command[] commands = GetCommands();
+		for (int i = 0; i < commands.Length; i++)
 		{
-			if (CommandCopyBuffer.instance == null)
-			{
-				GameObject gameObject = GameObject.Find("_CommandCopyBuffer");
-				if (gameObject == null)
-				{
-					gameObject = new GameObject("_CommandCopyBuffer");
-					gameObject.hideFlags = 61;
-				}
-				CommandCopyBuffer.instance = gameObject.GetComponent<CommandCopyBuffer>();
-				if (CommandCopyBuffer.instance == null)
-				{
-					CommandCopyBuffer.instance = gameObject.AddComponent<CommandCopyBuffer>();
-				}
-			}
-			return CommandCopyBuffer.instance;
+			Object.DestroyImmediate((Object)(object)commands[i]);
 		}
-
-		// Token: 0x060067E4 RID: 26596 RVA: 0x0028B561 File Offset: 0x00289761
-		public virtual bool HasCommands()
-		{
-			return this.GetCommands().Length != 0;
-		}
-
-		// Token: 0x060067E5 RID: 26597 RVA: 0x0028B56D File Offset: 0x0028976D
-		public virtual Command[] GetCommands()
-		{
-			return base.GetComponents<Command>();
-		}
-
-		// Token: 0x060067E6 RID: 26598 RVA: 0x0028B578 File Offset: 0x00289778
-		public virtual void Clear()
-		{
-			Command[] commands = this.GetCommands();
-			for (int i = 0; i < commands.Length; i++)
-			{
-				Object.DestroyImmediate(commands[i]);
-			}
-		}
-
-		// Token: 0x040058A2 RID: 22690
-		protected static CommandCopyBuffer instance;
 	}
 }

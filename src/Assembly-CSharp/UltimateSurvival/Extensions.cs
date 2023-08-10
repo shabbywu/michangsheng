@@ -1,96 +1,92 @@
-﻿using System;
 using System.Collections.Generic;
 using UltimateSurvival.AI;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public static class Extensions
 {
-	// Token: 0x02000620 RID: 1568
-	public static class Extensions
+	public static Transform FindDeepChild(this Transform parent, string childName)
 	{
-		// Token: 0x060031E7 RID: 12775 RVA: 0x00161B18 File Offset: 0x0015FD18
-		public static Transform FindDeepChild(this Transform parent, string childName)
+		Transform val = parent.Find(childName);
+		if (Object.op_Implicit((Object)(object)val))
 		{
-			Transform transform = parent.Find(childName);
-			if (transform)
+			return val;
+		}
+		for (int i = 0; i < parent.childCount; i++)
+		{
+			val = parent.GetChild(i).FindDeepChild(childName);
+			if (Object.op_Implicit((Object)(object)val))
 			{
-				return transform;
+				return val;
 			}
-			for (int i = 0; i < parent.childCount; i++)
-			{
-				transform = parent.GetChild(i).FindDeepChild(childName);
-				if (transform)
-				{
-					return transform;
-				}
-			}
+		}
+		return null;
+	}
+
+	public static bool IndexIsValid<T>(this List<T> list, int index)
+	{
+		if (index >= 0)
+		{
+			return index < list.Count;
+		}
+		return false;
+	}
+
+	public static List<T> CopyOther<T>(this List<T> list, List<T> toCopy)
+	{
+		if (toCopy == null || toCopy.Count == 0)
+		{
 			return null;
 		}
-
-		// Token: 0x060031E8 RID: 12776 RVA: 0x00161B61 File Offset: 0x0015FD61
-		public static bool IndexIsValid<T>(this List<T> list, int index)
+		list = new List<T>();
+		for (int i = 0; i < toCopy.Count; i++)
 		{
-			return index >= 0 && index < list.Count;
+			list.Add(toCopy[i]);
 		}
+		return list;
+	}
 
-		// Token: 0x060031E9 RID: 12777 RVA: 0x00161B74 File Offset: 0x0015FD74
-		public static List<T> CopyOther<T>(this List<T> list, List<T> toCopy)
+	public static bool IsInRangeLimitsExcluded(this float f, float l1, float l2)
+	{
+		if (f > l1)
 		{
-			if (toCopy == null || toCopy.Count == 0)
-			{
-				return null;
-			}
-			list = new List<T>();
-			for (int i = 0; i < toCopy.Count; i++)
-			{
-				list.Add(toCopy[i]);
-			}
-			return list;
+			return f < l2;
 		}
+		return false;
+	}
 
-		// Token: 0x060031EA RID: 12778 RVA: 0x00161BB4 File Offset: 0x0015FDB4
-		public static bool IsInRangeLimitsExcluded(this float f, float l1, float l2)
+	public static bool IsInRangeLimitsIncluded(this float f, float l1, float l2)
+	{
+		if (f >= l1)
 		{
-			return f > l1 && f < l2;
+			return f <= l2;
 		}
+		return false;
+	}
 
-		// Token: 0x060031EB RID: 12779 RVA: 0x00161BC0 File Offset: 0x0015FDC0
-		public static bool IsInRangeLimitsIncluded(this float f, float l1, float l2)
+	public static string GetDisplayInfoForElement(this StateData data, string key)
+	{
+		string result = string.Empty;
+		object value = null;
+		if (data.m_Dictionary.TryGetValue(key, out value))
 		{
-			return f >= l1 && f <= l2;
+			result = "Key: " + key + " -  Value: " + value;
 		}
+		else
+		{
+			Debug.LogError((object)("Could not print element with key " + key));
+		}
+		return result;
+	}
 
-		// Token: 0x060031EC RID: 12780 RVA: 0x00161BD0 File Offset: 0x0015FDD0
-		public static string GetDisplayInfoForElement(this StateData data, string key)
+	public static string GetDisplayInfoForAll(this StateData data, string sepparator = " - ")
+	{
+		string text = string.Empty;
+		foreach (KeyValuePair<string, object> item in data.m_Dictionary)
 		{
-			string result = string.Empty;
-			object obj = null;
-			if (data.m_Dictionary.TryGetValue(key, out obj))
-			{
-				result = string.Concat(new object[]
-				{
-					"Key: ",
-					key,
-					" -  Value: ",
-					obj
-				});
-			}
-			else
-			{
-				Debug.LogError("Could not print element with key " + key);
-			}
-			return result;
+			text = text + sepparator + data.GetDisplayInfoForElement(item.Key);
 		}
-
-		// Token: 0x060031ED RID: 12781 RVA: 0x00161C2C File Offset: 0x0015FE2C
-		public static string GetDisplayInfoForAll(this StateData data, string sepparator = " - ")
-		{
-			string text = string.Empty;
-			foreach (KeyValuePair<string, object> keyValuePair in data.m_Dictionary)
-			{
-				text = text + sepparator + data.GetDisplayInfoForElement(keyValuePair.Key);
-			}
-			return text;
-		}
+		return text;
 	}
 }

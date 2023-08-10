@@ -1,276 +1,257 @@
-﻿using System;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+public class TextAdapter : IWriterTextDestination
 {
-	// Token: 0x02000ECD RID: 3789
-	public class TextAdapter : IWriterTextDestination
+	protected Text textUI;
+
+	protected InputField inputField;
+
+	protected TextMesh textMesh;
+
+	protected TMP_Text tmpro;
+
+	protected Component textComponent;
+
+	protected PropertyInfo textProperty;
+
+	protected IWriterTextDestination writerTextDestination;
+
+	public virtual string Text
 	{
-		// Token: 0x06006AFD RID: 27389 RVA: 0x00294C24 File Offset: 0x00292E24
-		public void InitFromGameObject(GameObject go, bool includeChildren = false)
+		get
 		{
-			if (go == null)
+			if ((Object)(object)textUI != (Object)null)
 			{
-				return;
+				return textUI.text;
 			}
-			if (!includeChildren)
+			if ((Object)(object)inputField != (Object)null)
 			{
-				this.textUI = go.GetComponent<Text>();
-				this.inputField = go.GetComponent<InputField>();
-				this.textMesh = go.GetComponent<TextMesh>();
-				this.tmpro = go.GetComponent<TMP_Text>();
-				this.writerTextDestination = go.GetComponent<IWriterTextDestination>();
+				return inputField.text;
 			}
-			else
+			if (writerTextDestination != null)
 			{
-				this.textUI = go.GetComponentInChildren<Text>();
-				this.inputField = go.GetComponentInChildren<InputField>();
-				this.textMesh = go.GetComponentInChildren<TextMesh>();
-				this.tmpro = go.GetComponentInChildren<TMP_Text>();
-				this.writerTextDestination = go.GetComponentInChildren<IWriterTextDestination>();
+				return Text;
 			}
-			if (this.textUI == null && this.inputField == null && this.textMesh == null && this.writerTextDestination == null)
+			if ((Object)(object)textMesh != (Object)null)
 			{
-				Component[] array;
-				if (!includeChildren)
-				{
-					array = go.GetComponents<Component>();
-				}
-				else
-				{
-					array = go.GetComponentsInChildren<Component>();
-				}
-				foreach (Component component in array)
-				{
-					this.textProperty = component.GetType().GetProperty("text");
-					if (this.textProperty != null)
-					{
-						this.textComponent = component;
-						return;
-					}
-				}
+				return textMesh.text;
+			}
+			if ((Object)(object)tmpro != (Object)null)
+			{
+				return tmpro.text;
+			}
+			if (textProperty != null)
+			{
+				return textProperty.GetValue(textComponent, null) as string;
+			}
+			return "";
+		}
+		set
+		{
+			if ((Object)(object)textUI != (Object)null)
+			{
+				textUI.text = value;
+			}
+			else if ((Object)(object)inputField != (Object)null)
+			{
+				inputField.text = value;
+			}
+			else if (writerTextDestination != null)
+			{
+				Text = value;
+			}
+			else if ((Object)(object)textMesh != (Object)null)
+			{
+				textMesh.text = value;
+			}
+			else if ((Object)(object)tmpro != (Object)null)
+			{
+				tmpro.text = value;
+			}
+			else if (textProperty != null)
+			{
+				textProperty.SetValue(textComponent, value, null);
 			}
 		}
+	}
 
-		// Token: 0x06006AFE RID: 27390 RVA: 0x00294D40 File Offset: 0x00292F40
-		public void ForceRichText()
+	public void InitFromGameObject(GameObject go, bool includeChildren = false)
+	{
+		if ((Object)(object)go == (Object)null)
 		{
-			if (this.textUI != null)
+			return;
+		}
+		if (!includeChildren)
+		{
+			textUI = go.GetComponent<Text>();
+			inputField = go.GetComponent<InputField>();
+			textMesh = go.GetComponent<TextMesh>();
+			tmpro = go.GetComponent<TMP_Text>();
+			writerTextDestination = go.GetComponent<IWriterTextDestination>();
+		}
+		else
+		{
+			textUI = go.GetComponentInChildren<Text>();
+			inputField = go.GetComponentInChildren<InputField>();
+			textMesh = go.GetComponentInChildren<TextMesh>();
+			tmpro = go.GetComponentInChildren<TMP_Text>();
+			writerTextDestination = go.GetComponentInChildren<IWriterTextDestination>();
+		}
+		if (!((Object)(object)textUI == (Object)null) || !((Object)(object)inputField == (Object)null) || !((Object)(object)textMesh == (Object)null) || writerTextDestination != null)
+		{
+			return;
+		}
+		Component[] array = null;
+		array = (includeChildren ? go.GetComponentsInChildren<Component>() : go.GetComponents<Component>());
+		foreach (Component val in array)
+		{
+			textProperty = ((object)val).GetType().GetProperty("text");
+			if (textProperty != null)
 			{
-				this.textUI.supportRichText = true;
-			}
-			if (this.textMesh != null)
-			{
-				this.textMesh.richText = true;
-			}
-			if (this.tmpro != null)
-			{
-				this.tmpro.richText = true;
-			}
-			if (this.writerTextDestination != null)
-			{
-				this.writerTextDestination.ForceRichText();
+				textComponent = val;
+				break;
 			}
 		}
+	}
 
-		// Token: 0x06006AFF RID: 27391 RVA: 0x00294DB0 File Offset: 0x00292FB0
-		public void SetTextColor(Color textColor)
+	public void ForceRichText()
+	{
+		if ((Object)(object)textUI != (Object)null)
 		{
-			if (this.textUI != null)
+			textUI.supportRichText = true;
+		}
+		if ((Object)(object)textMesh != (Object)null)
+		{
+			textMesh.richText = true;
+		}
+		if ((Object)(object)tmpro != (Object)null)
+		{
+			tmpro.richText = true;
+		}
+		if (writerTextDestination != null)
+		{
+			writerTextDestination.ForceRichText();
+		}
+	}
+
+	public void SetTextColor(Color textColor)
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)textUI != (Object)null)
+		{
+			((Graphic)textUI).color = textColor;
+		}
+		else if ((Object)(object)inputField != (Object)null)
+		{
+			if ((Object)(object)inputField.textComponent != (Object)null)
 			{
-				this.textUI.color = textColor;
-				return;
-			}
-			if (this.inputField != null)
-			{
-				if (this.inputField.textComponent != null)
-				{
-					this.inputField.textComponent.color = textColor;
-					return;
-				}
-			}
-			else
-			{
-				if (this.textMesh != null)
-				{
-					this.textMesh.color = textColor;
-					return;
-				}
-				if (this.tmpro != null)
-				{
-					this.tmpro.color = textColor;
-					return;
-				}
-				if (this.writerTextDestination != null)
-				{
-					this.writerTextDestination.SetTextColor(textColor);
-				}
+				((Graphic)inputField.textComponent).color = textColor;
 			}
 		}
-
-		// Token: 0x06006B00 RID: 27392 RVA: 0x00294E58 File Offset: 0x00293058
-		public void SetTextAlpha(float textAlpha)
+		else if ((Object)(object)textMesh != (Object)null)
 		{
-			if (this.textUI != null)
+			textMesh.color = textColor;
+		}
+		else if ((Object)(object)tmpro != (Object)null)
+		{
+			((Graphic)tmpro).color = textColor;
+		}
+		else if (writerTextDestination != null)
+		{
+			writerTextDestination.SetTextColor(textColor);
+		}
+	}
+
+	public void SetTextAlpha(float textAlpha)
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)textUI != (Object)null)
+		{
+			Color color = ((Graphic)textUI).color;
+			color.a = textAlpha;
+			((Graphic)textUI).color = color;
+		}
+		else if ((Object)(object)inputField != (Object)null)
+		{
+			if ((Object)(object)inputField.textComponent != (Object)null)
 			{
-				Color color = this.textUI.color;
-				color.a = textAlpha;
-				this.textUI.color = color;
-				return;
-			}
-			if (this.inputField != null)
-			{
-				if (this.inputField.textComponent != null)
-				{
-					Color color2 = this.inputField.textComponent.color;
-					color2.a = textAlpha;
-					this.inputField.textComponent.color = color2;
-					return;
-				}
-			}
-			else
-			{
-				if (this.textMesh != null)
-				{
-					Color color3 = this.textMesh.color;
-					color3.a = textAlpha;
-					this.textMesh.color = color3;
-					return;
-				}
-				if (this.tmpro != null)
-				{
-					this.tmpro.alpha = textAlpha;
-					return;
-				}
-				if (this.writerTextDestination != null)
-				{
-					this.writerTextDestination.SetTextAlpha(textAlpha);
-				}
+				Color color2 = ((Graphic)inputField.textComponent).color;
+				color2.a = textAlpha;
+				((Graphic)inputField.textComponent).color = color2;
 			}
 		}
-
-		// Token: 0x06006B01 RID: 27393 RVA: 0x00294F41 File Offset: 0x00293141
-		public void SetTextSize(int size)
+		else if ((Object)(object)textMesh != (Object)null)
 		{
-			if (this.textUI != null)
-			{
-				this.textUI.fontSize = size;
-			}
+			Color color3 = textMesh.color;
+			color3.a = textAlpha;
+			textMesh.color = color3;
 		}
-
-		// Token: 0x06006B02 RID: 27394 RVA: 0x00294F60 File Offset: 0x00293160
-		public bool HasTextObject()
+		else if ((Object)(object)tmpro != (Object)null)
 		{
-			return this.textUI != null || this.inputField != null || this.textMesh != null || this.textComponent != null || this.tmpro != null || this.writerTextDestination != null;
+			tmpro.alpha = textAlpha;
 		}
-
-		// Token: 0x06006B03 RID: 27395 RVA: 0x00294FC0 File Offset: 0x002931C0
-		public bool SupportsRichText()
+		else if (writerTextDestination != null)
 		{
-			if (this.textUI != null)
-			{
-				return this.textUI.supportRichText;
-			}
-			if (this.inputField != null)
-			{
-				return false;
-			}
-			if (this.textMesh != null)
-			{
-				return this.textMesh.richText;
-			}
-			return this.tmpro != null || (this.writerTextDestination != null && this.writerTextDestination.SupportsRichText());
+			writerTextDestination.SetTextAlpha(textAlpha);
 		}
+	}
 
-		// Token: 0x170008B7 RID: 2231
-		// (get) Token: 0x06006B04 RID: 27396 RVA: 0x00295038 File Offset: 0x00293238
-		// (set) Token: 0x06006B05 RID: 27397 RVA: 0x002950E8 File Offset: 0x002932E8
-		public virtual string Text
+	public void SetTextSize(int size)
+	{
+		if ((Object)(object)textUI != (Object)null)
 		{
-			get
-			{
-				if (this.textUI != null)
-				{
-					return this.textUI.text;
-				}
-				if (this.inputField != null)
-				{
-					return this.inputField.text;
-				}
-				if (this.writerTextDestination != null)
-				{
-					return this.Text;
-				}
-				if (this.textMesh != null)
-				{
-					return this.textMesh.text;
-				}
-				if (this.tmpro != null)
-				{
-					return this.tmpro.text;
-				}
-				if (this.textProperty != null)
-				{
-					return this.textProperty.GetValue(this.textComponent, null) as string;
-				}
-				return "";
-			}
-			set
-			{
-				if (this.textUI != null)
-				{
-					this.textUI.text = value;
-					return;
-				}
-				if (this.inputField != null)
-				{
-					this.inputField.text = value;
-					return;
-				}
-				if (this.writerTextDestination != null)
-				{
-					this.Text = value;
-					return;
-				}
-				if (this.textMesh != null)
-				{
-					this.textMesh.text = value;
-					return;
-				}
-				if (this.tmpro != null)
-				{
-					this.tmpro.text = value;
-					return;
-				}
-				if (this.textProperty != null)
-				{
-					this.textProperty.SetValue(this.textComponent, value, null);
-				}
-			}
+			textUI.fontSize = size;
 		}
+	}
 
-		// Token: 0x04005A3A RID: 23098
-		protected Text textUI;
+	public bool HasTextObject()
+	{
+		if (!((Object)(object)textUI != (Object)null) && !((Object)(object)inputField != (Object)null) && !((Object)(object)textMesh != (Object)null) && !((Object)(object)textComponent != (Object)null) && !((Object)(object)tmpro != (Object)null))
+		{
+			return writerTextDestination != null;
+		}
+		return true;
+	}
 
-		// Token: 0x04005A3B RID: 23099
-		protected InputField inputField;
-
-		// Token: 0x04005A3C RID: 23100
-		protected TextMesh textMesh;
-
-		// Token: 0x04005A3D RID: 23101
-		protected TMP_Text tmpro;
-
-		// Token: 0x04005A3E RID: 23102
-		protected Component textComponent;
-
-		// Token: 0x04005A3F RID: 23103
-		protected PropertyInfo textProperty;
-
-		// Token: 0x04005A40 RID: 23104
-		protected IWriterTextDestination writerTextDestination;
+	public bool SupportsRichText()
+	{
+		if ((Object)(object)textUI != (Object)null)
+		{
+			return textUI.supportRichText;
+		}
+		if ((Object)(object)inputField != (Object)null)
+		{
+			return false;
+		}
+		if ((Object)(object)textMesh != (Object)null)
+		{
+			return textMesh.richText;
+		}
+		if ((Object)(object)tmpro != (Object)null)
+		{
+			return true;
+		}
+		if (writerTextDestination != null)
+		{
+			return writerTextDestination.SupportsRichText();
+		}
+		return false;
 	}
 }

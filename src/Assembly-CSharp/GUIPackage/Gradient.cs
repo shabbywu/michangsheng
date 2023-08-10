@@ -1,61 +1,69 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+[AddComponentMenu("UI/Effects/Gradient")]
+public class Gradient : BaseMeshEffect
 {
-	// Token: 0x02000A56 RID: 2646
-	[AddComponentMenu("UI/Effects/Gradient")]
-	public class Gradient : BaseMeshEffect
+	[SerializeField]
+	private Color32 topColor = Color32.op_Implicit(Color.white);
+
+	[SerializeField]
+	private Color32 bottomColor = Color32.op_Implicit(Color.black);
+
+	public override void ModifyMesh(VertexHelper vh)
 	{
-		// Token: 0x060049E1 RID: 18913 RVA: 0x001F53CC File Offset: 0x001F35CC
-		public override void ModifyMesh(VertexHelper vh)
+		if (((UIBehaviour)this).IsActive())
 		{
-			if (!this.IsActive())
-			{
-				return;
-			}
 			List<UIVertex> list = new List<UIVertex>();
 			vh.GetUIVertexStream(list);
 			int count = list.Count;
-			this.ApplyGradient(list, 0, count);
+			ApplyGradient(list, 0, count);
 			vh.Clear();
 			vh.AddUIVertexTriangleStream(list);
 		}
+	}
 
-		// Token: 0x060049E2 RID: 18914 RVA: 0x001F540C File Offset: 0x001F360C
-		private void ApplyGradient(List<UIVertex> vertexList, int start, int end)
+	private void ApplyGradient(List<UIVertex> vertexList, int start, int end)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		float num = vertexList[0].position.y;
+		float num2 = vertexList[0].position.y;
+		for (int i = start; i < end; i++)
 		{
-			float num = vertexList[0].position.y;
-			float num2 = vertexList[0].position.y;
-			for (int i = start; i < end; i++)
+			float y = vertexList[i].position.y;
+			if (y > num2)
 			{
-				float y = vertexList[i].position.y;
-				if (y > num2)
-				{
-					num2 = y;
-				}
-				else if (y < num)
-				{
-					num = y;
-				}
+				num2 = y;
 			}
-			float num3 = num2 - num;
-			for (int j = start; j < end; j++)
+			else if (y < num)
 			{
-				UIVertex uivertex = vertexList[j];
-				uivertex.color = Color32.Lerp(this.bottomColor, this.topColor, (uivertex.position.y - num) / num3);
-				vertexList[j] = uivertex;
+				num = y;
 			}
 		}
-
-		// Token: 0x0400494F RID: 18767
-		[SerializeField]
-		private Color32 topColor = Color.white;
-
-		// Token: 0x04004950 RID: 18768
-		[SerializeField]
-		private Color32 bottomColor = Color.black;
+		float num3 = num2 - num;
+		for (int j = start; j < end; j++)
+		{
+			UIVertex val = vertexList[j];
+			val.color = Color32.Lerp(bottomColor, topColor, (val.position.y - num) / num3);
+			vertexList[j] = val;
+		}
 	}
 }

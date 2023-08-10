@@ -1,229 +1,242 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-namespace Tab
+namespace Tab;
+
+public class TabSetPanel : ISysPanelBase
 {
-	// Token: 0x02000702 RID: 1794
-	public class TabSetPanel : ISysPanelBase
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
 	{
-		// Token: 0x06003988 RID: 14728 RVA: 0x00189CEC File Offset: 0x00187EEC
-		public TabSetPanel(GameObject go)
-		{
-			this._go = go;
-			this._isInit = false;
-		}
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		// Token: 0x06003989 RID: 14729 RVA: 0x00189D02 File Offset: 0x00187F02
-		public override void Show()
+		public static UnityAction _003C_003E9__15_0;
+
+		internal void _003CInit_003Eb__15_0()
 		{
-			if (!this._isInit)
+			UToolTip.Show("影响长期闭关、感悟或者突破功法（超过一年）时NPC结算的拟真程度。结算频率越高，花费的现实时间越长。");
+		}
+	}
+
+	private bool _isInit;
+
+	public Slider YinXiaoSlider;
+
+	public Slider BgSlider;
+
+	public string CurResolutionTextStr;
+
+	public List<string> ResolutionsList;
+
+	public Dictionary<int, MResolution> ResolutionsDict;
+
+	public Dropdown ResolutionDropdown;
+
+	public Dictionary<int, bool> FullScreenDict;
+
+	public Dropdown FullScreenDropdown;
+
+	public Dictionary<int, int> SaveTimesDict;
+
+	public Dropdown SaveTimesDropdown;
+
+	public Dictionary<int, int> NpcActionTimesDict;
+
+	public Dropdown NpcActionTimesDropdown;
+
+	public TabSetPanel(GameObject go)
+	{
+		_go = go;
+		_isInit = false;
+	}
+
+	public override void Show()
+	{
+		if (!_isInit)
+		{
+			Init();
+			_isInit = true;
+		}
+		UpdateUI();
+		_go.SetActive(true);
+	}
+
+	protected virtual void Init()
+	{
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Expected O, but got Unknown
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Expected O, but got Unknown
+		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Expected O, but got Unknown
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Expected O, but got Unknown
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0099: Expected O, but got Unknown
+		InitDropdown();
+		YinXiaoSlider = Get<Slider>("音效/Slider");
+		BgSlider = Get<Slider>("音乐/Slider");
+		Get<FpBtn>("一键静音").mouseUpEvent.AddListener(new UnityAction(StopAllMusice));
+		Get<FpBtn>("应用").mouseUpEvent.AddListener(new UnityAction(SaveConfig));
+		UnityEvent mouseEnterEvent = Get<FpBtn>("结算提示").mouseEnterEvent;
+		object obj = _003C_003Ec._003C_003E9__15_0;
+		if (obj == null)
+		{
+			UnityAction val = delegate
 			{
-				this.Init();
-				this._isInit = true;
-			}
-			this.UpdateUI();
-			this._go.SetActive(true);
+				UToolTip.Show("影响长期闭关、感悟或者突破功法（超过一年）时NPC结算的拟真程度。结算频率越高，花费的现实时间越长。");
+			};
+			_003C_003Ec._003C_003E9__15_0 = val;
+			obj = (object)val;
 		}
+		mouseEnterEvent.AddListener((UnityAction)obj);
+		Get<FpBtn>("结算提示").mouseOutEvent.AddListener(new UnityAction(UToolTip.Close));
+		Get<FpBtn>("结算提示").mouseUpEvent.AddListener(new UnityAction(UToolTip.Close));
+		((UnityEvent<float>)(object)YinXiaoSlider.onValueChanged).AddListener((UnityAction<float>)UpdateMusicEffect);
+		((UnityEvent<float>)(object)BgSlider.onValueChanged).AddListener((UnityAction<float>)UpdateMusicBg);
+	}
 
-		// Token: 0x0600398A RID: 14730 RVA: 0x00189D2C File Offset: 0x00187F2C
-		protected virtual void Init()
+	private void InitDropdown()
+	{
+		InitResolutionsDict();
+		CurResolutionTextStr = $"{Screen.width}x{Screen.height}";
+		ResolutionDropdown = Get<Dropdown>("分辨率/Dropdown");
+		ResolutionsList = new List<string>();
+		foreach (int key in ResolutionsDict.Keys)
 		{
-			this.InitDropdown();
-			this.YinXiaoSlider = base.Get<Slider>("音效/Slider");
-			this.BgSlider = base.Get<Slider>("音乐/Slider");
-			base.Get<FpBtn>("一键静音").mouseUpEvent.AddListener(new UnityAction(this.StopAllMusice));
-			base.Get<FpBtn>("应用").mouseUpEvent.AddListener(new UnityAction(this.SaveConfig));
-			base.Get<FpBtn>("结算提示").mouseEnterEvent.AddListener(delegate()
+			ResolutionsList.Add($"{ResolutionsDict[key].X}x{ResolutionsDict[key].Y}");
+		}
+		ResolutionDropdown.AddOptions(ResolutionsList);
+		InitFullScreenDict();
+		FullScreenDropdown = Get<Dropdown>("显示模式/Dropdown");
+		((UnityEvent<int>)(object)FullScreenDropdown.onValueChanged).AddListener((UnityAction<int>)delegate(int value)
+		{
+			if (value == 1)
 			{
-				UToolTip.Show("影响长期闭关、感悟或者突破功法（超过一年）时NPC结算的拟真程度。结算频率越高，花费的现实时间越长。", 600f, 200f);
-			});
-			base.Get<FpBtn>("结算提示").mouseOutEvent.AddListener(new UnityAction(UToolTip.Close));
-			base.Get<FpBtn>("结算提示").mouseUpEvent.AddListener(new UnityAction(UToolTip.Close));
-			this.YinXiaoSlider.onValueChanged.AddListener(new UnityAction<float>(this.UpdateMusicEffect));
-			this.BgSlider.onValueChanged.AddListener(new UnityAction<float>(this.UpdateMusicBg));
-		}
-
-		// Token: 0x0600398B RID: 14731 RVA: 0x00189E54 File Offset: 0x00188054
-		private void InitDropdown()
-		{
-			this.InitResolutionsDict();
-			this.CurResolutionTextStr = string.Format("{0}x{1}", Screen.width, Screen.height);
-			this.ResolutionDropdown = base.Get<Dropdown>("分辨率/Dropdown");
-			this.ResolutionsList = new List<string>();
-			foreach (int key in this.ResolutionsDict.Keys)
-			{
-				this.ResolutionsList.Add(string.Format("{0}x{1}", this.ResolutionsDict[key].X, this.ResolutionsDict[key].Y));
-			}
-			this.ResolutionDropdown.AddOptions(this.ResolutionsList);
-			this.InitFullScreenDict();
-			this.FullScreenDropdown = base.Get<Dropdown>("显示模式/Dropdown");
-			this.FullScreenDropdown.onValueChanged.AddListener(delegate(int value)
-			{
-				if (value == 1)
-				{
-					this.ResolutionDropdown.interactable = false;
-					this.ResolutionDropdown.value = this.ResolutionDropdown.options.Count - 1;
-					return;
-				}
-				this.ResolutionDropdown.interactable = true;
-			});
-			this.InitSaveTimesDict();
-			this.SaveTimesDropdown = base.Get<Dropdown>("存档间隔/Dropdown");
-			this.InitNpcActionTimesDict();
-			this.NpcActionTimesDropdown = base.Get<Dropdown>("结算频率/Dropdown");
-		}
-
-		// Token: 0x0600398C RID: 14732 RVA: 0x00189FA0 File Offset: 0x001881A0
-		private void InitResolutionsDict()
-		{
-			List<int> list = new List<int>();
-			this.ResolutionsDict = new Dictionary<int, MResolution>();
-			int num = 0;
-			foreach (Resolution resolution in Screen.resolutions)
-			{
-				if (!list.Contains(resolution.width) && Mathf.Abs((float)resolution.height / (float)resolution.width - 0.5625f) <= 0.001f)
-				{
-					MResolution mresolution = new MResolution();
-					mresolution.X = resolution.width;
-					mresolution.Y = resolution.height;
-					this.ResolutionsDict.Add(num, mresolution);
-					num++;
-					list.Add(mresolution.X);
-				}
-			}
-		}
-
-		// Token: 0x0600398D RID: 14733 RVA: 0x0018A059 File Offset: 0x00188259
-		private void InitFullScreenDict()
-		{
-			this.FullScreenDict = new Dictionary<int, bool>();
-			this.FullScreenDict.Add(0, false);
-			this.FullScreenDict.Add(1, true);
-		}
-
-		// Token: 0x0600398E RID: 14734 RVA: 0x0018A080 File Offset: 0x00188280
-		private void InitSaveTimesDict()
-		{
-			this.SaveTimesDict = new Dictionary<int, int>();
-			this.SaveTimesDict.Add(0, 0);
-			this.SaveTimesDict.Add(1, 5);
-			this.SaveTimesDict.Add(2, 10);
-			this.SaveTimesDict.Add(3, -1);
-		}
-
-		// Token: 0x0600398F RID: 14735 RVA: 0x0018A0CD File Offset: 0x001882CD
-		private void InitNpcActionTimesDict()
-		{
-			this.NpcActionTimesDict = new Dictionary<int, int>();
-			this.NpcActionTimesDict.Add(0, 0);
-			this.NpcActionTimesDict.Add(1, 1);
-			this.NpcActionTimesDict.Add(2, 2);
-		}
-
-		// Token: 0x06003990 RID: 14736 RVA: 0x0018A104 File Offset: 0x00188304
-		public void UpdateUI()
-		{
-			this.YinXiaoSlider.value = SystemConfig.Inst.GetEffectVolume();
-			this.BgSlider.value = SystemConfig.Inst.GetBackGroundVolume();
-			string item = string.Format("{0}x{1}", Screen.width, Screen.height);
-			if (this.ResolutionsList.Contains(item))
-			{
-				this.ResolutionDropdown.value = this.ResolutionsList.IndexOf(item);
+				((Selectable)ResolutionDropdown).interactable = false;
+				ResolutionDropdown.value = ResolutionDropdown.options.Count - 1;
 			}
 			else
 			{
-				this.ResolutionDropdown.value = 0;
+				((Selectable)ResolutionDropdown).interactable = true;
 			}
-			if (Screen.fullScreen)
+		});
+		InitSaveTimesDict();
+		SaveTimesDropdown = Get<Dropdown>("存档间隔/Dropdown");
+		InitNpcActionTimesDict();
+		NpcActionTimesDropdown = Get<Dropdown>("结算频率/Dropdown");
+	}
+
+	private void InitResolutionsDict()
+	{
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		List<int> list = new List<int>();
+		ResolutionsDict = new Dictionary<int, MResolution>();
+		int num = 0;
+		Resolution[] resolutions = Screen.resolutions;
+		for (int i = 0; i < resolutions.Length; i++)
+		{
+			Resolution val = resolutions[i];
+			if (!list.Contains(((Resolution)(ref val)).width) && !(Mathf.Abs((float)((Resolution)(ref val)).height / (float)((Resolution)(ref val)).width - 0.5625f) > 0.001f))
 			{
-				this.FullScreenDropdown.value = 1;
+				MResolution mResolution = new MResolution();
+				mResolution.X = ((Resolution)(ref val)).width;
+				mResolution.Y = ((Resolution)(ref val)).height;
+				ResolutionsDict.Add(num, mResolution);
+				num++;
+				list.Add(mResolution.X);
 			}
-			else
+		}
+		list = null;
+	}
+
+	private void InitFullScreenDict()
+	{
+		FullScreenDict = new Dictionary<int, bool>();
+		FullScreenDict.Add(0, value: false);
+		FullScreenDict.Add(1, value: true);
+	}
+
+	private void InitSaveTimesDict()
+	{
+		SaveTimesDict = new Dictionary<int, int>();
+		SaveTimesDict.Add(0, 0);
+		SaveTimesDict.Add(1, 5);
+		SaveTimesDict.Add(2, 10);
+		SaveTimesDict.Add(3, -1);
+	}
+
+	private void InitNpcActionTimesDict()
+	{
+		NpcActionTimesDict = new Dictionary<int, int>();
+		NpcActionTimesDict.Add(0, 0);
+		NpcActionTimesDict.Add(1, 1);
+		NpcActionTimesDict.Add(2, 2);
+	}
+
+	public void UpdateUI()
+	{
+		YinXiaoSlider.value = SystemConfig.Inst.GetEffectVolume();
+		BgSlider.value = SystemConfig.Inst.GetBackGroundVolume();
+		string item = $"{Screen.width}x{Screen.height}";
+		if (ResolutionsList.Contains(item))
+		{
+			ResolutionDropdown.value = ResolutionsList.IndexOf(item);
+		}
+		else
+		{
+			ResolutionDropdown.value = 0;
+		}
+		if (Screen.fullScreen)
+		{
+			FullScreenDropdown.value = 1;
+		}
+		else
+		{
+			FullScreenDropdown.value = 0;
+		}
+		int saveTimes = SystemConfig.Inst.GetSaveTimes();
+		foreach (int key in SaveTimesDict.Keys)
+		{
+			if (SaveTimesDict[key] == saveTimes)
 			{
-				this.FullScreenDropdown.value = 0;
+				SaveTimesDropdown.value = key;
+				break;
 			}
-			int saveTimes = SystemConfig.Inst.GetSaveTimes();
-			foreach (int num in this.SaveTimesDict.Keys)
-			{
-				if (this.SaveTimesDict[num] == saveTimes)
-				{
-					this.SaveTimesDropdown.value = num;
-					break;
-				}
-			}
-			this.NpcActionTimesDropdown.value = SystemConfig.Inst.GetNpcActionTimes();
 		}
+		NpcActionTimesDropdown.value = SystemConfig.Inst.GetNpcActionTimes();
+	}
 
-		// Token: 0x06003991 RID: 14737 RVA: 0x0018A230 File Offset: 0x00188430
-		public void UpdateMusicEffect(float value)
-		{
-			MusicMag.instance.setEffectVolum(value);
-		}
+	public void UpdateMusicEffect(float value)
+	{
+		MusicMag.instance.setEffectVolum(value);
+	}
 
-		// Token: 0x06003992 RID: 14738 RVA: 0x0018A23D File Offset: 0x0018843D
-		public void UpdateMusicBg(float value)
-		{
-			MusicMag.instance.setBackGroundVolume(value);
-		}
+	public void UpdateMusicBg(float value)
+	{
+		MusicMag.instance.setBackGroundVolume(value);
+	}
 
-		// Token: 0x06003993 RID: 14739 RVA: 0x0018A24A File Offset: 0x0018844A
-		public void StopAllMusice()
-		{
-			this.YinXiaoSlider.value = 0f;
-			this.BgSlider.value = 0f;
-		}
+	public void StopAllMusice()
+	{
+		YinXiaoSlider.value = 0f;
+		BgSlider.value = 0f;
+	}
 
-		// Token: 0x06003994 RID: 14740 RVA: 0x0018A26C File Offset: 0x0018846C
-		public void SaveConfig()
-		{
-			PlayerPrefs.SetFloat("MusicBg", MusicMag.instance.audioSource.volume);
-			PlayerPrefs.SetFloat("MusicEffect", MusicMag.instance.audioSourceEffect.volume);
-			Screen.SetResolution(this.ResolutionsDict[this.ResolutionDropdown.value].X, this.ResolutionsDict[this.ResolutionDropdown.value].Y, this.FullScreenDict[this.FullScreenDropdown.value]);
-			SystemConfig.Inst.SetSaveTimes(this.SaveTimesDict[this.SaveTimesDropdown.value]);
-			SystemConfig.Inst.SetActionTimes(this.NpcActionTimesDict[this.NpcActionTimesDropdown.value]);
-		}
-
-		// Token: 0x040031A2 RID: 12706
-		private bool _isInit;
-
-		// Token: 0x040031A3 RID: 12707
-		public Slider YinXiaoSlider;
-
-		// Token: 0x040031A4 RID: 12708
-		public Slider BgSlider;
-
-		// Token: 0x040031A5 RID: 12709
-		public string CurResolutionTextStr;
-
-		// Token: 0x040031A6 RID: 12710
-		public List<string> ResolutionsList;
-
-		// Token: 0x040031A7 RID: 12711
-		public Dictionary<int, MResolution> ResolutionsDict;
-
-		// Token: 0x040031A8 RID: 12712
-		public Dropdown ResolutionDropdown;
-
-		// Token: 0x040031A9 RID: 12713
-		public Dictionary<int, bool> FullScreenDict;
-
-		// Token: 0x040031AA RID: 12714
-		public Dropdown FullScreenDropdown;
-
-		// Token: 0x040031AB RID: 12715
-		public Dictionary<int, int> SaveTimesDict;
-
-		// Token: 0x040031AC RID: 12716
-		public Dropdown SaveTimesDropdown;
-
-		// Token: 0x040031AD RID: 12717
-		public Dictionary<int, int> NpcActionTimesDict;
-
-		// Token: 0x040031AE RID: 12718
-		public Dropdown NpcActionTimesDropdown;
+	public void SaveConfig()
+	{
+		PlayerPrefs.SetFloat("MusicBg", MusicMag.instance.audioSource.volume);
+		PlayerPrefs.SetFloat("MusicEffect", MusicMag.instance.audioSourceEffect.volume);
+		Screen.SetResolution(ResolutionsDict[ResolutionDropdown.value].X, ResolutionsDict[ResolutionDropdown.value].Y, FullScreenDict[FullScreenDropdown.value]);
+		SystemConfig.Inst.SetSaveTimes(SaveTimesDict[SaveTimesDropdown.value]);
+		SystemConfig.Inst.SetActionTimes(NpcActionTimesDict[NpcActionTimesDropdown.value]);
 	}
 }

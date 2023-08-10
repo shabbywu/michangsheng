@@ -1,40 +1,50 @@
-﻿using System;
 using System.Collections.Generic;
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x020002F7 RID: 759
 public class CaiLiaoCell : ItemCellEX
 {
-	// Token: 0x06001A7E RID: 6782 RVA: 0x000BCB90 File Offset: 0x000BAD90
+	public int qinHe;
+
+	public int caoKong;
+
+	public int linxing;
+
+	public int jianGuo;
+
+	public int renXing;
+
+	public int lingLi;
+
+	public int shuXingTypeID;
+
+	public int attackType = -1;
+
 	public void setShuXing()
 	{
-		int i = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["WuWeiType"].I;
-		this.setShuXingType();
-		if (i == 0)
+		int i = jsonData.instance.ItemJsonData[Item.itemID.ToString()]["WuWeiType"].I;
+		setShuXingType();
+		if (i != 0)
 		{
-			return;
+			JSONObject jSONObject = jsonData.instance.LianQiWuWeiBiao[i.ToString()];
+			setWuWei(jSONObject["value1"].I, jSONObject["value2"].I, jSONObject["value3"].I, jSONObject["value4"].I, jSONObject["value5"].I);
+			setLingLi();
 		}
-		JSONObject jsonobject = jsonData.instance.LianQiWuWeiBiao[i.ToString()];
-		this.setWuWei(jsonobject["value1"].I, jsonobject["value2"].I, jsonobject["value3"].I, jsonobject["value4"].I, jsonobject["value5"].I);
-		this.setLingLi();
 	}
 
-	// Token: 0x06001A7F RID: 6783 RVA: 0x000BCC4C File Offset: 0x000BAE4C
 	public void updateItem()
 	{
-		this.Item = this.inventory.inventory[int.Parse(base.name)];
-		this.qinHe = 0;
-		this.caoKong = 0;
-		this.linxing = 0;
-		this.jianGuo = 0;
-		this.renXing = 0;
-		this.lingLi = 0;
-		this.shuXingTypeID = 0;
-		this.attackType = -1;
+		Item = inventory.inventory[int.Parse(((Object)this).name)];
+		qinHe = 0;
+		caoKong = 0;
+		linxing = 0;
+		jianGuo = 0;
+		renXing = 0;
+		lingLi = 0;
+		shuXingTypeID = 0;
+		attackType = -1;
 	}
 
-	// Token: 0x06001A80 RID: 6784 RVA: 0x000BCCB2 File Offset: 0x000BAEB2
 	private void setWuWei(int qinHe, int caoKong, int linxing, int jianGuo, int renXing)
 	{
 		this.qinHe = qinHe;
@@ -44,18 +54,16 @@ public class CaiLiaoCell : ItemCellEX
 		this.renXing = renXing;
 	}
 
-	// Token: 0x06001A81 RID: 6785 RVA: 0x000BCCDC File Offset: 0x000BAEDC
 	private void setLingLi()
 	{
-		int i = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["quality"].I;
-		this.lingLi = jsonData.instance.CaiLiaoNengLiangBiao[i.ToString()]["value1"].I;
+		int i = jsonData.instance.ItemJsonData[Item.itemID.ToString()]["quality"].I;
+		lingLi = jsonData.instance.CaiLiaoNengLiangBiao[i.ToString()]["value1"].I;
 	}
 
-	// Token: 0x06001A82 RID: 6786 RVA: 0x000BCD44 File Offset: 0x000BAF44
 	private void setShuXingType()
 	{
-		this.shuXingTypeID = 0;
-		int i = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["ShuXingType"].I;
+		shuXingTypeID = 0;
+		int i = jsonData.instance.ItemJsonData[Item.itemID.ToString()]["ShuXingType"].I;
 		if (i == 0)
 		{
 			return;
@@ -70,29 +78,25 @@ public class CaiLiaoCell : ItemCellEX
 		{
 			if (list[j]["ShuXingType"].I == i && list[j]["zhonglei"].I == selectZhongLei)
 			{
-				this.shuXingTypeID = list[j]["id"].I;
-				this.attackType = jsonData.instance.LianQiShuXinLeiBie[list[j]["ShuXingType"].ToString()]["AttackType"].I;
-				return;
+				shuXingTypeID = list[j]["id"].I;
+				attackType = jsonData.instance.LianQiShuXinLeiBie[list[j]["ShuXingType"].ToString()]["AttackType"].I;
+				break;
 			}
 		}
 	}
 
-	// Token: 0x06001A83 RID: 6787 RVA: 0x00004095 File Offset: 0x00002295
 	public override void PCOnPress()
 	{
 	}
 
-	// Token: 0x06001A84 RID: 6788 RVA: 0x000BCE50 File Offset: 0x000BB050
 	public override void PCOnHover(bool isOver)
 	{
-		if (LianQiTotalManager.inst.lianQiResultManager.lianQiResultPanelIsOpen)
+		if (!LianQiTotalManager.inst.lianQiResultManager.lianQiResultPanelIsOpen)
 		{
-			return;
+			base.PCOnHover(isOver);
 		}
-		base.PCOnHover(isOver);
 	}
 
-	// Token: 0x06001A85 RID: 6789 RVA: 0x000BCE6B File Offset: 0x000BB06B
 	private bool isCanClick(ref int type)
 	{
 		if (LianQiTotalManager.inst.lianQiResultManager.lianQiResultPanelIsOpen)
@@ -107,44 +111,25 @@ public class CaiLiaoCell : ItemCellEX
 		{
 			type = 0;
 		}
-		return Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0);
+		if (!Input.GetMouseButtonDown(1))
+		{
+			return Input.GetMouseButtonDown(0);
+		}
+		return true;
 	}
 
-	// Token: 0x06001A86 RID: 6790 RVA: 0x000BCEA8 File Offset: 0x000BB0A8
 	private new void Update()
 	{
 		base.Update();
-		if (this.Item.itemID != -1)
+		if (Item.itemID != -1)
 		{
-			string str = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["name"].str;
-			this.KeyObject.SetActive(true);
-			this.KeyName.text = Tools.Code64(str);
-			return;
+			string str = jsonData.instance.ItemJsonData[Item.itemID.ToString()]["name"].str;
+			KeyObject.SetActive(true);
+			KeyName.text = Tools.Code64(str);
 		}
-		this.KeyObject.SetActive(false);
+		else
+		{
+			KeyObject.SetActive(false);
+		}
 	}
-
-	// Token: 0x0400154B RID: 5451
-	public int qinHe;
-
-	// Token: 0x0400154C RID: 5452
-	public int caoKong;
-
-	// Token: 0x0400154D RID: 5453
-	public int linxing;
-
-	// Token: 0x0400154E RID: 5454
-	public int jianGuo;
-
-	// Token: 0x0400154F RID: 5455
-	public int renXing;
-
-	// Token: 0x04001550 RID: 5456
-	public int lingLi;
-
-	// Token: 0x04001551 RID: 5457
-	public int shuXingTypeID;
-
-	// Token: 0x04001552 RID: 5458
-	public int attackType = -1;
 }

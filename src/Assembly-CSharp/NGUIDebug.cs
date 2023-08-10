@@ -1,119 +1,146 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000084 RID: 132
 [AddComponentMenu("NGUI/Internal/Debug")]
 public class NGUIDebug : MonoBehaviour
 {
-	// Token: 0x170000C9 RID: 201
-	// (get) Token: 0x0600068A RID: 1674 RVA: 0x00024CC9 File Offset: 0x00022EC9
-	// (set) Token: 0x0600068B RID: 1675 RVA: 0x00024CD0 File Offset: 0x00022ED0
+	private static bool mRayDebug = false;
+
+	private static List<string> mLines = new List<string>();
+
+	private static NGUIDebug mInstance = null;
+
 	public static bool debugRaycast
 	{
 		get
 		{
-			return NGUIDebug.mRayDebug;
+			return mRayDebug;
 		}
 		set
 		{
 			if (Application.isPlaying)
 			{
-				NGUIDebug.mRayDebug = value;
+				mRayDebug = value;
 				if (value)
 				{
-					NGUIDebug.CreateInstance();
+					CreateInstance();
 				}
 			}
 		}
 	}
 
-	// Token: 0x0600068C RID: 1676 RVA: 0x00024CE7 File Offset: 0x00022EE7
 	public static void CreateInstance()
 	{
-		if (NGUIDebug.mInstance == null)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Expected O, but got Unknown
+		if ((Object)(object)mInstance == (Object)null)
 		{
-			GameObject gameObject = new GameObject("_NGUI Debug");
-			NGUIDebug.mInstance = gameObject.AddComponent<NGUIDebug>();
-			Object.DontDestroyOnLoad(gameObject);
+			GameObject val = new GameObject("_NGUI Debug");
+			mInstance = val.AddComponent<NGUIDebug>();
+			Object.DontDestroyOnLoad((Object)val);
 		}
 	}
 
-	// Token: 0x0600068D RID: 1677 RVA: 0x00024D10 File Offset: 0x00022F10
 	private static void LogString(string text)
 	{
 		if (Application.isPlaying)
 		{
-			if (NGUIDebug.mLines.Count > 20)
+			if (mLines.Count > 20)
 			{
-				NGUIDebug.mLines.RemoveAt(0);
+				mLines.RemoveAt(0);
 			}
-			NGUIDebug.mLines.Add(text);
-			NGUIDebug.CreateInstance();
-			return;
+			mLines.Add(text);
+			CreateInstance();
 		}
-		Debug.Log(text);
+		else
+		{
+			Debug.Log((object)text);
+		}
 	}
 
-	// Token: 0x0600068E RID: 1678 RVA: 0x00024D4C File Offset: 0x00022F4C
 	public static void Log(params object[] objs)
 	{
 		string text = "";
 		for (int i = 0; i < objs.Length; i++)
 		{
-			if (i == 0)
-			{
-				text += objs[i].ToString();
-			}
-			else
-			{
-				text = text + ", " + objs[i].ToString();
-			}
+			text = ((i != 0) ? (text + ", " + objs[i].ToString()) : (text + objs[i].ToString()));
 		}
-		NGUIDebug.LogString(text);
+		LogString(text);
 	}
 
-	// Token: 0x0600068F RID: 1679 RVA: 0x00024D9C File Offset: 0x00022F9C
 	public static void DrawBounds(Bounds b)
 	{
-		Vector3 center = b.center;
-		Vector3 vector = b.center - b.extents;
-		Vector3 vector2 = b.center + b.extents;
-		Debug.DrawLine(new Vector3(vector.x, vector.y, center.z), new Vector3(vector2.x, vector.y, center.z), Color.red);
-		Debug.DrawLine(new Vector3(vector.x, vector.y, center.z), new Vector3(vector.x, vector2.y, center.z), Color.red);
-		Debug.DrawLine(new Vector3(vector2.x, vector.y, center.z), new Vector3(vector2.x, vector2.y, center.z), Color.red);
-		Debug.DrawLine(new Vector3(vector.x, vector2.y, center.z), new Vector3(vector2.x, vector2.y, center.z), Color.red);
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0106: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 center = ((Bounds)(ref b)).center;
+		Vector3 val = ((Bounds)(ref b)).center - ((Bounds)(ref b)).extents;
+		Vector3 val2 = ((Bounds)(ref b)).center + ((Bounds)(ref b)).extents;
+		Debug.DrawLine(new Vector3(val.x, val.y, center.z), new Vector3(val2.x, val.y, center.z), Color.red);
+		Debug.DrawLine(new Vector3(val.x, val.y, center.z), new Vector3(val.x, val2.y, center.z), Color.red);
+		Debug.DrawLine(new Vector3(val2.x, val.y, center.z), new Vector3(val2.x, val2.y, center.z), Color.red);
+		Debug.DrawLine(new Vector3(val.x, val2.y, center.z), new Vector3(val2.x, val2.y, center.z), Color.red);
 	}
 
-	// Token: 0x06000690 RID: 1680 RVA: 0x00024EBC File Offset: 0x000230BC
 	private void OnGUI()
 	{
-		if (NGUIDebug.mLines.Count == 0)
+		if (mLines.Count == 0)
 		{
-			if (NGUIDebug.mRayDebug && UICamera.hoveredObject != null && Application.isPlaying)
+			if (mRayDebug && (Object)(object)UICamera.hoveredObject != (Object)null && Application.isPlaying)
 			{
 				GUILayout.Label("Last Hit: " + NGUITools.GetHierarchy(UICamera.hoveredObject).Replace("\"", ""), Array.Empty<GUILayoutOption>());
-				return;
 			}
+			return;
 		}
-		else
+		int i = 0;
+		for (int count = mLines.Count; i < count; i++)
 		{
-			int i = 0;
-			int count = NGUIDebug.mLines.Count;
-			while (i < count)
-			{
-				GUILayout.Label(NGUIDebug.mLines[i], Array.Empty<GUILayoutOption>());
-				i++;
-			}
+			GUILayout.Label(mLines[i], Array.Empty<GUILayoutOption>());
 		}
 	}
-
-	// Token: 0x04000457 RID: 1111
-	private static bool mRayDebug = false;
-
-	// Token: 0x04000458 RID: 1112
-	private static List<string> mLines = new List<string>();
-
-	// Token: 0x04000459 RID: 1113
-	private static NGUIDebug mInstance = null;
 }

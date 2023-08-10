@@ -1,93 +1,89 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[Serializable]
+[VariableInfo("", "Integer", 0)]
+[AddComponentMenu("")]
+public class IntegerVariable : VariableBase<int>
 {
-	// Token: 0x02000EDF RID: 3807
-	[VariableInfo("", "Integer", 0)]
-	[AddComponentMenu("")]
-	[Serializable]
-	public class IntegerVariable : VariableBase<int>
+	public static readonly CompareOperator[] compareOperators = new CompareOperator[6]
 	{
-		// Token: 0x06006B4A RID: 27466 RVA: 0x0029617C File Offset: 0x0029437C
-		public virtual bool Evaluate(CompareOperator compareOperator, int integerValue)
+		CompareOperator.Equals,
+		CompareOperator.NotEquals,
+		CompareOperator.LessThan,
+		CompareOperator.GreaterThan,
+		CompareOperator.LessThanOrEquals,
+		CompareOperator.GreaterThanOrEquals
+	};
+
+	public static readonly SetOperator[] setOperators = new SetOperator[6]
+	{
+		SetOperator.Assign,
+		SetOperator.Add,
+		SetOperator.Subtract,
+		SetOperator.Multiply,
+		SetOperator.Divide,
+		SetOperator.Remainder
+	};
+
+	public virtual bool Evaluate(CompareOperator compareOperator, int integerValue)
+	{
+		int num = Value;
+		bool result = false;
+		switch (compareOperator)
 		{
-			int value = this.Value;
-			bool result = false;
-			switch (compareOperator)
-			{
-			case CompareOperator.Equals:
-				result = (value == integerValue);
-				break;
-			case CompareOperator.NotEquals:
-				result = (value != integerValue);
-				break;
-			case CompareOperator.LessThan:
-				result = (value < integerValue);
-				break;
-			case CompareOperator.GreaterThan:
-				result = (value > integerValue);
-				break;
-			case CompareOperator.LessThanOrEquals:
-				result = (value <= integerValue);
-				break;
-			case CompareOperator.GreaterThanOrEquals:
-				result = (value >= integerValue);
-				break;
-			default:
-				Debug.LogError("The " + compareOperator.ToString() + " comparison operator is not valid.");
-				break;
-			}
-			return result;
+		case CompareOperator.Equals:
+			result = num == integerValue;
+			break;
+		case CompareOperator.NotEquals:
+			result = num != integerValue;
+			break;
+		case CompareOperator.LessThan:
+			result = num < integerValue;
+			break;
+		case CompareOperator.GreaterThan:
+			result = num > integerValue;
+			break;
+		case CompareOperator.LessThanOrEquals:
+			result = num <= integerValue;
+			break;
+		case CompareOperator.GreaterThanOrEquals:
+			result = num >= integerValue;
+			break;
+		default:
+			Debug.LogError((object)("The " + compareOperator.ToString() + " comparison operator is not valid."));
+			break;
 		}
+		return result;
+	}
 
-		// Token: 0x06006B4B RID: 27467 RVA: 0x0029620C File Offset: 0x0029440C
-		public override void Apply(SetOperator setOperator, int value)
+	public override void Apply(SetOperator setOperator, int value)
+	{
+		switch (setOperator)
 		{
-			switch (setOperator)
-			{
-			case SetOperator.Assign:
-				this.Value = value;
-				return;
-			case SetOperator.Add:
-				this.Value += value;
-				return;
-			case SetOperator.Subtract:
-				this.Value -= value;
-				return;
-			case SetOperator.Multiply:
-				this.Value *= value;
-				return;
-			case SetOperator.Divide:
-				this.Value /= value;
-				return;
-			case SetOperator.Remainder:
-				this.Value %= value;
-				return;
-			}
-			Debug.LogError("The " + setOperator.ToString() + " set operator is not valid.");
+		case SetOperator.Assign:
+			Value = value;
+			break;
+		case SetOperator.Add:
+			Value += value;
+			break;
+		case SetOperator.Subtract:
+			Value -= value;
+			break;
+		case SetOperator.Multiply:
+			Value *= value;
+			break;
+		case SetOperator.Divide:
+			Value /= value;
+			break;
+		case SetOperator.Remainder:
+			Value %= value;
+			break;
+		default:
+			Debug.LogError((object)("The " + setOperator.ToString() + " set operator is not valid."));
+			break;
 		}
-
-		// Token: 0x04005A7C RID: 23164
-		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
-		{
-			CompareOperator.Equals,
-			CompareOperator.NotEquals,
-			CompareOperator.LessThan,
-			CompareOperator.GreaterThan,
-			CompareOperator.LessThanOrEquals,
-			CompareOperator.GreaterThanOrEquals
-		};
-
-		// Token: 0x04005A7D RID: 23165
-		public static readonly SetOperator[] setOperators = new SetOperator[]
-		{
-			SetOperator.Assign,
-			SetOperator.Add,
-			SetOperator.Subtract,
-			SetOperator.Multiply,
-			SetOperator.Divide,
-			SetOperator.Remainder
-		};
 	}
 }

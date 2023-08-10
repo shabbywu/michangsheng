@@ -1,55 +1,64 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000457 RID: 1111
 public class EffectFlying : MonoBehaviour
 {
-	// Token: 0x060022EC RID: 8940 RVA: 0x000EE894 File Offset: 0x000ECA94
-	public void Start()
-	{
-		this.m_RelaCoor = (this.ToPos - this.FromPos).normalized;
-		this.m_fStartRockon = Time.time;
-		this.m_fDistance = Vector3.Distance(this.ToPos, this.FromPos);
-	}
-
-	// Token: 0x060022ED RID: 8941 RVA: 0x000EE8E4 File Offset: 0x000ECAE4
-	public void Update()
-	{
-		float num = Time.time - this.m_fStartRockon;
-		if (num > this.m_fDistance / this.Speed)
-		{
-			Object.Destroy(base.gameObject);
-			return;
-		}
-		Vector3 vector = this.m_RelaCoor * this.Speed * num;
-		float num2 = 4f * (this.Speed * num * this.HWRate - Mathf.Pow(this.Speed * num, 2f) * this.HWRate / this.m_fDistance);
-		vector.y += num2;
-		Vector3 vector2 = this.FromPos + this.m_RelaCoor + vector;
-		base.transform.LookAt(vector2);
-		base.transform.position = vector2;
-	}
-
-	// Token: 0x04001C1E RID: 7198
 	public Vector3 FromPos = Vector3.zero;
 
-	// Token: 0x04001C1F RID: 7199
 	public Vector3 ToPos = Vector3.zero;
 
-	// Token: 0x04001C20 RID: 7200
 	public float MaxDistance = 30f;
 
-	// Token: 0x04001C21 RID: 7201
 	public float Speed = 30f;
 
-	// Token: 0x04001C22 RID: 7202
 	public float HWRate;
 
-	// Token: 0x04001C23 RID: 7203
 	private Vector3 m_RelaCoor = Vector3.up;
 
-	// Token: 0x04001C24 RID: 7204
 	private float m_fStartRockon;
 
-	// Token: 0x04001C25 RID: 7205
 	private float m_fDistance;
+
+	public void Start()
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = ToPos - FromPos;
+		m_RelaCoor = ((Vector3)(ref val)).normalized;
+		m_fStartRockon = Time.time;
+		m_fDistance = Vector3.Distance(ToPos, FromPos);
+	}
+
+	public void Update()
+	{
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ae: Unknown result type (might be due to invalid IL or missing references)
+		float num = Time.time - m_fStartRockon;
+		if (num > m_fDistance / Speed)
+		{
+			Object.Destroy((Object)(object)((Component)this).gameObject);
+			return;
+		}
+		Vector3 val = m_RelaCoor * Speed * num;
+		float num2 = 4f * (Speed * num * HWRate - Mathf.Pow(Speed * num, 2f) * HWRate / m_fDistance);
+		val.y += num2;
+		Vector3 val2 = FromPos + m_RelaCoor + val;
+		((Component)this).transform.LookAt(val2);
+		((Component)this).transform.position = val2;
+	}
 }

@@ -1,60 +1,56 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000C6 RID: 198
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Motion Blur (Color Accumulation)")]
 [RequireComponent(typeof(Camera))]
 public class MotionBlur : ImageEffectBase
 {
-	// Token: 0x06000AD4 RID: 2772 RVA: 0x000414DE File Offset: 0x0003F6DE
+	public float blurAmount = 0.8f;
+
+	public bool extraBlur;
+
+	private RenderTexture accumTexture;
+
 	protected override void Start()
 	{
 		if (!SystemInfo.supportsRenderTextures)
 		{
-			base.enabled = false;
-			return;
+			((Behaviour)this).enabled = false;
 		}
-		base.Start();
+		else
+		{
+			base.Start();
+		}
 	}
 
-	// Token: 0x06000AD5 RID: 2773 RVA: 0x000414F5 File Offset: 0x0003F6F5
 	protected override void OnDisable()
 	{
 		base.OnDisable();
-		Object.DestroyImmediate(this.accumTexture);
+		Object.DestroyImmediate((Object)(object)accumTexture);
 	}
 
-	// Token: 0x06000AD6 RID: 2774 RVA: 0x00041508 File Offset: 0x0003F708
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		if (this.accumTexture == null || this.accumTexture.width != source.width || this.accumTexture.height != source.height)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Expected O, but got Unknown
+		if ((Object)(object)accumTexture == (Object)null || ((Texture)accumTexture).width != ((Texture)source).width || ((Texture)accumTexture).height != ((Texture)source).height)
 		{
-			Object.DestroyImmediate(this.accumTexture);
-			this.accumTexture = new RenderTexture(source.width, source.height, 0);
-			this.accumTexture.hideFlags = 61;
-			Graphics.Blit(source, this.accumTexture);
+			Object.DestroyImmediate((Object)(object)accumTexture);
+			accumTexture = new RenderTexture(((Texture)source).width, ((Texture)source).height, 0);
+			((Object)accumTexture).hideFlags = (HideFlags)61;
+			Graphics.Blit((Texture)(object)source, accumTexture);
 		}
-		if (this.extraBlur)
+		if (extraBlur)
 		{
-			RenderTexture temporary = RenderTexture.GetTemporary(source.width / 4, source.height / 4, 0);
-			Graphics.Blit(this.accumTexture, temporary);
-			Graphics.Blit(temporary, this.accumTexture);
+			RenderTexture temporary = RenderTexture.GetTemporary(((Texture)source).width / 4, ((Texture)source).height / 4, 0);
+			Graphics.Blit((Texture)(object)accumTexture, temporary);
+			Graphics.Blit((Texture)(object)temporary, accumTexture);
 			RenderTexture.ReleaseTemporary(temporary);
 		}
-		this.blurAmount = Mathf.Clamp(this.blurAmount, 0f, 0.92f);
-		base.material.SetTexture("_MainTex", this.accumTexture);
-		base.material.SetFloat("_AccumOrig", 1f - this.blurAmount);
-		Graphics.Blit(source, this.accumTexture, base.material);
-		Graphics.Blit(this.accumTexture, destination);
+		blurAmount = Mathf.Clamp(blurAmount, 0f, 0.92f);
+		base.material.SetTexture("_MainTex", (Texture)(object)accumTexture);
+		base.material.SetFloat("_AccumOrig", 1f - blurAmount);
+		Graphics.Blit((Texture)(object)source, accumTexture, base.material);
+		Graphics.Blit((Texture)(object)accumTexture, destination);
 	}
-
-	// Token: 0x040006D3 RID: 1747
-	public float blurAmount = 0.8f;
-
-	// Token: 0x040006D4 RID: 1748
-	public bool extraBlur;
-
-	// Token: 0x040006D5 RID: 1749
-	private RenderTexture accumTexture;
 }

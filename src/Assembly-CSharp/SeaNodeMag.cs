@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using JSONClass;
@@ -6,317 +6,331 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x020003BC RID: 956
 public class SeaNodeMag
 {
-	// Token: 0x06001F29 RID: 7977 RVA: 0x000DACAE File Offset: 0x000D8EAE
+	private Avatar avatar;
+
 	public SeaNodeMag(Avatar _avatar)
 	{
-		this.avatar = _avatar;
+		avatar = _avatar;
 	}
 
-	// Token: 0x06001F2A RID: 7978 RVA: 0x000DACC0 File Offset: 0x000D8EC0
 	public void INITSEA()
 	{
-		this.CreatSeaIsland();
-		this.SetHaiYuAnQuAnDengJi();
-		this.SetLuanLiuLv();
-		if (!this.avatar.EndlessSeaAvatarSeeIsland.ContainsKey("Island"))
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Expected O, but got Unknown
+		CreatSeaIsland();
+		SetHaiYuAnQuAnDengJi();
+		SetLuanLiuLv();
+		if (!avatar.EndlessSeaAvatarSeeIsland.ContainsKey("Island"))
 		{
-			this.avatar.EndlessSeaAvatarSeeIsland["Island"] = new JArray();
+			avatar.EndlessSeaAvatarSeeIsland["Island"] = (JToken)new JArray();
 		}
 	}
 
-	// Token: 0x06001F2B RID: 7979 RVA: 0x000DAD10 File Offset: 0x000D8F10
 	public JToken FindSeaMonsetar(string monstaruuid, int seaID)
 	{
-		foreach (JToken jtoken in this.avatar.EndlessSeaRandomNode[seaID.ToString()]["Monstar"])
+		foreach (JToken item in (IEnumerable<JToken>)avatar.EndlessSeaRandomNode[seaID.ToString()][(object)"Monstar"])
 		{
-			if (monstaruuid == (string)jtoken["uuid"])
+			if (monstaruuid == (string)item[(object)"uuid"])
 			{
-				return jtoken;
+				return item;
 			}
 		}
 		return null;
 	}
 
-	// Token: 0x06001F2C RID: 7980 RVA: 0x000DAD90 File Offset: 0x000D8F90
 	public void RemoveSeaMonstar(string monstaruuid, int seaID)
 	{
-		JToken jtoken = this.avatar.EndlessSeaRandomNode[seaID.ToString()]["Monstar"];
-		JToken jtoken2 = this.FindSeaMonsetar(monstaruuid, seaID);
-		if (jtoken2 != null)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		JToken val = avatar.EndlessSeaRandomNode[seaID.ToString()][(object)"Monstar"];
+		JToken val2 = FindSeaMonsetar(monstaruuid, seaID);
+		if (val2 != null)
 		{
-			((JArray)jtoken).Remove(jtoken2);
+			((JArray)val).Remove(val2);
 		}
 	}
 
-	// Token: 0x06001F2D RID: 7981 RVA: 0x000DADD8 File Offset: 0x000D8FD8
 	public void RemoveSeaMonstar(string monstaruuid)
 	{
-		foreach (KeyValuePair<string, JToken> keyValuePair in this.avatar.EndlessSeaRandomNode)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		foreach (KeyValuePair<string, JToken> item in avatar.EndlessSeaRandomNode)
 		{
-			foreach (JToken jtoken in keyValuePair.Value["Monstar"])
+			foreach (JToken item2 in (IEnumerable<JToken>)item.Value[(object)"Monstar"])
 			{
-				if ((string)jtoken["uuid"] == monstaruuid)
+				if ((string)item2[(object)"uuid"] == monstaruuid)
 				{
-					((JArray)keyValuePair.Value["Monstar"]).Remove(jtoken);
+					((JArray)item.Value[(object)"Monstar"]).Remove(item2);
 					break;
 				}
 			}
 		}
 	}
 
-	// Token: 0x06001F2E RID: 7982 RVA: 0x000DAE9C File Offset: 0x000D909C
 	public void SetSeaMonstarIndex(string monstaruuid, int seaID, int index)
 	{
-		JToken jtoken = this.FindSeaMonsetar(monstaruuid, seaID);
-		if (jtoken != null)
+		JToken val = FindSeaMonsetar(monstaruuid, seaID);
+		if (val != null)
 		{
-			jtoken["index"] = index;
+			val[(object)"index"] = JToken.op_Implicit(index);
 		}
 	}
 
-	// Token: 0x06001F2F RID: 7983 RVA: 0x000DAEC6 File Offset: 0x000D90C6
 	public int GetSeaIslandIndex(int seaid)
 	{
-		return (int)this.avatar.EndlessSea["AllIaLand"][seaid - 1];
+		return (int)avatar.EndlessSea["AllIaLand"][(object)(seaid - 1)];
 	}
 
-	// Token: 0x06001F30 RID: 7984 RVA: 0x000DAEF0 File Offset: 0x000D90F0
 	public void CreatSeaIsland()
 	{
-		if (!this.avatar.EndlessSea.ContainsKey("AllIaLand"))
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Expected O, but got Unknown
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bb: Unknown result type (might be due to invalid IL or missing references)
+		if (!avatar.EndlessSea.ContainsKey("AllIaLand"))
 		{
-			JArray jarray = new JArray();
-			this.avatar.EndlessSea["AllIaLand"] = jarray;
+			JArray val = new JArray();
+			avatar.EndlessSea["AllIaLand"] = (JToken)(object)val;
 		}
 		FuBenMap fuBenMap = new FuBenMap(7, 7);
 		List<int> list = new List<int>();
 		List<int> list2 = new List<int>();
-		foreach (SeaHaiYuJiZhiShuaXin seaHaiYuJiZhiShuaXin in SeaHaiYuJiZhiShuaXin.DataList)
+		foreach (SeaHaiYuJiZhiShuaXin data in SeaHaiYuJiZhiShuaXin.DataList)
 		{
-			foreach (int item in seaHaiYuJiZhiShuaXin.WeiZhi)
+			foreach (int item in data.WeiZhi)
 			{
 				list2.Add(item);
 			}
 		}
-		foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.SeaStaticIsland)
+		foreach (KeyValuePair<string, JToken> item2 in jsonData.instance.SeaStaticIsland)
 		{
-			int allMapIndex = (int)keyValuePair.Value["IsLandIndex"];
-			int inSeaID = this.GetInSeaID(allMapIndex, EndlessSeaMag.MapWide);
+			int allMapIndex = (int)item2.Value[(object)"IsLandIndex"];
+			int inSeaID = GetInSeaID(allMapIndex, EndlessSeaMag.MapWide);
 			list.Add(inSeaID);
 		}
-		for (int i = ((JArray)this.avatar.EndlessSea["AllIaLand"]).Count; i < jsonData.instance.EndlessSeaType.Count; i++)
+		for (int i = ((JContainer)(JArray)avatar.EndlessSea["AllIaLand"]).Count; i < ((JContainer)jsonData.instance.EndlessSeaType).Count; i++)
 		{
 			if (list.Contains(i + 1))
 			{
-				((JArray)this.avatar.EndlessSea["AllIaLand"]).Add(-1);
+				((JArray)avatar.EndlessSea["AllIaLand"]).Add(JToken.op_Implicit(-1));
+				continue;
 			}
-			else
+			bool flag;
+			do
 			{
-				bool flag;
-				do
+				int num = jsonData.GetRandom() % 5 + 1;
+				int num2 = jsonData.GetRandom() % 5 + 1;
+				int realIndex = EndlessSeaMag.GetRealIndex(i + 1, fuBenMap.mapIndex[num, num2]);
+				flag = list2.Contains(realIndex);
+				if (!flag)
 				{
-					int num = jsonData.GetRandom() % 5 + 1;
-					int num2 = jsonData.GetRandom() % 5 + 1;
-					int realIndex = EndlessSeaMag.GetRealIndex(i + 1, fuBenMap.mapIndex[num, num2]);
-					flag = list2.Contains(realIndex);
-					if (!flag)
-					{
-						((JArray)this.avatar.EndlessSea["AllIaLand"]).Add(fuBenMap.mapIndex[num, num2]);
-					}
+					((JArray)avatar.EndlessSea["AllIaLand"]).Add(JToken.op_Implicit(fuBenMap.mapIndex[num, num2]));
 				}
-				while (flag);
 			}
+			while (flag);
 		}
 	}
 
-	// Token: 0x06001F31 RID: 7985 RVA: 0x000DB120 File Offset: 0x000D9320
 	private void CreateLuanLiuID()
 	{
-		if (!this.avatar.EndlessSea.ContainsKey("LuanLiuId"))
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Expected O, but got Unknown
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Expected O, but got Unknown
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		if (!avatar.EndlessSea.ContainsKey("LuanLiuId"))
 		{
-			JArray jarray = new JArray();
-			this.avatar.EndlessSea["LuanLiuId"] = jarray;
+			JArray val = new JArray();
+			avatar.EndlessSea["LuanLiuId"] = (JToken)(object)val;
 		}
-		if (!this.avatar.EndlessSea.ContainsKey("LuanLiuLV"))
+		if (!avatar.EndlessSea.ContainsKey("LuanLiuLV"))
 		{
-			JArray jarray2 = new JArray();
-			this.avatar.EndlessSea["LuanLiuLV"] = jarray2;
+			JArray val2 = new JArray();
+			avatar.EndlessSea["LuanLiuLV"] = (JToken)(object)val2;
 		}
-		for (int i = ((JArray)this.avatar.EndlessSea["LuanLiuId"]).Count; i < jsonData.instance.EndlessSeaType.Count; i++)
+		for (int i = ((JContainer)(JArray)avatar.EndlessSea["LuanLiuId"]).Count; i < ((JContainer)jsonData.instance.EndlessSeaType).Count; i++)
 		{
-			((JArray)this.avatar.EndlessSea["LuanLiuId"]).Add(jsonData.GetRandom() % 1000);
+			((JArray)avatar.EndlessSea["LuanLiuId"]).Add(JToken.op_Implicit(jsonData.GetRandom() % 1000));
 		}
-		for (int j = ((JArray)this.avatar.EndlessSea["LuanLiuLV"]).Count; j < jsonData.instance.EndlessSeaType.Count; j++)
+		for (int j = ((JContainer)(JArray)avatar.EndlessSea["LuanLiuLV"]).Count; j < ((JContainer)jsonData.instance.EndlessSeaType).Count; j++)
 		{
-			((JArray)this.avatar.EndlessSea["LuanLiuLV"]).Add(0);
+			((JArray)avatar.EndlessSea["LuanLiuLV"]).Add(JToken.op_Implicit(0));
 		}
 	}
 
-	// Token: 0x06001F32 RID: 7986 RVA: 0x000DB258 File Offset: 0x000D9458
 	public void SetLuanLiuLv()
 	{
-		DateTime nowTime = this.avatar.worldTimeMag.getNowTime();
-		if (this.avatar.EndlessSea.ContainsKey("LuanLiuResetTime"))
+		DateTime nowTime = avatar.worldTimeMag.getNowTime();
+		if (avatar.EndlessSea.ContainsKey("LuanLiuResetTime"))
 		{
-			if (new List<int>
-			{
-				5,
-				6,
-				7,
-				8,
-				11,
-				12,
-				1,
-				2
-			}.Contains(nowTime.Month))
+			if (new List<int> { 5, 6, 7, 8, 11, 12, 1, 2 }.Contains(nowTime.Month))
 			{
 				return;
 			}
-			DateTime startTime = DateTime.Parse((string)this.avatar.EndlessSea["LuanLiuResetTime"]);
+			DateTime startTime = DateTime.Parse((string)avatar.EndlessSea["LuanLiuResetTime"]);
 			DateTime endTime = startTime.AddDays(15.0);
-			if (Tools.instance.IsInTime(nowTime, startTime, endTime, 0))
+			if (Tools.instance.IsInTime(nowTime, startTime, endTime))
 			{
 				return;
 			}
 		}
-		this.CreateLuanLiuID();
-		for (int i = 0; i < jsonData.instance.EndlessSeaType.Count; i++)
+		CreateLuanLiuID();
+		for (int i = 0; i < ((JContainer)jsonData.instance.EndlessSeaType).Count; i++)
 		{
-			this.avatar.EndlessSea["LuanLiuLV"][i] = 1 + (int)this.avatar.EndlessSea["SafeLv"][i];
-			this.avatar.EndlessSea["LuanLiuId"][i] = 1 + (int)this.avatar.EndlessSea["LuanLiuId"][i];
+			avatar.EndlessSea["LuanLiuLV"][(object)i] = JToken.op_Implicit(1 + (int)avatar.EndlessSea["SafeLv"][(object)i]);
+			avatar.EndlessSea["LuanLiuId"][(object)i] = JToken.op_Implicit(1 + (int)avatar.EndlessSea["LuanLiuId"][(object)i]);
 		}
-		this.avatar.EndlessSea["LuanLiuResetTime"] = this.avatar.worldTimeMag.nowTime;
+		avatar.EndlessSea["LuanLiuResetTime"] = JToken.op_Implicit(avatar.worldTimeMag.nowTime);
 	}
 
-	// Token: 0x06001F33 RID: 7987 RVA: 0x000DB408 File Offset: 0x000D9608
 	public int GetSeaIDLV(int seaID)
 	{
-		return (int)this.avatar.EndlessSea["SafeLv"][seaID - 1];
+		return (int)avatar.EndlessSea["SafeLv"][(object)(seaID - 1)];
 	}
 
-	// Token: 0x06001F34 RID: 7988 RVA: 0x000DB434 File Offset: 0x000D9634
 	public JToken GetFengBaoIndexList(int _seaid)
 	{
-		int num = (int)((JArray)this.avatar.EndlessSea["SafeLv"])[_seaid - 1];
-		JToken jtoken = jsonData.instance.EndlessSeaLuanLiuRandom[num.ToString()];
-		int num2 = (int)this.avatar.EndlessSea["LuanLiuId"][_seaid - 1] % ((JArray)jtoken).Count;
-		return jtoken[num2];
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		int num = (int)((JArray)avatar.EndlessSea["SafeLv"])[_seaid - 1];
+		JToken val = jsonData.instance.EndlessSeaLuanLiuRandom[num.ToString()];
+		int num2 = (int)avatar.EndlessSea["LuanLiuId"][(object)(_seaid - 1)] % ((JContainer)(JArray)val).Count;
+		return val[(object)num2];
 	}
 
-	// Token: 0x06001F35 RID: 7989 RVA: 0x000DB4C0 File Offset: 0x000D96C0
 	public int GetIndexFengBaoLv(int AllMapIndex, int wide)
 	{
-		int inSeaID = this.GetInSeaID(AllMapIndex, wide);
-		int num = (int)((JArray)this.avatar.EndlessSea["SafeLv"])[inSeaID - 1];
-		JToken jtoken = jsonData.instance.EndlessSeaLuanLiuRandomMap[num.ToString()];
-		int num2 = (int)this.avatar.EndlessSea["LuanLiuId"][inSeaID - 1] % ((JArray)jtoken).Count;
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		int inSeaID = GetInSeaID(AllMapIndex, wide);
+		int num = (int)((JArray)avatar.EndlessSea["SafeLv"])[inSeaID - 1];
+		JToken val = jsonData.instance.EndlessSeaLuanLiuRandomMap[num.ToString()];
+		int num2 = (int)avatar.EndlessSea["LuanLiuId"][(object)(inSeaID - 1)] % ((JContainer)(JArray)val).Count;
 		int num3 = FuBenMap.getIndexX(AllMapIndex, wide) % 7;
 		int num4 = FuBenMap.getIndexY(AllMapIndex, wide) % 7;
-		return (int)jtoken[num2][num4][num3];
+		return (int)val[(object)num2][(object)num4][(object)num3];
 	}
 
-	// Token: 0x06001F36 RID: 7990 RVA: 0x000DB588 File Offset: 0x000D9788
 	public int GetInSeaID(int AllMapIndex, int wide)
 	{
 		int indexX = FuBenMap.getIndexX(AllMapIndex, wide);
-		int indexY = FuBenMap.getIndexY(AllMapIndex, wide);
-		return FuBenMap.getIndex(indexX / 7, indexY / 7, wide / 7);
+		return FuBenMap.getIndex(y: FuBenMap.getIndexY(AllMapIndex, wide) / 7, x: indexX / 7, wide: wide / 7);
 	}
 
-	// Token: 0x06001F37 RID: 7991 RVA: 0x000DB5B4 File Offset: 0x000D97B4
 	public void CreateLuanLiuMap()
 	{
-		JObject jobject = new JObject();
-		JObject jobject2 = new JObject();
-		JObject jobject3 = new JObject();
-		for (int i = 1; i <= jsonData.instance.EndlessSeaSafeLvData.Count; i++)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Expected O, but got Unknown
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Expected O, but got Unknown
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Expected O, but got Unknown
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Expected O, but got Unknown
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Expected O, but got Unknown
+		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Expected O, but got Unknown
+		//IL_019e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Expected O, but got Unknown
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010e: Expected O, but got Unknown
+		//IL_01bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Expected O, but got Unknown
+		//IL_0371: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0378: Expected O, but got Unknown
+		JObject val = new JObject();
+		JObject val2 = new JObject();
+		JObject val3 = new JObject();
+		for (int i = 1; i <= ((JContainer)jsonData.instance.EndlessSeaSafeLvData).Count; i++)
 		{
-			JArray jarray = new JArray();
-			JArray jarray2 = new JArray();
+			JArray val4 = new JArray();
+			JArray val5 = new JArray();
 			FuBenMap fuBenMap = new FuBenMap(7, 7);
 			FuBenMap baseMapIndex = new FuBenMap(7, 7);
-			JToken jtoken = jsonData.instance.EndlessSeaSafeLvData[i.ToString()];
-			int num = 1;
-			this.CreatMapLuanLiuNode(fuBenMap, 4, (int)jtoken["value4"], baseMapIndex, ref num);
-			this.CreatMapLuanLiuNode(fuBenMap, 3, (int)jtoken["value3"], baseMapIndex, ref num);
-			this.CreatMapLuanLiuNode(fuBenMap, 2, (int)jtoken["value2"], baseMapIndex, ref num);
-			this.CreatMapLuanLiuNode(fuBenMap, 1, (int)jtoken["value1"], baseMapIndex, ref num);
+			JToken val6 = jsonData.instance.EndlessSeaSafeLvData[i.ToString()];
+			int index = 1;
+			CreatMapLuanLiuNode(fuBenMap, 4, (int)val6[(object)"value4"], baseMapIndex, ref index);
+			CreatMapLuanLiuNode(fuBenMap, 3, (int)val6[(object)"value3"], baseMapIndex, ref index);
+			CreatMapLuanLiuNode(fuBenMap, 2, (int)val6[(object)"value2"], baseMapIndex, ref index);
+			CreatMapLuanLiuNode(fuBenMap, 1, (int)val6[(object)"value1"], baseMapIndex, ref index);
 			for (int j = 0; j < 400; j++)
 			{
-				this.MoveNodePostion(fuBenMap, baseMapIndex);
-				this.SaveNodePostion(fuBenMap, jarray, baseMapIndex);
-				JArray jarray3 = new JArray();
-				foreach (List<int> list in fuBenMap.ToListList())
+				MoveNodePostion(fuBenMap, baseMapIndex);
+				SaveNodePostion(fuBenMap, val4, baseMapIndex);
+				JArray val7 = new JArray();
+				foreach (List<int> item in fuBenMap.ToListList())
 				{
-					JArray jarray4 = new JArray();
-					jarray4.Add(list);
-					jarray3.Add(jarray4);
+					JArray val8 = new JArray();
+					((JContainer)val8).Add((object)item);
+					val7.Add((JToken)(object)val8);
 				}
-				jarray2.Add(jarray3);
+				val5.Add((JToken)(object)val7);
 			}
-			jobject2.Add(i.ToString(), jarray2);
-			jobject.Add(i.ToString(), jarray);
+			val2.Add(i.ToString(), (JToken)(object)val5);
+			val.Add(i.ToString(), (JToken)(object)val4);
 		}
-		foreach (KeyValuePair<string, JToken> keyValuePair in jobject)
+		foreach (KeyValuePair<string, JToken> item2 in val)
 		{
-			JArray jarray5 = new JArray();
-			foreach (IEnumerable<JToken> enumerable in keyValuePair.Value)
+			JArray val9 = new JArray();
+			foreach (JToken item3 in (IEnumerable<JToken>)item2.Value)
 			{
-				JArray jarray6 = new JArray();
+				JArray val10 = new JArray();
 				FuBenMap fuBenMap2 = new FuBenMap(7, 7);
-				foreach (JToken jtoken2 in enumerable)
+				foreach (JToken item4 in (IEnumerable<JToken>)item3)
 				{
-					int indexX = FuBenMap.getIndexX((int)jtoken2["index"], 7);
-					int indexY = FuBenMap.getIndexY((int)jtoken2["index"], 7);
-					int num2 = (int)jtoken2["lv"];
-					JToken jtoken3 = jsonData.instance.EndlessSeaLuanLIuXinZhuang[num2.ToString()];
-					fuBenMap2.map[indexX, indexY] = num2;
+					int indexX = FuBenMap.getIndexX((int)item4[(object)"index"], 7);
+					int indexY = FuBenMap.getIndexY((int)item4[(object)"index"], 7);
+					int num = (int)item4[(object)"lv"];
+					JToken obj = jsonData.instance.EndlessSeaLuanLIuXinZhuang[num.ToString()];
+					fuBenMap2.map[indexX, indexY] = num;
+					List<int> list = new List<int>();
 					List<int> list2 = new List<int>();
-					List<int> list3 = new List<int>();
-					int num3 = 0;
-					foreach (JToken jtoken4 in jtoken3["xinzhuangX"])
+					int num2 = 0;
+					foreach (JToken item5 in (IEnumerable<JToken>)obj[(object)"xinzhuangX"])
 					{
-						if (num3 % 2 == 0)
+						if (num2 % 2 == 0)
 						{
-							list2.Add((int)jtoken4);
+							list.Add((int)item5);
 						}
 						else
 						{
-							list3.Add((int)jtoken4);
+							list2.Add((int)item5);
+						}
+						num2++;
+					}
+					int num3 = 0;
+					foreach (int item6 in list)
+					{
+						_ = item6;
+						int num4 = Mathf.Clamp(indexX + list[num3], 0, 6);
+						int num5 = Mathf.Clamp(indexY + list2[num3], 0, 6);
+						if (fuBenMap2.map[num4, num5] < num)
+						{
+							fuBenMap2.map[num4, num5] = num;
 						}
 						num3++;
 					}
-					int num4 = 0;
-					foreach (int num5 in list2)
-					{
-						int num6 = Mathf.Clamp(indexX + list2[num4], 0, 6);
-						int num7 = Mathf.Clamp(indexY + list3[num4], 0, 6);
-						if (fuBenMap2.map[num6, num7] < num2)
-						{
-							fuBenMap2.map[num6, num7] = num2;
-						}
-						num4++;
-					}
 				}
-				foreach (List<int> list4 in fuBenMap2.ToListList())
+				foreach (List<int> item7 in fuBenMap2.ToListList())
 				{
-					JArray jarray7 = new JArray();
-					jarray7.Add(list4);
-					jarray6.Add(jarray7);
+					JArray val11 = new JArray();
+					((JContainer)val11).Add((object)item7);
+					val10.Add((JToken)(object)val11);
 				}
-				jarray5.Add(jarray6);
+				val9.Add((JToken)(object)val10);
 			}
-			jobject3.Add(keyValuePair.Key, jarray5);
+			val3.Add(item2.Key, (JToken)(object)val9);
 		}
-		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuMap.json", jobject.ToString());
-		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuJMap.json", jobject2.ToString());
-		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuRMap.json", jobject3.ToString());
+		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuMap.json", ((object)val).ToString());
+		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuJMap.json", ((object)val2).ToString());
+		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuRMap.json", ((object)val3).ToString());
 	}
 
-	// Token: 0x06001F38 RID: 7992 RVA: 0x000DBA8C File Offset: 0x000D9C8C
 	public void MoveNodePostion(FuBenMap baseMap, FuBenMap BaseMapIndex)
 	{
 		for (int i = 0; i < 7; i++)
@@ -324,40 +338,38 @@ public class SeaNodeMag
 			int num = 0;
 			for (int j = 0; j < 7; j++)
 			{
-				if (baseMap.map[i, j] != 0)
+				if (baseMap.map[i, j] == 0)
 				{
-					int num2 = this.getWide(baseMap.map[i, j]) / 2;
-					int num3 = this.getHigh(baseMap.map[i, j]) / 2;
-					int num4 = 6 - num2;
-					int num5 = num2;
-					int num6 = 6 - num3;
-					int num7 = num3;
-					int num8 = jsonData.GetRandom() % 2;
-					int num9 = (num8 == 0) ? 1 : 0;
-					int num10 = jsonData.GetRandom() % 2 + 1;
-					int num11 = jsonData.GetRandom() % 2 + 1;
-					int num12 = Mathf.Clamp((int)((float)i + Mathf.Pow(-1f, (float)num10) * (float)num8), num5, num4);
-					int num13 = Mathf.Clamp((int)((float)j + Mathf.Pow(-1f, (float)num11) * (float)num9), num7, num6);
-					if (num12 == i && num13 == j && num < 10)
-					{
-						j--;
-						num++;
-					}
-					else
-					{
-						if (num >= 10)
-						{
-							Debug.Log("移动乱流时失败循环次数超过10次");
-						}
-						num = 0;
-						this.RelizedMoveNode(baseMap, i, j, num12, num13, BaseMapIndex);
-					}
+					continue;
 				}
+				int num2 = getWide(baseMap.map[i, j]) / 2;
+				int num3 = getHigh(baseMap.map[i, j]) / 2;
+				int num4 = 6 - num2;
+				int num5 = num2;
+				int num6 = 6 - num3;
+				int num7 = num3;
+				int num8 = jsonData.GetRandom() % 2;
+				int num9 = ((num8 == 0) ? 1 : 0);
+				int num10 = jsonData.GetRandom() % 2 + 1;
+				int num11 = jsonData.GetRandom() % 2 + 1;
+				int num12 = Mathf.Clamp((int)((float)i + Mathf.Pow(-1f, (float)num10) * (float)num8), num5, num4);
+				int num13 = Mathf.Clamp((int)((float)j + Mathf.Pow(-1f, (float)num11) * (float)num9), num7, num6);
+				if (num12 == i && num13 == j && num < 10)
+				{
+					j--;
+					num++;
+					continue;
+				}
+				if (num >= 10)
+				{
+					Debug.Log((object)"移动乱流时失败循环次数超过10次");
+				}
+				num = 0;
+				RelizedMoveNode(baseMap, i, j, num12, num13, BaseMapIndex);
 			}
 		}
 	}
 
-	// Token: 0x06001F39 RID: 7993 RVA: 0x000DBBB4 File Offset: 0x000D9DB4
 	public bool RelizedMoveNode(FuBenMap baseMap, int startX, int startY, int endX, int endY, FuBenMap BaseMapIndex)
 	{
 		if (baseMap.map[endX, endY] == 0)
@@ -371,46 +383,46 @@ public class SeaNodeMag
 		return false;
 	}
 
-	// Token: 0x06001F3A RID: 7994 RVA: 0x000DBC2C File Offset: 0x000D9E2C
 	public int getWide(int type)
 	{
-		return (int)jsonData.instance.EndlessSeaLuanLIuXinZhuang[type.ToString()]["wide"];
+		return (int)jsonData.instance.EndlessSeaLuanLIuXinZhuang[type.ToString()][(object)"wide"];
 	}
 
-	// Token: 0x06001F3B RID: 7995 RVA: 0x000DBC53 File Offset: 0x000D9E53
 	public int getHigh(int type)
 	{
-		return (int)jsonData.instance.EndlessSeaLuanLIuXinZhuang[type.ToString()]["high"];
+		return (int)jsonData.instance.EndlessSeaLuanLIuXinZhuang[type.ToString()][(object)"high"];
 	}
 
-	// Token: 0x06001F3C RID: 7996 RVA: 0x000DBC7C File Offset: 0x000D9E7C
 	public void SaveNodePostion(FuBenMap baseMap, JArray lvJson, FuBenMap baseMapIndex)
 	{
-		JArray jarray = new JArray();
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Expected O, but got Unknown
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Expected O, but got Unknown
+		JArray val = new JArray();
 		for (int i = 0; i < 7; i++)
 		{
 			for (int j = 0; j < 7; j++)
 			{
 				if (baseMap.map[i, j] != 0)
 				{
-					JObject jobject = new JObject();
-					jobject["index"] = baseMap.mapIndex[i, j];
-					jobject["lv"] = baseMap.map[i, j];
-					jobject["id"] = baseMapIndex.map[i, j];
-					jarray.Add(jobject);
+					JObject val2 = new JObject();
+					val2["index"] = JToken.op_Implicit(baseMap.mapIndex[i, j]);
+					val2["lv"] = JToken.op_Implicit(baseMap.map[i, j]);
+					val2["id"] = JToken.op_Implicit(baseMapIndex.map[i, j]);
+					val.Add((JToken)(object)val2);
 				}
 			}
 		}
-		lvJson.Add(jarray);
+		lvJson.Add((JToken)(object)val);
 	}
 
-	// Token: 0x06001F3D RID: 7997 RVA: 0x000DBD28 File Offset: 0x000D9F28
 	public void CreatMapLuanLiuNode(FuBenMap baseMap, int Lv, int num, FuBenMap baseMapIndex, ref int index)
 	{
 		for (int i = 0; i < num; i++)
 		{
-			int num2 = this.getWide(Lv) / 2;
-			int num3 = this.getHigh(Lv) / 2;
+			int num2 = getWide(Lv) / 2;
+			int num3 = getHigh(Lv) / 2;
 			int num4 = num2 + jsonData.GetRandom() % (7 - num2 * 2);
 			int num5 = num3 + jsonData.GetRandom() % (7 - num3 * 2);
 			if (baseMap.map[num4, num5] == 0)
@@ -426,29 +438,27 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x06001F3E RID: 7998 RVA: 0x000DBDB4 File Offset: 0x000D9FB4
 	public void SetHaiYuAnQuAnDengJi()
 	{
-		if (this.avatar.EndlessSea.ContainsKey("SafeResetTime"))
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Expected O, but got Unknown
+		if (avatar.EndlessSea.ContainsKey("SafeResetTime"))
 		{
-			DateTime startTime = DateTime.Parse((string)this.avatar.EndlessSea["SafeResetTime"]);
+			DateTime startTime = DateTime.Parse((string)avatar.EndlessSea["SafeResetTime"]);
 			DateTime endTime = startTime.AddYears(10);
-			if (Tools.instance.IsInTime(this.avatar.worldTimeMag.getNowTime(), startTime, endTime, 0))
+			if (Tools.instance.IsInTime(avatar.worldTimeMag.getNowTime(), startTime, endTime))
 			{
 				return;
 			}
 		}
-		JArray jarray = new JArray();
-		for (int i = 1; i <= jsonData.instance.EndlessSeaType.Count; i++)
+		JArray val = new JArray();
+		for (int i = 1; i <= ((JContainer)jsonData.instance.EndlessSeaType).Count; i++)
 		{
-			int num = (int)jsonData.instance.EndlessSeaType[i.ToString()]["weixianLv"];
-			JToken jtoken = jsonData.instance.EndlessSeaData[num.ToString()];
-			jarray.Add(Tools.getRandomInt((int)jtoken["AnQuanLv"][0], (int)jtoken["AnQuanLv"][1]));
+			int num = (int)jsonData.instance.EndlessSeaType[i.ToString()][(object)"weixianLv"];
+			JToken val2 = jsonData.instance.EndlessSeaData[num.ToString()];
+			val.Add(JToken.op_Implicit(Tools.getRandomInt((int)val2[(object)"AnQuanLv"][(object)0], (int)val2[(object)"AnQuanLv"][(object)1])));
 		}
-		this.avatar.EndlessSea["SafeLv"] = jarray;
-		this.avatar.EndlessSea["SafeResetTime"] = this.avatar.worldTimeMag.nowTime;
+		avatar.EndlessSea["SafeLv"] = (JToken)(object)val;
+		avatar.EndlessSea["SafeResetTime"] = JToken.op_Implicit(avatar.worldTimeMag.nowTime);
 	}
-
-	// Token: 0x0400195E RID: 6494
-	private Avatar avatar;
 }

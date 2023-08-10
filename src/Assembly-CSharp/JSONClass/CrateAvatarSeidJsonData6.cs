@@ -1,65 +1,53 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class CrateAvatarSeidJsonData6 : IJSONClass
 {
-	// Token: 0x0200081A RID: 2074
-	public class CrateAvatarSeidJsonData6 : IJSONClass
+	public static int SEIDID = 6;
+
+	public static Dictionary<int, CrateAvatarSeidJsonData6> DataDict = new Dictionary<int, CrateAvatarSeidJsonData6>();
+
+	public static List<CrateAvatarSeidJsonData6> DataList = new List<CrateAvatarSeidJsonData6>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int value1;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003E7A RID: 15994 RVA: 0x001AB090 File Offset: 0x001A9290
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.CrateAvatarSeidJsonData[6].list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.CrateAvatarSeidJsonData[6].list)
+			try
 			{
-				try
+				CrateAvatarSeidJsonData6 crateAvatarSeidJsonData = new CrateAvatarSeidJsonData6();
+				crateAvatarSeidJsonData.id = item["id"].I;
+				crateAvatarSeidJsonData.value1 = item["value1"].I;
+				if (DataDict.ContainsKey(crateAvatarSeidJsonData.id))
 				{
-					CrateAvatarSeidJsonData6 crateAvatarSeidJsonData = new CrateAvatarSeidJsonData6();
-					crateAvatarSeidJsonData.id = jsonobject["id"].I;
-					crateAvatarSeidJsonData.value1 = jsonobject["value1"].I;
-					if (CrateAvatarSeidJsonData6.DataDict.ContainsKey(crateAvatarSeidJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典CrateAvatarSeidJsonData6.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", crateAvatarSeidJsonData.id));
-					}
-					else
-					{
-						CrateAvatarSeidJsonData6.DataDict.Add(crateAvatarSeidJsonData.id, crateAvatarSeidJsonData);
-						CrateAvatarSeidJsonData6.DataList.Add(crateAvatarSeidJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典CrateAvatarSeidJsonData6.DataDict添加数据时出现重复的键，Key:{crateAvatarSeidJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典CrateAvatarSeidJsonData6.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(crateAvatarSeidJsonData.id, crateAvatarSeidJsonData);
+				DataList.Add(crateAvatarSeidJsonData);
 			}
-			if (CrateAvatarSeidJsonData6.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				CrateAvatarSeidJsonData6.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典CrateAvatarSeidJsonData6.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003E7B RID: 15995 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040039C5 RID: 14789
-		public static int SEIDID = 6;
-
-		// Token: 0x040039C6 RID: 14790
-		public static Dictionary<int, CrateAvatarSeidJsonData6> DataDict = new Dictionary<int, CrateAvatarSeidJsonData6>();
-
-		// Token: 0x040039C7 RID: 14791
-		public static List<CrateAvatarSeidJsonData6> DataList = new List<CrateAvatarSeidJsonData6>();
-
-		// Token: 0x040039C8 RID: 14792
-		public static Action OnInitFinishAction = new Action(CrateAvatarSeidJsonData6.OnInitFinish);
-
-		// Token: 0x040039C9 RID: 14793
-		public int id;
-
-		// Token: 0x040039CA RID: 14794
-		public int value1;
+	private static void OnInitFinish()
+	{
 	}
 }

@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class SeaCastTimeJsonData : IJSONClass
 {
-	// Token: 0x020008D3 RID: 2259
-	public class SeaCastTimeJsonData : IJSONClass
+	public static Dictionary<int, SeaCastTimeJsonData> DataDict = new Dictionary<int, SeaCastTimeJsonData>();
+
+	public static List<SeaCastTimeJsonData> DataList = new List<SeaCastTimeJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int dunSu;
+
+	public int XiaoHao;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x0600415F RID: 16735 RVA: 0x001BFA50 File Offset: 0x001BDC50
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.SeaCastTimeJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.SeaCastTimeJsonData.list)
+			try
 			{
-				try
+				SeaCastTimeJsonData seaCastTimeJsonData = new SeaCastTimeJsonData();
+				seaCastTimeJsonData.id = item["id"].I;
+				seaCastTimeJsonData.dunSu = item["dunSu"].I;
+				seaCastTimeJsonData.XiaoHao = item["XiaoHao"].I;
+				if (DataDict.ContainsKey(seaCastTimeJsonData.id))
 				{
-					SeaCastTimeJsonData seaCastTimeJsonData = new SeaCastTimeJsonData();
-					seaCastTimeJsonData.id = jsonobject["id"].I;
-					seaCastTimeJsonData.dunSu = jsonobject["dunSu"].I;
-					seaCastTimeJsonData.XiaoHao = jsonobject["XiaoHao"].I;
-					if (SeaCastTimeJsonData.DataDict.ContainsKey(seaCastTimeJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典SeaCastTimeJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", seaCastTimeJsonData.id));
-					}
-					else
-					{
-						SeaCastTimeJsonData.DataDict.Add(seaCastTimeJsonData.id, seaCastTimeJsonData);
-						SeaCastTimeJsonData.DataList.Add(seaCastTimeJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典SeaCastTimeJsonData.DataDict添加数据时出现重复的键，Key:{seaCastTimeJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典SeaCastTimeJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(seaCastTimeJsonData.id, seaCastTimeJsonData);
+				DataList.Add(seaCastTimeJsonData);
 			}
-			if (SeaCastTimeJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				SeaCastTimeJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典SeaCastTimeJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004160 RID: 16736 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040040A1 RID: 16545
-		public static Dictionary<int, SeaCastTimeJsonData> DataDict = new Dictionary<int, SeaCastTimeJsonData>();
-
-		// Token: 0x040040A2 RID: 16546
-		public static List<SeaCastTimeJsonData> DataList = new List<SeaCastTimeJsonData>();
-
-		// Token: 0x040040A3 RID: 16547
-		public static Action OnInitFinishAction = new Action(SeaCastTimeJsonData.OnInitFinish);
-
-		// Token: 0x040040A4 RID: 16548
-		public int id;
-
-		// Token: 0x040040A5 RID: 16549
-		public int dunSu;
-
-		// Token: 0x040040A6 RID: 16550
-		public int XiaoHao;
+	private static void OnInitFinish()
+	{
 	}
 }

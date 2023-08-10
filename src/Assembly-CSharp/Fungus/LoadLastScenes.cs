@@ -1,47 +1,43 @@
-﻿using System;
+using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTools", "LoadLastScenes", "加载上一个场景", 0)]
+[AddComponentMenu("")]
+public class LoadLastScenes : Command
 {
-	// Token: 0x02000F8D RID: 3981
-	[CommandInfo("YSTools", "LoadLastScenes", "加载上一个场景", 0)]
-	[AddComponentMenu("")]
-	public class LoadLastScenes : Command
+	[Tooltip("说明")]
+	[SerializeField]
+	protected string desc = "加载上一个场景";
+
+	public void methodName()
 	{
-		// Token: 0x06006F6A RID: 28522 RVA: 0x002A6E64 File Offset: 0x002A5064
-		public void methodName()
+		try
 		{
-			try
-			{
-				Tools.instance.getPlayer().ResetAllEndlessNode();
-			}
-			catch (Exception ex)
-			{
-				Debug.LogError(ex);
-			}
+			Tools.instance.getPlayer().ResetAllEndlessNode();
 		}
-
-		// Token: 0x06006F6B RID: 28523 RVA: 0x002A6E9C File Offset: 0x002A509C
-		public override void OnEnter()
+		catch (Exception ex)
 		{
-			new Thread(new ThreadStart(this.methodName)).Start();
-			if (Tools.instance.getPlayer().lastScence.Equals("LoadingScreen") || Tools.instance.getPlayer().lastScence.Equals("") || Tools.instance.getPlayer().lastScence.Equals("MainMenu"))
-			{
-				Tools.instance.getPlayer().lastScence = "AllMaps";
-			}
-			Tools.instance.loadMapScenes(Tools.instance.getPlayer().lastScence, true);
+			Debug.LogError((object)ex);
 		}
+	}
 
-		// Token: 0x06006F6C RID: 28524 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override void OnEnter()
+	{
+		new Thread(methodName).Start();
+		if (Tools.instance.getPlayer().lastScence.Equals("LoadingScreen") || Tools.instance.getPlayer().lastScence.Equals("") || Tools.instance.getPlayer().lastScence.Equals("MainMenu"))
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			Tools.instance.getPlayer().lastScence = "AllMaps";
 		}
+		Tools.instance.loadMapScenes(Tools.instance.getPlayer().lastScence);
+	}
 
-		// Token: 0x04005C0C RID: 23564
-		[Tooltip("说明")]
-		[SerializeField]
-		protected string desc = "加载上一个场景";
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
 	}
 }

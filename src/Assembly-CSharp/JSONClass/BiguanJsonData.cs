@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class BiguanJsonData : IJSONClass
 {
-	// Token: 0x02000755 RID: 1877
-	public class BiguanJsonData : IJSONClass
+	public static Dictionary<int, BiguanJsonData> DataDict = new Dictionary<int, BiguanJsonData>();
+
+	public static List<BiguanJsonData> DataList = new List<BiguanJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int speed;
+
+	public string Text;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003B68 RID: 15208 RVA: 0x001992A0 File Offset: 0x001974A0
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.BiguanJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.BiguanJsonData.list)
+			try
 			{
-				try
+				BiguanJsonData biguanJsonData = new BiguanJsonData();
+				biguanJsonData.id = item["id"].I;
+				biguanJsonData.speed = item["speed"].I;
+				biguanJsonData.Text = item["Text"].Str;
+				if (DataDict.ContainsKey(biguanJsonData.id))
 				{
-					BiguanJsonData biguanJsonData = new BiguanJsonData();
-					biguanJsonData.id = jsonobject["id"].I;
-					biguanJsonData.speed = jsonobject["speed"].I;
-					biguanJsonData.Text = jsonobject["Text"].Str;
-					if (BiguanJsonData.DataDict.ContainsKey(biguanJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典BiguanJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", biguanJsonData.id));
-					}
-					else
-					{
-						BiguanJsonData.DataDict.Add(biguanJsonData.id, biguanJsonData);
-						BiguanJsonData.DataList.Add(biguanJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典BiguanJsonData.DataDict添加数据时出现重复的键，Key:{biguanJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典BiguanJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(biguanJsonData.id, biguanJsonData);
+				DataList.Add(biguanJsonData);
 			}
-			if (BiguanJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				BiguanJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典BiguanJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003B69 RID: 15209 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003473 RID: 13427
-		public static Dictionary<int, BiguanJsonData> DataDict = new Dictionary<int, BiguanJsonData>();
-
-		// Token: 0x04003474 RID: 13428
-		public static List<BiguanJsonData> DataList = new List<BiguanJsonData>();
-
-		// Token: 0x04003475 RID: 13429
-		public static Action OnInitFinishAction = new Action(BiguanJsonData.OnInitFinish);
-
-		// Token: 0x04003476 RID: 13430
-		public int id;
-
-		// Token: 0x04003477 RID: 13431
-		public int speed;
-
-		// Token: 0x04003478 RID: 13432
-		public string Text;
+	private static void OnInitFinish()
+	{
 	}
 }

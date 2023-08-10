@@ -1,33 +1,35 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000041 RID: 65
 [AddComponentMenu("NGUI/Examples/Drag and Drop Item (Example)")]
 public class ExampleDragDropItem : UIDragDropItem
 {
-	// Token: 0x0600044E RID: 1102 RVA: 0x00017C80 File Offset: 0x00015E80
+	public GameObject prefab;
+
 	protected override void OnDragDropRelease(GameObject surface)
 	{
-		if (surface != null)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)surface != (Object)null)
 		{
 			ExampleDragDropSurface component = surface.GetComponent<ExampleDragDropSurface>();
-			if (component != null)
+			if ((Object)(object)component != (Object)null)
 			{
-				GameObject gameObject = NGUITools.AddChild(component.gameObject, this.prefab);
-				gameObject.transform.localScale = component.transform.localScale;
-				Transform transform = gameObject.transform;
+				GameObject obj = NGUITools.AddChild(((Component)component).gameObject, prefab);
+				obj.transform.localScale = ((Component)component).transform.localScale;
+				Transform transform = obj.transform;
 				transform.position = UICamera.lastWorldPosition;
 				if (component.rotatePlacedObject)
 				{
-					transform.rotation = Quaternion.LookRotation(UICamera.lastHit.normal) * Quaternion.Euler(90f, 0f, 0f);
+					transform.rotation = Quaternion.LookRotation(((RaycastHit)(ref UICamera.lastHit)).normal) * Quaternion.Euler(90f, 0f, 0f);
 				}
-				NGUITools.Destroy(base.gameObject);
+				NGUITools.Destroy((Object)(object)((Component)this).gameObject);
 				return;
 			}
 		}
 		base.OnDragDropRelease(surface);
 	}
-
-	// Token: 0x04000274 RID: 628
-	public GameObject prefab;
 }

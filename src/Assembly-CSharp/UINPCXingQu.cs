@@ -1,59 +1,53 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200027F RID: 639
 public class UINPCXingQu : MonoBehaviour
 {
-	// Token: 0x06001733 RID: 5939 RVA: 0x0009E604 File Offset: 0x0009C804
+	[HideInInspector]
+	public UINPCData npc;
+
+	public Text XingQuText;
+
+	public Image BGImage;
+
+	public RectTransform TitleRT;
+
 	public void RefreshUI()
 	{
-		if (this.npc == null)
+		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0191: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0201: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0211: Unknown result type (might be due to invalid IL or missing references)
+		if (npc == null)
 		{
-			this.npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
+			npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
 		}
-		if (!jsonData.instance.AvatarBackpackJsonData[this.npc.ID.ToString()].HasField("XinQuType"))
+		if (!jsonData.instance.AvatarBackpackJsonData[npc.ID.ToString()].HasField("XinQuType"))
 		{
-			jsonData.instance.MonstarCreatInterstingType(this.npc.ID);
+			jsonData.instance.MonstarCreatInterstingType(npc.ID);
 		}
-		string text = "<color=#d3b068>" + this.npc.Name + "感兴趣的物品：</color>";
+		string text = "<color=#d3b068>" + npc.Name + "感兴趣的物品：</color>";
 		int num = 1;
-		foreach (JSONObject jsonobject in jsonData.instance.AvatarBackpackJsonData[this.npc.ID.ToString()]["XinQuType"].list)
+		foreach (JSONObject item in jsonData.instance.AvatarBackpackJsonData[npc.ID.ToString()]["XinQuType"].list)
 		{
+			string text2 = "";
 			try
 			{
-				string text2 = (string)jsonData.instance.AllItemLeiXin[jsonobject["type"].I.ToString()]["name"];
-				text = string.Concat(new object[]
-				{
-					text,
-					"\n",
-					text2,
-					"(<color=#fdcb60>+",
-					jsonobject["percent"].I,
-					"</color>%)"
-				});
+				text2 = (string)jsonData.instance.AllItemLeiXin[item["type"].I.ToString()][(object)"name"];
+				text = text + "\n" + text2 + "(<color=#fdcb60>+" + item["percent"].I + "</color>%)";
 				num++;
 			}
 			catch
 			{
 			}
 		}
-		this.XingQuText.text = text;
-		this.XingQuText.rectTransform.sizeDelta = new Vector2(this.XingQuText.rectTransform.sizeDelta.x, (float)(num * 30));
-		this.BGImage.rectTransform.sizeDelta = new Vector2(this.BGImage.rectTransform.sizeDelta.x, this.XingQuText.rectTransform.sizeDelta.y + 30f);
-		this.TitleRT.anchoredPosition = new Vector2(this.TitleRT.anchoredPosition.x, this.BGImage.rectTransform.sizeDelta.y - 4f);
+		XingQuText.text = text;
+		((Graphic)XingQuText).rectTransform.sizeDelta = new Vector2(((Graphic)XingQuText).rectTransform.sizeDelta.x, (float)(num * 30));
+		((Graphic)BGImage).rectTransform.sizeDelta = new Vector2(((Graphic)BGImage).rectTransform.sizeDelta.x, ((Graphic)XingQuText).rectTransform.sizeDelta.y + 30f);
+		TitleRT.anchoredPosition = new Vector2(TitleRT.anchoredPosition.x, ((Graphic)BGImage).rectTransform.sizeDelta.y - 4f);
 	}
-
-	// Token: 0x040011E4 RID: 4580
-	[HideInInspector]
-	public UINPCData npc;
-
-	// Token: 0x040011E5 RID: 4581
-	public Text XingQuText;
-
-	// Token: 0x040011E6 RID: 4582
-	public Image BGImage;
-
-	// Token: 0x040011E7 RID: 4583
-	public RectTransform TitleRT;
 }

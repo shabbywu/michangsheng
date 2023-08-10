@@ -1,58 +1,58 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class Around
 {
-	// Token: 0x02000681 RID: 1665
-	public class Around
+	private List<Rect> m_Rects = new List<Rect>();
+
+	public void Add(Rect rect)
 	{
-		// Token: 0x060034D0 RID: 13520 RVA: 0x0016F11D File Offset: 0x0016D31D
-		public void Add(Rect rect)
-		{
-			this.m_Rects.Add(rect);
-		}
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		m_Rects.Add(rect);
+	}
 
-		// Token: 0x060034D1 RID: 13521 RVA: 0x0016F12B File Offset: 0x0016D32B
-		public void Clear()
-		{
-			this.m_Rects.Clear();
-		}
+	public void Clear()
+	{
+		m_Rects.Clear();
+	}
 
-		// Token: 0x060034D2 RID: 13522 RVA: 0x0016F138 File Offset: 0x0016D338
-		public bool isContain(Rect rect, out float ox)
+	public bool isContain(Rect rect, out float ox)
+	{
+		if (m_Rects.Count == 0)
 		{
-			if (this.m_Rects.Count == 0)
-			{
-				ox = 0f;
-				return true;
-			}
-			return this.isContain(rect.x, rect.y, rect.width, rect.height, out ox);
-		}
-
-		// Token: 0x060034D3 RID: 13523 RVA: 0x0016F174 File Offset: 0x0016D374
-		public bool isContain(float x, float y, float w, float h, out float ox)
-		{
-			if (this.m_Rects.Count == 0)
-			{
-				ox = 0f;
-				return true;
-			}
-			Rect rect;
-			rect..ctor(x, y, w, h);
-			for (int i = 0; i < this.m_Rects.Count; i++)
-			{
-				if (this.m_Rects[i].Overlaps(rect))
-				{
-					ox = this.m_Rects[i].xMax + 5f;
-					return false;
-				}
-			}
 			ox = 0f;
 			return true;
 		}
+		return isContain(((Rect)(ref rect)).x, ((Rect)(ref rect)).y, ((Rect)(ref rect)).width, ((Rect)(ref rect)).height, out ox);
+	}
 
-		// Token: 0x04002EC1 RID: 11969
-		private List<Rect> m_Rects = new List<Rect>();
+	public bool isContain(float x, float y, float w, float h, out float ox)
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		if (m_Rects.Count == 0)
+		{
+			ox = 0f;
+			return true;
+		}
+		Rect val = default(Rect);
+		((Rect)(ref val))._002Ector(x, y, w, h);
+		for (int i = 0; i < m_Rects.Count; i++)
+		{
+			Rect val2 = m_Rects[i];
+			if (((Rect)(ref val2)).Overlaps(val))
+			{
+				val2 = m_Rects[i];
+				ox = ((Rect)(ref val2)).xMax + 5f;
+				return false;
+			}
+		}
+		ox = 0f;
+		return true;
 	}
 }

@@ -1,39 +1,32 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200003F RID: 63
 [RequireComponent(typeof(UITexture))]
 public class DownloadTexture : MonoBehaviour
 {
-	// Token: 0x06000447 RID: 1095 RVA: 0x00017B4C File Offset: 0x00015D4C
+	public string url = "http://www.yourwebsite.com/logo.png";
+
+	private Texture2D mTex;
+
 	private IEnumerator Start()
 	{
-		WWW www = new WWW(this.url);
+		WWW www = new WWW(url);
 		yield return www;
-		this.mTex = www.texture;
-		if (this.mTex != null)
+		mTex = www.texture;
+		if ((Object)(object)mTex != (Object)null)
 		{
-			UITexture component = base.GetComponent<UITexture>();
-			component.mainTexture = this.mTex;
+			UITexture component = ((Component)this).GetComponent<UITexture>();
+			component.mainTexture = (Texture)(object)mTex;
 			component.MakePixelPerfect();
 		}
 		www.Dispose();
-		yield break;
 	}
 
-	// Token: 0x06000448 RID: 1096 RVA: 0x00017B5B File Offset: 0x00015D5B
 	private void OnDestroy()
 	{
-		if (this.mTex != null)
+		if ((Object)(object)mTex != (Object)null)
 		{
-			Object.Destroy(this.mTex);
+			Object.Destroy((Object)(object)mTex);
 		}
 	}
-
-	// Token: 0x0400026C RID: 620
-	public string url = "http://www.yourwebsite.com/logo.png";
-
-	// Token: 0x0400026D RID: 621
-	private Texture2D mTex;
 }

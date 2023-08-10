@@ -1,73 +1,59 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class SkillSeidJsonData100 : IJSONClass
 {
-	// Token: 0x020008E3 RID: 2275
-	public class SkillSeidJsonData100 : IJSONClass
+	public static int SEIDID = 100;
+
+	public static Dictionary<int, SkillSeidJsonData100> DataDict = new Dictionary<int, SkillSeidJsonData100>();
+
+	public static List<SkillSeidJsonData100> DataList = new List<SkillSeidJsonData100>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int skillid;
+
+	public int value1;
+
+	public int value2;
+
+	public string panduan;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x0600419F RID: 16799 RVA: 0x001C1240 File Offset: 0x001BF440
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.SkillSeidJsonData[100].list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.SkillSeidJsonData[100].list)
+			try
 			{
-				try
+				SkillSeidJsonData100 skillSeidJsonData = new SkillSeidJsonData100();
+				skillSeidJsonData.skillid = item["skillid"].I;
+				skillSeidJsonData.value1 = item["value1"].I;
+				skillSeidJsonData.value2 = item["value2"].I;
+				skillSeidJsonData.panduan = item["panduan"].Str;
+				if (DataDict.ContainsKey(skillSeidJsonData.skillid))
 				{
-					SkillSeidJsonData100 skillSeidJsonData = new SkillSeidJsonData100();
-					skillSeidJsonData.skillid = jsonobject["skillid"].I;
-					skillSeidJsonData.value1 = jsonobject["value1"].I;
-					skillSeidJsonData.value2 = jsonobject["value2"].I;
-					skillSeidJsonData.panduan = jsonobject["panduan"].Str;
-					if (SkillSeidJsonData100.DataDict.ContainsKey(skillSeidJsonData.skillid))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典SkillSeidJsonData100.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", skillSeidJsonData.skillid));
-					}
-					else
-					{
-						SkillSeidJsonData100.DataDict.Add(skillSeidJsonData.skillid, skillSeidJsonData);
-						SkillSeidJsonData100.DataList.Add(skillSeidJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典SkillSeidJsonData100.DataDict添加数据时出现重复的键，Key:{skillSeidJsonData.skillid}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典SkillSeidJsonData100.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(skillSeidJsonData.skillid, skillSeidJsonData);
+				DataList.Add(skillSeidJsonData);
 			}
-			if (SkillSeidJsonData100.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				SkillSeidJsonData100.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典SkillSeidJsonData100.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x060041A0 RID: 16800 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x0400410E RID: 16654
-		public static int SEIDID = 100;
-
-		// Token: 0x0400410F RID: 16655
-		public static Dictionary<int, SkillSeidJsonData100> DataDict = new Dictionary<int, SkillSeidJsonData100>();
-
-		// Token: 0x04004110 RID: 16656
-		public static List<SkillSeidJsonData100> DataList = new List<SkillSeidJsonData100>();
-
-		// Token: 0x04004111 RID: 16657
-		public static Action OnInitFinishAction = new Action(SkillSeidJsonData100.OnInitFinish);
-
-		// Token: 0x04004112 RID: 16658
-		public int skillid;
-
-		// Token: 0x04004113 RID: 16659
-		public int value1;
-
-		// Token: 0x04004114 RID: 16660
-		public int value2;
-
-		// Token: 0x04004115 RID: 16661
-		public string panduan;
+	private static void OnInitFinish()
+	{
 	}
 }

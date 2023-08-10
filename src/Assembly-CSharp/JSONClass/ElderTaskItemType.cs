@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ElderTaskItemType : IJSONClass
 {
-	// Token: 0x02000837 RID: 2103
-	public class ElderTaskItemType : IJSONClass
+	public static Dictionary<int, ElderTaskItemType> DataDict = new Dictionary<int, ElderTaskItemType>();
+
+	public static List<ElderTaskItemType> DataList = new List<ElderTaskItemType>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int type;
+
+	public int Xishu;
+
+	public List<int> quality = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003EEE RID: 16110 RVA: 0x001AE134 File Offset: 0x001AC334
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ElderTaskItemType.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ElderTaskItemType.list)
+			try
 			{
-				try
+				ElderTaskItemType elderTaskItemType = new ElderTaskItemType();
+				elderTaskItemType.type = item["type"].I;
+				elderTaskItemType.Xishu = item["Xishu"].I;
+				elderTaskItemType.quality = item["quality"].ToList();
+				if (DataDict.ContainsKey(elderTaskItemType.type))
 				{
-					ElderTaskItemType elderTaskItemType = new ElderTaskItemType();
-					elderTaskItemType.type = jsonobject["type"].I;
-					elderTaskItemType.Xishu = jsonobject["Xishu"].I;
-					elderTaskItemType.quality = jsonobject["quality"].ToList();
-					if (ElderTaskItemType.DataDict.ContainsKey(elderTaskItemType.type))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ElderTaskItemType.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", elderTaskItemType.type));
-					}
-					else
-					{
-						ElderTaskItemType.DataDict.Add(elderTaskItemType.type, elderTaskItemType);
-						ElderTaskItemType.DataList.Add(elderTaskItemType);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ElderTaskItemType.DataDict添加数据时出现重复的键，Key:{elderTaskItemType.type}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ElderTaskItemType.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(elderTaskItemType.type, elderTaskItemType);
+				DataList.Add(elderTaskItemType);
 			}
-			if (ElderTaskItemType.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ElderTaskItemType.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ElderTaskItemType.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003EEF RID: 16111 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003ABD RID: 15037
-		public static Dictionary<int, ElderTaskItemType> DataDict = new Dictionary<int, ElderTaskItemType>();
-
-		// Token: 0x04003ABE RID: 15038
-		public static List<ElderTaskItemType> DataList = new List<ElderTaskItemType>();
-
-		// Token: 0x04003ABF RID: 15039
-		public static Action OnInitFinishAction = new Action(ElderTaskItemType.OnInitFinish);
-
-		// Token: 0x04003AC0 RID: 15040
-		public int type;
-
-		// Token: 0x04003AC1 RID: 15041
-		public int Xishu;
-
-		// Token: 0x04003AC2 RID: 15042
-		public List<int> quality = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

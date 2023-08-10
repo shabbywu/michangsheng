@@ -1,65 +1,53 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class WuDaoSeidJsonData11 : IJSONClass
 {
-	// Token: 0x02000984 RID: 2436
-	public class WuDaoSeidJsonData11 : IJSONClass
+	public static int SEIDID = 11;
+
+	public static Dictionary<int, WuDaoSeidJsonData11> DataDict = new Dictionary<int, WuDaoSeidJsonData11>();
+
+	public static List<WuDaoSeidJsonData11> DataList = new List<WuDaoSeidJsonData11>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int skillid;
+
+	public int value1;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004424 RID: 17444 RVA: 0x001D06D0 File Offset: 0x001CE8D0
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.WuDaoSeidJsonData[11].list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.WuDaoSeidJsonData[11].list)
+			try
 			{
-				try
+				WuDaoSeidJsonData11 wuDaoSeidJsonData = new WuDaoSeidJsonData11();
+				wuDaoSeidJsonData.skillid = item["skillid"].I;
+				wuDaoSeidJsonData.value1 = item["value1"].I;
+				if (DataDict.ContainsKey(wuDaoSeidJsonData.skillid))
 				{
-					WuDaoSeidJsonData11 wuDaoSeidJsonData = new WuDaoSeidJsonData11();
-					wuDaoSeidJsonData.skillid = jsonobject["skillid"].I;
-					wuDaoSeidJsonData.value1 = jsonobject["value1"].I;
-					if (WuDaoSeidJsonData11.DataDict.ContainsKey(wuDaoSeidJsonData.skillid))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典WuDaoSeidJsonData11.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", wuDaoSeidJsonData.skillid));
-					}
-					else
-					{
-						WuDaoSeidJsonData11.DataDict.Add(wuDaoSeidJsonData.skillid, wuDaoSeidJsonData);
-						WuDaoSeidJsonData11.DataList.Add(wuDaoSeidJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典WuDaoSeidJsonData11.DataDict添加数据时出现重复的键，Key:{wuDaoSeidJsonData.skillid}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典WuDaoSeidJsonData11.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(wuDaoSeidJsonData.skillid, wuDaoSeidJsonData);
+				DataList.Add(wuDaoSeidJsonData);
 			}
-			if (WuDaoSeidJsonData11.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				WuDaoSeidJsonData11.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典WuDaoSeidJsonData11.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004425 RID: 17445 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040045B3 RID: 17843
-		public static int SEIDID = 11;
-
-		// Token: 0x040045B4 RID: 17844
-		public static Dictionary<int, WuDaoSeidJsonData11> DataDict = new Dictionary<int, WuDaoSeidJsonData11>();
-
-		// Token: 0x040045B5 RID: 17845
-		public static List<WuDaoSeidJsonData11> DataList = new List<WuDaoSeidJsonData11>();
-
-		// Token: 0x040045B6 RID: 17846
-		public static Action OnInitFinishAction = new Action(WuDaoSeidJsonData11.OnInitFinish);
-
-		// Token: 0x040045B7 RID: 17847
-		public int skillid;
-
-		// Token: 0x040045B8 RID: 17848
-		public int value1;
+	private static void OnInitFinish()
+	{
 	}
 }

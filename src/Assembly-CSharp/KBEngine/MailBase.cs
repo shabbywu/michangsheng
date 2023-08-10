@@ -1,323 +1,303 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KBEngine
+namespace KBEngine;
+
+public abstract class MailBase : Entity
 {
-	// Token: 0x02000BD7 RID: 3031
-	public abstract class MailBase : Entity
+	public EntityBaseEntityCall_MailBase baseEntityCall;
+
+	public EntityCellEntityCall_MailBase cellEntityCall;
+
+	public byte MailType;
+
+	public byte status;
+
+	public ulong userID;
+
+	public virtual void onMailTypeChanged(byte oldValue)
 	{
-		// Token: 0x0600541A RID: 21530 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onMailTypeChanged(byte oldValue)
-		{
-		}
+	}
 
-		// Token: 0x0600541B RID: 21531 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onStatusChanged(byte oldValue)
-		{
-		}
+	public virtual void onStatusChanged(byte oldValue)
+	{
+	}
 
-		// Token: 0x0600541C RID: 21532 RVA: 0x00004095 File Offset: 0x00002295
-		public virtual void onUserIDChanged(ulong oldValue)
-		{
-		}
+	public virtual void onUserIDChanged(ulong oldValue)
+	{
+	}
 
-		// Token: 0x0600541D RID: 21533 RVA: 0x00220682 File Offset: 0x0021E882
-		public MailBase()
-		{
-		}
+	public MailBase()
+	{
+	}
 
-		// Token: 0x0600541E RID: 21534 RVA: 0x00004095 File Offset: 0x00002295
-		public override void onComponentsEnterworld()
-		{
-		}
+	public override void onComponentsEnterworld()
+	{
+	}
 
-		// Token: 0x0600541F RID: 21535 RVA: 0x00004095 File Offset: 0x00002295
-		public override void onComponentsLeaveworld()
-		{
-		}
+	public override void onComponentsLeaveworld()
+	{
+	}
 
-		// Token: 0x06005420 RID: 21536 RVA: 0x002341A1 File Offset: 0x002323A1
-		public override void onGetBase()
-		{
-			this.baseEntityCall = new EntityBaseEntityCall_MailBase(this.id, this.className);
-		}
+	public override void onGetBase()
+	{
+		baseEntityCall = new EntityBaseEntityCall_MailBase(id, className);
+	}
 
-		// Token: 0x06005421 RID: 21537 RVA: 0x002341BA File Offset: 0x002323BA
-		public override void onGetCell()
-		{
-			this.cellEntityCall = new EntityCellEntityCall_MailBase(this.id, this.className);
-		}
+	public override void onGetCell()
+	{
+		cellEntityCall = new EntityCellEntityCall_MailBase(id, className);
+	}
 
-		// Token: 0x06005422 RID: 21538 RVA: 0x002341D3 File Offset: 0x002323D3
-		public override void onLoseCell()
-		{
-			this.cellEntityCall = null;
-		}
+	public override void onLoseCell()
+	{
+		cellEntityCall = null;
+	}
 
-		// Token: 0x06005423 RID: 21539 RVA: 0x002341DC File Offset: 0x002323DC
-		public override EntityCall getBaseEntityCall()
-		{
-			return this.baseEntityCall;
-		}
+	public override EntityCall getBaseEntityCall()
+	{
+		return baseEntityCall;
+	}
 
-		// Token: 0x06005424 RID: 21540 RVA: 0x002341E4 File Offset: 0x002323E4
-		public override EntityCall getCellEntityCall()
-		{
-			return this.cellEntityCall;
-		}
+	public override EntityCall getCellEntityCall()
+	{
+		return cellEntityCall;
+	}
 
-		// Token: 0x06005425 RID: 21541 RVA: 0x00004095 File Offset: 0x00002295
-		public override void attachComponents()
-		{
-		}
+	public override void attachComponents()
+	{
+	}
 
-		// Token: 0x06005426 RID: 21542 RVA: 0x00004095 File Offset: 0x00002295
-		public override void detachComponents()
-		{
-		}
+	public override void detachComponents()
+	{
+	}
 
-		// Token: 0x06005427 RID: 21543 RVA: 0x002341EC File Offset: 0x002323EC
-		public override void onRemoteMethodCall(MemoryStream stream)
+	public override void onRemoteMethodCall(MemoryStream stream)
+	{
+		ScriptModule scriptModule = EntityDef.moduledefs["Mail"];
+		ushort num = 0;
+		ushort num2 = 0;
+		num2 = ((!scriptModule.usePropertyDescrAlias) ? stream.readUint16() : stream.readUint8());
+		num = ((!scriptModule.useMethodDescrAlias) ? stream.readUint16() : stream.readUint8());
+		Method method = null;
+		if (num2 == 0)
 		{
-			ScriptModule scriptModule = EntityDef.moduledefs["Mail"];
-			ushort num;
+			method = scriptModule.idmethods[num];
+			_ = method.methodUtype;
+		}
+		else
+		{
+			_ = scriptModule.idpropertys[num2].properUtype;
+		}
+	}
+
+	public override void onUpdatePropertys(MemoryStream stream)
+	{
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0180: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+		ScriptModule scriptModule = EntityDef.moduledefs["Mail"];
+		Dictionary<ushort, Property> idpropertys = scriptModule.idpropertys;
+		while (stream.length() != 0)
+		{
+			ushort num = 0;
+			ushort num2 = 0;
 			if (scriptModule.usePropertyDescrAlias)
 			{
-				num = (ushort)stream.readUint8();
+				num = stream.readUint8();
+				num2 = stream.readUint8();
 			}
 			else
 			{
 				num = stream.readUint16();
+				num2 = stream.readUint16();
 			}
-			ushort key;
-			if (scriptModule.useMethodDescrAlias)
-			{
-				key = (ushort)stream.readUint8();
-			}
-			else
-			{
-				key = stream.readUint16();
-			}
+			Property property = null;
 			if (num == 0)
 			{
-				Method method = scriptModule.idmethods[key];
-				ushort methodUtype = method.methodUtype;
-				return;
-			}
-			ushort properUtype = scriptModule.idpropertys[num].properUtype;
-		}
-
-		// Token: 0x06005428 RID: 21544 RVA: 0x0023426C File Offset: 0x0023246C
-		public override void onUpdatePropertys(MemoryStream stream)
-		{
-			ScriptModule scriptModule = EntityDef.moduledefs["Mail"];
-			Dictionary<ushort, Property> idpropertys = scriptModule.idpropertys;
-			while (stream.length() > 0U)
-			{
-				ushort num;
-				ushort key;
-				if (scriptModule.usePropertyDescrAlias)
+				property = idpropertys[num2];
+				switch (property.properUtype)
 				{
-					num = (ushort)stream.readUint8();
-					key = (ushort)stream.readUint8();
-				}
-				else
-				{
-					num = stream.readUint16();
-					key = stream.readUint16();
-				}
-				if (num != 0)
-				{
-					ushort properUtype = idpropertys[num].properUtype;
-					return;
-				}
-				Property property = idpropertys[key];
-				ushort properUtype2 = property.properUtype;
-				switch (properUtype2)
-				{
-				case 154:
-				{
-					ulong oldValue = this.userID;
-					this.userID = stream.readUint64();
-					if (property.isBase())
-					{
-						if (this.inited)
-						{
-							this.onUserIDChanged(oldValue);
-						}
-					}
-					else if (this.inWorld)
-					{
-						this.onUserIDChanged(oldValue);
-					}
-					break;
-				}
 				case 155:
 				{
-					byte mailType = this.MailType;
-					this.MailType = stream.readUint8();
+					byte mailType = MailType;
+					MailType = stream.readUint8();
 					if (property.isBase())
 					{
-						if (this.inited)
+						if (inited)
 						{
-							this.onMailTypeChanged(mailType);
+							onMailTypeChanged(mailType);
 						}
 					}
-					else if (this.inWorld)
+					else if (inWorld)
 					{
-						this.onMailTypeChanged(mailType);
+						onMailTypeChanged(mailType);
 					}
 					break;
 				}
+				case 40001:
+				{
+					Vector3 oldValue3 = direction;
+					direction = stream.readVector3();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onDirectionChanged(oldValue3);
+						}
+					}
+					else if (inWorld)
+					{
+						onDirectionChanged(oldValue3);
+					}
+					break;
+				}
+				case 40000:
+				{
+					Vector3 oldValue2 = position;
+					position = stream.readVector3();
+					if (property.isBase())
+					{
+						if (inited)
+						{
+							onPositionChanged(oldValue2);
+						}
+					}
+					else if (inWorld)
+					{
+						onPositionChanged(oldValue2);
+					}
+					break;
+				}
+				case 40002:
+					stream.readUint32();
+					break;
 				case 156:
 				{
-					byte oldValue2 = this.status;
-					this.status = stream.readUint8();
+					byte oldValue4 = status;
+					status = stream.readUint8();
 					if (property.isBase())
 					{
-						if (this.inited)
+						if (inited)
 						{
-							this.onStatusChanged(oldValue2);
+							onStatusChanged(oldValue4);
 						}
 					}
-					else if (this.inWorld)
+					else if (inWorld)
 					{
-						this.onStatusChanged(oldValue2);
+						onStatusChanged(oldValue4);
 					}
 					break;
 				}
-				default:
-					switch (properUtype2)
+				case 154:
+				{
+					ulong oldValue = userID;
+					userID = stream.readUint64();
+					if (property.isBase())
 					{
-					case 40000:
-					{
-						Vector3 position = this.position;
-						this.position = stream.readVector3();
-						if (property.isBase())
+						if (inited)
 						{
-							if (this.inited)
-							{
-								this.onPositionChanged(position);
-							}
+							onUserIDChanged(oldValue);
 						}
-						else if (this.inWorld)
-						{
-							this.onPositionChanged(position);
-						}
-						break;
 					}
-					case 40001:
+					else if (inWorld)
 					{
-						Vector3 direction = this.direction;
-						this.direction = stream.readVector3();
-						if (property.isBase())
-						{
-							if (this.inited)
-							{
-								this.onDirectionChanged(direction);
-							}
-						}
-						else if (this.inWorld)
-						{
-							this.onDirectionChanged(direction);
-						}
-						break;
-					}
-					case 40002:
-						stream.readUint32();
-						break;
+						onUserIDChanged(oldValue);
 					}
 					break;
 				}
+				}
+				continue;
 			}
+			_ = idpropertys[num].properUtype;
+			break;
 		}
+	}
 
-		// Token: 0x06005429 RID: 21545 RVA: 0x002344A0 File Offset: 0x002326A0
-		public override void callPropertysSetMethods()
+	public override void callPropertysSetMethods()
+	{
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Mail"].idpropertys;
+		byte mailType = MailType;
+		Property property = idpropertys[4];
+		if (property.isBase())
 		{
-			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Mail"].idpropertys;
-			byte mailType = this.MailType;
-			Property property = idpropertys[4];
-			if (property.isBase())
+			if (inited && !inWorld)
 			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onMailTypeChanged(mailType);
-				}
-			}
-			else if (this.inWorld && (!property.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onMailTypeChanged(mailType);
-			}
-			Vector3 direction = this.direction;
-			Property property2 = idpropertys[2];
-			if (property2.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDirectionChanged(direction);
-				}
-			}
-			else if (this.inWorld && (!property2.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDirectionChanged(direction);
-			}
-			Vector3 position = this.position;
-			Property property3 = idpropertys[1];
-			if (property3.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onPositionChanged(position);
-				}
-			}
-			else if (this.inWorld && (!property3.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onPositionChanged(position);
-			}
-			byte oldValue = this.status;
-			Property property4 = idpropertys[5];
-			if (property4.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onStatusChanged(oldValue);
-				}
-			}
-			else if (this.inWorld && (!property4.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onStatusChanged(oldValue);
-			}
-			ulong oldValue2 = this.userID;
-			Property property5 = idpropertys[6];
-			if (property5.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onUserIDChanged(oldValue2);
-					return;
-				}
-			}
-			else if (this.inWorld && (!property5.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onUserIDChanged(oldValue2);
+				onMailTypeChanged(mailType);
 			}
 		}
-
-		// Token: 0x04005075 RID: 20597
-		public EntityBaseEntityCall_MailBase baseEntityCall;
-
-		// Token: 0x04005076 RID: 20598
-		public EntityCellEntityCall_MailBase cellEntityCall;
-
-		// Token: 0x04005077 RID: 20599
-		public byte MailType;
-
-		// Token: 0x04005078 RID: 20600
-		public byte status;
-
-		// Token: 0x04005079 RID: 20601
-		public ulong userID;
+		else if (inWorld && (!property.isOwnerOnly() || isPlayer()))
+		{
+			onMailTypeChanged(mailType);
+		}
+		Vector3 oldValue = direction;
+		Property property2 = idpropertys[2];
+		if (property2.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onDirectionChanged(oldValue);
+			}
+		}
+		else if (inWorld && (!property2.isOwnerOnly() || isPlayer()))
+		{
+			onDirectionChanged(oldValue);
+		}
+		Vector3 oldValue2 = position;
+		Property property3 = idpropertys[1];
+		if (property3.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onPositionChanged(oldValue2);
+			}
+		}
+		else if (inWorld && (!property3.isOwnerOnly() || isPlayer()))
+		{
+			onPositionChanged(oldValue2);
+		}
+		byte oldValue3 = status;
+		Property property4 = idpropertys[5];
+		if (property4.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onStatusChanged(oldValue3);
+			}
+		}
+		else if (inWorld && (!property4.isOwnerOnly() || isPlayer()))
+		{
+			onStatusChanged(oldValue3);
+		}
+		ulong oldValue4 = userID;
+		Property property5 = idpropertys[6];
+		if (property5.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onUserIDChanged(oldValue4);
+			}
+		}
+		else if (inWorld && (!property5.isOwnerOnly() || isPlayer()))
+		{
+			onUserIDChanged(oldValue4);
+		}
 	}
 }

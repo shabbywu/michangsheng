@@ -1,51 +1,42 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x02000115 RID: 277
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
-	// Token: 0x170001EE RID: 494
-	// (get) Token: 0x06000D6E RID: 3438 RVA: 0x00050A80 File Offset: 0x0004EC80
+	private static T m_Instance;
+
 	public static T instance
 	{
 		get
 		{
-			if (MonoSingleton<T>.m_Instance == null)
+			//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+			if ((Object)(object)m_Instance == (Object)null)
 			{
-				MonoSingleton<T>.m_Instance = (Object.FindObjectOfType(typeof(T)) as T);
-				if (MonoSingleton<T>.m_Instance == null)
+				m_Instance = Object.FindObjectOfType(typeof(T)) as T;
+				if ((Object)(object)m_Instance == (Object)null)
 				{
-					MonoSingleton<T>.m_Instance = new GameObject("Singleton of " + typeof(T).ToString(), new Type[]
-					{
-						typeof(T)
-					}).GetComponent<T>();
-					MonoSingleton<T>.m_Instance.Init();
+					m_Instance = new GameObject("Singleton of " + typeof(T).ToString(), new Type[1] { typeof(T) }).GetComponent<T>();
+					m_Instance.Init();
 				}
 			}
-			return MonoSingleton<T>.m_Instance;
+			return m_Instance;
 		}
 	}
 
-	// Token: 0x06000D6F RID: 3439 RVA: 0x00050B1E File Offset: 0x0004ED1E
 	private void Awake()
 	{
-		if (MonoSingleton<T>.m_Instance == null)
+		if ((Object)(object)m_Instance == (Object)null)
 		{
-			MonoSingleton<T>.m_Instance = (this as T);
+			m_Instance = this as T;
 		}
 	}
 
-	// Token: 0x06000D70 RID: 3440 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void Init()
 	{
 	}
 
-	// Token: 0x06000D71 RID: 3441 RVA: 0x00050B42 File Offset: 0x0004ED42
 	private void OnApplicationQuit()
 	{
-		MonoSingleton<T>.m_Instance = default(T);
+		m_Instance = null;
 	}
-
-	// Token: 0x04000975 RID: 2421
-	private static T m_Instance;
 }

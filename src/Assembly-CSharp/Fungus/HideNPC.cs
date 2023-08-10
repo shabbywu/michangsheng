@@ -1,38 +1,34 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTools", "HideNPC", "隐藏NPC界面", 0)]
+[AddComponentMenu("")]
+public class HideNPC : Command
 {
-	// Token: 0x02000F83 RID: 3971
-	[CommandInfo("YSTools", "HideNPC", "隐藏NPC界面", 0)]
-	[AddComponentMenu("")]
-	public class HideNPC : Command
+	[Tooltip("说明")]
+	[SerializeField]
+	protected string init = "隐藏NPC界面";
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006F3F RID: 28479 RVA: 0x002A6A2C File Offset: 0x002A4C2C
-		public override void OnEnter()
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		GameObject val = GameObject.Find("Canvas/Scroll View/Viewport/Content");
+		if ((Object)(object)val != (Object)null)
 		{
-			GameObject gameObject = GameObject.Find("Canvas/Scroll View/Viewport/Content");
-			if (gameObject != null)
-			{
-				gameObject.transform.localScale = Vector3.zero;
-			}
-			this.Continue();
+			val.transform.localScale = Vector3.zero;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006F40 RID: 28480 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006F41 RID: 28481 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005BFB RID: 23547
-		[Tooltip("说明")]
-		[SerializeField]
-		protected string init = "隐藏NPC界面";
+	public override void OnReset()
+	{
 	}
 }

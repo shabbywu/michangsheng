@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bag;
@@ -9,563 +9,569 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Tab
+namespace Tab;
+
+[Serializable]
+public class TabBag : UIBase
 {
-	// Token: 0x020006F5 RID: 1781
-	[Serializable]
-	public class TabBag : UIBase
+	private Avatar _player;
+
+	private BagType _bagType;
+
+	public Bag.ItemType ItemType;
+
+	public ItemQuality ItemQuality;
+
+	public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
+
+	public LianQiCaiLiaoType LianQiCaiLiaoType;
+
+	public SkIllType SkIllType = SkIllType.全部;
+
+	public SkillQuality SkillQuality;
+
+	public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
+
+	public BagFilter BagFilter;
+
+	public Text MoneyText;
+
+	public Image MoneyIcon;
+
+	public GameObject UtilsPanel;
+
+	public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
+
+	public List<SkillItem> ActiveSkillList = new List<SkillItem>();
+
+	public List<SkillItem> PassiveSkillList = new List<SkillItem>();
+
+	public bool CanSort;
+
+	public LoopListView2 mLoopListView;
+
+	public List<ISlot> SlotList = new List<ISlot>();
+
+	private bool _isInit;
+
+	private const int mItemCountPerRow = 5;
+
+	private int mItemTotalCount;
+
+	public TabBag(GameObject go)
 	{
-		// Token: 0x06003935 RID: 14645 RVA: 0x00186BB8 File Offset: 0x00184DB8
-		public TabBag(GameObject go)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Expected O, but got Unknown
+		_go = go;
+		mLoopListView = Get<LoopListView2>("ItemList");
+		BagFilter = go.GetComponent<BagFilter>();
+		Get<FpBtn>("工具/ZhengLiBtn").mouseUpEvent.AddListener((UnityAction)delegate
 		{
-			this._go = go;
-			this.mLoopListView = base.Get<LoopListView2>("ItemList");
-			this.BagFilter = go.GetComponent<BagFilter>();
-			base.Get<FpBtn>("工具/ZhengLiBtn").mouseUpEvent.AddListener(delegate()
-			{
-				this.BagFilter.Sort(new UnityAction(this.UpdateItem));
-			});
-			this._player = Tools.instance.getPlayer();
-			this.CanSort = true;
-		}
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0017: Expected O, but got Unknown
+			BagFilter.Sort(new UnityAction(UpdateItem));
+		});
+		_player = Tools.instance.getPlayer();
+		CanSort = true;
+	}
 
-		// Token: 0x06003936 RID: 14646 RVA: 0x00186C64 File Offset: 0x00184E64
-		private void Init()
-		{
-			this._isInit = true;
-			this.MoneyText = base.Get<Text>("工具/MoneyText");
-			this.MoneyIcon = base.Get<Image>("工具/MoneyText/MoneyIcon");
-			this.UtilsPanel = base.Get("工具", true);
-			this.mLoopListView.InitListView(this.GetCount(this.mItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(this.OnGetItemByIndex), null);
-		}
+	private void Init()
+	{
+		_isInit = true;
+		MoneyText = Get<Text>("工具/MoneyText");
+		MoneyIcon = Get<Image>("工具/MoneyText/MoneyIcon");
+		UtilsPanel = Get("工具");
+		mLoopListView.InitListView(GetCount(mItemTotalCount), OnGetItemByIndex);
+	}
 
-		// Token: 0x06003937 RID: 14647 RVA: 0x00186CD0 File Offset: 0x00184ED0
-		public void OpenBag(BagType bagType)
+	public void OpenBag(BagType bagType)
+	{
+		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0134: Expected O, but got Unknown
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Expected O, but got Unknown
+		//IL_01fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016b: Expected O, but got Unknown
+		//IL_0228: Expected O, but got Unknown
+		//IL_01ee: Expected O, but got Unknown
+		ItemType = Bag.ItemType.全部;
+		ItemQuality = ItemQuality.全部;
+		LianQiCaiLiaoYinYang = LianQiCaiLiaoYinYang.全部;
+		LianQiCaiLiaoType = LianQiCaiLiaoType.全部;
+		_bagType = bagType;
+		switch (bagType)
 		{
-			this.ItemType = Bag.ItemType.全部;
-			this.ItemQuality = ItemQuality.全部;
-			this.LianQiCaiLiaoYinYang = LianQiCaiLiaoYinYang.全部;
-			this.LianQiCaiLiaoType = LianQiCaiLiaoType.全部;
-			this._bagType = bagType;
-			switch (bagType)
+		case BagType.功法:
+			PassiveSkillList = new List<SkillItem>(_player.hasStaticSkillList);
+			mItemTotalCount = PassiveSkillList.Count;
+			break;
+		case BagType.技能:
+			ActiveSkillList = new List<SkillItem>(_player.hasSkillList);
+			mItemTotalCount = ActiveSkillList.Count;
+			break;
+		case BagType.背包:
+			ItemList = new List<ITEM_INFO>(_player.itemList.values);
+			mItemTotalCount = ItemList.Count;
+			break;
+		}
+		SlotList = new List<ISlot>();
+		if (!_isInit)
+		{
+			Init();
+			MessageMag.Instance.Register(MessageName.MSG_PLAYER_USE_ITEM, UseItemCallBack);
+			UpdateMoney();
+		}
+		else
+		{
+			UpdateItem();
+		}
+		switch (bagType)
+		{
+		case BagType.背包:
+			BagFilter.AddBigTypeBtn((UnityAction)delegate
 			{
-			case BagType.功法:
-				this.PassiveSkillList = new List<SkillItem>(this._player.hasStaticSkillList);
-				this.mItemTotalCount = this.PassiveSkillList.Count;
-				break;
-			case BagType.技能:
-				this.ActiveSkillList = new List<SkillItem>(this._player.hasSkillList);
-				this.mItemTotalCount = this.ActiveSkillList.Count;
-				break;
-			case BagType.背包:
-				this.ItemList = new List<ITEM_INFO>(this._player.itemList.values);
-				this.mItemTotalCount = this.ItemList.Count;
-				break;
-			}
-			this.SlotList = new List<ISlot>();
-			if (!this._isInit)
-			{
-				this.Init();
-				MessageMag.Instance.Register(MessageName.MSG_PLAYER_USE_ITEM, new Action<MessageData>(this.UseItemCallBack));
-				this.UpdateMoney();
-			}
-			else
-			{
-				this.UpdateItem();
-			}
-			if (bagType == BagType.背包)
-			{
-				this.BagFilter.AddBigTypeBtn(delegate
+				//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+				//IL_005d: Expected O, but got Unknown
+				foreach (ItemQuality itemQuality in Enum.GetValues(typeof(ItemQuality)))
 				{
-					using (IEnumerator enumerator = Enum.GetValues(typeof(ItemQuality)).GetEnumerator())
+					BagFilter.AddSmallTypeBtn((UnityAction)delegate
 					{
-						while (enumerator.MoveNext())
-						{
-							ItemQuality itemQuality = (ItemQuality)enumerator.Current;
-							this.BagFilter.AddSmallTypeBtn(delegate
-							{
-								this.ItemQuality = itemQuality;
-								this.BagFilter.CloseSmallSelect();
-								this.UpdateItem();
-							}, itemQuality.ToString());
-						}
-					}
-				}, (this.ItemQuality == ItemQuality.全部) ? "品阶" : this.ItemQuality.ToString());
-				this.BagFilter.AddBigTypeBtn(delegate
+						ItemQuality = itemQuality;
+						BagFilter.CloseSmallSelect();
+						UpdateItem();
+					}, itemQuality.ToString());
+				}
+			}, (ItemQuality == ItemQuality.全部) ? "品阶" : ItemQuality.ToString());
+			BagFilter.AddBigTypeBtn((UnityAction)delegate
+			{
+				//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+				//IL_005d: Expected O, but got Unknown
+				foreach (Bag.ItemType itemType in Enum.GetValues(typeof(Bag.ItemType)))
 				{
-					using (IEnumerator enumerator = Enum.GetValues(typeof(Bag.ItemType)).GetEnumerator())
+					BagFilter.AddSmallTypeBtn((UnityAction)delegate
 					{
-						while (enumerator.MoveNext())
+						//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+						//IL_00d9: Expected O, but got Unknown
+						//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0124: Expected O, but got Unknown
+						ItemType = itemType;
+						BagFilter.CloseSmallSelect();
+						UpdateItem();
+						if (itemType == Bag.ItemType.材料)
 						{
-							Bag.ItemType itemType = (Bag.ItemType)enumerator.Current;
-							this.BagFilter.AddSmallTypeBtn(delegate
+							if (BagFilter.BigTypeIndex >= 3)
 							{
-								this.ItemType = itemType;
-								this.BagFilter.CloseSmallSelect();
-								this.UpdateItem();
-								if (itemType != Bag.ItemType.材料)
+								((Component)BagFilter.BigFilterBtnList[2]).gameObject.SetActive(true);
+								((Component)BagFilter.BigFilterBtnList[3]).gameObject.SetActive(true);
+							}
+							else
+							{
+								BagFilter.AddBigTypeBtn((UnityAction)delegate
 								{
-									if (this.BagFilter.BigTypeIndex >= 2)
+									//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+									//IL_005d: Expected O, but got Unknown
+									IEnumerator enumerator3 = Enum.GetValues(typeof(LianQiCaiLiaoYinYang)).GetEnumerator();
+									try
 									{
-										this.BagFilter.BigFilterBtnList[2].gameObject.SetActive(false);
-										this.BagFilter.BigFilterBtnList[3].gameObject.SetActive(false);
-									}
-									return;
-								}
-								if (this.BagFilter.BigTypeIndex >= 3)
-								{
-									this.BagFilter.BigFilterBtnList[2].gameObject.SetActive(true);
-									this.BagFilter.BigFilterBtnList[3].gameObject.SetActive(true);
-									return;
-								}
-								this.BagFilter.AddBigTypeBtn(delegate
-								{
-									using (IEnumerator enumerator2 = Enum.GetValues(typeof(LianQiCaiLiaoYinYang)).GetEnumerator())
-									{
-										while (enumerator2.MoveNext())
+										while (enumerator3.MoveNext())
 										{
-											LianQiCaiLiaoYinYang yinYang = (LianQiCaiLiaoYinYang)enumerator2.Current;
-											this.BagFilter.AddSmallTypeBtn(delegate
+											TabBag tabBag2 = this;
+											LianQiCaiLiaoYinYang yinYang = (LianQiCaiLiaoYinYang)enumerator3.Current;
+											BagFilter.AddSmallTypeBtn((UnityAction)delegate
 											{
-												this.LianQiCaiLiaoYinYang = yinYang;
-												this.BagFilter.CloseSmallSelect();
-												this.UpdateItem();
+												tabBag2.LianQiCaiLiaoYinYang = yinYang;
+												tabBag2.BagFilter.CloseSmallSelect();
+												tabBag2.UpdateItem();
 											}, yinYang.ToString());
 										}
 									}
-								}, (this.LianQiCaiLiaoYinYang == LianQiCaiLiaoYinYang.全部) ? "阴阳" : this.LianQiCaiLiaoYinYang.ToString());
-								this.BagFilter.AddBigTypeBtn(delegate
+									finally
+									{
+										IDisposable disposable = enumerator3 as IDisposable;
+										if (disposable != null)
+										{
+											disposable.Dispose();
+										}
+									}
+								}, (LianQiCaiLiaoYinYang == LianQiCaiLiaoYinYang.全部) ? "阴阳" : LianQiCaiLiaoYinYang.ToString());
+								BagFilter.AddBigTypeBtn((UnityAction)delegate
 								{
-									using (IEnumerator enumerator2 = Enum.GetValues(typeof(LianQiCaiLiaoType)).GetEnumerator())
+									//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+									//IL_005d: Expected O, but got Unknown
+									IEnumerator enumerator2 = Enum.GetValues(typeof(LianQiCaiLiaoType)).GetEnumerator();
+									try
 									{
 										while (enumerator2.MoveNext())
 										{
+											TabBag tabBag = this;
 											LianQiCaiLiaoType lianQiCaiLiaoType = (LianQiCaiLiaoType)enumerator2.Current;
-											this.BagFilter.AddSmallTypeBtn(delegate
+											BagFilter.AddSmallTypeBtn((UnityAction)delegate
 											{
-												this.LianQiCaiLiaoType = lianQiCaiLiaoType;
-												this.BagFilter.CloseSmallSelect();
-												this.UpdateItem();
+												tabBag.LianQiCaiLiaoType = lianQiCaiLiaoType;
+												tabBag.BagFilter.CloseSmallSelect();
+												tabBag.UpdateItem();
 											}, lianQiCaiLiaoType.ToString());
 										}
 									}
-								}, (this.LianQiCaiLiaoType == LianQiCaiLiaoType.全部) ? "属性" : this.LianQiCaiLiaoType.ToString());
-							}, itemType.ToString());
-						}
-					}
-				}, (this.ItemType == Bag.ItemType.全部) ? "类型" : this.ItemType.ToString());
-			}
-			else if (bagType == BagType.技能 || bagType == BagType.功法)
-			{
-				this.BagFilter.AddBigTypeBtn(delegate
-				{
-					using (IEnumerator enumerator = Enum.GetValues(typeof(SkillQuality)).GetEnumerator())
-					{
-						while (enumerator.MoveNext())
-						{
-							SkillQuality skillQuality = (SkillQuality)enumerator.Current;
-							this.BagFilter.AddSmallTypeBtn(delegate
-							{
-								this.SkillQuality = skillQuality;
-								this.BagFilter.CloseSmallSelect();
-								this.UpdateItem();
-							}, skillQuality.ToString());
-						}
-					}
-				}, (this.SkillQuality == SkillQuality.全部) ? "品阶" : this.SkillQuality.ToString());
-				if (bagType == BagType.功法)
-				{
-					this.BagFilter.AddBigTypeBtn(delegate
-					{
-						List<StaticSkIllType> list = new List<StaticSkIllType>();
-						list.Add(StaticSkIllType.全部);
-						foreach (object obj in Enum.GetValues(typeof(SkIllType)))
-						{
-							StaticSkIllType staticSkIllType2 = (StaticSkIllType)obj;
-							if (staticSkIllType2 != StaticSkIllType.全部)
-							{
-								list.Add(staticSkIllType2);
+									finally
+									{
+										IDisposable disposable2 = enumerator2 as IDisposable;
+										if (disposable2 != null)
+										{
+											disposable2.Dispose();
+										}
+									}
+								}, (LianQiCaiLiaoType == LianQiCaiLiaoType.全部) ? "属性" : LianQiCaiLiaoType.ToString());
 							}
 						}
-						using (List<StaticSkIllType>.Enumerator enumerator2 = list.GetEnumerator())
+						else if (BagFilter.BigTypeIndex >= 2)
 						{
-							while (enumerator2.MoveNext())
-							{
-								StaticSkIllType staticSkIllType = enumerator2.Current;
-								this.BagFilter.AddSmallTypeBtn(delegate
-								{
-									this.StaticSkIllType = staticSkIllType;
-									this.BagFilter.CloseSmallSelect();
-									this.UpdateItem();
-								}, staticSkIllType.ToString());
-							}
+							((Component)BagFilter.BigFilterBtnList[2]).gameObject.SetActive(false);
+							((Component)BagFilter.BigFilterBtnList[3]).gameObject.SetActive(false);
 						}
-					}, (this.StaticSkIllType == StaticSkIllType.全部) ? "属性" : this.StaticSkIllType.ToString());
+					}, itemType.ToString());
 				}
-				else
+			}, (ItemType == Bag.ItemType.全部) ? "类型" : ItemType.ToString());
+			break;
+		case BagType.功法:
+		case BagType.技能:
+			BagFilter.AddBigTypeBtn((UnityAction)delegate
+			{
+				//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+				//IL_005d: Expected O, but got Unknown
+				foreach (SkillQuality skillQuality in Enum.GetValues(typeof(SkillQuality)))
 				{
-					this.BagFilter.AddBigTypeBtn(delegate
+					BagFilter.AddSmallTypeBtn((UnityAction)delegate
 					{
-						List<SkIllType> list = new List<SkIllType>();
-						list.Add(SkIllType.全部);
-						foreach (object obj in Enum.GetValues(typeof(SkIllType)))
+						SkillQuality = skillQuality;
+						BagFilter.CloseSmallSelect();
+						UpdateItem();
+					}, skillQuality.ToString());
+				}
+			}, (SkillQuality == SkillQuality.全部) ? "品阶" : SkillQuality.ToString());
+			if (bagType == BagType.功法)
+			{
+				BagFilter.AddBigTypeBtn((UnityAction)delegate
+				{
+					//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+					//IL_00a7: Expected O, but got Unknown
+					List<StaticSkIllType> list2 = new List<StaticSkIllType> { StaticSkIllType.全部 };
+					foreach (StaticSkIllType value in Enum.GetValues(typeof(SkIllType)))
+					{
+						if (value != StaticSkIllType.全部)
 						{
-							SkIllType skIllType2 = (SkIllType)obj;
-							if (skIllType2 != SkIllType.全部)
-							{
-								list.Add(skIllType2);
-							}
-						}
-						using (List<SkIllType>.Enumerator enumerator2 = list.GetEnumerator())
-						{
-							while (enumerator2.MoveNext())
-							{
-								SkIllType skIllType = enumerator2.Current;
-								this.BagFilter.AddSmallTypeBtn(delegate
-								{
-									this.SkIllType = skIllType;
-									this.BagFilter.CloseSmallSelect();
-									this.UpdateItem();
-								}, skIllType.ToString());
-							}
-						}
-					}, (this.SkIllType == SkIllType.全部) ? "属性" : this.SkIllType.ToString());
-				}
-			}
-			this._go.SetActive(true);
-			SingletonMono<TabUIMag>.Instance.TabBag.BagFilter.PlayHideAn();
-			SingletonMono<TabUIMag>.Instance.TabFangAnPanel.Show();
-		}
-
-		// Token: 0x06003938 RID: 14648 RVA: 0x00186F34 File Offset: 0x00185134
-		public void UpdateMoney()
-		{
-			if (this._bagType == BagType.背包)
-			{
-				this.MoneyText.SetText(Tools.instance.getPlayer().money);
-				this.UtilsPanel.gameObject.SetActive(true);
-				return;
-			}
-			this.UtilsPanel.gameObject.SetActive(false);
-		}
-
-		// Token: 0x06003939 RID: 14649 RVA: 0x00186F8C File Offset: 0x0018518C
-		public void Close()
-		{
-			this.BagFilter.ResetData();
-			this._go.SetActive(false);
-		}
-
-		// Token: 0x0600393A RID: 14650 RVA: 0x00186FA8 File Offset: 0x001851A8
-		private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
-		{
-			if (rowIndex < 0)
-			{
-				return null;
-			}
-			LoopListViewItem2 loopListViewItem = listView.NewListViewItem("Prefab");
-			SlotList component = loopListViewItem.GetComponent<SlotList>();
-			if (!loopListViewItem.IsInitHandlerCalled)
-			{
-				loopListViewItem.IsInitHandlerCalled = true;
-				component.Init();
-			}
-			for (int i = 0; i < 5; i++)
-			{
-				int num = rowIndex * 5 + i;
-				switch (this._bagType)
-				{
-				case BagType.功法:
-					component.mItemList[i].SetAccptType(CanSlotType.功法);
-					break;
-				case BagType.技能:
-					component.mItemList[i].SetAccptType(CanSlotType.技能);
-					break;
-				case BagType.背包:
-					component.mItemList[i].SetAccptType(CanSlotType.全部物品);
-					break;
-				}
-				if (num >= this.mItemTotalCount)
-				{
-					component.mItemList[i].SetNull();
-					if (!this.SlotList.Contains((SlotBase)component.mItemList[i]))
-					{
-						this.SlotList.Add((SlotBase)component.mItemList[i]);
-					}
-				}
-				else
-				{
-					switch (this._bagType)
-					{
-					case BagType.功法:
-					{
-						PassiveSkill passiveSkill = new PassiveSkill();
-						passiveSkill.SetSkill(this.PassiveSkillList[num].itemId, this.PassiveSkillList[num].level);
-						component.mItemList[i].SetSlotData(passiveSkill);
-						break;
-					}
-					case BagType.技能:
-					{
-						ActiveSkill activeSkill = new ActiveSkill();
-						activeSkill.SetSkill(this.ActiveSkillList[num].itemId, Tools.instance.getPlayer().getLevelType());
-						component.mItemList[i].SetSlotData(activeSkill);
-						break;
-					}
-					case BagType.背包:
-					{
-						BaseItem slotData = BaseItem.Create(this.ItemList[num].itemId, (int)this.ItemList[num].itemCount, this.ItemList[num].uuid, this.ItemList[num].Seid);
-						component.mItemList[i].SetSlotData(slotData);
-						break;
-					}
-					}
-					if (!this.SlotList.Contains(component.mItemList[i]))
-					{
-						this.SlotList.Add(component.mItemList[i]);
-					}
-				}
-			}
-			return loopListViewItem;
-		}
-
-		// Token: 0x0600393B RID: 14651 RVA: 0x001871EC File Offset: 0x001853EC
-		public int GetCount(int itemCout)
-		{
-			int num = itemCout / 5;
-			if (itemCout % 5 > 0)
-			{
-				num++;
-			}
-			return num + 1;
-		}
-
-		// Token: 0x0600393C RID: 14652 RVA: 0x0018720C File Offset: 0x0018540C
-		public bool FiddlerItem(BaseItem baseItem)
-		{
-			if (this.ItemQuality != ItemQuality.全部 && baseItem.GetImgQuality() != (int)this.ItemQuality)
-			{
-				return false;
-			}
-			if (this.ItemType != Bag.ItemType.全部 && baseItem.ItemType != this.ItemType)
-			{
-				return false;
-			}
-			if (this.ItemType == Bag.ItemType.材料)
-			{
-				CaiLiaoItem caiLiaoItem = (CaiLiaoItem)baseItem;
-				if (this.LianQiCaiLiaoYinYang != LianQiCaiLiaoYinYang.全部 && caiLiaoItem.GetYinYang() != this.LianQiCaiLiaoYinYang)
-				{
-					return false;
-				}
-				if (this.LianQiCaiLiaoType != LianQiCaiLiaoType.全部 && caiLiaoItem.GetLianQiCaiLiaoType() != this.LianQiCaiLiaoType)
-				{
-					return false;
-				}
-			}
-			return true;
-		}
-
-		// Token: 0x0600393D RID: 14653 RVA: 0x0018728A File Offset: 0x0018548A
-		public bool FiddlerSkill(BaseSkill baseSkill)
-		{
-			return (this.SkillQuality == SkillQuality.全部 || baseSkill.GetImgQuality() == (int)this.SkillQuality) && (this.SkIllType == SkIllType.全部 || baseSkill.SkillTypeIsEqual((int)this.SkIllType));
-		}
-
-		// Token: 0x0600393E RID: 14654 RVA: 0x001872BE File Offset: 0x001854BE
-		public bool FiddlerStaticSkill(BaseSkill baseSkill)
-		{
-			return (this.SkillQuality == SkillQuality.全部 || baseSkill.GetImgQuality() == (int)this.SkillQuality) && (this.StaticSkIllType == StaticSkIllType.全部 || baseSkill.SkillTypeIsEqual((int)this.StaticSkIllType));
-		}
-
-		// Token: 0x0600393F RID: 14655 RVA: 0x001872F4 File Offset: 0x001854F4
-		public void UpdateItem()
-		{
-			if (this._bagType == BagType.背包)
-			{
-				this.ItemList = new List<ITEM_INFO>();
-				foreach (ITEM_INFO item_INFO in this._player.itemList.values)
-				{
-					if (_ItemJsonData.DataDict.ContainsKey(item_INFO.itemId))
-					{
-						BaseItem baseItem = BaseItem.Create(item_INFO.itemId, (int)item_INFO.itemCount, item_INFO.uuid, item_INFO.Seid);
-						if (this.FiddlerItem(baseItem))
-						{
-							this.ItemList.Add(item_INFO);
+							list2.Add(value);
 						}
 					}
-				}
-				this.mItemTotalCount = this.ItemList.Count;
-			}
-			else if (this._bagType == BagType.技能)
-			{
-				this.ActiveSkillList = new List<SkillItem>();
-				foreach (SkillItem skillItem in this._player.hasSkillList)
-				{
-					BaseSkill baseSkill = new ActiveSkill();
-					baseSkill.SetSkill(skillItem.itemId, Tools.instance.getPlayer().getLevelType());
-					if (this.FiddlerSkill(baseSkill))
+					foreach (StaticSkIllType staticSkIllType in list2)
 					{
-						this.ActiveSkillList.Add(skillItem);
+						BagFilter.AddSmallTypeBtn((UnityAction)delegate
+						{
+							StaticSkIllType = staticSkIllType;
+							BagFilter.CloseSmallSelect();
+							UpdateItem();
+						}, staticSkIllType.ToString());
+					}
+				}, (StaticSkIllType == StaticSkIllType.全部) ? "属性" : StaticSkIllType.ToString());
+				break;
+			}
+			BagFilter.AddBigTypeBtn((UnityAction)delegate
+			{
+				//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+				//IL_00a7: Expected O, but got Unknown
+				List<SkIllType> list = new List<SkIllType> { SkIllType.全部 };
+				foreach (SkIllType value2 in Enum.GetValues(typeof(SkIllType)))
+				{
+					if (value2 != SkIllType.全部)
+					{
+						list.Add(value2);
 					}
 				}
-				this.mItemTotalCount = this.ActiveSkillList.Count;
-			}
-			else if (this._bagType == BagType.功法)
-			{
-				this.PassiveSkillList = new List<SkillItem>();
-				foreach (SkillItem skillItem2 in this._player.hasStaticSkillList)
+				foreach (SkIllType skIllType in list)
 				{
-					BaseSkill baseSkill2 = new PassiveSkill();
-					baseSkill2.SetSkill(skillItem2.itemId, skillItem2.level);
-					if (this.FiddlerStaticSkill(baseSkill2))
+					BagFilter.AddSmallTypeBtn((UnityAction)delegate
 					{
-						this.PassiveSkillList.Add(skillItem2);
-					}
+						SkIllType = skIllType;
+						BagFilter.CloseSmallSelect();
+						UpdateItem();
+					}, skIllType.ToString());
 				}
-				this.mItemTotalCount = this.PassiveSkillList.Count;
-			}
-			this.mLoopListView.SetListItemCount(this.GetCount(this.mItemTotalCount), true);
-			this.mLoopListView.RefreshAllShownItem();
-			this.UpdateMoney();
+			}, (SkIllType == SkIllType.全部) ? "属性" : SkIllType.ToString());
+			break;
 		}
+		_go.SetActive(true);
+		SingletonMono<TabUIMag>.Instance.TabBag.BagFilter.PlayHideAn();
+		SingletonMono<TabUIMag>.Instance.TabFangAnPanel.Show();
+	}
 
-		// Token: 0x06003940 RID: 14656 RVA: 0x0018752C File Offset: 0x0018572C
-		public BagType GetCurBagType()
+	public void UpdateMoney()
+	{
+		if (_bagType == BagType.背包)
 		{
-			return this._bagType;
+			MoneyText.SetText(Tools.instance.getPlayer().money);
+			UtilsPanel.gameObject.SetActive(true);
 		}
-
-		// Token: 0x06003941 RID: 14657 RVA: 0x00187534 File Offset: 0x00185734
-		public void UpDateSlotList()
+		else
 		{
-			if (this._bagType == BagType.背包)
-			{
-				this.ItemList = new List<ITEM_INFO>();
-				foreach (ITEM_INFO item_INFO in this._player.itemList.values)
-				{
-					BaseItem baseItem = BaseItem.Create(item_INFO.itemId, (int)item_INFO.itemCount, item_INFO.uuid, item_INFO.Seid);
-					if (this.FiddlerItem(baseItem))
-					{
-						this.ItemList.Add(item_INFO);
-					}
-				}
-				this.mItemTotalCount = this.ItemList.Count;
-			}
-			else if (this._bagType == BagType.技能)
-			{
-				this.ActiveSkillList = new List<SkillItem>();
-				foreach (SkillItem skillItem in this._player.hasSkillList)
-				{
-					BaseSkill baseSkill = new ActiveSkill();
-					baseSkill.SetSkill(skillItem.itemId, skillItem.level);
-					if (this.FiddlerSkill(baseSkill))
-					{
-						this.ActiveSkillList.Add(skillItem);
-					}
-				}
-				this.mItemTotalCount = this.ActiveSkillList.Count;
-			}
-			else if (this._bagType == BagType.功法)
-			{
-				this.PassiveSkillList = new List<SkillItem>();
-				foreach (SkillItem skillItem2 in this._player.hasStaticSkillList)
-				{
-					BaseSkill baseSkill2 = new PassiveSkill();
-					baseSkill2.SetSkill(skillItem2.itemId, skillItem2.level);
-					if (this.FiddlerStaticSkill(baseSkill2))
-					{
-						this.PassiveSkillList.Add(skillItem2);
-					}
-				}
-				this.mItemTotalCount = this.PassiveSkillList.Count;
-			}
-			this.mLoopListView.SetListItemCount(this.GetCount(this.mItemTotalCount), false);
-			this.mLoopListView.RefreshAllShownItem();
+			UtilsPanel.gameObject.SetActive(false);
 		}
+	}
 
-		// Token: 0x06003942 RID: 14658 RVA: 0x0018774C File Offset: 0x0018594C
-		public SlotBase GetNullSlot()
+	public void Close()
+	{
+		BagFilter.ResetData();
+		_go.SetActive(false);
+	}
+
+	private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
+	{
+		if (rowIndex < 0)
 		{
-			foreach (ISlot slot in this.SlotList)
-			{
-				SlotBase slotBase = (SlotBase)slot;
-				if (slotBase.transform.parent.gameObject.activeSelf && slotBase.IsNull())
-				{
-					return slotBase;
-				}
-			}
 			return null;
 		}
-
-		// Token: 0x06003943 RID: 14659 RVA: 0x001877C8 File Offset: 0x001859C8
-		public void UseItemCallBack(MessageData messageData)
+		LoopListViewItem2 loopListViewItem = listView.NewListViewItem("Prefab");
+		SlotList component = ((Component)loopListViewItem).GetComponent<SlotList>();
+		if (!loopListViewItem.IsInitHandlerCalled)
 		{
-			this.UpDateSlotList();
+			loopListViewItem.IsInitHandlerCalled = true;
+			component.Init();
 		}
+		for (int i = 0; i < 5; i++)
+		{
+			int num = rowIndex * 5 + i;
+			switch (_bagType)
+			{
+			case BagType.功法:
+				component.mItemList[i].SetAccptType(CanSlotType.功法);
+				break;
+			case BagType.技能:
+				component.mItemList[i].SetAccptType(CanSlotType.技能);
+				break;
+			case BagType.背包:
+				component.mItemList[i].SetAccptType(CanSlotType.全部物品);
+				break;
+			}
+			if (num >= mItemTotalCount)
+			{
+				component.mItemList[i].SetNull();
+				if (!SlotList.Contains((SlotBase)component.mItemList[i]))
+				{
+					SlotList.Add((SlotBase)component.mItemList[i]);
+				}
+				continue;
+			}
+			switch (_bagType)
+			{
+			case BagType.功法:
+			{
+				PassiveSkill passiveSkill = new PassiveSkill();
+				passiveSkill.SetSkill(PassiveSkillList[num].itemId, PassiveSkillList[num].level);
+				component.mItemList[i].SetSlotData(passiveSkill);
+				break;
+			}
+			case BagType.技能:
+			{
+				ActiveSkill activeSkill = new ActiveSkill();
+				activeSkill.SetSkill(ActiveSkillList[num].itemId, Tools.instance.getPlayer().getLevelType());
+				component.mItemList[i].SetSlotData(activeSkill);
+				break;
+			}
+			case BagType.背包:
+			{
+				BaseItem slotData = BaseItem.Create(ItemList[num].itemId, (int)ItemList[num].itemCount, ItemList[num].uuid, ItemList[num].Seid);
+				component.mItemList[i].SetSlotData(slotData);
+				break;
+			}
+			}
+			if (!SlotList.Contains(component.mItemList[i]))
+			{
+				SlotList.Add(component.mItemList[i]);
+			}
+		}
+		return loopListViewItem;
+	}
 
-		// Token: 0x04003143 RID: 12611
-		private Avatar _player;
+	public int GetCount(int itemCout)
+	{
+		int num = itemCout / 5;
+		if (itemCout % 5 > 0)
+		{
+			num++;
+		}
+		return num + 1;
+	}
 
-		// Token: 0x04003144 RID: 12612
-		private BagType _bagType;
+	public bool FiddlerItem(BaseItem baseItem)
+	{
+		if (ItemQuality != 0 && baseItem.GetImgQuality() != (int)ItemQuality)
+		{
+			return false;
+		}
+		if (ItemType != 0 && baseItem.ItemType != ItemType)
+		{
+			return false;
+		}
+		if (ItemType == Bag.ItemType.材料)
+		{
+			CaiLiaoItem caiLiaoItem = (CaiLiaoItem)baseItem;
+			if (LianQiCaiLiaoYinYang != 0 && caiLiaoItem.GetYinYang() != LianQiCaiLiaoYinYang)
+			{
+				return false;
+			}
+			if (LianQiCaiLiaoType != 0 && caiLiaoItem.GetLianQiCaiLiaoType() != LianQiCaiLiaoType)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
-		// Token: 0x04003145 RID: 12613
-		public Bag.ItemType ItemType;
+	public bool FiddlerSkill(BaseSkill baseSkill)
+	{
+		if (SkillQuality != 0 && baseSkill.GetImgQuality() != (int)SkillQuality)
+		{
+			return false;
+		}
+		if (SkIllType != SkIllType.全部 && !baseSkill.SkillTypeIsEqual((int)SkIllType))
+		{
+			return false;
+		}
+		return true;
+	}
 
-		// Token: 0x04003146 RID: 12614
-		public ItemQuality ItemQuality;
+	public bool FiddlerStaticSkill(BaseSkill baseSkill)
+	{
+		if (SkillQuality != 0 && baseSkill.GetImgQuality() != (int)SkillQuality)
+		{
+			return false;
+		}
+		if (StaticSkIllType != StaticSkIllType.全部 && !baseSkill.SkillTypeIsEqual((int)StaticSkIllType))
+		{
+			return false;
+		}
+		return true;
+	}
 
-		// Token: 0x04003147 RID: 12615
-		public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
+	public void UpdateItem()
+	{
+		if (_bagType == BagType.背包)
+		{
+			ItemList = new List<ITEM_INFO>();
+			foreach (ITEM_INFO value in _player.itemList.values)
+			{
+				if (_ItemJsonData.DataDict.ContainsKey(value.itemId))
+				{
+					BaseItem baseItem = BaseItem.Create(value.itemId, (int)value.itemCount, value.uuid, value.Seid);
+					if (FiddlerItem(baseItem))
+					{
+						ItemList.Add(value);
+					}
+				}
+			}
+			mItemTotalCount = ItemList.Count;
+		}
+		else if (_bagType == BagType.技能)
+		{
+			ActiveSkillList = new List<SkillItem>();
+			foreach (SkillItem hasSkill in _player.hasSkillList)
+			{
+				BaseSkill baseSkill = new ActiveSkill();
+				baseSkill.SetSkill(hasSkill.itemId, Tools.instance.getPlayer().getLevelType());
+				if (FiddlerSkill(baseSkill))
+				{
+					ActiveSkillList.Add(hasSkill);
+				}
+			}
+			mItemTotalCount = ActiveSkillList.Count;
+		}
+		else if (_bagType == BagType.功法)
+		{
+			PassiveSkillList = new List<SkillItem>();
+			foreach (SkillItem hasStaticSkill in _player.hasStaticSkillList)
+			{
+				BaseSkill baseSkill2 = new PassiveSkill();
+				baseSkill2.SetSkill(hasStaticSkill.itemId, hasStaticSkill.level);
+				if (FiddlerStaticSkill(baseSkill2))
+				{
+					PassiveSkillList.Add(hasStaticSkill);
+				}
+			}
+			mItemTotalCount = PassiveSkillList.Count;
+		}
+		mLoopListView.SetListItemCount(GetCount(mItemTotalCount));
+		mLoopListView.RefreshAllShownItem();
+		UpdateMoney();
+	}
 
-		// Token: 0x04003148 RID: 12616
-		public LianQiCaiLiaoType LianQiCaiLiaoType;
+	public BagType GetCurBagType()
+	{
+		return _bagType;
+	}
 
-		// Token: 0x04003149 RID: 12617
-		public SkIllType SkIllType = SkIllType.全部;
+	public void UpDateSlotList()
+	{
+		if (_bagType == BagType.背包)
+		{
+			ItemList = new List<ITEM_INFO>();
+			foreach (ITEM_INFO value in _player.itemList.values)
+			{
+				BaseItem baseItem = BaseItem.Create(value.itemId, (int)value.itemCount, value.uuid, value.Seid);
+				if (FiddlerItem(baseItem))
+				{
+					ItemList.Add(value);
+				}
+			}
+			mItemTotalCount = ItemList.Count;
+		}
+		else if (_bagType == BagType.技能)
+		{
+			ActiveSkillList = new List<SkillItem>();
+			foreach (SkillItem hasSkill in _player.hasSkillList)
+			{
+				BaseSkill baseSkill = new ActiveSkill();
+				baseSkill.SetSkill(hasSkill.itemId, hasSkill.level);
+				if (FiddlerSkill(baseSkill))
+				{
+					ActiveSkillList.Add(hasSkill);
+				}
+			}
+			mItemTotalCount = ActiveSkillList.Count;
+		}
+		else if (_bagType == BagType.功法)
+		{
+			PassiveSkillList = new List<SkillItem>();
+			foreach (SkillItem hasStaticSkill in _player.hasStaticSkillList)
+			{
+				BaseSkill baseSkill2 = new PassiveSkill();
+				baseSkill2.SetSkill(hasStaticSkill.itemId, hasStaticSkill.level);
+				if (FiddlerStaticSkill(baseSkill2))
+				{
+					PassiveSkillList.Add(hasStaticSkill);
+				}
+			}
+			mItemTotalCount = PassiveSkillList.Count;
+		}
+		mLoopListView.SetListItemCount(GetCount(mItemTotalCount), resetPos: false);
+		mLoopListView.RefreshAllShownItem();
+	}
 
-		// Token: 0x0400314A RID: 12618
-		public SkillQuality SkillQuality;
+	public SlotBase GetNullSlot()
+	{
+		SlotBase slotBase = null;
+		foreach (SlotBase slot in SlotList)
+		{
+			if (((Component)((Component)slot).transform.parent).gameObject.activeSelf && slot.IsNull())
+			{
+				return slot;
+			}
+		}
+		return null;
+	}
 
-		// Token: 0x0400314B RID: 12619
-		public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
-
-		// Token: 0x0400314C RID: 12620
-		public BagFilter BagFilter;
-
-		// Token: 0x0400314D RID: 12621
-		public Text MoneyText;
-
-		// Token: 0x0400314E RID: 12622
-		public Image MoneyIcon;
-
-		// Token: 0x0400314F RID: 12623
-		public GameObject UtilsPanel;
-
-		// Token: 0x04003150 RID: 12624
-		public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
-
-		// Token: 0x04003151 RID: 12625
-		public List<SkillItem> ActiveSkillList = new List<SkillItem>();
-
-		// Token: 0x04003152 RID: 12626
-		public List<SkillItem> PassiveSkillList = new List<SkillItem>();
-
-		// Token: 0x04003153 RID: 12627
-		public bool CanSort;
-
-		// Token: 0x04003154 RID: 12628
-		public LoopListView2 mLoopListView;
-
-		// Token: 0x04003155 RID: 12629
-		public List<ISlot> SlotList = new List<ISlot>();
-
-		// Token: 0x04003156 RID: 12630
-		private bool _isInit;
-
-		// Token: 0x04003157 RID: 12631
-		private const int mItemCountPerRow = 5;
-
-		// Token: 0x04003158 RID: 12632
-		private int mItemTotalCount;
+	public void UseItemCallBack(MessageData messageData)
+	{
+		UpDateSlotList();
 	}
 }

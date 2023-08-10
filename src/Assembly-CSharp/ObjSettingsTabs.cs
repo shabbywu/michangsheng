@@ -1,72 +1,63 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E5 RID: 1253
 public class ObjSettingsTabs : MonoBehaviour
 {
-	// Token: 0x06002879 RID: 10361 RVA: 0x00132797 File Offset: 0x00130997
+	public static bool SettingsTabs;
+
+	public SwipeControlSettingsTabs swipeCtrl;
+
+	public Transform[] obj = (Transform[])(object)new Transform[0];
+
+	public float minXPos;
+
+	public float maxXPos = 40f;
+
+	private float xDist;
+
+	private float xDistFactor;
+
+	private float swipeSmoothFactor = 1f;
+
+	private float rememberYPos;
+
 	private void Awake()
 	{
-		ObjSettingsTabs.SettingsTabs = false;
+		SettingsTabs = false;
 	}
 
-	// Token: 0x0600287A RID: 10362 RVA: 0x001327A0 File Offset: 0x001309A0
 	private void Start()
 	{
-		this.xDist = this.maxXPos - this.minXPos;
-		this.xDistFactor = 1f / this.xDist;
-		if (!this.swipeCtrl)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		xDist = maxXPos - minXPos;
+		xDistFactor = 1f / xDist;
+		if (!Object.op_Implicit((Object)(object)swipeCtrl))
 		{
-			this.swipeCtrl = base.gameObject.AddComponent<SwipeControlSettingsTabs>();
+			swipeCtrl = ((Component)this).gameObject.AddComponent<SwipeControlSettingsTabs>();
 		}
-		this.swipeCtrl.skipAutoSetup = true;
-		this.swipeCtrl.clickEdgeToSwitch = false;
-		this.swipeCtrl.SetMouseRect(new Rect(0f, 0f, (float)Screen.width, (float)Screen.height));
-		this.swipeCtrl.maxValue = this.obj.Length - 1;
-		this.swipeCtrl.currentValue = this.obj.Length - 2;
-		this.swipeCtrl.startValue = this.obj.Length - 2;
-		this.swipeCtrl.partWidth = (float)(Screen.width / this.swipeCtrl.maxValue);
-		this.swipeCtrl.Setup();
-		this.swipeSmoothFactor = 1f / (float)this.swipeCtrl.maxValue;
-		this.rememberYPos = this.obj[0].position.y;
+		swipeCtrl.skipAutoSetup = true;
+		swipeCtrl.clickEdgeToSwitch = false;
+		swipeCtrl.SetMouseRect(new Rect(0f, 0f, (float)Screen.width, (float)Screen.height));
+		swipeCtrl.maxValue = obj.Length - 1;
+		swipeCtrl.currentValue = obj.Length - 2;
+		swipeCtrl.startValue = obj.Length - 2;
+		swipeCtrl.partWidth = Screen.width / swipeCtrl.maxValue;
+		swipeCtrl.Setup();
+		swipeSmoothFactor = 1f / (float)swipeCtrl.maxValue;
+		rememberYPos = obj[0].position.y;
 	}
 
-	// Token: 0x0600287B RID: 10363 RVA: 0x001328C8 File Offset: 0x00130AC8
 	private void Update()
 	{
-		if (ObjSettingsTabs.SettingsTabs)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		if (SettingsTabs)
 		{
-			for (int i = 0; i < this.obj.Length; i++)
+			for (int i = 0; i < obj.Length; i++)
 			{
-				this.obj[i].position = new Vector3(this.obj[i].position.x, this.minXPos - (float)i * (this.xDist * this.swipeSmoothFactor) - this.swipeCtrl.smoothValue * this.swipeSmoothFactor * this.xDist, this.obj[i].position.z);
+				obj[i].position = new Vector3(obj[i].position.x, minXPos - (float)i * (xDist * swipeSmoothFactor) - swipeCtrl.smoothValue * swipeSmoothFactor * xDist, obj[i].position.z);
 			}
 		}
 	}
-
-	// Token: 0x040023BD RID: 9149
-	public static bool SettingsTabs;
-
-	// Token: 0x040023BE RID: 9150
-	public SwipeControlSettingsTabs swipeCtrl;
-
-	// Token: 0x040023BF RID: 9151
-	public Transform[] obj = new Transform[0];
-
-	// Token: 0x040023C0 RID: 9152
-	public float minXPos;
-
-	// Token: 0x040023C1 RID: 9153
-	public float maxXPos = 40f;
-
-	// Token: 0x040023C2 RID: 9154
-	private float xDist;
-
-	// Token: 0x040023C3 RID: 9155
-	private float xDistFactor;
-
-	// Token: 0x040023C4 RID: 9156
-	private float swipeSmoothFactor = 1f;
-
-	// Token: 0x040023C5 RID: 9157
-	private float rememberYPos;
 }

@@ -1,30 +1,28 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000ED RID: 237
 public class PotionPickup : MonoBehaviour
 {
-	// Token: 0x06000B79 RID: 2937 RVA: 0x00045C00 File Offset: 0x00043E00
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Player" && other.gameObject.GetComponent<CharacterStatus>())
-		{
-			other.gameObject.GetComponent<CharacterStatus>().HP += 20;
-			if (this.ParticlePotion)
-			{
-				Object.Instantiate<GameObject>(this.ParticlePotion, base.transform.position, Quaternion.identity);
-			}
-			if (this.SoundPickup)
-			{
-				AudioSource.PlayClipAtPoint(this.SoundPickup, base.transform.position);
-			}
-			Object.Destroy(base.gameObject.transform.parent.gameObject);
-		}
-	}
-
-	// Token: 0x040007B0 RID: 1968
 	public GameObject ParticlePotion;
 
-	// Token: 0x040007B1 RID: 1969
 	public AudioClip SoundPickup;
+
+	private void OnTriggerEnter(Collider other)
+	{
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		if (((Component)other).tag == "Player" && Object.op_Implicit((Object)(object)((Component)other).gameObject.GetComponent<CharacterStatus>()))
+		{
+			((Component)other).gameObject.GetComponent<CharacterStatus>().HP += 20;
+			if (Object.op_Implicit((Object)(object)ParticlePotion))
+			{
+				Object.Instantiate<GameObject>(ParticlePotion, ((Component)this).transform.position, Quaternion.identity);
+			}
+			if (Object.op_Implicit((Object)(object)SoundPickup))
+			{
+				AudioSource.PlayClipAtPoint(SoundPickup, ((Component)this).transform.position);
+			}
+			Object.Destroy((Object)(object)((Component)((Component)this).gameObject.transform.parent).gameObject);
+		}
+	}
 }

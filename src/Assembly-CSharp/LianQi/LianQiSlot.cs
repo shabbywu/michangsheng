@@ -1,74 +1,66 @@
-﻿using System;
 using Bag;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace LianQi
+namespace LianQi;
+
+public class LianQiSlot : SlotBase
 {
-	// Token: 0x02000720 RID: 1824
-	public class LianQiSlot : SlotBase
+	public bool IsPlayer;
+
+	public bool IsInBag;
+
+	public override void OnPointerEnter(PointerEventData eventData)
 	{
-		// Token: 0x06003A42 RID: 14914 RVA: 0x0019032C File Offset: 0x0018E52C
-		public override void OnPointerEnter(PointerEventData eventData)
+		if (SlotType == SlotType.空)
 		{
-			if (this.SlotType == SlotType.空)
+			return;
+		}
+		IsIn = true;
+		if (!eventData.dragging)
+		{
+			if ((Object)(object)ToolTipsMag.Inst == (Object)null)
+			{
+				ResManager.inst.LoadPrefab("ToolTips").Inst(((Component)NewUICanvas.Inst).transform);
+			}
+			ToolTipsMag.Inst.Show(Item, IsPlayer);
+		}
+		_selectPanel.SetActive(true);
+	}
+
+	public override void OnPointerUp(PointerEventData eventData)
+	{
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Invalid comparison between Unknown and I4
+		if (eventData.dragging || (IsNull() && IsInBag))
+		{
+			return;
+		}
+		if (IsInBag)
+		{
+			LianQiTotalManager.inst.PutItem(this);
+		}
+		else if ((int)eventData.button == 0)
+		{
+			LianQiTotalManager.inst.ToSlot = this;
+			LianQiTotalManager.inst.OpenBag();
+		}
+		else if ((int)eventData.button == 1)
+		{
+			if (IsNull())
 			{
 				return;
 			}
-			this.IsIn = true;
-			if (!eventData.dragging)
-			{
-				if (ToolTipsMag.Inst == null)
-				{
-					ResManager.inst.LoadPrefab("ToolTips").Inst(NewUICanvas.Inst.transform);
-				}
-				ToolTipsMag.Inst.Show(this.Item, this.IsPlayer);
-			}
-			this._selectPanel.SetActive(true);
+			LianQiTotalManager.inst.Bag.AddTempItem(Item.Clone(), 1);
+			SetNull();
+			LianQiTotalManager.inst.putCaiLiaoCallBack();
 		}
+		_selectPanel.SetActive(false);
+	}
 
-		// Token: 0x06003A43 RID: 14915 RVA: 0x001903A0 File Offset: 0x0018E5A0
-		public override void OnPointerUp(PointerEventData eventData)
-		{
-			if (eventData.dragging)
-			{
-				return;
-			}
-			if (base.IsNull() && this.IsInBag)
-			{
-				return;
-			}
-			if (this.IsInBag)
-			{
-				LianQiTotalManager.inst.PutItem(this);
-			}
-			else if (eventData.button == null)
-			{
-				LianQiTotalManager.inst.ToSlot = this;
-				LianQiTotalManager.inst.OpenBag();
-			}
-			else if (eventData.button == 1)
-			{
-				if (base.IsNull())
-				{
-					return;
-				}
-				LianQiTotalManager.inst.Bag.AddTempItem(this.Item.Clone(), 1);
-				this.SetNull();
-				LianQiTotalManager.inst.putCaiLiaoCallBack();
-			}
-			this._selectPanel.SetActive(false);
-		}
-
-		// Token: 0x06003A44 RID: 14916 RVA: 0x0000280F File Offset: 0x00000A0F
-		public override bool CanDrag()
-		{
-			return false;
-		}
-
-		// Token: 0x04003271 RID: 12913
-		public bool IsPlayer;
-
-		// Token: 0x04003272 RID: 12914
-		public bool IsInBag;
+	public override bool CanDrag()
+	{
+		return false;
 	}
 }

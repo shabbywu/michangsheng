@@ -1,295 +1,262 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000329 RID: 809
 public class MainUIPlayerInfo : MonoBehaviour
 {
-	// Token: 0x06001BDB RID: 7131 RVA: 0x000C6A00 File Offset: 0x000C4C00
+	public static MainUIPlayerInfo inst;
+
+	public MainUIInfoCell zizhi;
+
+	public MainUIInfoCell wuxin;
+
+	public MainUIInfoCell shenshi;
+
+	public MainUIInfoCell dunsu;
+
+	public MainUIInfoCell lingshi;
+
+	public MainUIInfoCell qixue;
+
+	public MainUIInfoCell shouyuan;
+
+	public MainUIInfoCell lingen;
+
+	public MainUIInfoCell xinjing;
+
+	public PlayerSetRandomFace playerFace;
+
+	public int linggenNum;
+
+	public List<int> lingGenList;
+
+	public int canSelectLinGenNum = 5;
+
+	public int sex = 1;
+
+	public string playerName = "";
+
+	public string firstName = "";
+
+	public string lastName = "";
+
 	private void Awake()
 	{
-		MainUIPlayerInfo.inst = this;
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData["1"];
-		this.zizhi.baseNum = jsonobject["ziZhi"].I;
-		this.zizhi.curNum = jsonobject["ziZhi"].I;
-		this.zizhi.UpdateNum(this.zizhi.curNum.ToString(), false);
-		this.zizhi.desc = jsonData.instance.TianFuDescJsonData["1"]["Desc"].Str;
-		this.zizhi.desc = this.zizhi.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.wuxin.baseNum = jsonobject["wuXin"].I;
-		this.wuxin.curNum = jsonobject["wuXin"].I;
-		this.wuxin.UpdateNum(this.wuxin.curNum.ToString(), false);
-		this.wuxin.desc = jsonData.instance.TianFuDescJsonData["3"]["Desc"].Str;
-		this.wuxin.desc = this.wuxin.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.shenshi.baseNum = jsonobject["shengShi"].I;
-		this.shenshi.curNum = jsonobject["shengShi"].I;
-		this.shenshi.UpdateNum(this.shenshi.curNum.ToString(), false);
-		this.shenshi.desc = jsonData.instance.TianFuDescJsonData["5"]["Desc"].Str;
-		this.shenshi.desc = this.shenshi.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.dunsu.baseNum = jsonobject["dunSu"].I;
-		this.dunsu.curNum = jsonobject["dunSu"].I;
-		this.dunsu.UpdateNum(this.dunsu.curNum.ToString(), false);
-		this.dunsu.desc = jsonData.instance.TianFuDescJsonData["4"]["Desc"].Str;
-		this.dunsu.desc = this.dunsu.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.lingshi.baseNum = jsonobject["MoneyType"].I;
-		this.lingshi.curNum = jsonobject["MoneyType"].I;
-		this.lingshi.UpdateNum(this.lingshi.curNum.ToString(), false);
-		this.lingshi.desc = jsonData.instance.TianFuDescJsonData["7"]["Desc"].Str;
-		this.lingshi.desc = this.lingshi.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.qixue.baseNum = jsonobject["HP"].I;
-		this.qixue.curNum = jsonobject["HP"].I;
-		this.qixue.UpdateNum(this.qixue.curNum.ToString(), false);
-		this.qixue.desc = jsonData.instance.TianFuDescJsonData["8"]["Desc"].Str;
-		this.qixue.desc = this.qixue.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.shouyuan.baseNum = jsonobject["shouYuan"].I;
-		this.shouyuan.curNum = jsonobject["shouYuan"].I;
-		this.shouyuan.UpdateNum(this.shouyuan.curNum.ToString(), false);
-		this.shouyuan.desc = jsonData.instance.TianFuDescJsonData["9"]["Desc"].Str;
-		this.shouyuan.desc = this.shouyuan.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.lingen.baseNum = 5;
-		this.lingen.curNum = 5;
-		this.lingen.UpdateNum(jsonData.instance.LinGenZiZhiJsonData[this.lingen.curNum.ToString()]["Title"].Str, true);
-		this.lingen.desc = jsonData.instance.TianFuDescJsonData["2"]["Desc"].Str;
-		this.lingen.desc = this.lingen.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
-		this.xinjing.baseNum = 0;
-		this.xinjing.curNum = 0;
-		this.xinjing.UpdateNum(jsonData.instance.XinJinJsonData[this.GetXinJinLevel(this.xinjing.curNum).ToString()]["Text"].Str + string.Format("（{0}）", this.xinjing.curNum), false);
-		this.xinjing.desc = jsonData.instance.TianFuDescJsonData["6"]["Desc"].Str;
-		this.xinjing.desc = this.xinjing.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		inst = this;
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData["1"];
+		zizhi.baseNum = jSONObject["ziZhi"].I;
+		zizhi.curNum = jSONObject["ziZhi"].I;
+		zizhi.UpdateNum(zizhi.curNum.ToString());
+		zizhi.desc = jsonData.instance.TianFuDescJsonData["1"]["Desc"].Str;
+		zizhi.desc = zizhi.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		wuxin.baseNum = jSONObject["wuXin"].I;
+		wuxin.curNum = jSONObject["wuXin"].I;
+		wuxin.UpdateNum(wuxin.curNum.ToString());
+		wuxin.desc = jsonData.instance.TianFuDescJsonData["3"]["Desc"].Str;
+		wuxin.desc = wuxin.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		shenshi.baseNum = jSONObject["shengShi"].I;
+		shenshi.curNum = jSONObject["shengShi"].I;
+		shenshi.UpdateNum(shenshi.curNum.ToString());
+		shenshi.desc = jsonData.instance.TianFuDescJsonData["5"]["Desc"].Str;
+		shenshi.desc = shenshi.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		dunsu.baseNum = jSONObject["dunSu"].I;
+		dunsu.curNum = jSONObject["dunSu"].I;
+		dunsu.UpdateNum(dunsu.curNum.ToString());
+		dunsu.desc = jsonData.instance.TianFuDescJsonData["4"]["Desc"].Str;
+		dunsu.desc = dunsu.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		lingshi.baseNum = jSONObject["MoneyType"].I;
+		lingshi.curNum = jSONObject["MoneyType"].I;
+		lingshi.UpdateNum(lingshi.curNum.ToString());
+		lingshi.desc = jsonData.instance.TianFuDescJsonData["7"]["Desc"].Str;
+		lingshi.desc = lingshi.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		qixue.baseNum = jSONObject["HP"].I;
+		qixue.curNum = jSONObject["HP"].I;
+		qixue.UpdateNum(qixue.curNum.ToString());
+		qixue.desc = jsonData.instance.TianFuDescJsonData["8"]["Desc"].Str;
+		qixue.desc = qixue.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		shouyuan.baseNum = jSONObject["shouYuan"].I;
+		shouyuan.curNum = jSONObject["shouYuan"].I;
+		shouyuan.UpdateNum(shouyuan.curNum.ToString());
+		shouyuan.desc = jsonData.instance.TianFuDescJsonData["9"]["Desc"].Str;
+		shouyuan.desc = shouyuan.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		lingen.baseNum = 5;
+		lingen.curNum = 5;
+		lingen.UpdateNum(jsonData.instance.LinGenZiZhiJsonData[lingen.curNum.ToString()]["Title"].Str, isLinGen: true);
+		lingen.desc = jsonData.instance.TianFuDescJsonData["2"]["Desc"].Str;
+		lingen.desc = lingen.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
+		xinjing.baseNum = 0;
+		xinjing.curNum = 0;
+		xinjing.UpdateNum(jsonData.instance.XinJinJsonData[GetXinJinLevel(xinjing.curNum).ToString()]["Text"].Str + $"（{xinjing.curNum}）");
+		xinjing.desc = jsonData.instance.TianFuDescJsonData["6"]["Desc"].Str;
+		xinjing.desc = xinjing.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
 	}
 
-	// Token: 0x06001BDC RID: 7132 RVA: 0x000C70A4 File Offset: 0x000C52A4
 	public void UpdataBase()
 	{
-		this.GetZiZhi();
-		this.GetWuXin();
-		this.GetShenShi();
-		this.GetDunSu();
-		this.GetLinShi();
-		this.GetHp();
-		this.GetShouYuan();
-		this.GetLinGenNum();
-		this.GetXinJing();
+		GetZiZhi();
+		GetWuXin();
+		GetShenShi();
+		GetDunSu();
+		GetLinShi();
+		GetHp();
+		GetShouYuan();
+		GetLinGenNum();
+		GetXinJing();
 	}
 
-	// Token: 0x06001BDD RID: 7133 RVA: 0x000C70F0 File Offset: 0x000C52F0
 	public int GetZiZhi()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.zizhi.curNum = this.zizhi.baseNum;
+		zizhi.curNum = zizhi.baseNum;
 		if (hasSelectSeidList.ContainsKey(1))
 		{
-			foreach (int num in hasSelectSeidList[1])
+			foreach (int item in hasSelectSeidList[1])
 			{
-				this.zizhi.curNum += jsonData.instance.CrateAvatarSeidJsonData[1][num.ToString()]["value1"].I;
+				zizhi.curNum += jsonData.instance.CrateAvatarSeidJsonData[1][item.ToString()]["value1"].I;
 			}
 		}
-		this.zizhi.UpdateNum(this.zizhi.curNum.ToString(), false);
-		return this.zizhi.curNum;
+		zizhi.UpdateNum(zizhi.curNum.ToString());
+		return zizhi.curNum;
 	}
 
-	// Token: 0x06001BDE RID: 7134 RVA: 0x000C71D4 File Offset: 0x000C53D4
 	public int GetWuXin()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.wuxin.curNum = this.wuxin.baseNum;
+		wuxin.curNum = wuxin.baseNum;
 		if (hasSelectSeidList.ContainsKey(2))
 		{
-			foreach (int num in hasSelectSeidList[2])
+			foreach (int item in hasSelectSeidList[2])
 			{
-				this.wuxin.curNum += jsonData.instance.CrateAvatarSeidJsonData[2][num.ToString()]["value1"].I;
+				wuxin.curNum += jsonData.instance.CrateAvatarSeidJsonData[2][item.ToString()]["value1"].I;
 			}
 		}
-		this.wuxin.UpdateNum(this.wuxin.curNum.ToString(), false);
-		return this.wuxin.curNum;
+		wuxin.UpdateNum(wuxin.curNum.ToString());
+		return wuxin.curNum;
 	}
 
-	// Token: 0x06001BDF RID: 7135 RVA: 0x000C72B8 File Offset: 0x000C54B8
 	public int GetShenShi()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.shenshi.curNum = this.shenshi.baseNum;
+		shenshi.curNum = shenshi.baseNum;
 		if (hasSelectSeidList.ContainsKey(6))
 		{
-			foreach (int num in hasSelectSeidList[6])
+			foreach (int item in hasSelectSeidList[6])
 			{
-				this.shenshi.curNum += jsonData.instance.CrateAvatarSeidJsonData[6][num.ToString()]["value1"].I;
+				shenshi.curNum += jsonData.instance.CrateAvatarSeidJsonData[6][item.ToString()]["value1"].I;
 			}
 		}
-		this.shenshi.UpdateNum(this.shenshi.curNum.ToString(), false);
-		return this.shenshi.curNum;
+		shenshi.UpdateNum(shenshi.curNum.ToString());
+		return shenshi.curNum;
 	}
 
-	// Token: 0x06001BE0 RID: 7136 RVA: 0x000C739C File Offset: 0x000C559C
 	public int GetDunSu()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.dunsu.curNum = this.dunsu.baseNum;
+		dunsu.curNum = dunsu.baseNum;
 		if (hasSelectSeidList.ContainsKey(7))
 		{
-			foreach (int num in hasSelectSeidList[7])
+			foreach (int item in hasSelectSeidList[7])
 			{
-				this.dunsu.curNum += jsonData.instance.CrateAvatarSeidJsonData[7][num.ToString()]["value1"].I;
+				dunsu.curNum += jsonData.instance.CrateAvatarSeidJsonData[7][item.ToString()]["value1"].I;
 			}
 		}
-		this.dunsu.UpdateNum(this.dunsu.curNum.ToString(), false);
-		return this.dunsu.curNum;
+		dunsu.UpdateNum(dunsu.curNum.ToString());
+		return dunsu.curNum;
 	}
 
-	// Token: 0x06001BE1 RID: 7137 RVA: 0x000C7480 File Offset: 0x000C5680
 	public int GetLinShi()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.lingshi.curNum = this.lingshi.baseNum;
+		lingshi.curNum = lingshi.baseNum;
 		if (hasSelectSeidList.ContainsKey(14))
 		{
-			foreach (int num in hasSelectSeidList[14])
+			foreach (int item in hasSelectSeidList[14])
 			{
-				this.lingshi.curNum += jsonData.instance.CrateAvatarSeidJsonData[14][num.ToString()]["value1"].I;
+				lingshi.curNum += jsonData.instance.CrateAvatarSeidJsonData[14][item.ToString()]["value1"].I;
 			}
 		}
-		this.lingshi.UpdateNum(this.lingshi.curNum.ToString(), false);
-		return this.lingshi.curNum;
+		lingshi.UpdateNum(lingshi.curNum.ToString());
+		return lingshi.curNum;
 	}
 
-	// Token: 0x06001BE2 RID: 7138 RVA: 0x000C7564 File Offset: 0x000C5764
 	public int GetHp()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.qixue.curNum = this.qixue.baseNum;
+		qixue.curNum = qixue.baseNum;
 		if (hasSelectSeidList.ContainsKey(8))
 		{
-			foreach (int num in hasSelectSeidList[8])
+			foreach (int item in hasSelectSeidList[8])
 			{
-				this.qixue.curNum += jsonData.instance.CrateAvatarSeidJsonData[8][num.ToString()]["value1"].I;
+				qixue.curNum += jsonData.instance.CrateAvatarSeidJsonData[8][item.ToString()]["value1"].I;
 			}
 		}
-		this.qixue.UpdateNum(this.qixue.curNum.ToString(), false);
-		return this.qixue.curNum;
+		qixue.UpdateNum(qixue.curNum.ToString());
+		return qixue.curNum;
 	}
 
-	// Token: 0x06001BE3 RID: 7139 RVA: 0x000C7648 File Offset: 0x000C5848
 	public int GetShouYuan()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.shouyuan.curNum = this.shouyuan.baseNum;
+		shouyuan.curNum = shouyuan.baseNum;
 		if (hasSelectSeidList.ContainsKey(5))
 		{
-			foreach (int num in hasSelectSeidList[5])
+			foreach (int item in hasSelectSeidList[5])
 			{
-				this.shouyuan.curNum += jsonData.instance.CrateAvatarSeidJsonData[5][num.ToString()]["value1"].I;
+				shouyuan.curNum += jsonData.instance.CrateAvatarSeidJsonData[5][item.ToString()]["value1"].I;
 			}
 		}
-		this.shouyuan.UpdateNum(this.shouyuan.curNum.ToString(), false);
-		return this.shouyuan.curNum;
+		shouyuan.UpdateNum(shouyuan.curNum.ToString());
+		return shouyuan.curNum;
 	}
 
-	// Token: 0x06001BE4 RID: 7140 RVA: 0x000C772C File Offset: 0x000C592C
 	public int GetLinGenNum()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
 		if (hasSelectSeidList.ContainsKey(3))
 		{
-			foreach (int num in hasSelectSeidList[3])
+			foreach (int item in hasSelectSeidList[3])
 			{
-				this.lingen.curNum = jsonData.instance.CrateAvatarSeidJsonData[3][num.ToString()]["value1"].I;
+				lingen.curNum = jsonData.instance.CrateAvatarSeidJsonData[3][item.ToString()]["value1"].I;
 			}
 		}
-		this.linggenNum = this.lingen.curNum;
-		this.lingen.UpdateNum(jsonData.instance.LinGenZiZhiJsonData[this.lingen.curNum.ToString()]["Title"].Str, true);
-		return this.lingen.curNum;
+		linggenNum = lingen.curNum;
+		lingen.UpdateNum(jsonData.instance.LinGenZiZhiJsonData[lingen.curNum.ToString()]["Title"].Str, isLinGen: true);
+		return lingen.curNum;
 	}
 
-	// Token: 0x06001BE5 RID: 7141 RVA: 0x000C7820 File Offset: 0x000C5A20
 	public int GetXinJing()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
-		this.xinjing.curNum = this.xinjing.baseNum;
+		xinjing.curNum = xinjing.baseNum;
 		if (hasSelectSeidList.ContainsKey(4))
 		{
-			foreach (int num in hasSelectSeidList[4])
+			foreach (int item in hasSelectSeidList[4])
 			{
-				this.xinjing.curNum += jsonData.instance.CrateAvatarSeidJsonData[4][num.ToString()]["value1"].I;
+				xinjing.curNum += jsonData.instance.CrateAvatarSeidJsonData[4][item.ToString()]["value1"].I;
 			}
 		}
-		this.xinjing.UpdateNum(jsonData.instance.XinJinJsonData[this.GetXinJinLevel(this.xinjing.curNum).ToString()]["Text"].Str + string.Format("（{0}）", this.xinjing.curNum), false);
-		return this.xinjing.curNum;
+		xinjing.UpdateNum(jsonData.instance.XinJinJsonData[GetXinJinLevel(xinjing.curNum).ToString()]["Text"].Str + $"（{xinjing.curNum}）");
+		return xinjing.curNum;
 	}
 
-	// Token: 0x06001BE6 RID: 7142 RVA: 0x000C7948 File Offset: 0x000C5B48
 	public List<int> GetLingGen()
 	{
 		List<int> list = new List<int>();
-		foreach (int item in this.lingGenList)
+		foreach (int lingGen in lingGenList)
 		{
-			list.Add(item);
+			list.Add(lingGen);
 		}
 		return list;
 	}
 
-	// Token: 0x06001BE7 RID: 7143 RVA: 0x000C79A4 File Offset: 0x000C5BA4
 	private int GetXinJinLevel(int curNum)
 	{
-		foreach (JSONObject jsonobject in jsonData.instance.XinJinJsonData.list)
+		foreach (JSONObject item in jsonData.instance.XinJinJsonData.list)
 		{
-			if (jsonobject["Max"].I > curNum)
+			if (item["Max"].I > curNum)
 			{
-				return jsonobject["id"].I;
+				return item["id"].I;
 			}
 		}
 		return jsonData.instance.XinJinJsonData.Count;
 	}
-
-	// Token: 0x04001670 RID: 5744
-	public static MainUIPlayerInfo inst;
-
-	// Token: 0x04001671 RID: 5745
-	public MainUIInfoCell zizhi;
-
-	// Token: 0x04001672 RID: 5746
-	public MainUIInfoCell wuxin;
-
-	// Token: 0x04001673 RID: 5747
-	public MainUIInfoCell shenshi;
-
-	// Token: 0x04001674 RID: 5748
-	public MainUIInfoCell dunsu;
-
-	// Token: 0x04001675 RID: 5749
-	public MainUIInfoCell lingshi;
-
-	// Token: 0x04001676 RID: 5750
-	public MainUIInfoCell qixue;
-
-	// Token: 0x04001677 RID: 5751
-	public MainUIInfoCell shouyuan;
-
-	// Token: 0x04001678 RID: 5752
-	public MainUIInfoCell lingen;
-
-	// Token: 0x04001679 RID: 5753
-	public MainUIInfoCell xinjing;
-
-	// Token: 0x0400167A RID: 5754
-	public PlayerSetRandomFace playerFace;
-
-	// Token: 0x0400167B RID: 5755
-	public int linggenNum;
-
-	// Token: 0x0400167C RID: 5756
-	public List<int> lingGenList;
-
-	// Token: 0x0400167D RID: 5757
-	public int canSelectLinGenNum = 5;
-
-	// Token: 0x0400167E RID: 5758
-	public int sex = 1;
-
-	// Token: 0x0400167F RID: 5759
-	public string playerName = "";
-
-	// Token: 0x04001680 RID: 5760
-	public string firstName = "";
-
-	// Token: 0x04001681 RID: 5761
-	public string lastName = "";
 }

@@ -1,158 +1,208 @@
-﻿using System;
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000369 RID: 873
 public class USelectNum : MonoBehaviour
 {
-	// Token: 0x06001D40 RID: 7488 RVA: 0x000CF324 File Offset: 0x000CD524
-	private void Awake()
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
 	{
-		if (USelectNum.inst != null)
-		{
-			Object.Destroy(base.transform.parent.gameObject);
-		}
-		USelectNum.inst = this;
-		USelectNum.myRT = (base.transform as RectTransform);
-		Object.DontDestroyOnLoad(base.transform.parent.gameObject);
-	}
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-	// Token: 0x06001D41 RID: 7489 RVA: 0x000CF380 File Offset: 0x000CD580
-	private void Update()
-	{
-		if (USelectNum.needShow)
+		public static UnityAction _003C_003E9__18_0;
+
+		public static UnityAction _003C_003E9__18_2;
+
+		public static UnityAction _003C_003E9__18_3;
+
+		internal void _003CUpdate_003Eb__18_0()
 		{
-			USelectNum.IsShow = true;
-			USelectNum.needShow = false;
-			USelectNum.myRT.GetChild(0).gameObject.SetActive(true);
-			this.RefreshText(1f);
-			this.NumSlider.maxValue = (float)USelectNum.MaxNum;
-			this.NumSlider.minValue = (float)USelectNum.MinNum;
-			this.NumSlider.onValueChanged.RemoveAllListeners();
-			this.NumSlider.value = 1f;
-			this.NumSlider.onValueChanged.AddListener(new UnityAction<float>(this.RefreshText));
-			this.OkBtn.onClick.RemoveAllListeners();
-			this.OkBtn.onClick.AddListener(delegate()
+			Close();
+		}
+
+		internal void _003CUpdate_003Eb__18_2()
+		{
+			Close();
+		}
+
+		internal void _003CUpdate_003Eb__18_3()
+		{
+			if (CancelAction != null)
 			{
-				USelectNum.Close();
-			});
-			this.OkBtn.onClick.AddListener(delegate()
-			{
-				if (USelectNum.OKAction != null)
-				{
-					USelectNum.OKAction.Invoke(this.NowNum);
-				}
-			});
-			this.CancelBtn.onClick.RemoveAllListeners();
-			this.CancelBtn.onClick.AddListener(delegate()
-			{
-				USelectNum.Close();
-			});
-			this.CancelBtn.onClick.AddListener(delegate()
-			{
-				if (USelectNum.CancelAction != null)
-				{
-					USelectNum.CancelAction.Invoke();
-				}
-			});
-			this.AddBtn.onClick.RemoveAllListeners();
-			this.AddBtn.onClick.AddListener(delegate()
-			{
-				Slider numSlider = this.NumSlider;
-				float value = numSlider.value;
-				numSlider.value = value + 1f;
-			});
-			this.SubBtn.onClick.RemoveAllListeners();
-			this.SubBtn.onClick.AddListener(delegate()
-			{
-				Slider numSlider = this.NumSlider;
-				float value = numSlider.value;
-				numSlider.value = value - 1f;
-			});
+				CancelAction.Invoke();
+			}
 		}
 	}
 
-	// Token: 0x06001D42 RID: 7490 RVA: 0x000CF543 File Offset: 0x000CD743
-	public static void Close()
-	{
-		USelectNum.IsShow = false;
-		if (USelectNum.myRT != null)
-		{
-			USelectNum.myRT.GetChild(0).gameObject.SetActive(false);
-		}
-	}
-
-	// Token: 0x06001D43 RID: 7491 RVA: 0x000CF56E File Offset: 0x000CD76E
-	private void RefreshText(float v)
-	{
-		this.NowNum = (int)v;
-		this.DescText.text = USelectNum.Decs.Replace("{num}", this.NowNum.ToString());
-	}
-
-	// Token: 0x06001D44 RID: 7492 RVA: 0x000CF5A0 File Offset: 0x000CD7A0
-	public static void Show(string desc, int minNum, int maxNum, UnityAction<int> OK = null, UnityAction Cancel = null)
-	{
-		if (USelectNum.inst == null)
-		{
-			Object.Instantiate<GameObject>(Resources.Load<GameObject>(USelectNum.prefabPath));
-		}
-		USelectNum.Decs = desc;
-		USelectNum.MinNum = minNum;
-		USelectNum.MaxNum = maxNum;
-		USelectNum.OKAction = OK;
-		USelectNum.CancelAction = Cancel;
-		USelectNum.needShow = true;
-	}
-
-	// Token: 0x040017D9 RID: 6105
 	private static USelectNum inst;
 
-	// Token: 0x040017DA RID: 6106
 	private static string prefabPath = "USelectNum";
 
-	// Token: 0x040017DB RID: 6107
 	private static RectTransform myRT;
 
-	// Token: 0x040017DC RID: 6108
 	private static bool needShow;
 
-	// Token: 0x040017DD RID: 6109
 	private static string Decs;
 
-	// Token: 0x040017DE RID: 6110
 	private static int MinNum;
 
-	// Token: 0x040017DF RID: 6111
 	private static int MaxNum;
 
-	// Token: 0x040017E0 RID: 6112
 	private static UnityAction<int> OKAction;
 
-	// Token: 0x040017E1 RID: 6113
 	private static UnityAction CancelAction;
 
-	// Token: 0x040017E2 RID: 6114
 	public static bool IsShow;
 
-	// Token: 0x040017E3 RID: 6115
 	public Text DescText;
 
-	// Token: 0x040017E4 RID: 6116
 	public Slider NumSlider;
 
-	// Token: 0x040017E5 RID: 6117
 	public Button SubBtn;
 
-	// Token: 0x040017E6 RID: 6118
 	public Button AddBtn;
 
-	// Token: 0x040017E7 RID: 6119
 	public Button OkBtn;
 
-	// Token: 0x040017E8 RID: 6120
 	public Button CancelBtn;
 
-	// Token: 0x040017E9 RID: 6121
 	private int NowNum;
+
+	private void Awake()
+	{
+		if ((Object)(object)inst != (Object)null)
+		{
+			Object.Destroy((Object)(object)((Component)((Component)this).transform.parent).gameObject);
+		}
+		inst = this;
+		Transform transform = ((Component)this).transform;
+		myRT = (RectTransform)(object)((transform is RectTransform) ? transform : null);
+		Object.DontDestroyOnLoad((Object)(object)((Component)((Component)this).transform.parent).gameObject);
+	}
+
+	private void Update()
+	{
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Expected O, but got Unknown
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cf: Expected O, but got Unknown
+		//IL_011f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012a: Expected O, but got Unknown
+		//IL_0180: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Expected O, but got Unknown
+		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b6: Expected O, but got Unknown
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0159: Expected O, but got Unknown
+		if (!needShow)
+		{
+			return;
+		}
+		IsShow = true;
+		needShow = false;
+		((Component)((Transform)myRT).GetChild(0)).gameObject.SetActive(true);
+		RefreshText(1f);
+		NumSlider.maxValue = MaxNum;
+		NumSlider.minValue = MinNum;
+		((UnityEventBase)NumSlider.onValueChanged).RemoveAllListeners();
+		NumSlider.value = 1f;
+		((UnityEvent<float>)(object)NumSlider.onValueChanged).AddListener((UnityAction<float>)RefreshText);
+		((UnityEventBase)OkBtn.onClick).RemoveAllListeners();
+		ButtonClickedEvent onClick = OkBtn.onClick;
+		object obj = _003C_003Ec._003C_003E9__18_0;
+		if (obj == null)
+		{
+			UnityAction val = delegate
+			{
+				Close();
+			};
+			_003C_003Ec._003C_003E9__18_0 = val;
+			obj = (object)val;
+		}
+		((UnityEvent)onClick).AddListener((UnityAction)obj);
+		((UnityEvent)OkBtn.onClick).AddListener((UnityAction)delegate
+		{
+			if (OKAction != null)
+			{
+				OKAction.Invoke(NowNum);
+			}
+		});
+		((UnityEventBase)CancelBtn.onClick).RemoveAllListeners();
+		ButtonClickedEvent onClick2 = CancelBtn.onClick;
+		object obj2 = _003C_003Ec._003C_003E9__18_2;
+		if (obj2 == null)
+		{
+			UnityAction val2 = delegate
+			{
+				Close();
+			};
+			_003C_003Ec._003C_003E9__18_2 = val2;
+			obj2 = (object)val2;
+		}
+		((UnityEvent)onClick2).AddListener((UnityAction)obj2);
+		ButtonClickedEvent onClick3 = CancelBtn.onClick;
+		object obj3 = _003C_003Ec._003C_003E9__18_3;
+		if (obj3 == null)
+		{
+			UnityAction val3 = delegate
+			{
+				if (CancelAction != null)
+				{
+					CancelAction.Invoke();
+				}
+			};
+			_003C_003Ec._003C_003E9__18_3 = val3;
+			obj3 = (object)val3;
+		}
+		((UnityEvent)onClick3).AddListener((UnityAction)obj3);
+		((UnityEventBase)AddBtn.onClick).RemoveAllListeners();
+		((UnityEvent)AddBtn.onClick).AddListener((UnityAction)delegate
+		{
+			Slider numSlider2 = NumSlider;
+			float value2 = numSlider2.value;
+			numSlider2.value = value2 + 1f;
+		});
+		((UnityEventBase)SubBtn.onClick).RemoveAllListeners();
+		((UnityEvent)SubBtn.onClick).AddListener((UnityAction)delegate
+		{
+			Slider numSlider = NumSlider;
+			float value = numSlider.value;
+			numSlider.value = value - 1f;
+		});
+	}
+
+	public static void Close()
+	{
+		IsShow = false;
+		if ((Object)(object)myRT != (Object)null)
+		{
+			((Component)((Transform)myRT).GetChild(0)).gameObject.SetActive(false);
+		}
+	}
+
+	private void RefreshText(float v)
+	{
+		NowNum = (int)v;
+		DescText.text = Decs.Replace("{num}", NowNum.ToString());
+	}
+
+	public static void Show(string desc, int minNum, int maxNum, UnityAction<int> OK = null, UnityAction Cancel = null)
+	{
+		if ((Object)(object)inst == (Object)null)
+		{
+			Object.Instantiate<GameObject>(Resources.Load<GameObject>(prefabPath));
+		}
+		Decs = desc;
+		MinNum = minNum;
+		MaxNum = maxNum;
+		OKAction = OK;
+		CancelAction = Cancel;
+		needShow = true;
+	}
 }

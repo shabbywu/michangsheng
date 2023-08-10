@@ -1,38 +1,31 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Get", "GetTianFu", "获取是否选择该天赋", 0)]
+[AddComponentMenu("")]
+public class GetTianFu : Command
 {
-	// Token: 0x02000F54 RID: 3924
-	[CommandInfo("YSNew/Get", "GetTianFu", "获取是否选择该天赋", 0)]
-	[AddComponentMenu("")]
-	public class GetTianFu : Command
+	[Tooltip("天赋的ID")]
+	[SerializeField]
+	protected int TianFuID;
+
+	[Tooltip("返回是否拥有的值")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable TempBool;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006E95 RID: 28309 RVA: 0x002A523E File Offset: 0x002A343E
-		public override void OnEnter()
-		{
-			this.TempBool.Value = PlayerEx.HasTianFu(this.TianFuID);
-			this.Continue();
-		}
+		TempBool.Value = PlayerEx.HasTianFu(TianFuID);
+		Continue();
+	}
 
-		// Token: 0x06006E96 RID: 28310 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x04005BB4 RID: 23476
-		[Tooltip("天赋的ID")]
-		[SerializeField]
-		protected int TianFuID;
-
-		// Token: 0x04005BB5 RID: 23477
-		[Tooltip("返回是否拥有的值")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable TempBool;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

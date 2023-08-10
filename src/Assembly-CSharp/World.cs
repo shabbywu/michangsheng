@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Fight;
 using KBEngine;
 using UltimateSurvival;
@@ -9,59 +10,120 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using YSGame;
 
-// Token: 0x0200048B RID: 1163
 public class World : MonoBehaviour
 {
-	// Token: 0x17000292 RID: 658
-	// (get) Token: 0x0600249E RID: 9374 RVA: 0x000FCA1E File Offset: 0x000FAC1E
-	// (set) Token: 0x0600249F RID: 9375 RVA: 0x000FCA42 File Offset: 0x000FAC42
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
+
+		public static UnityAction _003C_003E9__42_0;
+
+		internal void _003Cset_state_003Eb__42_0()
+		{
+			GameOver();
+			YSFuncList.Ints.Continue();
+		}
+	}
+
+	public static World _instance;
+
+	private GameObject terrain;
+
+	public GameObject terrainPerfab;
+
+	private GameObject player;
+
+	public GameObject otherPlayerPerfab;
+
+	public GameObject gatePerfab;
+
+	public GameObject avatarPerfab;
+
+	public GameObject snowBallPerfab;
+
+	public GameObject droppedItemPerfab;
+
+	private Dictionary<string, GameObject> allGameEntity = new Dictionary<string, GameObject>();
+
+	private bool isFirstPos = true;
+
+	private UI_Target ui_target;
+
+	private UI_Target ui_targetPlayer;
+
+	public static ItemDataBaseList inventoryItemList;
+
 	public static World instance
 	{
 		get
 		{
-			if (World._instance != null)
+			if ((Object)(object)_instance != (Object)null)
 			{
-				return World._instance;
+				return _instance;
 			}
-			World._instance = new World();
-			return World._instance;
+			_instance = new World();
+			return _instance;
 		}
 		set
 		{
-			World._instance = value;
+			_instance = value;
 		}
 	}
 
-	// Token: 0x060024A1 RID: 9377 RVA: 0x00004095 File Offset: 0x00002295
+	static World()
+	{
+	}
+
 	private void Awake()
 	{
 	}
 
-	// Token: 0x060024A2 RID: 9378 RVA: 0x000FCA4C File Offset: 0x000FAC4C
 	public void init()
 	{
-		World.inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
-		GameObject gameObject = new GameObject("World");
-		Object.DontDestroyOnLoad(gameObject);
-		World.instance = gameObject.AddComponent<World>();
-		World.instance.terrainPerfab = (GameObject)Resources.Load("Terrain");
-		World.instance.otherPlayerPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/Character");
-		World.instance.gatePerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/Gate");
-		World.instance.avatarPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/Character");
-		World.instance.snowBallPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/snowBall");
-		World.instance.droppedItemPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/droppedItem");
-		World.instance.allGameEntity.Add("Zombie", (GameObject)Resources.Load("Effect/Prefab/gameEntity/Zombie"));
-		World.instance.allGameEntity.Add("In-Game GUI", (GameObject)Resources.Load("Effect/Prefab/gameUI/In-Game GUI"));
-		World.instance.allGameEntity.Add("_Game Controller", (GameObject)Resources.Load("Effect/Prefab/gameUI/_Game Controller"));
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Expected O, but got Unknown
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Expected O, but got Unknown
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Expected O, but got Unknown
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Expected O, but got Unknown
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Expected O, but got Unknown
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Expected O, but got Unknown
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Expected O, but got Unknown
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e7: Expected O, but got Unknown
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010a: Expected O, but got Unknown
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012d: Expected O, but got Unknown
+		inventoryItemList = (ItemDataBaseList)(object)Resources.Load("ItemDatabase");
+		GameObject val = new GameObject("World");
+		Object.DontDestroyOnLoad((Object)val);
+		instance = val.AddComponent<World>();
+		instance.terrainPerfab = (GameObject)Resources.Load("Terrain");
+		instance.otherPlayerPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/Character");
+		instance.gatePerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/Gate");
+		instance.avatarPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/Character");
+		instance.snowBallPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/snowBall");
+		instance.droppedItemPerfab = (GameObject)Resources.Load("Effect/Prefab/gameEntity/droppedItem");
+		instance.allGameEntity.Add("Zombie", (GameObject)Resources.Load("Effect/Prefab/gameEntity/Zombie"));
+		instance.allGameEntity.Add("In-Game GUI", (GameObject)Resources.Load("Effect/Prefab/gameUI/In-Game GUI"));
+		instance.allGameEntity.Add("_Game Controller", (GameObject)Resources.Load("Effect/Prefab/gameUI/_Game Controller"));
 	}
 
-	// Token: 0x060024A3 RID: 9379 RVA: 0x000FCB88 File Offset: 0x000FAD88
 	private void Start()
 	{
-		GameObject gameObject = GameObject.FindGameObjectWithTag("Target");
-		if (gameObject)
+		GameObject val = GameObject.FindGameObjectWithTag("Target");
+		if (Object.op_Implicit((Object)(object)val))
 		{
-			this.ui_target = gameObject.GetComponent<UI_Target>();
+			ui_target = val.GetComponent<UI_Target>();
 		}
 		Event.registerOut("addSpaceGeometryMapping", this, "addSpaceGeometryMapping");
 		Event.registerOut("onAvatarEnterWorld", this, "onAvatarEnterWorld");
@@ -83,102 +145,99 @@ public class World : MonoBehaviour
 		Event.registerOut("goToHome", this, "goToHome");
 	}
 
-	// Token: 0x060024A4 RID: 9380 RVA: 0x000FCCE8 File Offset: 0x000FAEE8
 	public void set_Buffs(Entity entity, List<ushort> oldValue, List<ushort> newValue)
 	{
-		if (oldValue.Count<ushort>() > newValue.Count<ushort>())
+		if (oldValue.Count() > newValue.Count() || entity.renderObj == null)
 		{
 			return;
 		}
-		if (entity.renderObj != null)
+		List<ushort> list = newValue.Except(oldValue).ToList();
+		list.AddRange(oldValue.Except(newValue).ToList());
+		foreach (ushort item in list)
 		{
-			List<ushort> list = newValue.Except(oldValue).ToList<ushort>();
-			list.AddRange(oldValue.Except(newValue).ToList<ushort>());
-			foreach (ushort buffid in list)
-			{
-				this.displayBuff(entity, (int)buffid);
-			}
+			displayBuff(entity, item);
 		}
 	}
 
-	// Token: 0x060024A5 RID: 9381 RVA: 0x000FCD6C File Offset: 0x000FAF6C
 	public void displayBuff(Entity entity, int buffid)
 	{
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
 		string str = jsonData.instance.BuffJsonData[string.Concat(buffid)]["skillEffect"].str;
 		if (str != "")
 		{
-			Vector3 position = ((GameObject)entity.renderObj).transform.position;
+			_ = ((GameObject)entity.renderObj).transform.position;
 			Object.Destroy(Object.Instantiate(ResManager.inst.LoadSkillEffect(str), ((GameObject)entity.renderObj).transform), jsonData.instance.BuffJsonData[string.Concat(buffid)]["totaltime"].n);
 		}
 	}
 
-	// Token: 0x060024A6 RID: 9382 RVA: 0x000FCE14 File Offset: 0x000FB014
 	public void goToHome()
 	{
 		SceneManager.LoadScene("Mainmenu");
-		SceneManager.LoadSceneAsync("homeScene", 1);
-		Object.Destroy(World.instance.gameObject);
+		SceneManager.LoadSceneAsync("homeScene", (LoadSceneMode)1);
+		Object.Destroy((Object)(object)((Component)instance).gameObject);
 	}
 
-	// Token: 0x060024A7 RID: 9383 RVA: 0x000FCE3B File Offset: 0x000FB03B
 	private void OnDestroy()
 	{
-		World.instance = null;
+		instance = null;
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x060024A8 RID: 9384 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x060024A9 RID: 9385 RVA: 0x000FCE4C File Offset: 0x000FB04C
 	public void onAvatarEnterWorld(ulong rndUUID, int eid, Avatar avatar)
 	{
+		//IL_0288: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028f: Expected O, but got Unknown
+		//IL_02b5: Unknown result type (might be due to invalid IL or missing references)
 		if (!avatar.isPlayer())
 		{
 			return;
 		}
-		this.createPlayer();
-		Debug.Log("loading scene...");
+		createPlayer();
+		Debug.Log((object)"loading scene...");
 		object obj = avatar.state;
 		if (obj != null)
 		{
-			this.set_state(avatar, obj);
+			set_state(avatar, obj);
 		}
 		object name = avatar.name;
 		if (name != null)
 		{
-			this.set_entityName(avatar, (string)name);
+			set_entityName(avatar, (string)name);
 		}
 		object obj2 = avatar.HP;
 		if (obj2 != null)
 		{
-			this.set_HP(avatar, obj2);
+			set_HP(avatar, obj2);
 		}
 		object obj3 = avatar.HP_Max;
 		if (obj3 != null)
 		{
-			this.set_HP_Max(avatar, obj3);
+			set_HP_Max(avatar, obj3);
 		}
-		GameObject gameObject = GameObject.FindGameObjectWithTag("TargetPlayer");
-		if (gameObject)
+		GameObject val = GameObject.FindGameObjectWithTag("TargetPlayer");
+		if (Object.op_Implicit((Object)(object)val))
 		{
-			this.ui_targetPlayer = gameObject.GetComponent<UI_Target>();
+			ui_targetPlayer = val.GetComponent<UI_Target>();
 		}
-		if (this.ui_targetPlayer)
+		if (Object.op_Implicit((Object)(object)ui_targetPlayer))
 		{
-			this.ui_targetPlayer.GE_target = this.player.GetComponent<GameEntity>();
+			ui_targetPlayer.GE_target = player.GetComponent<GameEntity>();
 		}
-		GameObject gameObject2 = GameObject.FindGameObjectWithTag("Canvas");
-		GameObject gameObject3 = null;
-		if (gameObject2.transform.Find("Panel - State") != null)
+		GameObject val2 = GameObject.FindGameObjectWithTag("Canvas");
+		GameObject val3 = null;
+		if ((Object)(object)val2.transform.Find("Panel - State") != (Object)null)
 		{
-			gameObject3 = gameObject2.transform.Find("Panel - State").gameObject;
+			val3 = ((Component)val2.transform.Find("Panel - State")).gameObject;
 		}
-		if (gameObject3 != null)
+		if ((Object)(object)val3 != (Object)null)
 		{
-			UI_AvatarState component = gameObject3.GetComponent<UI_AvatarState>();
+			UI_AvatarState component = val3.GetComponent<UI_AvatarState>();
 			object obj4 = avatar.attack_Max;
 			if (obj4 != null)
 			{
@@ -233,18 +292,25 @@ public class World : MonoBehaviour
 		object obj14 = avatar.equipWeapon;
 		if (obj14 != null)
 		{
-			this.set_equipWeapon(avatar, (int)obj14);
+			set_equipWeapon(avatar, (int)obj14);
 		}
 		SkillBox.inst.initSkillDisplay();
-		GameObject gameObject4 = GameObject.Find("Male_Player");
-		GameObject gameObject5 = (GameObject)KBEngineApp.app.player().renderObj;
-		gameObject4.transform.parent = gameObject5.transform;
-		gameObject4.transform.localPosition = new Vector3(0f, 0f, 0f);
+		GameObject obj15 = GameObject.Find("Male_Player");
+		GameObject val4 = (GameObject)KBEngineApp.app.player().renderObj;
+		obj15.transform.parent = val4.transform;
+		obj15.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060024AA RID: 9386 RVA: 0x000FD118 File Offset: 0x000FB318
 	public void onEnterWorld(Entity entity)
 	{
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
 		float num = entity.position.y;
 		if (entity.isOnGround)
 		{
@@ -252,225 +318,228 @@ public class World : MonoBehaviour
 		}
 		if (entity.className == "Gate")
 		{
-			entity.renderObj = Object.Instantiate<GameObject>(this.gatePerfab, new Vector3(entity.position.x, num, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
+			entity.renderObj = Object.Instantiate<GameObject>(gatePerfab, new Vector3(entity.position.x, num, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
 			((GameObject)entity.renderObj).GetComponent<GameEntity>().entityDisable();
 		}
 		else if (entity.className == "Monster" || entity.className == "Pet")
 		{
-			this.createMonster(entity);
+			createMonster(entity);
 		}
 		else if (entity.className == "DroppedItem")
 		{
-			entity.renderObj = Object.Instantiate<GameObject>(this.droppedItemPerfab, new Vector3(entity.position.x, num, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
+			entity.renderObj = Object.Instantiate<GameObject>(droppedItemPerfab, new Vector3(entity.position.x, num, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
 		}
 		else if (entity.className == "Avatar")
 		{
-			this.creatAvater(entity);
+			creatAvater(entity);
 		}
 		else if (entity.className == "NPC")
 		{
-			this.createNPC(entity);
+			createNPC(entity);
 		}
 		else if (entity.className == "Build")
 		{
-			this.CreatBuild(entity);
+			CreatBuild(entity);
 		}
-		((GameObject)entity.renderObj).name = entity.className + "_" + entity.id;
-		this.set_position(entity);
-		this.set_direction(entity);
+		((Object)(GameObject)entity.renderObj).name = entity.className + "_" + entity.id;
+		set_position(entity);
+		set_direction(entity);
 		object definedProperty = entity.getDefinedProperty("state");
 		if (definedProperty != null)
 		{
-			this.set_state(entity, definedProperty);
+			set_state(entity, definedProperty);
 		}
 		object definedProperty2 = entity.getDefinedProperty("name");
 		if (definedProperty2 != null)
 		{
-			this.set_entityName(entity, (string)definedProperty2);
+			set_entityName(entity, (string)definedProperty2);
 		}
 		object definedProperty3 = entity.getDefinedProperty("HP");
 		if (definedProperty3 != null)
 		{
-			this.set_HP(entity, definedProperty3);
+			set_HP(entity, definedProperty3);
 		}
 		object definedProperty4 = entity.getDefinedProperty("HP_Max");
 		if (definedProperty4 != null)
 		{
-			this.set_HP_Max(entity, definedProperty4);
+			set_HP_Max(entity, definedProperty4);
 		}
 		object definedProperty5 = entity.getDefinedProperty("equipWeapon");
 		if (definedProperty5 != null)
 		{
-			this.set_equipWeapon(entity, (int)definedProperty5);
+			set_equipWeapon(entity, (int)definedProperty5);
 		}
 	}
 
-	// Token: 0x060024AB RID: 9387 RVA: 0x000FD36C File Offset: 0x000FB56C
 	public void createMonster(Entity entity)
 	{
-		this.createInstantiate("Effect/Prefab/gameEntity/Monster/Monster", entity, "Monster");
-		this.createRoleScript<MonsterAddScript>(entity);
-		GameObject gameObject = (GameObject)entity.renderObj;
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Expected O, but got Unknown
+		createInstantiate("Effect/Prefab/gameEntity/Monster/Monster", entity, "Monster");
+		createRoleScript<MonsterAddScript>(entity);
+		GameObject val = (GameObject)entity.renderObj;
 		if (entity.className == "Monster")
 		{
-			gameObject.GetComponent<GameEntity>().canAttack = true;
+			val.GetComponent<GameEntity>().canAttack = true;
 		}
 	}
 
-	// Token: 0x060024AC RID: 9388 RVA: 0x000FD3BC File Offset: 0x000FB5BC
 	public void createNPC(Entity entity)
 	{
-		GameObject gameObject = (GameObject)Resources.Load("Effect/Prefab/gameEntity/NPC/NPC1/NPC1_1");
-		entity.renderObj = Object.Instantiate<GameObject>(gameObject, new Vector3(entity.position.x, entity.position.y, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Expected O, but got Unknown
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		GameObject val = (GameObject)Resources.Load("Effect/Prefab/gameEntity/NPC/NPC1/NPC1_1");
+		entity.renderObj = Object.Instantiate<GameObject>(val, new Vector3(entity.position.x, entity.position.y, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
 	}
 
-	// Token: 0x060024AD RID: 9389 RVA: 0x000FD438 File Offset: 0x000FB638
 	public void creatAvater(Entity entity)
 	{
-		this.createInstantiate("Effect/Prefab/gameEntity/Avater/Avater", entity, "Avater");
-		this.createRoleScript<AvaterAddScript>(entity);
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		createInstantiate("Effect/Prefab/gameEntity/Avater/Avater", entity, "Avater");
+		createRoleScript<AvaterAddScript>(entity);
 		((GameObject)entity.renderObj).GetComponent<GameEntity>().scale = new Vector3(0.75f, 0.75f, 0.75f);
 	}
 
-	// Token: 0x060024AE RID: 9390 RVA: 0x000FD488 File Offset: 0x000FB688
 	public void createRoleScript<T>(Entity entity) where T : BaseAddScript
 	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
 		object definedProperty = entity.getDefinedProperty("roleTypeCell");
 		object definedProperty2 = entity.getDefinedProperty("roleSurfaceCall");
-		BaseAddScript baseAddScript = ((GameObject)entity.renderObj).GetComponent<T>();
-		if (baseAddScript == null)
+		BaseAddScript component = ((GameObject)entity.renderObj).GetComponent<T>();
+		if ((Object)(object)component == (Object)null)
 		{
 			((GameObject)entity.renderObj).AddComponent<T>();
-			baseAddScript = ((GameObject)entity.renderObj).GetComponent<T>();
+			component = ((GameObject)entity.renderObj).GetComponent<T>();
 		}
-		baseAddScript.nowRoleType = (int)((uint)definedProperty);
-		baseAddScript.nowRoleFace = (int)((ushort)definedProperty2);
-		baseAddScript.entity = entity;
+		component.nowRoleType = (int)(uint)definedProperty;
+		component.nowRoleFace = (ushort)definedProperty2;
+		component.entity = entity;
 	}
 
-	// Token: 0x060024AF RID: 9391 RVA: 0x000FD514 File Offset: 0x000FB714
 	public void createInstantiate(string patch, Entity entity, string entitytype)
 	{
+		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ec: Expected O, but got Unknown
+		//IL_0103: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0138: Expected O, but got Unknown
+		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
 		float y = entity.position.y;
-		bool isOnGround = entity.isOnGround;
+		_ = entity.isOnGround;
 		Avatar avatar = (Avatar)entity;
 		uint roleTypeCell = avatar.roleTypeCell;
 		ushort roleSurfaceCall = avatar.roleSurfaceCall;
-		string text = string.Concat(new object[]
-		{
-			patch,
-			roleTypeCell,
-			"/",
-			entitytype,
-			roleTypeCell,
-			"_",
-			roleSurfaceCall
-		});
-		string text2 = string.Concat(new object[]
-		{
-			patch,
-			49 + avatar.Sex,
-			"/",
-			entitytype,
-			49 + avatar.Sex,
-			"_",
-			roleSurfaceCall
-		});
-		GameObject gameObject = (GameObject)Resources.Load((roleTypeCell == 0U) ? text2 : text);
-		entity.renderObj = new GameObject(entitytype + "_" + entity.id);
-		GameObject gameObject2 = Object.Instantiate<GameObject>(gameObject, new Vector3(entity.position.x, y, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
-		gameObject2.transform.parent = ((GameObject)entity.renderObj).transform;
-		gameObject2.transform.localPosition = new Vector3(0f, 0f, 0f);
+		string text = patch + roleTypeCell + "/" + entitytype + roleTypeCell + "_" + roleSurfaceCall;
+		string text2 = patch + (49 + avatar.Sex) + "/" + entitytype + (49 + avatar.Sex) + "_" + roleSurfaceCall;
+		GameObject val = (GameObject)Resources.Load((roleTypeCell == 0) ? text2 : text);
+		entity.renderObj = (object)new GameObject(entitytype + "_" + entity.id);
+		GameObject obj = Object.Instantiate<GameObject>(val, new Vector3(entity.position.x, y, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
+		obj.transform.parent = ((GameObject)entity.renderObj).transform;
+		obj.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060024B0 RID: 9392 RVA: 0x000FD694 File Offset: 0x000FB894
 	public void CreatBuild(Entity entity)
 	{
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
 		object definedProperty = entity.getDefinedProperty("BuildId");
 		if (definedProperty != null)
 		{
-			ItemData itemData;
-			UltimateSurvival.MonoSingleton<InventoryController>.Instance.Database.FindItemById((int)definedProperty, out itemData);
+			UltimateSurvival.MonoSingleton<InventoryController>.Instance.Database.FindItemById((int)definedProperty, out var itemData);
 			entity.renderObj = Object.Instantiate<GameObject>(itemData.WorldObject, new Vector3(entity.position.x, entity.position.y, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
 		}
 	}
 
-	// Token: 0x060024B1 RID: 9393 RVA: 0x000FD72C File Offset: 0x000FB92C
 	public void onLeaveWorld(Entity entity)
 	{
-		if (entity.renderObj == null)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Expected O, but got Unknown
+		if (entity.renderObj != null)
 		{
-			return;
+			GameEntity component = ((GameObject)entity.renderObj).GetComponent<GameEntity>();
+			if ((Object)(object)getUITarget().GE_target == (Object)(object)component)
+			{
+				getUITarget().deactivate();
+			}
+			Object.Destroy((Object)(GameObject)entity.renderObj);
+			entity.renderObj = null;
 		}
-		GameEntity component = ((GameObject)entity.renderObj).GetComponent<GameEntity>();
-		if (this.getUITarget().GE_target == component)
-		{
-			this.getUITarget().deactivate();
-		}
-		Object.Destroy((GameObject)entity.renderObj);
-		entity.renderObj = null;
 	}
 
-	// Token: 0x060024B2 RID: 9394 RVA: 0x000FD788 File Offset: 0x000FB988
 	public void set_entityName(Entity entity, object v)
 	{
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
 		if (entity.renderObj != null)
 		{
 			((GameObject)entity.renderObj).GetComponent<GameEntity>().entity_name = (string)v;
 		}
 	}
 
-	// Token: 0x060024B3 RID: 9395 RVA: 0x000FD7B0 File Offset: 0x000FB9B0
 	public void set_position(Entity entity)
 	{
-		if (entity.renderObj == null)
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		if (entity.renderObj != null)
 		{
-			return;
+			Vector3 position = entity.position;
+			((GameObject)entity.renderObj).GetComponent<GameEntity>().destPosition = position;
+			((GameObject)entity.renderObj).GetComponent<GameEntity>().position = position;
 		}
-		Vector3 position = entity.position;
-		((GameObject)entity.renderObj).GetComponent<GameEntity>().destPosition = position;
-		((GameObject)entity.renderObj).GetComponent<GameEntity>().position = position;
 	}
 
-	// Token: 0x060024B4 RID: 9396 RVA: 0x000FD7FC File Offset: 0x000FB9FC
 	public void set_direction(Entity entity)
 	{
-		if (entity.renderObj == null)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		if (entity.renderObj != null)
 		{
-			return;
+			_ = (GameObject)entity.renderObj;
+			((GameObject)entity.renderObj).GetComponent<GameEntity>().destDirection = new Vector3(entity.direction.y, entity.direction.z, entity.direction.x);
 		}
-		GameObject gameObject = (GameObject)entity.renderObj;
-		((GameObject)entity.renderObj).GetComponent<GameEntity>().destDirection = new Vector3(entity.direction.y, entity.direction.z, entity.direction.x);
 	}
 
-	// Token: 0x060024B5 RID: 9397 RVA: 0x000FD85C File Offset: 0x000FBA5C
 	public UI_Target getUITarget()
 	{
-		if (this.ui_target == null)
+		if ((Object)(object)ui_target == (Object)null)
 		{
-			GameObject gameObject = GameObject.FindGameObjectWithTag("Target");
-			if (gameObject)
+			GameObject val = GameObject.FindGameObjectWithTag("Target");
+			if (Object.op_Implicit((Object)(object)val))
 			{
-				this.ui_target = gameObject.GetComponent<UI_Target>();
+				ui_target = val.GetComponent<UI_Target>();
 			}
 		}
-		return this.ui_target;
+		return ui_target;
 	}
 
-	// Token: 0x060024B6 RID: 9398 RVA: 0x00004095 File Offset: 0x00002295
 	public void set_HP(Entity entity, object v)
 	{
 	}
 
-	// Token: 0x060024B7 RID: 9399 RVA: 0x00004095 File Offset: 0x00002295
 	public void set_HP_Max(Entity entity, object v)
 	{
 	}
 
-	// Token: 0x060024B8 RID: 9400 RVA: 0x000FD89C File Offset: 0x000FBA9C
 	public static void GameOver()
 	{
-		if (RoundManager.instance != null && RoundManager.instance.gameOverSwitch == 0)
+		if ((Object)(object)RoundManager.instance != (Object)null && RoundManager.instance.gameOverSwitch == 0)
 		{
 			RoundManager.instance.gameOverSwitch = 1;
 			Tools.instance.getPlayer();
@@ -483,222 +552,260 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060024B9 RID: 9401 RVA: 0x000FD914 File Offset: 0x000FBB14
 	public void set_state(Entity entity, object v)
 	{
-		if (entity.renderObj != null)
-		{
-			if ((sbyte)v == 1)
-			{
-				((GameObject)entity.renderObj).transform.GetChild(0).GetComponent<Animator>().speed = 1f;
-				((GameObject)entity.renderObj).transform.GetChild(0).GetComponent<Animator>().Play("Dead");
-				Queue<UnityAction> queue = new Queue<UnityAction>();
-				UnityAction item = delegate()
-				{
-					World.GameOver();
-					YSFuncList.Ints.Continue();
-				};
-				queue.Enqueue(item);
-				YSFuncList.Ints.AddFunc(queue);
-				return;
-			}
-			((GameObject)entity.renderObj).transform.GetChild(0).GetComponent<Animator>().speed = 1f;
-			((GameObject)entity.renderObj).transform.GetChild(0).GetComponent<Animator>().SetFloat("Speed", 0f);
-			((GameObject)entity.renderObj).transform.GetChild(0).GetComponent<Animator>().Play("Idle");
-		}
-	}
-
-	// Token: 0x060024BA RID: 9402 RVA: 0x000FDA30 File Offset: 0x000FBC30
-	public void createPlayer()
-	{
-		if (this.player != null)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Expected O, but got Unknown
+		if (entity.renderObj == null)
 		{
 			return;
 		}
-		if (KBEngineApp.app.entity_type != "Avatar")
+		if ((sbyte)v == 1)
+		{
+			((Component)((GameObject)entity.renderObj).transform.GetChild(0)).GetComponent<Animator>().speed = 1f;
+			((Component)((GameObject)entity.renderObj).transform.GetChild(0)).GetComponent<Animator>().Play("Dead");
+			Queue<UnityAction> queue = new Queue<UnityAction>();
+			object obj = _003C_003Ec._003C_003E9__42_0;
+			if (obj == null)
+			{
+				UnityAction val = delegate
+				{
+					GameOver();
+					YSFuncList.Ints.Continue();
+				};
+				_003C_003Ec._003C_003E9__42_0 = val;
+				obj = (object)val;
+			}
+			UnityAction item = (UnityAction)obj;
+			queue.Enqueue(item);
+			YSFuncList.Ints.AddFunc(queue);
+		}
+		else
+		{
+			((Component)((GameObject)entity.renderObj).transform.GetChild(0)).GetComponent<Animator>().speed = 1f;
+			((Component)((GameObject)entity.renderObj).transform.GetChild(0)).GetComponent<Animator>().SetFloat("Speed", 0f);
+			((Component)((GameObject)entity.renderObj).transform.GetChild(0)).GetComponent<Animator>().Play("Idle");
+		}
+	}
+
+	public void createPlayer()
+	{
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Expected O, but got Unknown
+		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)player != (Object)null || KBEngineApp.app.entity_type != "Avatar")
 		{
 			return;
 		}
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
 		if (avatar == null)
 		{
-			Debug.Log("wait create(palyer)!");
+			Debug.Log((object)"wait create(palyer)!");
 			return;
 		}
-		this.createInstantiate("Effect/Prefab/gameEntity/Avater/Avater", avatar, "Avater");
-		this.player = (GameObject)avatar.renderObj;
-		this.createRoleScript<AvaterAddScript>(avatar);
-		this.initPlayer(this.player);
-		avatar.renderObj = this.player;
-		Camera.main.GetComponent<SmoothFollow>().target = this.player.transform;
+		createInstantiate("Effect/Prefab/gameEntity/Avater/Avater", avatar, "Avater");
+		player = (GameObject)avatar.renderObj;
+		createRoleScript<AvaterAddScript>(avatar);
+		initPlayer(player);
+		avatar.renderObj = player;
+		((Component)Camera.main).GetComponent<SmoothFollow>().target = player.transform;
 		for (int i = 0; i < Camera.allCameras.Length; i++)
 		{
-			if (Camera.allCameras[i].GetComponent<MapFollow>() != null)
+			if ((Object)(object)((Component)Camera.allCameras[i]).GetComponent<MapFollow>() != (Object)null)
 			{
-				Camera.allCameras[i].GetComponent<MapFollow>().target = this.player.transform;
+				((Component)Camera.allCameras[i]).GetComponent<MapFollow>().target = player.transform;
 			}
 		}
 		((GameObject)avatar.renderObj).GetComponent<GameEntity>().isPlayer = true;
 	}
 
-	// Token: 0x060024BB RID: 9403 RVA: 0x000FDB34 File Offset: 0x000FBD34
 	private void initPlayer(GameObject player)
 	{
-		if (player == null)
+		if (!((Object)(object)player == (Object)null))
 		{
-			return;
+			Avatar avatar = (Avatar)KBEngineApp.app.player();
+			if (avatar == null)
+			{
+				Debug.Log((object)"wait create(palyer)!");
+			}
+			else
+			{
+				avatar.reqItemList();
+			}
 		}
-		Avatar avatar = (Avatar)KBEngineApp.app.player();
-		if (avatar == null)
-		{
-			Debug.Log("wait create(palyer)!");
-			return;
-		}
-		avatar.reqItemList();
 	}
 
-	// Token: 0x060024BC RID: 9404 RVA: 0x000FDB70 File Offset: 0x000FBD70
 	public void addSpaceGeometryMapping(string respath)
 	{
-		Debug.Log("loading scene(" + respath + ")...");
-		MonoBehaviour.print(string.Concat(new object[]
-		{
-			"scene(",
-			respath,
-			"), spaceID=",
-			KBEngineApp.app.spaceID
-		}));
-		this.terrain == null;
+		Debug.Log((object)("loading scene(" + respath + ")..."));
+		MonoBehaviour.print((object)("scene(" + respath + "), spaceID=" + KBEngineApp.app.spaceID));
+		_ = (Object)(object)terrain == (Object)null;
 	}
 
-	// Token: 0x060024BD RID: 9405 RVA: 0x000FDBD5 File Offset: 0x000FBDD5
 	public void updatePosition(Entity entity)
 	{
-		if (entity.renderObj == null)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		if (entity.renderObj != null)
 		{
-			return;
+			GameEntity component = ((GameObject)entity.renderObj).GetComponent<GameEntity>();
+			component.destPosition = entity.position;
+			component.isOnGround = entity.isOnGround;
 		}
-		GameEntity component = ((GameObject)entity.renderObj).GetComponent<GameEntity>();
-		component.destPosition = entity.position;
-		component.isOnGround = entity.isOnGround;
 	}
 
-	// Token: 0x060024BE RID: 9406 RVA: 0x000FDC08 File Offset: 0x000FBE08
 	public void recvDamage(Entity entity, Entity attacker, int skillID, int damageType, int damage)
 	{
-		if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
-		{
-			return;
-		}
-		if (skillID == 0)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016e: Expected O, but got Unknown
+		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0184: Expected O, but got Unknown
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0314: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031b: Expected O, but got Unknown
+		//IL_0322: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0329: Expected O, but got Unknown
+		//IL_0330: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0337: Expected O, but got Unknown
+		//IL_0211: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0236: Expected O, but got Unknown
+		//IL_023d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0244: Expected O, but got Unknown
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0295: Expected O, but got Unknown
+		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e2: Expected O, but got Unknown
+		//IL_02b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f3: Unknown result type (might be due to invalid IL or missing references)
+		if (((Object)(object)RoundManager.instance != (Object)null && RoundManager.instance.IsVirtual) || skillID == 0)
 		{
 			return;
 		}
 		if (damage < 0)
 		{
-			GameObject gameObject = Object.Instantiate(ResManager.inst.LoadSkillEffect("huifu")) as GameObject;
+			Object obj = Object.Instantiate(ResManager.inst.LoadSkillEffect("huifu"));
+			GameObject val = (GameObject)(object)((obj is GameObject) ? obj : null);
 			if (SceneEx.NowSceneName == "YSNewTianJieFight")
 			{
-				gameObject.transform.localPosition = new Vector3(-2.42f, 3.37f, 1f);
+				val.transform.localPosition = new Vector3(-2.42f, 3.37f, 1f);
 			}
 			else if (entity == attacker)
 			{
 				if (entity.isPlayer())
 				{
-					gameObject.transform.localPosition = new Vector3(-7.5f, 3.41f, 1f);
+					val.transform.localPosition = new Vector3(-7.5f, 3.41f, 1f);
 				}
 				else
 				{
-					gameObject.transform.localPosition = new Vector3(2.7f, 3.41f, 1f);
+					val.transform.localPosition = new Vector3(2.7f, 3.41f, 1f);
 				}
 			}
 			else if (attacker.isPlayer())
 			{
-				gameObject.transform.localPosition = new Vector3(-7.5f, 3.41f, 1f);
+				val.transform.localPosition = new Vector3(-7.5f, 3.41f, 1f);
 			}
 			else
 			{
-				gameObject.transform.localPosition = new Vector3(2.7f, 3.41f, 1f);
+				val.transform.localPosition = new Vector3(2.7f, 3.41f, 1f);
 			}
 		}
 		Queue<UnityAction> queue = new Queue<UnityAction>();
 		Skill sk = SkillBox.inst.get(skillID);
-		GameObject gameObject2 = (GameObject)attacker.renderObj;
+		GameObject val2 = (GameObject)attacker.renderObj;
 		GameObject entityEntity = (GameObject)entity.renderObj;
 		if (sk != null && jsonData.instance.skillJsonData[skillID.ToString()]["script"].str == "SkillAttack" && entity == attacker && damage < 0)
 		{
-			UnityAction item = delegate()
+			UnityAction item = (UnityAction)delegate
 			{
-				entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage, 0);
-				this.Invoke("continuFunc", 0.1f);
+				entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage);
+				((MonoBehaviour)this).Invoke("continuFunc", 0.1f);
 			};
 			queue.Enqueue(item);
 		}
 		else if (sk != null && entity != attacker)
 		{
-			Vector3 vector = entity.position - attacker.position;
-			UnityAction item2 = delegate()
+			Vector3 val3 = entity.position - attacker.position;
+			UnityAction item2 = (UnityAction)delegate
 			{
 				sk.displaySkill(attacker, entity);
 			};
-			UnityAction item3 = delegate()
+			UnityAction item3 = (UnityAction)delegate
 			{
 				if (damage > 0)
 				{
-					Transform child = entityEntity.transform.GetChild(0);
-					if (child == null)
+					Transform child2 = entityEntity.transform.GetChild(0);
+					if ((Object)(object)child2 == (Object)null)
 					{
 						YSFuncList.Ints.Continue();
 						return;
 					}
-					Animator component = child.GetComponent<Animator>();
-					if (component == null)
+					Animator component2 = ((Component)child2).GetComponent<Animator>();
+					if ((Object)(object)component2 == (Object)null)
 					{
 						YSFuncList.Ints.Continue();
 						return;
 					}
-					component.Play("Hit", -1, 0f);
+					component2.Play("Hit", -1, 0f);
 				}
 				YSFuncList.Ints.Continue();
 			};
 			queue.Enqueue(item2);
 			queue.Enqueue(item3);
-			if (TianJieManager.Inst != null && entity.isPlayer())
+			if ((Object)(object)TianJieManager.Inst != (Object)null && entity.isPlayer())
 			{
-				entityEntity.GetComponentInChildren<AvatarShowHpDamage>().SpecialShow(damage, 0);
+				entityEntity.GetComponentInChildren<AvatarShowHpDamage>().SpecialShow(damage);
 			}
 			else
 			{
-				UnityAction item4 = delegate()
+				UnityAction item4 = (UnityAction)delegate
 				{
-					entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage, 0);
-					this.Invoke("continuFunc", 0.1f);
+					entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage);
+					((MonoBehaviour)this).Invoke("continuFunc", 0.1f);
 				};
 				queue.Enqueue(item4);
 			}
 			if (attacker.isPlayer())
 			{
-				gameObject2.transform.LookAt(new Vector3(gameObject2.transform.position.x + vector.x, gameObject2.transform.position.y, gameObject2.transform.position.z + vector.z));
+				val2.transform.LookAt(new Vector3(val2.transform.position.x + val3.x, val2.transform.position.y, val2.transform.position.z + val3.z));
 			}
 		}
 		else if (entity == attacker)
 		{
-			UnityAction item5 = delegate()
+			UnityAction item5 = (UnityAction)delegate
 			{
 				sk.displaySkill(attacker, entity);
 			};
-			UnityAction item6 = delegate()
+			UnityAction item6 = (UnityAction)delegate
 			{
 				if (damage > 0)
 				{
 					Transform child = entityEntity.transform.GetChild(0);
-					if (child == null)
+					if ((Object)(object)child == (Object)null)
 					{
 						YSFuncList.Ints.Continue();
 						return;
 					}
-					Animator component = child.GetComponent<Animator>();
-					if (component == null)
+					Animator component = ((Component)child).GetComponent<Animator>();
+					if ((Object)(object)component == (Object)null)
 					{
 						YSFuncList.Ints.Continue();
 						return;
@@ -707,13 +814,13 @@ public class World : MonoBehaviour
 				}
 				YSFuncList.Ints.Continue();
 			};
-			UnityAction item7 = delegate()
+			UnityAction item7 = (UnityAction)delegate
 			{
-				if (entityEntity.GetComponentInChildren<AvatarShowHpDamage>() != null)
+				if ((Object)(object)entityEntity.GetComponentInChildren<AvatarShowHpDamage>() != (Object)null)
 				{
-					entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage, 0);
+					entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage);
 				}
-				this.Invoke("continuFunc", 0.1f);
+				((MonoBehaviour)this).Invoke("continuFunc", 0.1f);
 			};
 			queue.Enqueue(item5);
 			queue.Enqueue(item6);
@@ -723,126 +830,87 @@ public class World : MonoBehaviour
 		YSFuncList.Ints.Start();
 	}
 
-	// Token: 0x060024BF RID: 9407 RVA: 0x000656B8 File Offset: 0x000638B8
 	public void continuFunc()
 	{
 		YSFuncList.Ints.Continue();
 	}
 
-	// Token: 0x060024C0 RID: 9408 RVA: 0x000FDF7C File Offset: 0x000FC17C
 	public void recvSkill(int attackerID, int skillID)
 	{
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
 		Entity entity = KBEngineApp.app.entities[attackerID];
 		Skill skill = SkillBox.inst.get(skillID);
 		if (skill != null)
 		{
-			GameObject gameObject = (GameObject)entity.renderObj;
-			gameObject.transform.GetChild(0).GetComponent<Animator>().Play("Punch", -1, 0f);
-			gameObject.transform.GetChild(0).GetComponent<Animator>().Update(0f);
+			GameObject val = (GameObject)entity.renderObj;
+			((Component)val.transform.GetChild(0)).GetComponent<Animator>().Play("Punch", -1, 0f);
+			((Component)val.transform.GetChild(0)).GetComponent<Animator>().Update(0f);
 			skill.displaySkill(entity);
 		}
 	}
 
-	// Token: 0x060024C1 RID: 9409 RVA: 0x000FDFF8 File Offset: 0x000FC1F8
 	public void onReqItemList(Dictionary<ulong, ITEM_INFO> itemList, Dictionary<ulong, ITEM_INFO> equipItemDict)
 	{
-		GameObject gameObject = (GameObject)KBEngineApp.app.player().renderObj;
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Expected O, but got Unknown
+		GameObject val = (GameObject)KBEngineApp.app.player().renderObj;
 		Inventory inventory = null;
 		Inventory inventory2 = null;
-		if (gameObject != null)
+		if ((Object)(object)val != (Object)null)
 		{
-			inventory = gameObject.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
-			inventory2 = gameObject.GetComponent<PlayerInventory>().characterSystem.GetComponent<Inventory>();
+			inventory = val.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
+			inventory2 = val.GetComponent<PlayerInventory>().characterSystem.GetComponent<Inventory>();
 		}
-		if (inventory != null)
+		if ((Object)(object)inventory != (Object)null)
 		{
 			foreach (ulong key in itemList.Keys)
 			{
-				ITEM_INFO item_INFO = itemList[key];
-				int itemId = item_INFO.itemId;
-				ulong uuid = item_INFO.UUID;
-				int itemIndex = item_INFO.itemIndex;
-				uint itemCount = item_INFO.itemCount;
-				inventory.addItemToInventory(itemId, uuid, (int)itemCount, itemIndex);
+				ITEM_INFO iTEM_INFO = itemList[key];
+				int itemId = iTEM_INFO.itemId;
+				ulong uUID = iTEM_INFO.UUID;
+				int itemIndex = iTEM_INFO.itemIndex;
+				uint itemCount = iTEM_INFO.itemCount;
+				inventory.addItemToInventory(itemId, uUID, (int)itemCount, itemIndex);
 				inventory.updateItemList();
 				inventory.stackableSettings();
 			}
 		}
-		if (inventory2 != null)
+		if (!((Object)(object)inventory2 != (Object)null))
 		{
-			foreach (ulong key2 in equipItemDict.Keys)
+			return;
+		}
+		foreach (ulong key2 in equipItemDict.Keys)
+		{
+			ITEM_INFO iTEM_INFO2 = equipItemDict[key2];
+			int itemId2 = iTEM_INFO2.itemId;
+			ulong uUID2 = iTEM_INFO2.UUID;
+			int itemIndex2 = iTEM_INFO2.itemIndex;
+			inventory2.addItemToInventory(itemId2, uUID2, 1, itemIndex2);
+			inventory2.updateItemList();
+			inventory2.stackableSettings();
+		}
+	}
+
+	public void set_equipWeapon(Entity dst, int itemId)
+	{
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		if (dst.renderObj != null)
+		{
+			if (itemId == -1)
 			{
-				ITEM_INFO item_INFO2 = equipItemDict[key2];
-				int itemId2 = item_INFO2.itemId;
-				ulong uuid2 = item_INFO2.UUID;
-				int itemIndex2 = item_INFO2.itemIndex;
-				inventory2.addItemToInventory(itemId2, uuid2, 1, itemIndex2);
-				inventory2.updateItemList();
-				inventory2.stackableSettings();
+				((GameObject)dst.renderObj).GetComponent<EquipWeapon>().clearWeapon();
+			}
+			else
+			{
+				((GameObject)dst.renderObj).GetComponent<EquipWeapon>().equipWeapon(itemId);
 			}
 		}
 	}
 
-	// Token: 0x060024C2 RID: 9410 RVA: 0x000FE154 File Offset: 0x000FC354
-	public void set_equipWeapon(Entity dst, int itemId)
-	{
-		if (dst.renderObj == null)
-		{
-			return;
-		}
-		if (itemId == -1)
-		{
-			((GameObject)dst.renderObj).GetComponent<EquipWeapon>().clearWeapon();
-			return;
-		}
-		((GameObject)dst.renderObj).GetComponent<EquipWeapon>().equipWeapon(itemId);
-	}
-
-	// Token: 0x060024C3 RID: 9411 RVA: 0x000FE18F File Offset: 0x000FC38F
 	public void setSkillButton()
 	{
 		UI_MainUI.inst.setSkill();
 	}
-
-	// Token: 0x04001D4D RID: 7501
-	public static World _instance;
-
-	// Token: 0x04001D4E RID: 7502
-	private GameObject terrain;
-
-	// Token: 0x04001D4F RID: 7503
-	public GameObject terrainPerfab;
-
-	// Token: 0x04001D50 RID: 7504
-	private GameObject player;
-
-	// Token: 0x04001D51 RID: 7505
-	public GameObject otherPlayerPerfab;
-
-	// Token: 0x04001D52 RID: 7506
-	public GameObject gatePerfab;
-
-	// Token: 0x04001D53 RID: 7507
-	public GameObject avatarPerfab;
-
-	// Token: 0x04001D54 RID: 7508
-	public GameObject snowBallPerfab;
-
-	// Token: 0x04001D55 RID: 7509
-	public GameObject droppedItemPerfab;
-
-	// Token: 0x04001D56 RID: 7510
-	private Dictionary<string, GameObject> allGameEntity = new Dictionary<string, GameObject>();
-
-	// Token: 0x04001D57 RID: 7511
-	private bool isFirstPos = true;
-
-	// Token: 0x04001D58 RID: 7512
-	private UI_Target ui_target;
-
-	// Token: 0x04001D59 RID: 7513
-	private UI_Target ui_targetPlayer;
-
-	// Token: 0x04001D5A RID: 7514
-	public static ItemDataBaseList inventoryItemList;
 }

@@ -1,42 +1,44 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000330 RID: 816
 public class MainUITooltip : MonoBehaviour
 {
-	// Token: 0x06001C25 RID: 7205 RVA: 0x000C97C8 File Offset: 0x000C79C8
-	public void Show(string content, Vector3 vector3)
-	{
-		base.gameObject.SetActive(true);
-		this.desc.text = content;
-		base.transform.position = vector3;
-		this.childSizeFitter.SetLayoutHorizontal();
-		this.sizeFitter.SetLayoutHorizontal();
-		this.sizeFitter.SetLayoutVertical();
-		LayoutRebuilder.ForceRebuildLayoutImmediate(this.rectTransform);
-		base.transform.localPosition = new Vector3(base.transform.localPosition.x - this.rectTransform.rect.width / 2f, base.transform.localPosition.y, base.transform.localPosition.z);
-	}
-
-	// Token: 0x06001C26 RID: 7206 RVA: 0x000B5E62 File Offset: 0x000B4062
-	public void Hide()
-	{
-		base.gameObject.SetActive(false);
-	}
-
-	// Token: 0x040016B0 RID: 5808
 	[SerializeField]
 	private Text desc;
 
-	// Token: 0x040016B1 RID: 5809
 	[SerializeField]
 	private RectTransform rectTransform;
 
-	// Token: 0x040016B2 RID: 5810
 	[SerializeField]
 	private ContentSizeFitter childSizeFitter;
 
-	// Token: 0x040016B3 RID: 5811
 	[SerializeField]
 	private ContentSizeFitter sizeFitter;
+
+	public void Show(string content, Vector3 vector3)
+	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		((Component)this).gameObject.SetActive(true);
+		desc.text = content;
+		((Component)this).transform.position = vector3;
+		childSizeFitter.SetLayoutHorizontal();
+		sizeFitter.SetLayoutHorizontal();
+		sizeFitter.SetLayoutVertical();
+		LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+		Transform transform = ((Component)this).transform;
+		float x = ((Component)this).transform.localPosition.x;
+		Rect rect = rectTransform.rect;
+		transform.localPosition = new Vector3(x - ((Rect)(ref rect)).width / 2f, ((Component)this).transform.localPosition.y, ((Component)this).transform.localPosition.z);
+	}
+
+	public void Hide()
+	{
+		((Component)this).gameObject.SetActive(false);
+	}
 }

@@ -1,72 +1,71 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[Serializable]
+public class TreeCreator
 {
-	// Token: 0x0200060B RID: 1547
-	[Serializable]
-	public class TreeCreator
+	[SerializeField]
+	[Clamp(0f, 100f)]
+	private int m_PrototypeIndex;
+
+	[SerializeField]
+	private MineableObject m_Prefab;
+
+	[SerializeField]
+	private Vector3 m_PositionOffset;
+
+	[SerializeField]
+	private Vector3 m_RotationOffset;
+
+	public int PrototypeIndex => m_PrototypeIndex;
+
+	public MineableObject CreateTree(Terrain terrain, TreeInstance treeInstance, int treeIndex)
 	{
-		// Token: 0x1700044F RID: 1103
-		// (get) Token: 0x06003180 RID: 12672 RVA: 0x0015F6E8 File Offset: 0x0015D8E8
-		public int PrototypeIndex
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		if (!Object.op_Implicit((Object)(object)m_Prefab))
 		{
-			get
-			{
-				return this.m_PrototypeIndex;
-			}
+			Debug.LogError((object)("[TreeCreator] - This tree creator has no tree prefab assigned! | Prototype Index: " + m_PrototypeIndex));
+			return null;
 		}
-
-		// Token: 0x06003181 RID: 12673 RVA: 0x0015F6F0 File Offset: 0x0015D8F0
-		public MineableObject CreateTree(Terrain terrain, TreeInstance treeInstance, int treeIndex)
+		Transform val = null;
+		if ((Object)(object)((Component)terrain).transform.FindDeepChild("Trees") != (Object)null)
 		{
-			if (!this.m_Prefab)
-			{
-				Debug.LogError("[TreeCreator] - This tree creator has no tree prefab assigned! | Prototype Index: " + this.m_PrototypeIndex);
-				return null;
-			}
-			Transform transform;
-			if (terrain.transform.FindDeepChild("Trees") != null)
-			{
-				transform = terrain.transform.FindDeepChild("Trees");
-			}
-			else
-			{
-				transform = new GameObject("Trees").transform;
-				transform.position = terrain.transform.position;
-				transform.SetParent(terrain.transform, true);
-			}
-			Vector3 vector = Vector3.Scale(treeInstance.position, terrain.terrainData.size);
-			MineableObject mineableObject = Object.Instantiate<MineableObject>(this.m_Prefab, vector + this.m_PositionOffset, Quaternion.Euler(this.m_RotationOffset), transform);
-			mineableObject.Destroyed.AddListener(delegate
-			{
-				this.On_TreeDestroyed(terrain, treeInstance, treeIndex);
-			});
-			return mineableObject;
+			val = ((Component)terrain).transform.FindDeepChild("Trees");
 		}
-
-		// Token: 0x06003182 RID: 12674 RVA: 0x0015F814 File Offset: 0x0015DA14
-		private void On_TreeDestroyed(Terrain terrain, TreeInstance treeInstance, int treeIndex)
+		else
 		{
-			treeInstance.widthScale = (treeInstance.heightScale = 0f);
-			terrain.terrainData.SetTreeInstance(treeIndex, treeInstance);
+			val = new GameObject("Trees").transform;
+			val.position = ((Component)terrain).transform.position;
+			val.SetParent(((Component)terrain).transform, true);
 		}
+		Vector3 val2 = Vector3.Scale(treeInstance.position, terrain.terrainData.size);
+		MineableObject mineableObject = Object.Instantiate<MineableObject>(m_Prefab, val2 + m_PositionOffset, Quaternion.Euler(m_RotationOffset), val);
+		mineableObject.Destroyed.AddListener(delegate
+		{
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			On_TreeDestroyed(terrain, treeInstance, treeIndex);
+		});
+		return mineableObject;
+	}
 
-		// Token: 0x04002BB5 RID: 11189
-		[SerializeField]
-		[Clamp(0f, 100f)]
-		private int m_PrototypeIndex;
-
-		// Token: 0x04002BB6 RID: 11190
-		[SerializeField]
-		private MineableObject m_Prefab;
-
-		// Token: 0x04002BB7 RID: 11191
-		[SerializeField]
-		private Vector3 m_PositionOffset;
-
-		// Token: 0x04002BB8 RID: 11192
-		[SerializeField]
-		private Vector3 m_RotationOffset;
+	private void On_TreeDestroyed(Terrain terrain, TreeInstance treeInstance, int treeIndex)
+	{
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		treeInstance.widthScale = (treeInstance.heightScale = 0f);
+		terrain.terrainData.SetTreeInstance(treeIndex, treeInstance);
 	}
 }

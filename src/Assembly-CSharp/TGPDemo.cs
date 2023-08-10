@@ -1,13 +1,70 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000150 RID: 336
 public class TGPDemo : MonoBehaviour
 {
-	// Token: 0x06000EE3 RID: 3811 RVA: 0x0005A6E0 File Offset: 0x000588E0
+	public bool rotate = true;
+
+	public GameObject rotateGroup;
+
+	public float rotationSpeed = 50f;
+
+	public Texture[] rampTextures;
+
+	public GUITexture rampUI;
+
+	private int rampIndex;
+
+	public GUIText qualityLabel;
+
+	private Material[] matsSimple;
+
+	private Material[] matsOutline;
+
+	private Material[] matsAll;
+
+	private GameObject sceneLight;
+
+	public Shader[] shaders;
+
+	private Vector3 lastMousePos;
+
+	private float zoom = 2f;
+
+	private float rotY;
+
+	private float lightRotX;
+
+	private float lightRotY;
+
+	private float rimo_min = 0.4f;
+
+	private float rimo_max = 0.6f;
+
+	private float rim_pow = 0.5f;
+
+	private bool bump = true;
+
+	private bool spec = true;
+
+	private bool outline = true;
+
+	private bool outline_cst;
+
+	private bool rim;
+
+	private bool rimOutline;
+
+	public GameObject[] actRim;
+
+	public GameObject[] actRimOutline;
+
+	public GUIT_Button subOutlines;
+
 	private void Start()
 	{
+		//IL_0106: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
 		Renderer[] componentsInChildren = GameObject.Find("TGPDemo_Astrella").gameObject.GetComponentsInChildren<Renderer>();
 		List<Material> list = new List<Material>();
 		List<Material> list2 = new List<Material>();
@@ -15,446 +72,371 @@ public class TGPDemo : MonoBehaviour
 		Renderer[] array = componentsInChildren;
 		for (int i = 0; i < array.Length; i++)
 		{
-			foreach (Material material in array[i].materials)
+			Material[] materials = array[i].materials;
+			foreach (Material val in materials)
 			{
-				if (material.shader.name.Contains("Outline"))
+				if (((Object)val.shader).name.Contains("Outline"))
 				{
-					list2.Add(material);
+					list2.Add(val);
 				}
-				else if (material.shader.name.Contains("Toony"))
+				else if (((Object)val.shader).name.Contains("Toony"))
 				{
-					list.Add(material);
+					list.Add(val);
 				}
-				if (material.shader.name.Contains("Toony"))
+				if (((Object)val.shader).name.Contains("Toony"))
 				{
-					list3.Add(material);
+					list3.Add(val);
 				}
 			}
 		}
-		this.matsSimple = list.ToArray();
-		this.matsOutline = list2.ToArray();
-		this.matsAll = list3.ToArray();
-		this.sceneLight = GameObject.Find("_Light");
-		this.lightRotX = this.sceneLight.transform.eulerAngles.x;
-		this.lightRotY = this.sceneLight.transform.eulerAngles.y;
-		this.qualityLabel.text = "Quality: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
+		matsSimple = list.ToArray();
+		matsOutline = list2.ToArray();
+		matsAll = list3.ToArray();
+		sceneLight = GameObject.Find("_Light");
+		lightRotX = sceneLight.transform.eulerAngles.x;
+		lightRotY = sceneLight.transform.eulerAngles.y;
+		qualityLabel.text = "Quality: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
 		Shader.WarmupAllShaders();
-		this.UpdateGUI();
+		UpdateGUI();
 	}
 
-	// Token: 0x06000EE4 RID: 3812 RVA: 0x0005A848 File Offset: 0x00058A48
 	private void SwitchRotation()
 	{
-		this.rotate = !this.rotate;
+		rotate = !rotate;
 	}
 
-	// Token: 0x06000EE5 RID: 3813 RVA: 0x0005A85C File Offset: 0x00058A5C
 	private void Update()
 	{
-		if (this.rotate)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0113: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012e: Unknown result type (might be due to invalid IL or missing references)
+		if (rotate)
 		{
-			this.rotateGroup.transform.Rotate(Vector3.up * this.rotationSpeed * Time.deltaTime);
-			this.rotY = this.rotateGroup.transform.eulerAngles.y;
+			rotateGroup.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+			rotY = rotateGroup.transform.eulerAngles.y;
 		}
 		float axis = Input.GetAxis("Mouse ScrollWheel");
 		if (axis != 0f)
 		{
-			this.zoom -= axis;
-			this.zoom = Mathf.Clamp(this.zoom, 1f, 3f);
-			Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, this.zoom);
+			zoom -= axis;
+			zoom = Mathf.Clamp(zoom, 1f, 3f);
+			((Component)Camera.main).transform.position = new Vector3(((Component)Camera.main).transform.position.x, ((Component)Camera.main).transform.position.y, zoom);
 		}
 		if (Input.mousePosition.x < (float)Screen.width * 0.8f && Input.mousePosition.x > (float)Screen.width * 0.2f && Input.GetMouseButton(0))
 		{
-			Vector3 vector = this.lastMousePos - Input.mousePosition;
-			Camera.main.transform.Translate(vector * Time.deltaTime * 0.2f);
+			Vector3 val = lastMousePos - Input.mousePosition;
+			((Component)Camera.main).transform.Translate(val * Time.deltaTime * 0.2f);
 		}
-		this.lastMousePos = Input.mousePosition;
+		lastMousePos = Input.mousePosition;
 	}
 
-	// Token: 0x06000EE6 RID: 3814 RVA: 0x0005A9AC File Offset: 0x00058BAC
 	private void OnGUI()
 	{
-		this.zoom = GUI.VerticalSlider(new Rect((float)(Screen.width - 24), 16f, 10f, 224f), this.zoom, 1f, 3f);
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0160: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0322: Unknown result type (might be due to invalid IL or missing references)
+		zoom = GUI.VerticalSlider(new Rect((float)(Screen.width - 24), 16f, 10f, 224f), zoom, 1f, 3f);
 		if (GUI.changed)
 		{
-			Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, this.zoom);
+			((Component)Camera.main).transform.position = new Vector3(((Component)Camera.main).transform.position.x, ((Component)Camera.main).transform.position.y, zoom);
 			GUI.changed = false;
 		}
-		GUI.enabled = !this.rotate;
-		this.rotY = GUI.HorizontalSlider(new Rect(16f, 170f, 128f, 10f), this.rotY, 0f, 360f);
+		GUI.enabled = !rotate;
+		rotY = GUI.HorizontalSlider(new Rect(16f, 170f, 128f, 10f), rotY, 0f, 360f);
 		GUI.enabled = true;
-		if (GUI.changed && !this.rotate)
+		if (GUI.changed && !rotate)
 		{
-			this.rotateGroup.transform.eulerAngles = new Vector3(0f, this.rotY, 0f);
+			rotateGroup.transform.eulerAngles = new Vector3(0f, rotY, 0f);
 			GUI.changed = false;
 		}
-		this.lightRotY = GUI.HorizontalSlider(new Rect(16f, 224f, 128f, 10f), this.lightRotY, 0f, 360f);
-		GUI.enabled = true;
-		if (GUI.changed)
-		{
-			this.sceneLight.transform.eulerAngles = new Vector3(this.sceneLight.transform.eulerAngles.x, this.lightRotY, 0f);
-			GUI.changed = false;
-		}
-		this.lightRotX = GUI.HorizontalSlider(new Rect(16f, 244f, 128f, 10f), this.lightRotX, -90f, 90f);
+		lightRotY = GUI.HorizontalSlider(new Rect(16f, 224f, 128f, 10f), lightRotY, 0f, 360f);
 		GUI.enabled = true;
 		if (GUI.changed)
 		{
-			this.sceneLight.transform.eulerAngles = new Vector3(this.lightRotX, this.sceneLight.transform.eulerAngles.y, 0f);
+			sceneLight.transform.eulerAngles = new Vector3(sceneLight.transform.eulerAngles.x, lightRotY, 0f);
 			GUI.changed = false;
 		}
-		if (this.rim)
+		lightRotX = GUI.HorizontalSlider(new Rect(16f, 244f, 128f, 10f), lightRotX, -90f, 90f);
+		GUI.enabled = true;
+		if (GUI.changed)
 		{
-			this.rim_pow = GUI.HorizontalSlider(new Rect((float)(Screen.width - 150), 320f, 128f, 10f), this.rim_pow, -1f, 1f);
+			sceneLight.transform.eulerAngles = new Vector3(lightRotX, sceneLight.transform.eulerAngles.y, 0f);
+			GUI.changed = false;
+		}
+		if (rim)
+		{
+			rim_pow = GUI.HorizontalSlider(new Rect((float)(Screen.width - 150), 320f, 128f, 10f), rim_pow, -1f, 1f);
 			GUI.enabled = true;
 			if (GUI.changed)
 			{
-				for (int i = 0; i < this.matsAll.Length; i++)
+				for (int i = 0; i < matsAll.Length; i++)
 				{
-					this.matsAll[i].SetFloat("_RimPower", this.rim_pow);
+					matsAll[i].SetFloat("_RimPower", rim_pow);
 				}
 				GUI.changed = false;
 			}
 		}
-		if (this.rimOutline)
+		if (!rimOutline)
 		{
-			this.rimo_min = GUI.HorizontalSlider(new Rect((float)(Screen.width - 150), 320f, 128f, 10f), this.rimo_min, 0f, 1f);
-			GUI.enabled = true;
-			if (GUI.changed)
+			return;
+		}
+		rimo_min = GUI.HorizontalSlider(new Rect((float)(Screen.width - 150), 320f, 128f, 10f), rimo_min, 0f, 1f);
+		GUI.enabled = true;
+		if (GUI.changed)
+		{
+			for (int j = 0; j < matsOutline.Length; j++)
 			{
-				for (int j = 0; j < this.matsOutline.Length; j++)
-				{
-					this.matsOutline[j].SetFloat("_RimMin", this.rimo_min);
-				}
-				GUI.changed = false;
+				matsOutline[j].SetFloat("_RimMin", rimo_min);
 			}
-			this.rimo_max = GUI.HorizontalSlider(new Rect((float)(Screen.width - 150), 360f, 128f, 10f), this.rimo_max, 0f, 1f);
-			GUI.enabled = true;
-			if (GUI.changed)
+			GUI.changed = false;
+		}
+		rimo_max = GUI.HorizontalSlider(new Rect((float)(Screen.width - 150), 360f, 128f, 10f), rimo_max, 0f, 1f);
+		GUI.enabled = true;
+		if (GUI.changed)
+		{
+			for (int k = 0; k < matsOutline.Length; k++)
 			{
-				for (int k = 0; k < this.matsOutline.Length; k++)
-				{
-					this.matsOutline[k].SetFloat("_RimMax", this.rimo_max);
-				}
-				GUI.changed = false;
+				matsOutline[k].SetFloat("_RimMax", rimo_max);
 			}
+			GUI.changed = false;
 		}
 	}
 
-	// Token: 0x06000EE7 RID: 3815 RVA: 0x0005AD38 File Offset: 0x00058F38
 	private void ReloadShader()
 	{
-		string str = "Normal";
-		if (this.outline)
+		string text = "Normal";
+		if (outline)
 		{
-			str = (this.outline_cst ? "OutlineConst" : "Outline");
+			text = (outline_cst ? "OutlineConst" : "Outline");
 		}
-		string text = "Basic";
-		if (this.bump && this.spec)
+		string text2 = "Basic";
+		if (bump && spec)
 		{
-			text = "Bumped Specular";
+			text2 = "Bumped Specular";
 		}
-		else if (this.spec)
+		else if (spec)
 		{
-			text = "Specular";
+			text2 = "Specular";
 		}
-		else if (this.bump)
+		else if (bump)
 		{
-			text = "Bumped";
+			text2 = "Bumped";
 		}
-		if (this.rim)
+		if (rim)
 		{
-			text += " Rim";
+			text2 += " Rim";
 		}
-		else if (this.rimOutline)
+		else if (rimOutline)
 		{
-			str = "Rim Outline";
+			text = "Rim Outline";
 		}
-		string text2 = "Toony Colors Pro/" + str + "/OneDirLight/" + text;
-		Shader shader = this.FindShader(text2);
-		if (shader == null)
+		string text3 = "Toony Colors Pro/" + text + "/OneDirLight/" + text2;
+		Shader val = FindShader(text3);
+		if ((Object)(object)val == (Object)null)
 		{
-			Debug.LogError("SHADER NOT FOUND: " + text2);
+			Debug.LogError((object)("SHADER NOT FOUND: " + text3));
 			return;
 		}
-		for (int i = 0; i < this.matsOutline.Length; i++)
+		for (int i = 0; i < matsOutline.Length; i++)
 		{
-			this.matsOutline[i].shader = shader;
+			matsOutline[i].shader = val;
 		}
-		text2 = "Toony Colors Pro/Normal/OneDirLight/" + text;
-		shader = this.FindShader(text2);
-		if (shader == null)
+		text3 = "Toony Colors Pro/Normal/OneDirLight/" + text2;
+		val = FindShader(text3);
+		if ((Object)(object)val == (Object)null)
 		{
-			Debug.LogError("SHADER NOT FOUND: " + text2);
+			Debug.LogError((object)("SHADER NOT FOUND: " + text3));
 			return;
 		}
-		for (int j = 0; j < this.matsSimple.Length; j++)
+		for (int j = 0; j < matsSimple.Length; j++)
 		{
-			string text3 = "Basic";
-			if (this.spec)
+			string text4 = "Basic";
+			if (spec)
 			{
-				text3 = "Specular";
+				text4 = "Specular";
 			}
-			if (this.rim)
+			if (rim)
 			{
-				text3 += " Rim";
+				text4 += " Rim";
 			}
-			Shader shader2 = this.FindShader("Toony Colors Pro/Normal/OneDirLight/" + text3);
-			if (shader2 != null)
+			Shader val2 = FindShader("Toony Colors Pro/Normal/OneDirLight/" + text4);
+			if ((Object)(object)val2 != (Object)null)
 			{
-				this.matsSimple[j].shader = shader2;
+				matsSimple[j].shader = val2;
 			}
 		}
 	}
 
-	// Token: 0x06000EE8 RID: 3816 RVA: 0x0005AEC4 File Offset: 0x000590C4
 	private void UpdateGUI()
 	{
-		GameObject[] array = this.actRim;
+		GameObject[] array = actRim;
 		for (int i = 0; i < array.Length; i++)
 		{
-			array[i].SetActive(this.rim);
+			array[i].SetActive(rim);
 		}
-		array = this.actRimOutline;
+		array = actRimOutline;
 		for (int i = 0; i < array.Length; i++)
 		{
-			array[i].SetActive(this.rimOutline);
+			array[i].SetActive(rimOutline);
 		}
-		this.UpdateGUITButtons();
+		UpdateGUITButtons();
 	}
 
-	// Token: 0x06000EE9 RID: 3817 RVA: 0x0005AF20 File Offset: 0x00059120
 	private void UpdateGUITButtons()
 	{
-		foreach (GUIT_Button guit_Button in (GUIT_Button[])Object.FindObjectsOfType(typeof(GUIT_Button)))
+		GUIT_Button[] array = (GUIT_Button[])(object)Object.FindObjectsOfType(typeof(GUIT_Button));
+		foreach (GUIT_Button gUIT_Button in array)
 		{
-			string callback = guit_Button.callback;
-			if (!(callback == "SwitchOutline"))
+			switch (gUIT_Button.callback)
 			{
-				if (!(callback == "SwitchRim"))
-				{
-					if (callback == "SwitchRimOutline")
-					{
-						guit_Button.UpdateState(this.rimOutline);
-					}
-				}
-				else
-				{
-					guit_Button.UpdateState(this.rim);
-				}
-			}
-			else
-			{
-				guit_Button.UpdateState(this.outline);
+			case "SwitchOutline":
+				gUIT_Button.UpdateState(outline);
+				break;
+			case "SwitchRim":
+				gUIT_Button.UpdateState(rim);
+				break;
+			case "SwitchRimOutline":
+				gUIT_Button.UpdateState(rimOutline);
+				break;
 			}
 		}
 	}
 
-	// Token: 0x06000EEA RID: 3818 RVA: 0x0005AFAC File Offset: 0x000591AC
 	private Shader FindShader(string name)
 	{
-		foreach (Shader shader in this.shaders)
+		Shader[] array = shaders;
+		foreach (Shader val in array)
 		{
-			if (shader.name == name)
+			if (((Object)val).name == name)
 			{
-				return shader;
+				return val;
 			}
 		}
-		Debug.LogError("SHADER NOT FOUND: " + name);
+		Debug.LogError((object)("SHADER NOT FOUND: " + name));
 		return null;
 	}
 
-	// Token: 0x06000EEB RID: 3819 RVA: 0x0005AFF3 File Offset: 0x000591F3
 	private void SwitchOutline()
 	{
-		this.outline = !this.outline;
-		if (this.outline && this.rimOutline)
+		outline = !outline;
+		if (outline && rimOutline)
 		{
-			this.rimOutline = false;
+			rimOutline = false;
 		}
-		this.ReloadShader();
-		this.UpdateGUI();
+		ReloadShader();
+		UpdateGUI();
 	}
 
-	// Token: 0x06000EEC RID: 3820 RVA: 0x0005B027 File Offset: 0x00059227
 	private void SwitchOutlineCst()
 	{
-		this.outline_cst = !this.outline_cst;
-		this.ReloadShader();
+		outline_cst = !outline_cst;
+		ReloadShader();
 	}
 
-	// Token: 0x06000EED RID: 3821 RVA: 0x0005B03E File Offset: 0x0005923E
 	private void SwitchSpec()
 	{
-		this.spec = !this.spec;
-		this.ReloadShader();
+		spec = !spec;
+		ReloadShader();
 	}
 
-	// Token: 0x06000EEE RID: 3822 RVA: 0x0005B055 File Offset: 0x00059255
 	private void SwitchBump()
 	{
-		this.bump = !this.bump;
-		this.ReloadShader();
+		bump = !bump;
+		ReloadShader();
 	}
 
-	// Token: 0x06000EEF RID: 3823 RVA: 0x0005B06C File Offset: 0x0005926C
 	private void SwitchRim()
 	{
-		this.rim = !this.rim;
-		if (this.rim && this.rimOutline)
+		rim = !rim;
+		if (rim && rimOutline)
 		{
-			this.rimOutline = false;
+			rimOutline = false;
 		}
-		this.ReloadShader();
-		this.UpdateGUI();
+		ReloadShader();
+		UpdateGUI();
 	}
 
-	// Token: 0x06000EF0 RID: 3824 RVA: 0x0005B0A0 File Offset: 0x000592A0
 	private void SwitchRimOutline()
 	{
-		this.rimOutline = !this.rimOutline;
-		if (this.rimOutline && this.rim)
+		rimOutline = !rimOutline;
+		if (rimOutline && rim)
 		{
-			this.rim = false;
+			rim = false;
 		}
-		if (this.rimOutline && this.outline)
+		if (rimOutline && outline)
 		{
-			this.outline = false;
+			outline = false;
 		}
-		this.ReloadShader();
-		this.UpdateGUI();
+		ReloadShader();
+		UpdateGUI();
 	}
 
-	// Token: 0x06000EF1 RID: 3825 RVA: 0x0005B0F6 File Offset: 0x000592F6
 	private void NextRamp()
 	{
-		this.rampIndex++;
-		if (this.rampIndex >= this.rampTextures.Length)
+		rampIndex++;
+		if (rampIndex >= rampTextures.Length)
 		{
-			this.rampIndex = 0;
+			rampIndex = 0;
 		}
-		this.UpdateRamp();
+		UpdateRamp();
 	}
 
-	// Token: 0x06000EF2 RID: 3826 RVA: 0x0005B123 File Offset: 0x00059323
 	private void PrevRamp()
 	{
-		this.rampIndex--;
-		if (this.rampIndex < 0)
+		rampIndex--;
+		if (rampIndex < 0)
 		{
-			this.rampIndex = this.rampTextures.Length - 1;
+			rampIndex = rampTextures.Length - 1;
 		}
-		this.UpdateRamp();
+		UpdateRamp();
 	}
 
-	// Token: 0x06000EF3 RID: 3827 RVA: 0x0005B154 File Offset: 0x00059354
 	private void UpdateRamp()
 	{
-		this.rampUI.texture = this.rampTextures[this.rampIndex];
-		Material[] array = this.matsAll;
+		rampUI.texture = rampTextures[rampIndex];
+		Material[] array = matsAll;
 		for (int i = 0; i < array.Length; i++)
 		{
-			array[i].SetTexture("_Ramp", this.rampTextures[this.rampIndex]);
+			array[i].SetTexture("_Ramp", rampTextures[rampIndex]);
 		}
 	}
 
-	// Token: 0x06000EF4 RID: 3828 RVA: 0x0005B1A8 File Offset: 0x000593A8
 	private void NextQuality()
 	{
 		QualitySettings.IncreaseLevel(true);
-		this.qualityLabel.text = "Quality: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
+		qualityLabel.text = "Quality: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
 	}
 
-	// Token: 0x06000EF5 RID: 3829 RVA: 0x0005B1D0 File Offset: 0x000593D0
 	private void PrevQuality()
 	{
 		QualitySettings.DecreaseLevel(true);
-		this.qualityLabel.text = "Quality: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
+		qualityLabel.text = "Quality: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
 	}
-
-	// Token: 0x04000B15 RID: 2837
-	public bool rotate = true;
-
-	// Token: 0x04000B16 RID: 2838
-	public GameObject rotateGroup;
-
-	// Token: 0x04000B17 RID: 2839
-	public float rotationSpeed = 50f;
-
-	// Token: 0x04000B18 RID: 2840
-	public Texture[] rampTextures;
-
-	// Token: 0x04000B19 RID: 2841
-	public GUITexture rampUI;
-
-	// Token: 0x04000B1A RID: 2842
-	private int rampIndex;
-
-	// Token: 0x04000B1B RID: 2843
-	public GUIText qualityLabel;
-
-	// Token: 0x04000B1C RID: 2844
-	private Material[] matsSimple;
-
-	// Token: 0x04000B1D RID: 2845
-	private Material[] matsOutline;
-
-	// Token: 0x04000B1E RID: 2846
-	private Material[] matsAll;
-
-	// Token: 0x04000B1F RID: 2847
-	private GameObject sceneLight;
-
-	// Token: 0x04000B20 RID: 2848
-	public Shader[] shaders;
-
-	// Token: 0x04000B21 RID: 2849
-	private Vector3 lastMousePos;
-
-	// Token: 0x04000B22 RID: 2850
-	private float zoom = 2f;
-
-	// Token: 0x04000B23 RID: 2851
-	private float rotY;
-
-	// Token: 0x04000B24 RID: 2852
-	private float lightRotX;
-
-	// Token: 0x04000B25 RID: 2853
-	private float lightRotY;
-
-	// Token: 0x04000B26 RID: 2854
-	private float rimo_min = 0.4f;
-
-	// Token: 0x04000B27 RID: 2855
-	private float rimo_max = 0.6f;
-
-	// Token: 0x04000B28 RID: 2856
-	private float rim_pow = 0.5f;
-
-	// Token: 0x04000B29 RID: 2857
-	private bool bump = true;
-
-	// Token: 0x04000B2A RID: 2858
-	private bool spec = true;
-
-	// Token: 0x04000B2B RID: 2859
-	private bool outline = true;
-
-	// Token: 0x04000B2C RID: 2860
-	private bool outline_cst;
-
-	// Token: 0x04000B2D RID: 2861
-	private bool rim;
-
-	// Token: 0x04000B2E RID: 2862
-	private bool rimOutline;
-
-	// Token: 0x04000B2F RID: 2863
-	public GameObject[] actRim;
-
-	// Token: 0x04000B30 RID: 2864
-	public GameObject[] actRimOutline;
-
-	// Token: 0x04000B31 RID: 2865
-	public GUIT_Button subOutlines;
 }

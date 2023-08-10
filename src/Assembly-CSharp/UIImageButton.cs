@@ -1,132 +1,118 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000069 RID: 105
 [AddComponentMenu("NGUI/UI/Image Button")]
 public class UIImageButton : MonoBehaviour
 {
-	// Token: 0x17000086 RID: 134
-	// (get) Token: 0x0600052F RID: 1327 RVA: 0x0001C610 File Offset: 0x0001A810
-	// (set) Token: 0x06000530 RID: 1328 RVA: 0x0001C634 File Offset: 0x0001A834
+	public UISprite target;
+
+	public string normalSprite;
+
+	public string hoverSprite;
+
+	public string pressedSprite;
+
+	public string disabledSprite;
+
+	public bool pixelSnap = true;
+
 	public bool isEnabled
 	{
 		get
 		{
-			Collider component = base.GetComponent<Collider>();
-			return component && component.enabled;
+			Collider component = ((Component)this).GetComponent<Collider>();
+			if (Object.op_Implicit((Object)(object)component))
+			{
+				return component.enabled;
+			}
+			return false;
 		}
 		set
 		{
-			Collider component = base.GetComponent<Collider>();
-			if (!component)
-			{
-				return;
-			}
-			if (component.enabled != value)
+			Collider component = ((Component)this).GetComponent<Collider>();
+			if (Object.op_Implicit((Object)(object)component) && component.enabled != value)
 			{
 				component.enabled = value;
-				this.UpdateImage();
+				UpdateImage();
 			}
 		}
 	}
 
-	// Token: 0x06000531 RID: 1329 RVA: 0x0001C667 File Offset: 0x0001A867
 	private void OnEnable()
 	{
-		if (this.target == null)
+		if ((Object)(object)target == (Object)null)
 		{
-			this.target = base.GetComponentInChildren<UISprite>();
+			target = ((Component)this).GetComponentInChildren<UISprite>();
 		}
-		this.UpdateImage();
+		UpdateImage();
 	}
 
-	// Token: 0x06000532 RID: 1330 RVA: 0x0001C68C File Offset: 0x0001A88C
 	private void OnValidate()
 	{
-		if (this.target != null)
+		if ((Object)(object)target != (Object)null)
 		{
-			if (string.IsNullOrEmpty(this.normalSprite))
+			if (string.IsNullOrEmpty(normalSprite))
 			{
-				this.normalSprite = this.target.spriteName;
+				normalSprite = target.spriteName;
 			}
-			if (string.IsNullOrEmpty(this.hoverSprite))
+			if (string.IsNullOrEmpty(hoverSprite))
 			{
-				this.hoverSprite = this.target.spriteName;
+				hoverSprite = target.spriteName;
 			}
-			if (string.IsNullOrEmpty(this.pressedSprite))
+			if (string.IsNullOrEmpty(pressedSprite))
 			{
-				this.pressedSprite = this.target.spriteName;
+				pressedSprite = target.spriteName;
 			}
-			if (string.IsNullOrEmpty(this.disabledSprite))
+			if (string.IsNullOrEmpty(disabledSprite))
 			{
-				this.disabledSprite = this.target.spriteName;
+				disabledSprite = target.spriteName;
 			}
 		}
 	}
 
-	// Token: 0x06000533 RID: 1331 RVA: 0x0001C720 File Offset: 0x0001A920
 	private void UpdateImage()
 	{
-		if (this.target != null)
+		if ((Object)(object)target != (Object)null)
 		{
-			if (this.isEnabled)
+			if (isEnabled)
 			{
-				this.SetSprite(UICamera.IsHighlighted(base.gameObject) ? this.hoverSprite : this.normalSprite);
-				return;
+				SetSprite(UICamera.IsHighlighted(((Component)this).gameObject) ? hoverSprite : normalSprite);
 			}
-			this.SetSprite(this.disabledSprite);
+			else
+			{
+				SetSprite(disabledSprite);
+			}
 		}
 	}
 
-	// Token: 0x06000534 RID: 1332 RVA: 0x0001C771 File Offset: 0x0001A971
 	private void OnHover(bool isOver)
 	{
-		if (this.isEnabled && this.target != null)
+		if (isEnabled && (Object)(object)target != (Object)null)
 		{
-			this.SetSprite(isOver ? this.hoverSprite : this.normalSprite);
+			SetSprite(isOver ? hoverSprite : normalSprite);
 		}
 	}
 
-	// Token: 0x06000535 RID: 1333 RVA: 0x0001C7A0 File Offset: 0x0001A9A0
 	private void OnPress(bool pressed)
 	{
 		if (pressed)
 		{
-			this.SetSprite(this.pressedSprite);
-			return;
+			SetSprite(pressedSprite);
 		}
-		this.UpdateImage();
+		else
+		{
+			UpdateImage();
+		}
 	}
 
-	// Token: 0x06000536 RID: 1334 RVA: 0x0001C7B8 File Offset: 0x0001A9B8
 	private void SetSprite(string sprite)
 	{
-		if (this.target.atlas == null || this.target.atlas.GetSprite(sprite) == null)
+		if (!((Object)(object)target.atlas == (Object)null) && target.atlas.GetSprite(sprite) != null)
 		{
-			return;
-		}
-		this.target.spriteName = sprite;
-		if (this.pixelSnap)
-		{
-			this.target.MakePixelPerfect();
+			target.spriteName = sprite;
+			if (pixelSnap)
+			{
+				target.MakePixelPerfect();
+			}
 		}
 	}
-
-	// Token: 0x04000358 RID: 856
-	public UISprite target;
-
-	// Token: 0x04000359 RID: 857
-	public string normalSprite;
-
-	// Token: 0x0400035A RID: 858
-	public string hoverSprite;
-
-	// Token: 0x0400035B RID: 859
-	public string pressedSprite;
-
-	// Token: 0x0400035C RID: 860
-	public string disabledSprite;
-
-	// Token: 0x0400035D RID: 861
-	public bool pixelSnap = true;
 }

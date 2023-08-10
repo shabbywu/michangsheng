@@ -1,69 +1,85 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000EF RID: 239
 [RequireComponent(typeof(CharacterSystem))]
 public class PlayerCharacterController : MonoBehaviour
 {
-	// Token: 0x06000B7E RID: 2942 RVA: 0x00045DED File Offset: 0x00043FED
+	private CharacterSystem character;
+
 	private void Start()
 	{
-		this.character = base.gameObject.GetComponent<CharacterSystem>();
+		character = ((Component)this).gameObject.GetComponent<CharacterSystem>();
 		Screen.lockCursor = true;
 	}
 
-	// Token: 0x06000B7F RID: 2943 RVA: 0x00045E08 File Offset: 0x00044008
 	private void Update()
 	{
-		Vector3 vector = Vector3.zero;
-		Vector3 vector2 = Quaternion.AngleAxis(-90f, Vector3.up) * Camera.main.transform.right;
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = Vector3.zero;
+		Vector3 val2 = Quaternion.AngleAxis(-90f, Vector3.up) * ((Component)Camera.main).transform.right;
 		if (Screen.lockCursor)
 		{
-			if (Input.GetKey(119))
+			if (Input.GetKey((KeyCode)119))
 			{
-				vector += vector2;
+				val += val2;
 			}
-			if (Input.GetKey(115))
+			if (Input.GetKey((KeyCode)115))
 			{
-				vector -= vector2;
+				val -= val2;
 			}
-			if (Input.GetKey(97))
+			if (Input.GetKey((KeyCode)97))
 			{
-				vector -= Camera.main.transform.right;
+				val -= ((Component)Camera.main).transform.right;
 			}
-			if (Input.GetKey(100))
+			if (Input.GetKey((KeyCode)100))
 			{
-				vector += Camera.main.transform.right;
+				val += ((Component)Camera.main).transform.right;
 			}
 			if (Input.GetMouseButtonDown(0))
 			{
-				this.character.Attack();
+				character.Attack();
 			}
-			Orbit component = Camera.main.gameObject.GetComponent<Orbit>();
-			if (component != null)
+			Orbit component = ((Component)Camera.main).gameObject.GetComponent<Orbit>();
+			if ((Object)(object)component != (Object)null)
 			{
-				Orbit orbit = component;
-				orbit.Data.Azimuth = orbit.Data.Azimuth + Input.GetAxis("Mouse X") / 100f;
-				Orbit orbit2 = component;
-				orbit2.Data.Zenith = orbit2.Data.Zenith + Input.GetAxis("Mouse Y") / 100f;
+				component.Data.Azimuth += Input.GetAxis("Mouse X") / 100f;
+				component.Data.Zenith += Input.GetAxis("Mouse Y") / 100f;
 				component.Data.Zenith = Mathf.Clamp(component.Data.Zenith, -0.8f, 0f);
-				Orbit orbit3 = component;
-				orbit3.Data.Length = orbit3.Data.Length + (-6f - component.Data.Length) / 10f;
+				component.Data.Length += (-6f - component.Data.Length) / 10f;
 			}
 			if (Input.GetMouseButtonDown(1))
 			{
-				this.character.Attack();
-				CharacterSkillDeployer component2 = base.gameObject.GetComponent<CharacterSkillDeployer>();
-				if (component2 != null)
+				character.Attack();
+				CharacterSkillDeployer component2 = ((Component)this).gameObject.GetComponent<CharacterSkillDeployer>();
+				if ((Object)(object)component2 != (Object)null)
 				{
 					component2.DeployWithAttacking();
 				}
 			}
 		}
-		vector.Normalize();
-		this.character.Move(vector);
+		((Vector3)(ref val)).Normalize();
+		character.Move(val);
 	}
-
-	// Token: 0x040007B7 RID: 1975
-	private CharacterSystem character;
 }

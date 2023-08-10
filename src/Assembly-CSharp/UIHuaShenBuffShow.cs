@@ -1,66 +1,60 @@
-﻿using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000394 RID: 916
 public class UIHuaShenBuffShow : MonoBehaviour
 {
-	// Token: 0x06001E24 RID: 7716 RVA: 0x000D4C8F File Offset: 0x000D2E8F
-	private void Awake()
-	{
-		this.showHpDamage = base.GetComponent<AvatarShowHpDamage>();
-		this.NumText.text = "0";
-	}
-
-	// Token: 0x06001E25 RID: 7717 RVA: 0x000D4CB0 File Offset: 0x000D2EB0
-	public void SetNumber(int num)
-	{
-		if (num != this.nowNum)
-		{
-			int num2 = num - this.nowNum;
-			this.showHpDamage.show(-num2, 0);
-			this.nowNum = num;
-			this.NumText.text = num.ToString();
-			if (this.ShowType == UIHuaShenBuffShow.UIHuaShenBuffShowType.变换高度)
-			{
-				float num3 = (0f - this.zeroHeight) / 100f * (float)num + this.zeroHeight;
-				DOTweenModuleUI.DOAnchorPosY(this.EffectImage.rectTransform, num3, 1f, false);
-				return;
-			}
-			TweenSettingsExtensions.SetEase<TweenerCore<Color, Color, ColorOptions>>(DOTweenModuleUI.DOColor(this.EffectImage, Color.white, 1f), 18).onComplete = delegate()
-			{
-				TweenSettingsExtensions.SetEase<TweenerCore<Color, Color, ColorOptions>>(DOTweenModuleUI.DOColor(this.EffectImage, new Color(1f, 1f, 1f, 0f), 1f), 20);
-			};
-		}
-	}
-
-	// Token: 0x040018BC RID: 6332
-	public Text NumText;
-
-	// Token: 0x040018BD RID: 6333
-	public Image EffectImage;
-
-	// Token: 0x040018BE RID: 6334
-	public UIHuaShenBuffShow.UIHuaShenBuffShowType ShowType;
-
-	// Token: 0x040018BF RID: 6335
-	private float zeroHeight = -117f;
-
-	// Token: 0x040018C0 RID: 6336
-	private int nowNum;
-
-	// Token: 0x040018C1 RID: 6337
-	private AvatarShowHpDamage showHpDamage;
-
-	// Token: 0x02001361 RID: 4961
 	public enum UIHuaShenBuffShowType
 	{
-		// Token: 0x0400683C RID: 26684
 		变换高度,
-		// Token: 0x0400683D RID: 26685
 		闪烁
+	}
+
+	public Text NumText;
+
+	public Image EffectImage;
+
+	public UIHuaShenBuffShowType ShowType;
+
+	private float zeroHeight = -117f;
+
+	private int nowNum;
+
+	private AvatarShowHpDamage showHpDamage;
+
+	private void Awake()
+	{
+		showHpDamage = ((Component)this).GetComponent<AvatarShowHpDamage>();
+		NumText.text = "0";
+	}
+
+	public void SetNumber(int num)
+	{
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a7: Expected O, but got Unknown
+		if (num == nowNum)
+		{
+			return;
+		}
+		int num2 = num - nowNum;
+		showHpDamage.show(-num2);
+		nowNum = num;
+		NumText.text = num.ToString();
+		if (ShowType == UIHuaShenBuffShowType.变换高度)
+		{
+			float num3 = (0f - zeroHeight) / 100f * (float)num + zeroHeight;
+			DOTweenModuleUI.DOAnchorPosY(((Graphic)EffectImage).rectTransform, num3, 1f, false);
+		}
+		else
+		{
+			((Tween)TweenSettingsExtensions.SetEase<TweenerCore<Color, Color, ColorOptions>>(DOTweenModuleUI.DOColor(EffectImage, Color.white, 1f), (Ease)18)).onComplete = (TweenCallback)delegate
+			{
+				//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+				TweenSettingsExtensions.SetEase<TweenerCore<Color, Color, ColorOptions>>(DOTweenModuleUI.DOColor(EffectImage, new Color(1f, 1f, 1f, 0f), 1f), (Ease)20);
+			};
+		}
 	}
 }

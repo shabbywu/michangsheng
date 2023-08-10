@@ -1,111 +1,105 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EIU
+namespace EIU;
+
+public class EasyInputUtility : MonoBehaviour
 {
-	// Token: 0x02000B27 RID: 2855
-	public class EasyInputUtility : MonoBehaviour
+	public static EasyInputUtility instance;
+
+	private EIU_ControlsMenu menu;
+
+	[Header("Define All Axes and Buttons Here")]
+	[Space(5f)]
+	public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();
+
+	private void Awake()
 	{
-		// Token: 0x06004F99 RID: 20377 RVA: 0x00219F18 File Offset: 0x00218118
-		private void Awake()
+		menu = Object.FindObjectOfType<EIU_ControlsMenu>();
+		if ((Object)(object)instance != (Object)null)
 		{
-			this.menu = Object.FindObjectOfType<EIU_ControlsMenu>();
-			if (EasyInputUtility.instance != null)
-			{
-				Object.Destroy(base.gameObject);
-			}
-			else
-			{
-				EasyInputUtility.instance = this;
-				Object.DontDestroyOnLoad(base.gameObject);
-			}
-			if (this.menu)
-			{
-				this.menu.Axes = this.Axes;
-				this.menu.Init();
-			}
-			this.LoadAllAxes();
+			Object.Destroy((Object)(object)((Component)this).gameObject);
 		}
-
-		// Token: 0x06004F9A RID: 20378 RVA: 0x00219F8C File Offset: 0x0021818C
-		private void FixedUpdate()
+		else
 		{
-			for (int i = 0; i < this.Axes.Count; i++)
-			{
-				EIU_AxisBase eiu_AxisBase = this.Axes[i];
-				eiu_AxisBase.negative = Input.GetKey(eiu_AxisBase.negativeKey);
-				eiu_AxisBase.positive = Input.GetKey(eiu_AxisBase.positiveKey);
-				eiu_AxisBase.targetAxis = (float)(eiu_AxisBase.negative ? -1 : (eiu_AxisBase.positive ? 1 : 0));
-				eiu_AxisBase.axis = Mathf.MoveTowards(eiu_AxisBase.axis, eiu_AxisBase.targetAxis, Time.deltaTime * eiu_AxisBase.sensitivity);
-			}
+			instance = this;
+			Object.DontDestroyOnLoad((Object)(object)((Component)this).gameObject);
 		}
-
-		// Token: 0x06004F9B RID: 20379 RVA: 0x0021A024 File Offset: 0x00218224
-		public float GetAxis(string name)
+		if (Object.op_Implicit((Object)(object)menu))
 		{
-			float result = 0f;
-			for (int i = 0; i < this.Axes.Count; i++)
-			{
-				if (string.Equals(this.Axes[i].axisName, name))
-				{
-					result = this.Axes[i].axis;
-				}
-			}
-			return result;
+			menu.Axes = Axes;
+			menu.Init();
 		}
+		LoadAllAxes();
+	}
 
-		// Token: 0x06004F9C RID: 20380 RVA: 0x0021A07C File Offset: 0x0021827C
-		public bool GetButton(string name)
+	private void FixedUpdate()
+	{
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		for (int i = 0; i < Axes.Count; i++)
 		{
-			bool result = false;
-			for (int i = 0; i < this.Axes.Count; i++)
-			{
-				if (string.Equals(this.Axes[i].axisName, name))
-				{
-					result = this.Axes[i].positive;
-					result = Input.GetKey(this.Axes[i].positiveKey);
-				}
-			}
-			return result;
+			EIU_AxisBase eIU_AxisBase = Axes[i];
+			eIU_AxisBase.negative = Input.GetKey(eIU_AxisBase.negativeKey);
+			eIU_AxisBase.positive = Input.GetKey(eIU_AxisBase.positiveKey);
+			eIU_AxisBase.targetAxis = (eIU_AxisBase.negative ? (-1) : (eIU_AxisBase.positive ? 1 : 0));
+			eIU_AxisBase.axis = Mathf.MoveTowards(eIU_AxisBase.axis, eIU_AxisBase.targetAxis, Time.deltaTime * eIU_AxisBase.sensitivity);
 		}
+	}
 
-		// Token: 0x06004F9D RID: 20381 RVA: 0x0021A0E4 File Offset: 0x002182E4
-		public bool GetButtonDown(string name)
+	public float GetAxis(string name)
+	{
+		float result = 0f;
+		for (int i = 0; i < Axes.Count; i++)
 		{
-			bool result = false;
-			for (int i = 0; i < this.Axes.Count; i++)
+			if (string.Equals(Axes[i].axisName, name))
 			{
-				if (string.Equals(this.Axes[i].axisName, name))
-				{
-					result = Input.GetKeyDown(this.Axes[i].positiveKey);
-				}
-			}
-			return result;
-		}
-
-		// Token: 0x06004F9E RID: 20382 RVA: 0x0021A13C File Offset: 0x0021833C
-		private void LoadAllAxes()
-		{
-			for (int i = 0; i < this.Axes.Count; i++)
-			{
-				EIU_AxisBase eiu_AxisBase = this.Axes[i];
-				int @int = PlayerPrefs.GetInt(eiu_AxisBase.axisName + "pKey");
-				int int2 = PlayerPrefs.GetInt(eiu_AxisBase.axisName + "nKey");
-				eiu_AxisBase.positiveKey = @int;
-				eiu_AxisBase.negativeKey = int2;
+				result = Axes[i].axis;
 			}
 		}
+		return result;
+	}
 
-		// Token: 0x04004E95 RID: 20117
-		public static EasyInputUtility instance;
+	public bool GetButton(string name)
+	{
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		bool result = false;
+		for (int i = 0; i < Axes.Count; i++)
+		{
+			if (string.Equals(Axes[i].axisName, name))
+			{
+				result = Axes[i].positive;
+				result = Input.GetKey(Axes[i].positiveKey);
+			}
+		}
+		return result;
+	}
 
-		// Token: 0x04004E96 RID: 20118
-		private EIU_ControlsMenu menu;
+	public bool GetButtonDown(string name)
+	{
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		bool result = false;
+		for (int i = 0; i < Axes.Count; i++)
+		{
+			if (string.Equals(Axes[i].axisName, name))
+			{
+				result = Input.GetKeyDown(Axes[i].positiveKey);
+			}
+		}
+		return result;
+	}
 
-		// Token: 0x04004E97 RID: 20119
-		[Header("Define All Axes and Buttons Here")]
-		[Space(5f)]
-		public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();
+	private void LoadAllAxes()
+	{
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		for (int i = 0; i < Axes.Count; i++)
+		{
+			EIU_AxisBase eIU_AxisBase = Axes[i];
+			int @int = PlayerPrefs.GetInt(eIU_AxisBase.axisName + "pKey");
+			int int2 = PlayerPrefs.GetInt(eIU_AxisBase.axisName + "nKey");
+			eIU_AxisBase.positiveKey = (KeyCode)@int;
+			eIU_AxisBase.negativeKey = (KeyCode)int2;
+		}
 	}
 }

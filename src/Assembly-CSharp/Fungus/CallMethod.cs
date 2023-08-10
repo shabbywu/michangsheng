@@ -1,71 +1,63 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Scripting", "Call Method", "Calls a named method on a GameObject using the GameObject.SendMessage() system.", 0)]
+[AddComponentMenu("")]
+public class CallMethod : Command
 {
-	// Token: 0x02000DBB RID: 3515
-	[CommandInfo("Scripting", "Call Method", "Calls a named method on a GameObject using the GameObject.SendMessage() system.", 0)]
-	[AddComponentMenu("")]
-	public class CallMethod : Command
+	[Tooltip("Target monobehavior which contains the method we want to call")]
+	[SerializeField]
+	protected GameObject targetObject;
+
+	[Tooltip("Name of the method to call")]
+	[SerializeField]
+	protected string methodName = "";
+
+	[Tooltip("Delay (in seconds) before the method will be called")]
+	[SerializeField]
+	protected float delay;
+
+	protected virtual void CallTheMethod()
 	{
-		// Token: 0x06006406 RID: 25606 RVA: 0x0027D419 File Offset: 0x0027B619
-		protected virtual void CallTheMethod()
+		targetObject.SendMessage(methodName, (SendMessageOptions)1);
+	}
+
+	public override void OnEnter()
+	{
+		if ((Object)(object)targetObject == (Object)null || methodName.Length == 0)
 		{
-			this.targetObject.SendMessage(this.methodName, 1);
+			Continue();
+			return;
 		}
-
-		// Token: 0x06006407 RID: 25607 RVA: 0x0027D430 File Offset: 0x0027B630
-		public override void OnEnter()
+		if (Mathf.Approximately(delay, 0f))
 		{
-			if (this.targetObject == null || this.methodName.Length == 0)
-			{
-				this.Continue();
-				return;
-			}
-			if (Mathf.Approximately(this.delay, 0f))
-			{
-				this.CallTheMethod();
-			}
-			else
-			{
-				base.Invoke("CallTheMethod", this.delay);
-			}
-			this.Continue();
+			CallTheMethod();
 		}
-
-		// Token: 0x06006408 RID: 25608 RVA: 0x0027D490 File Offset: 0x0027B690
-		public override string GetSummary()
+		else
 		{
-			if (this.targetObject == null)
-			{
-				return "Error: No target GameObject specified";
-			}
-			if (this.methodName.Length == 0)
-			{
-				return "Error: No named method specified";
-			}
-			return this.targetObject.name + " : " + this.methodName;
+			((MonoBehaviour)this).Invoke("CallTheMethod", delay);
 		}
+		Continue();
+	}
 
-		// Token: 0x06006409 RID: 25609 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override string GetSummary()
+	{
+		if ((Object)(object)targetObject == (Object)null)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return "Error: No target GameObject specified";
 		}
+		if (methodName.Length == 0)
+		{
+			return "Error: No named method specified";
+		}
+		return ((Object)targetObject).name + " : " + methodName;
+	}
 
-		// Token: 0x04005613 RID: 22035
-		[Tooltip("Target monobehavior which contains the method we want to call")]
-		[SerializeField]
-		protected GameObject targetObject;
-
-		// Token: 0x04005614 RID: 22036
-		[Tooltip("Name of the method to call")]
-		[SerializeField]
-		protected string methodName = "";
-
-		// Token: 0x04005615 RID: 22037
-		[Tooltip("Delay (in seconds) before the method will be called")]
-		[SerializeField]
-		protected float delay;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
 	}
 }

@@ -1,101 +1,93 @@
-﻿using System;
 using System.Collections.Generic;
 using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200023B RID: 571
 [CommandInfo("YSNPCJiaoHu", "获取其他交互文本", "获取当前NPC的其他交互文本，赋值到TmpTalkString", 0)]
 [AddComponentMenu("")]
 public class CmdGetOtherJiaoHu : Command
 {
-	// Token: 0x0600161C RID: 5660 RVA: 0x00095B98 File Offset: 0x00093D98
+	private static bool isInited;
+
+	private static Dictionary<int, int> _JingJieDict = new Dictionary<int, int>();
+
+	private static Dictionary<int, int> _XingGeDict = new Dictionary<int, int>();
+
+	private static Dictionary<int, Dictionary<string, string>> _TalkDict = new Dictionary<int, Dictionary<string, string>>();
+
+	[Tooltip("以Talk开头的key，获取对应的文本")]
+	[SerializeField]
+	protected string textKey;
+
 	private static void Init()
 	{
-		if (!CmdGetOtherJiaoHu.isInited)
+		if (isInited)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.NpcTalkQiTaJiaoHuData.list)
+			return;
+		}
+		foreach (JSONObject item in jsonData.instance.NpcTalkQiTaJiaoHuData.list)
+		{
+			int i = item["id"].I;
+			_JingJieDict.Add(i, item["JingJie"].I);
+			_XingGeDict.Add(i, item["XingGe"].I);
+			_TalkDict.Add(i, new Dictionary<string, string>());
+			foreach (string key in item.keys)
 			{
-				int i = jsonobject["id"].I;
-				CmdGetOtherJiaoHu._JingJieDict.Add(i, jsonobject["JingJie"].I);
-				CmdGetOtherJiaoHu._XingGeDict.Add(i, jsonobject["XingGe"].I);
-				CmdGetOtherJiaoHu._TalkDict.Add(i, new Dictionary<string, string>());
-				foreach (string text in jsonobject.keys)
+				if (key.StartsWith("Talk"))
 				{
-					if (text.StartsWith("Talk"))
-					{
-						CmdGetOtherJiaoHu._TalkDict[i].Add(text, jsonobject[text].Str);
-					}
+					_TalkDict[i].Add(key, item[key].Str);
 				}
 			}
-			CmdGetOtherJiaoHu.isInited = true;
 		}
+		isInited = true;
 	}
 
-	// Token: 0x0600161D RID: 5661 RVA: 0x00095CC4 File Offset: 0x00093EC4
 	public override void OnEnter()
 	{
-		CmdGetOtherJiaoHu.Init();
-		Flowchart flowchart = this.GetFlowchart();
+		Init();
+		Flowchart flowchart = GetFlowchart();
 		UINPCData nowJiaoHuNPC = UINPCJiaoHu.Inst.NowJiaoHuNPC;
 		Avatar player = Tools.instance.getPlayer();
 		List<int> list = new List<int>();
 		int levelType = player.getLevelType();
-		foreach (KeyValuePair<int, int> keyValuePair in CmdGetOtherJiaoHu._JingJieDict)
+		foreach (KeyValuePair<int, int> item in _JingJieDict)
 		{
-			if (keyValuePair.Value == 1 && nowJiaoHuNPC.BigLevel < levelType)
+			if (item.Value == 1 && nowJiaoHuNPC.BigLevel < levelType)
 			{
-				list.Add(keyValuePair.Key);
+				list.Add(item.Key);
 			}
-			if (keyValuePair.Value == 2 && nowJiaoHuNPC.BigLevel == levelType)
+			if (item.Value == 2 && nowJiaoHuNPC.BigLevel == levelType)
 			{
-				list.Add(keyValuePair.Key);
+				list.Add(item.Key);
 			}
-			if (keyValuePair.Value == 3 && nowJiaoHuNPC.BigLevel > levelType)
+			if (item.Value == 3 && nowJiaoHuNPC.BigLevel > levelType)
 			{
-				list.Add(keyValuePair.Key);
+				list.Add(item.Key);
 			}
 		}
 		List<int> list2 = new List<int>();
-		foreach (int num in list)
+		foreach (int item2 in list)
 		{
-			if (CmdGetOtherJiaoHu._XingGeDict[num] == nowJiaoHuNPC.XingGe)
+			if (_XingGeDict[item2] == nowJiaoHuNPC.XingGe)
 			{
-				list2.Add(num);
+				list2.Add(item2);
 			}
 		}
 		if (list2.Count > 0)
 		{
-			if (CmdGetOtherJiaoHu._TalkDict[list2[0]].ContainsKey(this.textKey))
+			if (_TalkDict[list2[0]].ContainsKey(textKey))
 			{
-				flowchart.SetStringVariable("TmpTalkString", CmdGetOtherJiaoHu._TalkDict[list2[0]][this.textKey].ReplaceTalkWord(nowJiaoHuNPC));
+				flowchart.SetStringVariable("TmpTalkString", _TalkDict[list2[0]][textKey].ReplaceTalkWord(nowJiaoHuNPC));
 			}
 			else
 			{
-				flowchart.SetStringVariable("TmpTalkString", string.Format("读取失败，没有获取到文本(key{0}不存在)", list2[0]));
+				flowchart.SetStringVariable("TmpTalkString", $"读取失败，没有获取到文本(key{list2[0]}不存在)");
 			}
 		}
 		else
 		{
 			flowchart.SetStringVariable("TmpTalkString", "读取失败，没有获取到文本3");
 		}
-		this.Continue();
+		Continue();
 	}
-
-	// Token: 0x04001070 RID: 4208
-	private static bool isInited;
-
-	// Token: 0x04001071 RID: 4209
-	private static Dictionary<int, int> _JingJieDict = new Dictionary<int, int>();
-
-	// Token: 0x04001072 RID: 4210
-	private static Dictionary<int, int> _XingGeDict = new Dictionary<int, int>();
-
-	// Token: 0x04001073 RID: 4211
-	private static Dictionary<int, Dictionary<string, string>> _TalkDict = new Dictionary<int, Dictionary<string, string>>();
-
-	// Token: 0x04001074 RID: 4212
-	[Tooltip("以Talk开头的key，获取对应的文本")]
-	[SerializeField]
-	protected string textKey;
 }

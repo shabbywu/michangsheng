@@ -1,74 +1,60 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class _FaBaoFirstNameJsonData : IJSONClass
 {
-	// Token: 0x02000741 RID: 1857
-	public class _FaBaoFirstNameJsonData : IJSONClass
+	public static Dictionary<int, _FaBaoFirstNameJsonData> DataDict = new Dictionary<int, _FaBaoFirstNameJsonData>();
+
+	public static List<_FaBaoFirstNameJsonData> DataList = new List<_FaBaoFirstNameJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int PosReverse;
+
+	public string FirstName;
+
+	public List<int> Type = new List<int>();
+
+	public List<int> quality = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003B18 RID: 15128 RVA: 0x00196674 File Offset: 0x00194874
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance._FaBaoFirstNameJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance._FaBaoFirstNameJsonData.list)
+			try
 			{
-				try
+				_FaBaoFirstNameJsonData faBaoFirstNameJsonData = new _FaBaoFirstNameJsonData();
+				faBaoFirstNameJsonData.id = item["id"].I;
+				faBaoFirstNameJsonData.PosReverse = item["PosReverse"].I;
+				faBaoFirstNameJsonData.FirstName = item["FirstName"].Str;
+				faBaoFirstNameJsonData.Type = item["Type"].ToList();
+				faBaoFirstNameJsonData.quality = item["quality"].ToList();
+				if (DataDict.ContainsKey(faBaoFirstNameJsonData.id))
 				{
-					_FaBaoFirstNameJsonData faBaoFirstNameJsonData = new _FaBaoFirstNameJsonData();
-					faBaoFirstNameJsonData.id = jsonobject["id"].I;
-					faBaoFirstNameJsonData.PosReverse = jsonobject["PosReverse"].I;
-					faBaoFirstNameJsonData.FirstName = jsonobject["FirstName"].Str;
-					faBaoFirstNameJsonData.Type = jsonobject["Type"].ToList();
-					faBaoFirstNameJsonData.quality = jsonobject["quality"].ToList();
-					if (_FaBaoFirstNameJsonData.DataDict.ContainsKey(faBaoFirstNameJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典_FaBaoFirstNameJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", faBaoFirstNameJsonData.id));
-					}
-					else
-					{
-						_FaBaoFirstNameJsonData.DataDict.Add(faBaoFirstNameJsonData.id, faBaoFirstNameJsonData);
-						_FaBaoFirstNameJsonData.DataList.Add(faBaoFirstNameJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典_FaBaoFirstNameJsonData.DataDict添加数据时出现重复的键，Key:{faBaoFirstNameJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典_FaBaoFirstNameJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(faBaoFirstNameJsonData.id, faBaoFirstNameJsonData);
+				DataList.Add(faBaoFirstNameJsonData);
 			}
-			if (_FaBaoFirstNameJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				_FaBaoFirstNameJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典_FaBaoFirstNameJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003B19 RID: 15129 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x0400335A RID: 13146
-		public static Dictionary<int, _FaBaoFirstNameJsonData> DataDict = new Dictionary<int, _FaBaoFirstNameJsonData>();
-
-		// Token: 0x0400335B RID: 13147
-		public static List<_FaBaoFirstNameJsonData> DataList = new List<_FaBaoFirstNameJsonData>();
-
-		// Token: 0x0400335C RID: 13148
-		public static Action OnInitFinishAction = new Action(_FaBaoFirstNameJsonData.OnInitFinish);
-
-		// Token: 0x0400335D RID: 13149
-		public int id;
-
-		// Token: 0x0400335E RID: 13150
-		public int PosReverse;
-
-		// Token: 0x0400335F RID: 13151
-		public string FirstName;
-
-		// Token: 0x04003360 RID: 13152
-		public List<int> Type = new List<int>();
-
-		// Token: 0x04003361 RID: 13153
-		public List<int> quality = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

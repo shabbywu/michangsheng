@@ -1,9 +1,5 @@
-﻿using System;
+namespace UltimateSurvival;
 
-namespace UltimateSurvival
+public interface IOpenable
 {
-	// Token: 0x020005FC RID: 1532
-	public interface IOpenable
-	{
-	}
 }

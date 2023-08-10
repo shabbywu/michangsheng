@@ -1,120 +1,116 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000346 RID: 838
 public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x06001CA8 RID: 7336 RVA: 0x000CD2A4 File Offset: 0x000CB4A4
+	public string WarpSceneName;
+
+	public string NodeName;
+
+	public int NodeIndex;
+
+	public int AccessStaticValueID;
+
+	public bool AlwaysShow;
+
+	private Image iconImage;
+
+	private Text nodeNameText;
+
+	private Vector3 imageOriScale;
+
+	private Color textOriColor;
+
+	private Color textAnColor = new Color(0.76862746f, 0.75686276f, 0.59607846f);
+
+	public bool IsAccessed;
+
 	public void Init()
 	{
-		this.iconImage = base.transform.GetChild(0).GetComponent<Image>();
-		this.nodeNameText = base.transform.GetChild(1).GetComponent<Text>();
-		this.imageOriScale = this.iconImage.transform.localScale;
-		this.textOriColor = this.nodeNameText.color;
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		iconImage = ((Component)((Component)this).transform.GetChild(0)).GetComponent<Image>();
+		nodeNameText = ((Component)((Component)this).transform.GetChild(1)).GetComponent<Text>();
+		imageOriScale = ((Component)iconImage).transform.localScale;
+		textOriColor = ((Graphic)nodeNameText).color;
 	}
 
-	// Token: 0x06001CA9 RID: 7337 RVA: 0x000CD306 File Offset: 0x000CB506
 	public void SetCanJiaoHu(bool can)
 	{
-		this.iconImage.transform.localScale = this.imageOriScale;
-		this.iconImage.raycastTarget = can;
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		((Component)iconImage).transform.localScale = imageOriScale;
+		((Graphic)iconImage).raycastTarget = can;
 	}
 
-	// Token: 0x06001CAA RID: 7338 RVA: 0x000CD32C File Offset: 0x000CB52C
 	public void SetNodeAlpha(bool alpha)
 	{
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
 		if (alpha)
 		{
-			this.iconImage.color = new Color(1f, 1f, 1f, 0.5f);
-			this.nodeNameText.color = this.textAnColor;
-			return;
-		}
-		this.iconImage.color = Color.white;
-		this.nodeNameText.color = this.textOriColor;
-	}
-
-	// Token: 0x06001CAB RID: 7339 RVA: 0x000CD394 File Offset: 0x000CB594
-	public void RefreshUI()
-	{
-		if (this.AlwaysShow)
-		{
-			this.IsAccessed = true;
-		}
-		else if (PlayerEx.Player != null)
-		{
-			this.IsAccessed = (GlobalValue.Get(this.AccessStaticValueID, "UIMapSeaNode.RefreshUI 判断是否访问过岛屿") == 1);
+			((Graphic)iconImage).color = new Color(1f, 1f, 1f, 0.5f);
+			((Graphic)nodeNameText).color = textAnColor;
 		}
 		else
 		{
-			this.IsAccessed = true;
+			((Graphic)iconImage).color = Color.white;
+			((Graphic)nodeNameText).color = textOriColor;
 		}
-		if (this.IsAccessed)
-		{
-			this.nodeNameText.text = this.NodeName;
-			return;
-		}
-		this.nodeNameText.text = "???";
 	}
 
-	// Token: 0x06001CAC RID: 7340 RVA: 0x000CD405 File Offset: 0x000CB605
+	public void RefreshUI()
+	{
+		if (AlwaysShow)
+		{
+			IsAccessed = true;
+		}
+		else if (PlayerEx.Player != null)
+		{
+			IsAccessed = GlobalValue.Get(AccessStaticValueID, "UIMapSeaNode.RefreshUI 判断是否访问过岛屿") == 1;
+		}
+		else
+		{
+			IsAccessed = true;
+		}
+		if (IsAccessed)
+		{
+			nodeNameText.text = NodeName;
+		}
+		else
+		{
+			nodeNameText.text = "???";
+		}
+	}
+
 	void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
 	{
-		if (this.IsAccessed)
+		if (IsAccessed)
 		{
 			UIMapPanel.Inst.Sea.OnNodeClick(this);
 		}
 	}
 
-	// Token: 0x06001CAD RID: 7341 RVA: 0x000CD41F File Offset: 0x000CB61F
 	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
 	{
-		if (this.IsAccessed)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		if (IsAccessed)
 		{
-			this.iconImage.transform.localScale = this.imageOriScale * 1.2f;
+			((Component)iconImage).transform.localScale = imageOriScale * 1.2f;
 		}
 	}
 
-	// Token: 0x06001CAE RID: 7342 RVA: 0x000CD449 File Offset: 0x000CB649
 	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
 	{
-		if (this.IsAccessed)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		if (IsAccessed)
 		{
-			this.iconImage.transform.localScale = this.imageOriScale;
+			((Component)iconImage).transform.localScale = imageOriScale;
 		}
 	}
-
-	// Token: 0x04001729 RID: 5929
-	public string WarpSceneName;
-
-	// Token: 0x0400172A RID: 5930
-	public string NodeName;
-
-	// Token: 0x0400172B RID: 5931
-	public int NodeIndex;
-
-	// Token: 0x0400172C RID: 5932
-	public int AccessStaticValueID;
-
-	// Token: 0x0400172D RID: 5933
-	public bool AlwaysShow;
-
-	// Token: 0x0400172E RID: 5934
-	private Image iconImage;
-
-	// Token: 0x0400172F RID: 5935
-	private Text nodeNameText;
-
-	// Token: 0x04001730 RID: 5936
-	private Vector3 imageOriScale;
-
-	// Token: 0x04001731 RID: 5937
-	private Color textOriColor;
-
-	// Token: 0x04001732 RID: 5938
-	private Color textAnColor = new Color(0.76862746f, 0.75686276f, 0.59607846f);
-
-	// Token: 0x04001733 RID: 5939
-	public bool IsAccessed;
 }

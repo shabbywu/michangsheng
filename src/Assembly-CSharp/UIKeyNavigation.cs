@@ -1,129 +1,168 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200006B RID: 107
 [AddComponentMenu("NGUI/Interaction/Key Navigation")]
 public class UIKeyNavigation : MonoBehaviour
 {
-	// Token: 0x0600053D RID: 1341 RVA: 0x0001CA15 File Offset: 0x0001AC15
+	public enum Constraint
+	{
+		None,
+		Vertical,
+		Horizontal,
+		Explicit
+	}
+
+	public static BetterList<UIKeyNavigation> list = new BetterList<UIKeyNavigation>();
+
+	public Constraint constraint;
+
+	public GameObject onUp;
+
+	public GameObject onDown;
+
+	public GameObject onLeft;
+
+	public GameObject onRight;
+
+	public GameObject onClick;
+
+	public bool startsSelected;
+
 	protected virtual void OnEnable()
 	{
-		UIKeyNavigation.list.Add(this);
-		if (this.startsSelected && (UICamera.selectedObject == null || !NGUITools.GetActive(UICamera.selectedObject)))
+		list.Add(this);
+		if (startsSelected && ((Object)(object)UICamera.selectedObject == (Object)null || !NGUITools.GetActive(UICamera.selectedObject)))
 		{
 			UICamera.currentScheme = UICamera.ControlScheme.Controller;
-			UICamera.selectedObject = base.gameObject;
+			UICamera.selectedObject = ((Component)this).gameObject;
 		}
 	}
 
-	// Token: 0x0600053E RID: 1342 RVA: 0x0001CA54 File Offset: 0x0001AC54
 	protected virtual void OnDisable()
 	{
-		UIKeyNavigation.list.Remove(this);
+		list.Remove(this);
 	}
 
-	// Token: 0x0600053F RID: 1343 RVA: 0x0001CA62 File Offset: 0x0001AC62
 	protected GameObject GetLeft()
 	{
-		if (NGUITools.GetActive(this.onLeft))
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		if (NGUITools.GetActive(onLeft))
 		{
-			return this.onLeft;
+			return onLeft;
 		}
-		if (this.constraint == UIKeyNavigation.Constraint.Vertical || this.constraint == UIKeyNavigation.Constraint.Explicit)
+		if (constraint == Constraint.Vertical || constraint == Constraint.Explicit)
 		{
 			return null;
 		}
-		return this.Get(Vector3.left, true);
+		return Get(Vector3.left, horizontal: true);
 	}
 
-	// Token: 0x06000540 RID: 1344 RVA: 0x0001CA98 File Offset: 0x0001AC98
 	private GameObject GetRight()
 	{
-		if (NGUITools.GetActive(this.onRight))
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		if (NGUITools.GetActive(onRight))
 		{
-			return this.onRight;
+			return onRight;
 		}
-		if (this.constraint == UIKeyNavigation.Constraint.Vertical || this.constraint == UIKeyNavigation.Constraint.Explicit)
+		if (constraint == Constraint.Vertical || constraint == Constraint.Explicit)
 		{
 			return null;
 		}
-		return this.Get(Vector3.right, true);
+		return Get(Vector3.right, horizontal: true);
 	}
 
-	// Token: 0x06000541 RID: 1345 RVA: 0x0001CACE File Offset: 0x0001ACCE
 	protected GameObject GetUp()
 	{
-		if (NGUITools.GetActive(this.onUp))
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		if (NGUITools.GetActive(onUp))
 		{
-			return this.onUp;
+			return onUp;
 		}
-		if (this.constraint == UIKeyNavigation.Constraint.Horizontal || this.constraint == UIKeyNavigation.Constraint.Explicit)
+		if (constraint == Constraint.Horizontal || constraint == Constraint.Explicit)
 		{
 			return null;
 		}
-		return this.Get(Vector3.up, false);
+		return Get(Vector3.up, horizontal: false);
 	}
 
-	// Token: 0x06000542 RID: 1346 RVA: 0x0001CB04 File Offset: 0x0001AD04
 	protected GameObject GetDown()
 	{
-		if (NGUITools.GetActive(this.onDown))
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		if (NGUITools.GetActive(onDown))
 		{
-			return this.onDown;
+			return onDown;
 		}
-		if (this.constraint == UIKeyNavigation.Constraint.Horizontal || this.constraint == UIKeyNavigation.Constraint.Explicit)
+		if (constraint == Constraint.Horizontal || constraint == Constraint.Explicit)
 		{
 			return null;
 		}
-		return this.Get(Vector3.down, false);
+		return Get(Vector3.down, horizontal: false);
 	}
 
-	// Token: 0x06000543 RID: 1347 RVA: 0x0001CB3C File Offset: 0x0001AD3C
 	protected GameObject Get(Vector3 myDir, bool horizontal)
 	{
-		Transform transform = base.transform;
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		Transform transform = ((Component)this).transform;
 		myDir = transform.TransformDirection(myDir);
-		Vector3 center = UIKeyNavigation.GetCenter(base.gameObject);
+		Vector3 center = GetCenter(((Component)this).gameObject);
 		float num = float.MaxValue;
 		GameObject result = null;
-		for (int i = 0; i < UIKeyNavigation.list.size; i++)
+		for (int i = 0; i < list.size; i++)
 		{
-			UIKeyNavigation uikeyNavigation = UIKeyNavigation.list[i];
-			if (!(uikeyNavigation == this))
+			UIKeyNavigation uIKeyNavigation = list[i];
+			if ((Object)(object)uIKeyNavigation == (Object)(object)this)
 			{
-				UIButton component = uikeyNavigation.GetComponent<UIButton>();
-				if (!(component != null) || component.isEnabled)
+				continue;
+			}
+			UIButton component = ((Component)uIKeyNavigation).GetComponent<UIButton>();
+			if ((Object)(object)component != (Object)null && !component.isEnabled)
+			{
+				continue;
+			}
+			Vector3 val = GetCenter(((Component)uIKeyNavigation).gameObject) - center;
+			if (!(Vector3.Dot(myDir, ((Vector3)(ref val)).normalized) < 0.707f))
+			{
+				val = transform.InverseTransformDirection(val);
+				if (horizontal)
 				{
-					Vector3 vector = UIKeyNavigation.GetCenter(uikeyNavigation.gameObject) - center;
-					if (Vector3.Dot(myDir, vector.normalized) >= 0.707f)
-					{
-						vector = transform.InverseTransformDirection(vector);
-						if (horizontal)
-						{
-							vector.y *= 2f;
-						}
-						else
-						{
-							vector.x *= 2f;
-						}
-						float sqrMagnitude = vector.sqrMagnitude;
-						if (sqrMagnitude <= num)
-						{
-							result = uikeyNavigation.gameObject;
-							num = sqrMagnitude;
-						}
-					}
+					val.y *= 2f;
+				}
+				else
+				{
+					val.x *= 2f;
+				}
+				float sqrMagnitude = ((Vector3)(ref val)).sqrMagnitude;
+				if (!(sqrMagnitude > num))
+				{
+					result = ((Component)uIKeyNavigation).gameObject;
+					num = sqrMagnitude;
 				}
 			}
 		}
 		return result;
 	}
 
-	// Token: 0x06000544 RID: 1348 RVA: 0x0001CC34 File Offset: 0x0001AE34
 	protected static Vector3 GetCenter(GameObject go)
 	{
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 		UIWidget component = go.GetComponent<UIWidget>();
-		if (component != null)
+		if ((Object)(object)component != (Object)null)
 		{
 			Vector3[] worldCorners = component.worldCorners;
 			return (worldCorners[0] + worldCorners[2]) * 0.5f;
@@ -131,113 +170,79 @@ public class UIKeyNavigation : MonoBehaviour
 		return go.transform.position;
 	}
 
-	// Token: 0x06000545 RID: 1349 RVA: 0x0001CC84 File Offset: 0x0001AE84
 	protected virtual void OnKey(KeyCode key)
 	{
-		if (!NGUITools.GetActive(this))
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Invalid comparison between Unknown and I4
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Expected I4, but got Unknown
+		if (!NGUITools.GetActive((Behaviour)(object)this))
 		{
 			return;
 		}
-		GameObject gameObject = null;
-		if (key != 9)
+		GameObject val = null;
+		if ((int)key != 9)
 		{
-			switch (key)
+			switch (key - 273)
 			{
-			case 273:
-				gameObject = this.GetUp();
+			case 3:
+				val = GetLeft();
 				break;
-			case 274:
-				gameObject = this.GetDown();
+			case 2:
+				val = GetRight();
 				break;
-			case 275:
-				gameObject = this.GetRight();
+			case 0:
+				val = GetUp();
 				break;
-			case 276:
-				gameObject = this.GetLeft();
+			case 1:
+				val = GetDown();
 				break;
 			}
 		}
-		else if (Input.GetKey(304) || Input.GetKey(303))
+		else if (Input.GetKey((KeyCode)304) || Input.GetKey((KeyCode)303))
 		{
-			gameObject = this.GetLeft();
-			if (gameObject == null)
+			val = GetLeft();
+			if ((Object)(object)val == (Object)null)
 			{
-				gameObject = this.GetUp();
+				val = GetUp();
 			}
-			if (gameObject == null)
+			if ((Object)(object)val == (Object)null)
 			{
-				gameObject = this.GetDown();
+				val = GetDown();
 			}
-			if (gameObject == null)
+			if ((Object)(object)val == (Object)null)
 			{
-				gameObject = this.GetRight();
+				val = GetRight();
 			}
 		}
 		else
 		{
-			gameObject = this.GetRight();
-			if (gameObject == null)
+			val = GetRight();
+			if ((Object)(object)val == (Object)null)
 			{
-				gameObject = this.GetDown();
+				val = GetDown();
 			}
-			if (gameObject == null)
+			if ((Object)(object)val == (Object)null)
 			{
-				gameObject = this.GetUp();
+				val = GetUp();
 			}
-			if (gameObject == null)
+			if ((Object)(object)val == (Object)null)
 			{
-				gameObject = this.GetLeft();
+				val = GetLeft();
 			}
 		}
-		if (gameObject != null)
+		if ((Object)(object)val != (Object)null)
 		{
-			UICamera.selectedObject = gameObject;
+			UICamera.selectedObject = val;
 		}
 	}
 
-	// Token: 0x06000546 RID: 1350 RVA: 0x0001CD89 File Offset: 0x0001AF89
 	protected virtual void OnClick()
 	{
-		if (NGUITools.GetActive(this) && NGUITools.GetActive(this.onClick))
+		if (NGUITools.GetActive((Behaviour)(object)this) && NGUITools.GetActive(onClick))
 		{
-			UICamera.selectedObject = this.onClick;
+			UICamera.selectedObject = onClick;
 		}
-	}
-
-	// Token: 0x04000364 RID: 868
-	public static BetterList<UIKeyNavigation> list = new BetterList<UIKeyNavigation>();
-
-	// Token: 0x04000365 RID: 869
-	public UIKeyNavigation.Constraint constraint;
-
-	// Token: 0x04000366 RID: 870
-	public GameObject onUp;
-
-	// Token: 0x04000367 RID: 871
-	public GameObject onDown;
-
-	// Token: 0x04000368 RID: 872
-	public GameObject onLeft;
-
-	// Token: 0x04000369 RID: 873
-	public GameObject onRight;
-
-	// Token: 0x0400036A RID: 874
-	public GameObject onClick;
-
-	// Token: 0x0400036B RID: 875
-	public bool startsSelected;
-
-	// Token: 0x020011E7 RID: 4583
-	public enum Constraint
-	{
-		// Token: 0x040063E9 RID: 25577
-		None,
-		// Token: 0x040063EA RID: 25578
-		Vertical,
-		// Token: 0x040063EB RID: 25579
-		Horizontal,
-		// Token: 0x040063EC RID: 25580
-		Explicit
 	}
 }

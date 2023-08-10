@@ -1,45 +1,46 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000044 RID: 68
 [AddComponentMenu("NGUI/Examples/Lag Rotation")]
 public class LagRotation : MonoBehaviour
 {
-	// Token: 0x06000454 RID: 1108 RVA: 0x00017E87 File Offset: 0x00016087
-	private void OnEnable()
-	{
-		this.mTrans = base.transform;
-		this.mRelative = this.mTrans.localRotation;
-		this.mAbsolute = this.mTrans.rotation;
-	}
-
-	// Token: 0x06000455 RID: 1109 RVA: 0x00017EB8 File Offset: 0x000160B8
-	private void Update()
-	{
-		Transform parent = this.mTrans.parent;
-		if (parent != null)
-		{
-			float num = this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime;
-			this.mAbsolute = Quaternion.Slerp(this.mAbsolute, parent.rotation * this.mRelative, num * this.speed);
-			this.mTrans.rotation = this.mAbsolute;
-		}
-	}
-
-	// Token: 0x0400027C RID: 636
 	public int updateOrder;
 
-	// Token: 0x0400027D RID: 637
 	public float speed = 10f;
 
-	// Token: 0x0400027E RID: 638
 	public bool ignoreTimeScale;
 
-	// Token: 0x0400027F RID: 639
 	private Transform mTrans;
 
-	// Token: 0x04000280 RID: 640
 	private Quaternion mRelative;
 
-	// Token: 0x04000281 RID: 641
 	private Quaternion mAbsolute;
+
+	private void OnEnable()
+	{
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		mTrans = ((Component)this).transform;
+		mRelative = mTrans.localRotation;
+		mAbsolute = mTrans.rotation;
+	}
+
+	private void Update()
+	{
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		Transform parent = mTrans.parent;
+		if ((Object)(object)parent != (Object)null)
+		{
+			float num = (ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
+			mAbsolute = Quaternion.Slerp(mAbsolute, parent.rotation * mRelative, num * speed);
+			mTrans.rotation = mAbsolute;
+		}
+	}
 }

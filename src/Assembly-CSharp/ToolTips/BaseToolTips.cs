@@ -1,50 +1,52 @@
-﻿using System;
 using UnityEngine;
 
-namespace ToolTips
+namespace ToolTips;
+
+public abstract class BaseToolTips : MonoBehaviour
 {
-	// Token: 0x020006E6 RID: 1766
-	public abstract class BaseToolTips : MonoBehaviour
+	private RectTransform _rectTransform;
+
+	public abstract void Show(object Data);
+
+	public void Hide()
 	{
-		// Token: 0x060038EE RID: 14574
-		public abstract void Show(object Data);
+		((Component)this).gameObject.SetActive(false);
+	}
 
-		// Token: 0x060038EF RID: 14575 RVA: 0x000B5E62 File Offset: 0x000B4062
-		public void Hide()
+	public void PCSetPosition()
+	{
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)_rectTransform == (Object)null)
 		{
-			base.gameObject.SetActive(false);
+			_rectTransform = ((Component)this).GetComponent<RectTransform>();
 		}
-
-		// Token: 0x060038F0 RID: 14576 RVA: 0x00184A84 File Offset: 0x00182C84
-		public void PCSetPosition()
+		Rect rect = _rectTransform.rect;
+		Vector3 val = default(Vector3);
+		((Vector3)(ref val))._002Ector(GetMousePosition().x, GetMousePosition().y, GetMousePosition().z);
+		val.x += ((Rect)(ref rect)).width / 2f;
+		val.y -= ((Rect)(ref rect)).height / 2f;
+		if (Input.mousePosition.x > (float)Screen.width / 2f)
 		{
-			if (this._rectTransform == null)
-			{
-				this._rectTransform = base.GetComponent<RectTransform>();
-			}
-			Rect rect = this._rectTransform.rect;
-			Vector3 vector;
-			vector..ctor(this.GetMousePosition().x, this.GetMousePosition().y, this.GetMousePosition().z);
-			vector.x += rect.width / 2f;
-			vector.y -= rect.height / 2f;
-			if (Input.mousePosition.x > (float)Screen.width / 2f)
-			{
-				vector.x -= rect.width;
-			}
-			if (Input.mousePosition.y < (float)Screen.height / 2f)
-			{
-				vector.y += rect.height;
-			}
-			base.transform.position = NewUICanvas.Inst.Camera.ScreenToWorldPoint(vector);
+			val.x -= ((Rect)(ref rect)).width;
 		}
-
-		// Token: 0x060038F1 RID: 14577 RVA: 0x00184B7E File Offset: 0x00182D7E
-		private Vector3 GetMousePosition()
+		if (Input.mousePosition.y < (float)Screen.height / 2f)
 		{
-			return Input.mousePosition;
+			val.y += ((Rect)(ref rect)).height;
 		}
+		((Component)this).transform.position = NewUICanvas.Inst.Camera.ScreenToWorldPoint(val);
+	}
 
-		// Token: 0x040030FD RID: 12541
-		private RectTransform _rectTransform;
+	private Vector3 GetMousePosition()
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		return Input.mousePosition;
 	}
 }

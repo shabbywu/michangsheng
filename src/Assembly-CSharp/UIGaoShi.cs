@@ -1,59 +1,75 @@
-﻿using System;
 using System.Collections.Generic;
 using Fungus;
 using JSONClass;
 using KBEngine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020002BE RID: 702
 public class UIGaoShi : MonoBehaviour, IESCClose
 {
-	// Token: 0x060018A6 RID: 6310 RVA: 0x000B0E78 File Offset: 0x000AF078
+	public static UIGaoShi Inst;
+
+	public GameObject ShouGouPrefab;
+
+	public GameObject RenWuPrefab;
+
+	public GameObject QingBaoPrefab;
+
+	public GameObject ScaleObj;
+
+	public RectTransform ContentRT;
+
+	public Text Title;
+
+	public List<Sprite> HuoBiIconList;
+
 	private void Awake()
 	{
-		UIGaoShi.Inst = this;
+		Inst = this;
 	}
 
-	// Token: 0x060018A7 RID: 6311 RVA: 0x000B0E80 File Offset: 0x000AF080
 	public void RefreshUI()
 	{
-		this.ContentRT.DestoryAllChild();
+		((Transform)(object)ContentRT).DestoryAllChild();
 		string nowSceneName = SceneEx.NowSceneName;
 		Avatar player = PlayerEx.Player;
 		GaoShiLeiXing gaoShiLeiXing = GaoShiLeiXing.DataDict[nowSceneName];
 		if (player.GaoShi.HasField(nowSceneName) && gaoShiLeiXing != null)
 		{
-			this.Title.text = gaoShiLeiXing.name;
+			Title.text = gaoShiLeiXing.name;
 			List<JSONObject> list = player.GaoShi[nowSceneName]["GaoShiList"].list;
 			for (int i = 0; i < list.Count; i++)
 			{
-				JSONObject jsonobject = list[i];
-				int i2 = jsonobject["GaoShiID"].I;
+				JSONObject jSONObject = list[i];
+				int i2 = jSONObject["GaoShiID"].I;
 				GaoShi gaoShi = GaoShi.DataDict[i2];
 				if (gaoShi.type == 1)
 				{
-					this.CreateShouGouItem(jsonobject, gaoShi, gaoShiLeiXing);
+					CreateShouGouItem(jSONObject, gaoShi, gaoShiLeiXing);
 				}
 				else if (gaoShi.type == 2)
 				{
-					this.CreateRenWuItem(jsonobject, gaoShi);
+					CreateRenWuItem(jSONObject, gaoShi);
 				}
 				else if (gaoShi.type == 3)
 				{
-					this.CreateQingBaoItem(jsonobject, gaoShi);
+					CreateQingBaoItem(jSONObject, gaoShi);
 				}
 			}
-			return;
 		}
-		this.Title.text = "无告示";
+		else
+		{
+			Title.text = "无告示";
+		}
 	}
 
-	// Token: 0x060018A8 RID: 6312 RVA: 0x000B0F88 File Offset: 0x000AF188
 	public void CreateShouGouItem(JSONObject gaoshiJson, GaoShi gaoshi, GaoShiLeiXing gaoshileixing)
 	{
+		//IL_0378: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0382: Expected O, but got Unknown
 		Avatar player = PlayerEx.Player;
-		UIGaoShiShouGouItem shougou = Object.Instantiate<GameObject>(this.ShouGouPrefab, this.ContentRT).GetComponent<UIGaoShiShouGouItem>();
+		UIGaoShiShouGouItem shougou = Object.Instantiate<GameObject>(ShouGouPrefab, (Transform)(object)ContentRT).GetComponent<UIGaoShiShouGouItem>();
 		bool b = gaoshiJson["JiaJi"].b;
 		if (!gaoshiJson.HasField("Pos"))
 		{
@@ -61,12 +77,12 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 		}
 		if (b)
 		{
-			shougou.transform.SetAsFirstSibling();
+			((Component)shougou).transform.SetAsFirstSibling();
 		}
 		bool b2 = gaoshiJson["YiShouGou"].b;
 		shougou.JiaJi.SetActive(b);
 		_ItemJsonData item = _ItemJsonData.DataDict[gaoshi.itemid];
-		string text = string.Format("近日，我{0}急需{1}份{2}，若是有人能寻来，必有重谢。", gaoshileixing.name, gaoshi.num, item.name);
+		string text = $"近日，我{gaoshileixing.name}急需{gaoshi.num}份{item.name}，若是有人能寻来，必有重谢。";
 		shougou.Desc.text = text;
 		float num = 1f;
 		if (b)
@@ -77,24 +93,23 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 		int menpaihuobi = lingshi / 100;
 		if (lingshi % 100 > 0)
 		{
-			int menpaihuobi2 = menpaihuobi;
-			menpaihuobi = menpaihuobi2 + 1;
+			menpaihuobi++;
 		}
 		if (gaoshi.menpaihuobi > 0)
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[gaoshi.menpaihuobi];
 			shougou.LingShiTitle.text = itemJsonData.name + "：";
 			shougou.LingShi.text = menpaihuobi.ToString();
-			shougou.LingShiIcon.sprite = this.HuoBiIconList[gaoshi.menpaihuobi - 10009];
+			shougou.LingShiIcon.sprite = HuoBiIconList[gaoshi.menpaihuobi - 10009];
 		}
 		else
 		{
 			shougou.LingShiTitle.text = "灵石：";
 			shougou.LingShi.text = lingshi.ToString();
-			shougou.LingShiIcon.sprite = this.HuoBiIconList[0];
+			shougou.LingShiIcon.sprite = HuoBiIconList[0];
 		}
 		shougou.ShengWang.text = gaoshi.shengwang.ToString();
-		shougou.SetYiShouGou(b2, gaoshiJson["Pos"], false);
+		shougou.SetYiShouGou(b2, gaoshiJson["Pos"]);
 		shougou.Item.SetItem(item.id);
 		int itemCount = player.getItemNum(item.id);
 		if (b2)
@@ -102,12 +117,12 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 			shougou.Item.SetCount(gaoshi.num);
 			return;
 		}
-		shougou.Item.CountText.gameObject.SetActive(true);
+		((Component)shougou.Item.CountText).gameObject.SetActive(true);
 		if (itemCount >= gaoshi.num)
 		{
-			shougou.Item.CountText.text = string.Format("<color=#EAD984>{0}/{1}</color>", itemCount, gaoshi.num);
-			shougou.SetButtonCanClick(true);
-			shougou.TiJiaoBtn.mouseUpEvent.AddListener(delegate()
+			shougou.Item.CountText.text = $"<color=#EAD984>{itemCount}/{gaoshi.num}</color>";
+			shougou.SetButtonCanClick(canClick: true);
+			shougou.TiJiaoBtn.mouseUpEvent.AddListener((UnityAction)delegate
 			{
 				itemCount = player.getItemNum(item.id);
 				if (itemCount >= gaoshi.num)
@@ -115,132 +130,110 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 					player.removeItem(item.id, gaoshi.num);
 					if (gaoshi.menpaihuobi > 0)
 					{
-						player.addItem(gaoshi.menpaihuobi, menpaihuobi, Tools.CreateItemSeid(gaoshi.menpaihuobi), true);
+						player.addItem(gaoshi.menpaihuobi, menpaihuobi, Tools.CreateItemSeid(gaoshi.menpaihuobi), ShowText: true);
 					}
 					else
 					{
 						player.AddMoney(lingshi);
 					}
-					PlayerEx.AddShengWang(gaoshi.shengwangid, gaoshi.shengwang, true);
-					gaoshiJson.SetField("YiShouGou", true);
-					shougou.SetYiShouGou(true, gaoshiJson["Pos"], true);
-					return;
+					PlayerEx.AddShengWang(gaoshi.shengwangid, gaoshi.shengwang, show: true);
+					gaoshiJson.SetField("YiShouGou", val: true);
+					shougou.SetYiShouGou(yiShouGou: true, gaoshiJson["Pos"], anim: true);
 				}
-				UIPopTip.Inst.Pop("没有足够物品", PopTipIconType.叹号);
+				else
+				{
+					UIPopTip.Inst.Pop("没有足够物品");
+				}
 			});
-			return;
 		}
-		shougou.Item.CountText.text = string.Format("<color=#EAA184>{0}/{1}</color>", itemCount, gaoshi.num);
-		shougou.SetButtonCanClick(false);
+		else
+		{
+			shougou.Item.CountText.text = $"<color=#EAA184>{itemCount}/{gaoshi.num}</color>";
+			shougou.SetButtonCanClick(canClick: false);
+		}
 	}
 
-	// Token: 0x060018A9 RID: 6313 RVA: 0x000B1360 File Offset: 0x000AF560
 	public void CreateRenWuItem(JSONObject gaoshiJson, GaoShi gaoshi)
 	{
+		//IL_0295: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029f: Expected O, but got Unknown
 		Avatar player = PlayerEx.Player;
-		player.nomelTaskMag.randomTask(gaoshi.taskid, false);
+		player.nomelTaskMag.randomTask(gaoshi.taskid);
 		bool flag = gaoshiJson["YiLingQu"].b || player.nomelTaskMag.HasNTask(gaoshi.taskid) || IsNTaskFinish.Do(gaoshi.taskid);
-		NTaskAllType ntaskAllType = NTaskAllType.DataDict[gaoshi.taskid];
-		NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(gaoshi.taskid);
-		if (ntaskAllType != null)
+		NTaskAllType nTaskAllType = NTaskAllType.DataDict[gaoshi.taskid];
+		NTaskXiangXi nTaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(gaoshi.taskid);
+		if (nTaskAllType != null)
 		{
-			if (ntaskXiangXiData == null)
+			if (nTaskXiangXiData != null)
 			{
-				Debug.Log(string.Format("创建任务告示失败，GetNTaskXiangXiData({0})获取不到xiangxi信息，有可能是人物境界等不达标", gaoshi.taskid));
-				return;
-			}
-			UIGaoShiRenWuItem renwu = Object.Instantiate<GameObject>(this.RenWuPrefab, this.ContentRT).GetComponent<UIGaoShiRenWuItem>();
-			if (!gaoshiJson.HasField("Pos"))
-			{
-				gaoshiJson.SetField("Pos", GaoShiManager.CreateRandomPositionAndRotate());
-			}
-			renwu.SetYiLingQu(flag, gaoshiJson["Pos"], false);
-			renwu.Desc.text = NTaskText.GetNTaskDesc(gaoshi.taskid);
-			int num = 0;
-			int num2 = 0;
-			player.nomelTaskMag.getReward(gaoshi.taskid, ref num, ref num2);
-			if (ntaskAllType.menpaihuobi > 0)
-			{
-				_ItemJsonData itemJsonData = _ItemJsonData.DataDict[ntaskAllType.menpaihuobi];
-				renwu.LingShiTitle.text = itemJsonData.name + "：";
-				renwu.LingShi.text = num2.ToString();
-				renwu.LingShiIcon.sprite = this.HuoBiIconList[ntaskAllType.menpaihuobi - 10009];
+				UIGaoShiRenWuItem renwu = Object.Instantiate<GameObject>(RenWuPrefab, (Transform)(object)ContentRT).GetComponent<UIGaoShiRenWuItem>();
+				if (!gaoshiJson.HasField("Pos"))
+				{
+					gaoshiJson.SetField("Pos", GaoShiManager.CreateRandomPositionAndRotate());
+				}
+				renwu.SetYiLingQu(flag, gaoshiJson["Pos"]);
+				renwu.Desc.text = NTaskText.GetNTaskDesc(gaoshi.taskid);
+				int money = 0;
+				int menpaihuobi = 0;
+				player.nomelTaskMag.getReward(gaoshi.taskid, ref money, ref menpaihuobi);
+				if (nTaskAllType.menpaihuobi > 0)
+				{
+					_ItemJsonData itemJsonData = _ItemJsonData.DataDict[nTaskAllType.menpaihuobi];
+					renwu.LingShiTitle.text = itemJsonData.name + "：";
+					renwu.LingShi.text = menpaihuobi.ToString();
+					renwu.LingShiIcon.sprite = HuoBiIconList[nTaskAllType.menpaihuobi - 10009];
+				}
+				else
+				{
+					renwu.LingShiTitle.text = "灵石：";
+					renwu.LingShi.text = money.ToString();
+					renwu.LingShiIcon.sprite = HuoBiIconList[0];
+				}
+				if (nTaskAllType.shili >= 0 && nTaskXiangXiData.ShiLIAdd > 0)
+				{
+					renwu.ShengWang.text = nTaskXiangXiData.ShiLIAdd.ToString();
+				}
+				if (!flag)
+				{
+					renwu.TiJiaoBtn.mouseUpEvent.AddListener((UnityAction)delegate
+					{
+						StartNTask.Do(gaoshi.taskid);
+						renwu.SetYiLingQu(yiLingQu: true, gaoshiJson["Pos"], anim: true);
+						gaoshiJson.SetField("YiLingQu", val: true);
+					});
+				}
 			}
 			else
 			{
-				renwu.LingShiTitle.text = "灵石：";
-				renwu.LingShi.text = num.ToString();
-				renwu.LingShiIcon.sprite = this.HuoBiIconList[0];
-			}
-			if (ntaskAllType.shili >= 0 && ntaskXiangXiData.ShiLIAdd > 0)
-			{
-				renwu.ShengWang.text = ntaskXiangXiData.ShiLIAdd.ToString();
-			}
-			if (!flag)
-			{
-				renwu.TiJiaoBtn.mouseUpEvent.AddListener(delegate()
-				{
-					StartNTask.Do(gaoshi.taskid);
-					renwu.SetYiLingQu(true, gaoshiJson["Pos"], true);
-					gaoshiJson.SetField("YiLingQu", true);
-				});
-				return;
+				Debug.Log((object)$"创建任务告示失败，GetNTaskXiangXiData({gaoshi.taskid})获取不到xiangxi信息，有可能是人物境界等不达标");
 			}
 		}
 		else
 		{
-			Debug.Log(string.Format("创建任务告示失败，没有id为{0}的ntask", gaoshi.taskid));
+			Debug.Log((object)$"创建任务告示失败，没有id为{gaoshi.taskid}的ntask");
 		}
 	}
 
-	// Token: 0x060018AA RID: 6314 RVA: 0x00004095 File Offset: 0x00002295
 	public void CreateQingBaoItem(JSONObject gaoshiJson, GaoShi gaoshi)
 	{
 	}
 
-	// Token: 0x060018AB RID: 6315 RVA: 0x000B164C File Offset: 0x000AF84C
 	public void Show()
 	{
-		this.ScaleObj.SetActive(true);
-		this.RefreshUI();
+		ScaleObj.SetActive(true);
+		RefreshUI();
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x060018AC RID: 6316 RVA: 0x000B166B File Offset: 0x000AF86B
 	public void Close()
 	{
-		this.ScaleObj.SetActive(false);
+		ScaleObj.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x060018AD RID: 6317 RVA: 0x000B1684 File Offset: 0x000AF884
 	public bool TryEscClose()
 	{
-		this.Close();
+		Close();
 		return true;
 	}
-
-	// Token: 0x040013AD RID: 5037
-	public static UIGaoShi Inst;
-
-	// Token: 0x040013AE RID: 5038
-	public GameObject ShouGouPrefab;
-
-	// Token: 0x040013AF RID: 5039
-	public GameObject RenWuPrefab;
-
-	// Token: 0x040013B0 RID: 5040
-	public GameObject QingBaoPrefab;
-
-	// Token: 0x040013B1 RID: 5041
-	public GameObject ScaleObj;
-
-	// Token: 0x040013B2 RID: 5042
-	public RectTransform ContentRT;
-
-	// Token: 0x040013B3 RID: 5043
-	public Text Title;
-
-	// Token: 0x040013B4 RID: 5044
-	public List<Sprite> HuoBiIconList;
 }

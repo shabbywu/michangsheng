@@ -1,56 +1,48 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Narrative", "Menu Shuffle", "Shuffle the order of the items in a Fungus Menu", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class MenuShuffle : Command
 {
-	// Token: 0x02000E04 RID: 3588
-	[CommandInfo("Narrative", "Menu Shuffle", "Shuffle the order of the items in a Fungus Menu", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class MenuShuffle : Command
+	public enum Mode
 	{
-		// Token: 0x0600655E RID: 25950 RVA: 0x00282E1C File Offset: 0x0028101C
-		public override void OnEnter()
+		Every,
+		Once
+	}
+
+	[SerializeField]
+	[Tooltip("Determines if the order is shuffled everytime this command is it (Every) or if it is consistent when returned to but random (Once)")]
+	protected Mode shuffleMode = Mode.Once;
+
+	private int seed = -1;
+
+	public override void OnEnter()
+	{
+		MenuDialog menuDialog = MenuDialog.GetMenuDialog();
+		if (shuffleMode == Mode.Every || seed == -1)
 		{
-			MenuDialog menuDialog = MenuDialog.GetMenuDialog();
-			if (this.shuffleMode == MenuShuffle.Mode.Every || this.seed == -1)
-			{
-				this.seed = Random.Range(0, 1000000);
-			}
-			if (menuDialog != null)
-			{
-				menuDialog.Shuffle(new Random(this.seed));
-			}
-			this.Continue();
+			seed = Random.Range(0, 1000000);
 		}
-
-		// Token: 0x0600655F RID: 25951 RVA: 0x00282E71 File Offset: 0x00281071
-		public override string GetSummary()
+		if ((Object)(object)menuDialog != (Object)null)
 		{
-			return this.shuffleMode.ToString();
+			menuDialog.Shuffle(new Random(seed));
 		}
+		Continue();
+	}
 
-		// Token: 0x06006560 RID: 25952 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override string GetSummary()
+	{
+		return shuffleMode.ToString();
+	}
 
-		// Token: 0x0400571A RID: 22298
-		[SerializeField]
-		[Tooltip("Determines if the order is shuffled everytime this command is it (Every) or if it is consistent when returned to but random (Once)")]
-		protected MenuShuffle.Mode shuffleMode = MenuShuffle.Mode.Once;
-
-		// Token: 0x0400571B RID: 22299
-		private int seed = -1;
-
-		// Token: 0x020016C0 RID: 5824
-		public enum Mode
-		{
-			// Token: 0x0400738E RID: 29582
-			Every,
-			// Token: 0x0400738F RID: 29583
-			Once
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

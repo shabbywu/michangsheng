@@ -1,180 +1,181 @@
-﻿using System;
 using System.Collections.Generic;
 using JSONClass;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020002A3 RID: 675
 public class CyNpcList : MonoBehaviour
 {
-	// Token: 0x0600180F RID: 6159 RVA: 0x000A80C0 File Offset: 0x000A62C0
-	public void Init()
-	{
-		this.friendList = Tools.instance.getPlayer().emailDateMag.cyNpcList;
-		this.npcNum.text = this.friendList.Count.ToString();
-		this.curSelect.text = "全部";
-		this.tagBtn.mouseUpEvent.AddListener(new UnityAction(this.ShowMoreSelect));
-		this.InitNpcList(-2);
-	}
-
-	// Token: 0x06001810 RID: 6160 RVA: 0x000A813C File Offset: 0x000A633C
-	private void InitNpcList(int type)
-	{
-		Tools.ClearObj(this.cyNpcCell.transform);
-		this.friendCells = new List<CyFriendCell>();
-		this.curSelectFriend = null;
-		Dictionary<string, List<EmailData>>.KeyCollection keys = Tools.instance.getPlayer().emailDateMag.newEmailDictionary.Keys;
-		List<int> list = new List<int>();
-		foreach (string text in keys)
-		{
-			if ((type != -1 || jsonData.instance.AvatarJsonData[text].TryGetField("IsTag").b) && (type != -4 || PlayerEx.IsDaoLv(int.Parse(text))) && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(int.Parse(text)) && CyTeShuNpc.DataDict[int.Parse(text)].Type == 1)) && (type < 0 || jsonData.instance.AvatarJsonData[text]["MenPai"].I == type))
-			{
-				CyFriendCell component = Tools.InstantiateGameObject(this.cyNpcCell, this.npcCellParent.transform).GetComponent<CyFriendCell>();
-				component.Init(int.Parse(text));
-				component.redDian.SetActive(true);
-				list.Add(int.Parse(text));
-				this.friendCells.Add(component);
-			}
-		}
-		for (int i = 0; i < this.friendList.Count; i++)
-		{
-			int num = this.friendList[i];
-			if (!list.Contains(this.friendList[i]) && this.friendList[i] != 0 && (type != -4 || PlayerEx.IsDaoLv(num)) && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(num) && CyTeShuNpc.DataDict[num].Type == 1)))
-			{
-				if (type == -1)
-				{
-					if (NpcJieSuanManager.inst.IsDeath(num))
-					{
-						goto IL_2D7;
-					}
-					jsonData.instance.AvatarJsonData[this.friendList[i].ToString()].TryGetField("IsTag");
-					if (!jsonData.instance.AvatarJsonData[this.friendList[i].ToString()].TryGetField("IsTag").b)
-					{
-						goto IL_2D7;
-					}
-				}
-				else if (type >= 0 && (NpcJieSuanManager.inst.IsDeath(num) || jsonData.instance.AvatarJsonData[this.friendList[i].ToString()].TryGetField("MenPai").I != type))
-				{
-					goto IL_2D7;
-				}
-				CyFriendCell component2 = Tools.InstantiateGameObject(this.cyNpcCell, this.npcCellParent.transform).GetComponent<CyFriendCell>();
-				component2.Init(this.friendList[i]);
-				this.friendCells.Add(component2);
-			}
-			IL_2D7:;
-		}
-		this.isShowSelectTag = false;
-		this.sanJiao.transform.localRotation.Set(0f, 0f, 180f, 0f);
-		CyUIMag.inst.cyEmail.cySendBtn.Hide();
-		CyUIMag.inst.cyEmail.Restart();
-		this.curSelectFriend = null;
-	}
-
-	// Token: 0x06001811 RID: 6161 RVA: 0x000A84B4 File Offset: 0x000A66B4
-	public void ShowMoreSelect()
-	{
-		this.isShowSelectTag = !this.isShowSelectTag;
-		if (this.isShowSelectTag)
-		{
-			if (this.selectPanel.transform.childCount < 2)
-			{
-				Tools.InstantiateGameObject(this.cySelectCell, this.selectPanel.transform).GetComponent<CySelectCell>().Init("全部", delegate
-				{
-					this.selectPanel.SetActive(false);
-					this.curSelect.text = "全部";
-					this.InitNpcList(-2);
-				});
-				Tools.InstantiateGameObject(this.cySelectCell, this.selectPanel.transform).GetComponent<CySelectCell>().Init("拍卖会", delegate
-				{
-					this.selectPanel.SetActive(false);
-					this.curSelect.text = "拍卖会";
-					this.InitNpcList(-3);
-				});
-				Tools.InstantiateGameObject(this.cySelectCell, this.selectPanel.transform).GetComponent<CySelectCell>().Init("标记", delegate
-				{
-					this.selectPanel.SetActive(false);
-					this.curSelect.text = "标记";
-					this.InitNpcList(-1);
-				});
-				Tools.InstantiateGameObject(this.cySelectCell, this.selectPanel.transform).GetComponent<CySelectCell>().Init("道侣", delegate
-				{
-					this.selectPanel.SetActive(false);
-					this.curSelect.text = "道侣";
-					this.InitNpcList(-4);
-				});
-				using (List<JSONObject>.Enumerator enumerator = jsonData.instance.CyShiLiNameData.list.GetEnumerator())
-				{
-					while (enumerator.MoveNext())
-					{
-						JSONObject data = enumerator.Current;
-						Tools.InstantiateGameObject(this.cySelectCell, this.selectPanel.transform).GetComponent<CySelectCell>().Init(data["name"].Str, delegate
-						{
-							this.selectPanel.SetActive(false);
-							this.curSelect.text = data["name"].Str;
-							this.InitNpcList(data["id"].I);
-						});
-					}
-				}
-			}
-			this.sanJiao.transform.localRotation.Set(0f, 0f, 0f, 0f);
-			this.selectPanel.SetActive(true);
-			return;
-		}
-		this.isShowSelectTag = false;
-		this.selectPanel.SetActive(false);
-		this.sanJiao.transform.localRotation.Set(0f, 0f, 180f, 0f);
-	}
-
-	// Token: 0x06001812 RID: 6162 RVA: 0x000A86C8 File Offset: 0x000A68C8
-	public void ClickCallBack()
-	{
-		if (this.curSelectFriend != null)
-		{
-			this.curSelectFriend.isSelect = false;
-			this.curSelectFriend.updateState();
-		}
-	}
-
-	// Token: 0x04001316 RID: 4886
 	public List<Sprite> npcCellSpriteList;
 
-	// Token: 0x04001317 RID: 4887
 	public List<Sprite> tagSpriteList;
 
-	// Token: 0x04001318 RID: 4888
 	public List<int> friendList;
 
-	// Token: 0x04001319 RID: 4889
 	public FpBtn tagBtn;
 
-	// Token: 0x0400131A RID: 4890
 	public GameObject cyNpcCell;
 
-	// Token: 0x0400131B RID: 4891
 	public GameObject cySelectCell;
 
-	// Token: 0x0400131C RID: 4892
 	public GameObject selectPanel;
 
-	// Token: 0x0400131D RID: 4893
 	public GameObject npcCellParent;
 
-	// Token: 0x0400131E RID: 4894
 	public Text npcNum;
 
-	// Token: 0x0400131F RID: 4895
 	public Text curSelect;
 
-	// Token: 0x04001320 RID: 4896
 	public Image sanJiao;
 
-	// Token: 0x04001321 RID: 4897
 	public List<CyFriendCell> friendCells;
 
-	// Token: 0x04001322 RID: 4898
 	public CyFriendCell curSelectFriend;
 
-	// Token: 0x04001323 RID: 4899
 	public bool isShowSelectTag;
+
+	public void Init()
+	{
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Expected O, but got Unknown
+		friendList = Tools.instance.getPlayer().emailDateMag.cyNpcList;
+		npcNum.text = friendList.Count.ToString();
+		curSelect.text = "全部";
+		tagBtn.mouseUpEvent.AddListener(new UnityAction(ShowMoreSelect));
+		InitNpcList(-2);
+	}
+
+	private void InitNpcList(int type)
+	{
+		//IL_0301: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0306: Unknown result type (might be due to invalid IL or missing references)
+		Tools.ClearObj(cyNpcCell.transform);
+		friendCells = new List<CyFriendCell>();
+		curSelectFriend = null;
+		Dictionary<string, List<EmailData>>.KeyCollection keys = Tools.instance.getPlayer().emailDateMag.newEmailDictionary.Keys;
+		List<int> list = new List<int>();
+		foreach (string item in keys)
+		{
+			if ((type != -1 || jsonData.instance.AvatarJsonData[item].TryGetField("IsTag").b) && (type != -4 || PlayerEx.IsDaoLv(int.Parse(item))) && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(int.Parse(item)) && CyTeShuNpc.DataDict[int.Parse(item)].Type == 1)) && (type < 0 || jsonData.instance.AvatarJsonData[item]["MenPai"].I == type))
+			{
+				CyFriendCell component = Tools.InstantiateGameObject(cyNpcCell, npcCellParent.transform).GetComponent<CyFriendCell>();
+				component.Init(int.Parse(item));
+				component.redDian.SetActive(true);
+				list.Add(int.Parse(item));
+				friendCells.Add(component);
+			}
+		}
+		int num = 0;
+		for (int i = 0; i < friendList.Count; i++)
+		{
+			num = friendList[i];
+			if (list.Contains(friendList[i]) || friendList[i] == 0 || (type == -4 && !PlayerEx.IsDaoLv(num)) || (type == -3 && (!CyTeShuNpc.DataDict.ContainsKey(num) || CyTeShuNpc.DataDict[num].Type != 1)))
+			{
+				continue;
+			}
+			if (type == -1)
+			{
+				if (NpcJieSuanManager.inst.IsDeath(num))
+				{
+					continue;
+				}
+				jsonData.instance.AvatarJsonData[friendList[i].ToString()].TryGetField("IsTag");
+				if (!jsonData.instance.AvatarJsonData[friendList[i].ToString()].TryGetField("IsTag").b)
+				{
+					continue;
+				}
+			}
+			else if (type >= 0 && (NpcJieSuanManager.inst.IsDeath(num) || jsonData.instance.AvatarJsonData[friendList[i].ToString()].TryGetField("MenPai").I != type))
+			{
+				continue;
+			}
+			CyFriendCell component2 = Tools.InstantiateGameObject(cyNpcCell, npcCellParent.transform).GetComponent<CyFriendCell>();
+			component2.Init(friendList[i]);
+			friendCells.Add(component2);
+		}
+		isShowSelectTag = false;
+		Quaternion localRotation = ((Component)sanJiao).transform.localRotation;
+		((Quaternion)(ref localRotation)).Set(0f, 0f, 180f, 0f);
+		CyUIMag.inst.cyEmail.cySendBtn.Hide();
+		CyUIMag.inst.cyEmail.Restart();
+		curSelectFriend = null;
+	}
+
+	public void ShowMoreSelect()
+	{
+		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Expected O, but got Unknown
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Expected O, but got Unknown
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Expected O, but got Unknown
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Expected O, but got Unknown
+		//IL_015c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0166: Expected O, but got Unknown
+		isShowSelectTag = !isShowSelectTag;
+		Quaternion localRotation;
+		if (isShowSelectTag)
+		{
+			if (selectPanel.transform.childCount < 2)
+			{
+				Tools.InstantiateGameObject(cySelectCell, selectPanel.transform).GetComponent<CySelectCell>().Init("全部", (UnityAction)delegate
+				{
+					selectPanel.SetActive(false);
+					curSelect.text = "全部";
+					InitNpcList(-2);
+				});
+				Tools.InstantiateGameObject(cySelectCell, selectPanel.transform).GetComponent<CySelectCell>().Init("拍卖会", (UnityAction)delegate
+				{
+					selectPanel.SetActive(false);
+					curSelect.text = "拍卖会";
+					InitNpcList(-3);
+				});
+				Tools.InstantiateGameObject(cySelectCell, selectPanel.transform).GetComponent<CySelectCell>().Init("标记", (UnityAction)delegate
+				{
+					selectPanel.SetActive(false);
+					curSelect.text = "标记";
+					InitNpcList(-1);
+				});
+				Tools.InstantiateGameObject(cySelectCell, selectPanel.transform).GetComponent<CySelectCell>().Init("道侣", (UnityAction)delegate
+				{
+					selectPanel.SetActive(false);
+					curSelect.text = "道侣";
+					InitNpcList(-4);
+				});
+				foreach (JSONObject data in jsonData.instance.CyShiLiNameData.list)
+				{
+					Tools.InstantiateGameObject(cySelectCell, selectPanel.transform).GetComponent<CySelectCell>().Init(data["name"].Str, (UnityAction)delegate
+					{
+						selectPanel.SetActive(false);
+						curSelect.text = data["name"].Str;
+						InitNpcList(data["id"].I);
+					});
+				}
+			}
+			localRotation = ((Component)sanJiao).transform.localRotation;
+			((Quaternion)(ref localRotation)).Set(0f, 0f, 0f, 0f);
+			selectPanel.SetActive(true);
+		}
+		else
+		{
+			isShowSelectTag = false;
+			selectPanel.SetActive(false);
+			localRotation = ((Component)sanJiao).transform.localRotation;
+			((Quaternion)(ref localRotation)).Set(0f, 0f, 180f, 0f);
+		}
+	}
+
+	public void ClickCallBack()
+	{
+		if ((Object)(object)curSelectFriend != (Object)null)
+		{
+			curSelectFriend.isSelect = false;
+			curSelectFriend.updateState();
+		}
+	}
 }

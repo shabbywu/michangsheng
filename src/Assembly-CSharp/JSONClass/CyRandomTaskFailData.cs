@@ -1,70 +1,57 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class CyRandomTaskFailData : IJSONClass
 {
-	// Token: 0x02000825 RID: 2085
-	public class CyRandomTaskFailData : IJSONClass
+	public static Dictionary<int, CyRandomTaskFailData> DataDict = new Dictionary<int, CyRandomTaskFailData>();
+
+	public static List<CyRandomTaskFailData> DataList = new List<CyRandomTaskFailData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int ShiBaiInfo2;
+
+	public int ShiBaiInfo3;
+
+	public int ShiBaiInfo4;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003EA6 RID: 16038 RVA: 0x001AC698 File Offset: 0x001AA898
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.CyRandomTaskFailData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.CyRandomTaskFailData.list)
+			try
 			{
-				try
+				CyRandomTaskFailData cyRandomTaskFailData = new CyRandomTaskFailData();
+				cyRandomTaskFailData.id = item["id"].I;
+				cyRandomTaskFailData.ShiBaiInfo2 = item["ShiBaiInfo2"].I;
+				cyRandomTaskFailData.ShiBaiInfo3 = item["ShiBaiInfo3"].I;
+				cyRandomTaskFailData.ShiBaiInfo4 = item["ShiBaiInfo4"].I;
+				if (DataDict.ContainsKey(cyRandomTaskFailData.id))
 				{
-					CyRandomTaskFailData cyRandomTaskFailData = new CyRandomTaskFailData();
-					cyRandomTaskFailData.id = jsonobject["id"].I;
-					cyRandomTaskFailData.ShiBaiInfo2 = jsonobject["ShiBaiInfo2"].I;
-					cyRandomTaskFailData.ShiBaiInfo3 = jsonobject["ShiBaiInfo3"].I;
-					cyRandomTaskFailData.ShiBaiInfo4 = jsonobject["ShiBaiInfo4"].I;
-					if (CyRandomTaskFailData.DataDict.ContainsKey(cyRandomTaskFailData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典CyRandomTaskFailData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", cyRandomTaskFailData.id));
-					}
-					else
-					{
-						CyRandomTaskFailData.DataDict.Add(cyRandomTaskFailData.id, cyRandomTaskFailData);
-						CyRandomTaskFailData.DataList.Add(cyRandomTaskFailData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典CyRandomTaskFailData.DataDict添加数据时出现重复的键，Key:{cyRandomTaskFailData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典CyRandomTaskFailData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(cyRandomTaskFailData.id, cyRandomTaskFailData);
+				DataList.Add(cyRandomTaskFailData);
 			}
-			if (CyRandomTaskFailData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				CyRandomTaskFailData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典CyRandomTaskFailData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003EA7 RID: 16039 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003A44 RID: 14916
-		public static Dictionary<int, CyRandomTaskFailData> DataDict = new Dictionary<int, CyRandomTaskFailData>();
-
-		// Token: 0x04003A45 RID: 14917
-		public static List<CyRandomTaskFailData> DataList = new List<CyRandomTaskFailData>();
-
-		// Token: 0x04003A46 RID: 14918
-		public static Action OnInitFinishAction = new Action(CyRandomTaskFailData.OnInitFinish);
-
-		// Token: 0x04003A47 RID: 14919
-		public int id;
-
-		// Token: 0x04003A48 RID: 14920
-		public int ShiBaiInfo2;
-
-		// Token: 0x04003A49 RID: 14921
-		public int ShiBaiInfo3;
-
-		// Token: 0x04003A4A RID: 14922
-		public int ShiBaiInfo4;
+	private static void OnInitFinish()
+	{
 	}
 }

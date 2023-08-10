@@ -1,67 +1,71 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[Serializable]
+[VariableInfo("Other", "Vector2", 0)]
+[AddComponentMenu("")]
+public class Vector2Variable : VariableBase<Vector2>
 {
-	// Token: 0x02000EF0 RID: 3824
-	[VariableInfo("Other", "Vector2", 0)]
-	[AddComponentMenu("")]
-	[Serializable]
-	public class Vector2Variable : VariableBase<Vector2>
+	public static readonly CompareOperator[] compareOperators = new CompareOperator[2]
 	{
-		// Token: 0x06006B97 RID: 27543 RVA: 0x00296C64 File Offset: 0x00294E64
-		public virtual bool Evaluate(CompareOperator compareOperator, Vector2 value)
+		CompareOperator.Equals,
+		CompareOperator.NotEquals
+	};
+
+	public static readonly SetOperator[] setOperators = new SetOperator[3]
+	{
+		SetOperator.Assign,
+		SetOperator.Add,
+		SetOperator.Subtract
+	};
+
+	public virtual bool Evaluate(CompareOperator compareOperator, Vector2 value)
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		bool result = false;
+		switch (compareOperator)
 		{
-			bool result = false;
-			if (compareOperator != CompareOperator.Equals)
-			{
-				if (compareOperator != CompareOperator.NotEquals)
-				{
-					Debug.LogError("The " + compareOperator.ToString() + " comparison operator is not valid.");
-				}
-				else
-				{
-					result = (this.Value != value);
-				}
-			}
-			else
-			{
-				result = (this.Value == value);
-			}
-			return result;
+		case CompareOperator.Equals:
+			result = Value == value;
+			break;
+		case CompareOperator.NotEquals:
+			result = Value != value;
+			break;
+		default:
+			Debug.LogError((object)("The " + compareOperator.ToString() + " comparison operator is not valid."));
+			break;
 		}
+		return result;
+	}
 
-		// Token: 0x06006B98 RID: 27544 RVA: 0x00296CBC File Offset: 0x00294EBC
-		public override void Apply(SetOperator setOperator, Vector2 value)
+	public override void Apply(SetOperator setOperator, Vector2 value)
+	{
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		switch (setOperator)
 		{
-			switch (setOperator)
-			{
-			case SetOperator.Assign:
-				this.Value = value;
-				return;
-			case SetOperator.Add:
-				this.Value += value;
-				return;
-			case SetOperator.Subtract:
-				this.Value -= value;
-				return;
-			}
-			Debug.LogError("The " + setOperator.ToString() + " set operator is not valid.");
+		case SetOperator.Assign:
+			Value = value;
+			break;
+		case SetOperator.Add:
+			Value += value;
+			break;
+		case SetOperator.Subtract:
+			Value -= value;
+			break;
+		default:
+			Debug.LogError((object)("The " + setOperator.ToString() + " set operator is not valid."));
+			break;
 		}
-
-		// Token: 0x04005A9E RID: 23198
-		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
-		{
-			CompareOperator.Equals,
-			CompareOperator.NotEquals
-		};
-
-		// Token: 0x04005A9F RID: 23199
-		public static readonly SetOperator[] setOperators = new SetOperator[]
-		{
-			SetOperator.Assign,
-			SetOperator.Add,
-			SetOperator.Subtract
-		};
 	}
 }

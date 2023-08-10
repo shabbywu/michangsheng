@@ -1,42 +1,32 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Get", "GetHaiShangNpcId", "根据静态变量Id获取NPCId", 0)]
+[AddComponentMenu("")]
+public class GetHaiShangNpcId : Command
 {
-	// Token: 0x02000F3E RID: 3902
-	[CommandInfo("YSNew/Get", "GetHaiShangNpcId", "根据静态变量Id获取NPCId", 0)]
-	[AddComponentMenu("")]
-	public class GetHaiShangNpcId : Command
+	[Tooltip("静态变量Id")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable staticId;
+
+	[Tooltip("NpcId存放位置")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NpcId;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006E3A RID: 28218 RVA: 0x002A48B5 File Offset: 0x002A2AB5
-		public override void OnEnter()
-		{
-			this.NpcId.Value = NPCEx.GetSeaNPCID(this.staticId.Value);
-			this.Continue();
-		}
+		NpcId.Value = NPCEx.GetSeaNPCID(staticId.Value);
+		Continue();
+	}
 
-		// Token: 0x06006E3B RID: 28219 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x04005B8C RID: 23436
-		[Tooltip("静态变量Id")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable staticId;
-
-		// Token: 0x04005B8D RID: 23437
-		[Tooltip("NpcId存放位置")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NpcId;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

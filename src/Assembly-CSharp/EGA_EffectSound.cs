@@ -1,52 +1,40 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200000E RID: 14
 public class EGA_EffectSound : MonoBehaviour
 {
-	// Token: 0x06000044 RID: 68 RVA: 0x00003274 File Offset: 0x00001474
-	private void Start()
-	{
-		this.soundComponent = base.GetComponent<AudioSource>();
-		this.clip = this.soundComponent.clip;
-		if (this.RandomVolume)
-		{
-			this.soundComponent.volume = Random.Range(this.minVolume, this.maxVolume);
-			this.RepeatSound();
-		}
-		if (this.Repeating)
-		{
-			base.InvokeRepeating("RepeatSound", this.StartTime, this.RepeatTime);
-		}
-	}
-
-	// Token: 0x06000045 RID: 69 RVA: 0x000032E7 File Offset: 0x000014E7
-	private void RepeatSound()
-	{
-		this.soundComponent.PlayOneShot(this.clip);
-	}
-
-	// Token: 0x0400002D RID: 45
 	public bool Repeating = true;
 
-	// Token: 0x0400002E RID: 46
 	public float RepeatTime = 2f;
 
-	// Token: 0x0400002F RID: 47
 	public float StartTime;
 
-	// Token: 0x04000030 RID: 48
 	public bool RandomVolume;
 
-	// Token: 0x04000031 RID: 49
 	public float minVolume = 0.4f;
 
-	// Token: 0x04000032 RID: 50
 	public float maxVolume = 1f;
 
-	// Token: 0x04000033 RID: 51
 	private AudioClip clip;
 
-	// Token: 0x04000034 RID: 52
 	private AudioSource soundComponent;
+
+	private void Start()
+	{
+		soundComponent = ((Component)this).GetComponent<AudioSource>();
+		clip = soundComponent.clip;
+		if (RandomVolume)
+		{
+			soundComponent.volume = Random.Range(minVolume, maxVolume);
+			RepeatSound();
+		}
+		if (Repeating)
+		{
+			((MonoBehaviour)this).InvokeRepeating("RepeatSound", StartTime, RepeatTime);
+		}
+	}
+
+	private void RepeatSound()
+	{
+		soundComponent.PlayOneShot(clip);
+	}
 }

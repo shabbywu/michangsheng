@@ -1,62 +1,64 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("iTween", "Move Add", "Moves a game object by a specified offset over time.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class MoveAdd : iTweenCommand
 {
-	// Token: 0x02000E06 RID: 3590
-	[CommandInfo("iTween", "Move Add", "Moves a game object by a specified offset over time.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class MoveAdd : iTweenCommand
+	[Tooltip("A translation offset in space the GameObject will animate to")]
+	[SerializeField]
+	protected Vector3Data _offset;
+
+	[Tooltip("Apply the transformation in either the world coordinate or local cordinate system")]
+	[SerializeField]
+	protected Space space = (Space)1;
+
+	[HideInInspector]
+	[FormerlySerializedAs("offset")]
+	public Vector3 offsetOLD;
+
+	public override void DoTween()
 	{
-		// Token: 0x06006569 RID: 25961 RVA: 0x00282F84 File Offset: 0x00281184
-		public override void DoTween()
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		Hashtable hashtable = new Hashtable();
+		hashtable.Add("name", _tweenName.Value);
+		hashtable.Add("amount", _offset.Value);
+		hashtable.Add("space", space);
+		hashtable.Add("time", _duration.Value);
+		hashtable.Add("easetype", easeType);
+		hashtable.Add("looptype", loopType);
+		hashtable.Add("oncomplete", "OniTweenComplete");
+		hashtable.Add("oncompletetarget", ((Component)this).gameObject);
+		hashtable.Add("oncompleteparams", this);
+		iTween.MoveAdd(_targetObject.Value, hashtable);
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_offset.vector3Ref == (Object)(object)variable))
 		{
-			Hashtable hashtable = new Hashtable();
-			hashtable.Add("name", this._tweenName.Value);
-			hashtable.Add("amount", this._offset.Value);
-			hashtable.Add("space", this.space);
-			hashtable.Add("time", this._duration.Value);
-			hashtable.Add("easetype", this.easeType);
-			hashtable.Add("looptype", this.loopType);
-			hashtable.Add("oncomplete", "OniTweenComplete");
-			hashtable.Add("oncompletetarget", base.gameObject);
-			hashtable.Add("oncompleteparams", this);
-			iTween.MoveAdd(this._targetObject.Value, hashtable);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x0600656A RID: 25962 RVA: 0x00283063 File Offset: 0x00281263
-		public override bool HasReference(Variable variable)
+	protected override void OnEnable()
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		base.OnEnable();
+		if (offsetOLD != default(Vector3))
 		{
-			return this._offset.vector3Ref == variable || base.HasReference(variable);
+			_offset.Value = offsetOLD;
+			offsetOLD = default(Vector3);
 		}
-
-		// Token: 0x0600656B RID: 25963 RVA: 0x00283084 File Offset: 0x00281284
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			if (this.offsetOLD != default(Vector3))
-			{
-				this._offset.Value = this.offsetOLD;
-				this.offsetOLD = default(Vector3);
-			}
-		}
-
-		// Token: 0x0400571F RID: 22303
-		[Tooltip("A translation offset in space the GameObject will animate to")]
-		[SerializeField]
-		protected Vector3Data _offset;
-
-		// Token: 0x04005720 RID: 22304
-		[Tooltip("Apply the transformation in either the world coordinate or local cordinate system")]
-		[SerializeField]
-		protected Space space = 1;
-
-		// Token: 0x04005721 RID: 22305
-		[HideInInspector]
-		[FormerlySerializedAs("offset")]
-		public Vector3 offsetOLD;
 	}
 }

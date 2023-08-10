@@ -1,9 +1,5 @@
-﻿using System;
+namespace UltimateSurvival;
 
-namespace UltimateSurvival
+public class MineableTree : MineableObject
 {
-	// Token: 0x02000606 RID: 1542
-	public class MineableTree : MineableObject
-	{
-	}
 }

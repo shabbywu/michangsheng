@@ -1,166 +1,144 @@
-﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000323 RID: 803
 public class MainUIToggle : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 {
-	// Token: 0x17000252 RID: 594
-	// (get) Token: 0x06001BC0 RID: 7104 RVA: 0x000C5925 File Offset: 0x000C3B25
-	// (set) Token: 0x06001BC1 RID: 7105 RVA: 0x000C5932 File Offset: 0x000C3B32
+	[SerializeField]
+	private Image targetImage;
+
+	[SerializeField]
+	private Sprite nomalSprite;
+
+	[SerializeField]
+	private Sprite selectSprite;
+
+	[SerializeField]
+	private Sprite disableSprite;
+
+	[SerializeField]
+	private Text text;
+
+	[SerializeField]
+	private Color nomalColor;
+
+	[SerializeField]
+	private Color selectColor;
+
+	public MainUIToggleGroup toggleGroup;
+
+	public int group = 1;
+
+	public bool isDisable;
+
+	public bool mustSelect = true;
+
+	private Color nullColor = new Color(1f, 1f, 1f, 0f);
+
+	private Color hasColor = new Color(1f, 1f, 1f, 1f);
+
+	public UnityEvent valueChange;
+
+	public UnityEvent clickEvent;
+
+	public bool isOn;
+
 	public string Text
 	{
 		get
 		{
-			return this.text.text;
+			return text.text;
 		}
 		set
 		{
-			this.text.text = value;
+			text.text = value;
 		}
 	}
 
-	// Token: 0x06001BC2 RID: 7106 RVA: 0x000C5940 File Offset: 0x000C3B40
 	private void Awake()
 	{
-		this.toggleGroup.toggleList.Add(this);
+		toggleGroup.toggleList.Add(this);
 	}
 
-	// Token: 0x06001BC3 RID: 7107 RVA: 0x000C5954 File Offset: 0x000C3B54
 	public void OnValueChange()
 	{
-		if (this.isOn)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		if (isOn)
 		{
-			if (this.text != null)
+			if ((Object)(object)text != (Object)null)
 			{
-				this.text.color = this.selectColor;
+				((Graphic)text).color = selectColor;
 			}
-			if (this.targetImage != null)
+			if ((Object)(object)targetImage != (Object)null)
 			{
-				this.targetImage.sprite = this.selectSprite;
-				this.targetImage.color = this.hasColor;
+				targetImage.sprite = selectSprite;
+				((Graphic)targetImage).color = hasColor;
 			}
 		}
 		else
 		{
-			if (this.text != null)
+			if ((Object)(object)text != (Object)null)
 			{
-				this.text.color = this.nomalColor;
+				((Graphic)text).color = nomalColor;
 			}
-			if (this.targetImage != null)
+			if ((Object)(object)targetImage != (Object)null)
 			{
-				if (this.nomalSprite == null)
+				if ((Object)(object)nomalSprite == (Object)null)
 				{
-					this.targetImage.color = this.nullColor;
+					((Graphic)targetImage).color = nullColor;
 				}
 				else
 				{
-					this.targetImage.sprite = this.nomalSprite;
+					targetImage.sprite = nomalSprite;
 				}
 			}
 		}
-		if (this.valueChange != null)
+		if (valueChange != null)
 		{
-			this.valueChange.Invoke();
+			valueChange.Invoke();
 		}
 	}
 
-	// Token: 0x06001BC4 RID: 7108 RVA: 0x000C5A30 File Offset: 0x000C3C30
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		if (this.isDisable)
+		if (isDisable)
 		{
 			return;
 		}
-		if (this.mustSelect)
+		if (mustSelect)
 		{
-			if (!this.isOn)
+			if (!isOn)
 			{
-				this.isOn = true;
+				isOn = true;
 			}
 		}
 		else
 		{
-			this.isOn = !this.isOn;
+			isOn = !isOn;
 		}
-		this.OnValueChange();
-		if (this.isOn && this.toggleGroup != null)
+		OnValueChange();
+		if (isOn && (Object)(object)toggleGroup != (Object)null)
 		{
-			this.toggleGroup.OnChildToggleChange(this);
+			toggleGroup.OnChildToggleChange(this);
 		}
-		if (this.clickEvent != null)
+		if (clickEvent != null)
 		{
-			this.clickEvent.Invoke();
+			clickEvent.Invoke();
 		}
 	}
 
-	// Token: 0x06001BC5 RID: 7109 RVA: 0x000C5AA9 File Offset: 0x000C3CA9
 	public void SetDisable()
 	{
-		this.targetImage.sprite = this.disableSprite;
-		this.isDisable = true;
+		targetImage.sprite = disableSprite;
+		isDisable = true;
 	}
 
-	// Token: 0x06001BC6 RID: 7110 RVA: 0x000C5AC3 File Offset: 0x000C3CC3
 	public void MoNiClick()
 	{
-		this.OnPointerDown(null);
+		OnPointerDown(null);
 	}
-
-	// Token: 0x04001647 RID: 5703
-	[SerializeField]
-	private Image targetImage;
-
-	// Token: 0x04001648 RID: 5704
-	[SerializeField]
-	private Sprite nomalSprite;
-
-	// Token: 0x04001649 RID: 5705
-	[SerializeField]
-	private Sprite selectSprite;
-
-	// Token: 0x0400164A RID: 5706
-	[SerializeField]
-	private Sprite disableSprite;
-
-	// Token: 0x0400164B RID: 5707
-	[SerializeField]
-	private Text text;
-
-	// Token: 0x0400164C RID: 5708
-	[SerializeField]
-	private Color nomalColor;
-
-	// Token: 0x0400164D RID: 5709
-	[SerializeField]
-	private Color selectColor;
-
-	// Token: 0x0400164E RID: 5710
-	public MainUIToggleGroup toggleGroup;
-
-	// Token: 0x0400164F RID: 5711
-	public int group = 1;
-
-	// Token: 0x04001650 RID: 5712
-	public bool isDisable;
-
-	// Token: 0x04001651 RID: 5713
-	public bool mustSelect = true;
-
-	// Token: 0x04001652 RID: 5714
-	private Color nullColor = new Color(1f, 1f, 1f, 0f);
-
-	// Token: 0x04001653 RID: 5715
-	private Color hasColor = new Color(1f, 1f, 1f, 1f);
-
-	// Token: 0x04001654 RID: 5716
-	public UnityEvent valueChange;
-
-	// Token: 0x04001655 RID: 5717
-	public UnityEvent clickEvent;
-
-	// Token: 0x04001656 RID: 5718
-	public bool isOn;
 }

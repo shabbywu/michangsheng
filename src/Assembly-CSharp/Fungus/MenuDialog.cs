@@ -1,373 +1,317 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Linq;
 using MoonSharp.Interpreter;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+public class MenuDialog : MonoBehaviour
 {
-	// Token: 0x02000E74 RID: 3700
-	public class MenuDialog : MonoBehaviour
+	[Tooltip("Automatically select the first interactable button when the menu is shown.")]
+	[SerializeField]
+	protected bool autoSelectFirstButton;
+
+	protected Button[] cachedButtons;
+
+	protected Slider cachedSlider;
+
+	private int nextOptionIndex;
+
+	public int NowOption => nextOptionIndex - 1;
+
+	public static MenuDialog ActiveMenuDialog { get; set; }
+
+	public virtual Button[] CachedButtons => cachedButtons;
+
+	public virtual Slider CachedSlider => cachedSlider;
+
+	public virtual int DisplayedOptionsCount
 	{
-		// Token: 0x1700086C RID: 2156
-		// (get) Token: 0x060068A4 RID: 26788 RVA: 0x0028DC8F File Offset: 0x0028BE8F
-		public int NowOption
+		get
 		{
-			get
+			int num = 0;
+			for (int i = 0; i < cachedButtons.Length; i++)
 			{
-				return this.nextOptionIndex - 1;
-			}
-		}
-
-		// Token: 0x1700086D RID: 2157
-		// (get) Token: 0x060068A5 RID: 26789 RVA: 0x0028DC99 File Offset: 0x0028BE99
-		// (set) Token: 0x060068A6 RID: 26790 RVA: 0x0028DCA0 File Offset: 0x0028BEA0
-		public static MenuDialog ActiveMenuDialog { get; set; }
-
-		// Token: 0x1700086E RID: 2158
-		// (get) Token: 0x060068A7 RID: 26791 RVA: 0x0028DCA8 File Offset: 0x0028BEA8
-		public virtual Button[] CachedButtons
-		{
-			get
-			{
-				return this.cachedButtons;
-			}
-		}
-
-		// Token: 0x1700086F RID: 2159
-		// (get) Token: 0x060068A8 RID: 26792 RVA: 0x0028DCB0 File Offset: 0x0028BEB0
-		public virtual Slider CachedSlider
-		{
-			get
-			{
-				return this.cachedSlider;
-			}
-		}
-
-		// Token: 0x060068A9 RID: 26793 RVA: 0x0028DCB8 File Offset: 0x0028BEB8
-		public virtual void SetActive(bool state)
-		{
-			base.gameObject.SetActive(state);
-		}
-
-		// Token: 0x060068AA RID: 26794 RVA: 0x0028DCC8 File Offset: 0x0028BEC8
-		public static MenuDialog GetMenuDialog()
-		{
-			if (MenuDialog.ActiveMenuDialog == null)
-			{
-				MenuDialog menuDialog = Object.FindObjectOfType<MenuDialog>();
-				if (menuDialog != null)
+				if (((Component)cachedButtons[i]).gameObject.activeSelf)
 				{
-					MenuDialog.ActiveMenuDialog = menuDialog;
-				}
-				if (MenuDialog.ActiveMenuDialog == null)
-				{
-					GameObject gameObject = Resources.Load<GameObject>("Prefabs/MenuDialog");
-					if (gameObject != null)
-					{
-						GameObject gameObject2 = Object.Instantiate<GameObject>(gameObject);
-						gameObject2.SetActive(false);
-						gameObject2.name = "MenuDialog";
-						MenuDialog.ActiveMenuDialog = gameObject2.GetComponent<MenuDialog>();
-					}
+					num++;
 				}
 			}
-			return MenuDialog.ActiveMenuDialog;
+			return num;
 		}
+	}
 
-		// Token: 0x060068AB RID: 26795 RVA: 0x0028DD40 File Offset: 0x0028BF40
-		protected virtual void Awake()
+	public virtual void SetActive(bool state)
+	{
+		((Component)this).gameObject.SetActive(state);
+	}
+
+	public static MenuDialog GetMenuDialog()
+	{
+		if ((Object)(object)ActiveMenuDialog == (Object)null)
 		{
-			Button[] componentsInChildren = base.GetComponentsInChildren<Button>();
-			this.cachedButtons = componentsInChildren;
-			Slider componentInChildren = base.GetComponentInChildren<Slider>();
-			this.cachedSlider = componentInChildren;
-			if (Application.isPlaying)
+			MenuDialog menuDialog = Object.FindObjectOfType<MenuDialog>();
+			if ((Object)(object)menuDialog != (Object)null)
 			{
-				this.Clear();
-				CanClickManager.Inst.MenuDialogCache.Add(this);
+				ActiveMenuDialog = menuDialog;
 			}
-			this.CheckEventSystem();
-		}
-
-		// Token: 0x060068AC RID: 26796 RVA: 0x0028DD8C File Offset: 0x0028BF8C
-		protected virtual void CheckEventSystem()
-		{
-			if (Object.FindObjectOfType<EventSystem>() == null)
+			if ((Object)(object)ActiveMenuDialog == (Object)null)
 			{
-				GameObject gameObject = Resources.Load<GameObject>("Prefabs/EventSystem");
-				if (gameObject != null)
+				GameObject val = Resources.Load<GameObject>("Prefabs/MenuDialog");
+				if ((Object)(object)val != (Object)null)
 				{
-					Object.Instantiate<GameObject>(gameObject).name = "EventSystem";
+					GameObject obj = Object.Instantiate<GameObject>(val);
+					obj.SetActive(false);
+					((Object)obj).name = "MenuDialog";
+					ActiveMenuDialog = obj.GetComponent<MenuDialog>();
 				}
 			}
 		}
+		return ActiveMenuDialog;
+	}
 
-		// Token: 0x060068AD RID: 26797 RVA: 0x0028DDCA File Offset: 0x0028BFCA
-		protected virtual void OnEnable()
+	protected virtual void Awake()
+	{
+		Button[] componentsInChildren = ((Component)this).GetComponentsInChildren<Button>();
+		cachedButtons = componentsInChildren;
+		Slider componentInChildren = ((Component)this).GetComponentInChildren<Slider>();
+		cachedSlider = componentInChildren;
+		if (Application.isPlaying)
 		{
-			Canvas.ForceUpdateCanvases();
+			Clear();
+			CanClickManager.Inst.MenuDialogCache.Add(this);
 		}
+		CheckEventSystem();
+	}
 
-		// Token: 0x060068AE RID: 26798 RVA: 0x0028DDD1 File Offset: 0x0028BFD1
-		protected virtual IEnumerator WaitForTimeout(float timeoutDuration, Block targetBlock)
+	protected virtual void CheckEventSystem()
+	{
+		if ((Object)(object)Object.FindObjectOfType<EventSystem>() == (Object)null)
 		{
-			float elapsedTime = 0f;
-			Slider timeoutSlider = this.CachedSlider;
-			while (elapsedTime < timeoutDuration)
+			GameObject val = Resources.Load<GameObject>("Prefabs/EventSystem");
+			if ((Object)(object)val != (Object)null)
 			{
-				if (timeoutSlider != null)
-				{
-					float value = 1f - elapsedTime / timeoutDuration;
-					timeoutSlider.value = value;
-				}
-				elapsedTime += Time.deltaTime;
-				yield return null;
-			}
-			this.Clear();
-			base.gameObject.SetActive(false);
-			this.HideSayDialog();
-			if (targetBlock != null)
-			{
-				targetBlock.StartExecution();
-			}
-			yield break;
-		}
-
-		// Token: 0x060068AF RID: 26799 RVA: 0x0028DDEE File Offset: 0x0028BFEE
-		protected IEnumerator CallBlock(Block block)
-		{
-			yield return new WaitForEndOfFrame();
-			block.StartExecution();
-			yield break;
-		}
-
-		// Token: 0x060068B0 RID: 26800 RVA: 0x0028DDFD File Offset: 0x0028BFFD
-		protected IEnumerator CallLuaClosure(LuaEnvironment luaEnv, Closure callback)
-		{
-			yield return new WaitForEndOfFrame();
-			if (callback != null)
-			{
-				luaEnv.RunLuaFunction(callback, true, null);
-			}
-			yield break;
-		}
-
-		// Token: 0x060068B1 RID: 26801 RVA: 0x0028DE14 File Offset: 0x0028C014
-		public virtual void Clear()
-		{
-			base.StopAllCoroutines();
-			if (this.nextOptionIndex != 0)
-			{
-				MenuSignals.DoMenuEnd(this);
-			}
-			this.nextOptionIndex = 0;
-			Button[] array = this.CachedButtons;
-			for (int i = 0; i < array.Length; i++)
-			{
-				array[i].onClick.RemoveAllListeners();
-			}
-			for (int j = 0; j < array.Length; j++)
-			{
-				Button button = array[j];
-				if (button != null)
-				{
-					button.transform.SetSiblingIndex(j);
-					button.gameObject.SetActive(false);
-				}
-			}
-			Slider slider = this.CachedSlider;
-			if (slider != null)
-			{
-				slider.gameObject.SetActive(false);
+				((Object)Object.Instantiate<GameObject>(val)).name = "EventSystem";
 			}
 		}
+	}
 
-		// Token: 0x060068B2 RID: 26802 RVA: 0x0028DEB4 File Offset: 0x0028C0B4
-		public virtual void HideSayDialog()
+	protected virtual void OnEnable()
+	{
+		Canvas.ForceUpdateCanvases();
+	}
+
+	protected virtual IEnumerator WaitForTimeout(float timeoutDuration, Block targetBlock)
+	{
+		float elapsedTime = 0f;
+		Slider timeoutSlider = CachedSlider;
+		while (elapsedTime < timeoutDuration)
 		{
-			SayDialog sayDialog = SayDialog.GetSayDialog();
-			if (sayDialog != null)
+			if ((Object)(object)timeoutSlider != (Object)null)
 			{
-				sayDialog.FadeWhenDone = true;
+				float value = 1f - elapsedTime / timeoutDuration;
+				timeoutSlider.value = value;
+			}
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		Clear();
+		((Component)this).gameObject.SetActive(false);
+		HideSayDialog();
+		if ((Object)(object)targetBlock != (Object)null)
+		{
+			targetBlock.StartExecution();
+		}
+	}
+
+	protected IEnumerator CallBlock(Block block)
+	{
+		yield return (object)new WaitForEndOfFrame();
+		block.StartExecution();
+	}
+
+	protected IEnumerator CallLuaClosure(LuaEnvironment luaEnv, Closure callback)
+	{
+		yield return (object)new WaitForEndOfFrame();
+		if (callback != null)
+		{
+			luaEnv.RunLuaFunction(callback, runAsCoroutine: true);
+		}
+	}
+
+	public virtual void Clear()
+	{
+		((MonoBehaviour)this).StopAllCoroutines();
+		if (nextOptionIndex != 0)
+		{
+			MenuSignals.DoMenuEnd(this);
+		}
+		nextOptionIndex = 0;
+		Button[] array = CachedButtons;
+		for (int i = 0; i < array.Length; i++)
+		{
+			((UnityEventBase)array[i].onClick).RemoveAllListeners();
+		}
+		for (int j = 0; j < array.Length; j++)
+		{
+			Button val = array[j];
+			if ((Object)(object)val != (Object)null)
+			{
+				((Component)val).transform.SetSiblingIndex(j);
+				((Component)val).gameObject.SetActive(false);
 			}
 		}
-
-		// Token: 0x060068B3 RID: 26803 RVA: 0x0028DED8 File Offset: 0x0028C0D8
-		public virtual bool AddOption(string text, bool interactable, bool hideOption, Block targetBlock)
+		Slider val2 = CachedSlider;
+		if ((Object)(object)val2 != (Object)null)
 		{
-			UnityAction action = delegate()
-			{
-				EventSystem.current.SetSelectedGameObject(null);
-				this.StopAllCoroutines();
-				this.Clear();
-				this.HideSayDialog();
-				if (targetBlock != null)
-				{
-					MonoBehaviour flowchart = targetBlock.GetFlowchart();
-					this.gameObject.SetActive(false);
-					flowchart.StartCoroutine(this.CallBlock(targetBlock));
-				}
-			};
-			return this.AddOption(text, interactable, hideOption, action);
+			((Component)val2).gameObject.SetActive(false);
 		}
+	}
 
-		// Token: 0x060068B4 RID: 26804 RVA: 0x0028DF10 File Offset: 0x0028C110
-		public virtual bool AddOption(string text, bool interactable, LuaEnvironment luaEnv, Closure callBack)
+	public virtual void HideSayDialog()
+	{
+		SayDialog sayDialog = SayDialog.GetSayDialog();
+		if ((Object)(object)sayDialog != (Object)null)
 		{
-			if (!base.gameObject.activeSelf)
-			{
-				base.gameObject.SetActive(true);
-			}
-			LuaEnvironment env = luaEnv;
-			Closure call = callBack;
-			UnityAction action = delegate()
-			{
-				this.StopAllCoroutines();
-				this.Clear();
-				this.HideSayDialog();
-				this.StartCoroutine(this.CallLuaClosure(env, call));
-			};
-			return this.AddOption(text, interactable, false, action);
+			sayDialog.FadeWhenDone = true;
 		}
+	}
 
-		// Token: 0x060068B5 RID: 26805 RVA: 0x0028DF68 File Offset: 0x0028C168
-		private bool AddOption(string text, bool interactable, bool hideOption, UnityAction action)
+	public virtual bool AddOption(string text, bool interactable, bool hideOption, Block targetBlock)
+	{
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Expected O, but got Unknown
+		UnityAction action = (UnityAction)delegate
 		{
-			if (this.nextOptionIndex >= this.CachedButtons.Length)
+			EventSystem.current.SetSelectedGameObject((GameObject)null);
+			((MonoBehaviour)this).StopAllCoroutines();
+			Clear();
+			HideSayDialog();
+			if ((Object)(object)targetBlock != (Object)null)
 			{
-				return false;
+				Flowchart flowchart = targetBlock.GetFlowchart();
+				((Component)this).gameObject.SetActive(false);
+				((MonoBehaviour)flowchart).StartCoroutine(CallBlock(targetBlock));
 			}
-			if (this.nextOptionIndex == 0)
-			{
-				MenuSignals.DoMenuStart(this);
-			}
-			Button button = this.cachedButtons[this.nextOptionIndex];
-			this.nextOptionIndex++;
-			if (hideOption)
-			{
-				return true;
-			}
-			button.gameObject.SetActive(true);
-			button.interactable = interactable;
-			if (interactable && this.autoSelectFirstButton)
-			{
-				if (!(from x in this.cachedButtons
-				select x.gameObject).Contains(EventSystem.current.currentSelectedGameObject))
-				{
-					EventSystem.current.SetSelectedGameObject(button.gameObject);
-				}
-			}
-			TextAdapter textAdapter = new TextAdapter();
-			textAdapter.InitFromGameObject(button.gameObject, true);
-			if (textAdapter.HasTextObject())
-			{
-				text = TextVariationHandler.SelectVariations(text, 0);
-				if (text.Length >= 18)
-				{
-					textAdapter.SetTextSize(28);
-				}
-				else
-				{
-					textAdapter.SetTextSize(32);
-				}
-				textAdapter.Text = text;
-			}
-			button.onClick.AddListener(action);
+		};
+		return AddOption(text, interactable, hideOption, action);
+	}
+
+	public virtual bool AddOption(string text, bool interactable, LuaEnvironment luaEnv, Closure callBack)
+	{
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Expected O, but got Unknown
+		if (!((Component)this).gameObject.activeSelf)
+		{
+			((Component)this).gameObject.SetActive(true);
+		}
+		LuaEnvironment env = luaEnv;
+		Closure call = callBack;
+		UnityAction action = (UnityAction)delegate
+		{
+			((MonoBehaviour)this).StopAllCoroutines();
+			Clear();
+			HideSayDialog();
+			((MonoBehaviour)this).StartCoroutine(CallLuaClosure(env, call));
+		};
+		return AddOption(text, interactable, hideOption: false, action);
+	}
+
+	private bool AddOption(string text, bool interactable, bool hideOption, UnityAction action)
+	{
+		if (nextOptionIndex >= CachedButtons.Length)
+		{
+			return false;
+		}
+		if (nextOptionIndex == 0)
+		{
+			MenuSignals.DoMenuStart(this);
+		}
+		Button val = cachedButtons[nextOptionIndex];
+		nextOptionIndex++;
+		if (hideOption)
+		{
 			return true;
 		}
-
-		// Token: 0x060068B6 RID: 26806 RVA: 0x0028E074 File Offset: 0x0028C274
-		public virtual void ShowTimer(float duration, Block targetBlock)
+		((Component)val).gameObject.SetActive(true);
+		((Selectable)val).interactable = interactable;
+		if (interactable && autoSelectFirstButton && !cachedButtons.Select((Button x) => ((Component)x).gameObject).Contains(EventSystem.current.currentSelectedGameObject))
 		{
-			if (this.cachedSlider != null)
-			{
-				this.cachedSlider.gameObject.SetActive(true);
-				base.gameObject.SetActive(true);
-				base.StopAllCoroutines();
-				base.StartCoroutine(this.WaitForTimeout(duration, targetBlock));
-			}
+			EventSystem.current.SetSelectedGameObject(((Component)val).gameObject);
 		}
-
-		// Token: 0x060068B7 RID: 26807 RVA: 0x0028E0C1 File Offset: 0x0028C2C1
-		public virtual IEnumerator ShowTimer(float duration, LuaEnvironment luaEnv, Closure callBack)
+		TextAdapter textAdapter = new TextAdapter();
+		textAdapter.InitFromGameObject(((Component)val).gameObject, includeChildren: true);
+		if (textAdapter.HasTextObject())
 		{
-			if (this.CachedSlider == null || duration <= 0f)
+			text = TextVariationHandler.SelectVariations(text);
+			if (text.Length >= 18)
 			{
-				yield break;
+				textAdapter.SetTextSize(28);
 			}
-			this.CachedSlider.gameObject.SetActive(true);
-			base.StopAllCoroutines();
-			float elapsedTime = 0f;
-			Slider timeoutSlider = this.CachedSlider;
-			while (elapsedTime < duration)
+			else
 			{
-				if (timeoutSlider != null)
-				{
-					float value = 1f - elapsedTime / duration;
-					timeoutSlider.value = value;
-				}
-				elapsedTime += Time.deltaTime;
-				yield return null;
+				textAdapter.SetTextSize(32);
 			}
-			this.Clear();
-			base.gameObject.SetActive(false);
-			this.HideSayDialog();
-			if (callBack != null)
-			{
-				luaEnv.RunLuaFunction(callBack, true, null);
-			}
+			textAdapter.Text = text;
+		}
+		((UnityEvent)val.onClick).AddListener(action);
+		return true;
+	}
+
+	public virtual void ShowTimer(float duration, Block targetBlock)
+	{
+		if ((Object)(object)cachedSlider != (Object)null)
+		{
+			((Component)cachedSlider).gameObject.SetActive(true);
+			((Component)this).gameObject.SetActive(true);
+			((MonoBehaviour)this).StopAllCoroutines();
+			((MonoBehaviour)this).StartCoroutine(WaitForTimeout(duration, targetBlock));
+		}
+	}
+
+	public virtual IEnumerator ShowTimer(float duration, LuaEnvironment luaEnv, Closure callBack)
+	{
+		if ((Object)(object)CachedSlider == (Object)null || duration <= 0f)
+		{
 			yield break;
 		}
-
-		// Token: 0x060068B8 RID: 26808 RVA: 0x0028C138 File Offset: 0x0028A338
-		public virtual bool IsActive()
+		((Component)CachedSlider).gameObject.SetActive(true);
+		((MonoBehaviour)this).StopAllCoroutines();
+		float elapsedTime = 0f;
+		Slider timeoutSlider = CachedSlider;
+		while (elapsedTime < duration)
 		{
-			return base.gameObject.activeInHierarchy;
-		}
-
-		// Token: 0x17000870 RID: 2160
-		// (get) Token: 0x060068B9 RID: 26809 RVA: 0x0028E0E8 File Offset: 0x0028C2E8
-		public virtual int DisplayedOptionsCount
-		{
-			get
+			if ((Object)(object)timeoutSlider != (Object)null)
 			{
-				int num = 0;
-				for (int i = 0; i < this.cachedButtons.Length; i++)
-				{
-					if (this.cachedButtons[i].gameObject.activeSelf)
-					{
-						num++;
-					}
-				}
-				return num;
+				float value = 1f - elapsedTime / duration;
+				timeoutSlider.value = value;
 			}
+			elapsedTime += Time.deltaTime;
+			yield return null;
 		}
-
-		// Token: 0x060068BA RID: 26810 RVA: 0x0028E124 File Offset: 0x0028C324
-		public void Shuffle(Random r)
+		Clear();
+		((Component)this).gameObject.SetActive(false);
+		HideSayDialog();
+		if (callBack != null)
 		{
-			for (int i = 0; i < this.CachedButtons.Length; i++)
-			{
-				this.CachedButtons[i].transform.SetSiblingIndex(r.Next(this.CachedButtons.Length));
-			}
+			luaEnv.RunLuaFunction(callBack, runAsCoroutine: true);
 		}
+	}
 
-		// Token: 0x040058EF RID: 22767
-		[Tooltip("Automatically select the first interactable button when the menu is shown.")]
-		[SerializeField]
-		protected bool autoSelectFirstButton;
+	public virtual bool IsActive()
+	{
+		return ((Component)this).gameObject.activeInHierarchy;
+	}
 
-		// Token: 0x040058F0 RID: 22768
-		protected Button[] cachedButtons;
-
-		// Token: 0x040058F1 RID: 22769
-		protected Slider cachedSlider;
-
-		// Token: 0x040058F2 RID: 22770
-		private int nextOptionIndex;
+	public void Shuffle(Random r)
+	{
+		for (int i = 0; i < CachedButtons.Length; i++)
+		{
+			((Component)CachedButtons[i]).transform.SetSiblingIndex(r.Next(CachedButtons.Length));
+		}
 	}
 }

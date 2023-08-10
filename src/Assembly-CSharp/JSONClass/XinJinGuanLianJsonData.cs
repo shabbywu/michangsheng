@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class XinJinGuanLianJsonData : IJSONClass
 {
-	// Token: 0x0200098F RID: 2447
-	public class XinJinGuanLianJsonData : IJSONClass
+	public static Dictionary<int, XinJinGuanLianJsonData> DataDict = new Dictionary<int, XinJinGuanLianJsonData>();
+
+	public static List<XinJinGuanLianJsonData> DataList = new List<XinJinGuanLianJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int speed;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004450 RID: 17488 RVA: 0x001D1638 File Offset: 0x001CF838
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.XinJinGuanLianJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.XinJinGuanLianJsonData.list)
+			try
 			{
-				try
+				XinJinGuanLianJsonData xinJinGuanLianJsonData = new XinJinGuanLianJsonData();
+				xinJinGuanLianJsonData.id = item["id"].I;
+				xinJinGuanLianJsonData.speed = item["speed"].I;
+				if (DataDict.ContainsKey(xinJinGuanLianJsonData.id))
 				{
-					XinJinGuanLianJsonData xinJinGuanLianJsonData = new XinJinGuanLianJsonData();
-					xinJinGuanLianJsonData.id = jsonobject["id"].I;
-					xinJinGuanLianJsonData.speed = jsonobject["speed"].I;
-					if (XinJinGuanLianJsonData.DataDict.ContainsKey(xinJinGuanLianJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典XinJinGuanLianJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", xinJinGuanLianJsonData.id));
-					}
-					else
-					{
-						XinJinGuanLianJsonData.DataDict.Add(xinJinGuanLianJsonData.id, xinJinGuanLianJsonData);
-						XinJinGuanLianJsonData.DataList.Add(xinJinGuanLianJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典XinJinGuanLianJsonData.DataDict添加数据时出现重复的键，Key:{xinJinGuanLianJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典XinJinGuanLianJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(xinJinGuanLianJsonData.id, xinJinGuanLianJsonData);
+				DataList.Add(xinJinGuanLianJsonData);
 			}
-			if (XinJinGuanLianJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				XinJinGuanLianJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典XinJinGuanLianJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004451 RID: 17489 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040045F7 RID: 17911
-		public static Dictionary<int, XinJinGuanLianJsonData> DataDict = new Dictionary<int, XinJinGuanLianJsonData>();
-
-		// Token: 0x040045F8 RID: 17912
-		public static List<XinJinGuanLianJsonData> DataList = new List<XinJinGuanLianJsonData>();
-
-		// Token: 0x040045F9 RID: 17913
-		public static Action OnInitFinishAction = new Action(XinJinGuanLianJsonData.OnInitFinish);
-
-		// Token: 0x040045FA RID: 17914
-		public int id;
-
-		// Token: 0x040045FB RID: 17915
-		public int speed;
+	private static void OnInitFinish()
+	{
 	}
 }

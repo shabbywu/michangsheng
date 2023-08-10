@@ -1,105 +1,78 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+public class CharacterEquipment : MonoBehaviour
 {
-	// Token: 0x02000616 RID: 1558
-	public class CharacterEquipment : MonoBehaviour
+	[Serializable]
+	public class EquipmentPiece
 	{
-		// Token: 0x060031BD RID: 12733 RVA: 0x00160F98 File Offset: 0x0015F198
-		private void Start()
-		{
-			MonoSingleton<InventoryController>.Instance.EquipmentChanged.AddListener(new Action<ItemHolder>(this.On_EquipmentChanged));
-		}
-
-		// Token: 0x060031BE RID: 12734 RVA: 0x00160FB8 File Offset: 0x0015F1B8
-		private void On_EquipmentChanged(ItemHolder holder)
-		{
-			foreach (CharacterEquipment.EquipmentPiece equipmentPiece in this.m_EquipmentPieces)
-			{
-				if (holder.HasItem && equipmentPiece.ItemName == holder.CurrentItem.ItemData.Name)
-				{
-					equipmentPiece.CorrespondingHolder = (holder.HasItem ? holder : null);
-					equipmentPiece.Object.SetActive(holder.HasItem);
-					if (holder.HasItem && this.m_Underwear && holder.CurrentItem.HasProperty("Disable Underwear"))
-					{
-						this.m_Underwear.SetActive(false);
-					}
-				}
-				else if (equipmentPiece.CorrespondingHolder == holder)
-				{
-					equipmentPiece.CorrespondingHolder = null;
-					equipmentPiece.Object.SetActive(false);
-				}
-			}
-			this.HandleUnderwear(holder);
-		}
-
-		// Token: 0x060031BF RID: 12735 RVA: 0x00161084 File Offset: 0x0015F284
-		private void HandleUnderwear(ItemHolder holder)
-		{
-			if (!this.m_Underwear || this.m_Underwear.activeSelf)
-			{
-				return;
-			}
-			bool flag = true;
-			foreach (CharacterEquipment.EquipmentPiece equipmentPiece in this.m_EquipmentPieces)
-			{
-				if (equipmentPiece.CorrespondingHolder && equipmentPiece.CorrespondingHolder.HasItem && equipmentPiece.CorrespondingHolder.CurrentItem.HasProperty("Disable Underwear"))
-				{
-					flag = false;
-				}
-			}
-			if (flag)
-			{
-				this.m_Underwear.SetActive(true);
-			}
-		}
-
-		// Token: 0x04002C13 RID: 11283
 		[SerializeField]
-		private CharacterEquipment.EquipmentPiece[] m_EquipmentPieces;
+		private string m_ItemName;
 
-		// Token: 0x04002C14 RID: 11284
 		[SerializeField]
-		private GameObject m_Underwear;
+		private GameObject m_Object;
 
-		// Token: 0x020014CF RID: 5327
-		[Serializable]
-		public class EquipmentPiece
+		public ItemHolder CorrespondingHolder { get; set; }
+
+		public string ItemName => m_ItemName;
+
+		public GameObject Object => m_Object;
+	}
+
+	[SerializeField]
+	private EquipmentPiece[] m_EquipmentPieces;
+
+	[SerializeField]
+	private GameObject m_Underwear;
+
+	private void Start()
+	{
+		MonoSingleton<InventoryController>.Instance.EquipmentChanged.AddListener(On_EquipmentChanged);
+	}
+
+	private void On_EquipmentChanged(ItemHolder holder)
+	{
+		EquipmentPiece[] equipmentPieces = m_EquipmentPieces;
+		foreach (EquipmentPiece equipmentPiece in equipmentPieces)
 		{
-			// Token: 0x17000B00 RID: 2816
-			// (get) Token: 0x06008205 RID: 33285 RVA: 0x002DA52A File Offset: 0x002D872A
-			// (set) Token: 0x06008206 RID: 33286 RVA: 0x002DA532 File Offset: 0x002D8732
-			public ItemHolder CorrespondingHolder { get; set; }
-
-			// Token: 0x17000B01 RID: 2817
-			// (get) Token: 0x06008207 RID: 33287 RVA: 0x002DA53B File Offset: 0x002D873B
-			public string ItemName
+			if (holder.HasItem && equipmentPiece.ItemName == holder.CurrentItem.ItemData.Name)
 			{
-				get
+				equipmentPiece.CorrespondingHolder = (holder.HasItem ? holder : null);
+				equipmentPiece.Object.SetActive(holder.HasItem);
+				if (holder.HasItem && Object.op_Implicit((Object)(object)m_Underwear) && holder.CurrentItem.HasProperty("Disable Underwear"))
 				{
-					return this.m_ItemName;
+					m_Underwear.SetActive(false);
 				}
 			}
-
-			// Token: 0x17000B02 RID: 2818
-			// (get) Token: 0x06008208 RID: 33288 RVA: 0x002DA543 File Offset: 0x002D8743
-			public GameObject Object
+			else if (equipmentPiece.CorrespondingHolder == holder)
 			{
-				get
-				{
-					return this.m_Object;
-				}
+				equipmentPiece.CorrespondingHolder = null;
+				equipmentPiece.Object.SetActive(false);
 			}
+		}
+		HandleUnderwear(holder);
+	}
 
-			// Token: 0x04006D61 RID: 28001
-			[SerializeField]
-			private string m_ItemName;
-
-			// Token: 0x04006D62 RID: 28002
-			[SerializeField]
-			private GameObject m_Object;
+	private void HandleUnderwear(ItemHolder holder)
+	{
+		if (!Object.op_Implicit((Object)(object)m_Underwear) || m_Underwear.activeSelf)
+		{
+			return;
+		}
+		bool flag = true;
+		EquipmentPiece[] equipmentPieces = m_EquipmentPieces;
+		foreach (EquipmentPiece equipmentPiece in equipmentPieces)
+		{
+			if ((bool)equipmentPiece.CorrespondingHolder && equipmentPiece.CorrespondingHolder.HasItem && equipmentPiece.CorrespondingHolder.CurrentItem.HasProperty("Disable Underwear"))
+			{
+				flag = false;
+			}
+		}
+		if (flag)
+		{
+			m_Underwear.SetActive(true);
 		}
 	}
 }

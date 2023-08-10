@@ -1,46 +1,39 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
-{
-	// Token: 0x02000DCB RID: 3531
-	[CommandInfo("Flow", "End", "Marks the end of a conditional block.", 0)]
-	[AddComponentMenu("")]
-	public class End : Command
-	{
-		// Token: 0x170007FE RID: 2046
-		// (get) Token: 0x06006462 RID: 25698 RVA: 0x0027E5E9 File Offset: 0x0027C7E9
-		// (set) Token: 0x06006463 RID: 25699 RVA: 0x0027E5F1 File Offset: 0x0027C7F1
-		public virtual bool Loop { get; set; }
+namespace Fungus;
 
-		// Token: 0x06006464 RID: 25700 RVA: 0x0027E5FC File Offset: 0x0027C7FC
-		public override void OnEnter()
+[CommandInfo("Flow", "End", "Marks the end of a conditional block.", 0)]
+[AddComponentMenu("")]
+public class End : Command
+{
+	public virtual bool Loop { get; set; }
+
+	public override void OnEnter()
+	{
+		if (Loop)
 		{
-			if (this.Loop)
+			for (int num = CommandIndex - 1; num >= 0; num--)
 			{
-				for (int i = this.CommandIndex - 1; i >= 0; i--)
+				Command command = ParentBlock.CommandList[num];
+				if (command.IndentLevel == IndentLevel && ((object)command).GetType() == typeof(While))
 				{
-					Command command = this.ParentBlock.CommandList[i];
-					if (command.IndentLevel == this.IndentLevel && command.GetType() == typeof(While))
-					{
-						this.Continue(i);
-						return;
-					}
+					Continue(num);
+					return;
 				}
 			}
-			this.Continue();
 		}
+		Continue();
+	}
 
-		// Token: 0x06006465 RID: 25701 RVA: 0x00024C5F File Offset: 0x00022E5F
-		public override bool CloseBlock()
-		{
-			return true;
-		}
+	public override bool CloseBlock()
+	{
+		return true;
+	}
 
-		// Token: 0x06006466 RID: 25702 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
-		public override Color GetButtonColor()
-		{
-			return new Color32(253, 253, 150, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)253, (byte)253, (byte)150, byte.MaxValue));
 	}
 }

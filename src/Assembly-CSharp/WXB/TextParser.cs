@@ -1,1330 +1,1303 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class TextParser
 {
-	// Token: 0x020006B9 RID: 1721
-	public class TextParser
+	public struct Config
 	{
-		// Token: 0x06003658 RID: 13912 RVA: 0x00174050 File Offset: 0x00172250
-		public T CreateNode<T>() where T : NodeBase, new()
+		public Anchor anchor;
+
+		public Font font;
+
+		public FontStyle fontStyle;
+
+		public int fontSize;
+
+		public Color fontColor;
+
+		public bool isUnderline;
+
+		public bool isStrickout;
+
+		public bool isBlink;
+
+		public bool isDyncUnderline;
+
+		public bool isDyncStrickout;
+
+		public int dyncSpeed;
+
+		public bool isOffset;
+
+		public Rect offsetRect;
+
+		public EffectType effectType;
+
+		public Color effectColor;
+
+		public Vector2 effectDistance;
+
+		public LineAlignment lineAlignment;
+
+		public void Clear()
 		{
-			T t = Activator.CreateInstance<T>();
-			t.Reset(this.mOwner, this.currentConfig.anchor);
-			return t;
+			//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+			anchor = Anchor.Null;
+			font = null;
+			fontStyle = (FontStyle)0;
+			fontSize = 0;
+			fontColor = Color.white;
+			isUnderline = false;
+			isStrickout = false;
+			isBlink = false;
+			isDyncUnderline = false;
+			isDyncStrickout = false;
+			dyncSpeed = 0;
+			isOffset = false;
+			((Rect)(ref offsetRect)).Set(0f, 0f, 0f, 0f);
+			effectType = EffectType.Null;
+			effectColor = Color.black;
+			effectDistance = Vector2.zero;
+			lineAlignment = LineAlignment.Default;
 		}
 
-		// Token: 0x06003659 RID: 13913 RVA: 0x00174073 File Offset: 0x00172273
-		private static bool Get(char c, out Anchor a)
+		public void Set(Config c)
 		{
-			switch (c)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+			anchor = c.anchor;
+			font = c.font;
+			fontStyle = c.fontStyle;
+			fontSize = c.fontSize;
+			fontColor = c.fontColor;
+			isUnderline = c.isUnderline;
+			isStrickout = c.isStrickout;
+			isBlink = c.isBlink;
+			dyncSpeed = c.dyncSpeed;
+			isOffset = c.isOffset;
+			offsetRect = c.offsetRect;
+			effectType = c.effectType;
+			effectColor = c.effectColor;
+			effectDistance = c.effectDistance;
+			isDyncUnderline = c.isDyncUnderline;
+			isDyncStrickout = c.isDyncStrickout;
+			lineAlignment = c.lineAlignment;
+		}
+
+		public bool isSame(Config c)
+		{
+			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
+			//IL_010b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0136: Unknown result type (might be due to invalid IL or missing references)
+			//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+			if (anchor == c.anchor && (Object)(object)font == (Object)(object)c.font && fontStyle == c.fontStyle && isUnderline == c.isUnderline && fontColor == c.fontColor && isStrickout == c.isStrickout && isBlink == c.isBlink && fontSize == c.fontSize && lineAlignment == c.lineAlignment && isDyncUnderline == c.isDyncUnderline && isDyncStrickout == c.isDyncStrickout && dyncSpeed == c.dyncSpeed && ((effectType == EffectType.Null && c.effectType == EffectType.Null) || (effectType == c.effectType && effectColor == c.effectColor && effectDistance == c.effectDistance)))
 			{
-			case '1':
-				a = Anchor.MiddleLeft;
-				return true;
-			case '2':
-				a = Anchor.MiddleCenter;
-				return true;
-			case '3':
-				a = Anchor.MiddleRight;
-				return true;
-			default:
-				a = Anchor.MiddleCenter;
-				return false;
-			}
-		}
-
-		// Token: 0x0600365A RID: 13914 RVA: 0x0017409F File Offset: 0x0017229F
-		private static bool Get(char c, out LineAlignment a)
-		{
-			switch (c)
-			{
-			case '1':
-				a = LineAlignment.Top;
-				return true;
-			case '2':
-				a = LineAlignment.Center;
-				return true;
-			case '3':
-				a = LineAlignment.Bottom;
-				return true;
-			default:
-				a = LineAlignment.Default;
-				return false;
-			}
-		}
-
-		// Token: 0x0600365B RID: 13915 RVA: 0x001740CB File Offset: 0x001722CB
-		public TextParser()
-		{
-			this.clear();
-			this.Reg();
-			this.RegTag();
-		}
-
-		// Token: 0x0600365C RID: 13916 RVA: 0x001740F0 File Offset: 0x001722F0
-		private static bool ParserInt(ref int d_curPos, string text, ref int value, int num = 3)
-		{
-			bool result;
-			using (PD<StringBuilder> sb = Pool.GetSB())
-			{
-				StringBuilder value2 = sb.value;
-				d_curPos++;
-				while (text.Length > d_curPos && text[d_curPos] >= '0' && text[d_curPos] <= '9')
+				if (isOffset || c.isOffset)
 				{
-					value2.Append(text[d_curPos]);
-					d_curPos++;
-					if (value2.Length >= num)
+					if (isOffset == c.isOffset)
 					{
-						break;
+						return offsetRect == c.offsetRect;
 					}
+					return false;
 				}
-				value = Tools.stringToInt(value2.ToString(), -1);
-				if (value2.Length == 0)
-				{
-					d_curPos--;
-					result = false;
-				}
-				else
-				{
-					result = true;
-				}
+				return true;
 			}
-			return result;
+			return false;
+		}
+	}
+
+	private delegate void OnFun(string c);
+
+	private class HyConfig
+	{
+		private delegate void OnFunHy(string text);
+
+		public string text = "";
+
+		public HyperlinkNode node;
+
+		public int startPos;
+
+		public int lenght;
+
+		private StringBuilder sb;
+
+		public TextParser parser;
+
+		private OnFunHy[] OnFunHys;
+
+		public HyConfig(TextParser p)
+		{
+			parser = p;
+			OnFunHys = new OnFunHy[128];
+			OnFunHys[82] = ParserSureColor;
+			OnFunHys[71] = ParserSureColor;
+			OnFunHys[66] = ParserSureColor;
+			OnFunHys[75] = ParserSureColor;
+			OnFunHys[89] = ParserSureColor;
+			OnFunHys[87] = ParserSureColor;
+			OnFunHys[80] = ParserSureColor;
+			OnFunHys[99] = ParserFontColor;
+			OnFunHys[110] = ParserRestore;
+			OnFunHys[115] = ParserFontSize;
+			OnFunHys[102] = ParserFont;
+			OnFunHys[35] = ParserOutputChar;
+			OnFunHys[117] = delegate
+			{
+				node.d_bUnderline = !node.d_bUnderline;
+				startPos++;
+			};
+			OnFunHys[101] = delegate
+			{
+				node.d_bStrickout = !node.d_bStrickout;
+				startPos++;
+			};
 		}
 
-		// Token: 0x0600365D RID: 13917 RVA: 0x00174198 File Offset: 0x00172398
-		private static bool ParserFloat(ref int d_curPos, string text, ref float value, int num = 3)
+		private void ParserOutputChar(string text)
 		{
-			bool result;
-			using (PD<StringBuilder> sb = Pool.GetSB())
+			sb.Append("#");
+			startPos++;
+		}
+
+		private void ParserSureColor(string text)
+		{
+			//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+			node.d_color = GetColour(text[startPos]);
+			startPos++;
+		}
+
+		private void ParserFontColor(string text)
+		{
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+			node.d_color = Tools.ParserColorName(text, ref startPos, node.d_color);
+		}
+
+		private void ParserRestore(string text)
+		{
+			node.SetConfig(parser.startConfig);
+		}
+
+		private void ParserFontSize(string text)
+		{
+			float value = 1f;
+			if (ParserFloat(ref startPos, text, ref value))
 			{
-				StringBuilder value2 = sb.value;
-				d_curPos++;
-				bool flag = false;
-				while (text.Length > d_curPos && ((text[d_curPos] >= '0' && text[d_curPos] <= '9') || text[d_curPos] == '.'))
+				node.d_fontSize = (int)value;
+			}
+		}
+
+		private void ParserFont(string text)
+		{
+			startPos++;
+			Font val = Tools.ParserFontName(text, ref startPos);
+			if ((Object)(object)val != (Object)null)
+			{
+				node.d_font = val;
+			}
+			else
+			{
+				startPos--;
+			}
+		}
+
+		public void Clear()
+		{
+			text = null;
+			node = null;
+			sb = null;
+			startPos = 0;
+		}
+
+		public void BeginParser(StringBuilder s)
+		{
+			sb = s;
+			bool flag = false;
+			while (lenght > startPos)
+			{
+				if (!flag)
 				{
-					if (text[d_curPos] == '.')
+					if (text[startPos] == '#')
 					{
 						flag = true;
+						startPos++;
 					}
-					value2.Append(text[d_curPos]);
-					d_curPos++;
-					int num2 = flag ? (num + 1) : num;
-					if (value2.Length >= num2)
+					else
 					{
-						break;
+						sb.Append(text[startPos]);
+						startPos++;
 					}
+					continue;
 				}
-				value = Tools.stringToFloat(value2.ToString(), 0f);
-				if (value2.Length == 0)
+				char c = text[startPos];
+				OnFunHy onFunHy = null;
+				if (c < '\u0080' && (onFunHy = OnFunHys[(uint)c]) != null)
 				{
-					d_curPos--;
-					result = false;
+					onFunHy(text);
 				}
 				else
 				{
-					result = true;
+					sb.Append(text[startPos]);
+					startPos++;
+				}
+				flag = false;
+			}
+			node.d_text = sb.ToString();
+		}
+	}
+
+	private Owner mOwner;
+
+	protected int d_curPos;
+
+	protected Config startConfig;
+
+	protected Config currentConfig;
+
+	protected List<NodeBase> d_nodeList;
+
+	protected StringBuilder d_text = new StringBuilder();
+
+	protected bool d_bBegin;
+
+	private OnFun[] OnFuns;
+
+	private static HyConfig hyConfig = null;
+
+	private Dictionary<string, Action<string, string>> TagFuns;
+
+	private static TagAttributes s_TagAttributes = new TagAttributes();
+
+	public T CreateNode<T>() where T : NodeBase, new()
+	{
+		T val = new T();
+		val.Reset(mOwner, currentConfig.anchor);
+		return val;
+	}
+
+	private static bool Get(char c, out Anchor a)
+	{
+		switch (c)
+		{
+		case '1':
+			a = Anchor.MiddleLeft;
+			return true;
+		case '2':
+			a = Anchor.MiddleCenter;
+			return true;
+		case '3':
+			a = Anchor.MiddleRight;
+			return true;
+		default:
+			a = Anchor.MiddleCenter;
+			return false;
+		}
+	}
+
+	private static bool Get(char c, out LineAlignment a)
+	{
+		switch (c)
+		{
+		case '1':
+			a = LineAlignment.Top;
+			return true;
+		case '2':
+			a = LineAlignment.Center;
+			return true;
+		case '3':
+			a = LineAlignment.Bottom;
+			return true;
+		default:
+			a = LineAlignment.Default;
+			return false;
+		}
+	}
+
+	public TextParser()
+	{
+		clear();
+		Reg();
+		RegTag();
+	}
+
+	private static bool ParserInt(ref int d_curPos, string text, ref int value, int num = 3)
+	{
+		PD<StringBuilder> sB = Pool.GetSB();
+		try
+		{
+			StringBuilder value2 = sB.value;
+			d_curPos++;
+			while (text.Length > d_curPos && text[d_curPos] >= '0' && text[d_curPos] <= '9')
+			{
+				value2.Append(text[d_curPos]);
+				d_curPos++;
+				if (value2.Length >= num)
+				{
+					break;
 				}
 			}
-			return result;
-		}
-
-		// Token: 0x0600365E RID: 13918 RVA: 0x0017426C File Offset: 0x0017246C
-		public void parser(Owner owner, string text, TextParser.Config config, List<NodeBase> vList)
-		{
-			this.clear();
-			this.mOwner = owner;
-			this.d_nodeList = vList;
-			this.startConfig.Set(config);
-			this.currentConfig.Set(config);
-			if (this.currentConfig.font == null)
+			value = Tools.stringToInt(value2.ToString(), -1);
+			if (value2.Length == 0)
 			{
-				Debug.LogError("TextParser pFont == null");
-				return;
+				d_curPos--;
+				return false;
 			}
+			return true;
+		}
+		finally
+		{
+			((IDisposable)sB).Dispose();
+		}
+	}
+
+	private static bool ParserFloat(ref int d_curPos, string text, ref float value, int num = 3)
+	{
+		PD<StringBuilder> sB = Pool.GetSB();
+		try
+		{
+			StringBuilder value2 = sB.value;
+			d_curPos++;
+			bool flag = false;
+			while (text.Length > d_curPos && ((text[d_curPos] >= '0' && text[d_curPos] <= '9') || text[d_curPos] == '.'))
+			{
+				if (text[d_curPos] == '.')
+				{
+					flag = true;
+				}
+				value2.Append(text[d_curPos]);
+				d_curPos++;
+				int num2 = (flag ? (num + 1) : num);
+				if (value2.Length >= num2)
+				{
+					break;
+				}
+			}
+			value = Tools.stringToFloat(value2.ToString(), 0f);
+			if (value2.Length == 0)
+			{
+				d_curPos--;
+				return false;
+			}
+			return true;
+		}
+		finally
+		{
+			((IDisposable)sB).Dispose();
+		}
+	}
+
+	public void parser(Owner owner, string text, Config config, List<NodeBase> vList)
+	{
+		clear();
+		mOwner = owner;
+		d_nodeList = vList;
+		startConfig.Set(config);
+		currentConfig.Set(config);
+		if ((Object)(object)currentConfig.font == (Object)null)
+		{
+			Debug.LogError((object)"TextParser pFont == null");
+		}
+		else
+		{
 			if (string.IsNullOrEmpty(text))
 			{
 				return;
 			}
-			int i = text.Length;
-			while (i > this.d_curPos)
+			int length = text.Length;
+			while (length > d_curPos)
 			{
-				if (!this.d_bBegin)
+				if (!d_bBegin)
 				{
-					char c = text[this.d_curPos];
-					if (c != '\n')
+					switch (text[d_curPos])
 					{
-						if (c != '#')
+					case '#':
+						d_bBegin = true;
+						d_curPos++;
+						break;
+					case '<':
+					{
+						int num = text.IndexOf('>', d_curPos);
+						if (num != -1)
 						{
-							if (c != '<')
+							string text2 = null;
+							string param = null;
+							int num2 = text.IndexOfAny(new char[2] { ' ', '=' }, d_curPos);
+							if (num2 != -1 && num2 < num)
 							{
-								this.d_text.Append(text[this.d_curPos]);
-								this.d_curPos++;
+								text2 = text.Substring(d_curPos + 1, num2 - d_curPos);
+								param = text.Substring(num2 + 1, num - num2 - 1);
 							}
 							else
 							{
-								int num = text.IndexOf('>', this.d_curPos);
-								if (num != -1)
-								{
-									string param = null;
-									int num2 = text.IndexOfAny(new char[]
-									{
-										' ',
-										'='
-									}, this.d_curPos);
-									string tag;
-									if (num2 != -1 && num2 < num)
-									{
-										tag = text.Substring(this.d_curPos + 1, num2 - this.d_curPos);
-										param = text.Substring(num2 + 1, num - num2 - 1);
-									}
-									else
-									{
-										tag = text.Substring(this.d_curPos + 1, num - this.d_curPos - 1);
-									}
-									if (this.d_text.Length != 0)
-									{
-										this.save(false);
-									}
-									this.TagParam(tag, param);
-									this.d_curPos = num + 1;
-								}
-								else
-								{
-									this.d_text.Append(text[this.d_curPos]);
-									this.d_curPos++;
-								}
+								text2 = text.Substring(d_curPos + 1, num - d_curPos - 1);
 							}
+							if (d_text.Length != 0)
+							{
+								save(isNewLine: false);
+							}
+							TagParam(text2, param);
+							d_curPos = num + 1;
 						}
 						else
 						{
-							this.d_bBegin = true;
-							this.d_curPos++;
+							d_text.Append(text[d_curPos]);
+							d_curPos++;
 						}
+						break;
 					}
-					else
-					{
-						this.save(true);
-						this.d_curPos++;
+					case '\n':
+						save(isNewLine: true);
+						d_curPos++;
+						break;
+					default:
+						d_text.Append(text[d_curPos]);
+						d_curPos++;
+						break;
 					}
 				}
 				else
 				{
-					char c2 = text[this.d_curPos];
-					TextParser.OnFun onFun;
-					if (c2 < '\u0080' && (onFun = this.OnFuns[(int)c2]) != null)
+					char c = text[d_curPos];
+					OnFun onFun = null;
+					if (c < '\u0080' && (onFun = OnFuns[(uint)c]) != null)
 					{
 						onFun(text);
 					}
 					else
 					{
-						this.d_text.Append(text[this.d_curPos]);
-						this.d_curPos++;
+						d_text.Append(text[d_curPos]);
+						d_curPos++;
 					}
-					this.d_bBegin = false;
+					d_bBegin = false;
 				}
 			}
-			if (this.d_text.Length != 0)
+			if (d_text.Length != 0)
 			{
-				this.save(false);
+				save(isNewLine: false);
 			}
-			this.clear();
+			clear();
 		}
+	}
 
-		// Token: 0x0600365F RID: 13919 RVA: 0x001744C8 File Offset: 0x001726C8
-		protected void save(bool isNewLine)
+	protected void save(bool isNewLine)
+	{
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		if (d_text.Length == 0)
 		{
-			if (this.d_text.Length != 0)
-			{
-				TextNode textNode = this.CreateNode<TextNode>();
-				textNode.d_text = this.d_text.ToString();
-				textNode.SetConfig(this.currentConfig);
-				textNode.setNewLine(isNewLine);
-				this.d_nodeList.Add(textNode);
-				this.d_text.Remove(0, this.d_text.Length);
-				return;
-			}
-			if (isNewLine)
-			{
-				if (this.d_nodeList.Count != 0)
-				{
-					NodeBase nodeBase = this.d_nodeList.back<NodeBase>();
-					if (!nodeBase.isNewLine())
-					{
-						nodeBase.setNewLine(true);
-						return;
-					}
-				}
-				LineNode lineNode = this.CreateNode<LineNode>();
-				lineNode.SetConfig(this.currentConfig);
-				lineNode.font = this.currentConfig.font;
-				lineNode.fontSize = this.currentConfig.fontSize;
-				lineNode.fs = this.currentConfig.fontStyle;
-				lineNode.setNewLine(true);
-				this.d_nodeList.Add(lineNode);
-				return;
-			}
-		}
-
-		// Token: 0x06003660 RID: 13920 RVA: 0x001745C0 File Offset: 0x001727C0
-		protected void saveX(float value)
-		{
-			XSpaceNode xspaceNode = this.CreateNode<XSpaceNode>();
-			xspaceNode.d_offset = value;
-			this.d_nodeList.Add(xspaceNode);
-		}
-
-		// Token: 0x06003661 RID: 13921 RVA: 0x001745E8 File Offset: 0x001727E8
-		protected void saveY(float value)
-		{
-			if (this.d_nodeList.Count != 0 && !this.d_nodeList.back<NodeBase>().isNewLine())
-			{
-				this.d_nodeList.back<NodeBase>().setNewLine(true);
-			}
-			YSpaceNode yspaceNode = this.CreateNode<YSpaceNode>();
-			yspaceNode.d_offset = value;
-			yspaceNode.setNewLine(true);
-			this.d_nodeList.Add(yspaceNode);
-		}
-
-		// Token: 0x06003662 RID: 13922 RVA: 0x00174648 File Offset: 0x00172848
-		protected void saveZ(float value)
-		{
-			YSpaceNode yspaceNode = this.CreateNode<YSpaceNode>();
-			yspaceNode.d_offset = value;
-			yspaceNode.setNewLine(false);
-			this.d_nodeList.Add(yspaceNode);
-		}
-
-		// Token: 0x06003663 RID: 13923 RVA: 0x00174678 File Offset: 0x00172878
-		protected void saveHy()
-		{
-			if (this.d_text.Length == 0)
+			if (!isNewLine)
 			{
 				return;
 			}
-			string text = this.d_text.ToString();
-			this.d_text.Remove(0, this.d_text.Length);
-			HyperlinkNode hyperlinkNode = this.CreateNode<HyperlinkNode>();
-			string text2 = string.Empty;
-			if (text[text.Length - 1] == '}')
+			if (d_nodeList.Count != 0)
 			{
-				int num = text.IndexOf('{', 0);
-				if (num != -1)
+				NodeBase nodeBase = d_nodeList.back();
+				if (!nodeBase.isNewLine())
 				{
-					text2 = text.Substring(num, text.Length - num);
-					hyperlinkNode.d_link = text2.Replace("{", "").Replace("}", "");
-					text = text.Remove(num, text.Length - num);
+					nodeBase.setNewLine(line: true);
+					return;
 				}
 			}
-			hyperlinkNode.d_text = "";
-			hyperlinkNode.SetConfig(this.currentConfig);
-			this.ParseHyText(text, hyperlinkNode);
-			this.d_nodeList.Add(hyperlinkNode);
+			LineNode lineNode = CreateNode<LineNode>();
+			lineNode.SetConfig(currentConfig);
+			lineNode.font = currentConfig.font;
+			lineNode.fontSize = currentConfig.fontSize;
+			lineNode.fs = currentConfig.fontStyle;
+			lineNode.setNewLine(line: true);
+			d_nodeList.Add(lineNode);
 		}
-
-		// Token: 0x06003664 RID: 13924 RVA: 0x00174754 File Offset: 0x00172954
-		protected void clear()
+		else
 		{
-			this.startConfig.Clear();
-			this.currentConfig.Clear();
-			this.d_nodeList = null;
-			this.d_curPos = 0;
-			this.d_text.Remove(0, this.d_text.Length);
-			this.d_bBegin = false;
-			this.mOwner = null;
+			TextNode textNode = CreateNode<TextNode>();
+			textNode.d_text = d_text.ToString();
+			textNode.SetConfig(currentConfig);
+			textNode.setNewLine(isNewLine);
+			d_nodeList.Add(textNode);
+			d_text.Remove(0, d_text.Length);
 		}
+	}
 
-		// Token: 0x06003665 RID: 13925 RVA: 0x001747AC File Offset: 0x001729AC
-		private static Color GetColour(uint code)
+	protected void saveX(float value)
+	{
+		XSpaceNode xSpaceNode = CreateNode<XSpaceNode>();
+		xSpaceNode.d_offset = value;
+		d_nodeList.Add(xSpaceNode);
+	}
+
+	protected void saveY(float value)
+	{
+		if (d_nodeList.Count != 0 && !d_nodeList.back().isNewLine())
 		{
-			if (code <= 75U)
-			{
-				if (code == 66U)
-				{
-					return Color.blue;
-				}
-				if (code == 71U)
-				{
-					return Color.green;
-				}
-				if (code == 75U)
-				{
-					return Color.black;
-				}
-			}
-			else
-			{
-				if (code == 82U)
-				{
-					return Color.red;
-				}
-				if (code == 87U)
-				{
-					return Color.white;
-				}
-				if (code == 89U)
-				{
-					return Color.yellow;
-				}
-			}
-			return Color.white;
+			d_nodeList.back().setNewLine(line: true);
 		}
+		YSpaceNode ySpaceNode = CreateNode<YSpaceNode>();
+		ySpaceNode.d_offset = value;
+		ySpaceNode.setNewLine(line: true);
+		d_nodeList.Add(ySpaceNode);
+	}
 
-		// Token: 0x06003666 RID: 13926 RVA: 0x0017480C File Offset: 0x00172A0C
-		private void Reg()
+	protected void saveZ(float value)
+	{
+		YSpaceNode ySpaceNode = CreateNode<YSpaceNode>();
+		ySpaceNode.d_offset = value;
+		ySpaceNode.setNewLine(line: false);
+		d_nodeList.Add(ySpaceNode);
+	}
+
+	protected void saveHy()
+	{
+		if (d_text.Length == 0)
 		{
-			this.OnFuns = new TextParser.OnFun[128];
-			this.OnFuns[82] = new TextParser.OnFun(this.ParserSureColor);
-			this.OnFuns[71] = new TextParser.OnFun(this.ParserSureColor);
-			this.OnFuns[66] = new TextParser.OnFun(this.ParserSureColor);
-			this.OnFuns[75] = new TextParser.OnFun(this.ParserSureColor);
-			this.OnFuns[89] = new TextParser.OnFun(this.ParserSureColor);
-			this.OnFuns[87] = new TextParser.OnFun(this.ParserSureColor);
-			this.OnFuns[35] = new TextParser.OnFun(this.ParserOutputChar);
-			this.OnFuns[91] = new TextParser.OnFun(this.ParserFontColorS);
-			this.OnFuns[98] = new TextParser.OnFun(this.ParserBlink);
-			this.OnFuns[99] = new TextParser.OnFun(this.ParserFontColor);
-			this.OnFuns[100] = new TextParser.OnFun(this.ParserFontStyle);
-			this.OnFuns[101] = new TextParser.OnFun(this.ParserStrickout);
-			this.OnFuns[109] = new TextParser.OnFun(this.ParserDynStrickout);
-			this.OnFuns[102] = new TextParser.OnFun(this.ParserFont);
-			this.OnFuns[110] = new TextParser.OnFun(this.ParserRestoreColor);
-			this.OnFuns[103] = new TextParser.OnFun(this.ParserRestore);
-			this.OnFuns[114] = new TextParser.OnFun(this.ParserNewLine);
-			this.OnFuns[117] = new TextParser.OnFun(this.ParserUnderLine);
-			this.OnFuns[116] = new TextParser.OnFun(this.ParserDynUnderline);
-			this.OnFuns[108] = new TextParser.OnFun(this.ParserDynSpeed);
-			this.OnFuns[104] = new TextParser.OnFun(this.ParserHyperlink);
-			this.OnFuns[115] = new TextParser.OnFun(this.ParserFontSize);
-			this.OnFuns[120] = new TextParser.OnFun(this.ParserXYZ);
-			this.OnFuns[121] = new TextParser.OnFun(this.ParserXYZ);
-			this.OnFuns[122] = new TextParser.OnFun(this.ParserXYZ);
-			this.OnFuns[119] = new TextParser.OnFun(this.ParserFormatting);
-			this.OnFuns[97] = new TextParser.OnFun(this.ParserLineAlignment);
-			this.OnFuns[48] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[49] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[50] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[51] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[52] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[53] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[54] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[55] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[56] = new TextParser.OnFun(this.ParserCartoon);
-			this.OnFuns[57] = new TextParser.OnFun(this.ParserCartoon);
+			return;
 		}
-
-		// Token: 0x06003667 RID: 13927 RVA: 0x00174B34 File Offset: 0x00172D34
-		private void ParserCartoon(string text)
+		string text = d_text.ToString();
+		d_text.Remove(0, d_text.Length);
+		HyperlinkNode hyperlinkNode = CreateNode<HyperlinkNode>();
+		string empty = string.Empty;
+		if (text[text.Length - 1] == '}')
 		{
-			Cartoon cartoon = null;
-			int num = this.d_curPos - 1;
-			for (int i = 3; i >= 1; i--)
+			int num = text.IndexOf('{', 0);
+			if (num != -1)
 			{
-				int num2 = -1;
-				if (TextParser.ParserInt(ref num, text, ref num2, i))
+				empty = text.Substring(num, text.Length - num);
+				hyperlinkNode.d_link = empty.Replace("{", "").Replace("}", "");
+				text = text.Remove(num, text.Length - num);
+			}
+		}
+		hyperlinkNode.d_text = "";
+		hyperlinkNode.SetConfig(currentConfig);
+		ParseHyText(text, hyperlinkNode);
+		d_nodeList.Add(hyperlinkNode);
+	}
+
+	protected void clear()
+	{
+		startConfig.Clear();
+		currentConfig.Clear();
+		d_nodeList = null;
+		d_curPos = 0;
+		d_text.Remove(0, d_text.Length);
+		d_bBegin = false;
+		mOwner = null;
+	}
+
+	private static Color GetColour(uint code)
+	{
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		return (Color)(code switch
+		{
+			82u => Color.red, 
+			71u => Color.green, 
+			66u => Color.blue, 
+			75u => Color.black, 
+			89u => Color.yellow, 
+			87u => Color.white, 
+			_ => Color.white, 
+		});
+	}
+
+	private void Reg()
+	{
+		OnFuns = new OnFun[128];
+		OnFuns[82] = ParserSureColor;
+		OnFuns[71] = ParserSureColor;
+		OnFuns[66] = ParserSureColor;
+		OnFuns[75] = ParserSureColor;
+		OnFuns[89] = ParserSureColor;
+		OnFuns[87] = ParserSureColor;
+		OnFuns[35] = ParserOutputChar;
+		OnFuns[91] = ParserFontColorS;
+		OnFuns[98] = ParserBlink;
+		OnFuns[99] = ParserFontColor;
+		OnFuns[100] = ParserFontStyle;
+		OnFuns[101] = ParserStrickout;
+		OnFuns[109] = ParserDynStrickout;
+		OnFuns[102] = ParserFont;
+		OnFuns[110] = ParserRestoreColor;
+		OnFuns[103] = ParserRestore;
+		OnFuns[114] = ParserNewLine;
+		OnFuns[117] = ParserUnderLine;
+		OnFuns[116] = ParserDynUnderline;
+		OnFuns[108] = ParserDynSpeed;
+		OnFuns[104] = ParserHyperlink;
+		OnFuns[115] = ParserFontSize;
+		OnFuns[120] = ParserXYZ;
+		OnFuns[121] = ParserXYZ;
+		OnFuns[122] = ParserXYZ;
+		OnFuns[119] = ParserFormatting;
+		OnFuns[97] = ParserLineAlignment;
+		OnFuns[48] = ParserCartoon;
+		OnFuns[49] = ParserCartoon;
+		OnFuns[50] = ParserCartoon;
+		OnFuns[51] = ParserCartoon;
+		OnFuns[52] = ParserCartoon;
+		OnFuns[53] = ParserCartoon;
+		OnFuns[54] = ParserCartoon;
+		OnFuns[55] = ParserCartoon;
+		OnFuns[56] = ParserCartoon;
+		OnFuns[57] = ParserCartoon;
+	}
+
+	private void ParserCartoon(string text)
+	{
+		Cartoon cartoon = null;
+		int num = d_curPos - 1;
+		for (int num2 = 3; num2 >= 1; num2--)
+		{
+			int value = -1;
+			if (ParserInt(ref num, text, ref value, num2))
+			{
+				cartoon = Tools.GetCartoon(value.ToString());
+				if (cartoon != null)
 				{
-					cartoon = Tools.GetCartoon(num2.ToString());
-					if (cartoon != null)
-					{
-						break;
-					}
+					break;
 				}
-				num = this.d_curPos - 1;
 			}
-			if (cartoon == null)
-			{
-				return;
-			}
-			this.d_curPos = num;
-			this.save(false);
-			CartoonNode cartoonNode = this.CreateNode<CartoonNode>();
+			num = d_curPos - 1;
+		}
+		if (cartoon != null)
+		{
+			d_curPos = num;
+			save(isNewLine: false);
+			CartoonNode cartoonNode = CreateNode<CartoonNode>();
 			cartoonNode.cartoon = cartoon;
-			cartoonNode.width = (float)cartoon.width;
-			cartoonNode.height = (float)cartoon.height;
-			cartoonNode.SetConfig(this.currentConfig);
-			this.d_nodeList.Add(cartoonNode);
+			cartoonNode.width = cartoon.width;
+			cartoonNode.height = cartoon.height;
+			cartoonNode.SetConfig(currentConfig);
+			d_nodeList.Add(cartoonNode);
 		}
+	}
 
-		// Token: 0x06003668 RID: 13928 RVA: 0x00174BD4 File Offset: 0x00172DD4
-		private void ParserDynSpeed(string text)
+	private void ParserDynSpeed(string text)
+	{
+		int value = -1;
+		if (ParserInt(ref d_curPos, text, ref value, 5) && value > 0 && value != currentConfig.dyncSpeed)
 		{
-			int num = -1;
-			if (!TextParser.ParserInt(ref this.d_curPos, text, ref num, 5))
+			save(isNewLine: false);
+			currentConfig.dyncSpeed = value;
+		}
+	}
+
+	private void ParserDynUnderline(string text)
+	{
+		save(isNewLine: false);
+		currentConfig.isDyncUnderline = !currentConfig.isDyncUnderline;
+		d_curPos++;
+	}
+
+	private void ParserDynStrickout(string text)
+	{
+		save(isNewLine: false);
+		currentConfig.isDyncStrickout = !currentConfig.isDyncStrickout;
+		d_curPos++;
+	}
+
+	private void ParserRestoreColor(string text)
+	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		if (currentConfig.fontColor != startConfig.fontColor)
+		{
+			save(isNewLine: false);
+			d_curPos++;
+			currentConfig.Set(startConfig);
+		}
+		else
+		{
+			d_curPos++;
+		}
+	}
+
+	private void ParserRestore(string text)
+	{
+		if (!currentConfig.isSame(startConfig))
+		{
+			save(isNewLine: false);
+			d_curPos++;
+			currentConfig.Set(startConfig);
+		}
+		else
+		{
+			d_curPos++;
+		}
+	}
+
+	private void ParserSureColor(string text)
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		Color colour = GetColour(text[d_curPos]);
+		if (currentConfig.fontColor != colour)
+		{
+			save(isNewLine: false);
+			currentConfig.fontColor = colour;
+		}
+		d_curPos++;
+	}
+
+	private void ParserBlink(string text)
+	{
+		save(isNewLine: false);
+		currentConfig.isBlink = !currentConfig.isBlink;
+		d_curPos++;
+	}
+
+	private void ParserLineAlignment(string text)
+	{
+		if (text.Length > d_curPos + 1 && Get(text[d_curPos + 1], out LineAlignment a))
+		{
+			d_curPos++;
+			if (currentConfig.lineAlignment != a)
 			{
-				return;
+				currentConfig.lineAlignment = a;
+				save(isNewLine: false);
 			}
-			if (num <= 0 || num == this.currentConfig.dyncSpeed)
+		}
+		d_curPos++;
+	}
+
+	private void ParserFormatting(string text)
+	{
+		if (text.Length > d_curPos + 1 && Get(text[d_curPos + 1], out Anchor a))
+		{
+			d_curPos++;
+			if (currentConfig.anchor != a)
 			{
-				return;
+				currentConfig.anchor = a;
+				save(isNewLine: false);
 			}
-			this.save(false);
-			this.currentConfig.dyncSpeed = num;
 		}
+		d_curPos++;
+	}
 
-		// Token: 0x06003669 RID: 13929 RVA: 0x00174C1B File Offset: 0x00172E1B
-		private void ParserDynUnderline(string text)
+	private static bool GetFontStyle(char c, out FontStyle fs)
+	{
+		switch (c)
 		{
-			this.save(false);
-			this.currentConfig.isDyncUnderline = !this.currentConfig.isDyncUnderline;
-			this.d_curPos++;
+		case '1':
+			fs = (FontStyle)0;
+			return true;
+		case '2':
+			fs = (FontStyle)1;
+			return true;
+		case '3':
+			fs = (FontStyle)2;
+			return true;
+		case '4':
+			fs = (FontStyle)3;
+			return true;
+		default:
+			fs = (FontStyle)0;
+			return false;
 		}
+	}
 
-		// Token: 0x0600366A RID: 13930 RVA: 0x00174C4B File Offset: 0x00172E4B
-		private void ParserDynStrickout(string text)
+	private void ParserFontStyle(string text)
+	{
+		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		if (text.Length > d_curPos + 1)
 		{
-			this.save(false);
-			this.currentConfig.isDyncStrickout = !this.currentConfig.isDyncStrickout;
-			this.d_curPos++;
-		}
-
-		// Token: 0x0600366B RID: 13931 RVA: 0x00174C7C File Offset: 0x00172E7C
-		private void ParserRestoreColor(string text)
-		{
-			if (this.currentConfig.fontColor != this.startConfig.fontColor)
+			if (GetFontStyle(text[d_curPos + 1], out var fs))
 			{
-				this.save(false);
-				this.d_curPos++;
-				this.currentConfig.Set(this.startConfig);
-				return;
-			}
-			this.d_curPos++;
-		}
-
-		// Token: 0x0600366C RID: 13932 RVA: 0x00174CDC File Offset: 0x00172EDC
-		private void ParserRestore(string text)
-		{
-			if (!this.currentConfig.isSame(this.startConfig))
-			{
-				this.save(false);
-				this.d_curPos++;
-				this.currentConfig.Set(this.startConfig);
-				return;
-			}
-			this.d_curPos++;
-		}
-
-		// Token: 0x0600366D RID: 13933 RVA: 0x00174D34 File Offset: 0x00172F34
-		private void ParserSureColor(string text)
-		{
-			Color colour = TextParser.GetColour((uint)text[this.d_curPos]);
-			if (this.currentConfig.fontColor != colour)
-			{
-				this.save(false);
-				this.currentConfig.fontColor = colour;
-			}
-			this.d_curPos++;
-		}
-
-		// Token: 0x0600366E RID: 13934 RVA: 0x00174D87 File Offset: 0x00172F87
-		private void ParserBlink(string text)
-		{
-			this.save(false);
-			this.currentConfig.isBlink = !this.currentConfig.isBlink;
-			this.d_curPos++;
-		}
-
-		// Token: 0x0600366F RID: 13935 RVA: 0x00174DB8 File Offset: 0x00172FB8
-		private void ParserLineAlignment(string text)
-		{
-			LineAlignment lineAlignment;
-			if (text.Length > this.d_curPos + 1 && TextParser.Get(text[this.d_curPos + 1], out lineAlignment))
-			{
-				this.d_curPos++;
-				if (this.currentConfig.lineAlignment != lineAlignment)
+				d_curPos += 2;
+				if (currentConfig.fontStyle != fs)
 				{
-					this.currentConfig.lineAlignment = lineAlignment;
-					this.save(false);
-				}
-			}
-			this.d_curPos++;
-		}
-
-		// Token: 0x06003670 RID: 13936 RVA: 0x00174E2C File Offset: 0x0017302C
-		private void ParserFormatting(string text)
-		{
-			Anchor anchor;
-			if (text.Length > this.d_curPos + 1 && TextParser.Get(text[this.d_curPos + 1], out anchor))
-			{
-				this.d_curPos++;
-				if (this.currentConfig.anchor != anchor)
-				{
-					this.currentConfig.anchor = anchor;
-					this.save(false);
-				}
-			}
-			this.d_curPos++;
-		}
-
-		// Token: 0x06003671 RID: 13937 RVA: 0x00174E9D File Offset: 0x0017309D
-		private static bool GetFontStyle(char c, out FontStyle fs)
-		{
-			switch (c)
-			{
-			case '1':
-				fs = 0;
-				return true;
-			case '2':
-				fs = 1;
-				return true;
-			case '3':
-				fs = 2;
-				return true;
-			case '4':
-				fs = 3;
-				return true;
-			default:
-				fs = 0;
-				return false;
-			}
-		}
-
-		// Token: 0x06003672 RID: 13938 RVA: 0x00174ED4 File Offset: 0x001730D4
-		private void ParserFontStyle(string text)
-		{
-			if (text.Length > this.d_curPos + 1)
-			{
-				FontStyle fontStyle;
-				if (!TextParser.GetFontStyle(text[this.d_curPos + 1], out fontStyle))
-				{
-					this.d_curPos++;
-					return;
-				}
-				this.d_curPos += 2;
-				if (this.currentConfig.fontStyle != fontStyle)
-				{
-					this.save(false);
-					this.currentConfig.fontStyle = fontStyle;
-					return;
+					save(isNewLine: false);
+					currentConfig.fontStyle = fs;
 				}
 			}
 			else
 			{
-				this.d_curPos++;
+				d_curPos++;
 			}
 		}
-
-		// Token: 0x06003673 RID: 13939 RVA: 0x00174F55 File Offset: 0x00173155
-		private void ParserStrickout(string text)
+		else
 		{
-			this.save(false);
-			this.currentConfig.isStrickout = !this.currentConfig.isStrickout;
-			this.d_curPos++;
+			d_curPos++;
 		}
+	}
 
-		// Token: 0x06003674 RID: 13940 RVA: 0x00174F88 File Offset: 0x00173188
-		private void ParserFontColorS(string text)
+	private void ParserStrickout(string text)
+	{
+		save(isNewLine: false);
+		currentConfig.isStrickout = !currentConfig.isStrickout;
+		d_curPos++;
+	}
+
+	private void ParserFontColorS(string text)
+	{
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		d_curPos--;
+		Color val = Tools.ParserColorName(text, ref d_curPos, currentConfig.fontColor);
+		if (val != currentConfig.fontColor)
 		{
-			this.d_curPos--;
-			Color color = Tools.ParserColorName(text, ref this.d_curPos, this.currentConfig.fontColor);
-			if (color != this.currentConfig.fontColor)
-			{
-				this.save(false);
-				this.currentConfig.fontColor = color;
-			}
+			save(isNewLine: false);
+			currentConfig.fontColor = val;
 		}
+	}
 
-		// Token: 0x06003675 RID: 13941 RVA: 0x00174FE4 File Offset: 0x001731E4
-		private void ParserFontColor(string text)
+	private void ParserFontColor(string text)
+	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		Color val = Tools.ParserColorName(text, ref d_curPos, currentConfig.fontColor);
+		if (val != currentConfig.fontColor)
 		{
-			Color color = Tools.ParserColorName(text, ref this.d_curPos, this.currentConfig.fontColor);
-			if (color != this.currentConfig.fontColor)
-			{
-				this.save(false);
-				this.currentConfig.fontColor = color;
-			}
+			save(isNewLine: false);
+			currentConfig.fontColor = val;
 		}
+	}
 
-		// Token: 0x06003676 RID: 13942 RVA: 0x0017502F File Offset: 0x0017322F
-		private void ParserUnderLine(string text)
+	private void ParserUnderLine(string text)
+	{
+		save(isNewLine: false);
+		currentConfig.isUnderline = !currentConfig.isUnderline;
+		d_curPos++;
+	}
+
+	private void ParserNewLine(string text)
+	{
+		save(isNewLine: true);
+		d_curPos++;
+	}
+
+	private void ParserOutputChar(string text)
+	{
+		d_text.Append('#');
+		d_curPos++;
+	}
+
+	private void ParserHyperlink(string text)
+	{
+		int num = text.IndexOf("#h", d_curPos + 1);
+		if (num == -1)
 		{
-			this.save(false);
-			this.currentConfig.isUnderline = !this.currentConfig.isUnderline;
-			this.d_curPos++;
+			d_curPos++;
+			return;
 		}
+		save(isNewLine: false);
+		d_text.Remove(0, d_text.Length);
+		d_text.Append(text, d_curPos + 1, num - d_curPos - 1);
+		saveHy();
+		d_curPos = num + 2;
+	}
 
-		// Token: 0x06003677 RID: 13943 RVA: 0x0017505F File Offset: 0x0017325F
-		private void ParserNewLine(string text)
+	private void ParserFontSize(string text)
+	{
+		float value = 1f;
+		if (ParserFloat(ref d_curPos, text, ref value, 2))
 		{
-			this.save(true);
-			this.d_curPos++;
+			save(isNewLine: false);
+			currentConfig.fontSize = (int)value;
 		}
+	}
 
-		// Token: 0x06003678 RID: 13944 RVA: 0x00175076 File Offset: 0x00173276
-		private void ParserOutputChar(string text)
+	private void ParserXYZ(string text)
+	{
+		int index = d_curPos;
+		float value = 0f;
+		if (!ParserFloat(ref d_curPos, text, ref value) || value == 0f)
 		{
-			this.d_text.Append('#');
-			this.d_curPos++;
+			return;
 		}
-
-		// Token: 0x06003679 RID: 13945 RVA: 0x00175094 File Offset: 0x00173294
-		private void ParserHyperlink(string text)
+		if (text[index] == 'x')
 		{
-			int num = text.IndexOf("#h", this.d_curPos + 1);
-			if (num == -1)
-			{
-				this.d_curPos++;
-				return;
-			}
-			this.save(false);
-			this.d_text.Remove(0, this.d_text.Length);
-			this.d_text.Append(text, this.d_curPos + 1, num - this.d_curPos - 1);
-			this.saveHy();
-			this.d_curPos = num + 2;
+			save(isNewLine: false);
+			saveX(value);
 		}
-
-		// Token: 0x0600367A RID: 13946 RVA: 0x00175118 File Offset: 0x00173318
-		private void ParserFontSize(string text)
+		else if (text[index] == 'y')
 		{
-			float num = 1f;
-			if (!TextParser.ParserFloat(ref this.d_curPos, text, ref num, 2))
+			if (d_text.Length != 0)
 			{
-				return;
+				save(isNewLine: true);
 			}
-			this.save(false);
-			this.currentConfig.fontSize = (int)num;
+			saveY(value);
 		}
-
-		// Token: 0x0600367B RID: 13947 RVA: 0x00175154 File Offset: 0x00173354
-		private void ParserXYZ(string text)
+		else if (text[index] == 'z')
 		{
-			int index = this.d_curPos;
-			float num = 0f;
-			if (!TextParser.ParserFloat(ref this.d_curPos, text, ref num, 3))
+			if (d_text.Length != 0)
 			{
-				return;
+				save(isNewLine: false);
 			}
-			if (num == 0f)
-			{
-				return;
-			}
-			if (text[index] == 'x')
-			{
-				this.save(false);
-				this.saveX(num);
-				return;
-			}
-			if (text[index] == 'y')
-			{
-				if (this.d_text.Length != 0)
-				{
-					this.save(true);
-				}
-				this.saveY(num);
-				return;
-			}
-			if (text[index] == 'z')
-			{
-				if (this.d_text.Length != 0)
-				{
-					this.save(false);
-				}
-				this.saveZ(num);
-			}
+			saveZ(value);
 		}
+	}
 
-		// Token: 0x0600367C RID: 13948 RVA: 0x001751F0 File Offset: 0x001733F0
-		private void ParserFont(string text)
+	private void ParserFont(string text)
+	{
+		d_curPos++;
+		Font val = Tools.ParserFontName(text, ref d_curPos);
+		if ((Object)(object)val != (Object)null)
 		{
-			this.d_curPos++;
-			Font font = Tools.ParserFontName(text, ref this.d_curPos);
-			if (font != null)
+			if ((Object)(object)currentConfig.font != (Object)(object)val)
 			{
-				if (this.currentConfig.font != font)
-				{
-					this.save(false);
-					this.currentConfig.font = font;
-					return;
-				}
-			}
-			else
-			{
-				this.d_curPos--;
+				save(isNewLine: false);
+				currentConfig.font = val;
 			}
 		}
-
-		// Token: 0x0600367D RID: 13949 RVA: 0x00175258 File Offset: 0x00173458
-		private void ParseHyText(string text, HyperlinkNode data)
+		else
 		{
-			if (TextParser.hyConfig == null)
-			{
-				TextParser.hyConfig = new TextParser.HyConfig(this);
-			}
-			TextParser.hyConfig.text = text;
-			TextParser.hyConfig.node = data;
-			TextParser.hyConfig.startPos = 0;
-			TextParser.hyConfig.lenght = text.Length;
-			using (PD<StringBuilder> sb = Pool.GetSB())
-			{
-				TextParser.hyConfig.BeginParser(sb.value);
-				TextParser.hyConfig.Clear();
-			}
+			d_curPos--;
 		}
+	}
 
-		// Token: 0x0600367E RID: 13950 RVA: 0x001752E8 File Offset: 0x001734E8
-		private void Reg(string type, Action<string, TagAttributes> fun)
+	private void ParseHyText(string text, HyperlinkNode data)
+	{
+		if (hyConfig == null)
 		{
-			this.TagFuns.Add(type, delegate(string key, string param)
-			{
-				TextParser.s_TagAttributes.Release();
-				TextParser.s_TagAttributes.Add(param);
-				try
-				{
-					fun(type, TextParser.s_TagAttributes);
-				}
-				catch (Exception ex)
-				{
-					Debug.LogException(ex);
-				}
-				TextParser.s_TagAttributes.Release();
-			});
+			hyConfig = new HyConfig(this);
 		}
-
-		// Token: 0x0600367F RID: 13951 RVA: 0x00175326 File Offset: 0x00173526
-		private static Color ParserColorName(string name, int startpos, Color c)
+		hyConfig.text = text;
+		hyConfig.node = data;
+		hyConfig.startPos = 0;
+		hyConfig.lenght = text.Length;
+		PD<StringBuilder> sB = Pool.GetSB();
+		try
 		{
-			if (string.IsNullOrEmpty(name))
-			{
-				return c;
-			}
-			if (name[startpos] == '#')
-			{
-				return Tools.ParseColor(name, startpos, c);
-			}
-			return ColorConst.Get(name, c);
+			hyConfig.BeginParser(sB.value);
+			hyConfig.Clear();
 		}
-
-		// Token: 0x06003680 RID: 13952 RVA: 0x00175350 File Offset: 0x00173550
-		private static void SetDefaultConfig(NodeBase nb, TagAttributes att)
+		finally
 		{
-			nb.d_bBlink = att.getValueAsBool("b", nb.d_bBlink);
-			nb.d_color = TextParser.ParserColorName(att.getValueAsString("c"), 0, nb.d_color);
-			int valueAsInteger = att.getValueAsInteger("x", -1);
-			if (valueAsInteger > 0)
-			{
-				nb.d_bOffset = true;
-				nb.d_rectOffset.xMin = (float)(-(float)valueAsInteger / 2);
-				nb.d_rectOffset.xMax = (float)(valueAsInteger / 2);
-			}
-			valueAsInteger = att.getValueAsInteger("y", -1);
-			if (valueAsInteger > 0)
-			{
-				nb.d_bOffset = true;
-				nb.d_rectOffset.yMin = (float)(-(float)valueAsInteger / 2);
-				nb.d_rectOffset.yMax = (float)(valueAsInteger / 2);
-			}
+			((IDisposable)sB).Dispose();
 		}
+	}
 
-		// Token: 0x06003681 RID: 13953 RVA: 0x00175400 File Offset: 0x00173600
-		private static void SetSizeConfig(RectNode nb, TagAttributes att, Vector2 size)
+	private void Reg(string type, Action<string, TagAttributes> fun)
+	{
+		TagFuns.Add(type, delegate(string key, string param)
 		{
-			nb.width = att.getValueAsFloat("w", size.x);
-			nb.height = att.getValueAsFloat("h", size.y);
-			int valueAsInteger = att.getValueAsInteger("t", 0);
-			if (valueAsInteger == 1)
+			s_TagAttributes.Release();
+			s_TagAttributes.Add(param);
+			try
 			{
-				nb.height = nb.width * size.y / size.x;
-				return;
+				fun(type, s_TagAttributes);
 			}
-			if (valueAsInteger != 2)
+			catch (Exception ex)
 			{
-				return;
+				Debug.LogException(ex);
 			}
+			s_TagAttributes.Release();
+		});
+	}
+
+	private static Color ParserColorName(string name, int startpos, Color c)
+	{
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		if (string.IsNullOrEmpty(name))
+		{
+			return c;
+		}
+		if (name[startpos] == '#')
+		{
+			return Tools.ParseColor(name, startpos, c);
+		}
+		return ColorConst.Get(name, c);
+	}
+
+	private static void SetDefaultConfig(NodeBase nb, TagAttributes att)
+	{
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		nb.d_bBlink = att.getValueAsBool("b", nb.d_bBlink);
+		nb.d_color = ParserColorName(att.getValueAsString("c"), 0, nb.d_color);
+		int valueAsInteger = att.getValueAsInteger("x", -1);
+		if (valueAsInteger > 0)
+		{
+			nb.d_bOffset = true;
+			((Rect)(ref nb.d_rectOffset)).xMin = -valueAsInteger / 2;
+			((Rect)(ref nb.d_rectOffset)).xMax = valueAsInteger / 2;
+		}
+		valueAsInteger = att.getValueAsInteger("y", -1);
+		if (valueAsInteger > 0)
+		{
+			nb.d_bOffset = true;
+			((Rect)(ref nb.d_rectOffset)).yMin = -valueAsInteger / 2;
+			((Rect)(ref nb.d_rectOffset)).yMax = valueAsInteger / 2;
+		}
+	}
+
+	private static void SetSizeConfig(RectNode nb, TagAttributes att, Vector2 size)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		nb.width = att.getValueAsFloat("w", size.x);
+		nb.height = att.getValueAsFloat("h", size.y);
+		switch (att.getValueAsInteger("t", 0))
+		{
+		case 1:
+			nb.height = nb.width * size.y / size.x;
+			break;
+		case 2:
 			nb.width = nb.height * size.x / size.y;
+			break;
 		}
+	}
 
-		// Token: 0x06003682 RID: 13954 RVA: 0x00175488 File Offset: 0x00173688
-		private void RegTag()
+	private void RegTag()
+	{
+		TagFuns = new Dictionary<string, Action<string, string>>();
+		Reg("sprite ", delegate(string tag, TagAttributes att)
 		{
-			this.TagFuns = new Dictionary<string, Action<string, string>>();
-			this.Reg("sprite ", delegate(string tag, TagAttributes att)
+			//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+			string valueAsString = att.getValueAsString("n");
+			Sprite sprite2 = Tools.GetSprite(valueAsString);
+			if ((Object)(object)sprite2 == (Object)null)
 			{
-				string valueAsString = att.getValueAsString("n");
-				Sprite sprite = Tools.GetSprite(valueAsString);
-				if (sprite == null)
-				{
-					Debug.LogErrorFormat("not find sprite:{0}!", new object[]
-					{
-						valueAsString
-					});
-					return;
-				}
-				Vector2 size = sprite.rect.size;
-				SpriteNode spriteNode = this.CreateNode<SpriteNode>();
-				spriteNode.sprite = sprite;
-				spriteNode.SetConfig(this.currentConfig);
-				TextParser.SetSizeConfig(spriteNode, att, size);
-				TextParser.SetDefaultConfig(spriteNode, att);
-				this.d_nodeList.Add(spriteNode);
-			});
-			this.Reg("pos ", delegate(string tag, TagAttributes att)
+				Debug.LogErrorFormat("not find sprite:{0}!", new object[1] { valueAsString });
+			}
+			else
 			{
-				SetPosNode setPosNode = this.CreateNode<SetPosNode>();
-				setPosNode.d_value = att.getValueAsFloat("v", 0f);
-				setPosNode.type = (TypePosition)att.getValueAsInteger("t", 0);
-				this.d_nodeList.Add(setPosNode);
-			});
-			this.Reg("RectSprite ", delegate(string tag, TagAttributes att)
+				Rect rect2 = sprite2.rect;
+				Vector2 size = ((Rect)(ref rect2)).size;
+				SpriteNode spriteNode = CreateNode<SpriteNode>();
+				spriteNode.sprite = sprite2;
+				spriteNode.SetConfig(currentConfig);
+				SetSizeConfig(spriteNode, att, size);
+				SetDefaultConfig(spriteNode, att);
+				d_nodeList.Add(spriteNode);
+			}
+		});
+		Reg("pos ", delegate(string tag, TagAttributes att)
+		{
+			SetPosNode setPosNode = CreateNode<SetPosNode>();
+			setPosNode.d_value = att.getValueAsFloat("v", 0f);
+			setPosNode.type = (TypePosition)att.getValueAsInteger("t", 0);
+			d_nodeList.Add(setPosNode);
+		});
+		Reg("RectSprite ", delegate(string tag, TagAttributes att)
+		{
+			//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+			Sprite sprite = Tools.GetSprite(att.getValueAsString("n"));
+			if ((Object)(object)sprite == (Object)null)
 			{
-				Sprite sprite = Tools.GetSprite(att.getValueAsString("n"));
-				if (sprite == null)
-				{
-					Debug.LogErrorFormat("not find sprite:{0}!", new object[]
-					{
-						att.getValueAsString("n")
-					});
-					return;
-				}
-				RectSpriteNode rectSpriteNode = this.CreateNode<RectSpriteNode>();
-				rectSpriteNode.SetConfig(this.currentConfig);
+				Debug.LogErrorFormat("not find sprite:{0}!", new object[1] { att.getValueAsString("n") });
+			}
+			else
+			{
+				RectSpriteNode rectSpriteNode = CreateNode<RectSpriteNode>();
+				rectSpriteNode.SetConfig(currentConfig);
 				Rect rect = sprite.rect;
 				rectSpriteNode.sprite = sprite;
-				rectSpriteNode.rect.width = att.getValueAsFloat("w", rect.width);
-				rectSpriteNode.rect.height = att.getValueAsFloat("h", rect.height);
-				int valueAsInteger = att.getValueAsInteger("t", 0);
-				if (valueAsInteger != 1)
+				((Rect)(ref rectSpriteNode.rect)).width = att.getValueAsFloat("w", ((Rect)(ref rect)).width);
+				((Rect)(ref rectSpriteNode.rect)).height = att.getValueAsFloat("h", ((Rect)(ref rect)).height);
+				switch (att.getValueAsInteger("t", 0))
 				{
-					if (valueAsInteger == 2)
-					{
-						rectSpriteNode.rect.width = rectSpriteNode.rect.height * rect.width / rect.height;
-					}
+				case 1:
+					((Rect)(ref rectSpriteNode.rect)).height = ((Rect)(ref rectSpriteNode.rect)).width * ((Rect)(ref rect)).height / ((Rect)(ref rect)).width;
+					break;
+				case 2:
+					((Rect)(ref rectSpriteNode.rect)).width = ((Rect)(ref rectSpriteNode.rect)).height * ((Rect)(ref rect)).width / ((Rect)(ref rect)).height;
+					break;
 				}
-				else
-				{
-					rectSpriteNode.rect.height = rectSpriteNode.rect.width * rect.height / rect.width;
-				}
-				rectSpriteNode.rect.x = att.getValueAsFloat("px", 0f);
-				rectSpriteNode.rect.y = att.getValueAsFloat("py", 0f);
-				TextParser.SetDefaultConfig(rectSpriteNode, att);
-				this.d_nodeList.Add(rectSpriteNode);
-			});
-			this.Reg("hy ", delegate(string tag, TagAttributes att)
+				((Rect)(ref rectSpriteNode.rect)).x = att.getValueAsFloat("px", 0f);
+				((Rect)(ref rectSpriteNode.rect)).y = att.getValueAsFloat("py", 0f);
+				SetDefaultConfig(rectSpriteNode, att);
+				d_nodeList.Add(rectSpriteNode);
+			}
+		});
+		Reg("hy ", delegate(string tag, TagAttributes att)
+		{
+			//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005e: Expected I4, but got Unknown
+			//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0099: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+			HyperlinkNode hyperlinkNode = CreateNode<HyperlinkNode>();
+			hyperlinkNode.SetConfig(currentConfig);
+			hyperlinkNode.d_text = att.getValueAsString("t");
+			hyperlinkNode.d_link = att.getValueAsString("l");
+			hyperlinkNode.d_fontSize = att.getValueAsInteger("fs", hyperlinkNode.d_fontSize);
+			hyperlinkNode.d_fontStyle = (FontStyle)att.getValueAsInteger("ft", (int)hyperlinkNode.d_fontStyle);
+			if (att.exists("fn"))
 			{
-				HyperlinkNode hyperlinkNode = this.CreateNode<HyperlinkNode>();
-				hyperlinkNode.SetConfig(this.currentConfig);
-				hyperlinkNode.d_text = att.getValueAsString("t");
-				hyperlinkNode.d_link = att.getValueAsString("l");
-				hyperlinkNode.d_fontSize = att.getValueAsInteger("fs", hyperlinkNode.d_fontSize);
-				hyperlinkNode.d_fontStyle = att.getValueAsInteger("ft", hyperlinkNode.d_fontStyle);
-				if (att.exists("fn"))
-				{
-					hyperlinkNode.d_font = Tools.GetFont(att.getValueAsString("fn"));
-				}
-				hyperlinkNode.d_color = TextParser.ParserColorName(att.getValueAsString("fc"), 0, hyperlinkNode.d_color);
-				hyperlinkNode.hoveColor = TextParser.ParserColorName(att.getValueAsString("fhc"), 0, hyperlinkNode.hoveColor);
-				hyperlinkNode.d_bUnderline = att.getValueAsBool("ul", hyperlinkNode.d_bUnderline);
-				hyperlinkNode.d_bStrickout = att.getValueAsBool("so", hyperlinkNode.d_bStrickout);
-				this.d_nodeList.Add(hyperlinkNode);
-			});
-			this.Reg("face ", delegate(string tag, TagAttributes att)
+				hyperlinkNode.d_font = Tools.GetFont(att.getValueAsString("fn"));
+			}
+			hyperlinkNode.d_color = ParserColorName(att.getValueAsString("fc"), 0, hyperlinkNode.d_color);
+			hyperlinkNode.hoveColor = ParserColorName(att.getValueAsString("fhc"), 0, hyperlinkNode.hoveColor);
+			hyperlinkNode.d_bUnderline = att.getValueAsBool("ul", hyperlinkNode.d_bUnderline);
+			hyperlinkNode.d_bStrickout = att.getValueAsBool("so", hyperlinkNode.d_bStrickout);
+			d_nodeList.Add(hyperlinkNode);
+		});
+		Reg("face ", delegate(string tag, TagAttributes att)
+		{
+			//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+			Cartoon cartoon = Tools.GetCartoon(att.getValueAsString("n"));
+			if (cartoon != null)
 			{
-				Cartoon cartoon = Tools.GetCartoon(att.getValueAsString("n"));
-				if (cartoon == null)
-				{
-					return;
-				}
-				CartoonNode cartoonNode = this.CreateNode<CartoonNode>();
+				CartoonNode cartoonNode = CreateNode<CartoonNode>();
 				cartoonNode.cartoon = cartoon;
-				cartoonNode.width = (float)cartoon.width;
-				cartoonNode.height = (float)cartoon.height;
-				cartoonNode.SetConfig(this.currentConfig);
-				TextParser.SetSizeConfig(cartoonNode, att, new Vector2((float)cartoon.width, (float)cartoon.height));
-				TextParser.SetDefaultConfig(cartoonNode, att);
-				this.d_nodeList.Add(cartoonNode);
-			});
-			this.TagFuns.Add("color=", delegate(string tag, string param)
-			{
-				if (string.IsNullOrEmpty(param))
-				{
-					return;
-				}
-				this.currentConfig.fontColor = TextParser.ParserColorName(param, 1, this.currentConfig.fontColor);
-			});
-			this.TagFuns.Add("/color", delegate(string tag, string param)
-			{
-				this.currentConfig.fontColor = this.startConfig.fontColor;
-			});
-			this.TagFuns.Add("b", delegate(string tag, string param)
-			{
-				this.currentConfig.fontStyle = (this.currentConfig.fontStyle | 1);
-			});
-			this.TagFuns.Add("/b", delegate(string tag, string param)
-			{
-				this.currentConfig.fontStyle = (this.currentConfig.fontStyle & -2);
-			});
-			this.TagFuns.Add("i", delegate(string tag, string param)
-			{
-				this.currentConfig.fontStyle = (this.currentConfig.fontStyle | 2);
-			});
-			this.TagFuns.Add("/i", delegate(string tag, string param)
-			{
-				this.currentConfig.fontStyle = (this.currentConfig.fontStyle & -3);
-			});
-			this.TagFuns.Add("size=", delegate(string tag, string param)
-			{
-				this.currentConfig.fontSize = (int)Tools.stringToFloat(param, (float)this.currentConfig.fontSize);
-			});
-			this.TagFuns.Add("/size", delegate(string tag, string param)
-			{
-				this.currentConfig.fontSize = this.startConfig.fontSize;
-			});
-			this.Reg("ol ", delegate(string tag, TagAttributes att)
-			{
-				this.currentConfig.effectType = EffectType.Outline;
-				TextParser.ParamEffectType(ref this.currentConfig, att);
-			});
-			this.TagFuns.Add("/ol", delegate(string tag, string param)
-			{
-				this.currentConfig.effectType = EffectType.Null;
-			});
-			this.Reg("so ", delegate(string tag, TagAttributes att)
-			{
-				this.currentConfig.effectType = EffectType.Outline;
-				TextParser.ParamEffectType(ref this.currentConfig, att);
-			});
-			this.TagFuns.Add("/so", delegate(string tag, string param)
-			{
-				this.currentConfig.effectType = EffectType.Null;
-			});
-			this.Reg("offset ", delegate(string tag, TagAttributes att)
-			{
-				float valueAsFloat = att.getValueAsFloat("x", 0f);
-				float valueAsFloat2 = att.getValueAsFloat("y", 0f);
-				if (valueAsFloat <= 0f && valueAsFloat2 <= 0f)
-				{
-					return;
-				}
-				this.currentConfig.isOffset = true;
-				this.currentConfig.offsetRect.xMin = -valueAsFloat / 2f;
-				this.currentConfig.offsetRect.xMax = valueAsFloat / 2f;
-				this.currentConfig.offsetRect.yMin = -valueAsFloat / 2f;
-				this.currentConfig.offsetRect.yMax = valueAsFloat / 2f;
-			});
-		}
-
-		// Token: 0x06003683 RID: 13955 RVA: 0x00175670 File Offset: 0x00173870
-		private static void ParamEffectType(ref TextParser.Config config, TagAttributes att)
+				cartoonNode.width = cartoon.width;
+				cartoonNode.height = cartoon.height;
+				cartoonNode.SetConfig(currentConfig);
+				SetSizeConfig(cartoonNode, att, new Vector2((float)cartoon.width, (float)cartoon.height));
+				SetDefaultConfig(cartoonNode, att);
+				d_nodeList.Add(cartoonNode);
+			}
+		});
+		TagFuns.Add("color=", delegate(string tag, string param)
 		{
-			config.effectColor = TextParser.ParserColorName(att.getValueAsString("c"), 0, Color.black);
-			config.effectDistance.x = att.getValueAsFloat("x", 1f);
-			config.effectDistance.y = att.getValueAsFloat("y", 1f);
-		}
-
-		// Token: 0x06003684 RID: 13956 RVA: 0x001756D0 File Offset: 0x001738D0
-		private void TagParam(string tag, string param)
+			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+			if (!string.IsNullOrEmpty(param))
+			{
+				currentConfig.fontColor = ParserColorName(param, 1, currentConfig.fontColor);
+			}
+		});
+		TagFuns.Add("/color", delegate
 		{
-			Action<string, string> action;
-			if (this.TagFuns.TryGetValue(tag, out action))
-			{
-				action(tag, param);
-				return;
-			}
-			Debug.LogErrorFormat("tag:{0} param:{1} not find!", new object[]
-			{
-				tag,
-				param
-			});
-		}
-
-		// Token: 0x04002F80 RID: 12160
-		private Owner mOwner;
-
-		// Token: 0x04002F81 RID: 12161
-		protected int d_curPos;
-
-		// Token: 0x04002F82 RID: 12162
-		protected TextParser.Config startConfig;
-
-		// Token: 0x04002F83 RID: 12163
-		protected TextParser.Config currentConfig;
-
-		// Token: 0x04002F84 RID: 12164
-		protected List<NodeBase> d_nodeList;
-
-		// Token: 0x04002F85 RID: 12165
-		protected StringBuilder d_text = new StringBuilder();
-
-		// Token: 0x04002F86 RID: 12166
-		protected bool d_bBegin;
-
-		// Token: 0x04002F87 RID: 12167
-		private TextParser.OnFun[] OnFuns;
-
-		// Token: 0x04002F88 RID: 12168
-		private static TextParser.HyConfig hyConfig = null;
-
-		// Token: 0x04002F89 RID: 12169
-		private Dictionary<string, Action<string, string>> TagFuns;
-
-		// Token: 0x04002F8A RID: 12170
-		private static TagAttributes s_TagAttributes = new TagAttributes();
-
-		// Token: 0x0200150D RID: 5389
-		public struct Config
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+			currentConfig.fontColor = startConfig.fontColor;
+		});
+		TagFuns.Add("b", delegate
 		{
-			// Token: 0x060082DD RID: 33501 RVA: 0x002DCD30 File Offset: 0x002DAF30
-			public void Clear()
-			{
-				this.anchor = Anchor.Null;
-				this.font = null;
-				this.fontStyle = 0;
-				this.fontSize = 0;
-				this.fontColor = Color.white;
-				this.isUnderline = false;
-				this.isStrickout = false;
-				this.isBlink = false;
-				this.isDyncUnderline = false;
-				this.isDyncStrickout = false;
-				this.dyncSpeed = 0;
-				this.isOffset = false;
-				this.offsetRect.Set(0f, 0f, 0f, 0f);
-				this.effectType = EffectType.Null;
-				this.effectColor = Color.black;
-				this.effectDistance = Vector2.zero;
-				this.lineAlignment = LineAlignment.Default;
-			}
-
-			// Token: 0x060082DE RID: 33502 RVA: 0x002DCDDC File Offset: 0x002DAFDC
-			public void Set(TextParser.Config c)
-			{
-				this.anchor = c.anchor;
-				this.font = c.font;
-				this.fontStyle = c.fontStyle;
-				this.fontSize = c.fontSize;
-				this.fontColor = c.fontColor;
-				this.isUnderline = c.isUnderline;
-				this.isStrickout = c.isStrickout;
-				this.isBlink = c.isBlink;
-				this.dyncSpeed = c.dyncSpeed;
-				this.isOffset = c.isOffset;
-				this.offsetRect = c.offsetRect;
-				this.effectType = c.effectType;
-				this.effectColor = c.effectColor;
-				this.effectDistance = c.effectDistance;
-				this.isDyncUnderline = c.isDyncUnderline;
-				this.isDyncStrickout = c.isDyncStrickout;
-				this.lineAlignment = c.lineAlignment;
-			}
-
-			// Token: 0x060082DF RID: 33503 RVA: 0x002DCEB8 File Offset: 0x002DB0B8
-			public bool isSame(TextParser.Config c)
-			{
-				return this.anchor == c.anchor && this.font == c.font && this.fontStyle == c.fontStyle && this.isUnderline == c.isUnderline && this.fontColor == c.fontColor && this.isStrickout == c.isStrickout && this.isBlink == c.isBlink && this.fontSize == c.fontSize && this.lineAlignment == c.lineAlignment && this.isDyncUnderline == c.isDyncUnderline && this.isDyncStrickout == c.isDyncStrickout && this.dyncSpeed == c.dyncSpeed && ((this.effectType == EffectType.Null && c.effectType == EffectType.Null) || (this.effectType == c.effectType && this.effectColor == c.effectColor && this.effectDistance == c.effectDistance)) && ((!this.isOffset && !c.isOffset) || (this.isOffset == c.isOffset && this.offsetRect == c.offsetRect));
-			}
-
-			// Token: 0x04006E2E RID: 28206
-			public Anchor anchor;
-
-			// Token: 0x04006E2F RID: 28207
-			public Font font;
-
-			// Token: 0x04006E30 RID: 28208
-			public FontStyle fontStyle;
-
-			// Token: 0x04006E31 RID: 28209
-			public int fontSize;
-
-			// Token: 0x04006E32 RID: 28210
-			public Color fontColor;
-
-			// Token: 0x04006E33 RID: 28211
-			public bool isUnderline;
-
-			// Token: 0x04006E34 RID: 28212
-			public bool isStrickout;
-
-			// Token: 0x04006E35 RID: 28213
-			public bool isBlink;
-
-			// Token: 0x04006E36 RID: 28214
-			public bool isDyncUnderline;
-
-			// Token: 0x04006E37 RID: 28215
-			public bool isDyncStrickout;
-
-			// Token: 0x04006E38 RID: 28216
-			public int dyncSpeed;
-
-			// Token: 0x04006E39 RID: 28217
-			public bool isOffset;
-
-			// Token: 0x04006E3A RID: 28218
-			public Rect offsetRect;
-
-			// Token: 0x04006E3B RID: 28219
-			public EffectType effectType;
-
-			// Token: 0x04006E3C RID: 28220
-			public Color effectColor;
-
-			// Token: 0x04006E3D RID: 28221
-			public Vector2 effectDistance;
-
-			// Token: 0x04006E3E RID: 28222
-			public LineAlignment lineAlignment;
-		}
-
-		// Token: 0x0200150E RID: 5390
-		// (Invoke) Token: 0x060082E1 RID: 33505
-		private delegate void OnFun(string c);
-
-		// Token: 0x0200150F RID: 5391
-		private class HyConfig
+			ref FontStyle fontStyle4 = ref currentConfig.fontStyle;
+			fontStyle4 = (FontStyle)((uint)fontStyle4 | 1u);
+		});
+		TagFuns.Add("/b", delegate
 		{
-			// Token: 0x060082E4 RID: 33508 RVA: 0x002DD014 File Offset: 0x002DB214
-			public HyConfig(TextParser p)
+			ref FontStyle fontStyle3 = ref currentConfig.fontStyle;
+			fontStyle3 = (FontStyle)((uint)fontStyle3 & 0xFFFFFFFEu);
+		});
+		TagFuns.Add("i", delegate
+		{
+			ref FontStyle fontStyle2 = ref currentConfig.fontStyle;
+			fontStyle2 = (FontStyle)((uint)fontStyle2 | 2u);
+		});
+		TagFuns.Add("/i", delegate
+		{
+			ref FontStyle fontStyle = ref currentConfig.fontStyle;
+			fontStyle = (FontStyle)((uint)fontStyle & 0xFFFFFFFDu);
+		});
+		TagFuns.Add("size=", delegate(string tag, string param)
+		{
+			currentConfig.fontSize = (int)Tools.stringToFloat(param, currentConfig.fontSize);
+		});
+		TagFuns.Add("/size", delegate
+		{
+			currentConfig.fontSize = startConfig.fontSize;
+		});
+		Reg("ol ", delegate(string tag, TagAttributes att)
+		{
+			currentConfig.effectType = EffectType.Outline;
+			ParamEffectType(ref currentConfig, att);
+		});
+		TagFuns.Add("/ol", delegate
+		{
+			currentConfig.effectType = EffectType.Null;
+		});
+		Reg("so ", delegate(string tag, TagAttributes att)
+		{
+			currentConfig.effectType = EffectType.Outline;
+			ParamEffectType(ref currentConfig, att);
+		});
+		TagFuns.Add("/so", delegate
+		{
+			currentConfig.effectType = EffectType.Null;
+		});
+		Reg("offset ", delegate(string tag, TagAttributes att)
+		{
+			float valueAsFloat = att.getValueAsFloat("x", 0f);
+			float valueAsFloat2 = att.getValueAsFloat("y", 0f);
+			if (!(valueAsFloat <= 0f) || !(valueAsFloat2 <= 0f))
 			{
-				this.parser = p;
-				this.OnFunHys = new TextParser.HyConfig.OnFunHy[128];
-				this.OnFunHys[82] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[71] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[66] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[75] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[89] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[87] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[80] = new TextParser.HyConfig.OnFunHy(this.ParserSureColor);
-				this.OnFunHys[99] = new TextParser.HyConfig.OnFunHy(this.ParserFontColor);
-				this.OnFunHys[110] = new TextParser.HyConfig.OnFunHy(this.ParserRestore);
-				this.OnFunHys[115] = new TextParser.HyConfig.OnFunHy(this.ParserFontSize);
-				this.OnFunHys[102] = new TextParser.HyConfig.OnFunHy(this.ParserFont);
-				this.OnFunHys[35] = new TextParser.HyConfig.OnFunHy(this.ParserOutputChar);
-				this.OnFunHys[117] = delegate(string text)
-				{
-					this.node.d_bUnderline = !this.node.d_bUnderline;
-					this.startPos++;
-				};
-				this.OnFunHys[101] = delegate(string text)
-				{
-					this.node.d_bStrickout = !this.node.d_bStrickout;
-					this.startPos++;
-				};
+				currentConfig.isOffset = true;
+				((Rect)(ref currentConfig.offsetRect)).xMin = (0f - valueAsFloat) / 2f;
+				((Rect)(ref currentConfig.offsetRect)).xMax = valueAsFloat / 2f;
+				((Rect)(ref currentConfig.offsetRect)).yMin = (0f - valueAsFloat) / 2f;
+				((Rect)(ref currentConfig.offsetRect)).yMax = valueAsFloat / 2f;
 			}
+		});
+	}
 
-			// Token: 0x060082E5 RID: 33509 RVA: 0x002DD16F File Offset: 0x002DB36F
-			private void ParserOutputChar(string text)
-			{
-				this.sb.Append("#");
-				this.startPos++;
-			}
+	private static void ParamEffectType(ref Config config, TagAttributes att)
+	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		config.effectColor = ParserColorName(att.getValueAsString("c"), 0, Color.black);
+		config.effectDistance.x = att.getValueAsFloat("x", 1f);
+		config.effectDistance.y = att.getValueAsFloat("y", 1f);
+	}
 
-			// Token: 0x060082E6 RID: 33510 RVA: 0x002DD190 File Offset: 0x002DB390
-			private void ParserSureColor(string text)
-			{
-				this.node.d_color = TextParser.GetColour((uint)text[this.startPos]);
-				this.startPos++;
-			}
-
-			// Token: 0x060082E7 RID: 33511 RVA: 0x002DD1BC File Offset: 0x002DB3BC
-			private void ParserFontColor(string text)
-			{
-				this.node.d_color = Tools.ParserColorName(text, ref this.startPos, this.node.d_color);
-			}
-
-			// Token: 0x060082E8 RID: 33512 RVA: 0x002DD1E0 File Offset: 0x002DB3E0
-			private void ParserRestore(string text)
-			{
-				this.node.SetConfig(this.parser.startConfig);
-			}
-
-			// Token: 0x060082E9 RID: 33513 RVA: 0x002DD1F8 File Offset: 0x002DB3F8
-			private void ParserFontSize(string text)
-			{
-				float num = 1f;
-				if (!TextParser.ParserFloat(ref this.startPos, text, ref num, 3))
-				{
-					return;
-				}
-				this.node.d_fontSize = (int)num;
-			}
-
-			// Token: 0x060082EA RID: 33514 RVA: 0x002DD22C File Offset: 0x002DB42C
-			private void ParserFont(string text)
-			{
-				this.startPos++;
-				Font font = Tools.ParserFontName(text, ref this.startPos);
-				if (font != null)
-				{
-					this.node.d_font = font;
-					return;
-				}
-				this.startPos--;
-			}
-
-			// Token: 0x060082EB RID: 33515 RVA: 0x002DD278 File Offset: 0x002DB478
-			public void Clear()
-			{
-				this.text = null;
-				this.node = null;
-				this.sb = null;
-				this.startPos = 0;
-			}
-
-			// Token: 0x060082EC RID: 33516 RVA: 0x002DD298 File Offset: 0x002DB498
-			public void BeginParser(StringBuilder s)
-			{
-				this.sb = s;
-				bool flag = false;
-				while (this.lenght > this.startPos)
-				{
-					if (!flag)
-					{
-						if (this.text[this.startPos] == '#')
-						{
-							flag = true;
-							this.startPos++;
-						}
-						else
-						{
-							this.sb.Append(this.text[this.startPos]);
-							this.startPos++;
-						}
-					}
-					else
-					{
-						char c = this.text[this.startPos];
-						TextParser.HyConfig.OnFunHy onFunHy;
-						if (c < '\u0080' && (onFunHy = this.OnFunHys[(int)c]) != null)
-						{
-							onFunHy(this.text);
-						}
-						else
-						{
-							this.sb.Append(this.text[this.startPos]);
-							this.startPos++;
-						}
-						flag = false;
-					}
-				}
-				this.node.d_text = this.sb.ToString();
-			}
-
-			// Token: 0x04006E3F RID: 28223
-			public string text = "";
-
-			// Token: 0x04006E40 RID: 28224
-			public HyperlinkNode node;
-
-			// Token: 0x04006E41 RID: 28225
-			public int startPos;
-
-			// Token: 0x04006E42 RID: 28226
-			public int lenght;
-
-			// Token: 0x04006E43 RID: 28227
-			private StringBuilder sb;
-
-			// Token: 0x04006E44 RID: 28228
-			public TextParser parser;
-
-			// Token: 0x04006E45 RID: 28229
-			private TextParser.HyConfig.OnFunHy[] OnFunHys;
-
-			// Token: 0x0200175A RID: 5978
-			// (Invoke) Token: 0x06008992 RID: 35218
-			private delegate void OnFunHy(string text);
+	private void TagParam(string tag, string param)
+	{
+		if (TagFuns.TryGetValue(tag, out var value))
+		{
+			value(tag, param);
+			return;
 		}
+		Debug.LogErrorFormat("tag:{0} param:{1} not find!", new object[2] { tag, param });
 	}
 }

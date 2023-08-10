@@ -1,110 +1,117 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[RequireComponent(typeof(SpriteRenderer))]
+public class SpriteFader : MonoBehaviour
 {
-	// Token: 0x02000E86 RID: 3718
-	[RequireComponent(typeof(SpriteRenderer))]
-	public class SpriteFader : MonoBehaviour
+	protected float fadeDuration;
+
+	protected float fadeTimer;
+
+	protected Color startColor;
+
+	protected Color endColor;
+
+	protected Vector2 slideOffset;
+
+	protected Vector3 endPosition;
+
+	protected SpriteRenderer spriteRenderer;
+
+	protected Action onFadeComplete;
+
+	protected virtual void Start()
 	{
-		// Token: 0x06006964 RID: 26980 RVA: 0x00290EAB File Offset: 0x0028F0AB
-		protected virtual void Start()
-		{
-			this.spriteRenderer = (base.GetComponent<Renderer>() as SpriteRenderer);
-		}
+		ref SpriteRenderer reference = ref spriteRenderer;
+		Renderer component = ((Component)this).GetComponent<Renderer>();
+		reference = (SpriteRenderer)(object)((component is SpriteRenderer) ? component : null);
+	}
 
-		// Token: 0x06006965 RID: 26981 RVA: 0x00290EC0 File Offset: 0x0028F0C0
-		protected virtual void Update()
+	protected virtual void Update()
+	{
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		fadeTimer += Time.deltaTime;
+		if (fadeTimer > fadeDuration)
 		{
-			this.fadeTimer += Time.deltaTime;
-			if (this.fadeTimer > this.fadeDuration)
+			spriteRenderer.color = endColor;
+			if (((Vector2)(ref slideOffset)).magnitude > 0f)
 			{
-				this.spriteRenderer.color = this.endColor;
-				if (this.slideOffset.magnitude > 0f)
-				{
-					base.transform.position = this.endPosition;
-				}
-				Object.Destroy(this);
-				if (this.onFadeComplete != null)
-				{
-					this.onFadeComplete();
-					return;
-				}
+				((Component)this).transform.position = endPosition;
 			}
-			else
+			Object.Destroy((Object)(object)this);
+			if (onFadeComplete != null)
 			{
-				float num = Mathf.SmoothStep(0f, 1f, this.fadeTimer / this.fadeDuration);
-				this.spriteRenderer.color = Color.Lerp(this.startColor, this.endColor, num);
-				if (this.slideOffset.magnitude > 0f)
-				{
-					Vector3 vector = this.endPosition;
-					vector.x += this.slideOffset.x;
-					vector.y += this.slideOffset.y;
-					base.transform.position = Vector3.Lerp(vector, this.endPosition, num);
-				}
+				onFadeComplete();
 			}
 		}
-
-		// Token: 0x06006966 RID: 26982 RVA: 0x00290FD8 File Offset: 0x0028F1D8
-		public static void FadeSprite(SpriteRenderer spriteRenderer, Color targetColor, float duration, Vector2 slideOffset, Action onComplete = null)
+		else
 		{
-			if (spriteRenderer == null)
+			float num = Mathf.SmoothStep(0f, 1f, fadeTimer / fadeDuration);
+			spriteRenderer.color = Color.Lerp(startColor, endColor, num);
+			if (((Vector2)(ref slideOffset)).magnitude > 0f)
 			{
-				Debug.LogError("Sprite renderer must not be null");
-				return;
+				Vector3 val = endPosition;
+				val.x += slideOffset.x;
+				val.y += slideOffset.y;
+				((Component)this).transform.position = Vector3.Lerp(val, endPosition, num);
 			}
-			foreach (SpriteRenderer spriteRenderer2 in spriteRenderer.gameObject.GetComponentsInChildren<SpriteRenderer>())
-			{
-				if (!(spriteRenderer2 == spriteRenderer))
-				{
-					SpriteFader.FadeSprite(spriteRenderer2, targetColor, duration, slideOffset, null);
-				}
-			}
-			SpriteFader component = spriteRenderer.GetComponent<SpriteFader>();
-			if (component != null)
-			{
-				Object.Destroy(component);
-			}
-			if (Mathf.Approximately(duration, 0f))
-			{
-				spriteRenderer.color = targetColor;
-				if (onComplete != null)
-				{
-					onComplete();
-				}
-				return;
-			}
-			SpriteFader spriteFader = spriteRenderer.gameObject.AddComponent<SpriteFader>();
-			spriteFader.fadeDuration = duration;
-			spriteFader.startColor = spriteRenderer.color;
-			spriteFader.endColor = targetColor;
-			spriteFader.endPosition = spriteRenderer.transform.position;
-			spriteFader.slideOffset = slideOffset;
-			spriteFader.onFadeComplete = onComplete;
 		}
+	}
 
-		// Token: 0x04005958 RID: 22872
-		protected float fadeDuration;
-
-		// Token: 0x04005959 RID: 22873
-		protected float fadeTimer;
-
-		// Token: 0x0400595A RID: 22874
-		protected Color startColor;
-
-		// Token: 0x0400595B RID: 22875
-		protected Color endColor;
-
-		// Token: 0x0400595C RID: 22876
-		protected Vector2 slideOffset;
-
-		// Token: 0x0400595D RID: 22877
-		protected Vector3 endPosition;
-
-		// Token: 0x0400595E RID: 22878
-		protected SpriteRenderer spriteRenderer;
-
-		// Token: 0x0400595F RID: 22879
-		protected Action onFadeComplete;
+	public static void FadeSprite(SpriteRenderer spriteRenderer, Color targetColor, float duration, Vector2 slideOffset, Action onComplete = null)
+	{
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)spriteRenderer == (Object)null)
+		{
+			Debug.LogError((object)"Sprite renderer must not be null");
+			return;
+		}
+		SpriteRenderer[] componentsInChildren = ((Component)spriteRenderer).gameObject.GetComponentsInChildren<SpriteRenderer>();
+		foreach (SpriteRenderer val in componentsInChildren)
+		{
+			if (!((Object)(object)val == (Object)(object)spriteRenderer))
+			{
+				FadeSprite(val, targetColor, duration, slideOffset);
+			}
+		}
+		SpriteFader component = ((Component)spriteRenderer).GetComponent<SpriteFader>();
+		if ((Object)(object)component != (Object)null)
+		{
+			Object.Destroy((Object)(object)component);
+		}
+		if (Mathf.Approximately(duration, 0f))
+		{
+			spriteRenderer.color = targetColor;
+			onComplete?.Invoke();
+			return;
+		}
+		SpriteFader spriteFader = ((Component)spriteRenderer).gameObject.AddComponent<SpriteFader>();
+		spriteFader.fadeDuration = duration;
+		spriteFader.startColor = spriteRenderer.color;
+		spriteFader.endColor = targetColor;
+		spriteFader.endPosition = ((Component)spriteRenderer).transform.position;
+		spriteFader.slideOffset = slideOffset;
+		spriteFader.onFadeComplete = onComplete;
 	}
 }

@@ -1,39 +1,33 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTask", "FinishNTask", "完成一个杂闻任务", 0)]
+[AddComponentMenu("")]
+public class FinishNTask : Command
 {
-	// Token: 0x02000F6D RID: 3949
-	[CommandInfo("YSTask", "FinishNTask", "完成一个杂闻任务", 0)]
-	[AddComponentMenu("")]
-	public class FinishNTask : Command
+	[Tooltip("需要完成的任务ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NTaskID;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006EED RID: 28397 RVA: 0x002A5D64 File Offset: 0x002A3F64
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		if (player.nomelTaskMag.IsNTaskCanFinish(NTaskID.Value))
 		{
-			Avatar player = Tools.instance.getPlayer();
-			if (player.nomelTaskMag.IsNTaskCanFinish(this.NTaskID.Value))
-			{
-				player.nomelTaskMag.EndNTask(this.NTaskID.Value);
-				Debug.Log(string.Format("完成了任务{0}", this.NTaskID.Value));
-			}
-			this.Continue();
+			player.nomelTaskMag.EndNTask(NTaskID.Value);
+			Debug.Log((object)$"完成了任务{NTaskID.Value}");
 		}
+		Continue();
+	}
 
-		// Token: 0x06006EEE RID: 28398 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x04005BD8 RID: 23512
-		[Tooltip("需要完成的任务ID")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NTaskID;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

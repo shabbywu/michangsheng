@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using Bag;
 using GUIPackage;
@@ -8,75 +7,110 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020002D7 RID: 727
 public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x0600194E RID: 6478 RVA: 0x000B53E7 File Offset: 0x000B35E7
+	public static UIJianLingQingJiaoPanel Inst;
+
+	public Text HuiFuDuText;
+
+	public List<Image> HuiFuDuSliders;
+
+	public List<SlotBase> QingJiaoSkills;
+
+	public FpBtn BackBtn;
+
+	public GameObject LaoYeYeTalkObj;
+
+	public Text LaoYeYeTalkText;
+
 	private void Start()
 	{
-		UIJianLingQingJiaoPanel.Inst = this;
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Expected O, but got Unknown
+		Inst = this;
 		ESCCloseManager.Inst.RegisterClose(this);
-		this.BackBtn.mouseUpEvent.AddListener(new UnityAction(this.Close));
-		this.Refresh();
+		BackBtn.mouseUpEvent.AddListener(new UnityAction(Close));
+		Refresh();
 	}
 
-	// Token: 0x0600194F RID: 6479 RVA: 0x000B541C File Offset: 0x000B361C
 	public void Refresh()
 	{
-		this.LaoYeYeTalkObj.SetActive(false);
+		//IL_0169: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Expected O, but got Unknown
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021f: Expected O, but got Unknown
+		//IL_0274: Unknown result type (might be due to invalid IL or missing references)
+		LaoYeYeTalkObj.SetActive(false);
 		Avatar player = PlayerEx.Player;
 		JianLingManager jianLingManager = player.jianLingManager;
 		int huiFuDu = jianLingManager.GetJiYiHuiFuDu();
 		huiFuDu = Mathf.Clamp(huiFuDu, 0, 100);
-		this.HuiFuDuText.text = string.Format("{0}%", huiFuDu);
-		this.SetHuiFuDuSlider(huiFuDu);
-		UnityAction <>9__2;
-		UnityAction <>9__5;
-		for (int i = 0; i < this.QingJiaoSkills.Count; i++)
+		HuiFuDuText.text = $"{huiFuDu}%";
+		SetHuiFuDuSlider(huiFuDu);
+		for (int i = 0; i < QingJiaoSkills.Count; i++)
 		{
 			JianLingQingJiao qingJiao = JianLingQingJiao.DataList[i];
-			this.QingJiaoSkills[i].OnLeftClick.RemoveAllListeners();
+			((UnityEventBase)QingJiaoSkills[i].OnLeftClick).RemoveAllListeners();
 			bool yiLingWu = false;
 			if (qingJiao.SkillID > 0)
 			{
 				yiLingWu = PlayerEx.HasSkill(qingJiao.SkillID);
 				ActiveSkill skill = new ActiveSkill();
 				skill.SetSkill(qingJiao.SkillID, Tools.instance.getPlayer().getLevelType());
-				this.QingJiaoSkills[i].SetSlotData(skill);
-				UnityAction <>9__1;
-				this.QingJiaoSkills[i].OnLeftClick.AddListener(delegate()
+				QingJiaoSkills[i].SetSlotData(skill);
+				UnityAction val = default(UnityAction);
+				QingJiaoSkills[i].OnLeftClick.AddListener((UnityAction)delegate
 				{
-					if (huiFuDu < qingJiao.JiYi)
+					//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+					//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+					//IL_008b: Expected O, but got Unknown
+					//IL_0090: Expected O, but got Unknown
+					//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+					//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+					//IL_00c8: Expected O, but got Unknown
+					//IL_00cd: Expected O, but got Unknown
+					if (huiFuDu >= qingJiao.JiYi)
 					{
-						this.LaoYeYeSay(qingJiao.QingJiaoDuiHuaQian);
-						return;
-					}
-					if (yiLingWu)
-					{
-						this.LaoYeYeSay(qingJiao.QingJiaoDuiHuaHou);
-						return;
-					}
-					string text = "是否请教" + skill.Name + "？";
-					UnityAction onOK;
-					if ((onOK = <>9__1) == null)
-					{
-						onOK = (<>9__1 = delegate()
+						if (yiLingWu)
 						{
-							player.addHasSkillList(qingJiao.SkillID);
-							UIPopTip.Inst.Pop("领悟了" + skill.Name, PopTipIconType.叹号);
-							this.Refresh();
-							this.LaoYeYeSay(qingJiao.QingJiaoDuiHuaZhong);
-						});
-					}
-					UnityAction onClose;
-					if ((onClose = <>9__2) == null)
-					{
-						onClose = (<>9__2 = delegate()
+							LaoYeYeSay(qingJiao.QingJiaoDuiHuaHou);
+						}
+						else
 						{
-							this.LaoYeYeTalkObj.SetActive(false);
-						});
+							string text2 = "是否请教" + skill.Name + "？";
+							UnityAction obj3 = val;
+							if (obj3 == null)
+							{
+								UnityAction val8 = delegate
+								{
+									player.addHasSkillList(qingJiao.SkillID);
+									UIPopTip.Inst.Pop("领悟了" + skill.Name);
+									Refresh();
+									LaoYeYeSay(qingJiao.QingJiaoDuiHuaZhong);
+								};
+								UnityAction val9 = val8;
+								val = val8;
+								obj3 = val9;
+							}
+							UnityAction val2 = default(UnityAction);
+							UnityAction obj4 = val2;
+							if (obj4 == null)
+							{
+								UnityAction val10 = delegate
+								{
+									LaoYeYeTalkObj.SetActive(false);
+								};
+								UnityAction val9 = val10;
+								val2 = val10;
+								obj4 = val9;
+							}
+							USelectBox.Show(text2, obj3, obj4);
+						}
 					}
-					USelectBox.Show(text, onOK, onClose);
+					else
+					{
+						LaoYeYeSay(qingJiao.QingJiaoDuiHuaQian);
+					}
 				});
 			}
 			else if (qingJiao.StaticSkillID > 0)
@@ -84,133 +118,127 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 				yiLingWu = PlayerEx.HasStaticSkill(qingJiao.StaticSkillID);
 				PassiveSkill staticSkill = new PassiveSkill();
 				staticSkill.SetSkill(qingJiao.StaticSkillID, 1);
-				this.QingJiaoSkills[i].SetSlotData(staticSkill);
-				UnityAction <>9__4;
-				this.QingJiaoSkills[i].OnLeftClick.AddListener(delegate()
+				QingJiaoSkills[i].SetSlotData(staticSkill);
+				UnityAction val3 = default(UnityAction);
+				QingJiaoSkills[i].OnLeftClick.AddListener((UnityAction)delegate
 				{
-					if (huiFuDu < qingJiao.JiYi)
+					//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+					//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+					//IL_008b: Expected O, but got Unknown
+					//IL_0090: Expected O, but got Unknown
+					//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+					//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+					//IL_00c8: Expected O, but got Unknown
+					//IL_00cd: Expected O, but got Unknown
+					if (huiFuDu >= qingJiao.JiYi)
 					{
-						this.LaoYeYeSay(qingJiao.QingJiaoDuiHuaQian);
-						return;
-					}
-					if (yiLingWu)
-					{
-						this.LaoYeYeSay(qingJiao.QingJiaoDuiHuaHou);
-						return;
-					}
-					string text = "是否请教" + staticSkill.Name + "？";
-					UnityAction onOK;
-					if ((onOK = <>9__4) == null)
-					{
-						onOK = (<>9__4 = delegate()
+						if (yiLingWu)
 						{
-							player.addHasStaticSkillList(qingJiao.StaticSkillID, 1);
-							new StaticSkill(Tools.instance.getStaticSkillKeyByID(qingJiao.StaticSkillID), 0, 5).Puting(player, player, 3);
-							UIPopTip.Inst.Pop("领悟了" + staticSkill.Name, PopTipIconType.叹号);
-							this.Refresh();
-							this.LaoYeYeSay(qingJiao.QingJiaoDuiHuaZhong);
-						});
-					}
-					UnityAction onClose;
-					if ((onClose = <>9__5) == null)
-					{
-						onClose = (<>9__5 = delegate()
+							LaoYeYeSay(qingJiao.QingJiaoDuiHuaHou);
+						}
+						else
 						{
-							this.LaoYeYeTalkObj.SetActive(false);
-						});
+							string text = "是否请教" + staticSkill.Name + "？";
+							UnityAction obj = val3;
+							if (obj == null)
+							{
+								UnityAction val5 = delegate
+								{
+									player.addHasStaticSkillList(qingJiao.StaticSkillID);
+									new StaticSkill(Tools.instance.getStaticSkillKeyByID(qingJiao.StaticSkillID), 0, 5).Puting(player, player, 3);
+									UIPopTip.Inst.Pop("领悟了" + staticSkill.Name);
+									Refresh();
+									LaoYeYeSay(qingJiao.QingJiaoDuiHuaZhong);
+								};
+								UnityAction val6 = val5;
+								val3 = val5;
+								obj = val6;
+							}
+							UnityAction val4 = default(UnityAction);
+							UnityAction obj2 = val4;
+							if (obj2 == null)
+							{
+								UnityAction val7 = delegate
+								{
+									LaoYeYeTalkObj.SetActive(false);
+								};
+								UnityAction val6 = val7;
+								val4 = val7;
+								obj2 = val6;
+							}
+							USelectBox.Show(text, obj, obj2);
+						}
 					}
-					USelectBox.Show(text, onOK, onClose);
+					else
+					{
+						LaoYeYeSay(qingJiao.QingJiaoDuiHuaQian);
+					}
 				});
 			}
 			if (huiFuDu < qingJiao.JiYi && !yiLingWu)
 			{
-				this.QingJiaoSkills[i].SetGrey(true);
-				this.QingJiaoSkills[i].HideTooltip = true;
-				this.QingJiaoSkills[i].SetName(" ？？？", Color.white);
+				QingJiaoSkills[i].SetGrey(grey: true);
+				QingJiaoSkills[i].HideTooltip = true;
+				QingJiaoSkills[i].SetName(" ？？？", Color.white);
 			}
 			if (yiLingWu)
 			{
-				this.QingJiaoSkills[i].SetJiaoBiao(JiaoBiaoType.悟);
+				QingJiaoSkills[i].SetJiaoBiao(JiaoBiaoType.悟);
 			}
 		}
 	}
 
-	// Token: 0x06001950 RID: 6480 RVA: 0x000B56D8 File Offset: 0x000B38D8
 	public void LaoYeYeSay(string msg)
 	{
 		string text = msg.ReplaceTalkWord();
-		this.LaoYeYeTalkText.text = text;
-		this.LaoYeYeTalkObj.SetActive(true);
+		LaoYeYeTalkText.text = text;
+		LaoYeYeTalkObj.SetActive(true);
 	}
 
-	// Token: 0x06001951 RID: 6481 RVA: 0x000B5704 File Offset: 0x000B3904
 	public void SetHuiFuDuSlider(int huiFuDu)
 	{
 		int num = 0;
 		int num2 = 0;
 		int num3 = 0;
-		foreach (JianLingQingJiao jianLingQingJiao in JianLingQingJiao.DataList)
+		foreach (JianLingQingJiao data in JianLingQingJiao.DataList)
 		{
-			if (huiFuDu >= jianLingQingJiao.JiYi)
+			if (huiFuDu >= data.JiYi)
 			{
 				num++;
-				num2 = jianLingQingJiao.JiYi;
+				num2 = data.JiYi;
 			}
 			else
 			{
-				num3 = jianLingQingJiao.JiYi;
+				num3 = data.JiYi;
 			}
 		}
 		for (int i = 0; i < 5; i++)
 		{
 			if (i <= num)
 			{
-				this.HuiFuDuSliders[i].fillAmount = 1f;
+				HuiFuDuSliders[i].fillAmount = 1f;
 			}
 			else
 			{
-				this.HuiFuDuSliders[i].fillAmount = 0f;
+				HuiFuDuSliders[i].fillAmount = 0f;
 			}
 		}
-		if (num < this.HuiFuDuSliders.Count)
+		if (num < HuiFuDuSliders.Count)
 		{
-			this.HuiFuDuSliders[num].fillAmount = (float)(huiFuDu - num2) / (float)(num3 - num2);
+			HuiFuDuSliders[num].fillAmount = (float)(huiFuDu - num2) / (float)(num3 - num2);
 		}
 	}
 
-	// Token: 0x06001952 RID: 6482 RVA: 0x000B57E4 File Offset: 0x000B39E4
 	bool IESCClose.TryEscClose()
 	{
-		this.Close();
+		Close();
 		return true;
 	}
 
-	// Token: 0x06001953 RID: 6483 RVA: 0x000B57ED File Offset: 0x000B39ED
 	public void Close()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
-		Object.Destroy(base.gameObject);
+		Object.Destroy((Object)(object)((Component)this).gameObject);
 		UIJianLingPanel.OpenPanel();
 	}
-
-	// Token: 0x0400147C RID: 5244
-	public static UIJianLingQingJiaoPanel Inst;
-
-	// Token: 0x0400147D RID: 5245
-	public Text HuiFuDuText;
-
-	// Token: 0x0400147E RID: 5246
-	public List<Image> HuiFuDuSliders;
-
-	// Token: 0x0400147F RID: 5247
-	public List<SlotBase> QingJiaoSkills;
-
-	// Token: 0x04001480 RID: 5248
-	public FpBtn BackBtn;
-
-	// Token: 0x04001481 RID: 5249
-	public GameObject LaoYeYeTalkObj;
-
-	// Token: 0x04001482 RID: 5250
-	public Text LaoYeYeTalkText;
 }

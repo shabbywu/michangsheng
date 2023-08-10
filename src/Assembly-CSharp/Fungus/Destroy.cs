@@ -1,77 +1,72 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Scripting", "Destroy", "Destroys a specified game object in the scene.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class Destroy : Command
 {
-	// Token: 0x02000DC8 RID: 3528
-	[CommandInfo("Scripting", "Destroy", "Destroys a specified game object in the scene.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class Destroy : Command
+	[Tooltip("Reference to game object to destroy")]
+	[SerializeField]
+	protected GameObjectData _targetGameObject;
+
+	[Tooltip("Optional delay given to destroy")]
+	[SerializeField]
+	protected FloatData destroyInXSeconds = new FloatData(0f);
+
+	[HideInInspector]
+	[FormerlySerializedAs("targetGameObject")]
+	public GameObject targetGameObjectOLD;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006452 RID: 25682 RVA: 0x0027E3F0 File Offset: 0x0027C5F0
-		public override void OnEnter()
+		if ((Object)(object)_targetGameObject.Value != (Object)null)
 		{
-			if (this._targetGameObject.Value != null)
+			if (destroyInXSeconds.Value != 0f)
 			{
-				if (this.destroyInXSeconds.Value != 0f)
-				{
-					Object.Destroy(this._targetGameObject, this.destroyInXSeconds.Value);
-				}
-				else
-				{
-					Object.Destroy(this._targetGameObject.Value);
-				}
+				Object.Destroy((Object)(object)(GameObject)_targetGameObject, destroyInXSeconds.Value);
 			}
-			this.Continue();
-		}
-
-		// Token: 0x06006453 RID: 25683 RVA: 0x0027E458 File Offset: 0x0027C658
-		public override string GetSummary()
-		{
-			if (this._targetGameObject.Value == null)
+			else
 			{
-				return "Error: No game object selected";
-			}
-			return this._targetGameObject.Value.name + ((this.destroyInXSeconds.Value == 0f) ? "" : (" in " + this.destroyInXSeconds.Value.ToString()));
-		}
-
-		// Token: 0x06006454 RID: 25684 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
-		{
-			return new Color32(235, 191, 217, byte.MaxValue);
-		}
-
-		// Token: 0x06006455 RID: 25685 RVA: 0x0027E4C9 File Offset: 0x0027C6C9
-		public override bool HasReference(Variable variable)
-		{
-			return this._targetGameObject.gameObjectRef == variable || this.destroyInXSeconds.floatRef == variable;
-		}
-
-		// Token: 0x06006456 RID: 25686 RVA: 0x0027E4F4 File Offset: 0x0027C6F4
-		protected virtual void OnEnable()
-		{
-			if (this.targetGameObjectOLD != null)
-			{
-				this._targetGameObject.Value = this.targetGameObjectOLD;
-				this.targetGameObjectOLD = null;
+				Object.Destroy((Object)(object)_targetGameObject.Value);
 			}
 		}
+		Continue();
+	}
 
-		// Token: 0x04005641 RID: 22081
-		[Tooltip("Reference to game object to destroy")]
-		[SerializeField]
-		protected GameObjectData _targetGameObject;
+	public override string GetSummary()
+	{
+		if ((Object)(object)_targetGameObject.Value == (Object)null)
+		{
+			return "Error: No game object selected";
+		}
+		return ((Object)_targetGameObject.Value).name + ((destroyInXSeconds.Value == 0f) ? "" : (" in " + destroyInXSeconds.Value));
+	}
 
-		// Token: 0x04005642 RID: 22082
-		[Tooltip("Optional delay given to destroy")]
-		[SerializeField]
-		protected FloatData destroyInXSeconds = new FloatData(0f);
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
 
-		// Token: 0x04005643 RID: 22083
-		[HideInInspector]
-		[FormerlySerializedAs("targetGameObject")]
-		public GameObject targetGameObjectOLD;
+	public override bool HasReference(Variable variable)
+	{
+		if ((Object)(object)_targetGameObject.gameObjectRef == (Object)(object)variable || (Object)(object)destroyInXSeconds.floatRef == (Object)(object)variable)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)targetGameObjectOLD != (Object)null)
+		{
+			_targetGameObject.Value = targetGameObjectOLD;
+			targetGameObjectOLD = null;
+		}
 	}
 }

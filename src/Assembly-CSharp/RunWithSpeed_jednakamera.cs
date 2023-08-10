@@ -1,134 +1,135 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020004D9 RID: 1241
 public class RunWithSpeed_jednakamera : MonoBehaviour
 {
-	// Token: 0x06002834 RID: 10292 RVA: 0x00130604 File Offset: 0x0012E804
+	public float speed = 5f;
+
+	public bool continueMoving;
+
+	private MonkeyController2D playerController;
+
+	private GameObject player;
+
+	private float offset;
+
+	public bool FollowCameraHeight;
+
+	public bool IskljuciKadIzadjeIzKadra;
+
+	public bool smooth;
+
+	private bool smoothMove;
+
+	private float startSpeed;
+
+	public Transform desnaGranica;
+
+	private Camera bgCamera;
+
+	private float bgCameraX;
+
+	private bool dovoljno;
+
 	private void Awake()
 	{
-		this.player = GameObject.FindGameObjectWithTag("Monkey");
-		this.playerController = this.player.GetComponent<MonkeyController2D>();
-		this.bgCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-		this.bgCameraX = GameObject.FindGameObjectWithTag("MainCamera").transform.position.x;
-		this.desnaGranica = base.transform.Find("DesnaGranica");
-		this.offset = base.transform.position.y - Camera.main.transform.position.y;
-		this.startSpeed = this.speed;
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		player = GameObject.FindGameObjectWithTag("Monkey");
+		playerController = player.GetComponent<MonkeyController2D>();
+		bgCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		bgCameraX = GameObject.FindGameObjectWithTag("MainCamera").transform.position.x;
+		desnaGranica = ((Component)this).transform.Find("DesnaGranica");
+		offset = ((Component)this).transform.position.y - ((Component)Camera.main).transform.position.y;
+		startSpeed = speed;
 	}
 
-	// Token: 0x06002835 RID: 10293 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002836 RID: 10294 RVA: 0x001306B4 File Offset: 0x0012E8B4
 	private void Update()
 	{
-		if (this.desnaGranica != null)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0176: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0180: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0232: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0247: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024c: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)desnaGranica != (Object)null)
 		{
-			this.bgCameraX = this.bgCamera.transform.position.x;
-			if (this.desnaGranica.position.x < this.bgCameraX - this.bgCamera.orthographicSize * this.bgCamera.aspect)
+			bgCameraX = ((Component)bgCamera).transform.position.x;
+			if (desnaGranica.position.x < bgCameraX - bgCamera.orthographicSize * bgCamera.aspect)
 			{
-				base.transform.position = new Vector3(this.bgCameraX + this.bgCamera.orthographicSize * this.bgCamera.aspect, base.transform.position.y, base.transform.position.z);
+				((Component)this).transform.position = new Vector3(bgCameraX + bgCamera.orthographicSize * bgCamera.aspect, ((Component)this).transform.position.y, ((Component)this).transform.position.z);
 			}
 		}
-		if (((this.playerController.state == MonkeyController2D.State.running || this.playerController.state == MonkeyController2D.State.jumped) && this.playerController.GetComponent<Rigidbody2D>().velocity.x > 0.05f) || this.continueMoving)
+		if (((playerController.state == MonkeyController2D.State.running || playerController.state == MonkeyController2D.State.jumped) && ((Component)playerController).GetComponent<Rigidbody2D>().velocity.x > 0.05f) || continueMoving)
 		{
-			if (this.smooth)
+			if (smooth)
 			{
-				this.smoothMove = true;
+				smoothMove = true;
 			}
-			if (this.speed != this.startSpeed)
+			if (speed != startSpeed)
 			{
-				this.speed = this.startSpeed;
+				speed = startSpeed;
 			}
-			if (!this.dovoljno)
+			if (!dovoljno)
 			{
-				base.Invoke("startSpeedDaj", 0.15f);
+				((MonoBehaviour)this).Invoke("startSpeedDaj", 0.15f);
 			}
-			base.StopCoroutine("SmoothMovePlan");
-			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(base.transform.position.x - this.speed, base.transform.position.y, base.transform.position.z), 5f * Time.deltaTime);
+			((MonoBehaviour)this).StopCoroutine("SmoothMovePlan");
+			((Component)this).transform.position = Vector3.Lerp(((Component)this).transform.position, new Vector3(((Component)this).transform.position.x - speed, ((Component)this).transform.position.y, ((Component)this).transform.position.z), 5f * Time.deltaTime);
 		}
-		if (this.smoothMove && (this.playerController.state == MonkeyController2D.State.wallhit || this.playerController.state == MonkeyController2D.State.climbUp))
+		if (smoothMove && (playerController.state == MonkeyController2D.State.wallhit || playerController.state == MonkeyController2D.State.climbUp))
 		{
-			this.smoothMove = false;
-			base.StartCoroutine("SmoothMovePlan");
+			smoothMove = false;
+			((MonoBehaviour)this).StartCoroutine("SmoothMovePlan");
 		}
-		if (this.FollowCameraHeight)
+		if (FollowCameraHeight)
 		{
-			base.transform.position = new Vector3(base.transform.position.x, Camera.main.transform.position.y + this.offset, base.transform.position.z);
+			((Component)this).transform.position = new Vector3(((Component)this).transform.position.x, ((Component)Camera.main).transform.position.y + offset, ((Component)this).transform.position.z);
 		}
-		if (this.IskljuciKadIzadjeIzKadra && base.transform.position.x + 25f < Camera.main.ViewportToWorldPoint(Vector3.zero).x)
+		if (IskljuciKadIzadjeIzKadra && ((Component)this).transform.position.x + 25f < Camera.main.ViewportToWorldPoint(Vector3.zero).x)
 		{
-			base.gameObject.SetActive(false);
+			((Component)this).gameObject.SetActive(false);
 		}
 	}
 
-	// Token: 0x06002837 RID: 10295 RVA: 0x00130925 File Offset: 0x0012EB25
 	private IEnumerator SmoothMovePlan()
 	{
-		float targetPos = base.transform.position.x - 5f;
+		float targetPos = ((Component)this).transform.position.x - 5f;
 		for (float t = 0f; t < 1f; t += Time.deltaTime / 10f)
 		{
 			yield return null;
-			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(targetPos, base.transform.position.y, base.transform.position.z), t);
+			((Component)this).transform.position = Vector3.Lerp(((Component)this).transform.position, new Vector3(targetPos, ((Component)this).transform.position.y, ((Component)this).transform.position.z), t);
 		}
-		yield break;
 	}
 
-	// Token: 0x06002838 RID: 10296 RVA: 0x00130934 File Offset: 0x0012EB34
 	private void izracunajOffset()
 	{
-		this.offset = base.transform.position.y - Camera.main.transform.position.y;
-		this.startSpeed = this.speed;
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		offset = ((Component)this).transform.position.y - ((Component)Camera.main).transform.position.y;
+		startSpeed = speed;
 	}
 
-	// Token: 0x06002839 RID: 10297 RVA: 0x0013096D File Offset: 0x0012EB6D
 	private void startSpeedDaj()
 	{
-		this.dovoljno = true;
+		dovoljno = true;
 	}
-
-	// Token: 0x0400233F RID: 9023
-	public float speed = 5f;
-
-	// Token: 0x04002340 RID: 9024
-	public bool continueMoving;
-
-	// Token: 0x04002341 RID: 9025
-	private MonkeyController2D playerController;
-
-	// Token: 0x04002342 RID: 9026
-	private GameObject player;
-
-	// Token: 0x04002343 RID: 9027
-	private float offset;
-
-	// Token: 0x04002344 RID: 9028
-	public bool FollowCameraHeight;
-
-	// Token: 0x04002345 RID: 9029
-	public bool IskljuciKadIzadjeIzKadra;
-
-	// Token: 0x04002346 RID: 9030
-	public bool smooth;
-
-	// Token: 0x04002347 RID: 9031
-	private bool smoothMove;
-
-	// Token: 0x04002348 RID: 9032
-	private float startSpeed;
-
-	// Token: 0x04002349 RID: 9033
-	public Transform desnaGranica;
-
-	// Token: 0x0400234A RID: 9034
-	private Camera bgCamera;
-
-	// Token: 0x0400234B RID: 9035
-	private float bgCameraX;
-
-	// Token: 0x0400234C RID: 9036
-	private bool dovoljno;
 }

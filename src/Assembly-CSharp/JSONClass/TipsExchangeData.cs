@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class TipsExchangeData : IJSONClass
 {
-	// Token: 0x02000979 RID: 2425
-	public class TipsExchangeData : IJSONClass
+	public static Dictionary<int, TipsExchangeData> DataDict = new Dictionary<int, TipsExchangeData>();
+
+	public static List<TipsExchangeData> DataList = new List<TipsExchangeData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public string TiShi;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x060043F8 RID: 17400 RVA: 0x001CF478 File Offset: 0x001CD678
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.TipsExchangeData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.TipsExchangeData.list)
+			try
 			{
-				try
+				TipsExchangeData tipsExchangeData = new TipsExchangeData();
+				tipsExchangeData.id = item["id"].I;
+				tipsExchangeData.TiShi = item["TiShi"].Str;
+				if (DataDict.ContainsKey(tipsExchangeData.id))
 				{
-					TipsExchangeData tipsExchangeData = new TipsExchangeData();
-					tipsExchangeData.id = jsonobject["id"].I;
-					tipsExchangeData.TiShi = jsonobject["TiShi"].Str;
-					if (TipsExchangeData.DataDict.ContainsKey(tipsExchangeData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典TipsExchangeData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", tipsExchangeData.id));
-					}
-					else
-					{
-						TipsExchangeData.DataDict.Add(tipsExchangeData.id, tipsExchangeData);
-						TipsExchangeData.DataList.Add(tipsExchangeData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典TipsExchangeData.DataDict添加数据时出现重复的键，Key:{tipsExchangeData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典TipsExchangeData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(tipsExchangeData.id, tipsExchangeData);
+				DataList.Add(tipsExchangeData);
 			}
-			if (TipsExchangeData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				TipsExchangeData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典TipsExchangeData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x060043F9 RID: 17401 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04004555 RID: 17749
-		public static Dictionary<int, TipsExchangeData> DataDict = new Dictionary<int, TipsExchangeData>();
-
-		// Token: 0x04004556 RID: 17750
-		public static List<TipsExchangeData> DataList = new List<TipsExchangeData>();
-
-		// Token: 0x04004557 RID: 17751
-		public static Action OnInitFinishAction = new Action(TipsExchangeData.OnInitFinish);
-
-		// Token: 0x04004558 RID: 17752
-		public int id;
-
-		// Token: 0x04004559 RID: 17753
-		public string TiShi;
+	private static void OnInitFinish()
+	{
 	}
 }

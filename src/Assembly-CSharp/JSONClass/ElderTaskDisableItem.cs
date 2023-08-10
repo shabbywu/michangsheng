@@ -1,58 +1,48 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ElderTaskDisableItem : IJSONClass
 {
-	// Token: 0x02000835 RID: 2101
-	public class ElderTaskDisableItem : IJSONClass
+	public static Dictionary<int, ElderTaskDisableItem> DataDict = new Dictionary<int, ElderTaskDisableItem>();
+
+	public static List<ElderTaskDisableItem> DataList = new List<ElderTaskDisableItem>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003EE6 RID: 16102 RVA: 0x001ADEB0 File Offset: 0x001AC0B0
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ElderTaskDisableItem.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ElderTaskDisableItem.list)
+			try
 			{
-				try
+				ElderTaskDisableItem elderTaskDisableItem = new ElderTaskDisableItem();
+				elderTaskDisableItem.id = item["id"].I;
+				if (DataDict.ContainsKey(elderTaskDisableItem.id))
 				{
-					ElderTaskDisableItem elderTaskDisableItem = new ElderTaskDisableItem();
-					elderTaskDisableItem.id = jsonobject["id"].I;
-					if (ElderTaskDisableItem.DataDict.ContainsKey(elderTaskDisableItem.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ElderTaskDisableItem.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", elderTaskDisableItem.id));
-					}
-					else
-					{
-						ElderTaskDisableItem.DataDict.Add(elderTaskDisableItem.id, elderTaskDisableItem);
-						ElderTaskDisableItem.DataList.Add(elderTaskDisableItem);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ElderTaskDisableItem.DataDict添加数据时出现重复的键，Key:{elderTaskDisableItem.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ElderTaskDisableItem.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(elderTaskDisableItem.id, elderTaskDisableItem);
+				DataList.Add(elderTaskDisableItem);
 			}
-			if (ElderTaskDisableItem.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ElderTaskDisableItem.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ElderTaskDisableItem.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003EE7 RID: 16103 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003AB4 RID: 15028
-		public static Dictionary<int, ElderTaskDisableItem> DataDict = new Dictionary<int, ElderTaskDisableItem>();
-
-		// Token: 0x04003AB5 RID: 15029
-		public static List<ElderTaskDisableItem> DataList = new List<ElderTaskDisableItem>();
-
-		// Token: 0x04003AB6 RID: 15030
-		public static Action OnInitFinishAction = new Action(ElderTaskDisableItem.OnInitFinish);
-
-		// Token: 0x04003AB7 RID: 15031
-		public int id;
+	private static void OnInitFinish()
+	{
 	}
 }

@@ -1,43 +1,35 @@
-﻿using System;
+using System;
 using Tab;
 using UnityEngine.EventSystems;
 
-namespace Bag
+namespace Bag;
+
+[Serializable]
+public class EquipSlot : SlotBase
 {
-	// Token: 0x020009B8 RID: 2488
-	[Serializable]
-	public class EquipSlot : SlotBase
+	public EquipSlotType EquipSlotType;
+
+	public override void OnEndDrag(PointerEventData eventData)
 	{
-		// Token: 0x0600452A RID: 17706 RVA: 0x001D5C56 File Offset: 0x001D3E56
-		public override void OnEndDrag(PointerEventData eventData)
+		if (CanDrag())
 		{
-			if (!this.CanDrag())
+			if (!IsIn && !DragMag.Inst.EndDrag())
 			{
-				return;
-			}
-			if (!this.IsIn && !DragMag.Inst.EndDrag())
-			{
-				SingletonMono<TabUIMag>.Instance.WuPingPanel.RmoveEquip(this.EquipSlotType);
+				SingletonMono<TabUIMag>.Instance.WuPingPanel.RmoveEquip(EquipSlotType);
 			}
 			DragMag.Inst.Clear();
 		}
+	}
 
-		// Token: 0x0600452B RID: 17707 RVA: 0x001D5C94 File Offset: 0x001D3E94
-		public override void OnPointerUp(PointerEventData eventData)
+	public override void OnPointerUp(PointerEventData eventData)
+	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Invalid comparison between Unknown and I4
+		if (!eventData.dragging && (int)eventData.button == 1 && !IsNull())
 		{
-			if (eventData.dragging)
-			{
-				return;
-			}
-			if (eventData.button == 1 && !base.IsNull())
-			{
-				SingletonMono<TabUIMag>.Instance.WuPingPanel.RmoveEquip(this.EquipSlotType);
-				this._selectPanel.SetActive(false);
-				ToolTipsMag.Inst.Close();
-			}
+			SingletonMono<TabUIMag>.Instance.WuPingPanel.RmoveEquip(EquipSlotType);
+			_selectPanel.SetActive(false);
+			ToolTipsMag.Inst.Close();
 		}
-
-		// Token: 0x040046C9 RID: 18121
-		public EquipSlotType EquipSlotType;
 	}
 }

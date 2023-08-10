@@ -1,123 +1,111 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000202 RID: 514
 [RequireComponent(typeof(SpriteRenderer))]
 public class DFInteractive : MonoBehaviour
 {
-	// Token: 0x17000237 RID: 567
-	// (get) Token: 0x060014B9 RID: 5305 RVA: 0x00084D1E File Offset: 0x00082F1E
-	// (set) Token: 0x060014BA RID: 5306 RVA: 0x00084D28 File Offset: 0x00082F28
+	public Material NormalMat;
+
+	public Material HighlightMat;
+
+	public Color HighlightColor = Color.white;
+
+	public UnityEvent OnFunctionClick;
+
+	public UnityEvent OnDecorateClick;
+
+	private SpriteRenderer sr;
+
+	private bool isLight;
+
+	private DFInteractiveMode lastMode;
+
 	private bool IsLight
 	{
 		get
 		{
-			return this.isLight;
+			return isLight;
 		}
 		set
 		{
-			this.isLight = value;
-			if (DongFuScene.Inst.InteractiveMode != DFInteractiveMode.Function)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+			isLight = value;
+			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Function)
 			{
-				if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Decorate)
+				if (isLight)
 				{
-					if (this.isLight)
-					{
-						this.sr.material = this.HighlightMat;
-						this.sr.material.SetColor("_LtColor", this.HighlightColor);
-						return;
-					}
-					this.sr.material = this.HighlightMat;
-					this.sr.material.SetColor("_LtColor", Color.white);
+					((Renderer)sr).material = HighlightMat;
+					((Renderer)sr).material.SetColor("_LtColor", HighlightColor);
 				}
-				return;
+				else
+				{
+					((Renderer)sr).material = NormalMat;
+				}
 			}
-			if (this.isLight)
+			else if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Decorate)
 			{
-				this.sr.material = this.HighlightMat;
-				this.sr.material.SetColor("_LtColor", this.HighlightColor);
-				return;
+				if (isLight)
+				{
+					((Renderer)sr).material = HighlightMat;
+					((Renderer)sr).material.SetColor("_LtColor", HighlightColor);
+				}
+				else
+				{
+					((Renderer)sr).material = HighlightMat;
+					((Renderer)sr).material.SetColor("_LtColor", Color.white);
+				}
 			}
-			this.sr.material = this.NormalMat;
 		}
 	}
 
-	// Token: 0x060014BB RID: 5307 RVA: 0x00084DFC File Offset: 0x00082FFC
 	private void Awake()
 	{
-		this.sr = base.GetComponent<SpriteRenderer>();
+		sr = ((Component)this).GetComponent<SpriteRenderer>();
 	}
 
-	// Token: 0x060014BC RID: 5308 RVA: 0x00084E0A File Offset: 0x0008300A
 	private void Update()
 	{
-		if (this.lastMode != DongFuScene.Inst.InteractiveMode)
+		if (lastMode != DongFuScene.Inst.InteractiveMode)
 		{
-			this.IsLight = false;
-			this.lastMode = DongFuScene.Inst.InteractiveMode;
+			IsLight = false;
+			lastMode = DongFuScene.Inst.InteractiveMode;
 		}
 	}
 
-	// Token: 0x060014BD RID: 5309 RVA: 0x00084E38 File Offset: 0x00083038
 	private void OnMouseEnter()
 	{
-		if (Tools.instance.canClick(false, true))
+		if (Tools.instance.canClick())
 		{
-			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Function && this.OnFunctionClick != null)
+			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Function && OnFunctionClick != null)
 			{
-				this.IsLight = true;
+				IsLight = true;
 			}
-			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Decorate && this.OnDecorateClick != null)
+			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Decorate && OnDecorateClick != null)
 			{
-				this.IsLight = true;
+				IsLight = true;
 			}
 		}
 	}
 
-	// Token: 0x060014BE RID: 5310 RVA: 0x00084E8A File Offset: 0x0008308A
 	private void OnMouseExit()
 	{
-		this.IsLight = false;
+		IsLight = false;
 	}
 
-	// Token: 0x060014BF RID: 5311 RVA: 0x00084E94 File Offset: 0x00083094
 	private void OnMouseUp()
 	{
-		if (Tools.instance.canClick(false, true) && PanelMamager.inst.nowPanel == PanelMamager.PanelType.空)
+		if (Tools.instance.canClick() && PanelMamager.inst.nowPanel == PanelMamager.PanelType.空)
 		{
-			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Function && this.OnFunctionClick != null)
+			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Function && OnFunctionClick != null)
 			{
-				this.OnFunctionClick.Invoke();
+				OnFunctionClick.Invoke();
 			}
-			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Decorate && this.OnDecorateClick != null)
+			if (DongFuScene.Inst.InteractiveMode == DFInteractiveMode.Decorate && OnDecorateClick != null)
 			{
-				this.OnDecorateClick.Invoke();
+				OnDecorateClick.Invoke();
 			}
 		}
 	}
-
-	// Token: 0x04000F74 RID: 3956
-	public Material NormalMat;
-
-	// Token: 0x04000F75 RID: 3957
-	public Material HighlightMat;
-
-	// Token: 0x04000F76 RID: 3958
-	public Color HighlightColor = Color.white;
-
-	// Token: 0x04000F77 RID: 3959
-	public UnityEvent OnFunctionClick;
-
-	// Token: 0x04000F78 RID: 3960
-	public UnityEvent OnDecorateClick;
-
-	// Token: 0x04000F79 RID: 3961
-	private SpriteRenderer sr;
-
-	// Token: 0x04000F7A RID: 3962
-	private bool isLight;
-
-	// Token: 0x04000F7B RID: 3963
-	private DFInteractiveMode lastMode;
 }

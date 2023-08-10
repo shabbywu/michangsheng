@@ -1,116 +1,119 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000BE RID: 190
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Blur")]
 public class BlurEffect : MonoBehaviour
 {
-	// Token: 0x170001C8 RID: 456
-	// (get) Token: 0x06000AAA RID: 2730 RVA: 0x0004096D File Offset: 0x0003EB6D
+	public int iterations = 3;
+
+	public float blurSpread = 0.6f;
+
+	public Shader blurShader;
+
+	private static Material m_Material;
+
 	protected Material material
 	{
 		get
 		{
-			if (BlurEffect.m_Material == null)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001d: Expected O, but got Unknown
+			if ((Object)(object)m_Material == (Object)null)
 			{
-				BlurEffect.m_Material = new Material(this.blurShader);
-				BlurEffect.m_Material.hideFlags = 52;
+				m_Material = new Material(blurShader);
+				((Object)m_Material).hideFlags = (HideFlags)52;
 			}
-			return BlurEffect.m_Material;
+			return m_Material;
 		}
 	}
 
-	// Token: 0x06000AAB RID: 2731 RVA: 0x0004099D File Offset: 0x0003EB9D
 	protected void OnDisable()
 	{
-		if (BlurEffect.m_Material)
+		if (Object.op_Implicit((Object)(object)m_Material))
 		{
-			Object.DestroyImmediate(BlurEffect.m_Material);
+			Object.DestroyImmediate((Object)(object)m_Material);
 		}
 	}
 
-	// Token: 0x06000AAC RID: 2732 RVA: 0x000409B5 File Offset: 0x0003EBB5
 	protected void Start()
 	{
 		if (!SystemInfo.supportsImageEffects)
 		{
-			base.enabled = false;
-			return;
+			((Behaviour)this).enabled = false;
 		}
-		if (!this.blurShader || !this.material.shader.isSupported)
+		else if (!Object.op_Implicit((Object)(object)blurShader) || !material.shader.isSupported)
 		{
-			base.enabled = false;
-			return;
+			((Behaviour)this).enabled = false;
 		}
 	}
 
-	// Token: 0x06000AAD RID: 2733 RVA: 0x000409F0 File Offset: 0x0003EBF0
 	public void FourTapCone(RenderTexture source, RenderTexture dest, int iteration)
 	{
-		float num = 0.5f + (float)iteration * this.blurSpread;
-		Graphics.BlitMultiTap(source, dest, this.material, new Vector2[]
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		float num = 0.5f + (float)iteration * blurSpread;
+		Graphics.BlitMultiTap((Texture)(object)source, dest, material, (Vector2[])(object)new Vector2[4]
 		{
-			new Vector2(-num, -num),
-			new Vector2(-num, num),
+			new Vector2(0f - num, 0f - num),
+			new Vector2(0f - num, num),
 			new Vector2(num, num),
-			new Vector2(num, -num)
+			new Vector2(num, 0f - num)
 		});
 	}
 
-	// Token: 0x06000AAE RID: 2734 RVA: 0x00040A5C File Offset: 0x0003EC5C
 	private void DownSample4x(RenderTexture source, RenderTexture dest)
 	{
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
 		float num = 1f;
-		Graphics.BlitMultiTap(source, dest, this.material, new Vector2[]
+		Graphics.BlitMultiTap((Texture)(object)source, dest, material, (Vector2[])(object)new Vector2[4]
 		{
-			new Vector2(-num, -num),
-			new Vector2(-num, num),
+			new Vector2(0f - num, 0f - num),
+			new Vector2(0f - num, num),
 			new Vector2(num, num),
-			new Vector2(num, -num)
+			new Vector2(num, 0f - num)
 		});
 	}
 
-	// Token: 0x06000AAF RID: 2735 RVA: 0x00040AC0 File Offset: 0x0003ECC0
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		RenderTexture temporary = RenderTexture.GetTemporary(source.width / 4, source.height / 4, 0);
-		RenderTexture temporary2 = RenderTexture.GetTemporary(source.width / 4, source.height / 4, 0);
-		this.DownSample4x(source, temporary);
+		RenderTexture temporary = RenderTexture.GetTemporary(((Texture)source).width / 4, ((Texture)source).height / 4, 0);
+		RenderTexture temporary2 = RenderTexture.GetTemporary(((Texture)source).width / 4, ((Texture)source).height / 4, 0);
+		DownSample4x(source, temporary);
 		bool flag = true;
-		for (int i = 0; i < this.iterations; i++)
+		for (int i = 0; i < iterations; i++)
 		{
 			if (flag)
 			{
-				this.FourTapCone(temporary, temporary2, i);
+				FourTapCone(temporary, temporary2, i);
 			}
 			else
 			{
-				this.FourTapCone(temporary2, temporary, i);
+				FourTapCone(temporary2, temporary, i);
 			}
 			flag = !flag;
 		}
 		if (flag)
 		{
-			Graphics.Blit(temporary, destination);
+			Graphics.Blit((Texture)(object)temporary, destination);
 		}
 		else
 		{
-			Graphics.Blit(temporary2, destination);
+			Graphics.Blit((Texture)(object)temporary2, destination);
 		}
 		RenderTexture.ReleaseTemporary(temporary);
 		RenderTexture.ReleaseTemporary(temporary2);
 	}
-
-	// Token: 0x040006B2 RID: 1714
-	public int iterations = 3;
-
-	// Token: 0x040006B3 RID: 1715
-	public float blurSpread = 0.6f;
-
-	// Token: 0x040006B4 RID: 1716
-	public Shader blurShader;
-
-	// Token: 0x040006B5 RID: 1717
-	private static Material m_Material;
 }

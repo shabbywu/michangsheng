@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[Serializable]
+public class ReorderableIntList : ReorderableGenericList<int>
 {
-	// Token: 0x0200059E RID: 1438
-	[Serializable]
-	public class ReorderableIntList : ReorderableGenericList<int>
-	{
-	}
 }

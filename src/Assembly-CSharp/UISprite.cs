@@ -1,128 +1,124 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x020000AE RID: 174
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/NGUI Sprite")]
 public class UISprite : UIBasicSprite
 {
-	// Token: 0x170001AA RID: 426
-	// (get) Token: 0x06000A39 RID: 2617 RVA: 0x0003DDB5 File Offset: 0x0003BFB5
+	[HideInInspector]
+	[SerializeField]
+	private UIAtlas mAtlas;
+
+	[HideInInspector]
+	[SerializeField]
+	private string mSpriteName;
+
+	[HideInInspector]
+	[SerializeField]
+	private bool mFillCenter = true;
+
+	[NonSerialized]
+	protected UISpriteData mSprite;
+
+	[NonSerialized]
+	private bool mSpriteSet;
+
 	public override Material material
 	{
 		get
 		{
-			if (!(this.mAtlas != null))
+			if (!((Object)(object)mAtlas != (Object)null))
 			{
 				return null;
 			}
-			return this.mAtlas.spriteMaterial;
+			return mAtlas.spriteMaterial;
 		}
 	}
 
-	// Token: 0x170001AB RID: 427
-	// (get) Token: 0x06000A3A RID: 2618 RVA: 0x0003DDD2 File Offset: 0x0003BFD2
-	// (set) Token: 0x06000A3B RID: 2619 RVA: 0x0003DDDC File Offset: 0x0003BFDC
 	public UIAtlas atlas
 	{
 		get
 		{
-			return this.mAtlas;
+			return mAtlas;
 		}
 		set
 		{
-			if (this.mAtlas != value)
+			if ((Object)(object)mAtlas != (Object)(object)value)
 			{
-				base.RemoveFromPanel();
-				this.mAtlas = value;
-				this.mSpriteSet = false;
-				this.mSprite = null;
-				if (string.IsNullOrEmpty(this.mSpriteName) && this.mAtlas != null && this.mAtlas.spriteList.Count > 0)
+				RemoveFromPanel();
+				mAtlas = value;
+				mSpriteSet = false;
+				mSprite = null;
+				if (string.IsNullOrEmpty(mSpriteName) && (Object)(object)mAtlas != (Object)null && mAtlas.spriteList.Count > 0)
 				{
-					this.SetAtlasSprite(this.mAtlas.spriteList[0]);
-					this.mSpriteName = this.mSprite.name;
+					SetAtlasSprite(mAtlas.spriteList[0]);
+					mSpriteName = mSprite.name;
 				}
-				if (!string.IsNullOrEmpty(this.mSpriteName))
+				if (!string.IsNullOrEmpty(mSpriteName))
 				{
-					string spriteName = this.mSpriteName;
-					this.mSpriteName = "";
-					this.spriteName = spriteName;
-					this.MarkAsChanged();
+					string text = mSpriteName;
+					mSpriteName = "";
+					spriteName = text;
+					MarkAsChanged();
 				}
 			}
 		}
 	}
 
-	// Token: 0x170001AC RID: 428
-	// (get) Token: 0x06000A3C RID: 2620 RVA: 0x0003DE97 File Offset: 0x0003C097
-	// (set) Token: 0x06000A3D RID: 2621 RVA: 0x0003DEA0 File Offset: 0x0003C0A0
 	public string spriteName
 	{
 		get
 		{
-			return this.mSpriteName;
+			return mSpriteName;
 		}
 		set
 		{
-			if (!string.IsNullOrEmpty(value))
+			if (string.IsNullOrEmpty(value))
 			{
-				if (this.mSpriteName != value)
+				if (!string.IsNullOrEmpty(mSpriteName))
 				{
-					this.mSpriteName = value;
-					this.mSprite = null;
-					this.mChanged = true;
-					this.mSpriteSet = false;
+					mSpriteName = "";
+					mSprite = null;
+					mChanged = true;
+					mSpriteSet = false;
 				}
-				return;
 			}
-			if (string.IsNullOrEmpty(this.mSpriteName))
+			else if (mSpriteName != value)
 			{
-				return;
+				mSpriteName = value;
+				mSprite = null;
+				mChanged = true;
+				mSpriteSet = false;
 			}
-			this.mSpriteName = "";
-			this.mSprite = null;
-			this.mChanged = true;
-			this.mSpriteSet = false;
 		}
 	}
 
-	// Token: 0x170001AD RID: 429
-	// (get) Token: 0x06000A3E RID: 2622 RVA: 0x0003DF0E File Offset: 0x0003C10E
-	public bool isValid
-	{
-		get
-		{
-			return this.GetAtlasSprite() != null;
-		}
-	}
+	public bool isValid => GetAtlasSprite() != null;
 
-	// Token: 0x170001AE RID: 430
-	// (get) Token: 0x06000A3F RID: 2623 RVA: 0x0003DF19 File Offset: 0x0003C119
-	// (set) Token: 0x06000A40 RID: 2624 RVA: 0x0003DF24 File Offset: 0x0003C124
 	[Obsolete("Use 'centerType' instead")]
 	public bool fillCenter
 	{
 		get
 		{
-			return this.centerType > UIBasicSprite.AdvancedType.Invisible;
+			return centerType != AdvancedType.Invisible;
 		}
 		set
 		{
-			if (value != this.centerType > UIBasicSprite.AdvancedType.Invisible)
+			if (value != (centerType != AdvancedType.Invisible))
 			{
-				this.centerType = (value ? UIBasicSprite.AdvancedType.Sliced : UIBasicSprite.AdvancedType.Invisible);
-				this.MarkAsChanged();
+				centerType = (value ? AdvancedType.Sliced : AdvancedType.Invisible);
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170001AF RID: 431
-	// (get) Token: 0x06000A41 RID: 2625 RVA: 0x0003DF48 File Offset: 0x0003C148
 	public override Vector4 border
 	{
 		get
 		{
-			UISpriteData atlasSprite = this.GetAtlasSprite();
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+			UISpriteData atlasSprite = GetAtlasSprite();
 			if (atlasSprite == null)
 			{
 				return base.border;
@@ -131,31 +127,32 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001B0 RID: 432
-	// (get) Token: 0x06000A42 RID: 2626 RVA: 0x0003DF87 File Offset: 0x0003C187
 	public override float pixelSize
 	{
 		get
 		{
-			if (!(this.mAtlas != null))
+			if (!((Object)(object)mAtlas != (Object)null))
 			{
 				return 1f;
 			}
-			return this.mAtlas.pixelSize;
+			return mAtlas.pixelSize;
 		}
 	}
 
-	// Token: 0x170001B1 RID: 433
-	// (get) Token: 0x06000A43 RID: 2627 RVA: 0x0003DFA8 File Offset: 0x0003C1A8
 	public override int minWidth
 	{
 		get
 		{
-			if (this.type == UIBasicSprite.Type.Sliced || this.type == UIBasicSprite.Type.Advanced)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+			if (type == Type.Sliced || type == Type.Advanced)
 			{
-				Vector4 vector = this.border * this.pixelSize;
-				int num = Mathf.RoundToInt(vector.x + vector.z);
-				UISpriteData atlasSprite = this.GetAtlasSprite();
+				Vector4 val = border * pixelSize;
+				int num = Mathf.RoundToInt(val.x + val.z);
+				UISpriteData atlasSprite = GetAtlasSprite();
 				if (atlasSprite != null)
 				{
 					num += atlasSprite.paddingLeft + atlasSprite.paddingRight;
@@ -166,17 +163,20 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001B2 RID: 434
-	// (get) Token: 0x06000A44 RID: 2628 RVA: 0x0003E024 File Offset: 0x0003C224
 	public override int minHeight
 	{
 		get
 		{
-			if (this.type == UIBasicSprite.Type.Sliced || this.type == UIBasicSprite.Type.Advanced)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+			if (type == Type.Sliced || type == Type.Advanced)
 			{
-				Vector4 vector = this.border * this.pixelSize;
-				int num = Mathf.RoundToInt(vector.y + vector.w);
-				UISpriteData atlasSprite = this.GetAtlasSprite();
+				Vector4 val = border * pixelSize;
+				int num = Mathf.RoundToInt(val.y + val.w);
+				UISpriteData atlasSprite = GetAtlasSprite();
 				if (atlasSprite != null)
 				{
 					num += atlasSprite.paddingTop + atlasSprite.paddingBottom;
@@ -187,41 +187,50 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001B3 RID: 435
-	// (get) Token: 0x06000A45 RID: 2629 RVA: 0x0003E0A0 File Offset: 0x0003C2A0
 	public override Vector4 drawingDimensions
 	{
 		get
 		{
-			Vector2 pivotOffset = base.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			if (this.GetAtlasSprite() != null && this.mType != UIBasicSprite.Type.Tiled)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0197: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01a9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01ba: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01c1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_022b: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 val = base.pivotOffset;
+			float num = (0f - val.x) * (float)mWidth;
+			float num2 = (0f - val.y) * (float)mHeight;
+			float num3 = num + (float)mWidth;
+			float num4 = num2 + (float)mHeight;
+			if (GetAtlasSprite() != null && mType != Type.Tiled)
 			{
-				int paddingLeft = this.mSprite.paddingLeft;
-				int paddingBottom = this.mSprite.paddingBottom;
-				int num5 = this.mSprite.paddingRight;
-				int num6 = this.mSprite.paddingTop;
-				int num7 = this.mSprite.width + paddingLeft + num5;
-				int num8 = this.mSprite.height + paddingBottom + num6;
+				int paddingLeft = mSprite.paddingLeft;
+				int paddingBottom = mSprite.paddingBottom;
+				int num5 = mSprite.paddingRight;
+				int num6 = mSprite.paddingTop;
+				int num7 = mSprite.width + paddingLeft + num5;
+				int num8 = mSprite.height + paddingBottom + num6;
 				float num9 = 1f;
 				float num10 = 1f;
-				if (num7 > 0 && num8 > 0 && (this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled))
+				if (num7 > 0 && num8 > 0 && (mType == Type.Simple || mType == Type.Filled))
 				{
-					if ((num7 & 1) != 0)
+					if (((uint)num7 & (true ? 1u : 0u)) != 0)
 					{
 						num5++;
 					}
-					if ((num8 & 1) != 0)
+					if (((uint)num8 & (true ? 1u : 0u)) != 0)
 					{
 						num6++;
 					}
-					num9 = 1f / (float)num7 * (float)this.mWidth;
-					num10 = 1f / (float)num8 * (float)this.mHeight;
+					num9 = 1f / (float)num7 * (float)mWidth;
+					num10 = 1f / (float)num8 * (float)mHeight;
 				}
-				if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+				if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
 				{
 					num += (float)num5 * num9;
 					num3 -= (float)paddingLeft * num9;
@@ -231,7 +240,7 @@ public class UISprite : UIBasicSprite
 					num += (float)paddingLeft * num9;
 					num3 -= (float)num5 * num9;
 				}
-				if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+				if (mFlip == Flip.Vertically || mFlip == Flip.Both)
 				{
 					num2 += (float)num6 * num10;
 					num4 -= (float)paddingBottom * num10;
@@ -242,105 +251,102 @@ public class UISprite : UIBasicSprite
 					num4 -= (float)num6 * num10;
 				}
 			}
-			Vector4 vector = (this.mAtlas != null) ? (this.border * this.pixelSize) : Vector4.zero;
-			float num11 = vector.x + vector.z;
-			float num12 = vector.y + vector.w;
-			float num13 = Mathf.Lerp(num, num3 - num11, this.mDrawRegion.x);
-			float num14 = Mathf.Lerp(num2, num4 - num12, this.mDrawRegion.y);
-			float num15 = Mathf.Lerp(num + num11, num3, this.mDrawRegion.z);
-			float num16 = Mathf.Lerp(num2 + num12, num4, this.mDrawRegion.w);
+			Vector4 val2 = (((Object)(object)mAtlas != (Object)null) ? (border * pixelSize) : Vector4.zero);
+			float num11 = val2.x + val2.z;
+			float num12 = val2.y + val2.w;
+			float num13 = Mathf.Lerp(num, num3 - num11, mDrawRegion.x);
+			float num14 = Mathf.Lerp(num2, num4 - num12, mDrawRegion.y);
+			float num15 = Mathf.Lerp(num + num11, num3, mDrawRegion.z);
+			float num16 = Mathf.Lerp(num2 + num12, num4, mDrawRegion.w);
 			return new Vector4(num13, num14, num15, num16);
 		}
 	}
 
-	// Token: 0x170001B4 RID: 436
-	// (get) Token: 0x06000A46 RID: 2630 RVA: 0x0003E2DD File Offset: 0x0003C4DD
 	public override bool premultipliedAlpha
 	{
 		get
 		{
-			return this.mAtlas != null && this.mAtlas.premultipliedAlpha;
+			if ((Object)(object)mAtlas != (Object)null)
+			{
+				return mAtlas.premultipliedAlpha;
+			}
+			return false;
 		}
 	}
 
-	// Token: 0x06000A47 RID: 2631 RVA: 0x0003E2FC File Offset: 0x0003C4FC
 	public UISpriteData GetAtlasSprite()
 	{
-		if (!this.mSpriteSet)
+		if (!mSpriteSet)
 		{
-			this.mSprite = null;
+			mSprite = null;
 		}
-		if (this.mSprite == null && this.mAtlas != null)
+		if (mSprite == null && (Object)(object)mAtlas != (Object)null)
 		{
-			if (!string.IsNullOrEmpty(this.mSpriteName))
+			if (!string.IsNullOrEmpty(mSpriteName))
 			{
-				UISpriteData sprite = this.mAtlas.GetSprite(this.mSpriteName);
+				UISpriteData sprite = mAtlas.GetSprite(mSpriteName);
 				if (sprite == null)
 				{
 					return null;
 				}
-				this.SetAtlasSprite(sprite);
+				SetAtlasSprite(sprite);
 			}
-			if (this.mSprite == null && this.mAtlas.spriteList.Count > 0)
+			if (mSprite == null && mAtlas.spriteList.Count > 0)
 			{
-				UISpriteData uispriteData = this.mAtlas.spriteList[0];
-				if (uispriteData == null)
+				UISpriteData uISpriteData = mAtlas.spriteList[0];
+				if (uISpriteData == null)
 				{
 					return null;
 				}
-				this.SetAtlasSprite(uispriteData);
-				if (this.mSprite == null)
+				SetAtlasSprite(uISpriteData);
+				if (mSprite == null)
 				{
-					Debug.LogError(this.mAtlas.name + " seems to have a null sprite!");
+					Debug.LogError((object)(((Object)mAtlas).name + " seems to have a null sprite!"));
 					return null;
 				}
-				this.mSpriteName = this.mSprite.name;
+				mSpriteName = mSprite.name;
 			}
 		}
-		return this.mSprite;
+		return mSprite;
 	}
 
-	// Token: 0x06000A48 RID: 2632 RVA: 0x0003E3D4 File Offset: 0x0003C5D4
 	protected void SetAtlasSprite(UISpriteData sp)
 	{
-		this.mChanged = true;
-		this.mSpriteSet = true;
+		mChanged = true;
+		mSpriteSet = true;
 		if (sp != null)
 		{
-			this.mSprite = sp;
-			this.mSpriteName = this.mSprite.name;
-			return;
+			mSprite = sp;
+			mSpriteName = mSprite.name;
 		}
-		this.mSpriteName = ((this.mSprite != null) ? this.mSprite.name : "");
-		this.mSprite = sp;
+		else
+		{
+			mSpriteName = ((mSprite != null) ? mSprite.name : "");
+			mSprite = sp;
+		}
 	}
 
-	// Token: 0x06000A49 RID: 2633 RVA: 0x0003E434 File Offset: 0x0003C634
 	public override void MakePixelPerfect()
 	{
-		if (!this.isValid)
+		if (!isValid)
 		{
 			return;
 		}
 		base.MakePixelPerfect();
-		if (this.mType == UIBasicSprite.Type.Tiled)
+		if (mType == Type.Tiled)
 		{
 			return;
 		}
-		UISpriteData atlasSprite = this.GetAtlasSprite();
+		UISpriteData atlasSprite = GetAtlasSprite();
 		if (atlasSprite == null)
 		{
 			return;
 		}
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
+		Texture val = mainTexture;
+		if (!((Object)(object)val == (Object)null) && (mType == Type.Simple || mType == Type.Filled || !atlasSprite.hasBorder) && (Object)(object)val != (Object)null)
 		{
-			return;
-		}
-		if ((this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled || !atlasSprite.hasBorder) && mainTexture != null)
-		{
-			int num = Mathf.RoundToInt(this.pixelSize * (float)(atlasSprite.width + atlasSprite.paddingLeft + atlasSprite.paddingRight));
-			int num2 = Mathf.RoundToInt(this.pixelSize * (float)(atlasSprite.height + atlasSprite.paddingTop + atlasSprite.paddingBottom));
+			int num = Mathf.RoundToInt(pixelSize * (float)(atlasSprite.width + atlasSprite.paddingLeft + atlasSprite.paddingRight));
+			int num2 = Mathf.RoundToInt(pixelSize * (float)(atlasSprite.height + atlasSprite.paddingTop + atlasSprite.paddingBottom));
 			if ((num & 1) == 1)
 			{
 				num++;
@@ -354,79 +360,60 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x06000A4A RID: 2634 RVA: 0x0003E4FE File Offset: 0x0003C6FE
 	protected override void OnInit()
 	{
-		if (!this.mFillCenter)
+		if (!mFillCenter)
 		{
-			this.mFillCenter = true;
-			this.centerType = UIBasicSprite.AdvancedType.Invisible;
+			mFillCenter = true;
+			centerType = AdvancedType.Invisible;
 		}
 		base.OnInit();
 	}
 
-	// Token: 0x06000A4B RID: 2635 RVA: 0x0003E51C File Offset: 0x0003C71C
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
-		if (this.mChanged || !this.mSpriteSet)
+		if (mChanged || !mSpriteSet)
 		{
-			this.mSpriteSet = true;
-			this.mSprite = null;
-			this.mChanged = true;
+			mSpriteSet = true;
+			mSprite = null;
+			mChanged = true;
 		}
 	}
 
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0003E54C File Offset: 0x0003C74C
 	public override void OnFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0102: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0120: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
+		Texture val = mainTexture;
+		if ((Object)(object)val == (Object)null)
 		{
 			return;
 		}
-		if (this.mSprite == null)
+		if (mSprite == null)
 		{
-			this.mSprite = this.atlas.GetSprite(this.spriteName);
+			mSprite = atlas.GetSprite(spriteName);
 		}
-		if (this.mSprite == null)
+		if (mSprite != null)
 		{
-			return;
-		}
-		Rect rect;
-		rect..ctor((float)this.mSprite.x, (float)this.mSprite.y, (float)this.mSprite.width, (float)this.mSprite.height);
-		Rect rect2;
-		rect2..ctor((float)(this.mSprite.x + this.mSprite.borderLeft), (float)(this.mSprite.y + this.mSprite.borderTop), (float)(this.mSprite.width - this.mSprite.borderLeft - this.mSprite.borderRight), (float)(this.mSprite.height - this.mSprite.borderBottom - this.mSprite.borderTop));
-		rect = NGUIMath.ConvertToTexCoords(rect, mainTexture.width, mainTexture.height);
-		rect2 = NGUIMath.ConvertToTexCoords(rect2, mainTexture.width, mainTexture.height);
-		int size = verts.size;
-		base.Fill(verts, uvs, cols, rect, rect2);
-		if (this.onPostFill != null)
-		{
-			this.onPostFill(this, size, verts, uvs, cols);
+			Rect val2 = default(Rect);
+			((Rect)(ref val2))._002Ector((float)mSprite.x, (float)mSprite.y, (float)mSprite.width, (float)mSprite.height);
+			Rect val3 = default(Rect);
+			((Rect)(ref val3))._002Ector((float)(mSprite.x + mSprite.borderLeft), (float)(mSprite.y + mSprite.borderTop), (float)(mSprite.width - mSprite.borderLeft - mSprite.borderRight), (float)(mSprite.height - mSprite.borderBottom - mSprite.borderTop));
+			val2 = NGUIMath.ConvertToTexCoords(val2, val.width, val.height);
+			val3 = NGUIMath.ConvertToTexCoords(val3, val.width, val.height);
+			int size = verts.size;
+			Fill(verts, uvs, cols, val2, val3);
+			if (onPostFill != null)
+			{
+				onPostFill(this, size, verts, uvs, cols);
+			}
 		}
 	}
-
-	// Token: 0x0400063F RID: 1599
-	[HideInInspector]
-	[SerializeField]
-	private UIAtlas mAtlas;
-
-	// Token: 0x04000640 RID: 1600
-	[HideInInspector]
-	[SerializeField]
-	private string mSpriteName;
-
-	// Token: 0x04000641 RID: 1601
-	[HideInInspector]
-	[SerializeField]
-	private bool mFillCenter = true;
-
-	// Token: 0x04000642 RID: 1602
-	[NonSerialized]
-	protected UISpriteData mSprite;
-
-	// Token: 0x04000643 RID: 1603
-	[NonSerialized]
-	private bool mSpriteSet;
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GUIPackage;
 using JSONClass;
@@ -6,129 +6,137 @@ using KBEngine;
 using UnityEngine;
 using YSGame.Fight;
 
-// Token: 0x020002B6 RID: 694
 public class NewNpcFightManager : IDisposable
 {
-	// Token: 0x0600187E RID: 6270 RVA: 0x000AF764 File Offset: 0x000AD964
+	private Random random = new Random();
+
+	private JSONObject npcDate;
+
+	public Dictionary<int, JSONObject> LianQiBuffEquipDictionary = new Dictionary<int, JSONObject>();
+
+	public Dictionary<int, JSONObject> LianQiEquipDictionary = new Dictionary<int, JSONObject>();
+
 	public NewNpcFightManager()
 	{
-		this.npcDate = jsonData.instance.AvatarJsonData;
+		npcDate = jsonData.instance.AvatarJsonData;
 	}
 
-	// Token: 0x0600187F RID: 6271 RVA: 0x000AF7A0 File Offset: 0x000AD9A0
 	public void addNpcEquipSeid(int npcID, Avatar avatar)
 	{
-		JSONObject jsonobject = this.npcDate[npcID.ToString()]["equipList"];
-		if (jsonobject.Count < 0 || jsonobject == null)
+		JSONObject jSONObject = npcDate[npcID.ToString()]["equipList"];
+		if (jSONObject.Count < 0 || jSONObject == null)
 		{
 			return;
 		}
-		if (jsonobject.HasField("Weapon1"))
+		if (jSONObject.HasField("Weapon1"))
 		{
-			JSONObject jsonobject2 = jsonobject["Weapon1"];
-			if (jsonobject2.HasField("NomalID"))
+			JSONObject jSONObject2 = jSONObject["Weapon1"];
+			if (jSONObject2.HasField("NomalID"))
 			{
-				GUIPackage.Skill item = new GUIPackage.Skill(jsonobject2["NomalID"].I, 0, 10);
+				GUIPackage.Skill item = new GUIPackage.Skill(jSONObject2["NomalID"].I, 0, 10);
 				avatar.skill.Add(item);
 			}
 			else
 			{
 				GUIPackage.Skill skill = new GUIPackage.Skill(18011, 0, 10);
-				jsonData.instance.skillJsonData[18011.ToString()].SetField("AttackType", jsonobject2["AttackType"]);
-				_skillJsonData.DataDict[18011].AttackType = jsonobject2["AttackType"].ToList();
-				if (jsonobject2.HasField("SkillSeids"))
+				jsonData.instance.skillJsonData[18011.ToString()].SetField("AttackType", jSONObject2["AttackType"]);
+				_skillJsonData.DataDict[18011].AttackType = jSONObject2["AttackType"].ToList();
+				if (jSONObject2.HasField("SkillSeids"))
 				{
-					skill.ItemAddSeid = jsonobject2["SkillSeids"];
+					skill.ItemAddSeid = jSONObject2["SkillSeids"];
 				}
-				if (jsonobject2.HasField("Damage"))
+				if (jSONObject2.HasField("Damage"))
 				{
-					skill.Damage = jsonobject2["Damage"].I;
+					skill.Damage = jSONObject2["Damage"].I;
 				}
-				if (jsonobject2.HasField("Name"))
+				if (jSONObject2.HasField("Name"))
 				{
-					skill.skill_Name = jsonobject2["Name"].str;
+					skill.skill_Name = jSONObject2["Name"].str;
 				}
-				if (jsonobject2.HasField("SeidDesc"))
+				if (jSONObject2.HasField("SeidDesc"))
 				{
-					skill.skill_Desc = jsonobject2["SeidDesc"].str;
+					skill.skill_Desc = jSONObject2["SeidDesc"].str;
 				}
-				if (jsonobject2.HasField("ItemIcon"))
+				if (jSONObject2.HasField("ItemIcon"))
 				{
-					skill.skill_Icon = ResManager.inst.LoadTexture2D(jsonobject2["ItemIcon"].str);
+					skill.skill_Icon = ResManager.inst.LoadTexture2D(jSONObject2["ItemIcon"].str);
 				}
 				avatar.skill.Add(skill);
 			}
-			FightFaBaoShow componentInChildren = (avatar.renderObj as GameObject).GetComponentInChildren<FightFaBaoShow>();
-			if (componentInChildren != null)
+			object renderObj = avatar.renderObj;
+			FightFaBaoShow componentInChildren = ((GameObject)((renderObj is GameObject) ? renderObj : null)).GetComponentInChildren<FightFaBaoShow>();
+			if ((Object)(object)componentInChildren != (Object)null)
 			{
-				componentInChildren.SetNPCWeapon(avatar, jsonobject2);
+				componentInChildren.SetNPCWeapon(avatar, jSONObject2);
 			}
 			else
 			{
-				Debug.LogError("没有查找到法宝显示组件，需要程序检查");
+				Debug.LogError((object)"没有查找到法宝显示组件，需要程序检查");
 			}
 		}
-		if (jsonobject.HasField("Weapon2"))
+		if (jSONObject.HasField("Weapon2"))
 		{
-			JSONObject jsonobject3 = jsonobject["Weapon2"];
-			if (jsonobject3.HasField("NomalID"))
+			JSONObject jSONObject3 = jSONObject["Weapon2"];
+			if (jSONObject3.HasField("NomalID"))
 			{
-				GUIPackage.Skill item2 = new GUIPackage.Skill(jsonobject3["NomalID"].I, 0, 10);
+				GUIPackage.Skill item2 = new GUIPackage.Skill(jSONObject3["NomalID"].I, 0, 10);
 				avatar.skill.Add(item2);
 			}
 			else
 			{
 				GUIPackage.Skill skill2 = new GUIPackage.Skill(18012, 0, 10);
-				jsonData.instance.skillJsonData[18012.ToString()].SetField("AttackType", jsonobject3["AttackType"]);
-				_skillJsonData.DataDict[18012].AttackType = jsonobject3["AttackType"].ToList();
-				if (jsonobject3.HasField("SkillSeids"))
+				jsonData.instance.skillJsonData[18012.ToString()].SetField("AttackType", jSONObject3["AttackType"]);
+				_skillJsonData.DataDict[18012].AttackType = jSONObject3["AttackType"].ToList();
+				if (jSONObject3.HasField("SkillSeids"))
 				{
-					skill2.ItemAddSeid = jsonobject3["SkillSeids"];
+					skill2.ItemAddSeid = jSONObject3["SkillSeids"];
 				}
-				if (jsonobject3.HasField("Damage"))
+				if (jSONObject3.HasField("Damage"))
 				{
-					skill2.Damage = jsonobject3["Damage"].I;
+					skill2.Damage = jSONObject3["Damage"].I;
 				}
-				if (jsonobject3.HasField("Name"))
+				if (jSONObject3.HasField("Name"))
 				{
-					skill2.skill_Name = jsonobject3["Name"].str;
+					skill2.skill_Name = jSONObject3["Name"].str;
 				}
-				if (jsonobject3.HasField("SeidDesc"))
+				if (jSONObject3.HasField("SeidDesc"))
 				{
-					skill2.skill_Desc = jsonobject3["SeidDesc"].str;
+					skill2.skill_Desc = jSONObject3["SeidDesc"].str;
 				}
-				if (jsonobject3.HasField("ItemIcon"))
+				if (jSONObject3.HasField("ItemIcon"))
 				{
-					skill2.skill_Icon = ResManager.inst.LoadTexture2D(jsonobject3["ItemIcon"].str);
+					skill2.skill_Icon = ResManager.inst.LoadTexture2D(jSONObject3["ItemIcon"].str);
 				}
 				avatar.skill.Add(skill2);
 			}
 		}
-		if (jsonobject.HasField("Clothing"))
+		if (jSONObject.HasField("Clothing"))
 		{
-			this.addFangJuSeid(jsonobject["Clothing"], avatar);
+			addFangJuSeid(jSONObject["Clothing"], avatar);
 		}
-		if (jsonobject.HasField("Ring"))
+		if (jSONObject.HasField("Ring"))
 		{
-			this.addFangJuSeid(jsonobject["Ring"], avatar);
+			addFangJuSeid(jSONObject["Ring"], avatar);
 		}
 	}
 
-	// Token: 0x06001880 RID: 6272 RVA: 0x000AFB50 File Offset: 0x000ADD50
 	private void addFangJuSeid(JSONObject Seid, Avatar avatar)
 	{
 		if (Seid.HasField("NomalID"))
 		{
 			avatar.spell.addDBuff(Seid["NomalID"].I);
-			return;
 		}
-		if (Seid.HasField("ItemSeids") && Seid["ItemSeids"].list.Count > 0)
+		else
 		{
-			int num = Seid["ItemID"].I + 5;
-			if (!this.LianQiBuffEquipDictionary.ContainsKey(num))
+			if (!Seid.HasField("ItemSeids") || Seid["ItemSeids"].list.Count <= 0)
 			{
-				this.LianQiBuffEquipDictionary.Add(num, Seid["ItemSeids"]);
-				this.LianQiEquipDictionary.Add(num, Seid);
+				return;
+			}
+			int num = Seid["ItemID"].I + 5;
+			if (!LianQiBuffEquipDictionary.ContainsKey(num))
+			{
+				LianQiBuffEquipDictionary.Add(num, Seid["ItemSeids"]);
+				LianQiEquipDictionary.Add(num, Seid);
 			}
 			List<JSONObject> list = Seid["ItemSeids"].list;
 			bool flag = true;
@@ -156,119 +164,99 @@ public class NewNpcFightManager : IDisposable
 		}
 	}
 
-	// Token: 0x06001881 RID: 6273 RVA: 0x000AFD20 File Offset: 0x000ADF20
 	public JSONObject dropReward(float equipLv, float packLv, int NPCID)
 	{
-		JSONObject result = new JSONObject(JSONObject.Type.ARRAY);
+		JSONObject addItemList = new JSONObject(JSONObject.Type.ARRAY);
 		if (equipLv > 0f)
 		{
-			this.dropEquip(ref result, NPCID);
+			dropEquip(ref addItemList, NPCID);
 		}
 		if (packLv > 0f)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.AvatarBackpackJsonData[string.Concat(NPCID)]["Backpack"].list)
+			foreach (JSONObject item in jsonData.instance.AvatarBackpackJsonData[string.Concat(NPCID)]["Backpack"].list)
 			{
-				if ((int)jsonobject["CanDrop"].n != 0)
+				if ((int)item["CanDrop"].n == 0)
 				{
-					if (jsonobject["Num"].I < 5)
+					continue;
+				}
+				if (item["Num"].I < 5)
+				{
+					float num = (float)getRandom(0, 100) / 100f;
+					if (packLv >= num)
 					{
-						float num = (float)this.getRandom(0, 100) / 100f;
-						if (packLv >= num)
-						{
-							this.buidTempItem(ref result, jsonobject["ItemID"].I, jsonobject["Num"].I, jsonobject["Seid"]);
-						}
+						buidTempItem(ref addItemList, item["ItemID"].I, item["Num"].I, item["Seid"]);
 					}
-					else
-					{
-						this.buidTempItem(ref result, jsonobject["ItemID"].I, (int)((float)jsonobject["Num"].I * packLv), jsonobject["Seid"]);
-					}
+				}
+				else
+				{
+					buidTempItem(ref addItemList, item["ItemID"].I, (int)((float)item["Num"].I * packLv), item["Seid"]);
 				}
 			}
 		}
-		return result;
+		return addItemList;
 	}
 
-	// Token: 0x06001882 RID: 6274 RVA: 0x000AFE64 File Offset: 0x000AE064
 	private void dropEquip(ref JSONObject addItemList, int NPCID)
 	{
 		if (NPCID >= 20000)
 		{
-			JSONObject jsonobject = this.npcDate[NPCID.ToString()]["equipList"];
-			if (jsonobject.keys.Count == 0)
+			JSONObject jSONObject = npcDate[NPCID.ToString()]["equipList"];
+			if (jSONObject.keys.Count != 0)
 			{
-				return;
+				string index = jSONObject.keys[getRandom(0, jSONObject.keys.Count)];
+				if (jSONObject[index].HasField("NomalID"))
+				{
+					buidTempItem(ref addItemList, jSONObject[index]["NomalID"].I, 1);
+				}
+				else
+				{
+					buidTempItem(ref addItemList, jSONObject[index]["ItemID"].I, 1, jSONObject[index]);
+				}
 			}
-			string index = jsonobject.keys[this.getRandom(0, jsonobject.keys.Count)];
-			if (jsonobject[index].HasField("NomalID"))
-			{
-				this.buidTempItem(ref addItemList, jsonobject[index]["NomalID"].I, 1, null);
-				return;
-			}
-			this.buidTempItem(ref addItemList, jsonobject[index]["ItemID"].I, 1, jsonobject[index]);
 			return;
 		}
-		else
+		List<int> list = new List<int>();
+		if (npcDate[NPCID.ToString()]["equipWeapon"].I > 0)
 		{
-			List<int> list = new List<int>();
-			if (this.npcDate[NPCID.ToString()]["equipWeapon"].I > 0)
-			{
-				list.Add(this.npcDate[NPCID.ToString()]["equipWeapon"].I);
-			}
-			if (this.npcDate[NPCID.ToString()]["equipRing"].I > 0)
-			{
-				list.Add(this.npcDate[NPCID.ToString()]["equipRing"].I);
-			}
-			if (this.npcDate[NPCID.ToString()]["equipClothing"].I > 0)
-			{
-				list.Add(this.npcDate[NPCID.ToString()]["equipClothing"].I);
-			}
-			if (list.Count == 0)
-			{
-				return;
-			}
-			this.buidTempItem(ref addItemList, list[this.getRandom(0, list.Count)], 1, null);
-			return;
+			list.Add(npcDate[NPCID.ToString()]["equipWeapon"].I);
+		}
+		if (npcDate[NPCID.ToString()]["equipRing"].I > 0)
+		{
+			list.Add(npcDate[NPCID.ToString()]["equipRing"].I);
+		}
+		if (npcDate[NPCID.ToString()]["equipClothing"].I > 0)
+		{
+			list.Add(npcDate[NPCID.ToString()]["equipClothing"].I);
+		}
+		if (list.Count != 0)
+		{
+			buidTempItem(ref addItemList, list[getRandom(0, list.Count)], 1);
 		}
 	}
 
-	// Token: 0x06001883 RID: 6275 RVA: 0x000B002A File Offset: 0x000AE22A
 	private int getRandom(int min, int max)
 	{
-		return this.random.Next(min, max + 1);
+		return random.Next(min, max + 1);
 	}
 
-	// Token: 0x06001884 RID: 6276 RVA: 0x000B003C File Offset: 0x000AE23C
 	private void buidTempItem(ref JSONObject addItemList, int ItemID, int ItemNum, JSONObject seid = null)
 	{
-		JSONObject jsonobject = new JSONObject();
-		jsonobject.AddField("UUID", Tools.getUUID());
-		jsonobject.AddField("ID", ItemID);
-		jsonobject.AddField("Num", ItemNum);
+		JSONObject jSONObject = new JSONObject();
+		jSONObject.AddField("UUID", Tools.getUUID());
+		jSONObject.AddField("ID", ItemID);
+		jSONObject.AddField("Num", ItemNum);
 		if (seid != null)
 		{
-			jsonobject.AddField("seid", seid);
+			jSONObject.AddField("seid", seid);
 		}
 		else
 		{
-			jsonobject.AddField("seid", Tools.CreateItemSeid(ItemID));
+			jSONObject.AddField("seid", Tools.CreateItemSeid(ItemID));
 		}
-		addItemList.Add(jsonobject);
+		addItemList.Add(jSONObject);
 	}
 
-	// Token: 0x06001885 RID: 6277 RVA: 0x00004095 File Offset: 0x00002295
 	public void Dispose()
 	{
 	}
-
-	// Token: 0x04001376 RID: 4982
-	private Random random = new Random();
-
-	// Token: 0x04001377 RID: 4983
-	private JSONObject npcDate;
-
-	// Token: 0x04001378 RID: 4984
-	public Dictionary<int, JSONObject> LianQiBuffEquipDictionary = new Dictionary<int, JSONObject>();
-
-	// Token: 0x04001379 RID: 4985
-	public Dictionary<int, JSONObject> LianQiEquipDictionary = new Dictionary<int, JSONObject>();
 }

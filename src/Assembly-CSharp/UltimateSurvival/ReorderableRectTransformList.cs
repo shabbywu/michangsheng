@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[Serializable]
+public class ReorderableRectTransformList : ReorderableGenericList<RectTransform>
 {
-	// Token: 0x020005A5 RID: 1445
-	[Serializable]
-	public class ReorderableRectTransformList : ReorderableGenericList<RectTransform>
-	{
-	}
 }

@@ -1,155 +1,157 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x020003BB RID: 955
 public class RandomFuBenMag
 {
-	// Token: 0x06001F1A RID: 7962 RVA: 0x000D9D01 File Offset: 0x000D7F01
+	private Avatar avatar;
+
 	public RandomFuBenMag(Avatar _avatar)
 	{
-		this.avatar = _avatar;
+		avatar = _avatar;
 	}
 
-	// Token: 0x06001F1B RID: 7963 RVA: 0x000D9D10 File Offset: 0x000D7F10
 	public void AutoSetRandomFuBen()
 	{
-		foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.RandomMapList)
+		foreach (KeyValuePair<string, JToken> randomMap in jsonData.instance.RandomMapList)
 		{
-			this.SetRandomFuBenShouldReset(keyValuePair.Value);
+			SetRandomFuBenShouldReset(randomMap.Value);
 		}
 	}
 
-	// Token: 0x06001F1C RID: 7964 RVA: 0x000D9D68 File Offset: 0x000D7F68
 	public void SetRandomFuBenShouldReset(JToken json)
 	{
-		int fuBenId = (int)json["id"];
-		this.InitFuBenJson(fuBenId);
-		DateTime startTime = DateTime.Parse((string)this.avatar.RandomFuBenList[fuBenId.ToString()]["startTime"]);
-		DateTime nowTime = this.avatar.worldTimeMag.getNowTime();
-		if (!(bool)this.avatar.RandomFuBenList[fuBenId.ToString()]["ShouldReset"])
+		int fuBenId = (int)json[(object)"id"];
+		InitFuBenJson(fuBenId);
+		DateTime startTime = DateTime.Parse((string)avatar.RandomFuBenList[fuBenId.ToString()][(object)"startTime"]);
+		DateTime nowTime = avatar.worldTimeMag.getNowTime();
+		if (!(bool)avatar.RandomFuBenList[fuBenId.ToString()][(object)"ShouldReset"])
 		{
-			int value = (int)json["resetYear"];
-			if (!Tools.instance.IsInTime(nowTime, startTime, startTime.AddYears(value), 0))
+			int value = (int)json[(object)"resetYear"];
+			if (!Tools.instance.IsInTime(nowTime, startTime, startTime.AddYears(value)))
 			{
-				this.avatar.RandomFuBenList[fuBenId.ToString()]["ShouldReset"] = true;
+				avatar.RandomFuBenList[fuBenId.ToString()][(object)"ShouldReset"] = JToken.op_Implicit(true);
 			}
 		}
 	}
 
-	// Token: 0x06001F1D RID: 7965 RVA: 0x000D9E41 File Offset: 0x000D8041
 	public void OutRandomFuBen()
 	{
-		Tools.instance.loadMapScenes(Tools.instance.getPlayer().lastFuBenScence, true);
-		this.avatar.lastFuBenScence = "";
-		this.avatar.NowFuBen = "";
+		Tools.instance.loadMapScenes(Tools.instance.getPlayer().lastFuBenScence);
+		avatar.lastFuBenScence = "";
+		avatar.NowFuBen = "";
 	}
 
-	// Token: 0x06001F1E RID: 7966 RVA: 0x000D9E80 File Offset: 0x000D8080
 	public void GetInRandomFuBen(int id, int specialType = -1)
 	{
 		if (specialType > 0)
 		{
-			foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.RandomMapList)
+			foreach (KeyValuePair<string, JToken> randomMap in jsonData.instance.RandomMapList)
 			{
-				if ((int)keyValuePair.Value["type"][0] == specialType)
+				if ((int)randomMap.Value[(object)"type"][(object)0] == specialType)
 				{
 					id = 9901;
 					break;
 				}
 			}
 		}
-		this.LoadRandomFuBen(id, specialType);
-		this.avatar.zulinContorl.kezhanLastScence = Tools.getScreenName();
-		this.avatar.lastFuBenScence = Tools.getScreenName();
-		this.avatar.NowFuBen = "FRandomBase";
-		this.avatar.NowRandomFuBenID = id;
+		LoadRandomFuBen(id, specialType);
+		avatar.zulinContorl.kezhanLastScence = Tools.getScreenName();
+		avatar.lastFuBenScence = Tools.getScreenName();
+		avatar.NowFuBen = "FRandomBase";
+		avatar.NowRandomFuBenID = id;
 		int @int = PlayerPrefs.GetInt("NowPlayerFileAvatar");
-		Tools.instance.Save(@int, 0, null);
-		Tools.instance.loadMapScenes("FRandomBase", true);
+		Tools.instance.Save(@int, 0);
+		Tools.instance.loadMapScenes("FRandomBase");
 	}
 
-	// Token: 0x06001F1F RID: 7967 RVA: 0x000D9F6C File Offset: 0x000D816C
 	private void LoadRandomFuBen(int id, int specialType)
 	{
-		foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.RandomMapList)
+		foreach (KeyValuePair<string, JToken> randomMap in jsonData.instance.RandomMapList)
 		{
-			if ((int)keyValuePair.Value["id"] == id)
+			if ((int)randomMap.Value[(object)"id"] == id)
 			{
-				this.LoadRandomFuBen(keyValuePair.Value, specialType);
+				LoadRandomFuBen(randomMap.Value, specialType);
 				break;
 			}
 		}
 	}
 
-	// Token: 0x06001F20 RID: 7968 RVA: 0x000D9FE0 File Offset: 0x000D81E0
 	private void LoadRandomFuBen(JToken json, int specialType)
 	{
-		int fuBenId = (int)json["id"];
-		this.InitFuBenJson(fuBenId);
-		if (!this.CanRandom(json))
+		int fuBenId = (int)json[(object)"id"];
+		InitFuBenJson(fuBenId);
+		if (CanRandom(json))
 		{
-			return;
+			try
+			{
+				CreateRandomFuBen(json, specialType);
+			}
+			catch (Exception ex)
+			{
+				Debug.LogError((object)ex);
+			}
+			ResetAvatarFuBenInfo(json);
 		}
-		try
-		{
-			this.CreateRandomFuBen(json, specialType);
-		}
-		catch (Exception ex)
-		{
-			Debug.LogError(ex);
-		}
-		this.ResetAvatarFuBenInfo(json);
 	}
 
-	// Token: 0x06001F21 RID: 7969 RVA: 0x000DA038 File Offset: 0x000D8238
 	public void ResetAvatarFuBenInfo(JToken json)
 	{
-		int num = (int)json["id"];
-		this.avatar.RandomFuBenList[num.ToString()]["startTime"] = this.avatar.worldTimeMag.nowTime;
-		this.avatar.RandomFuBenList[num.ToString()]["ShouldReset"] = false;
+		int num = (int)json[(object)"id"];
+		avatar.RandomFuBenList[num.ToString()][(object)"startTime"] = JToken.op_Implicit(avatar.worldTimeMag.nowTime);
+		avatar.RandomFuBenList[num.ToString()][(object)"ShouldReset"] = JToken.op_Implicit(false);
 	}
 
-	// Token: 0x06001F22 RID: 7970 RVA: 0x000DA0B4 File Offset: 0x000D82B4
 	private void CreateRandomFuBen(JToken json, int specialType = -1)
 	{
-		int num = (int)json["id"];
-		JToken FuBenJson = this.avatar.RandomFuBenList[num.ToString()];
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		int num = (int)json[(object)"id"];
+		JToken FuBenJson = avatar.RandomFuBenList[num.ToString()];
 		if (specialType > 0)
 		{
-			FuBenJson["type"] = specialType;
+			FuBenJson[(object)"type"] = JToken.op_Implicit(specialType);
 		}
 		else
 		{
-			FuBenJson["type"] = this.getFuBentype(json);
+			FuBenJson[(object)"type"] = JToken.op_Implicit(getFuBentype(json));
 		}
-		FuBenJson["ShuXin"] = this.getFuBenShuXin(json);
-		if (((JArray)json["nandu"]).Count > 0)
+		FuBenJson[(object)"ShuXin"] = JToken.op_Implicit(getFuBenShuXin(json));
+		if (((JContainer)(JArray)json[(object)"nandu"]).Count > 0)
 		{
-			FuBenJson["NamDu"] = Tools.getRandomInt((int)json["nandu"][0], (int)json["nandu"][0]);
+			FuBenJson[(object)"NamDu"] = JToken.op_Implicit(Tools.getRandomInt((int)json[(object)"nandu"][(object)0], (int)json[(object)"nandu"][(object)0]));
 		}
 		else
 		{
-			FuBenJson["NamDu"] = 1;
+			FuBenJson[(object)"NamDu"] = JToken.op_Implicit(1);
 		}
-		JToken jtoken = jsonData.instance.RandomMapType[((int)FuBenJson["type"]).ToString()];
-		FuBenJson["high"] = Tools.getRandomInt((int)jtoken["high"][0], (int)jtoken["high"][1]);
-		FuBenJson["wide"] = Tools.getRandomInt((int)jtoken["wide"][0], (int)jtoken["wide"][1]);
-		string text = (string)Tools.RandomGetToken<JToken>(Tools.FindAllJTokens(jsonData.instance.RandomMapFirstName, (JToken aa) => (int)aa["shuxin"] == (int)FuBenJson["ShuXin"]))["name"] + (string)jtoken["LastName"];
-		FuBenJson["Name"] = text;
-		FuBenJson["UUID"] = Tools.getUUID();
-		this.CreateRoadNode(FuBenJson, json);
+		JToken val = jsonData.instance.RandomMapType[((int)FuBenJson[(object)"type"]).ToString()];
+		FuBenJson[(object)"high"] = JToken.op_Implicit(Tools.getRandomInt((int)val[(object)"high"][(object)0], (int)val[(object)"high"][(object)1]));
+		FuBenJson[(object)"wide"] = JToken.op_Implicit(Tools.getRandomInt((int)val[(object)"wide"][(object)0], (int)val[(object)"wide"][(object)1]));
+		string text = (string)Tools.RandomGetToken(Tools.FindAllJTokens((JToken)(object)jsonData.instance.RandomMapFirstName, (JToken aa) => (int)aa[(object)"shuxin"] == (int)FuBenJson[(object)"ShuXin"]))[(object)"name"] + (string)val[(object)"LastName"];
+		FuBenJson[(object)"Name"] = JToken.op_Implicit(text);
+		FuBenJson[(object)"UUID"] = JToken.op_Implicit(Tools.getUUID());
+		CreateRoadNode(FuBenJson, json);
 	}
 
-	// Token: 0x06001F23 RID: 7971 RVA: 0x000DA31C File Offset: 0x000D851C
 	public void CreateRoadNode(JToken FuBenJson, JToken mapJson)
 	{
-		int high = (int)FuBenJson["high"];
-		int wide = (int)FuBenJson["wide"];
+		//IL_01ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d4: Expected O, but got Unknown
+		//IL_0205: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020f: Expected O, but got Unknown
+		//IL_02ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0309: Expected O, but got Unknown
+		//IL_0271: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0319: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0328: Expected O, but got Unknown
+		//IL_0344: Unknown result type (might be due to invalid IL or missing references)
+		int high = (int)FuBenJson[(object)"high"];
+		int wide = (int)FuBenJson[(object)"wide"];
 		FuBenMap fuBenMap = new FuBenMap(high, wide);
-		fuBenMap.CreateAllNode(this.avatar, FuBenJson, mapJson);
+		fuBenMap.CreateAllNode(avatar, FuBenJson, mapJson);
 		for (int i = 0; i < fuBenMap.Wide; i++)
 		{
 			string text = "";
@@ -157,168 +159,154 @@ public class RandomFuBenMag
 			{
 				text += fuBenMap.map[i, j];
 			}
-			Debug.Log(text);
+			Debug.Log((object)text);
 		}
-		int shuxing = (int)FuBenJson["ShuXin"];
-		int type = (int)FuBenJson["type"];
-		int namdu = (int)FuBenJson["NamDu"];
-		int weizhi = (int)mapJson["weizhi"];
-		List<JToken> list = Tools.FindAllJTokens(jsonData.instance.RandomMapEventList, delegate(JToken aa)
+		int shuxing = (int)FuBenJson[(object)"ShuXin"];
+		int type = (int)FuBenJson[(object)"type"];
+		int namdu = (int)FuBenJson[(object)"NamDu"];
+		int weizhi = (int)mapJson[(object)"weizhi"];
+		List<JToken> list = Tools.FindAllJTokens((JToken)(object)jsonData.instance.RandomMapEventList, delegate(JToken aa)
 		{
-			if ((Tools.HasItems(aa["shuxing"], shuxing) || ((JArray)aa["shuxing"]).Count == 0) && (Tools.HasItems(aa["type"], type) || ((JArray)aa["type"]).Count == 0) && (Tools.HasItems(aa["weizhi"], weizhi) || ((JArray)aa["weizhi"]).Count == 0) && (int)aa["nandu"][0] <= namdu && (int)aa["nandu"][1] >= namdu)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+			if ((Tools.HasItems(aa[(object)"shuxing"], shuxing) || ((JContainer)(JArray)aa[(object)"shuxing"]).Count == 0) && (Tools.HasItems(aa[(object)"type"], type) || ((JContainer)(JArray)aa[(object)"type"]).Count == 0) && (Tools.HasItems(aa[(object)"weizhi"], weizhi) || ((JContainer)(JArray)aa[(object)"weizhi"]).Count == 0) && (int)aa[(object)"nandu"][(object)0] <= namdu && (int)aa[(object)"nandu"][(object)1] >= namdu)
 			{
-				if (((JArray)aa["EventValue"]).Count <= 0)
+				if (((JContainer)(JArray)aa[(object)"EventValue"]).Count <= 0)
 				{
 					return true;
 				}
-				if (Avatar.ManZuValue((int)aa["EventValue"][0], (int)aa["EventValue"][1], (string)aa["fuhao"]))
+				if (Avatar.ManZuValue((int)aa[(object)"EventValue"][(object)0], (int)aa[(object)"EventValue"][(object)1], (string)aa[(object)"fuhao"]))
 				{
 					return true;
 				}
 			}
 			return false;
 		});
-		List<JToken> list2 = list.FindAll((JToken aa) => (int)aa["EventType"] == 1);
-		List<JToken> list3 = list.FindAll((JToken aa) => (int)aa["EventType"] == 2);
+		List<JToken> list2 = list.FindAll((JToken aa) => (int)aa[(object)"EventType"] == 1);
+		List<JToken> list3 = list.FindAll((JToken aa) => (int)aa[(object)"EventType"] == 2);
 		if (list3.Count == 0 || list2.Count == 0)
 		{
-			Debug.LogError(string.Concat(new object[]
-			{
-				"能够随机到的奖励或随机事件为空  属性:",
-				shuxing,
-				" 类型:",
-				type
-			}));
+			Debug.LogError((object)("能够随机到的奖励或随机事件为空  属性:" + shuxing + " 类型:" + type));
 		}
 		List<int> list4 = new List<int>();
 		List<int> list5 = new List<int>();
 		fuBenMap.getAllMapIndex(FuBenMap.NodeType.Entrance, list4, list5);
 		List<int> list6 = new List<int>();
 		List<int> list7 = new List<int>();
-		FuBenJson["Award"] = new JArray();
+		FuBenJson[(object)"Award"] = (JToken)new JArray();
 		fuBenMap.getAllMapIndex(FuBenMap.NodeType.Award, list6, list7);
-		this.AddFuBenJsonNode(fuBenMap, list2, FuBenJson, "Award", list6, list7);
+		AddFuBenJsonNode(fuBenMap, list2, FuBenJson, "Award", list6, list7);
 		List<int> list8 = new List<int>();
 		List<int> list9 = new List<int>();
-		FuBenJson["Event"] = new JArray();
+		FuBenJson[(object)"Event"] = (JToken)new JArray();
 		fuBenMap.getAllMapIndex(FuBenMap.NodeType.Event, list8, list9);
-		this.AddFuBenJsonNode(fuBenMap, list3, FuBenJson, "Event", list8, list9);
-		int num = this.avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int>
-		{
-			(int)mapJson["id"]
-		});
+		AddFuBenJsonNode(fuBenMap, list3, FuBenJson, "Event", list8, list9);
+		int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int> { (int)mapJson[(object)"id"] });
 		if (num != -1)
 		{
 			int index = jsonData.GetRandom() % list6.Count;
 			new JObject();
-			JSONObject jsonobject = this.avatar.nomelTaskMag.IsNTaskZiXiangInLuJin(num, new List<int>
-			{
-				(int)mapJson["id"]
-			});
-			FuBenJson["TaskTalkID"] = int.Parse(jsonobject["talkID"].str);
-			FuBenJson["TaskIndex"] = fuBenMap.mapIndex[list6[index], list7[index]];
+			JSONObject jSONObject = avatar.nomelTaskMag.IsNTaskZiXiangInLuJin(num, new List<int> { (int)mapJson[(object)"id"] });
+			FuBenJson[(object)"TaskTalkID"] = JToken.op_Implicit(int.Parse(jSONObject["talkID"].str));
+			FuBenJson[(object)"TaskIndex"] = JToken.op_Implicit(fuBenMap.mapIndex[list6[index], list7[index]]);
 		}
-		FuBenJson["Map"] = new JArray();
+		FuBenJson[(object)"Map"] = (JToken)new JArray();
 		for (int k = 0; k < fuBenMap.Wide; k++)
 		{
-			((JArray)FuBenJson["Map"]).Add(new JArray());
+			((JArray)FuBenJson[(object)"Map"]).Add((JToken)new JArray());
 			for (int l = 0; l < fuBenMap.High; l++)
 			{
-				((JArray)FuBenJson["Map"][k]).Add(fuBenMap.map[k, l]);
+				((JArray)FuBenJson[(object)"Map"][(object)k]).Add(JToken.op_Implicit(fuBenMap.map[k, l]));
 			}
 		}
-		this.avatar.fubenContorl[(string)FuBenJson["UUID"]].setFirstIndex(fuBenMap.mapIndex[list4[0], list5[0]]);
+		avatar.fubenContorl[(string)FuBenJson[(object)"UUID"]].setFirstIndex(fuBenMap.mapIndex[list4[0], list5[0]]);
 	}
 
-	// Token: 0x06001F24 RID: 7972 RVA: 0x000DA6EC File Offset: 0x000D88EC
 	public void AddFuBenJsonNode(FuBenMap map, List<JToken> EventRandomJson, JToken FuBenJson, string type, List<int> listEventX, List<int> listEventY)
 	{
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0119: Expected O, but got Unknown
+		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
 		List<int> list = new List<int>();
 		int num = 0;
-		int num2 = 0;
-		while (num2 < listEventX.Count && num < 1000)
+		for (int i = 0; i < listEventX.Count; i++)
 		{
+			if (num >= 1000)
+			{
+				break;
+			}
 			num++;
 			if (EventRandomJson.Count <= 0)
 			{
-				Debug.LogError("副本随机事件数量不足");
-				return;
+				Debug.LogError((object)"副本随机事件数量不足");
+				break;
 			}
 			JToken randomListByPercent = Tools.instance.getRandomListByPercent(EventRandomJson, "percent");
-			if ((int)randomListByPercent["fenzu"] != 0)
+			if ((int)randomListByPercent[(object)"fenzu"] != 0)
 			{
 				List<JToken> list2 = new List<JToken>();
-				foreach (JToken jtoken in EventRandomJson)
+				foreach (JToken item in EventRandomJson)
 				{
-					if ((int)jtoken["fenzu"] == (int)randomListByPercent["fenzu"])
+					if ((int)item[(object)"fenzu"] == (int)randomListByPercent[(object)"fenzu"])
 					{
-						list2.Add(jtoken);
+						list2.Add(item);
 					}
 				}
-				foreach (JToken item in list2)
+				foreach (JToken item2 in list2)
 				{
-					EventRandomJson.Remove(item);
+					EventRandomJson.Remove(item2);
 				}
 			}
-			if ((int)randomListByPercent["duoci"] == 0)
+			if ((int)randomListByPercent[(object)"duoci"] == 0)
 			{
 				EventRandomJson.Remove(randomListByPercent);
 			}
-			list.Add((int)randomListByPercent["id"]);
-			JObject jobject = new JObject();
-			jobject["ID"] = (int)randomListByPercent["id"];
-			jobject["Index"] = map.mapIndex[listEventX[num2], listEventY[num2]];
-			((JArray)FuBenJson[type]).Add(jobject);
-			num2++;
+			list.Add((int)randomListByPercent[(object)"id"]);
+			JObject val = new JObject();
+			val["ID"] = JToken.op_Implicit((int)randomListByPercent[(object)"id"]);
+			val["Index"] = JToken.op_Implicit(map.mapIndex[listEventX[i], listEventY[i]]);
+			((JArray)FuBenJson[(object)type]).Add((JToken)(object)val);
 		}
 	}
 
-	// Token: 0x06001F25 RID: 7973 RVA: 0x000DA8A8 File Offset: 0x000D8AA8
 	public int getFuBenShuXin(JToken json)
 	{
-		int num = this.avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int>
-		{
-			(int)json["id"]
-		});
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int> { (int)json[(object)"id"] });
 		if (num != -1)
 		{
-			using (List<JSONObject>.Enumerator enumerator = this.avatar.nomelTaskMag.getWhereTaskChildShuxingList(num).list.GetEnumerator())
+			using List<JSONObject>.Enumerator enumerator = avatar.nomelTaskMag.getWhereTaskChildShuxingList(num).list.GetEnumerator();
+			if (enumerator.MoveNext())
 			{
-				if (enumerator.MoveNext())
-				{
-					return enumerator.Current.I;
-				}
+				return enumerator.Current.I;
 			}
 		}
-		if (((JArray)json["shuxingPercent"]).Count <= 0)
+		if (((JContainer)(JArray)json[(object)"shuxingPercent"]).Count <= 0)
 		{
 			return 1;
 		}
-		int randomByJToken = Tools.GetRandomByJToken(json["shuxingPercent"]);
-		return (int)json["shuxing"][randomByJToken];
+		int randomByJToken = Tools.GetRandomByJToken(json[(object)"shuxingPercent"]);
+		return (int)json[(object)"shuxing"][(object)randomByJToken];
 	}
 
-	// Token: 0x06001F26 RID: 7974 RVA: 0x000DA984 File Offset: 0x000D8B84
 	public int getFuBentype(JToken json)
 	{
-		int num = this.avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int>
-		{
-			(int)json["id"]
-		});
+		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
+		int num = avatar.nomelTaskMag.AutoAllMapPlaceHasNTask(new List<int> { (int)json[(object)"id"] });
 		if (num != -1)
 		{
-			using (List<JSONObject>.Enumerator enumerator = this.avatar.nomelTaskMag.getWhereTaskChildTypeList(num).list.GetEnumerator())
+			using List<JSONObject>.Enumerator enumerator = avatar.nomelTaskMag.getWhereTaskChildTypeList(num).list.GetEnumerator();
+			if (enumerator.MoveNext())
 			{
-				if (enumerator.MoveNext())
-				{
-					return enumerator.Current.I;
-				}
+				return enumerator.Current.I;
 			}
 		}
-		if (EndlessSeaMag.Inst != null)
+		if ((Object)(object)EndlessSeaMag.Inst != (Object)null)
 		{
-			int seaIslandIndex = this.avatar.seaNodeMag.GetSeaIslandIndex((int)json["id"]);
-			int realIndex = EndlessSeaMag.GetRealIndex((int)json["id"], seaIslandIndex);
+			int seaIslandIndex = avatar.seaNodeMag.GetSeaIslandIndex((int)json[(object)"id"]);
+			int realIndex = EndlessSeaMag.GetRealIndex((int)json[(object)"id"], seaIslandIndex);
 			int indexX = FuBenMap.getIndexX(realIndex, EndlessSeaMag.MapWide);
 			int indexY = FuBenMap.getIndexY(realIndex, EndlessSeaMag.MapWide);
 			int num2 = 0;
@@ -332,21 +320,18 @@ public class RandomFuBenMag
 						int x = Mathf.Clamp(indexX + i, 0, EndlessSeaMag.MapWide);
 						int y = Mathf.Clamp(indexY + j, 0, 69);
 						int index = FuBenMap.getIndex(x, y, EndlessSeaMag.MapWide);
-						if (this.avatar.seaNodeMag.GetIndexFengBaoLv(index, EndlessSeaMag.MapWide) > 0)
+						if (avatar.seaNodeMag.GetIndexFengBaoLv(index, EndlessSeaMag.MapWide) > 0)
 						{
 							num2++;
 						}
 					}
 				}
 			}
-			using (List<SeaAvatarObjBase>.Enumerator enumerator2 = EndlessSeaMag.Inst.MonstarList.GetEnumerator())
+			foreach (SeaAvatarObjBase monstar in EndlessSeaMag.Inst.MonstarList)
 			{
-				while (enumerator2.MoveNext())
+				if (monstar.NowMapIndex == realIndex)
 				{
-					if (enumerator2.Current.NowMapIndex == realIndex)
-					{
-						return 2;
-					}
+					return 2;
 				}
 			}
 			if (num2 >= 20)
@@ -355,36 +340,36 @@ public class RandomFuBenMag
 			}
 			return 1;
 		}
-		else
+		if (((JContainer)(JArray)json[(object)"type"]).Count <= 0)
 		{
-			if (((JArray)json["type"]).Count <= 0)
-			{
-				return 1;
-			}
-			return (int)Tools.RandomGetArrayToken(json["type"]);
+			return 1;
 		}
-		int result;
-		return result;
+		return (int)Tools.RandomGetArrayToken(json[(object)"type"]);
 	}
 
-	// Token: 0x06001F27 RID: 7975 RVA: 0x000DABAC File Offset: 0x000D8DAC
 	public void InitFuBenJson(int FuBenId)
 	{
-		if (!this.avatar.RandomFuBenList.ContainsKey(FuBenId.ToString()))
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Expected O, but got Unknown
+		if (!avatar.RandomFuBenList.ContainsKey(FuBenId.ToString()))
 		{
-			this.avatar.RandomFuBenList[FuBenId.ToString()] = new JObject();
-			this.avatar.RandomFuBenList[FuBenId.ToString()]["startTime"] = "1-1-1";
-			this.avatar.RandomFuBenList[FuBenId.ToString()]["ShouldReset"] = true;
+			avatar.RandomFuBenList[FuBenId.ToString()] = (JToken)new JObject();
+			avatar.RandomFuBenList[FuBenId.ToString()][(object)"startTime"] = JToken.op_Implicit("1-1-1");
+			avatar.RandomFuBenList[FuBenId.ToString()][(object)"ShouldReset"] = JToken.op_Implicit(true);
 		}
 	}
 
-	// Token: 0x06001F28 RID: 7976 RVA: 0x000DAC40 File Offset: 0x000D8E40
 	public bool CanRandom(JToken json)
 	{
-		int num = (int)json["id"];
-		return (bool)this.avatar.RandomFuBenList[num.ToString()]["ShouldReset"] || this.avatar.RandomFuBenList[num.ToString()]["type"] == null;
+		int num = (int)json[(object)"id"];
+		if (!(bool)avatar.RandomFuBenList[num.ToString()][(object)"ShouldReset"])
+		{
+			if (avatar.RandomFuBenList[num.ToString()][(object)"type"] == null)
+			{
+				return true;
+			}
+			return false;
+		}
+		return true;
 	}
-
-	// Token: 0x0400195D RID: 6493
-	private Avatar avatar;
 }

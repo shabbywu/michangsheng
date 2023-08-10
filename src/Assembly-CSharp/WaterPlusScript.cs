@@ -1,242 +1,296 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000D1 RID: 209
 public class WaterPlusScript : MonoBehaviour
 {
-	// Token: 0x06000AF7 RID: 2807 RVA: 0x00042195 File Offset: 0x00040395
+	public WaterMovementType movementType;
+
+	public Vector2 velocity;
+
+	public float speed;
+
+	public Transform target;
+
+	public bool animatedNormalmaps = true;
+
+	private Texture2D[] normalmapAnimation;
+
+	private Texture2D[] dudvfoamAnimation;
+
+	private float animationValue;
+
+	private Vector3 waterCenter;
+
+	private Material waterMaterial;
+
+	private Vector3 projectedLightDir;
+
+	private Vector2 anisoDirAnimationOffset;
+
+	private int causticsAnimationFrame;
+
+	private float causticsAnimationTime;
+
+	private int normalmapAnimationFrame;
+
+	private float normalmapAnimationTime;
+
 	private void Reset()
 	{
-		this.speed = 3f;
-		this.velocity = new Vector2(0.7f, 0f);
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		speed = 3f;
+		velocity = new Vector2(0.7f, 0f);
 	}
 
-	// Token: 0x06000AF8 RID: 2808 RVA: 0x000421B8 File Offset: 0x000403B8
 	private Light FindTheBrightestDirectionalLight()
 	{
-		Light light = null;
-		Light[] array = Object.FindObjectsOfType(typeof(Light)) as Light[];
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Invalid comparison between Unknown and I4
+		Light val = null;
+		Light[] obj = Object.FindObjectsOfType(typeof(Light)) as Light[];
 		List<Light> list = new List<Light>();
-		foreach (Light light2 in array)
+		Light[] array = obj;
+		foreach (Light val2 in array)
 		{
-			if (light2.type == 1)
+			if ((int)val2.type == 1)
 			{
-				list.Add(light2);
+				list.Add(val2);
 			}
 		}
 		if (list.Count <= 0)
 		{
 			return null;
 		}
-		light = list[0];
-		foreach (Light light3 in list)
+		val = list[0];
+		foreach (Light item in list)
 		{
-			if (light3.intensity > light.intensity)
+			if (item.intensity > val.intensity)
 			{
-				light = light3;
+				val = item;
 			}
 		}
-		return light;
+		return val;
 	}
 
-	// Token: 0x06000AF9 RID: 2809 RVA: 0x0004226C File Offset: 0x0004046C
 	private void Start()
 	{
-		this.waterCenter = base.GetComponent<Renderer>().bounds.center;
-		if (this.movementType == WaterMovementType.directional)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0120: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0125: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		Bounds bounds = ((Component)this).GetComponent<Renderer>().bounds;
+		waterCenter = ((Bounds)(ref bounds)).center;
+		if (movementType == WaterMovementType.directional)
 		{
-			this.speed = this.velocity.magnitude;
+			speed = ((Vector2)(ref velocity)).magnitude;
 		}
-		float num = base.GetComponent<Renderer>().bounds.size.x / base.gameObject.GetComponent<Renderer>().material.GetTextureScale("_MainTex").x;
-		this.speed /= num;
-		this.waterMaterial = base.GetComponent<Renderer>().material;
+		bounds = ((Component)this).GetComponent<Renderer>().bounds;
+		float num = ((Bounds)(ref bounds)).size.x / ((Component)this).gameObject.GetComponent<Renderer>().material.GetTextureScale("_MainTex").x;
+		speed /= num;
+		waterMaterial = ((Component)this).GetComponent<Renderer>().material;
 		Shader.DisableKeyword("WATER_EDGEBLEND_OFF");
 		Shader.EnableKeyword("WATER_EDGEBLEND_ON");
-		if (this.movementType == WaterMovementType.flowmap)
+		if (movementType == WaterMovementType.flowmap)
 		{
 			Shader.DisableKeyword("FLOWMAP_ANIMATION_OFF");
 			Shader.EnableKeyword("FLOWMAP_ANIMATION_ON");
-			base.gameObject.AddComponent<FlowmapAnimator>().flowSpeed = this.speed;
+			((Component)this).gameObject.AddComponent<FlowmapAnimator>().flowSpeed = speed;
 		}
 		else
 		{
 			Shader.DisableKeyword("FLOWMAP_ANIMATION_ON");
 			Shader.EnableKeyword("FLOWMAP_ANIMATION_OFF");
 		}
-		Light light = this.FindTheBrightestDirectionalLight();
-		this.projectedLightDir = light.transform.forward - base.transform.up * Vector3.Dot(base.transform.up, light.transform.forward);
-		this.projectedLightDir.Normalize();
-		this.anisoDirAnimationOffset = Vector2.zero;
-		this.causticsAnimationFrame = 0;
-		if (this.animatedNormalmaps)
+		Light val = FindTheBrightestDirectionalLight();
+		projectedLightDir = ((Component)val).transform.forward - ((Component)this).transform.up * Vector3.Dot(((Component)this).transform.up, ((Component)val).transform.forward);
+		((Vector3)(ref projectedLightDir)).Normalize();
+		anisoDirAnimationOffset = Vector2.zero;
+		causticsAnimationFrame = 0;
+		if (!animatedNormalmaps)
 		{
-			this.normalmapAnimation = new Texture2D[60];
-			this.dudvfoamAnimation = new Texture2D[60];
-			for (int i = 0; i < 60; i++)
-			{
-				string text = "";
-				if (i < 10)
-				{
-					text = "0";
-				}
-				text += i;
-				this.normalmapAnimation[i] = (Resources.Load("water_hm" + text, typeof(Texture2D)) as Texture2D);
-				this.dudvfoamAnimation[i] = (Resources.Load("dudv_foam" + text, typeof(Texture2D)) as Texture2D);
-				if (null == this.normalmapAnimation[i])
-				{
-					Debug.LogError("unable to find normalmap animation file 'water_normal_" + text + "'. Aborting.");
-					this.animatedNormalmaps = false;
-					break;
-				}
-				if (null == this.dudvfoamAnimation[i])
-				{
-					Debug.LogError("unable to find dudv animation file 'dudv_foam" + text + "'. Aborting.");
-					this.animatedNormalmaps = false;
-					break;
-				}
-			}
-			this.normalmapAnimationFrame = 0;
+			return;
 		}
+		normalmapAnimation = (Texture2D[])(object)new Texture2D[60];
+		dudvfoamAnimation = (Texture2D[])(object)new Texture2D[60];
+		for (int i = 0; i < 60; i++)
+		{
+			string text = "";
+			if (i < 10)
+			{
+				text = "0";
+			}
+			text += i;
+			ref Texture2D reference = ref normalmapAnimation[i];
+			Object obj = Resources.Load("water_hm" + text, typeof(Texture2D));
+			reference = (Texture2D)(object)((obj is Texture2D) ? obj : null);
+			ref Texture2D reference2 = ref dudvfoamAnimation[i];
+			Object obj2 = Resources.Load("dudv_foam" + text, typeof(Texture2D));
+			reference2 = (Texture2D)(object)((obj2 is Texture2D) ? obj2 : null);
+			if ((Object)null == (Object)(object)normalmapAnimation[i])
+			{
+				Debug.LogError((object)("unable to find normalmap animation file 'water_normal_" + text + "'. Aborting."));
+				animatedNormalmaps = false;
+				break;
+			}
+			if ((Object)null == (Object)(object)dudvfoamAnimation[i])
+			{
+				Debug.LogError((object)("unable to find dudv animation file 'dudv_foam" + text + "'. Aborting."));
+				animatedNormalmaps = false;
+				break;
+			}
+		}
+		normalmapAnimationFrame = 0;
 	}
 
-	// Token: 0x06000AFA RID: 2810 RVA: 0x000424D4 File Offset: 0x000406D4
 	private void OnDestroy()
 	{
 		Shader.DisableKeyword("WATER_EDGEBLEND_ON");
 		Shader.EnableKeyword("WATER_EDGEBLEND_OFF");
 	}
 
-	// Token: 0x06000AFB RID: 2811 RVA: 0x000424EC File Offset: 0x000406EC
 	private void Update()
 	{
-		switch (this.movementType)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0155: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0102: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0280: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0292: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012d: Unknown result type (might be due to invalid IL or missing references)
+		switch (movementType)
 		{
 		case WaterMovementType.island:
 		{
-			Vector3 vector = this.waterCenter - this.target.position;
-			this.velocity.x = vector.x;
-			this.velocity.y = vector.z;
-			this.velocity = this.velocity.normalized * this.speed;
+			Vector3 val = waterCenter - target.position;
+			velocity.x = val.x;
+			velocity.y = val.z;
+			velocity = ((Vector2)(ref velocity)).normalized * speed;
 			break;
 		}
 		case WaterMovementType.still:
-			this.velocity = Vector3.zero;
+			velocity = Vector2.op_Implicit(Vector3.zero);
 			break;
 		}
-		if (this.movementType == WaterMovementType.directional | this.movementType == WaterMovementType.island)
+		if ((movementType == WaterMovementType.directional) | (movementType == WaterMovementType.island))
 		{
-			Vector2 textureOffset = this.waterMaterial.GetTextureOffset("_MainTex");
-			Vector2 vector2 = textureOffset + this.velocity * Time.deltaTime;
-			if ((this.velocity * Time.deltaTime).sqrMagnitude > 1f)
+			Vector2 textureOffset = waterMaterial.GetTextureOffset("_MainTex");
+			Vector2 val2 = textureOffset + velocity * Time.deltaTime;
+			Vector2 val3 = velocity * Time.deltaTime;
+			if (((Vector2)(ref val3)).sqrMagnitude > 1f)
 			{
-				Vector2 vector3 = this.velocity * Time.deltaTime;
-				Vector2 normalized = vector3.normalized;
-				while (vector3.sqrMagnitude > 1f)
+				Vector2 val4 = velocity * Time.deltaTime;
+				Vector2 normalized = ((Vector2)(ref val4)).normalized;
+				while (((Vector2)(ref val4)).sqrMagnitude > 1f)
 				{
-					vector3 -= normalized;
+					val4 -= normalized;
 				}
-				vector2 = textureOffset + vector3;
+				val2 = textureOffset + val4;
 			}
-			this.waterMaterial.SetTextureOffset("_MainTex", vector2);
-			this.waterMaterial.SetTextureOffset("_Normalmap", vector2);
+			waterMaterial.SetTextureOffset("_MainTex", val2);
+			waterMaterial.SetTextureOffset("_Normalmap", val2);
 		}
-		this.anisoDirAnimationOffset += new Vector2(this.projectedLightDir.x, this.projectedLightDir.z) * Time.deltaTime * 0.01f;
-		Vector4 vector4;
-		vector4..ctor(this.anisoDirAnimationOffset.x, this.anisoDirAnimationOffset.y, 0f, 0f);
-		this.waterMaterial.SetVector("anisoDirAnimationOffset", vector4);
-		int num = this.causticsAnimationFrame / 16;
-		float num2 = (float)(this.causticsAnimationFrame % 16 / 4) * 0.25f;
-		float num3 = (float)(this.causticsAnimationFrame % 16 % 4) * 0.25f;
-		Vector4 vector5;
-		vector5..ctor(num3, num2, 0.25f, 0.25f);
-		Vector4 vector6;
+		anisoDirAnimationOffset += new Vector2(projectedLightDir.x, projectedLightDir.z) * Time.deltaTime * 0.01f;
+		Vector4 val5 = default(Vector4);
+		((Vector4)(ref val5))._002Ector(anisoDirAnimationOffset.x, anisoDirAnimationOffset.y, 0f, 0f);
+		waterMaterial.SetVector("anisoDirAnimationOffset", val5);
+		int num = causticsAnimationFrame / 16;
+		float num2 = (float)(causticsAnimationFrame % 16 / 4) * 0.25f;
+		float num3 = (float)(causticsAnimationFrame % 16 % 4) * 0.25f;
+		Vector4 val6 = default(Vector4);
+		((Vector4)(ref val6))._002Ector(num3, num2, 0.25f, 0.25f);
+		Vector4 val7 = default(Vector4);
 		switch (num)
 		{
 		default:
-			vector6..ctor(1f, 0f, 0f, 0f);
+			((Vector4)(ref val7))._002Ector(1f, 0f, 0f, 0f);
 			break;
 		case 1:
-			vector6..ctor(0f, 1f, 0f, 0f);
+			((Vector4)(ref val7))._002Ector(0f, 1f, 0f, 0f);
 			break;
 		case 2:
-			vector6..ctor(0f, 0f, 1f, 0f);
+			((Vector4)(ref val7))._002Ector(0f, 0f, 1f, 0f);
 			break;
 		}
-		this.waterMaterial.SetVector("causticsOffsetAndScale", vector5);
-		this.waterMaterial.SetVector("causticsAnimationColorChannel", vector6);
-		this.causticsAnimationTime += Time.deltaTime;
-		if (this.causticsAnimationTime >= 0.04f)
+		waterMaterial.SetVector("causticsOffsetAndScale", val6);
+		waterMaterial.SetVector("causticsAnimationColorChannel", val7);
+		causticsAnimationTime += Time.deltaTime;
+		if (causticsAnimationTime >= 0.04f)
 		{
-			this.causticsAnimationFrame++;
-			this.causticsAnimationTime = 0f;
-			if (this.causticsAnimationFrame >= 48)
+			causticsAnimationFrame++;
+			causticsAnimationTime = 0f;
+			if (causticsAnimationFrame >= 48)
 			{
-				this.causticsAnimationFrame = 0;
+				causticsAnimationFrame = 0;
 			}
 		}
-		if (this.animatedNormalmaps)
+		if (!animatedNormalmaps)
 		{
-			this.normalmapAnimationTime += Time.deltaTime;
-			if (this.normalmapAnimationTime >= 0.04f)
+			return;
+		}
+		normalmapAnimationTime += Time.deltaTime;
+		if (normalmapAnimationTime >= 0.04f)
+		{
+			normalmapAnimationFrame++;
+			normalmapAnimationTime = 0f;
+			if (normalmapAnimationFrame >= 60)
 			{
-				this.normalmapAnimationFrame++;
-				this.normalmapAnimationTime = 0f;
-				if (this.normalmapAnimationFrame >= 60)
-				{
-					this.normalmapAnimationFrame = 0;
-				}
-				this.waterMaterial.SetTexture("_NormalMap", this.normalmapAnimation[this.normalmapAnimationFrame]);
-				this.waterMaterial.SetTexture("_DUDVFoamMap", this.dudvfoamAnimation[this.normalmapAnimationFrame]);
+				normalmapAnimationFrame = 0;
 			}
+			waterMaterial.SetTexture("_NormalMap", (Texture)(object)normalmapAnimation[normalmapAnimationFrame]);
+			waterMaterial.SetTexture("_DUDVFoamMap", (Texture)(object)dudvfoamAnimation[normalmapAnimationFrame]);
 		}
 	}
-
-	// Token: 0x04000710 RID: 1808
-	public WaterMovementType movementType;
-
-	// Token: 0x04000711 RID: 1809
-	public Vector2 velocity;
-
-	// Token: 0x04000712 RID: 1810
-	public float speed;
-
-	// Token: 0x04000713 RID: 1811
-	public Transform target;
-
-	// Token: 0x04000714 RID: 1812
-	public bool animatedNormalmaps = true;
-
-	// Token: 0x04000715 RID: 1813
-	private Texture2D[] normalmapAnimation;
-
-	// Token: 0x04000716 RID: 1814
-	private Texture2D[] dudvfoamAnimation;
-
-	// Token: 0x04000717 RID: 1815
-	private float animationValue;
-
-	// Token: 0x04000718 RID: 1816
-	private Vector3 waterCenter;
-
-	// Token: 0x04000719 RID: 1817
-	private Material waterMaterial;
-
-	// Token: 0x0400071A RID: 1818
-	private Vector3 projectedLightDir;
-
-	// Token: 0x0400071B RID: 1819
-	private Vector2 anisoDirAnimationOffset;
-
-	// Token: 0x0400071C RID: 1820
-	private int causticsAnimationFrame;
-
-	// Token: 0x0400071D RID: 1821
-	private float causticsAnimationTime;
-
-	// Token: 0x0400071E RID: 1822
-	private int normalmapAnimationFrame;
-
-	// Token: 0x0400071F RID: 1823
-	private float normalmapAnimationTime;
 }

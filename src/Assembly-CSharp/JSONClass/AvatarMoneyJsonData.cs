@@ -1,70 +1,57 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class AvatarMoneyJsonData : IJSONClass
 {
-	// Token: 0x02000751 RID: 1873
-	public class AvatarMoneyJsonData : IJSONClass
+	public static Dictionary<int, AvatarMoneyJsonData> DataDict = new Dictionary<int, AvatarMoneyJsonData>();
+
+	public static List<AvatarMoneyJsonData> DataList = new List<AvatarMoneyJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int level;
+
+	public int Min;
+
+	public int Max;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003B58 RID: 15192 RVA: 0x0019892C File Offset: 0x00196B2C
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.AvatarMoneyJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.AvatarMoneyJsonData.list)
+			try
 			{
-				try
+				AvatarMoneyJsonData avatarMoneyJsonData = new AvatarMoneyJsonData();
+				avatarMoneyJsonData.id = item["id"].I;
+				avatarMoneyJsonData.level = item["level"].I;
+				avatarMoneyJsonData.Min = item["Min"].I;
+				avatarMoneyJsonData.Max = item["Max"].I;
+				if (DataDict.ContainsKey(avatarMoneyJsonData.id))
 				{
-					AvatarMoneyJsonData avatarMoneyJsonData = new AvatarMoneyJsonData();
-					avatarMoneyJsonData.id = jsonobject["id"].I;
-					avatarMoneyJsonData.level = jsonobject["level"].I;
-					avatarMoneyJsonData.Min = jsonobject["Min"].I;
-					avatarMoneyJsonData.Max = jsonobject["Max"].I;
-					if (AvatarMoneyJsonData.DataDict.ContainsKey(avatarMoneyJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典AvatarMoneyJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", avatarMoneyJsonData.id));
-					}
-					else
-					{
-						AvatarMoneyJsonData.DataDict.Add(avatarMoneyJsonData.id, avatarMoneyJsonData);
-						AvatarMoneyJsonData.DataList.Add(avatarMoneyJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典AvatarMoneyJsonData.DataDict添加数据时出现重复的键，Key:{avatarMoneyJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典AvatarMoneyJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(avatarMoneyJsonData.id, avatarMoneyJsonData);
+				DataList.Add(avatarMoneyJsonData);
 			}
-			if (AvatarMoneyJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				AvatarMoneyJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典AvatarMoneyJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003B59 RID: 15193 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003431 RID: 13361
-		public static Dictionary<int, AvatarMoneyJsonData> DataDict = new Dictionary<int, AvatarMoneyJsonData>();
-
-		// Token: 0x04003432 RID: 13362
-		public static List<AvatarMoneyJsonData> DataList = new List<AvatarMoneyJsonData>();
-
-		// Token: 0x04003433 RID: 13363
-		public static Action OnInitFinishAction = new Action(AvatarMoneyJsonData.OnInitFinish);
-
-		// Token: 0x04003434 RID: 13364
-		public int id;
-
-		// Token: 0x04003435 RID: 13365
-		public int level;
-
-		// Token: 0x04003436 RID: 13366
-		public int Min;
-
-		// Token: 0x04003437 RID: 13367
-		public int Max;
+	private static void OnInitFinish()
+	{
 	}
 }

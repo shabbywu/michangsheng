@@ -1,57 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using KBEngine;
-using script.EventMsg;
 using UnityEngine;
+using script.EventMsg;
 
-// Token: 0x020001FA RID: 506
 public class NPCDeath
 {
-	// Token: 0x060014A3 RID: 5283 RVA: 0x0008457C File Offset: 0x0008277C
+	public JSONObject npcDeathJson = new JSONObject();
+
+	public List<int> deathTypeList = new List<int> { 1, 2, 3, 4, 5, 10 };
+
 	public void SetNpcDeath(int deathType, int npcId, int killNpcId = 0, bool after = false)
 	{
 		if (after)
 		{
-			NpcJieSuanManager.inst.afterDeathList.Add(new List<int>
-			{
-				deathType,
-				npcId,
-				killNpcId
-			});
+			NpcJieSuanManager.inst.afterDeathList.Add(new List<int> { deathType, npcId, killNpcId });
 			return;
 		}
 		try
 		{
 			if (jsonData.instance.AvatarJsonData[npcId.ToString()].HasField("BindingNpcID"))
 			{
-				if (!this.npcDeathJson.HasField("deathImportantList"))
+				if (!npcDeathJson.HasField("deathImportantList"))
 				{
-					this.npcDeathJson.SetField("deathImportantList", JSONObject.arr);
+					npcDeathJson.SetField("deathImportantList", JSONObject.arr);
 				}
-				this.npcDeathJson["deathImportantList"].Add(jsonData.instance.AvatarJsonData[npcId.ToString()]["BindingNpcID"].I);
+				npcDeathJson["deathImportantList"].Add(jsonData.instance.AvatarJsonData[npcId.ToString()]["BindingNpcID"].I);
 				NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.Remove(jsonData.instance.AvatarJsonData[npcId.ToString()]["BindingNpcID"].I);
 			}
 		}
 		catch (Exception ex)
 		{
-			Debug.LogError(ex);
+			Debug.LogError((object)ex);
 		}
 		if (Tools.instance.getPlayer().emailDateMag.cyNpcList.Contains(npcId) && killNpcId != 0)
 		{
-			Tools.instance.getPlayer().emailDateMag.AuToSendToPlayer(npcId, 999, 999, NpcJieSuanManager.inst.JieSuanTime, null);
+			Tools.instance.getPlayer().emailDateMag.AuToSendToPlayer(npcId, 999, 999, NpcJieSuanManager.inst.JieSuanTime);
 		}
-		JSONObject jsonobject = new JSONObject();
-		jsonobject.SetField("deathType", deathType);
-		jsonobject.SetField("deathId", npcId);
-		jsonobject.SetField("deathName", jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["Name"]);
-		jsonobject.SetField("deathChengHao", jsonData.instance.AvatarJsonData[npcId.ToString()]["Title"].str);
-		jsonobject.SetField("deathTime", NpcJieSuanManager.inst.JieSuanTime);
-		jsonobject.SetField("type", jsonData.instance.AvatarJsonData[npcId.ToString()]["Type"]);
+		JSONObject jSONObject = new JSONObject();
+		jSONObject.SetField("deathType", deathType);
+		jSONObject.SetField("deathId", npcId);
+		jSONObject.SetField("deathName", jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["Name"]);
+		jSONObject.SetField("deathChengHao", jsonData.instance.AvatarJsonData[npcId.ToString()]["Title"].str);
+		jSONObject.SetField("deathTime", NpcJieSuanManager.inst.JieSuanTime);
+		jSONObject.SetField("type", jsonData.instance.AvatarJsonData[npcId.ToString()]["Type"]);
 		if (killNpcId != 0)
 		{
-			jsonobject.SetField("killNpcId", killNpcId);
+			jSONObject.SetField("killNpcId", killNpcId);
 		}
-		this.npcDeathJson.SetField(npcId.ToString(), jsonobject);
+		npcDeathJson.SetField(npcId.ToString(), jSONObject);
 		int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["ChengHaoID"].I;
 		if (NpcJieSuanManager.inst.npcChengHao.npcOnlyChengHao.HasField(i.ToString()) && NpcJieSuanManager.inst.npcChengHao.npcOnlyChengHao[i.ToString()].I != 0)
 		{
@@ -71,7 +68,6 @@ public class NPCDeath
 		}
 	}
 
-	// Token: 0x060014A4 RID: 5284 RVA: 0x000848D0 File Offset: 0x00082AD0
 	public bool NpcYiWaiPanDing(int actionId, int npcId)
 	{
 		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
@@ -85,45 +81,31 @@ public class NPCDeath
 			return false;
 		}
 		int num = 0;
-		JSONObject jsonobject = jsonData.instance.NpcYiWaiDeathDate[actionId.ToString()];
+		JSONObject jSONObject = jsonData.instance.NpcYiWaiDeathDate[actionId.ToString()];
 		try
 		{
 			num = (int)jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].n;
 		}
 		catch (Exception)
 		{
-			Debug.LogError(string.Format("{0}", jsonData.instance.AvatarRandomJsonData.HasField(npcId.ToString())));
+			Debug.LogError((object)$"{jsonData.instance.AvatarRandomJsonData.HasField(npcId.ToString())}");
 		}
-		if (num < jsonobject["HaoGanDu"].I && NpcJieSuanManager.inst.getRandomInt(1, 1000) <= jsonobject["SiWangJiLv"].I)
+		if (num < jSONObject["HaoGanDu"].I && NpcJieSuanManager.inst.getRandomInt(1, 1000) <= jSONObject["SiWangJiLv"].I)
 		{
-			NpcJieSuanManager.inst.npcDeath.SetNpcDeath(jsonobject["SiWangLeiXing"].I, npcId, 0, false);
+			NpcJieSuanManager.inst.npcDeath.SetNpcDeath(jSONObject["SiWangLeiXing"].I, npcId);
 			return true;
 		}
 		if (player.deathType == 0)
 		{
-			player.deathType = this.deathTypeList[NpcJieSuanManager.inst.getRandomInt(0, this.deathTypeList.Count - 1)];
+			player.deathType = deathTypeList[NpcJieSuanManager.inst.getRandomInt(0, deathTypeList.Count - 1)];
 		}
-		if (num < jsonobject["HaoGanDu"].I && player.fakeTimes >= 6 && npcData["Type"].I == player.deathType)
+		if (num < jSONObject["HaoGanDu"].I && player.fakeTimes >= 6 && npcData["Type"].I == player.deathType)
 		{
 			Tools.instance.getPlayer().fakeTimes -= 6;
-			player.deathType = this.deathTypeList[NpcJieSuanManager.inst.getRandomInt(0, this.deathTypeList.Count - 1)];
-			NpcJieSuanManager.inst.npcDeath.SetNpcDeath(jsonobject["SiWangLeiXing"].I, npcId, 0, false);
+			player.deathType = deathTypeList[NpcJieSuanManager.inst.getRandomInt(0, deathTypeList.Count - 1)];
+			NpcJieSuanManager.inst.npcDeath.SetNpcDeath(jSONObject["SiWangLeiXing"].I, npcId);
 			return true;
 		}
 		return false;
 	}
-
-	// Token: 0x04000F6B RID: 3947
-	public JSONObject npcDeathJson = new JSONObject();
-
-	// Token: 0x04000F6C RID: 3948
-	public List<int> deathTypeList = new List<int>
-	{
-		1,
-		2,
-		3,
-		4,
-		5,
-		10
-	};
 }

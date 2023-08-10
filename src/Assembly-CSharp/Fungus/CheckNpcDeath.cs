@@ -1,54 +1,43 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTools", "检查npc是否死亡", "检查是否能截杀", 0)]
+[AddComponentMenu("")]
+public class CheckNpcDeath : Command
 {
-	// Token: 0x02000F7D RID: 3965
-	[CommandInfo("YSTools", "检查npc是否死亡", "检查是否能截杀", 0)]
-	[AddComponentMenu("")]
-	public class CheckNpcDeath : Command
+	[Tooltip("npcId")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable npcId;
+
+	[Tooltip("是否死亡")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable IsDeath;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006F2A RID: 28458 RVA: 0x002A6818 File Offset: 0x002A4A18
-		public override void OnEnter()
+		if (NpcJieSuanManager.inst.IsDeath(npcId.Value))
 		{
-			if (NpcJieSuanManager.inst.IsDeath(this.npcId.Value))
-			{
-				this.IsDeath.Value = true;
-			}
-			else
-			{
-				this.IsDeath.Value = false;
-			}
-			this.Continue();
+			IsDeath.Value = true;
 		}
-
-		// Token: 0x06006F2B RID: 28459 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			IsDeath.Value = false;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006F2C RID: 28460 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005BF2 RID: 23538
-		[Tooltip("npcId")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable npcId;
-
-		// Token: 0x04005BF3 RID: 23539
-		[Tooltip("是否死亡")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable IsDeath;
+	public override void OnReset()
+	{
 	}
 }

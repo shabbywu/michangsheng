@@ -1,39 +1,50 @@
-﻿using System;
 using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x02000327 RID: 807
 public class MainUICreateAvatar : MonoBehaviour
 {
-	// Token: 0x06001BD0 RID: 7120 RVA: 0x000C5E6C File Offset: 0x000C406C
+	private bool isInit;
+
+	public MainUISetName setNamePanel;
+
+	public MainUISetFace setFacePanel;
+
+	public MainUISelectTianFu setTianFu;
+
+	public GameObject facePanel;
+
+	public int curIndex = -1;
+
 	public void Init()
 	{
-		if (!this.isInit)
+		if (!isInit)
 		{
-			this.isInit = true;
+			isInit = true;
 		}
-		this.setNamePanel.Init();
-		base.gameObject.SetActive(true);
+		setNamePanel.Init();
+		((Component)this).gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001BD1 RID: 7121 RVA: 0x000C5E94 File Offset: 0x000C4094
 	public void CreateFinsh()
 	{
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
 		PlayerPrefs.SetString("sceneToLoad", "AllMaps");
 		Tools.instance.isNewAvatar = true;
 		MusicMag.instance.stopMusic();
-		YSNewSaveSystem.Save(YSNewSaveSystem.GetAvatarSavePathPre(this.curIndex, 0) + "/FirstSetAvatarRandomJsonData.txt", 0, false);
-		this.creatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f), 1);
-		YSNewSaveSystem.CreatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f), 1);
+		YSNewSaveSystem.Save(YSNewSaveSystem.GetAvatarSavePathPre(curIndex, 0) + "/FirstSetAvatarRandomJsonData.txt", 0, autoPath: false);
+		creatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f));
+		YSNewSaveSystem.CreatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f));
 		KBEngineApp.app.entity_id = 10;
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
-		this.setTianfuInfo(avatar);
-		FactoryManager.inst.createNewPlayerFactory.createPlayer(this.curIndex, 0, MainUIPlayerInfo.inst.firstName, MainUIPlayerInfo.inst.lastName, avatar);
+		setTianfuInfo(avatar);
+		FactoryManager.inst.createNewPlayerFactory.createPlayer(curIndex, 0, MainUIPlayerInfo.inst.firstName, MainUIPlayerInfo.inst.lastName, avatar);
 	}
 
-	// Token: 0x06001BD2 RID: 7122 RVA: 0x000C5F9C File Offset: 0x000C419C
 	private void setTianfuInfo(Avatar avatar)
 	{
 		avatar.ZiZhi = MainUIPlayerInfo.inst.GetZiZhi();
@@ -45,126 +56,128 @@ public class MainUICreateAvatar : MonoBehaviour
 		avatar.LingGeng = MainUIPlayerInfo.inst.GetLingGen();
 		avatar.HP_Max = MainUIPlayerInfo.inst.GetHp();
 		avatar.HP = avatar.HP_Max;
-		avatar.money += (ulong)((long)MainUIPlayerInfo.inst.GetLinShi());
+		avatar.money += (ulong)MainUIPlayerInfo.inst.GetLinShi();
 		avatar.Sex = MainUIPlayerInfo.inst.sex;
-		avatar.addItem(1, 1, Tools.CreateItemSeid(1), false);
-		if (this.setTianFu.hasSelectSeidList.ContainsKey(9))
+		avatar.addItem(1, 1, Tools.CreateItemSeid(1));
+		if (setTianFu.hasSelectSeidList.ContainsKey(9))
 		{
 			avatar.hasStaticSkillList.Clear();
 			avatar.equipStaticSkillList.Clear();
-			int i = jsonData.instance.CrateAvatarSeidJsonData[9][this.setTianFu.hasSelectSeidList[9][0].ToString()]["value1"][0].I;
-			avatar.addHasStaticSkillList(i, 1);
-			avatar.equipStaticSkill(i, 0);
+			int i = jsonData.instance.CrateAvatarSeidJsonData[9][setTianFu.hasSelectSeidList[9][0].ToString()]["value1"][0].I;
+			avatar.addHasStaticSkillList(i);
+			avatar.equipStaticSkill(i);
 		}
-		if (this.setTianFu.hasSelectSeidList.ContainsKey(10))
+		if (setTianFu.hasSelectSeidList.ContainsKey(10))
 		{
-			List<int> list = this.setTianFu.hasSelectSeidList[10];
-			JSONObject jsonobject = jsonData.instance.CrateAvatarSeidJsonData[10];
-			foreach (int num in list)
+			List<int> list = setTianFu.hasSelectSeidList[10];
+			JSONObject jSONObject = jsonData.instance.CrateAvatarSeidJsonData[10];
+			foreach (int item in list)
 			{
-				for (int j = 0; j < jsonobject[num.ToString()]["value1"].Count; j++)
+				for (int j = 0; j < jSONObject[item.ToString()]["value1"].Count; j++)
 				{
-					avatar.addItem(jsonobject[num.ToString()]["value1"][j].I, 1, Tools.CreateItemSeid(jsonobject[num.ToString()]["value1"][j].I), false);
+					avatar.addItem(jSONObject[item.ToString()]["value1"][j].I, 1, Tools.CreateItemSeid(jSONObject[item.ToString()]["value1"][j].I));
 				}
 			}
 		}
-		foreach (int num2 in this.setTianFu.hasSelectList.Keys)
+		foreach (int key in setTianFu.hasSelectList.Keys)
 		{
-			avatar.SelectTianFuID.Add(num2);
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(11))
+			avatar.SelectTianFuID.Add(key);
+			if (setTianFu.hasSelectList[key].seidList.Contains(11))
 			{
-				List<int> seidValue = this.setTianFu.hasSelectList[num2].getSeidValue11();
-				List<int> lingGeng = avatar.LingGeng;
-				int index = seidValue[0];
-				lingGeng[index] += seidValue[1];
+				List<int> seidValue = setTianFu.hasSelectList[key].getSeidValue11();
+				avatar.LingGeng[seidValue[0]] += seidValue[1];
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(12))
+			if (setTianFu.hasSelectList[key].seidList.Contains(12))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid12();
+				setTianFu.hasSelectList[key].realizedSeid12();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(13))
+			if (setTianFu.hasSelectList[key].seidList.Contains(13))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid13();
+				setTianFu.hasSelectList[key].realizedSeid13();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(15))
+			if (setTianFu.hasSelectList[key].seidList.Contains(15))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid15();
+				setTianFu.hasSelectList[key].realizedSeid15();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(16))
+			if (setTianFu.hasSelectList[key].seidList.Contains(16))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid16();
+				setTianFu.hasSelectList[key].realizedSeid16();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(17))
+			if (setTianFu.hasSelectList[key].seidList.Contains(17))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid17();
+				setTianFu.hasSelectList[key].realizedSeid17();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(18))
+			if (setTianFu.hasSelectList[key].seidList.Contains(18))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid18();
+				setTianFu.hasSelectList[key].realizedSeid18();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(21))
+			if (setTianFu.hasSelectList[key].seidList.Contains(21))
 			{
-				this.setTianFu.hasSelectList[num2].PlayerSetSeid(21);
+				setTianFu.hasSelectList[key].PlayerSetSeid(21);
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(22))
+			if (setTianFu.hasSelectList[key].seidList.Contains(22))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid22();
+				setTianFu.hasSelectList[key].realizedSeid22();
 			}
-			if (this.setTianFu.hasSelectList[num2].seidList.Contains(23))
+			if (setTianFu.hasSelectList[key].seidList.Contains(23))
 			{
-				this.setTianFu.hasSelectList[num2].realizedSeid23();
+				setTianFu.hasSelectList[key].realizedSeid23();
 			}
 		}
 	}
 
-	// Token: 0x06001BD3 RID: 7123 RVA: 0x000C64AC File Offset: 0x000C46AC
 	private void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, int AvatarID = 1)
 	{
-		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		KBEngineApp.app.Client_onCreatedProxies((ulong)avaterID, avaterID, "Avatar");
 		Avatar avatar = (Avatar)KBEngineApp.app.entities[avaterID];
-		this.setAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
+		setAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
 	}
 
-	// Token: 0x06001BD4 RID: 7124 RVA: 0x000C64F4 File Offset: 0x000C46F4
 	private void setAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, Avatar avatar, int AvatarID = 1)
 	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
 		avatar.position = position;
 		avatar.direction = direction;
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[string.Concat(AvatarID)];
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData[string.Concat(AvatarID)];
 		int num = 0;
-		foreach (JSONObject jsonobject2 in jsonobject["skills"].list)
+		foreach (JSONObject item2 in jSONObject["skills"].list)
 		{
-			avatar.addHasSkillList((int)jsonobject2.n);
-			avatar.equipSkill((int)jsonobject2.n, num);
+			avatar.addHasSkillList((int)item2.n);
+			avatar.equipSkill((int)item2.n, num);
 			num++;
 		}
 		int num2 = 0;
-		foreach (JSONObject jsonobject3 in jsonobject["staticSkills"].list)
+		foreach (JSONObject item3 in jSONObject["staticSkills"].list)
 		{
-			avatar.addHasStaticSkillList((int)jsonobject3.n, 1);
-			avatar.equipStaticSkill((int)jsonobject3.n, num2);
+			avatar.addHasStaticSkillList((int)item3.n);
+			avatar.equipStaticSkill((int)item3.n, num2);
 			num2++;
 		}
-		for (int j = 0; j < jsonobject["LingGen"].Count; j++)
+		for (int j = 0; j < jSONObject["LingGen"].Count; j++)
 		{
-			int item = (int)jsonobject["LingGen"][j].n;
+			int item = (int)jSONObject["LingGen"][j].n;
 			avatar.LingGeng.Add(item);
 		}
-		avatar.ZiZhi = (int)jsonobject["ziZhi"].n;
-		avatar.dunSu = (int)jsonobject["dunSu"].n;
-		avatar.wuXin = (uint)jsonobject["wuXin"].n;
-		avatar.shengShi = (int)jsonobject["shengShi"].n;
-		avatar.shaQi = (uint)jsonobject["shaQi"].n;
-		avatar.shouYuan = (uint)jsonobject["shouYuan"].n;
-		avatar.age = (uint)jsonobject["age"].n;
-		avatar.HP_Max = (int)jsonobject["HP"].n;
-		avatar.HP = (int)jsonobject["HP"].n;
-		avatar.money = (ulong)((uint)jsonobject["MoneyType"].n);
-		avatar.level = (ushort)jsonobject["Level"].n;
-		avatar.AvatarType = (uint)((ushort)jsonobject["AvatarType"].n);
-		avatar.roleTypeCell = (uint)jsonobject["fightFace"].n;
-		avatar.roleType = (uint)jsonobject["face"].n;
-		avatar.Sex = (int)jsonobject["SexType"].n;
+		avatar.ZiZhi = (int)jSONObject["ziZhi"].n;
+		avatar.dunSu = (int)jSONObject["dunSu"].n;
+		avatar.wuXin = (uint)jSONObject["wuXin"].n;
+		avatar.shengShi = (int)jSONObject["shengShi"].n;
+		avatar.shaQi = (uint)jSONObject["shaQi"].n;
+		avatar.shouYuan = (uint)jSONObject["shouYuan"].n;
+		avatar.age = (uint)jSONObject["age"].n;
+		avatar.HP_Max = (int)jSONObject["HP"].n;
+		avatar.HP = (int)jSONObject["HP"].n;
+		avatar.money = (uint)jSONObject["MoneyType"].n;
+		avatar.level = (ushort)jSONObject["Level"].n;
+		avatar.AvatarType = (ushort)jSONObject["AvatarType"].n;
+		avatar.roleTypeCell = (uint)jSONObject["fightFace"].n;
+		avatar.roleType = (uint)jSONObject["face"].n;
+		avatar.Sex = (int)jSONObject["SexType"].n;
 		avatar.configEquipSkill[0] = avatar.equipSkillList;
 		avatar.configEquipStaticSkill[0] = avatar.equipStaticSkillList;
 		avatar.equipItemList.values.ForEach(delegate(ITEM_INFO i)
@@ -173,27 +186,8 @@ public class MainUICreateAvatar : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001BD5 RID: 7125 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void Close()
 	{
-		base.gameObject.SetActive(false);
+		((Component)this).gameObject.SetActive(false);
 	}
-
-	// Token: 0x04001666 RID: 5734
-	private bool isInit;
-
-	// Token: 0x04001667 RID: 5735
-	public MainUISetName setNamePanel;
-
-	// Token: 0x04001668 RID: 5736
-	public MainUISetFace setFacePanel;
-
-	// Token: 0x04001669 RID: 5737
-	public MainUISelectTianFu setTianFu;
-
-	// Token: 0x0400166A RID: 5738
-	public GameObject facePanel;
-
-	// Token: 0x0400166B RID: 5739
-	public int curIndex = -1;
 }

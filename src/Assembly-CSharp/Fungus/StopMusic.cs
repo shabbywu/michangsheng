@@ -1,24 +1,21 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
-{
-	// Token: 0x02000E51 RID: 3665
-	[CommandInfo("Audio", "Stop Music", "Stops the currently playing game music.", 0)]
-	[AddComponentMenu("")]
-	public class StopMusic : Command
-	{
-		// Token: 0x06006704 RID: 26372 RVA: 0x00288798 File Offset: 0x00286998
-		public override void OnEnter()
-		{
-			FungusManager.Instance.MusicManager.StopMusic();
-			this.Continue();
-		}
+namespace Fungus;
 
-		// Token: 0x06006705 RID: 26373 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
-		public override Color GetButtonColor()
-		{
-			return new Color32(242, 209, 176, byte.MaxValue);
-		}
+[CommandInfo("Audio", "Stop Music", "Stops the currently playing game music.", 0)]
+[AddComponentMenu("")]
+public class StopMusic : Command
+{
+	public override void OnEnter()
+	{
+		FungusManager.Instance.MusicManager.StopMusic();
+		Continue();
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)242, (byte)209, (byte)176, byte.MaxValue));
 	}
 }

@@ -1,70 +1,57 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class NpcJinHuoData : IJSONClass
 {
-	// Token: 0x020008A4 RID: 2212
-	public class NpcJinHuoData : IJSONClass
+	public static Dictionary<int, NpcJinHuoData> DataDict = new Dictionary<int, NpcJinHuoData>();
+
+	public static List<NpcJinHuoData> DataList = new List<NpcJinHuoData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public List<int> Type = new List<int>();
+
+	public List<int> quality = new List<int>();
+
+	public List<int> quanzhong = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x060040A3 RID: 16547 RVA: 0x001B99D8 File Offset: 0x001B7BD8
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.NpcJinHuoData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.NpcJinHuoData.list)
+			try
 			{
-				try
+				NpcJinHuoData npcJinHuoData = new NpcJinHuoData();
+				npcJinHuoData.id = item["id"].I;
+				npcJinHuoData.Type = item["Type"].ToList();
+				npcJinHuoData.quality = item["quality"].ToList();
+				npcJinHuoData.quanzhong = item["quanzhong"].ToList();
+				if (DataDict.ContainsKey(npcJinHuoData.id))
 				{
-					NpcJinHuoData npcJinHuoData = new NpcJinHuoData();
-					npcJinHuoData.id = jsonobject["id"].I;
-					npcJinHuoData.Type = jsonobject["Type"].ToList();
-					npcJinHuoData.quality = jsonobject["quality"].ToList();
-					npcJinHuoData.quanzhong = jsonobject["quanzhong"].ToList();
-					if (NpcJinHuoData.DataDict.ContainsKey(npcJinHuoData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典NpcJinHuoData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", npcJinHuoData.id));
-					}
-					else
-					{
-						NpcJinHuoData.DataDict.Add(npcJinHuoData.id, npcJinHuoData);
-						NpcJinHuoData.DataList.Add(npcJinHuoData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典NpcJinHuoData.DataDict添加数据时出现重复的键，Key:{npcJinHuoData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典NpcJinHuoData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(npcJinHuoData.id, npcJinHuoData);
+				DataList.Add(npcJinHuoData);
 			}
-			if (NpcJinHuoData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				NpcJinHuoData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典NpcJinHuoData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x060040A4 RID: 16548 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003E75 RID: 15989
-		public static Dictionary<int, NpcJinHuoData> DataDict = new Dictionary<int, NpcJinHuoData>();
-
-		// Token: 0x04003E76 RID: 15990
-		public static List<NpcJinHuoData> DataList = new List<NpcJinHuoData>();
-
-		// Token: 0x04003E77 RID: 15991
-		public static Action OnInitFinishAction = new Action(NpcJinHuoData.OnInitFinish);
-
-		// Token: 0x04003E78 RID: 15992
-		public int id;
-
-		// Token: 0x04003E79 RID: 15993
-		public List<int> Type = new List<int>();
-
-		// Token: 0x04003E7A RID: 15994
-		public List<int> quality = new List<int>();
-
-		// Token: 0x04003E7B RID: 15995
-		public List<int> quanzhong = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

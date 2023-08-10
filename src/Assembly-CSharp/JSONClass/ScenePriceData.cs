@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ScenePriceData : IJSONClass
 {
-	// Token: 0x020008D2 RID: 2258
-	public class ScenePriceData : IJSONClass
+	public static Dictionary<int, ScenePriceData> DataDict = new Dictionary<int, ScenePriceData>();
+
+	public static List<ScenePriceData> DataList = new List<ScenePriceData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public List<int> ItemFlag = new List<int>();
+
+	public List<int> percent = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x0600415B RID: 16731 RVA: 0x001BF8CC File Offset: 0x001BDACC
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ScenePriceData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ScenePriceData.list)
+			try
 			{
-				try
+				ScenePriceData scenePriceData = new ScenePriceData();
+				scenePriceData.id = item["id"].I;
+				scenePriceData.ItemFlag = item["ItemFlag"].ToList();
+				scenePriceData.percent = item["percent"].ToList();
+				if (DataDict.ContainsKey(scenePriceData.id))
 				{
-					ScenePriceData scenePriceData = new ScenePriceData();
-					scenePriceData.id = jsonobject["id"].I;
-					scenePriceData.ItemFlag = jsonobject["ItemFlag"].ToList();
-					scenePriceData.percent = jsonobject["percent"].ToList();
-					if (ScenePriceData.DataDict.ContainsKey(scenePriceData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ScenePriceData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", scenePriceData.id));
-					}
-					else
-					{
-						ScenePriceData.DataDict.Add(scenePriceData.id, scenePriceData);
-						ScenePriceData.DataList.Add(scenePriceData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ScenePriceData.DataDict添加数据时出现重复的键，Key:{scenePriceData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ScenePriceData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(scenePriceData.id, scenePriceData);
+				DataList.Add(scenePriceData);
 			}
-			if (ScenePriceData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ScenePriceData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ScenePriceData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x0600415C RID: 16732 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x0400409B RID: 16539
-		public static Dictionary<int, ScenePriceData> DataDict = new Dictionary<int, ScenePriceData>();
-
-		// Token: 0x0400409C RID: 16540
-		public static List<ScenePriceData> DataList = new List<ScenePriceData>();
-
-		// Token: 0x0400409D RID: 16541
-		public static Action OnInitFinishAction = new Action(ScenePriceData.OnInitFinish);
-
-		// Token: 0x0400409E RID: 16542
-		public int id;
-
-		// Token: 0x0400409F RID: 16543
-		public List<int> ItemFlag = new List<int>();
-
-		// Token: 0x040040A0 RID: 16544
-		public List<int> percent = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

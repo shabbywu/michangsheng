@@ -1,415 +1,526 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x02000092 RID: 146
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/NGUI Widget")]
 public class UIWidget : UIRect
 {
-	// Token: 0x170000FC RID: 252
-	// (get) Token: 0x060007DD RID: 2013 RVA: 0x0002FE78 File Offset: 0x0002E078
-	// (set) Token: 0x060007DE RID: 2014 RVA: 0x0002FE80 File Offset: 0x0002E080
+	public enum Pivot
+	{
+		TopLeft,
+		Top,
+		TopRight,
+		Left,
+		Center,
+		Right,
+		BottomLeft,
+		Bottom,
+		BottomRight
+	}
+
+	public delegate void OnDimensionsChanged();
+
+	public delegate void OnPostFillCallback(UIWidget widget, int bufferOffset, BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols);
+
+	public enum AspectRatioSource
+	{
+		Free,
+		BasedOnWidth,
+		BasedOnHeight
+	}
+
+	public delegate bool HitCheck(Vector3 worldPos);
+
+	[HideInInspector]
+	[SerializeField]
+	protected Color mColor = Color.white;
+
+	[HideInInspector]
+	[SerializeField]
+	protected Pivot mPivot = Pivot.Center;
+
+	[HideInInspector]
+	[SerializeField]
+	protected int mWidth = 100;
+
+	[HideInInspector]
+	[SerializeField]
+	protected int mHeight = 100;
+
+	[HideInInspector]
+	[SerializeField]
+	protected int mDepth;
+
+	public OnDimensionsChanged onChange;
+
+	public OnPostFillCallback onPostFill;
+
+	public bool autoResizeBoxCollider;
+
+	public bool hideIfOffScreen;
+
+	public AspectRatioSource keepAspectRatio;
+
+	public float aspectRatio = 1f;
+
+	public HitCheck hitCheck;
+
+	[NonSerialized]
+	public UIPanel panel;
+
+	[NonSerialized]
+	public UIGeometry geometry = new UIGeometry();
+
+	[NonSerialized]
+	public bool fillGeometry = true;
+
+	[NonSerialized]
+	protected bool mPlayMode = true;
+
+	[NonSerialized]
+	protected Vector4 mDrawRegion = new Vector4(0f, 0f, 1f, 1f);
+
+	[NonSerialized]
+	private Matrix4x4 mLocalToPanel;
+
+	[NonSerialized]
+	private bool mIsVisibleByAlpha = true;
+
+	[NonSerialized]
+	private bool mIsVisibleByPanel = true;
+
+	[NonSerialized]
+	private bool mIsInFront = true;
+
+	[NonSerialized]
+	private float mLastAlpha;
+
+	[NonSerialized]
+	private bool mMoved;
+
+	[NonSerialized]
+	public UIDrawCall drawCall;
+
+	[NonSerialized]
+	protected Vector3[] mCorners = (Vector3[])(object)new Vector3[4];
+
+	[NonSerialized]
+	private int mAlphaFrameID = -1;
+
+	private int mMatrixFrame = -1;
+
+	private Vector3 mOldV0;
+
+	private Vector3 mOldV1;
+
 	public Vector4 drawRegion
 	{
 		get
 		{
-			return this.mDrawRegion;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mDrawRegion;
 		}
 		set
 		{
-			if (this.mDrawRegion != value)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			if (mDrawRegion != value)
 			{
-				this.mDrawRegion = value;
-				if (this.autoResizeBoxCollider)
+				mDrawRegion = value;
+				if (autoResizeBoxCollider)
 				{
-					this.ResizeCollider();
+					ResizeCollider();
 				}
-				this.MarkAsChanged();
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170000FD RID: 253
-	// (get) Token: 0x060007DF RID: 2015 RVA: 0x0002FEAB File Offset: 0x0002E0AB
-	public Vector2 pivotOffset
-	{
-		get
-		{
-			return NGUIMath.GetPivotOffset(this.pivot);
-		}
-	}
+	public Vector2 pivotOffset => NGUIMath.GetPivotOffset(pivot);
 
-	// Token: 0x170000FE RID: 254
-	// (get) Token: 0x060007E0 RID: 2016 RVA: 0x0002FEB8 File Offset: 0x0002E0B8
-	// (set) Token: 0x060007E1 RID: 2017 RVA: 0x0002FEC0 File Offset: 0x0002E0C0
 	public int width
 	{
 		get
 		{
-			return this.mWidth;
+			return mWidth;
 		}
 		set
 		{
-			int minWidth = this.minWidth;
-			if (value < minWidth)
+			int num = minWidth;
+			if (value < num)
 			{
-				value = minWidth;
+				value = num;
 			}
-			if (this.mWidth != value && this.keepAspectRatio != UIWidget.AspectRatioSource.BasedOnHeight)
+			if (mWidth == value || keepAspectRatio == AspectRatioSource.BasedOnHeight)
 			{
-				if (this.isAnchoredHorizontally)
+				return;
+			}
+			if (isAnchoredHorizontally)
+			{
+				if ((Object)(object)leftAnchor.target != (Object)null && (Object)(object)rightAnchor.target != (Object)null)
 				{
-					if (this.leftAnchor.target != null && this.rightAnchor.target != null)
+					if (mPivot == Pivot.BottomLeft || mPivot == Pivot.Left || mPivot == Pivot.TopLeft)
 					{
-						if (this.mPivot == UIWidget.Pivot.BottomLeft || this.mPivot == UIWidget.Pivot.Left || this.mPivot == UIWidget.Pivot.TopLeft)
-						{
-							NGUIMath.AdjustWidget(this, 0f, 0f, (float)(value - this.mWidth), 0f);
-							return;
-						}
-						if (this.mPivot == UIWidget.Pivot.BottomRight || this.mPivot == UIWidget.Pivot.Right || this.mPivot == UIWidget.Pivot.TopRight)
-						{
-							NGUIMath.AdjustWidget(this, (float)(this.mWidth - value), 0f, 0f, 0f);
-							return;
-						}
-						int num = value - this.mWidth;
-						num -= (num & 1);
-						if (num != 0)
-						{
-							NGUIMath.AdjustWidget(this, (float)(-(float)num) * 0.5f, 0f, (float)num * 0.5f, 0f);
-							return;
-						}
-					}
-					else
-					{
-						if (this.leftAnchor.target != null)
-						{
-							NGUIMath.AdjustWidget(this, 0f, 0f, (float)(value - this.mWidth), 0f);
-							return;
-						}
-						NGUIMath.AdjustWidget(this, (float)(this.mWidth - value), 0f, 0f, 0f);
+						NGUIMath.AdjustWidget(this, 0f, 0f, value - mWidth, 0f);
 						return;
 					}
+					if (mPivot == Pivot.BottomRight || mPivot == Pivot.Right || mPivot == Pivot.TopRight)
+					{
+						NGUIMath.AdjustWidget(this, mWidth - value, 0f, 0f, 0f);
+						return;
+					}
+					int num2 = value - mWidth;
+					num2 -= num2 & 1;
+					if (num2 != 0)
+					{
+						NGUIMath.AdjustWidget(this, (float)(-num2) * 0.5f, 0f, (float)num2 * 0.5f, 0f);
+					}
+				}
+				else if ((Object)(object)leftAnchor.target != (Object)null)
+				{
+					NGUIMath.AdjustWidget(this, 0f, 0f, value - mWidth, 0f);
 				}
 				else
 				{
-					this.SetDimensions(value, this.mHeight);
+					NGUIMath.AdjustWidget(this, mWidth - value, 0f, 0f, 0f);
 				}
+			}
+			else
+			{
+				SetDimensions(value, mHeight);
 			}
 		}
 	}
 
-	// Token: 0x170000FF RID: 255
-	// (get) Token: 0x060007E2 RID: 2018 RVA: 0x00030032 File Offset: 0x0002E232
-	// (set) Token: 0x060007E3 RID: 2019 RVA: 0x0003003C File Offset: 0x0002E23C
 	public int height
 	{
 		get
 		{
-			return this.mHeight;
+			return mHeight;
 		}
 		set
 		{
-			int minHeight = this.minHeight;
-			if (value < minHeight)
+			int num = minHeight;
+			if (value < num)
 			{
-				value = minHeight;
+				value = num;
 			}
-			if (this.mHeight != value && this.keepAspectRatio != UIWidget.AspectRatioSource.BasedOnWidth)
+			if (mHeight == value || keepAspectRatio == AspectRatioSource.BasedOnWidth)
 			{
-				if (this.isAnchoredVertically)
+				return;
+			}
+			if (isAnchoredVertically)
+			{
+				if ((Object)(object)bottomAnchor.target != (Object)null && (Object)(object)topAnchor.target != (Object)null)
 				{
-					if (this.bottomAnchor.target != null && this.topAnchor.target != null)
+					if (mPivot == Pivot.BottomLeft || mPivot == Pivot.Bottom || mPivot == Pivot.BottomRight)
 					{
-						if (this.mPivot == UIWidget.Pivot.BottomLeft || this.mPivot == UIWidget.Pivot.Bottom || this.mPivot == UIWidget.Pivot.BottomRight)
-						{
-							NGUIMath.AdjustWidget(this, 0f, 0f, 0f, (float)(value - this.mHeight));
-							return;
-						}
-						if (this.mPivot == UIWidget.Pivot.TopLeft || this.mPivot == UIWidget.Pivot.Top || this.mPivot == UIWidget.Pivot.TopRight)
-						{
-							NGUIMath.AdjustWidget(this, 0f, (float)(this.mHeight - value), 0f, 0f);
-							return;
-						}
-						int num = value - this.mHeight;
-						num -= (num & 1);
-						if (num != 0)
-						{
-							NGUIMath.AdjustWidget(this, 0f, (float)(-(float)num) * 0.5f, 0f, (float)num * 0.5f);
-							return;
-						}
-					}
-					else
-					{
-						if (this.bottomAnchor.target != null)
-						{
-							NGUIMath.AdjustWidget(this, 0f, 0f, 0f, (float)(value - this.mHeight));
-							return;
-						}
-						NGUIMath.AdjustWidget(this, 0f, (float)(this.mHeight - value), 0f, 0f);
+						NGUIMath.AdjustWidget(this, 0f, 0f, 0f, value - mHeight);
 						return;
 					}
+					if (mPivot == Pivot.TopLeft || mPivot == Pivot.Top || mPivot == Pivot.TopRight)
+					{
+						NGUIMath.AdjustWidget(this, 0f, mHeight - value, 0f, 0f);
+						return;
+					}
+					int num2 = value - mHeight;
+					num2 -= num2 & 1;
+					if (num2 != 0)
+					{
+						NGUIMath.AdjustWidget(this, 0f, (float)(-num2) * 0.5f, 0f, (float)num2 * 0.5f);
+					}
+				}
+				else if ((Object)(object)bottomAnchor.target != (Object)null)
+				{
+					NGUIMath.AdjustWidget(this, 0f, 0f, 0f, value - mHeight);
 				}
 				else
 				{
-					this.SetDimensions(this.mWidth, value);
+					NGUIMath.AdjustWidget(this, 0f, mHeight - value, 0f, 0f);
 				}
+			}
+			else
+			{
+				SetDimensions(mWidth, value);
 			}
 		}
 	}
 
-	// Token: 0x17000100 RID: 256
-	// (get) Token: 0x060007E4 RID: 2020 RVA: 0x000301AE File Offset: 0x0002E3AE
-	// (set) Token: 0x060007E5 RID: 2021 RVA: 0x000301B8 File Offset: 0x0002E3B8
 	public Color color
 	{
 		get
 		{
-			return this.mColor;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mColor;
 		}
 		set
 		{
-			if (this.mColor != value)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			if (mColor != value)
 			{
-				bool includeChildren = this.mColor.a != value.a;
-				this.mColor = value;
-				this.Invalidate(includeChildren);
+				bool includeChildren = mColor.a != value.a;
+				mColor = value;
+				Invalidate(includeChildren);
 			}
 		}
 	}
 
-	// Token: 0x17000101 RID: 257
-	// (get) Token: 0x060007E6 RID: 2022 RVA: 0x000301F8 File Offset: 0x0002E3F8
-	// (set) Token: 0x060007E7 RID: 2023 RVA: 0x00030205 File Offset: 0x0002E405
 	public override float alpha
 	{
 		get
 		{
-			return this.mColor.a;
+			return mColor.a;
 		}
 		set
 		{
-			if (this.mColor.a != value)
+			if (mColor.a != value)
 			{
-				this.mColor.a = value;
-				this.Invalidate(true);
+				mColor.a = value;
+				Invalidate(includeChildren: true);
 			}
 		}
 	}
 
-	// Token: 0x17000102 RID: 258
-	// (get) Token: 0x060007E8 RID: 2024 RVA: 0x00030228 File Offset: 0x0002E428
 	public bool isVisible
 	{
 		get
 		{
-			return this.mIsVisibleByPanel && this.mIsVisibleByAlpha && this.mIsInFront && this.finalAlpha > 0.001f && NGUITools.GetActive(this);
+			if (mIsVisibleByPanel && mIsVisibleByAlpha && mIsInFront && finalAlpha > 0.001f)
+			{
+				return NGUITools.GetActive((Behaviour)(object)this);
+			}
+			return false;
 		}
 	}
 
-	// Token: 0x17000103 RID: 259
-	// (get) Token: 0x060007E9 RID: 2025 RVA: 0x00030257 File Offset: 0x0002E457
 	public bool hasVertices
 	{
 		get
 		{
-			return this.geometry != null && this.geometry.hasVertices;
+			if (geometry != null)
+			{
+				return geometry.hasVertices;
+			}
+			return false;
 		}
 	}
 
-	// Token: 0x17000104 RID: 260
-	// (get) Token: 0x060007EA RID: 2026 RVA: 0x0003026E File Offset: 0x0002E46E
-	// (set) Token: 0x060007EB RID: 2027 RVA: 0x00030276 File Offset: 0x0002E476
-	public UIWidget.Pivot rawPivot
+	public Pivot rawPivot
 	{
 		get
 		{
-			return this.mPivot;
+			return mPivot;
 		}
 		set
 		{
-			if (this.mPivot != value)
+			if (mPivot != value)
 			{
-				this.mPivot = value;
-				if (this.autoResizeBoxCollider)
+				mPivot = value;
+				if (autoResizeBoxCollider)
 				{
-					this.ResizeCollider();
+					ResizeCollider();
 				}
-				this.MarkAsChanged();
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x17000105 RID: 261
-	// (get) Token: 0x060007EC RID: 2028 RVA: 0x0003026E File Offset: 0x0002E46E
-	// (set) Token: 0x060007ED RID: 2029 RVA: 0x0003029C File Offset: 0x0002E49C
-	public UIWidget.Pivot pivot
+	public Pivot pivot
 	{
 		get
 		{
-			return this.mPivot;
+			return mPivot;
 		}
 		set
 		{
-			if (this.mPivot != value)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+			//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+			if (mPivot != value)
 			{
-				Vector3 vector = this.worldCorners[0];
-				this.mPivot = value;
-				this.mChanged = true;
-				Vector3 vector2 = this.worldCorners[0];
-				Transform cachedTransform = base.cachedTransform;
-				Vector3 vector3 = cachedTransform.position;
-				float z = cachedTransform.localPosition.z;
-				vector3.x += vector.x - vector2.x;
-				vector3.y += vector.y - vector2.y;
-				base.cachedTransform.position = vector3;
-				vector3 = base.cachedTransform.localPosition;
-				vector3.x = Mathf.Round(vector3.x);
-				vector3.y = Mathf.Round(vector3.y);
-				vector3.z = z;
-				base.cachedTransform.localPosition = vector3;
+				Vector3 val = worldCorners[0];
+				mPivot = value;
+				mChanged = true;
+				Vector3 val2 = worldCorners[0];
+				Transform obj = base.cachedTransform;
+				Vector3 position = obj.position;
+				float z = obj.localPosition.z;
+				position.x += val.x - val2.x;
+				position.y += val.y - val2.y;
+				base.cachedTransform.position = position;
+				position = base.cachedTransform.localPosition;
+				position.x = Mathf.Round(position.x);
+				position.y = Mathf.Round(position.y);
+				position.z = z;
+				base.cachedTransform.localPosition = position;
 			}
 		}
 	}
 
-	// Token: 0x17000106 RID: 262
-	// (get) Token: 0x060007EE RID: 2030 RVA: 0x00030375 File Offset: 0x0002E575
-	// (set) Token: 0x060007EF RID: 2031 RVA: 0x00030380 File Offset: 0x0002E580
 	public int depth
 	{
 		get
 		{
-			return this.mDepth;
+			return mDepth;
 		}
 		set
 		{
-			if (this.mDepth != value)
+			if (mDepth == value)
 			{
-				if (this.panel != null)
+				return;
+			}
+			if ((Object)(object)panel != (Object)null)
+			{
+				panel.RemoveWidget(this);
+			}
+			mDepth = value;
+			if ((Object)(object)panel != (Object)null)
+			{
+				panel.AddWidget(this);
+				if (!Application.isPlaying)
 				{
-					this.panel.RemoveWidget(this);
-				}
-				this.mDepth = value;
-				if (this.panel != null)
-				{
-					this.panel.AddWidget(this);
-					if (!Application.isPlaying)
-					{
-						this.panel.SortWidgets();
-						this.panel.RebuildAllDrawCalls();
-					}
+					panel.SortWidgets();
+					panel.RebuildAllDrawCalls();
 				}
 			}
 		}
 	}
 
-	// Token: 0x17000107 RID: 263
-	// (get) Token: 0x060007F0 RID: 2032 RVA: 0x000303F0 File Offset: 0x0002E5F0
 	public int raycastDepth
 	{
 		get
 		{
-			if (this.panel == null)
+			if ((Object)(object)panel == (Object)null)
 			{
-				this.CreatePanel();
+				CreatePanel();
 			}
-			if (!(this.panel != null))
+			if (!((Object)(object)panel != (Object)null))
 			{
-				return this.mDepth;
+				return mDepth;
 			}
-			return this.mDepth + this.panel.depth * 1000;
+			return mDepth + panel.depth * 1000;
 		}
 	}
 
-	// Token: 0x17000108 RID: 264
-	// (get) Token: 0x060007F1 RID: 2033 RVA: 0x00030440 File Offset: 0x0002E640
 	public override Vector3[] localCorners
 	{
 		get
 		{
-			Vector2 pivotOffset = this.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			this.mCorners[0] = new Vector3(num, num2);
-			this.mCorners[1] = new Vector3(num, num4);
-			this.mCorners[2] = new Vector3(num3, num4);
-			this.mCorners[3] = new Vector3(num3, num2);
-			return this.mCorners;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 val = pivotOffset;
+			float num = (0f - val.x) * (float)mWidth;
+			float num2 = (0f - val.y) * (float)mHeight;
+			float num3 = num + (float)mWidth;
+			float num4 = num2 + (float)mHeight;
+			mCorners[0] = new Vector3(num, num2);
+			mCorners[1] = new Vector3(num, num4);
+			mCorners[2] = new Vector3(num3, num4);
+			mCorners[3] = new Vector3(num3, num2);
+			return mCorners;
 		}
 	}
 
-	// Token: 0x17000109 RID: 265
-	// (get) Token: 0x060007F2 RID: 2034 RVA: 0x000304D8 File Offset: 0x0002E6D8
 	public virtual Vector2 localSize
 	{
 		get
 		{
-			Vector3[] localCorners = this.localCorners;
-			return localCorners[2] - localCorners[0];
+			//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			Vector3[] array = localCorners;
+			return Vector2.op_Implicit(array[2] - array[0]);
 		}
 	}
 
-	// Token: 0x1700010A RID: 266
-	// (get) Token: 0x060007F3 RID: 2035 RVA: 0x00030504 File Offset: 0x0002E704
 	public Vector3 localCenter
 	{
 		get
 		{
-			Vector3[] localCorners = this.localCorners;
-			return Vector3.Lerp(localCorners[0], localCorners[2], 0.5f);
+			//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			Vector3[] array = localCorners;
+			return Vector3.Lerp(array[0], array[2], 0.5f);
 		}
 	}
 
-	// Token: 0x1700010B RID: 267
-	// (get) Token: 0x060007F4 RID: 2036 RVA: 0x00030530 File Offset: 0x0002E730
 	public override Vector3[] worldCorners
 	{
 		get
 		{
-			Vector2 pivotOffset = this.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			Transform cachedTransform = base.cachedTransform;
-			this.mCorners[0] = cachedTransform.TransformPoint(num, num2, 0f);
-			this.mCorners[1] = cachedTransform.TransformPoint(num, num4, 0f);
-			this.mCorners[2] = cachedTransform.TransformPoint(num3, num4, 0f);
-			this.mCorners[3] = cachedTransform.TransformPoint(num3, num2, 0f);
-			return this.mCorners;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+			//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 val = pivotOffset;
+			float num = (0f - val.x) * (float)mWidth;
+			float num2 = (0f - val.y) * (float)mHeight;
+			float num3 = num + (float)mWidth;
+			float num4 = num2 + (float)mHeight;
+			Transform val2 = base.cachedTransform;
+			mCorners[0] = val2.TransformPoint(num, num2, 0f);
+			mCorners[1] = val2.TransformPoint(num, num4, 0f);
+			mCorners[2] = val2.TransformPoint(num3, num4, 0f);
+			mCorners[3] = val2.TransformPoint(num3, num2, 0f);
+			return mCorners;
 		}
 	}
 
-	// Token: 0x1700010C RID: 268
-	// (get) Token: 0x060007F5 RID: 2037 RVA: 0x000305EC File Offset: 0x0002E7EC
-	public Vector3 worldCenter
-	{
-		get
-		{
-			return base.cachedTransform.TransformPoint(this.localCenter);
-		}
-	}
+	public Vector3 worldCenter => base.cachedTransform.TransformPoint(localCenter);
 
-	// Token: 0x1700010D RID: 269
-	// (get) Token: 0x060007F6 RID: 2038 RVA: 0x00030600 File Offset: 0x0002E800
 	public virtual Vector4 drawingDimensions
 	{
 		get
 		{
-			Vector2 pivotOffset = this.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			return new Vector4((this.mDrawRegion.x == 0f) ? num : Mathf.Lerp(num, num3, this.mDrawRegion.x), (this.mDrawRegion.y == 0f) ? num2 : Mathf.Lerp(num2, num4, this.mDrawRegion.y), (this.mDrawRegion.z == 1f) ? num3 : Mathf.Lerp(num, num3, this.mDrawRegion.z), (this.mDrawRegion.w == 1f) ? num4 : Mathf.Lerp(num2, num4, this.mDrawRegion.w));
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 val = pivotOffset;
+			float num = (0f - val.x) * (float)mWidth;
+			float num2 = (0f - val.y) * (float)mHeight;
+			float num3 = num + (float)mWidth;
+			float num4 = num2 + (float)mHeight;
+			return new Vector4((mDrawRegion.x == 0f) ? num : Mathf.Lerp(num, num3, mDrawRegion.x), (mDrawRegion.y == 0f) ? num2 : Mathf.Lerp(num2, num4, mDrawRegion.y), (mDrawRegion.z == 1f) ? num3 : Mathf.Lerp(num, num3, mDrawRegion.z), (mDrawRegion.w == 1f) ? num4 : Mathf.Lerp(num2, num4, mDrawRegion.w));
 		}
 	}
 
-	// Token: 0x1700010E RID: 270
-	// (get) Token: 0x060007F7 RID: 2039 RVA: 0x000306E7 File Offset: 0x0002E8E7
-	// (set) Token: 0x060007F8 RID: 2040 RVA: 0x000306EA File Offset: 0x0002E8EA
 	public virtual Material material
 	{
 		get
@@ -418,238 +529,256 @@ public class UIWidget : UIRect
 		}
 		set
 		{
-			throw new NotImplementedException(base.GetType() + " has no material setter");
+			throw new NotImplementedException(string.Concat(((object)this).GetType(), " has no material setter"));
 		}
 	}
 
-	// Token: 0x1700010F RID: 271
-	// (get) Token: 0x060007F9 RID: 2041 RVA: 0x00030704 File Offset: 0x0002E904
-	// (set) Token: 0x060007FA RID: 2042 RVA: 0x00030729 File Offset: 0x0002E929
 	public virtual Texture mainTexture
 	{
 		get
 		{
-			Material material = this.material;
-			if (!(material != null))
+			Material val = material;
+			if (!((Object)(object)val != (Object)null))
 			{
 				return null;
 			}
-			return material.mainTexture;
+			return val.mainTexture;
 		}
 		set
 		{
-			throw new NotImplementedException(base.GetType() + " has no mainTexture setter");
+			throw new NotImplementedException(string.Concat(((object)this).GetType(), " has no mainTexture setter"));
 		}
 	}
 
-	// Token: 0x17000110 RID: 272
-	// (get) Token: 0x060007FB RID: 2043 RVA: 0x00030740 File Offset: 0x0002E940
-	// (set) Token: 0x060007FC RID: 2044 RVA: 0x00030765 File Offset: 0x0002E965
 	public virtual Shader shader
 	{
 		get
 		{
-			Material material = this.material;
-			if (!(material != null))
+			Material val = material;
+			if (!((Object)(object)val != (Object)null))
 			{
 				return null;
 			}
-			return material.shader;
+			return val.shader;
 		}
 		set
 		{
-			throw new NotImplementedException(base.GetType() + " has no shader setter");
+			throw new NotImplementedException(string.Concat(((object)this).GetType(), " has no shader setter"));
 		}
 	}
 
-	// Token: 0x17000111 RID: 273
-	// (get) Token: 0x060007FD RID: 2045 RVA: 0x0003077C File Offset: 0x0002E97C
 	[Obsolete("There is no relative scale anymore. Widgets now have width and height instead")]
-	public Vector2 relativeSize
-	{
-		get
-		{
-			return Vector2.one;
-		}
-	}
+	public Vector2 relativeSize => Vector2.one;
 
-	// Token: 0x17000112 RID: 274
-	// (get) Token: 0x060007FE RID: 2046 RVA: 0x00030783 File Offset: 0x0002E983
 	public bool hasBoxCollider
 	{
 		get
 		{
-			return base.GetComponent<Collider>() as BoxCollider != null || base.GetComponent<BoxCollider2D>() != null;
+			Collider component = ((Component)this).GetComponent<Collider>();
+			if ((Object)(object)((component is BoxCollider) ? component : null) != (Object)null)
+			{
+				return true;
+			}
+			return (Object)(object)((Component)this).GetComponent<BoxCollider2D>() != (Object)null;
 		}
 	}
 
-	// Token: 0x060007FF RID: 2047 RVA: 0x000307A8 File Offset: 0x0002E9A8
+	public virtual int minWidth => 2;
+
+	public virtual int minHeight => 2;
+
+	public virtual Vector4 border
+	{
+		get
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			return Vector4.zero;
+		}
+		set
+		{
+		}
+	}
+
 	public void SetDimensions(int w, int h)
 	{
-		if (this.mWidth != w || this.mHeight != h)
+		if (mWidth != w || mHeight != h)
 		{
-			this.mWidth = w;
-			this.mHeight = h;
-			if (this.keepAspectRatio == UIWidget.AspectRatioSource.BasedOnWidth)
+			mWidth = w;
+			mHeight = h;
+			if (keepAspectRatio == AspectRatioSource.BasedOnWidth)
 			{
-				this.mHeight = Mathf.RoundToInt((float)this.mWidth / this.aspectRatio);
+				mHeight = Mathf.RoundToInt((float)mWidth / aspectRatio);
 			}
-			else if (this.keepAspectRatio == UIWidget.AspectRatioSource.BasedOnHeight)
+			else if (keepAspectRatio == AspectRatioSource.BasedOnHeight)
 			{
-				this.mWidth = Mathf.RoundToInt((float)this.mHeight * this.aspectRatio);
+				mWidth = Mathf.RoundToInt((float)mHeight * aspectRatio);
 			}
-			else if (this.keepAspectRatio == UIWidget.AspectRatioSource.Free)
+			else if (keepAspectRatio == AspectRatioSource.Free)
 			{
-				this.aspectRatio = (float)this.mWidth / (float)this.mHeight;
+				aspectRatio = (float)mWidth / (float)mHeight;
 			}
-			this.mMoved = true;
-			if (this.autoResizeBoxCollider)
+			mMoved = true;
+			if (autoResizeBoxCollider)
 			{
-				this.ResizeCollider();
+				ResizeCollider();
 			}
-			this.MarkAsChanged();
+			MarkAsChanged();
 		}
 	}
 
-	// Token: 0x06000800 RID: 2048 RVA: 0x00030858 File Offset: 0x0002EA58
 	public override Vector3[] GetSides(Transform relativeTo)
 	{
-		Vector2 pivotOffset = this.pivotOffset;
-		float num = -pivotOffset.x * (float)this.mWidth;
-		float num2 = -pivotOffset.y * (float)this.mHeight;
-		float num3 = num + (float)this.mWidth;
-		float num4 = num2 + (float)this.mHeight;
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = pivotOffset;
+		float num = (0f - val.x) * (float)mWidth;
+		float num2 = (0f - val.y) * (float)mHeight;
+		float num3 = num + (float)mWidth;
+		float num4 = num2 + (float)mHeight;
 		float num5 = (num + num3) * 0.5f;
 		float num6 = (num2 + num4) * 0.5f;
-		Transform cachedTransform = base.cachedTransform;
-		this.mCorners[0] = cachedTransform.TransformPoint(num, num6, 0f);
-		this.mCorners[1] = cachedTransform.TransformPoint(num5, num4, 0f);
-		this.mCorners[2] = cachedTransform.TransformPoint(num3, num6, 0f);
-		this.mCorners[3] = cachedTransform.TransformPoint(num5, num2, 0f);
-		if (relativeTo != null)
+		Transform val2 = base.cachedTransform;
+		mCorners[0] = val2.TransformPoint(num, num6, 0f);
+		mCorners[1] = val2.TransformPoint(num5, num4, 0f);
+		mCorners[2] = val2.TransformPoint(num3, num6, 0f);
+		mCorners[3] = val2.TransformPoint(num5, num2, 0f);
+		if ((Object)(object)relativeTo != (Object)null)
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				this.mCorners[i] = relativeTo.InverseTransformPoint(this.mCorners[i]);
+				mCorners[i] = relativeTo.InverseTransformPoint(mCorners[i]);
 			}
 		}
-		return this.mCorners;
+		return mCorners;
 	}
 
-	// Token: 0x06000801 RID: 2049 RVA: 0x00030967 File Offset: 0x0002EB67
 	public override float CalculateFinalAlpha(int frameID)
 	{
-		if (this.mAlphaFrameID != frameID)
+		if (mAlphaFrameID != frameID)
 		{
-			this.mAlphaFrameID = frameID;
-			this.UpdateFinalAlpha(frameID);
+			mAlphaFrameID = frameID;
+			UpdateFinalAlpha(frameID);
 		}
-		return this.finalAlpha;
+		return finalAlpha;
 	}
 
-	// Token: 0x06000802 RID: 2050 RVA: 0x00030988 File Offset: 0x0002EB88
 	protected void UpdateFinalAlpha(int frameID)
 	{
-		if (!this.mIsVisibleByAlpha || !this.mIsInFront)
+		if (!mIsVisibleByAlpha || !mIsInFront)
 		{
-			this.finalAlpha = 0f;
+			finalAlpha = 0f;
 			return;
 		}
-		UIRect parent = base.parent;
-		this.finalAlpha = ((base.parent != null) ? (parent.CalculateFinalAlpha(frameID) * this.mColor.a) : this.mColor.a);
+		UIRect uIRect = base.parent;
+		finalAlpha = (((Object)(object)base.parent != (Object)null) ? (uIRect.CalculateFinalAlpha(frameID) * mColor.a) : mColor.a);
 	}
 
-	// Token: 0x06000803 RID: 2051 RVA: 0x000309EC File Offset: 0x0002EBEC
 	public override void Invalidate(bool includeChildren)
 	{
-		this.mChanged = true;
-		this.mAlphaFrameID = -1;
-		if (this.panel != null)
+		mChanged = true;
+		mAlphaFrameID = -1;
+		if ((Object)(object)panel != (Object)null)
 		{
-			bool visibleByPanel = (!this.hideIfOffScreen && !this.panel.hasCumulativeClipping) || this.panel.IsVisible(this);
-			this.UpdateVisibility(this.CalculateCumulativeAlpha(Time.frameCount) > 0.001f, visibleByPanel);
-			this.UpdateFinalAlpha(Time.frameCount);
+			bool visibleByPanel = (!hideIfOffScreen && !panel.hasCumulativeClipping) || panel.IsVisible(this);
+			UpdateVisibility(CalculateCumulativeAlpha(Time.frameCount) > 0.001f, visibleByPanel);
+			UpdateFinalAlpha(Time.frameCount);
 			if (includeChildren)
 			{
-				base.Invalidate(true);
+				base.Invalidate(includeChildren: true);
 			}
 		}
 	}
 
-	// Token: 0x06000804 RID: 2052 RVA: 0x00030A6C File Offset: 0x0002EC6C
 	public float CalculateCumulativeAlpha(int frameID)
 	{
-		UIRect parent = base.parent;
-		if (!(parent != null))
+		UIRect uIRect = base.parent;
+		if (!((Object)(object)uIRect != (Object)null))
 		{
-			return this.mColor.a;
+			return mColor.a;
 		}
-		return parent.CalculateFinalAlpha(frameID) * this.mColor.a;
+		return uIRect.CalculateFinalAlpha(frameID) * mColor.a;
 	}
 
-	// Token: 0x06000805 RID: 2053 RVA: 0x00030AA8 File Offset: 0x0002ECA8
 	public override void SetRect(float x, float y, float width, float height)
 	{
-		Vector2 pivotOffset = this.pivotOffset;
-		float num = Mathf.Lerp(x, x + width, pivotOffset.x);
-		float num2 = Mathf.Lerp(y, y + height, pivotOffset.y);
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = pivotOffset;
+		float num = Mathf.Lerp(x, x + width, val.x);
+		float num2 = Mathf.Lerp(y, y + height, val.y);
 		int num3 = Mathf.FloorToInt(width + 0.5f);
 		int num4 = Mathf.FloorToInt(height + 0.5f);
-		if (pivotOffset.x == 0.5f)
+		if (val.x == 0.5f)
 		{
 			num3 = num3 >> 1 << 1;
 		}
-		if (pivotOffset.y == 0.5f)
+		if (val.y == 0.5f)
 		{
 			num4 = num4 >> 1 << 1;
 		}
-		Transform transform = base.cachedTransform;
-		Vector3 localPosition = transform.localPosition;
+		Transform val2 = base.cachedTransform;
+		Vector3 localPosition = val2.localPosition;
 		localPosition.x = Mathf.Floor(num + 0.5f);
 		localPosition.y = Mathf.Floor(num2 + 0.5f);
-		if (num3 < this.minWidth)
+		if (num3 < minWidth)
 		{
-			num3 = this.minWidth;
+			num3 = minWidth;
 		}
-		if (num4 < this.minHeight)
+		if (num4 < minHeight)
 		{
-			num4 = this.minHeight;
+			num4 = minHeight;
 		}
-		transform.localPosition = localPosition;
+		val2.localPosition = localPosition;
 		this.width = num3;
 		this.height = num4;
 		if (base.isAnchored)
 		{
-			transform = transform.parent;
-			if (this.leftAnchor.target)
+			val2 = val2.parent;
+			if (Object.op_Implicit((Object)(object)leftAnchor.target))
 			{
-				this.leftAnchor.SetHorizontal(transform, x);
+				leftAnchor.SetHorizontal(val2, x);
 			}
-			if (this.rightAnchor.target)
+			if (Object.op_Implicit((Object)(object)rightAnchor.target))
 			{
-				this.rightAnchor.SetHorizontal(transform, x + width);
+				rightAnchor.SetHorizontal(val2, x + width);
 			}
-			if (this.bottomAnchor.target)
+			if (Object.op_Implicit((Object)(object)bottomAnchor.target))
 			{
-				this.bottomAnchor.SetVertical(transform, y);
+				bottomAnchor.SetVertical(val2, y);
 			}
-			if (this.topAnchor.target)
+			if (Object.op_Implicit((Object)(object)topAnchor.target))
 			{
-				this.topAnchor.SetVertical(transform, y + height);
+				topAnchor.SetVertical(val2, y + height);
 			}
 		}
 	}
 
-	// Token: 0x06000806 RID: 2054 RVA: 0x00030C2B File Offset: 0x0002EE2B
 	public void ResizeCollider()
 	{
-		if (NGUITools.GetActive(this))
+		if (NGUITools.GetActive((Behaviour)(object)this))
 		{
-			NGUITools.UpdateWidgetCollider(base.gameObject);
+			NGUITools.UpdateWidgetCollider(((Component)this).gameObject);
 		}
 	}
 
-	// Token: 0x06000807 RID: 2055 RVA: 0x00030C40 File Offset: 0x0002EE40
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static int FullCompareFunc(UIWidget left, UIWidget right)
@@ -659,10 +788,9 @@ public class UIWidget : UIRect
 		{
 			return num;
 		}
-		return UIWidget.PanelCompareFunc(left, right);
+		return PanelCompareFunc(left, right);
 	}
 
-	// Token: 0x06000808 RID: 2056 RVA: 0x00030C6C File Offset: 0x0002EE6C
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static int PanelCompareFunc(UIWidget left, UIWidget right)
@@ -675,463 +803,517 @@ public class UIWidget : UIRect
 		{
 			return 1;
 		}
-		Material material = left.material;
-		Material material2 = right.material;
-		if (material == material2)
+		Material val = left.material;
+		Material val2 = right.material;
+		if ((Object)(object)val == (Object)(object)val2)
 		{
 			return 0;
 		}
-		if (material != null)
+		if ((Object)(object)val != (Object)null)
 		{
 			return -1;
 		}
-		if (material2 != null)
+		if ((Object)(object)val2 != (Object)null)
 		{
 			return 1;
 		}
-		if (material.GetInstanceID() >= material2.GetInstanceID())
+		if (((Object)val).GetInstanceID() >= ((Object)val2).GetInstanceID())
 		{
 			return 1;
 		}
 		return -1;
 	}
 
-	// Token: 0x06000809 RID: 2057 RVA: 0x00030CD9 File Offset: 0x0002EED9
 	public Bounds CalculateBounds()
 	{
-		return this.CalculateBounds(null);
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		return CalculateBounds(null);
 	}
 
-	// Token: 0x0600080A RID: 2058 RVA: 0x00030CE4 File Offset: 0x0002EEE4
 	public Bounds CalculateBounds(Transform relativeParent)
 	{
-		if (relativeParent == null)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)relativeParent == (Object)null)
 		{
-			Vector3[] localCorners = this.localCorners;
-			Bounds result;
-			result..ctor(localCorners[0], Vector3.zero);
+			Vector3[] array = localCorners;
+			Bounds result = default(Bounds);
+			((Bounds)(ref result))._002Ector(array[0], Vector3.zero);
 			for (int i = 1; i < 4; i++)
 			{
-				result.Encapsulate(localCorners[i]);
+				((Bounds)(ref result)).Encapsulate(array[i]);
 			}
 			return result;
 		}
 		Matrix4x4 worldToLocalMatrix = relativeParent.worldToLocalMatrix;
-		Vector3[] worldCorners = this.worldCorners;
-		Bounds result2;
-		result2..ctor(worldToLocalMatrix.MultiplyPoint3x4(worldCorners[0]), Vector3.zero);
+		Vector3[] array2 = worldCorners;
+		Bounds result2 = default(Bounds);
+		((Bounds)(ref result2))._002Ector(((Matrix4x4)(ref worldToLocalMatrix)).MultiplyPoint3x4(array2[0]), Vector3.zero);
 		for (int j = 1; j < 4; j++)
 		{
-			result2.Encapsulate(worldToLocalMatrix.MultiplyPoint3x4(worldCorners[j]));
+			((Bounds)(ref result2)).Encapsulate(((Matrix4x4)(ref worldToLocalMatrix)).MultiplyPoint3x4(array2[j]));
 		}
 		return result2;
 	}
 
-	// Token: 0x0600080B RID: 2059 RVA: 0x00030D83 File Offset: 0x0002EF83
 	public void SetDirty()
 	{
-		if (this.drawCall != null)
+		if ((Object)(object)drawCall != (Object)null)
 		{
-			this.drawCall.isDirty = true;
-			return;
+			drawCall.isDirty = true;
 		}
-		if (this.isVisible && this.hasVertices)
+		else if (isVisible && hasVertices)
 		{
-			this.CreatePanel();
+			CreatePanel();
 		}
 	}
 
-	// Token: 0x0600080C RID: 2060 RVA: 0x00030DB7 File Offset: 0x0002EFB7
 	protected void RemoveFromPanel()
 	{
-		if (this.panel != null)
+		if ((Object)(object)panel != (Object)null)
 		{
-			this.panel.RemoveWidget(this);
-			this.panel = null;
+			panel.RemoveWidget(this);
+			panel = null;
 		}
 	}
 
-	// Token: 0x0600080D RID: 2061 RVA: 0x00030DDC File Offset: 0x0002EFDC
 	public virtual void MarkAsChanged()
 	{
-		if (NGUITools.GetActive(this))
+		if (NGUITools.GetActive((Behaviour)(object)this))
 		{
-			this.mChanged = true;
-			if (this.panel != null && base.enabled && NGUITools.GetActive(base.gameObject) && !this.mPlayMode)
+			mChanged = true;
+			if ((Object)(object)panel != (Object)null && ((Behaviour)this).enabled && NGUITools.GetActive(((Component)this).gameObject) && !mPlayMode)
 			{
-				this.SetDirty();
-				this.CheckLayer();
+				SetDirty();
+				CheckLayer();
 			}
 		}
 	}
 
-	// Token: 0x0600080E RID: 2062 RVA: 0x00030E30 File Offset: 0x0002F030
 	public UIPanel CreatePanel()
 	{
-		if (this.mStarted && this.panel == null && base.enabled && NGUITools.GetActive(base.gameObject))
+		if (mStarted && (Object)(object)panel == (Object)null && ((Behaviour)this).enabled && NGUITools.GetActive(((Component)this).gameObject))
 		{
-			this.panel = UIPanel.Find(base.cachedTransform, true, base.cachedGameObject.layer);
-			if (this.panel != null)
+			panel = UIPanel.Find(base.cachedTransform, createIfMissing: true, base.cachedGameObject.layer);
+			if ((Object)(object)panel != (Object)null)
 			{
-				this.mParentFound = false;
-				this.panel.AddWidget(this);
-				this.CheckLayer();
-				this.Invalidate(true);
+				mParentFound = false;
+				panel.AddWidget(this);
+				CheckLayer();
+				Invalidate(includeChildren: true);
 			}
 		}
-		return this.panel;
+		return panel;
 	}
 
-	// Token: 0x0600080F RID: 2063 RVA: 0x00030EBC File Offset: 0x0002F0BC
 	public void CheckLayer()
 	{
-		if (this.panel != null && this.panel.gameObject.layer != base.gameObject.layer)
+		if ((Object)(object)panel != (Object)null && ((Component)panel).gameObject.layer != ((Component)this).gameObject.layer)
 		{
-			Debug.LogWarning("You can't place widgets on a layer different than the UIPanel that manages them.\nIf you want to move widgets to a different layer, parent them to a new panel instead.", this);
-			base.gameObject.layer = this.panel.gameObject.layer;
+			Debug.LogWarning((object)"You can't place widgets on a layer different than the UIPanel that manages them.\nIf you want to move widgets to a different layer, parent them to a new panel instead.", (Object)(object)this);
+			((Component)this).gameObject.layer = ((Component)panel).gameObject.layer;
 		}
 	}
 
-	// Token: 0x06000810 RID: 2064 RVA: 0x00030F1C File Offset: 0x0002F11C
 	public override void ParentHasChanged()
 	{
 		base.ParentHasChanged();
-		if (this.panel != null)
+		if ((Object)(object)panel != (Object)null)
 		{
-			UIPanel uipanel = UIPanel.Find(base.cachedTransform, true, base.cachedGameObject.layer);
-			if (this.panel != uipanel)
+			UIPanel uIPanel = UIPanel.Find(base.cachedTransform, createIfMissing: true, base.cachedGameObject.layer);
+			if ((Object)(object)panel != (Object)(object)uIPanel)
 			{
-				this.RemoveFromPanel();
-				this.CreatePanel();
+				RemoveFromPanel();
+				CreatePanel();
 			}
 		}
 	}
 
-	// Token: 0x06000811 RID: 2065 RVA: 0x00030F70 File Offset: 0x0002F170
 	protected virtual void Awake()
 	{
-		this.mGo = base.gameObject;
-		this.mPlayMode = Application.isPlaying;
+		mGo = ((Component)this).gameObject;
+		mPlayMode = Application.isPlaying;
 	}
 
-	// Token: 0x06000812 RID: 2066 RVA: 0x00030F8C File Offset: 0x0002F18C
 	protected override void OnInit()
 	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
 		base.OnInit();
-		this.RemoveFromPanel();
-		this.mMoved = true;
-		if (this.mWidth == 100 && this.mHeight == 100 && base.cachedTransform.localScale.magnitude > 8f)
+		RemoveFromPanel();
+		mMoved = true;
+		if (mWidth == 100 && mHeight == 100)
 		{
-			this.UpgradeFrom265();
-			base.cachedTransform.localScale = Vector3.one;
+			Vector3 localScale = base.cachedTransform.localScale;
+			if (((Vector3)(ref localScale)).magnitude > 8f)
+			{
+				UpgradeFrom265();
+				base.cachedTransform.localScale = Vector3.one;
+			}
 		}
-		base.Update();
+		Update();
 	}
 
-	// Token: 0x06000813 RID: 2067 RVA: 0x00030FF8 File Offset: 0x0002F1F8
 	protected virtual void UpgradeFrom265()
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 localScale = base.cachedTransform.localScale;
-		this.mWidth = Mathf.Abs(Mathf.RoundToInt(localScale.x));
-		this.mHeight = Mathf.Abs(Mathf.RoundToInt(localScale.y));
-		NGUITools.UpdateWidgetCollider(base.gameObject, true);
+		mWidth = Mathf.Abs(Mathf.RoundToInt(localScale.x));
+		mHeight = Mathf.Abs(Mathf.RoundToInt(localScale.y));
+		NGUITools.UpdateWidgetCollider(((Component)this).gameObject, considerInactive: true);
 	}
 
-	// Token: 0x06000814 RID: 2068 RVA: 0x00031049 File Offset: 0x0002F249
 	protected override void OnStart()
 	{
-		this.CreatePanel();
+		CreatePanel();
 	}
 
-	// Token: 0x06000815 RID: 2069 RVA: 0x00031054 File Offset: 0x0002F254
 	protected override void OnAnchor()
 	{
-		Transform cachedTransform = base.cachedTransform;
-		Transform parent = cachedTransform.parent;
-		Vector3 localPosition = cachedTransform.localPosition;
-		Vector2 pivotOffset = this.pivotOffset;
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0293: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0279: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0334: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0313: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_048d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0469: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0470: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0539: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_044f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0554: Unknown result type (might be due to invalid IL or missing references)
+		Transform obj = base.cachedTransform;
+		Transform val = obj.parent;
+		Vector3 localPosition = obj.localPosition;
+		Vector2 val2 = pivotOffset;
 		float num;
 		float num2;
 		float num3;
 		float num4;
-		if (this.leftAnchor.target == this.bottomAnchor.target && this.leftAnchor.target == this.rightAnchor.target && this.leftAnchor.target == this.topAnchor.target)
+		if ((Object)(object)leftAnchor.target == (Object)(object)bottomAnchor.target && (Object)(object)leftAnchor.target == (Object)(object)rightAnchor.target && (Object)(object)leftAnchor.target == (Object)(object)topAnchor.target)
 		{
-			Vector3[] sides = this.leftAnchor.GetSides(parent);
+			Vector3[] sides = leftAnchor.GetSides(val);
 			if (sides != null)
 			{
-				num = NGUIMath.Lerp(sides[0].x, sides[2].x, this.leftAnchor.relative) + (float)this.leftAnchor.absolute;
-				num2 = NGUIMath.Lerp(sides[0].x, sides[2].x, this.rightAnchor.relative) + (float)this.rightAnchor.absolute;
-				num3 = NGUIMath.Lerp(sides[3].y, sides[1].y, this.bottomAnchor.relative) + (float)this.bottomAnchor.absolute;
-				num4 = NGUIMath.Lerp(sides[3].y, sides[1].y, this.topAnchor.relative) + (float)this.topAnchor.absolute;
-				this.mIsInFront = true;
+				num = NGUIMath.Lerp(sides[0].x, sides[2].x, leftAnchor.relative) + (float)leftAnchor.absolute;
+				num2 = NGUIMath.Lerp(sides[0].x, sides[2].x, rightAnchor.relative) + (float)rightAnchor.absolute;
+				num3 = NGUIMath.Lerp(sides[3].y, sides[1].y, bottomAnchor.relative) + (float)bottomAnchor.absolute;
+				num4 = NGUIMath.Lerp(sides[3].y, sides[1].y, topAnchor.relative) + (float)topAnchor.absolute;
+				mIsInFront = true;
 			}
 			else
 			{
-				Vector3 localPos = base.GetLocalPos(this.leftAnchor, parent);
-				num = localPos.x + (float)this.leftAnchor.absolute;
-				num3 = localPos.y + (float)this.bottomAnchor.absolute;
-				num2 = localPos.x + (float)this.rightAnchor.absolute;
-				num4 = localPos.y + (float)this.topAnchor.absolute;
-				this.mIsInFront = (!this.hideIfOffScreen || localPos.z >= 0f);
+				Vector3 localPos = GetLocalPos(leftAnchor, val);
+				num = localPos.x + (float)leftAnchor.absolute;
+				num3 = localPos.y + (float)bottomAnchor.absolute;
+				num2 = localPos.x + (float)rightAnchor.absolute;
+				num4 = localPos.y + (float)topAnchor.absolute;
+				mIsInFront = !hideIfOffScreen || localPos.z >= 0f;
 			}
 		}
 		else
 		{
-			this.mIsInFront = true;
-			if (this.leftAnchor.target)
+			mIsInFront = true;
+			if (Object.op_Implicit((Object)(object)leftAnchor.target))
 			{
-				Vector3[] sides2 = this.leftAnchor.GetSides(parent);
-				if (sides2 != null)
-				{
-					num = NGUIMath.Lerp(sides2[0].x, sides2[2].x, this.leftAnchor.relative) + (float)this.leftAnchor.absolute;
-				}
-				else
-				{
-					num = base.GetLocalPos(this.leftAnchor, parent).x + (float)this.leftAnchor.absolute;
-				}
+				Vector3[] sides2 = leftAnchor.GetSides(val);
+				num = ((sides2 == null) ? (GetLocalPos(leftAnchor, val).x + (float)leftAnchor.absolute) : (NGUIMath.Lerp(sides2[0].x, sides2[2].x, leftAnchor.relative) + (float)leftAnchor.absolute));
 			}
 			else
 			{
-				num = localPosition.x - pivotOffset.x * (float)this.mWidth;
+				num = localPosition.x - val2.x * (float)mWidth;
 			}
-			if (this.rightAnchor.target)
+			if (Object.op_Implicit((Object)(object)rightAnchor.target))
 			{
-				Vector3[] sides3 = this.rightAnchor.GetSides(parent);
-				if (sides3 != null)
-				{
-					num2 = NGUIMath.Lerp(sides3[0].x, sides3[2].x, this.rightAnchor.relative) + (float)this.rightAnchor.absolute;
-				}
-				else
-				{
-					num2 = base.GetLocalPos(this.rightAnchor, parent).x + (float)this.rightAnchor.absolute;
-				}
+				Vector3[] sides3 = rightAnchor.GetSides(val);
+				num2 = ((sides3 == null) ? (GetLocalPos(rightAnchor, val).x + (float)rightAnchor.absolute) : (NGUIMath.Lerp(sides3[0].x, sides3[2].x, rightAnchor.relative) + (float)rightAnchor.absolute));
 			}
 			else
 			{
-				num2 = localPosition.x - pivotOffset.x * (float)this.mWidth + (float)this.mWidth;
+				num2 = localPosition.x - val2.x * (float)mWidth + (float)mWidth;
 			}
-			if (this.bottomAnchor.target)
+			if (Object.op_Implicit((Object)(object)bottomAnchor.target))
 			{
-				Vector3[] sides4 = this.bottomAnchor.GetSides(parent);
-				if (sides4 != null)
-				{
-					num3 = NGUIMath.Lerp(sides4[3].y, sides4[1].y, this.bottomAnchor.relative) + (float)this.bottomAnchor.absolute;
-				}
-				else
-				{
-					num3 = base.GetLocalPos(this.bottomAnchor, parent).y + (float)this.bottomAnchor.absolute;
-				}
+				Vector3[] sides4 = bottomAnchor.GetSides(val);
+				num3 = ((sides4 == null) ? (GetLocalPos(bottomAnchor, val).y + (float)bottomAnchor.absolute) : (NGUIMath.Lerp(sides4[3].y, sides4[1].y, bottomAnchor.relative) + (float)bottomAnchor.absolute));
 			}
 			else
 			{
-				num3 = localPosition.y - pivotOffset.y * (float)this.mHeight;
+				num3 = localPosition.y - val2.y * (float)mHeight;
 			}
-			if (this.topAnchor.target)
+			if (Object.op_Implicit((Object)(object)topAnchor.target))
 			{
-				Vector3[] sides5 = this.topAnchor.GetSides(parent);
-				if (sides5 != null)
-				{
-					num4 = NGUIMath.Lerp(sides5[3].y, sides5[1].y, this.topAnchor.relative) + (float)this.topAnchor.absolute;
-				}
-				else
-				{
-					num4 = base.GetLocalPos(this.topAnchor, parent).y + (float)this.topAnchor.absolute;
-				}
+				Vector3[] sides5 = topAnchor.GetSides(val);
+				num4 = ((sides5 == null) ? (GetLocalPos(topAnchor, val).y + (float)topAnchor.absolute) : (NGUIMath.Lerp(sides5[3].y, sides5[1].y, topAnchor.relative) + (float)topAnchor.absolute));
 			}
 			else
 			{
-				num4 = localPosition.y - pivotOffset.y * (float)this.mHeight + (float)this.mHeight;
+				num4 = localPosition.y - val2.y * (float)mHeight + (float)mHeight;
 			}
 		}
-		Vector3 vector;
-		vector..ctor(Mathf.Lerp(num, num2, pivotOffset.x), Mathf.Lerp(num3, num4, pivotOffset.y), localPosition.z);
+		Vector3 val3 = default(Vector3);
+		((Vector3)(ref val3))._002Ector(Mathf.Lerp(num, num2, val2.x), Mathf.Lerp(num3, num4, val2.y), localPosition.z);
 		int num5 = Mathf.FloorToInt(num2 - num + 0.5f);
 		int num6 = Mathf.FloorToInt(num4 - num3 + 0.5f);
-		if (this.keepAspectRatio != UIWidget.AspectRatioSource.Free && this.aspectRatio != 0f)
+		if (keepAspectRatio != 0 && aspectRatio != 0f)
 		{
-			if (this.keepAspectRatio == UIWidget.AspectRatioSource.BasedOnHeight)
+			if (keepAspectRatio == AspectRatioSource.BasedOnHeight)
 			{
-				num5 = Mathf.RoundToInt((float)num6 * this.aspectRatio);
+				num5 = Mathf.RoundToInt((float)num6 * aspectRatio);
 			}
 			else
 			{
-				num6 = Mathf.RoundToInt((float)num5 / this.aspectRatio);
+				num6 = Mathf.RoundToInt((float)num5 / aspectRatio);
 			}
 		}
-		if (num5 < this.minWidth)
+		if (num5 < minWidth)
 		{
-			num5 = this.minWidth;
+			num5 = minWidth;
 		}
-		if (num6 < this.minHeight)
+		if (num6 < minHeight)
 		{
-			num6 = this.minHeight;
+			num6 = minHeight;
 		}
-		if (Vector3.SqrMagnitude(localPosition - vector) > 0.001f)
+		if (Vector3.SqrMagnitude(localPosition - val3) > 0.001f)
 		{
-			base.cachedTransform.localPosition = vector;
-			if (this.mIsInFront)
+			base.cachedTransform.localPosition = val3;
+			if (mIsInFront)
 			{
-				this.mChanged = true;
+				mChanged = true;
 			}
 		}
-		if (this.mWidth != num5 || this.mHeight != num6)
+		if (mWidth != num5 || mHeight != num6)
 		{
-			this.mWidth = num5;
-			this.mHeight = num6;
-			if (this.mIsInFront)
+			mWidth = num5;
+			mHeight = num6;
+			if (mIsInFront)
 			{
-				this.mChanged = true;
+				mChanged = true;
 			}
-			if (this.autoResizeBoxCollider)
+			if (autoResizeBoxCollider)
 			{
-				this.ResizeCollider();
+				ResizeCollider();
 			}
 		}
 	}
 
-	// Token: 0x06000816 RID: 2070 RVA: 0x0003160C File Offset: 0x0002F80C
 	protected override void OnUpdate()
 	{
-		if (this.panel == null)
+		if ((Object)(object)panel == (Object)null)
 		{
-			this.CreatePanel();
+			CreatePanel();
 		}
 	}
 
-	// Token: 0x06000817 RID: 2071 RVA: 0x00031623 File Offset: 0x0002F823
 	private void OnApplicationPause(bool paused)
 	{
 		if (!paused)
 		{
-			this.MarkAsChanged();
+			MarkAsChanged();
 		}
 	}
 
-	// Token: 0x06000818 RID: 2072 RVA: 0x0003162E File Offset: 0x0002F82E
 	protected override void OnDisable()
 	{
-		this.RemoveFromPanel();
+		RemoveFromPanel();
 		base.OnDisable();
 	}
 
-	// Token: 0x06000819 RID: 2073 RVA: 0x0003163C File Offset: 0x0002F83C
 	private void OnDestroy()
 	{
-		this.RemoveFromPanel();
+		RemoveFromPanel();
 	}
 
-	// Token: 0x0600081A RID: 2074 RVA: 0x00031644 File Offset: 0x0002F844
 	public bool UpdateVisibility(bool visibleByAlpha, bool visibleByPanel)
 	{
-		if (this.mIsVisibleByAlpha != visibleByAlpha || this.mIsVisibleByPanel != visibleByPanel)
+		if (mIsVisibleByAlpha != visibleByAlpha || mIsVisibleByPanel != visibleByPanel)
 		{
-			this.mChanged = true;
-			this.mIsVisibleByAlpha = visibleByAlpha;
-			this.mIsVisibleByPanel = visibleByPanel;
+			mChanged = true;
+			mIsVisibleByAlpha = visibleByAlpha;
+			mIsVisibleByPanel = visibleByPanel;
 			return true;
 		}
 		return false;
 	}
 
-	// Token: 0x0600081B RID: 2075 RVA: 0x00031670 File Offset: 0x0002F870
 	public bool UpdateTransform(int frame)
 	{
-		if (!this.mMoved && !this.panel.widgetsAreStatic && base.cachedTransform.hasChanged)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0125: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0102: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		if (!mMoved && !panel.widgetsAreStatic && base.cachedTransform.hasChanged)
 		{
-			this.mTrans.hasChanged = false;
-			this.mLocalToPanel = this.panel.worldToLocal * base.cachedTransform.localToWorldMatrix;
-			this.mMatrixFrame = frame;
-			Vector2 pivotOffset = this.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			Transform cachedTransform = base.cachedTransform;
-			Vector3 vector = cachedTransform.TransformPoint(num, num2, 0f);
-			Vector3 vector2 = cachedTransform.TransformPoint(num3, num4, 0f);
-			vector = this.panel.worldToLocal.MultiplyPoint3x4(vector);
-			vector2 = this.panel.worldToLocal.MultiplyPoint3x4(vector2);
-			if (Vector3.SqrMagnitude(this.mOldV0 - vector) > 1E-06f || Vector3.SqrMagnitude(this.mOldV1 - vector2) > 1E-06f)
+			mTrans.hasChanged = false;
+			mLocalToPanel = panel.worldToLocal * base.cachedTransform.localToWorldMatrix;
+			mMatrixFrame = frame;
+			Vector2 val = pivotOffset;
+			float num = (0f - val.x) * (float)mWidth;
+			float num2 = (0f - val.y) * (float)mHeight;
+			float num3 = num + (float)mWidth;
+			float num4 = num2 + (float)mHeight;
+			Transform obj = base.cachedTransform;
+			Vector3 val2 = obj.TransformPoint(num, num2, 0f);
+			Vector3 val3 = obj.TransformPoint(num3, num4, 0f);
+			val2 = ((Matrix4x4)(ref panel.worldToLocal)).MultiplyPoint3x4(val2);
+			val3 = ((Matrix4x4)(ref panel.worldToLocal)).MultiplyPoint3x4(val3);
+			if (Vector3.SqrMagnitude(mOldV0 - val2) > 1E-06f || Vector3.SqrMagnitude(mOldV1 - val3) > 1E-06f)
 			{
-				this.mMoved = true;
-				this.mOldV0 = vector;
-				this.mOldV1 = vector2;
+				mMoved = true;
+				mOldV0 = val2;
+				mOldV1 = val3;
 			}
 		}
-		if (this.mMoved && this.onChange != null)
+		if (mMoved && onChange != null)
 		{
-			this.onChange();
+			onChange();
 		}
-		return this.mMoved || this.mChanged;
+		if (!mMoved)
+		{
+			return mChanged;
+		}
+		return true;
 	}
 
-	// Token: 0x0600081C RID: 2076 RVA: 0x000317D4 File Offset: 0x0002F9D4
 	public bool UpdateGeometry(int frame)
 	{
-		float num = this.CalculateFinalAlpha(frame);
-		if (this.mIsVisibleByAlpha && this.mLastAlpha != num)
+		//IL_0176: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		float num = CalculateFinalAlpha(frame);
+		if (mIsVisibleByAlpha && mLastAlpha != num)
 		{
-			this.mChanged = true;
+			mChanged = true;
 		}
-		this.mLastAlpha = num;
-		if (this.mChanged)
+		mLastAlpha = num;
+		if (mChanged)
 		{
-			this.mChanged = false;
-			if (this.mIsVisibleByAlpha && num > 0.001f && this.shader != null)
+			mChanged = false;
+			if (mIsVisibleByAlpha && num > 0.001f && (Object)(object)shader != (Object)null)
 			{
-				bool hasVertices = this.geometry.hasVertices;
-				if (this.fillGeometry)
+				bool result = geometry.hasVertices;
+				if (fillGeometry)
 				{
-					this.geometry.Clear();
-					this.OnFill(this.geometry.verts, this.geometry.uvs, this.geometry.cols);
+					geometry.Clear();
+					OnFill(geometry.verts, geometry.uvs, geometry.cols);
 				}
-				if (this.geometry.hasVertices)
+				if (geometry.hasVertices)
 				{
-					if (this.mMatrixFrame != frame)
+					if (mMatrixFrame != frame)
 					{
-						this.mLocalToPanel = this.panel.worldToLocal * base.cachedTransform.localToWorldMatrix;
-						this.mMatrixFrame = frame;
+						mLocalToPanel = panel.worldToLocal * base.cachedTransform.localToWorldMatrix;
+						mMatrixFrame = frame;
 					}
-					this.geometry.ApplyTransform(this.mLocalToPanel);
-					this.mMoved = false;
+					geometry.ApplyTransform(mLocalToPanel);
+					mMoved = false;
 					return true;
 				}
-				return hasVertices;
+				return result;
 			}
-			else if (this.geometry.hasVertices)
+			if (geometry.hasVertices)
 			{
-				if (this.fillGeometry)
+				if (fillGeometry)
 				{
-					this.geometry.Clear();
+					geometry.Clear();
 				}
-				this.mMoved = false;
+				mMoved = false;
 				return true;
 			}
 		}
-		else if (this.mMoved && this.geometry.hasVertices)
+		else if (mMoved && geometry.hasVertices)
 		{
-			if (this.mMatrixFrame != frame)
+			if (mMatrixFrame != frame)
 			{
-				this.mLocalToPanel = this.panel.worldToLocal * base.cachedTransform.localToWorldMatrix;
-				this.mMatrixFrame = frame;
+				mLocalToPanel = panel.worldToLocal * base.cachedTransform.localToWorldMatrix;
+				mMatrixFrame = frame;
 			}
-			this.geometry.ApplyTransform(this.mLocalToPanel);
-			this.mMoved = false;
+			geometry.ApplyTransform(mLocalToPanel);
+			mMoved = false;
 			return true;
 		}
-		this.mMoved = false;
+		mMoved = false;
 		return false;
 	}
 
-	// Token: 0x0600081D RID: 2077 RVA: 0x00031972 File Offset: 0x0002FB72
 	public void WriteToBuffers(BetterList<Vector3> v, BetterList<Vector2> u, BetterList<Color32> c, BetterList<Vector3> n, BetterList<Vector4> t)
 	{
-		this.geometry.WriteToBuffers(v, u, c, n, t);
+		geometry.WriteToBuffers(v, u, c, n, t);
 	}
 
-	// Token: 0x0600081E RID: 2078 RVA: 0x00031988 File Offset: 0x0002FB88
 	public virtual void MakePixelPerfect()
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 localPosition = base.cachedTransform.localPosition;
 		localPosition.z = Mathf.Round(localPosition.z);
 		localPosition.x = Mathf.Round(localPosition.x);
@@ -1141,199 +1323,7 @@ public class UIWidget : UIRect
 		base.cachedTransform.localScale = new Vector3(Mathf.Sign(localScale.x), Mathf.Sign(localScale.y), 1f);
 	}
 
-	// Token: 0x17000113 RID: 275
-	// (get) Token: 0x0600081F RID: 2079 RVA: 0x00031A1A File Offset: 0x0002FC1A
-	public virtual int minWidth
-	{
-		get
-		{
-			return 2;
-		}
-	}
-
-	// Token: 0x17000114 RID: 276
-	// (get) Token: 0x06000820 RID: 2080 RVA: 0x00031A1A File Offset: 0x0002FC1A
-	public virtual int minHeight
-	{
-		get
-		{
-			return 2;
-		}
-	}
-
-	// Token: 0x17000115 RID: 277
-	// (get) Token: 0x06000821 RID: 2081 RVA: 0x00031A1D File Offset: 0x0002FC1D
-	// (set) Token: 0x06000822 RID: 2082 RVA: 0x00004095 File Offset: 0x00002295
-	public virtual Vector4 border
-	{
-		get
-		{
-			return Vector4.zero;
-		}
-		set
-		{
-		}
-	}
-
-	// Token: 0x06000823 RID: 2083 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void OnFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
 	}
-
-	// Token: 0x040004EA RID: 1258
-	[HideInInspector]
-	[SerializeField]
-	protected Color mColor = Color.white;
-
-	// Token: 0x040004EB RID: 1259
-	[HideInInspector]
-	[SerializeField]
-	protected UIWidget.Pivot mPivot = UIWidget.Pivot.Center;
-
-	// Token: 0x040004EC RID: 1260
-	[HideInInspector]
-	[SerializeField]
-	protected int mWidth = 100;
-
-	// Token: 0x040004ED RID: 1261
-	[HideInInspector]
-	[SerializeField]
-	protected int mHeight = 100;
-
-	// Token: 0x040004EE RID: 1262
-	[HideInInspector]
-	[SerializeField]
-	protected int mDepth;
-
-	// Token: 0x040004EF RID: 1263
-	public UIWidget.OnDimensionsChanged onChange;
-
-	// Token: 0x040004F0 RID: 1264
-	public UIWidget.OnPostFillCallback onPostFill;
-
-	// Token: 0x040004F1 RID: 1265
-	public bool autoResizeBoxCollider;
-
-	// Token: 0x040004F2 RID: 1266
-	public bool hideIfOffScreen;
-
-	// Token: 0x040004F3 RID: 1267
-	public UIWidget.AspectRatioSource keepAspectRatio;
-
-	// Token: 0x040004F4 RID: 1268
-	public float aspectRatio = 1f;
-
-	// Token: 0x040004F5 RID: 1269
-	public UIWidget.HitCheck hitCheck;
-
-	// Token: 0x040004F6 RID: 1270
-	[NonSerialized]
-	public UIPanel panel;
-
-	// Token: 0x040004F7 RID: 1271
-	[NonSerialized]
-	public UIGeometry geometry = new UIGeometry();
-
-	// Token: 0x040004F8 RID: 1272
-	[NonSerialized]
-	public bool fillGeometry = true;
-
-	// Token: 0x040004F9 RID: 1273
-	[NonSerialized]
-	protected bool mPlayMode = true;
-
-	// Token: 0x040004FA RID: 1274
-	[NonSerialized]
-	protected Vector4 mDrawRegion = new Vector4(0f, 0f, 1f, 1f);
-
-	// Token: 0x040004FB RID: 1275
-	[NonSerialized]
-	private Matrix4x4 mLocalToPanel;
-
-	// Token: 0x040004FC RID: 1276
-	[NonSerialized]
-	private bool mIsVisibleByAlpha = true;
-
-	// Token: 0x040004FD RID: 1277
-	[NonSerialized]
-	private bool mIsVisibleByPanel = true;
-
-	// Token: 0x040004FE RID: 1278
-	[NonSerialized]
-	private bool mIsInFront = true;
-
-	// Token: 0x040004FF RID: 1279
-	[NonSerialized]
-	private float mLastAlpha;
-
-	// Token: 0x04000500 RID: 1280
-	[NonSerialized]
-	private bool mMoved;
-
-	// Token: 0x04000501 RID: 1281
-	[NonSerialized]
-	public UIDrawCall drawCall;
-
-	// Token: 0x04000502 RID: 1282
-	[NonSerialized]
-	protected Vector3[] mCorners = new Vector3[4];
-
-	// Token: 0x04000503 RID: 1283
-	[NonSerialized]
-	private int mAlphaFrameID = -1;
-
-	// Token: 0x04000504 RID: 1284
-	private int mMatrixFrame = -1;
-
-	// Token: 0x04000505 RID: 1285
-	private Vector3 mOldV0;
-
-	// Token: 0x04000506 RID: 1286
-	private Vector3 mOldV1;
-
-	// Token: 0x0200120F RID: 4623
-	public enum Pivot
-	{
-		// Token: 0x04006465 RID: 25701
-		TopLeft,
-		// Token: 0x04006466 RID: 25702
-		Top,
-		// Token: 0x04006467 RID: 25703
-		TopRight,
-		// Token: 0x04006468 RID: 25704
-		Left,
-		// Token: 0x04006469 RID: 25705
-		Center,
-		// Token: 0x0400646A RID: 25706
-		Right,
-		// Token: 0x0400646B RID: 25707
-		BottomLeft,
-		// Token: 0x0400646C RID: 25708
-		Bottom,
-		// Token: 0x0400646D RID: 25709
-		BottomRight
-	}
-
-	// Token: 0x02001210 RID: 4624
-	// (Invoke) Token: 0x0600785F RID: 30815
-	public delegate void OnDimensionsChanged();
-
-	// Token: 0x02001211 RID: 4625
-	// (Invoke) Token: 0x06007863 RID: 30819
-	public delegate void OnPostFillCallback(UIWidget widget, int bufferOffset, BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols);
-
-	// Token: 0x02001212 RID: 4626
-	public enum AspectRatioSource
-	{
-		// Token: 0x0400646F RID: 25711
-		Free,
-		// Token: 0x04006470 RID: 25712
-		BasedOnWidth,
-		// Token: 0x04006471 RID: 25713
-		BasedOnHeight
-	}
-
-	// Token: 0x02001213 RID: 4627
-	// (Invoke) Token: 0x06007867 RID: 30823
-	public delegate bool HitCheck(Vector3 worldPos);
 }

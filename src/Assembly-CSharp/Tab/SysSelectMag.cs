@@ -1,64 +1,56 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tab
+namespace Tab;
+
+public class SysSelectMag : UIBase
 {
-	// Token: 0x020006FD RID: 1789
-	public class SysSelectMag : UIBase
+	private List<SysSelectCell> _list;
+
+	public SysSelectMag(GameObject go)
 	{
-		// Token: 0x06003972 RID: 14706 RVA: 0x00189561 File Offset: 0x00187761
-		public SysSelectMag(GameObject go)
-		{
-			this._list = new List<SysSelectCell>();
-			this._go = go;
-			this.Init();
-		}
+		_list = new List<SysSelectCell>();
+		_go = go;
+		Init();
+	}
 
-		// Token: 0x06003973 RID: 14707 RVA: 0x00189581 File Offset: 0x00187781
-		public void SetDeafultSelect(int index = 0)
-		{
-			this._list[index].Click();
-		}
+	public void SetDeafultSelect(int index = 0)
+	{
+		_list[index].Click();
+	}
 
-		// Token: 0x06003974 RID: 14708 RVA: 0x00189594 File Offset: 0x00187794
-		private void Init()
+	private void Init()
+	{
+		Transform val = null;
+		for (int i = 0; i < _go.transform.childCount; i++)
 		{
-			for (int i = 0; i < this._go.transform.childCount; i++)
+			val = _go.transform.GetChild(i);
+			if (Tools.instance.IsInDF && (((Object)val).name == "保存" || ((Object)val).name == "读取"))
 			{
-				Transform child = this._go.transform.GetChild(i);
-				if (Tools.instance.IsInDF && (child.name == "保存" || child.name == "读取"))
-				{
-					child.gameObject.SetActive(false);
-				}
-				else
-				{
-					if (child.name == "返回标题")
-					{
-						break;
-					}
-					this._list.Add(new SysSelectCell(child.gameObject, SingletonMono<TabUIMag>.Instance.SystemPanel.PanelList[i]));
-				}
+				((Component)val).gameObject.SetActive(false);
+				continue;
+			}
+			if (!(((Object)val).name == "返回标题"))
+			{
+				_list.Add(new SysSelectCell(((Component)val).gameObject, SingletonMono<TabUIMag>.Instance.SystemPanel.PanelList[i]));
+				continue;
+			}
+			break;
+		}
+	}
+
+	public void UpdateAll(SysSelectCell curSelectCell)
+	{
+		foreach (SysSelectCell item in _list)
+		{
+			if (curSelectCell == item)
+			{
+				item.SetIsSelect(flag: true);
+			}
+			else
+			{
+				item.SetIsSelect(flag: false);
 			}
 		}
-
-		// Token: 0x06003975 RID: 14709 RVA: 0x00189654 File Offset: 0x00187854
-		public void UpdateAll(SysSelectCell curSelectCell)
-		{
-			foreach (SysSelectCell sysSelectCell in this._list)
-			{
-				if (curSelectCell == sysSelectCell)
-				{
-					sysSelectCell.SetIsSelect(true);
-				}
-				else
-				{
-					sysSelectCell.SetIsSelect(false);
-				}
-			}
-		}
-
-		// Token: 0x04003190 RID: 12688
-		private List<SysSelectCell> _list;
 	}
 }

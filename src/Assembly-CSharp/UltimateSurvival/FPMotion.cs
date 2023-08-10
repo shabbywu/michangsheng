@@ -1,226 +1,228 @@
-﻿using System;
 using UnityEngine;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[RequireComponent(typeof(FPObject))]
+public class FPMotion : PlayerBehaviour
 {
-	// Token: 0x020005F0 RID: 1520
-	[RequireComponent(typeof(FPObject))]
-	public class FPMotion : PlayerBehaviour
+	[Header("Setup")]
+	[SerializeField]
+	private Transform m_Model;
+
+	[SerializeField]
+	private Transform m_Pivot;
+
+	[Header("Sway")]
+	[SerializeField]
+	private Sway m_MovementSway;
+
+	[SerializeField]
+	private Sway m_RotationSway;
+
+	[Header("Bob")]
+	[SerializeField]
+	private TrigonometricBob m_WalkBob;
+
+	[SerializeField]
+	private TrigonometricBob m_AimBob;
+
+	[SerializeField]
+	private TrigonometricBob m_RunBob;
+
+	[SerializeField]
+	private LerpControlledBob m_LandBob;
+
+	[SerializeField]
+	private float m_MaxLandSpeed = 12f;
+
+	[Header("Offset")]
+	[SerializeField]
+	private TransformOffset m_IdleOffset;
+
+	[SerializeField]
+	private TransformOffset m_RunOffset;
+
+	[SerializeField]
+	private TransformOffset m_AimOffset;
+
+	[SerializeField]
+	private TransformOffset m_OnLadderOffset;
+
+	[SerializeField]
+	private TransformOffset m_JumpOffset;
+
+	[SerializeField]
+	[Tooltip("The object position and rotation offset, when the character is too close to an object. NOTE: Will not be taken into consideration if the object can be used when near other objects (see the 'CanUseWhileNearObjects' setting).")]
+	private TransformOffset m_TooCloseOffset;
+
+	private Transform m_Root;
+
+	private FPObject m_Object;
+
+	private FPWeaponBase m_Weapon;
+
+	private TransformOffset m_CurrentOffset;
+
+	private bool m_HolsterActive;
+
+	private void Awake()
 	{
-		// Token: 0x060030DE RID: 12510 RVA: 0x0015D324 File Offset: 0x0015B524
-		private void Awake()
+		m_Object = ((Component)this).GetComponent<FPObject>();
+		m_Weapon = m_Object as FPWeaponBase;
+		m_Object.Draw.AddListener(On_Draw);
+		m_Object.Holster.AddListener(On_Holster);
+		SetupTransforms();
+		base.Player.Land.AddListener(On_Land);
+		m_CurrentOffset = m_IdleOffset;
+	}
+
+	private void On_Draw()
+	{
+		m_IdleOffset.Reset();
+		m_CurrentOffset = m_IdleOffset;
+		m_HolsterActive = false;
+	}
+
+	private void On_Holster()
+	{
+		m_HolsterActive = true;
+	}
+
+	private void On_Land(float landSpeed)
+	{
+		if (m_Object.IsEnabled && ((Component)this).gameObject.activeInHierarchy)
 		{
-			this.m_Object = base.GetComponent<FPObject>();
-			this.m_Weapon = (this.m_Object as FPWeaponBase);
-			this.m_Object.Draw.AddListener(new Action(this.On_Draw));
-			this.m_Object.Holster.AddListener(new Action(this.On_Holster));
-			this.SetupTransforms();
-			base.Player.Land.AddListener(new Action<float>(this.On_Land));
-			this.m_CurrentOffset = this.m_IdleOffset;
+			((MonoBehaviour)this).StartCoroutine(m_LandBob.DoBobCycle(landSpeed / m_MaxLandSpeed));
 		}
+	}
 
-		// Token: 0x060030DF RID: 12511 RVA: 0x0015D3B4 File Offset: 0x0015B5B4
-		private void On_Draw()
+	private void SetupTransforms()
+	{
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		Transform transform = new GameObject("Root").transform;
+		((Component)transform).transform.SetParent(((Component)this).transform);
+		transform.position = m_Pivot.position;
+		transform.rotation = m_Pivot.rotation;
+		m_Pivot.SetParent(transform, true);
+		m_Model.SetParent(m_Pivot, true);
+	}
+
+	private void Update()
+	{
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0102: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0152: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0195: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0177: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0327: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0344: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0346: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = ((!MonoSingleton<InventoryController>.Instance.IsClosed) ? Vector2.zero : base.Player.LookInput.Get());
+		m_MovementSway.CalculateSway(-val, Time.deltaTime);
+		m_RotationSway.CalculateSway(new Vector2(val.y, 0f - val.x), Time.deltaTime);
+		m_Pivot.localPosition = Vector2.op_Implicit(m_MovementSway.Value);
+		m_Pivot.localRotation = Quaternion.Euler(Vector2.op_Implicit(m_RotationSway.Value));
+		Vector3 val2 = base.Player.Velocity.Get();
+		float magnitude = ((Vector3)(ref val2)).magnitude;
+		Vector3 zero = Vector3.zero;
+		zero = ((!base.Player.Aim.Active || !(magnitude > 1f)) ? (zero + m_AimBob.Cooldown(Time.deltaTime)) : (zero + m_AimBob.CalculateBob(magnitude, Time.deltaTime)));
+		zero = ((!base.Player.Walk.Active || base.Player.Aim.Active) ? (zero + m_WalkBob.Cooldown(Time.deltaTime)) : (zero + m_WalkBob.CalculateBob(magnitude, Time.deltaTime)));
+		zero = ((!base.Player.Run.Active) ? (zero + m_RunBob.Cooldown(Time.deltaTime)) : (zero + m_RunBob.CalculateBob(magnitude, Time.deltaTime)));
+		Transform pivot = m_Pivot;
+		pivot.localPosition += zero;
+		Transform pivot2 = m_Pivot;
+		pivot2.localPosition += Vector3.up * m_LandBob.Value;
+		bool flag = Object.op_Implicit((Object)(object)m_Weapon) && !m_Weapon.UseWhileNearObjects && base.Player.IsCloseToAnObject.Get() && base.Player.RaycastData.Get().GameObject.layer != LayerMask.NameToLayer("Hitbox") && !base.Player.RaycastData.Get().GameObject.CompareTag("Ladder");
+		if (m_HolsterActive)
 		{
-			this.m_IdleOffset.Reset();
-			this.m_CurrentOffset = this.m_IdleOffset;
-			this.m_HolsterActive = false;
+			TryChangeOffset(m_IdleOffset);
 		}
-
-		// Token: 0x060030E0 RID: 12512 RVA: 0x0015D3D4 File Offset: 0x0015B5D4
-		private void On_Holster()
+		else if (base.Player.NearLadders.Count > 0)
 		{
-			this.m_HolsterActive = true;
+			TryChangeOffset(m_OnLadderOffset);
 		}
-
-		// Token: 0x060030E1 RID: 12513 RVA: 0x0015D3DD File Offset: 0x0015B5DD
-		private void On_Land(float landSpeed)
+		else if (flag)
 		{
-			if (this.m_Object.IsEnabled && base.gameObject.activeInHierarchy)
-			{
-				base.StartCoroutine(this.m_LandBob.DoBobCycle(landSpeed / this.m_MaxLandSpeed));
-			}
+			TryChangeOffset(m_TooCloseOffset);
 		}
-
-		// Token: 0x060030E2 RID: 12514 RVA: 0x0015D414 File Offset: 0x0015B614
-		private void SetupTransforms()
+		else if (base.Player.Run.Active)
 		{
-			Transform transform = new GameObject("Root").transform;
-			transform.transform.SetParent(base.transform);
-			transform.position = this.m_Pivot.position;
-			transform.rotation = this.m_Pivot.rotation;
-			this.m_Pivot.SetParent(transform, true);
-			this.m_Model.SetParent(this.m_Pivot, true);
+			TryChangeOffset(m_RunOffset);
 		}
-
-		// Token: 0x060030E3 RID: 12515 RVA: 0x0015D484 File Offset: 0x0015B684
-		private void Update()
+		else if (base.Player.Aim.Active)
 		{
-			Vector2 vector;
-			if (MonoSingleton<InventoryController>.Instance.IsClosed)
-			{
-				vector = base.Player.LookInput.Get();
-			}
-			else
-			{
-				vector = Vector2.zero;
-			}
-			this.m_MovementSway.CalculateSway(-vector, Time.deltaTime);
-			this.m_RotationSway.CalculateSway(new Vector2(vector.y, -vector.x), Time.deltaTime);
-			this.m_Pivot.localPosition = this.m_MovementSway.Value;
-			this.m_Pivot.localRotation = Quaternion.Euler(this.m_RotationSway.Value);
-			float magnitude = base.Player.Velocity.Get().magnitude;
-			Vector3 vector2 = Vector3.zero;
-			if (base.Player.Aim.Active && magnitude > 1f)
-			{
-				vector2 += this.m_AimBob.CalculateBob(magnitude, Time.deltaTime);
-			}
-			else
-			{
-				vector2 += this.m_AimBob.Cooldown(Time.deltaTime);
-			}
-			if (base.Player.Walk.Active && !base.Player.Aim.Active)
-			{
-				vector2 += this.m_WalkBob.CalculateBob(magnitude, Time.deltaTime);
-			}
-			else
-			{
-				vector2 += this.m_WalkBob.Cooldown(Time.deltaTime);
-			}
-			if (base.Player.Run.Active)
-			{
-				vector2 += this.m_RunBob.CalculateBob(magnitude, Time.deltaTime);
-			}
-			else
-			{
-				vector2 += this.m_RunBob.Cooldown(Time.deltaTime);
-			}
-			this.m_Pivot.localPosition += vector2;
-			this.m_Pivot.localPosition += Vector3.up * this.m_LandBob.Value;
-			bool flag = this.m_Weapon && !this.m_Weapon.UseWhileNearObjects && base.Player.IsCloseToAnObject.Get() && base.Player.RaycastData.Get().GameObject.layer != LayerMask.NameToLayer("Hitbox") && !base.Player.RaycastData.Get().GameObject.CompareTag("Ladder");
-			if (this.m_HolsterActive)
-			{
-				this.TryChangeOffset(this.m_IdleOffset);
-			}
-			else if (base.Player.NearLadders.Count > 0)
-			{
-				this.TryChangeOffset(this.m_OnLadderOffset);
-			}
-			else if (flag)
-			{
-				this.TryChangeOffset(this.m_TooCloseOffset);
-			}
-			else if (base.Player.Run.Active)
-			{
-				this.TryChangeOffset(this.m_RunOffset);
-			}
-			else if (base.Player.Aim.Active)
-			{
-				this.TryChangeOffset(this.m_AimOffset);
-			}
-			else if (!base.Player.IsGrounded.Get())
-			{
-				this.TryChangeOffset(this.m_JumpOffset);
-			}
-			else
-			{
-				this.TryChangeOffset(this.m_IdleOffset);
-			}
-			Vector3 vector3;
-			Quaternion quaternion;
-			this.m_CurrentOffset.Update(Time.deltaTime, out vector3, out quaternion);
-			this.m_Pivot.localPosition += vector3;
-			this.m_Pivot.localRotation *= quaternion;
+			TryChangeOffset(m_AimOffset);
 		}
-
-		// Token: 0x060030E4 RID: 12516 RVA: 0x0015D7E1 File Offset: 0x0015B9E1
-		private void TryChangeOffset(TransformOffset newOffset)
+		else if (!base.Player.IsGrounded.Get())
 		{
-			if (this.m_CurrentOffset != newOffset)
-			{
-				newOffset.ContinueFrom(this.m_CurrentOffset);
-				this.m_CurrentOffset = newOffset;
-			}
+			TryChangeOffset(m_JumpOffset);
 		}
+		else
+		{
+			TryChangeOffset(m_IdleOffset);
+		}
+		m_CurrentOffset.Update(Time.deltaTime, out var position, out var rotation);
+		Transform pivot3 = m_Pivot;
+		pivot3.localPosition += position;
+		Transform pivot4 = m_Pivot;
+		pivot4.localRotation *= rotation;
+	}
 
-		// Token: 0x04002B0D RID: 11021
-		[Header("Setup")]
-		[SerializeField]
-		private Transform m_Model;
-
-		// Token: 0x04002B0E RID: 11022
-		[SerializeField]
-		private Transform m_Pivot;
-
-		// Token: 0x04002B0F RID: 11023
-		[Header("Sway")]
-		[SerializeField]
-		private Sway m_MovementSway;
-
-		// Token: 0x04002B10 RID: 11024
-		[SerializeField]
-		private Sway m_RotationSway;
-
-		// Token: 0x04002B11 RID: 11025
-		[Header("Bob")]
-		[SerializeField]
-		private TrigonometricBob m_WalkBob;
-
-		// Token: 0x04002B12 RID: 11026
-		[SerializeField]
-		private TrigonometricBob m_AimBob;
-
-		// Token: 0x04002B13 RID: 11027
-		[SerializeField]
-		private TrigonometricBob m_RunBob;
-
-		// Token: 0x04002B14 RID: 11028
-		[SerializeField]
-		private LerpControlledBob m_LandBob;
-
-		// Token: 0x04002B15 RID: 11029
-		[SerializeField]
-		private float m_MaxLandSpeed = 12f;
-
-		// Token: 0x04002B16 RID: 11030
-		[Header("Offset")]
-		[SerializeField]
-		private TransformOffset m_IdleOffset;
-
-		// Token: 0x04002B17 RID: 11031
-		[SerializeField]
-		private TransformOffset m_RunOffset;
-
-		// Token: 0x04002B18 RID: 11032
-		[SerializeField]
-		private TransformOffset m_AimOffset;
-
-		// Token: 0x04002B19 RID: 11033
-		[SerializeField]
-		private TransformOffset m_OnLadderOffset;
-
-		// Token: 0x04002B1A RID: 11034
-		[SerializeField]
-		private TransformOffset m_JumpOffset;
-
-		// Token: 0x04002B1B RID: 11035
-		[SerializeField]
-		[Tooltip("The object position and rotation offset, when the character is too close to an object. NOTE: Will not be taken into consideration if the object can be used when near other objects (see the 'CanUseWhileNearObjects' setting).")]
-		private TransformOffset m_TooCloseOffset;
-
-		// Token: 0x04002B1C RID: 11036
-		private Transform m_Root;
-
-		// Token: 0x04002B1D RID: 11037
-		private FPObject m_Object;
-
-		// Token: 0x04002B1E RID: 11038
-		private FPWeaponBase m_Weapon;
-
-		// Token: 0x04002B1F RID: 11039
-		private TransformOffset m_CurrentOffset;
-
-		// Token: 0x04002B20 RID: 11040
-		private bool m_HolsterActive;
+	private void TryChangeOffset(TransformOffset newOffset)
+	{
+		if (m_CurrentOffset != newOffset)
+		{
+			newOffset.ContinueFrom(m_CurrentOffset);
+			m_CurrentOffset = newOffset;
+		}
 	}
 }

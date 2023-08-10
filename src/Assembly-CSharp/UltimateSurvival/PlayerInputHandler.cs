@@ -1,165 +1,171 @@
-﻿using System;
 using UltimateSurvival.InputSystem;
 using UnityEngine;
 
-namespace UltimateSurvival
-{
-	// Token: 0x02000595 RID: 1429
-	public class PlayerInputHandler : PlayerBehaviour
-	{
-		// Token: 0x06002F08 RID: 12040 RVA: 0x00155BAC File Offset: 0x00153DAC
-		private void Awake()
-		{
-			if (GameController.InputManager)
-			{
-				this.m_Input = GameController.InputManager;
-			}
-			else
-			{
-				base.enabled = false;
-			}
-			base.Player.PlaceObject.AddListener(new Action(this.OnSucceded_PlaceObject));
-		}
+namespace UltimateSurvival;
 
-		// Token: 0x06002F09 RID: 12041 RVA: 0x00155BEC File Offset: 0x00153DEC
-		private void OnGUI()
+public class PlayerInputHandler : PlayerBehaviour
+{
+	[SerializeField]
+	private bool m_ShowControls;
+
+	private MGInputManager m_Input;
+
+	private void Awake()
+	{
+		if (Object.op_Implicit((Object)(object)GameController.InputManager))
 		{
-			if (!this.m_ShowControls)
-			{
-				return;
-			}
-			Rect rect;
-			rect..ctor((float)Screen.width - 8f - 150f, 32f, 150f, 20f);
-			GUI.Label(rect, "Unlock cursor - Escape");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Inventory - TAB");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Move - WASD");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Attack - Left Click");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Aim - Right Click");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Crouch - C");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Run - Left Shift");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Interact - E");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Rotate - Arrows");
-			rect.y = rect.yMax + 4f;
-			GUI.Label(rect, "Wheel - Right Click");
-			rect.y = rect.yMax + 4f;
-			if (GUI.Button(rect, "Quit!"))
+			m_Input = GameController.InputManager;
+		}
+		else
+		{
+			((Behaviour)this).enabled = false;
+		}
+		base.Player.PlaceObject.AddListener(OnSucceded_PlaceObject);
+	}
+
+	private void OnGUI()
+	{
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0148: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		if (m_ShowControls)
+		{
+			Rect val = default(Rect);
+			((Rect)(ref val))._002Ector((float)Screen.width - 8f - 150f, 32f, 150f, 20f);
+			GUI.Label(val, "Unlock cursor - Escape");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Inventory - TAB");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Move - WASD");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Attack - Left Click");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Aim - Right Click");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Crouch - C");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Run - Left Shift");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Interact - E");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Rotate - Arrows");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			GUI.Label(val, "Wheel - Right Click");
+			((Rect)(ref val)).y = ((Rect)(ref val)).yMax + 4f;
+			if (GUI.Button(val, "Quit!"))
 			{
 				Application.Quit();
 			}
 		}
+	}
 
-		// Token: 0x06002F0A RID: 12042 RVA: 0x00155D74 File Offset: 0x00153F74
-		private void Update()
+	private void Update()
+	{
+		//IL_0367: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
+		if (!MonoSingleton<InventoryController>.Instance.IsClosed && m_Input.GetButtonDown("Close Inventory"))
 		{
-			if (!MonoSingleton<InventoryController>.Instance.IsClosed && this.m_Input.GetButtonDown("Close Inventory"))
+			MonoSingleton<InventoryController>.Instance.SetState.Try(ET.InventoryState.Closed);
+		}
+		if (MonoSingleton<InventoryController>.Instance.IsClosed && m_Input.GetButtonDown("Open Inventory"))
+		{
+			MonoSingleton<InventoryController>.Instance.SetState.Try(ET.InventoryState.Normal);
+		}
+		float axisRaw = m_Input.GetAxisRaw("Rotate Object");
+		if (Mathf.Abs(axisRaw) > 0f)
+		{
+			base.Player.RotateObject.Try(axisRaw);
+		}
+		if (m_Input.GetButtonDown("Select Buildable"))
+		{
+			if (!base.Player.SelectBuildable.Active)
 			{
-				MonoSingleton<InventoryController>.Instance.SetState.Try(ET.InventoryState.Closed);
-			}
-			if (MonoSingleton<InventoryController>.Instance.IsClosed && this.m_Input.GetButtonDown("Open Inventory"))
-			{
-				MonoSingleton<InventoryController>.Instance.SetState.Try(ET.InventoryState.Normal);
-			}
-			float axisRaw = this.m_Input.GetAxisRaw("Rotate Object");
-			if (Mathf.Abs(axisRaw) > 0f)
-			{
-				base.Player.RotateObject.Try(axisRaw);
-			}
-			if (this.m_Input.GetButtonDown("Select Buildable"))
-			{
-				if (!base.Player.SelectBuildable.Active)
-				{
-					base.Player.SelectBuildable.TryStart();
-				}
-				else
-				{
-					base.Player.SelectBuildable.TryStop();
-				}
-			}
-			if (MonoSingleton<InventoryController>.Instance.IsClosed && base.Player.ViewLocked.Is(false))
-			{
-				Vector2 value;
-				value..ctor(this.m_Input.GetAxis("Horizontal"), this.m_Input.GetAxis("Vertical"));
-				base.Player.MovementInput.Set(value);
-				base.Player.LookInput.Set(new Vector2(this.m_Input.GetAxisRaw("Mouse X"), this.m_Input.GetAxisRaw("Mouse Y")));
-				if (this.m_Input.GetButtonDown("Interact"))
-				{
-					base.Player.InteractOnce.Try();
-				}
-				base.Player.InteractContinuously.Set(this.m_Input.GetButton("Interact"));
-				if (this.m_Input.GetButtonDown("Jump"))
-				{
-					base.Player.Jump.TryStart();
-				}
-				bool button = this.m_Input.GetButton("Run");
-				bool flag = base.Player.IsGrounded.Get() && base.Player.MovementInput.Get().y > 0f;
-				if (!base.Player.Run.Active && button && flag)
-				{
-					base.Player.Run.TryStart();
-				}
-				if (base.Player.Run.Active && !button)
-				{
-					base.Player.Run.ForceStop();
-				}
-				if (this.m_Input.GetButtonDown("Crouch"))
-				{
-					if (!base.Player.Crouch.Active)
-					{
-						base.Player.Crouch.TryStart();
-					}
-					else
-					{
-						base.Player.Crouch.TryStop();
-					}
-				}
-				if (this.m_Input.GetButton("Attack"))
-				{
-					base.Player.AttackContinuously.Try();
-				}
-				if (this.m_Input.GetButtonDown("Attack"))
-				{
-					base.Player.AttackOnce.Try();
-				}
-				if (this.m_Input.GetButtonDown("Aim"))
-				{
-					base.Player.Aim.TryStart();
-				}
-				else if (this.m_Input.GetButtonUp("Aim"))
-				{
-					base.Player.Aim.ForceStop();
-				}
-				if (!this.m_Input.GetButtonDown("Place Object"))
-				{
-					base.Player.CanShowObjectPreview.Set(true);
-				}
+				base.Player.SelectBuildable.TryStart();
 			}
 			else
 			{
-				base.Player.MovementInput.Set(Vector2.zero);
-				base.Player.LookInput.Set(Vector2.zero);
+				base.Player.SelectBuildable.TryStop();
 			}
-			float axis = this.m_Input.GetAxis("Mouse ScrollWheel");
-			base.Player.ScrollValue.Set(axis);
 		}
-
-		// Token: 0x06002F0B RID: 12043 RVA: 0x00156129 File Offset: 0x00154329
-		private void OnSucceded_PlaceObject()
+		if (MonoSingleton<InventoryController>.Instance.IsClosed && base.Player.ViewLocked.Is(value: false))
 		{
-			base.Player.CanShowObjectPreview.Set(false);
+			Vector2 value = default(Vector2);
+			((Vector2)(ref value))._002Ector(m_Input.GetAxis("Horizontal"), m_Input.GetAxis("Vertical"));
+			base.Player.MovementInput.Set(value);
+			base.Player.LookInput.Set(new Vector2(m_Input.GetAxisRaw("Mouse X"), m_Input.GetAxisRaw("Mouse Y")));
+			if (m_Input.GetButtonDown("Interact"))
+			{
+				base.Player.InteractOnce.Try();
+			}
+			base.Player.InteractContinuously.Set(m_Input.GetButton("Interact"));
+			if (m_Input.GetButtonDown("Jump"))
+			{
+				base.Player.Jump.TryStart();
+			}
+			bool button = m_Input.GetButton("Run");
+			bool flag = base.Player.IsGrounded.Get() && base.Player.MovementInput.Get().y > 0f;
+			if (!base.Player.Run.Active && button && flag)
+			{
+				base.Player.Run.TryStart();
+			}
+			if (base.Player.Run.Active && !button)
+			{
+				base.Player.Run.ForceStop();
+			}
+			if (m_Input.GetButtonDown("Crouch"))
+			{
+				if (!base.Player.Crouch.Active)
+				{
+					base.Player.Crouch.TryStart();
+				}
+				else
+				{
+					base.Player.Crouch.TryStop();
+				}
+			}
+			if (m_Input.GetButton("Attack"))
+			{
+				base.Player.AttackContinuously.Try();
+			}
+			if (m_Input.GetButtonDown("Attack"))
+			{
+				base.Player.AttackOnce.Try();
+			}
+			if (m_Input.GetButtonDown("Aim"))
+			{
+				base.Player.Aim.TryStart();
+			}
+			else if (m_Input.GetButtonUp("Aim"))
+			{
+				base.Player.Aim.ForceStop();
+			}
+			if (!m_Input.GetButtonDown("Place Object"))
+			{
+				base.Player.CanShowObjectPreview.Set(value: true);
+			}
 		}
+		else
+		{
+			base.Player.MovementInput.Set(Vector2.zero);
+			base.Player.LookInput.Set(Vector2.zero);
+		}
+		float axis = m_Input.GetAxis("Mouse ScrollWheel");
+		base.Player.ScrollValue.Set(axis);
+	}
 
-		// Token: 0x04002956 RID: 10582
-		[SerializeField]
-		private bool m_ShowControls;
-
-		// Token: 0x04002957 RID: 10583
-		private MGInputManager m_Input;
+	private void OnSucceded_PlaceObject()
+	{
+		base.Player.CanShowObjectPreview.Set(value: false);
 	}
 }

@@ -1,9 +1,5 @@
-﻿using System;
+namespace Fungus;
 
-namespace Fungus
+public interface INoCommand
 {
-	// Token: 0x02000FAC RID: 4012
-	public interface INoCommand
-	{
-	}
 }

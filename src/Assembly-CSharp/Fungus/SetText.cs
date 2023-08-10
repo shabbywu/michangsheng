@@ -1,113 +1,97 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("UI", "Set Text", "Sets the text property on a UI Text object and/or an Input Field object.", 0)]
+[AddComponentMenu("")]
+public class SetText : Command, ILocalizable
 {
-	// Token: 0x02000E42 RID: 3650
-	[CommandInfo("UI", "Set Text", "Sets the text property on a UI Text object and/or an Input Field object.", 0)]
-	[AddComponentMenu("")]
-	public class SetText : Command, ILocalizable
+	[Tooltip("Text object to set text on. Can be a UI Text, Text Field or Text Mesh object.")]
+	[SerializeField]
+	protected GameObject targetTextObject;
+
+	[Tooltip("String value to assign to the text object")]
+	[FormerlySerializedAs("stringData")]
+	[SerializeField]
+	protected StringDataMulti text;
+
+	[Tooltip("Notes about this story text for other authors, localization, etc.")]
+	[SerializeField]
+	protected string description;
+
+	[HideInInspector]
+	[FormerlySerializedAs("textObject")]
+	public Text _textObjectObsolete;
+
+	public override void OnEnter()
 	{
-		// Token: 0x060066B4 RID: 26292 RVA: 0x00286E94 File Offset: 0x00285094
-		public override void OnEnter()
+		string text = GetFlowchart().SubstituteVariables(this.text.Value);
+		if ((Object)(object)targetTextObject == (Object)null)
 		{
-			string text = this.GetFlowchart().SubstituteVariables(this.text.Value);
-			if (this.targetTextObject == null)
-			{
-				this.Continue();
-				return;
-			}
-			TextAdapter textAdapter = new TextAdapter();
-			textAdapter.InitFromGameObject(this.targetTextObject, false);
-			if (textAdapter.HasTextObject())
-			{
-				textAdapter.Text = text;
-			}
-			this.Continue();
+			Continue();
+			return;
 		}
-
-		// Token: 0x060066B5 RID: 26293 RVA: 0x00286EF5 File Offset: 0x002850F5
-		public override string GetSummary()
+		TextAdapter textAdapter = new TextAdapter();
+		textAdapter.InitFromGameObject(targetTextObject);
+		if (textAdapter.HasTextObject())
 		{
-			if (this.targetTextObject != null)
-			{
-				return this.targetTextObject.name + " : " + this.text.Value;
-			}
-			return "Error: No text object selected";
+			textAdapter.Text = text;
 		}
+		Continue();
+	}
 
-		// Token: 0x060066B6 RID: 26294 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override string GetSummary()
+	{
+		if ((Object)(object)targetTextObject != (Object)null)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return ((Object)targetTextObject).name + " : " + text.Value;
 		}
+		return "Error: No text object selected";
+	}
 
-		// Token: 0x060066B7 RID: 26295 RVA: 0x00286F2B File Offset: 0x0028512B
-		public override bool HasReference(Variable variable)
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)text.stringRef == (Object)(object)variable))
 		{
-			return this.text.stringRef == variable || base.HasReference(variable);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x060066B8 RID: 26296 RVA: 0x00286F49 File Offset: 0x00285149
-		public virtual string GetStandardText()
+	public virtual string GetStandardText()
+	{
+		return text;
+	}
+
+	public virtual void SetStandardText(string standardText)
+	{
+		text.Value = standardText;
+	}
+
+	public virtual string GetDescription()
+	{
+		return description;
+	}
+
+	public virtual string GetStringId()
+	{
+		return "SETTEXT." + GetFlowchartLocalizationId() + "." + itemId;
+	}
+
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)_textObjectObsolete != (Object)null)
 		{
-			return this.text;
+			targetTextObject = ((Component)_textObjectObsolete).gameObject;
 		}
-
-		// Token: 0x060066B9 RID: 26297 RVA: 0x00286F56 File Offset: 0x00285156
-		public virtual void SetStandardText(string standardText)
-		{
-			this.text.Value = standardText;
-		}
-
-		// Token: 0x060066BA RID: 26298 RVA: 0x00286F64 File Offset: 0x00285164
-		public virtual string GetDescription()
-		{
-			return this.description;
-		}
-
-		// Token: 0x060066BB RID: 26299 RVA: 0x00286F6C File Offset: 0x0028516C
-		public virtual string GetStringId()
-		{
-			return string.Concat(new object[]
-			{
-				"SETTEXT.",
-				this.GetFlowchartLocalizationId(),
-				".",
-				this.itemId
-			});
-		}
-
-		// Token: 0x060066BC RID: 26300 RVA: 0x00286FA0 File Offset: 0x002851A0
-		protected virtual void OnEnable()
-		{
-			if (this._textObjectObsolete != null)
-			{
-				this.targetTextObject = this._textObjectObsolete.gameObject;
-			}
-		}
-
-		// Token: 0x040057E9 RID: 22505
-		[Tooltip("Text object to set text on. Can be a UI Text, Text Field or Text Mesh object.")]
-		[SerializeField]
-		protected GameObject targetTextObject;
-
-		// Token: 0x040057EA RID: 22506
-		[Tooltip("String value to assign to the text object")]
-		[FormerlySerializedAs("stringData")]
-		[SerializeField]
-		protected StringDataMulti text;
-
-		// Token: 0x040057EB RID: 22507
-		[Tooltip("Notes about this story text for other authors, localization, etc.")]
-		[SerializeField]
-		protected string description;
-
-		// Token: 0x040057EC RID: 22508
-		[HideInInspector]
-		[FormerlySerializedAs("textObject")]
-		public Text _textObjectObsolete;
 	}
 }

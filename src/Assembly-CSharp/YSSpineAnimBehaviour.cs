@@ -1,37 +1,45 @@
-﻿using System;
+using System;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x0200048C RID: 1164
 public class YSSpineAnimBehaviour : StateMachineBehaviour
 {
-	// Token: 0x060024C5 RID: 9413 RVA: 0x000FE1B8 File Offset: 0x000FC3B8
 	private static SkeletonAnimation GetSkeAnim(Animator animator)
 	{
-		SkeletonAnimation skeletonAnimation = animator.GetComponent<SkeletonAnimation>();
-		if (skeletonAnimation == null)
+		SkeletonAnimation val = ((Component)animator).GetComponent<SkeletonAnimation>();
+		if ((Object)(object)val == (Object)null)
 		{
-			skeletonAnimation = animator.GetComponentInChildren<SkeletonAnimation>();
+			val = ((Component)animator).GetComponentInChildren<SkeletonAnimation>();
 		}
-		return skeletonAnimation;
+		return val;
 	}
 
-	// Token: 0x060024C6 RID: 9414 RVA: 0x000FE1E0 File Offset: 0x000FC3E0
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-		SkeletonAnimation skeAnim = YSSpineAnimBehaviour.GetSkeAnim(animator);
-		if (skeAnim == null)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		SkeletonAnimation skeAnim = GetSkeAnim(animator);
+		if ((Object)(object)skeAnim == (Object)null)
 		{
 			return;
 		}
-		foreach (Animation animation in skeAnim.skeletonDataAsset.GetSkeletonData(false).Animations)
+		Enumerator<Animation> enumerator = ((SkeletonRenderer)skeAnim).skeletonDataAsset.GetSkeletonData(false).Animations.GetEnumerator();
+		try
 		{
-			if (stateInfo.IsName(animation.Name))
+			while (enumerator.MoveNext())
 			{
-				skeAnim.AnimationName = animation.Name;
-				break;
+				Animation current = enumerator.Current;
+				if (((AnimatorStateInfo)(ref stateInfo)).IsName(current.Name))
+				{
+					skeAnim.AnimationName = current.Name;
+					break;
+				}
 			}
+		}
+		finally
+		{
+			((IDisposable)enumerator).Dispose();
 		}
 	}
 }

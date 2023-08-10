@@ -1,124 +1,103 @@
-﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000277 RID: 631
 public class UINPCQingJiaoSkillData
 {
-	// Token: 0x06001707 RID: 5895 RVA: 0x0009D378 File Offset: 0x0009B578
-	private static void Init()
+	public class SData
 	{
-		if (!UINPCQingJiaoSkillData.isinited)
-		{
-			foreach (JSONObject jsonobject in jsonData.instance._skillJsonData.list)
-			{
-				UINPCQingJiaoSkillData.SData sdata = new UINPCQingJiaoSkillData.SData();
-				sdata.ID = jsonobject["id"].I;
-				sdata.SkillID = jsonobject["Skill_ID"].I;
-				sdata.Quality = jsonobject["Skill_LV"].I;
-				UINPCQingJiaoSkillData.SkillList.Add(sdata);
-			}
-			foreach (JSONObject jsonobject2 in jsonData.instance.StaticSkillJsonData.list)
-			{
-				UINPCQingJiaoSkillData.SData sdata2 = new UINPCQingJiaoSkillData.SData();
-				sdata2.ID = jsonobject2["id"].I;
-				sdata2.SkillID = jsonobject2["Skill_ID"].I;
-				sdata2.Quality = jsonobject2["Skill_LV"].I;
-				UINPCQingJiaoSkillData.StaticSkillList.Add(sdata2);
-			}
-			foreach (JSONObject jsonobject3 in jsonData.instance._ItemJsonData.list)
-			{
-				int i = jsonobject3["id"].I;
-				if (i > jsonData.QingJiaoItemIDSegment)
-				{
-					int i2 = jsonobject3["type"].I;
-					if (i2 == 3)
-					{
-						int key = (int)float.Parse(jsonobject3["desc"].str);
-						UINPCQingJiaoSkillData.SkillItemDict.Add(key, i);
-					}
-					else if (i2 == 4)
-					{
-						int key2 = (int)float.Parse(jsonobject3["desc"].str);
-						UINPCQingJiaoSkillData.GongFaItemDict.Add(key2, i);
-					}
-				}
-			}
-			UINPCQingJiaoSkillData.isinited = true;
-		}
+		public int ID;
+
+		public int SkillID;
+
+		public int Quality;
 	}
 
-	// Token: 0x06001708 RID: 5896 RVA: 0x0009D5A0 File Offset: 0x0009B7A0
-	public UINPCQingJiaoSkillData(JSONObject json)
+	public int LiuPai;
+
+	public int NPCLevel;
+
+	public static Dictionary<int, int> SkillItemDict = new Dictionary<int, int>();
+
+	public static Dictionary<int, int> GongFaItemDict = new Dictionary<int, int>();
+
+	public static List<SData> SkillList = new List<SData>();
+
+	public static List<SData> StaticSkillList = new List<SData>();
+
+	public List<SData> Skills = new List<SData>();
+
+	public List<SData> StaticSkills = new List<SData>();
+
+	public SData YuanYingStaticSkill;
+
+	private static bool isinited;
+
+	private static void Init()
 	{
-		UINPCQingJiaoSkillData.Init();
-		this.LiuPai = json["LiuPai"].I;
-		this.NPCLevel = json["Level"].I;
-		using (List<JSONObject>.Enumerator enumerator = json["skills"].list.GetEnumerator())
+		if (isinited)
 		{
-			while (enumerator.MoveNext())
+			return;
+		}
+		foreach (JSONObject item in jsonData.instance._skillJsonData.list)
+		{
+			SData sData = new SData();
+			sData.ID = item["id"].I;
+			sData.SkillID = item["Skill_ID"].I;
+			sData.Quality = item["Skill_LV"].I;
+			SkillList.Add(sData);
+		}
+		foreach (JSONObject item2 in jsonData.instance.StaticSkillJsonData.list)
+		{
+			SData sData2 = new SData();
+			sData2.ID = item2["id"].I;
+			sData2.SkillID = item2["Skill_ID"].I;
+			sData2.Quality = item2["Skill_LV"].I;
+			StaticSkillList.Add(sData2);
+		}
+		foreach (JSONObject item3 in jsonData.instance._ItemJsonData.list)
+		{
+			int i = item3["id"].I;
+			if (i > jsonData.QingJiaoItemIDSegment)
 			{
-				JSONObject d = enumerator.Current;
-				UINPCQingJiaoSkillData.SData item = UINPCQingJiaoSkillData.SkillList.Find((UINPCQingJiaoSkillData.SData s) => s.SkillID == d.I);
-				this.Skills.Add(item);
+				switch (item3["type"].I)
+				{
+				case 3:
+				{
+					int key2 = (int)float.Parse(item3["desc"].str);
+					SkillItemDict.Add(key2, i);
+					break;
+				}
+				case 4:
+				{
+					int key = (int)float.Parse(item3["desc"].str);
+					GongFaItemDict.Add(key, i);
+					break;
+				}
+				}
 			}
 		}
-		using (List<JSONObject>.Enumerator enumerator = json["staticSkills"].list.GetEnumerator())
+		isinited = true;
+	}
+
+	public UINPCQingJiaoSkillData(JSONObject json)
+	{
+		Init();
+		LiuPai = json["LiuPai"].I;
+		NPCLevel = json["Level"].I;
+		foreach (JSONObject d in json["skills"].list)
 		{
-			while (enumerator.MoveNext())
-			{
-				JSONObject d = enumerator.Current;
-				UINPCQingJiaoSkillData.SData item2 = UINPCQingJiaoSkillData.StaticSkillList.Find((UINPCQingJiaoSkillData.SData s) => s.ID == d.I);
-				this.StaticSkills.Add(item2);
-			}
+			SData item = SkillList.Find((SData s) => s.SkillID == d.I);
+			Skills.Add(item);
+		}
+		foreach (JSONObject d2 in json["staticSkills"].list)
+		{
+			SData item2 = StaticSkillList.Find((SData s) => s.ID == d2.I);
+			StaticSkills.Add(item2);
 		}
 		int yuanying = json["yuanying"].I;
 		if (yuanying > 0)
 		{
-			this.YuanYingStaticSkill = UINPCQingJiaoSkillData.StaticSkillList.Find((UINPCQingJiaoSkillData.SData s) => s.ID == yuanying);
-			this.StaticSkills.Add(this.YuanYingStaticSkill);
+			YuanYingStaticSkill = StaticSkillList.Find((SData s) => s.ID == yuanying);
+			StaticSkills.Add(YuanYingStaticSkill);
 		}
-	}
-
-	// Token: 0x040011AB RID: 4523
-	public int LiuPai;
-
-	// Token: 0x040011AC RID: 4524
-	public int NPCLevel;
-
-	// Token: 0x040011AD RID: 4525
-	public static Dictionary<int, int> SkillItemDict = new Dictionary<int, int>();
-
-	// Token: 0x040011AE RID: 4526
-	public static Dictionary<int, int> GongFaItemDict = new Dictionary<int, int>();
-
-	// Token: 0x040011AF RID: 4527
-	public static List<UINPCQingJiaoSkillData.SData> SkillList = new List<UINPCQingJiaoSkillData.SData>();
-
-	// Token: 0x040011B0 RID: 4528
-	public static List<UINPCQingJiaoSkillData.SData> StaticSkillList = new List<UINPCQingJiaoSkillData.SData>();
-
-	// Token: 0x040011B1 RID: 4529
-	public List<UINPCQingJiaoSkillData.SData> Skills = new List<UINPCQingJiaoSkillData.SData>();
-
-	// Token: 0x040011B2 RID: 4530
-	public List<UINPCQingJiaoSkillData.SData> StaticSkills = new List<UINPCQingJiaoSkillData.SData>();
-
-	// Token: 0x040011B3 RID: 4531
-	public UINPCQingJiaoSkillData.SData YuanYingStaticSkill;
-
-	// Token: 0x040011B4 RID: 4532
-	private static bool isinited;
-
-	// Token: 0x020012F2 RID: 4850
-	public class SData
-	{
-		// Token: 0x0400671B RID: 26395
-		public int ID;
-
-		// Token: 0x0400671C RID: 26396
-		public int SkillID;
-
-		// Token: 0x0400671D RID: 26397
-		public int Quality;
 	}
 }

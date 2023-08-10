@@ -1,43 +1,40 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000453 RID: 1107
 public class cardEffect : MonoBehaviour
 {
-	// Token: 0x060022E2 RID: 8930 RVA: 0x000EE6A8 File Offset: 0x000EC8A8
+	public Vector3 FromPos = Vector3.zero;
+
+	public Vector3 ToPos = Vector3.zero;
+
+	public float MaxDistance = 30f;
+
+	public float Speed = 30f;
+
+	public float HWRate;
+
+	private Vector3 m_RelaCoor = Vector3.up;
+
+	private float m_fStartRockon;
+
+	private float m_fDistance;
+
 	public void Start()
 	{
-		this.m_RelaCoor = (this.ToPos - this.FromPos).normalized;
-		this.m_fStartRockon = Time.time;
-		this.m_fDistance = Vector3.Distance(this.ToPos, this.FromPos);
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = ToPos - FromPos;
+		m_RelaCoor = ((Vector3)(ref val)).normalized;
+		m_fStartRockon = Time.time;
+		m_fDistance = Vector3.Distance(ToPos, FromPos);
 	}
 
-	// Token: 0x060022E3 RID: 8931 RVA: 0x00004095 File Offset: 0x00002295
 	public void Update()
 	{
 	}
-
-	// Token: 0x04001C0F RID: 7183
-	public Vector3 FromPos = Vector3.zero;
-
-	// Token: 0x04001C10 RID: 7184
-	public Vector3 ToPos = Vector3.zero;
-
-	// Token: 0x04001C11 RID: 7185
-	public float MaxDistance = 30f;
-
-	// Token: 0x04001C12 RID: 7186
-	public float Speed = 30f;
-
-	// Token: 0x04001C13 RID: 7187
-	public float HWRate;
-
-	// Token: 0x04001C14 RID: 7188
-	private Vector3 m_RelaCoor = Vector3.up;
-
-	// Token: 0x04001C15 RID: 7189
-	private float m_fStartRockon;
-
-	// Token: 0x04001C16 RID: 7190
-	private float m_fDistance;
 }

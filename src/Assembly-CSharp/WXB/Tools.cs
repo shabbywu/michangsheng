@@ -1,436 +1,458 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using YSGame.TuJian;
 
-namespace WXB
+namespace WXB;
+
+public static class Tools
 {
-	// Token: 0x020006A3 RID: 1699
-	public static class Tools
+	public const int s_dyn_default_speed = 320;
+
+	public const int s_offset_default_speed = 320;
+
+	private static readonly VertexHelper s_VertexHelper = new VertexHelper();
+
+	private static Font DefaultFont;
+
+	public static Func<string, Sprite> s_get_sprite = null;
+
+	public static Func<string, Font> s_get_font = null;
+
+	public static Func<string, Cartoon> s_get_cartoon = null;
+
+	public static Action<List<Cartoon>> s_get_cartoons = null;
+
+	public static VertexHelper vertexHelper => s_VertexHelper;
+
+	public static void LB2LT(ref Vector2 pos, float height)
 	{
-		// Token: 0x170004F3 RID: 1267
-		// (get) Token: 0x06003593 RID: 13715 RVA: 0x001711FB File Offset: 0x0016F3FB
-		public static VertexHelper vertexHelper
-		{
-			get
-			{
-				return Tools.s_VertexHelper;
-			}
-		}
+		pos.y = height - pos.y;
+	}
 
-		// Token: 0x06003594 RID: 13716 RVA: 0x00171202 File Offset: 0x0016F402
-		public static void LB2LT(ref Vector2 pos, float height)
-		{
-			pos.y = height - pos.y;
-		}
+	public static void LT2LB(ref Vector2 pos, float height)
+	{
+		pos.y += height;
+	}
 
-		// Token: 0x06003595 RID: 13717 RVA: 0x00171212 File Offset: 0x0016F412
-		public static void LT2LB(ref Vector2 pos, float height)
+	public static Font GetFont(string name)
+	{
+		if (s_get_font == null && (Object)(object)SymbolTextInit.GetFont(name) == (Object)null)
 		{
-			pos.y += height;
+			return DefaultFont;
 		}
+		return s_get_font(name);
+	}
 
-		// Token: 0x06003596 RID: 13718 RVA: 0x0017121F File Offset: 0x0016F41F
-		public static Font GetFont(string name)
+	public static Font GetDefaultFont()
+	{
+		if ((Object)(object)DefaultFont == (Object)null)
 		{
-			if (Tools.s_get_font == null && SymbolTextInit.GetFont(name) == null)
-			{
-				return Tools.DefaultFont;
-			}
-			return Tools.s_get_font(name);
+			DefaultFont = Object.FindObjectOfType<Font>();
 		}
+		return DefaultFont;
+	}
 
-		// Token: 0x06003597 RID: 13719 RVA: 0x00171247 File Offset: 0x0016F447
-		public static Font GetDefaultFont()
+	public static Sprite GetSprite(string name)
+	{
+		if (s_get_sprite == null)
 		{
-			if (Tools.DefaultFont == null)
-			{
-				Tools.DefaultFont = Object.FindObjectOfType<Font>();
-			}
-			return Tools.DefaultFont;
+			return TuJianDB.GetRichTextSprite(name);
 		}
+		return s_get_sprite(name);
+	}
 
-		// Token: 0x06003598 RID: 13720 RVA: 0x00171265 File Offset: 0x0016F465
-		public static Sprite GetSprite(string name)
+	public static Cartoon GetCartoon(string name)
+	{
+		if (s_get_cartoon == null)
 		{
-			if (Tools.s_get_sprite == null)
-			{
-				return TuJianDB.GetRichTextSprite(name);
-			}
-			return Tools.s_get_sprite(name);
+			return SymbolTextInit.GetCartoon(name);
 		}
+		return s_get_cartoon(name);
+	}
 
-		// Token: 0x06003599 RID: 13721 RVA: 0x00171280 File Offset: 0x0016F480
-		public static Cartoon GetCartoon(string name)
+	public static void GetAllCartoons(List<Cartoon> cartoons)
+	{
+		if (s_get_cartoons == null)
 		{
-			if (Tools.s_get_cartoon == null)
-			{
-				return SymbolTextInit.GetCartoon(name);
-			}
-			return Tools.s_get_cartoon(name);
+			SymbolTextInit.GetCartoons(cartoons);
 		}
-
-		// Token: 0x0600359A RID: 13722 RVA: 0x0017129B File Offset: 0x0016F49B
-		public static void GetAllCartoons(List<Cartoon> cartoons)
+		else
 		{
-			if (Tools.s_get_cartoons == null)
-			{
-				SymbolTextInit.GetCartoons(cartoons);
-				return;
-			}
-			Tools.s_get_cartoons(cartoons);
+			s_get_cartoons(cartoons);
 		}
+	}
 
-		// Token: 0x0600359B RID: 13723 RVA: 0x001712B8 File Offset: 0x0016F4B8
-		public static void AddLine(VertexHelper vh, Vector2 leftPos, Vector2 uv, float width, float height, Color color)
-		{
-			Vector2 vector;
-			vector..ctor(leftPos.x, leftPos.y);
-			int currentVertCount = vh.currentVertCount;
-			vh.AddVert(vector, color, uv);
-			vh.AddVert(new Vector3(vector.x + width, vector.y, 0f), color, uv);
-			vh.AddVert(new Vector3(vector.x + width, vector.y - height, 0f), color, uv);
-			vh.AddVert(new Vector3(vector.x, vector.y - height, 0f), color, uv);
-			vh.AddTriangle(currentVertCount, currentVertCount + 1, currentVertCount + 2);
-			vh.AddTriangle(currentVertCount + 2, currentVertCount + 3, currentVertCount);
-		}
+	public static void AddLine(VertexHelper vh, Vector2 leftPos, Vector2 uv, float width, float height, Color color)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0099: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = default(Vector2);
+		((Vector2)(ref val))._002Ector(leftPos.x, leftPos.y);
+		int currentVertCount = vh.currentVertCount;
+		vh.AddVert(Vector2.op_Implicit(val), Color32.op_Implicit(color), uv);
+		vh.AddVert(new Vector3(val.x + width, val.y, 0f), Color32.op_Implicit(color), uv);
+		vh.AddVert(new Vector3(val.x + width, val.y - height, 0f), Color32.op_Implicit(color), uv);
+		vh.AddVert(new Vector3(val.x, val.y - height, 0f), Color32.op_Implicit(color), uv);
+		vh.AddTriangle(currentVertCount, currentVertCount + 1, currentVertCount + 2);
+		vh.AddTriangle(currentVertCount + 2, currentVertCount + 3, currentVertCount);
+	}
 
-		// Token: 0x0600359C RID: 13724 RVA: 0x00171383 File Offset: 0x0016F583
-		public static bool IsHexadecimal(char c)
+	public static bool IsHexadecimal(char c)
+	{
+		if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))
 		{
-			return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
-		}
-
-		// Token: 0x0600359D RID: 13725 RVA: 0x001713A8 File Offset: 0x0016F5A8
-		public static float stringToFloat(string str, float df)
-		{
-			float result = 0f;
-			if (!float.TryParse(str, out result))
-			{
-				return df;
-			}
-			return result;
-		}
-
-		// Token: 0x0600359E RID: 13726 RVA: 0x001713C8 File Offset: 0x0016F5C8
-		public static int stringToInt(string str, int df)
-		{
-			int result = 0;
-			if (!int.TryParse(str, out result))
-			{
-				return df;
-			}
-			return result;
-		}
-
-		// Token: 0x0600359F RID: 13727 RVA: 0x001713E4 File Offset: 0x0016F5E4
-		public static Font ParserFontName(string text, ref int startpos)
-		{
-			int length = text.Length;
-			string text2 = "";
-			while (length > startpos && text2.Length < 10)
-			{
-				text2 += text[startpos].ToString();
-				startpos++;
-			}
-			Font result = null;
-			while (text2.Length != 0 && !((result = Tools.GetFont(text2)) != null))
-			{
-				text2 = text2.Remove(text2.Length - 1, 1);
-				startpos--;
-			}
-			return result;
-		}
-
-		// Token: 0x060035A0 RID: 13728 RVA: 0x00171460 File Offset: 0x0016F660
-		public static bool ScreenPointToWorldPointInRectangle(RectTransform rectTrans, Vector2 screenPoint, Camera cam, out Vector2 worldPoint)
-		{
-			worldPoint = Vector2.zero;
-			Ray ray = RectTransformUtility.ScreenPointToRay(cam, screenPoint);
-			float num;
-			if (!new Plane(rectTrans.rotation * Vector3.back, rectTrans.position).Raycast(ray, ref num))
-			{
-				return false;
-			}
-			worldPoint = ray.GetPoint(num);
-			worldPoint = rectTrans.worldToLocalMatrix.MultiplyPoint(worldPoint);
-			Tools.LB2LT(ref worldPoint, rectTrans.rect.height);
 			return true;
 		}
+		return false;
+	}
 
-		// Token: 0x060035A1 RID: 13729 RVA: 0x001714F8 File Offset: 0x0016F6F8
-		public static Color ParseColor(string text, int offset, Color defc)
+	public static float stringToFloat(string str, float df)
+	{
+		float result = 0f;
+		if (!float.TryParse(str, out result))
 		{
-			Color result;
-			if (Tools.ParseColor(text, offset, out result))
-			{
-				return result;
-			}
-			return defc;
+			return df;
 		}
+		return result;
+	}
 
-		// Token: 0x060035A2 RID: 13730 RVA: 0x00171514 File Offset: 0x0016F714
-		public static bool ParseColor(string text, int offset, out Color color)
+	public static int stringToInt(string str, int df)
+	{
+		int result = 0;
+		if (!int.TryParse(str, out result))
 		{
-			color = Color.white;
-			int num = text.Length - offset;
-			if (num >= 8)
-			{
-				color = Tools.ParseColor32(text, offset);
-				return true;
-			}
-			if (num >= 6)
-			{
-				color = Tools.ParseColor24(text, offset);
-				return true;
-			}
+			return df;
+		}
+		return result;
+	}
+
+	public static Font ParserFontName(string text, ref int startpos)
+	{
+		int length = text.Length;
+		string text2 = "";
+		while (length > startpos && text2.Length < 10)
+		{
+			text2 += text[startpos];
+			startpos++;
+		}
+		Font result = null;
+		while (text2.Length != 0 && !((Object)(object)(result = GetFont(text2)) != (Object)null))
+		{
+			text2 = text2.Remove(text2.Length - 1, 1);
+			startpos--;
+		}
+		return result;
+	}
+
+	public static bool ScreenPointToWorldPointInRectangle(RectTransform rectTrans, Vector2 screenPoint, Camera cam, out Vector2 worldPoint)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		worldPoint = Vector2.zero;
+		Ray val = RectTransformUtility.ScreenPointToRay(cam, screenPoint);
+		Plane val2 = new Plane(((Transform)rectTrans).rotation * Vector3.back, ((Transform)rectTrans).position);
+		float num = default(float);
+		if (!((Plane)(ref val2)).Raycast(val, ref num))
+		{
 			return false;
 		}
+		worldPoint = Vector2.op_Implicit(((Ray)(ref val)).GetPoint(num));
+		Matrix4x4 worldToLocalMatrix = ((Transform)rectTrans).worldToLocalMatrix;
+		worldPoint = Vector2.op_Implicit(((Matrix4x4)(ref worldToLocalMatrix)).MultiplyPoint(Vector2.op_Implicit(worldPoint)));
+		Rect rect = rectTrans.rect;
+		LB2LT(ref worldPoint, ((Rect)(ref rect)).height);
+		return true;
+	}
 
-		// Token: 0x060035A3 RID: 13731 RVA: 0x0017155C File Offset: 0x0016F75C
-		public static Color ParseColor24(string text, int offset)
+	public static Color ParseColor(string text, int offset, Color defc)
+	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		if (ParseColor(text, offset, out var color))
 		{
-			if (text[offset] == '#')
-			{
-				offset++;
-			}
-			int num = Tools.HexToDecimal(text[offset]) << 4 | Tools.HexToDecimal(text[offset + 1]);
-			int num2 = Tools.HexToDecimal(text[offset + 2]) << 4 | Tools.HexToDecimal(text[offset + 3]);
-			int num3 = Tools.HexToDecimal(text[offset + 4]) << 4 | Tools.HexToDecimal(text[offset + 5]);
-			float num4 = 0.003921569f;
-			return new Color(num4 * (float)num, num4 * (float)num2, num4 * (float)num3);
+			return color;
 		}
+		return defc;
+	}
 
-		// Token: 0x060035A4 RID: 13732 RVA: 0x001715F0 File Offset: 0x0016F7F0
-		public static Color ParseColor32(string text, int offset)
+	public static bool ParseColor(string text, int offset, out Color color)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		color = Color.white;
+		int num = text.Length - offset;
+		if (num >= 8)
 		{
-			if (text[offset] == '#')
-			{
-				offset++;
-			}
-			int num = Tools.HexToDecimal(text[offset]) << 4 | Tools.HexToDecimal(text[offset + 1]);
-			int num2 = Tools.HexToDecimal(text[offset + 2]) << 4 | Tools.HexToDecimal(text[offset + 3]);
-			int num3 = Tools.HexToDecimal(text[offset + 4]) << 4 | Tools.HexToDecimal(text[offset + 5]);
-			int num4 = Tools.HexToDecimal(text[offset + 6]) << 4 | Tools.HexToDecimal(text[offset + 7]);
-			float num5 = 0.003921569f;
-			return new Color(num5 * (float)num, num5 * (float)num2, num5 * (float)num3, num5 * (float)num4);
+			color = ParseColor32(text, offset);
+			return true;
 		}
-
-		// Token: 0x060035A5 RID: 13733 RVA: 0x001716AC File Offset: 0x0016F8AC
-		public static int HexToDecimal(char ch)
+		if (num >= 6)
 		{
-			switch (ch)
-			{
-			case '0':
-				return 0;
-			case '1':
-				return 1;
-			case '2':
-				return 2;
-			case '3':
-				return 3;
-			case '4':
-				return 4;
-			case '5':
-				return 5;
-			case '6':
-				return 6;
-			case '7':
-				return 7;
-			case '8':
-				return 8;
-			case '9':
-				return 9;
-			case ':':
-			case ';':
-			case '<':
-			case '=':
-			case '>':
-			case '?':
-			case '@':
-				return 15;
-			case 'A':
-				break;
-			case 'B':
-				return 11;
-			case 'C':
-				return 12;
-			case 'D':
-				return 13;
-			case 'E':
-				return 14;
-			case 'F':
-				return 15;
-			default:
-				switch (ch)
-				{
-				case 'a':
-					break;
-				case 'b':
-					return 11;
-				case 'c':
-					return 12;
-				case 'd':
-					return 13;
-				case 'e':
-					return 14;
-				case 'f':
-					return 15;
-				default:
-					return 15;
-				}
-				break;
-			}
+			color = ParseColor24(text, offset);
+			return true;
+		}
+		return false;
+	}
+
+	public static Color ParseColor24(string text, int offset)
+	{
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		if (text[offset] == '#')
+		{
+			offset++;
+		}
+		int num = (HexToDecimal(text[offset]) << 4) | HexToDecimal(text[offset + 1]);
+		int num2 = (HexToDecimal(text[offset + 2]) << 4) | HexToDecimal(text[offset + 3]);
+		int num3 = (HexToDecimal(text[offset + 4]) << 4) | HexToDecimal(text[offset + 5]);
+		float num4 = 0.003921569f;
+		return new Color(num4 * (float)num, num4 * (float)num2, num4 * (float)num3);
+	}
+
+	public static Color ParseColor32(string text, int offset)
+	{
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		if (text[offset] == '#')
+		{
+			offset++;
+		}
+		int num = (HexToDecimal(text[offset]) << 4) | HexToDecimal(text[offset + 1]);
+		int num2 = (HexToDecimal(text[offset + 2]) << 4) | HexToDecimal(text[offset + 3]);
+		int num3 = (HexToDecimal(text[offset + 4]) << 4) | HexToDecimal(text[offset + 5]);
+		int num4 = (HexToDecimal(text[offset + 6]) << 4) | HexToDecimal(text[offset + 7]);
+		float num5 = 0.003921569f;
+		return new Color(num5 * (float)num, num5 * (float)num2, num5 * (float)num3, num5 * (float)num4);
+	}
+
+	public static int HexToDecimal(char ch)
+	{
+		switch (ch)
+		{
+		case '0':
+			return 0;
+		case '1':
+			return 1;
+		case '2':
+			return 2;
+		case '3':
+			return 3;
+		case '4':
+			return 4;
+		case '5':
+			return 5;
+		case '6':
+			return 6;
+		case '7':
+			return 7;
+		case '8':
+			return 8;
+		case '9':
+			return 9;
+		case 'A':
+		case 'a':
 			return 10;
+		case 'B':
+		case 'b':
+			return 11;
+		case 'C':
+		case 'c':
+			return 12;
+		case 'D':
+		case 'd':
+			return 13;
+		case 'E':
+		case 'e':
+			return 14;
+		case 'F':
+		case 'f':
+			return 15;
+		default:
+			return 15;
 		}
+	}
 
-		// Token: 0x060035A6 RID: 13734 RVA: 0x0017176C File Offset: 0x0016F96C
-		public static Color ParserColorName(string text, Color dc)
+	public static Color ParserColorName(string text, Color dc)
+	{
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		int startpos = 0;
+		return ParserColorName(text, ref startpos, dc);
+	}
+
+	public static Color ParserColorName(string text, ref int startpos, Color dc)
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		if (startpos >= text.Length - 1)
 		{
-			int num = 0;
-			return Tools.ParserColorName(text, ref num, dc);
+			return dc;
 		}
-
-		// Token: 0x060035A7 RID: 13735 RVA: 0x00171784 File Offset: 0x0016F984
-		public static Color ParserColorName(string text, ref int startpos, Color dc)
+		if (text[startpos + 1] == '[')
 		{
-			if (startpos >= text.Length - 1)
+			int num = text.IndexOf(']', startpos + 1);
+			if (num != -1)
 			{
-				return dc;
+				string name = text.Substring(startpos + 2, num - startpos - 2);
+				startpos = num + 1;
+				return ColorConst.Get(name, dc);
 			}
-			if (text[startpos + 1] == '[')
+			startpos++;
+			return dc;
+		}
+		int startIndex = ++startpos;
+		int i = 0;
+		for (int length = text.Length; length > startpos + i && IsHexadecimal(text[startpos + i]) && i < 8; i++)
+		{
+		}
+		if (ParseColor(text.Substring(startIndex, i), 0, out var color))
+		{
+			startpos += i;
+			return color;
+		}
+		startpos += i;
+		return dc;
+	}
+
+	public static T AddChild<T>(this GameObject go) where T : MonoBehaviour
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Expected O, but got Unknown
+		GameObject val = new GameObject();
+		go.AddChild(val);
+		return val.AddComponent<T>();
+	}
+
+	public static void AddChild(this GameObject go, GameObject child)
+	{
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		Transform transform = child.transform;
+		transform.SetParent(go.transform);
+		transform.localScale = Vector3.one;
+		transform.localPosition = Vector3.zero;
+		transform.localEulerAngles = Vector3.zero;
+		child.layer = go.layer;
+	}
+
+	public static void Destroy(Object obj)
+	{
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		if (!Object.op_Implicit(obj))
+		{
+			return;
+		}
+		if (obj is Transform)
+		{
+			GameObject gameObject = ((Component)(Transform)obj).gameObject;
+			if (Application.isPlaying)
 			{
-				int num = text.IndexOf(']', startpos + 1);
-				if (num != -1)
-				{
-					string name = text.Substring(startpos + 2, num - startpos - 2);
-					startpos = num + 1;
-					return ColorConst.Get(name, dc);
-				}
-				startpos++;
-				return dc;
+				Object.Destroy((Object)(object)gameObject);
 			}
 			else
 			{
-				int num2 = startpos + 1;
-				startpos = num2;
-				int startIndex = num2;
-				int num3 = 0;
-				int length = text.Length;
-				while (length > startpos + num3 && Tools.IsHexadecimal(text[startpos + num3]) && num3 < 8)
-				{
-					num3++;
-				}
-				Color result;
-				if (Tools.ParseColor(text.Substring(startIndex, num3), 0, out result))
-				{
-					startpos += num3;
-					return result;
-				}
-				startpos += num3;
-				return dc;
+				Object.DestroyImmediate((Object)(object)gameObject);
 			}
 		}
-
-		// Token: 0x060035A8 RID: 13736 RVA: 0x0017183C File Offset: 0x0016FA3C
-		public static T AddChild<T>(this GameObject go) where T : MonoBehaviour
+		else if (obj is GameObject)
 		{
-			GameObject gameObject = new GameObject();
-			go.AddChild(gameObject);
-			return gameObject.AddComponent<T>();
-		}
-
-		// Token: 0x060035A9 RID: 13737 RVA: 0x0017185C File Offset: 0x0016FA5C
-		public static void AddChild(this GameObject go, GameObject child)
-		{
-			Transform transform = child.transform;
-			transform.SetParent(go.transform);
-			transform.localScale = Vector3.one;
-			transform.localPosition = Vector3.zero;
-			transform.localEulerAngles = Vector3.zero;
-			child.layer = go.layer;
-		}
-
-		// Token: 0x060035AA RID: 13738 RVA: 0x0017189C File Offset: 0x0016FA9C
-		public static void Destroy(Object obj)
-		{
-			if (obj)
+			GameObject val = (GameObject)(object)((obj is GameObject) ? obj : null);
+			if (Application.isPlaying)
 			{
-				if (obj is Transform)
-				{
-					GameObject gameObject = ((Transform)obj).gameObject;
-					if (Application.isPlaying)
-					{
-						Object.Destroy(gameObject);
-						return;
-					}
-					Object.DestroyImmediate(gameObject);
-					return;
-				}
-				else if (obj is GameObject)
-				{
-					GameObject gameObject2 = obj as GameObject;
-					if (Application.isPlaying)
-					{
-						Object.Destroy(gameObject2);
-						return;
-					}
-					Object.DestroyImmediate(gameObject2);
-					return;
-				}
-				else
-				{
-					if (Application.isPlaying)
-					{
-						Object.Destroy(obj);
-						return;
-					}
-					Object.DestroyImmediate(obj);
-				}
+				Object.Destroy((Object)(object)val);
+			}
+			else
+			{
+				Object.DestroyImmediate((Object)(object)val);
 			}
 		}
-
-		// Token: 0x060035AB RID: 13739 RVA: 0x00171914 File Offset: 0x0016FB14
-		public static void UpdateRect(RectTransform child, Vector2 offset)
+		else if (Application.isPlaying)
 		{
-			RectTransform rectTransform = child.parent as RectTransform;
-			if (rectTransform == null)
-			{
-				return;
-			}
-			child.pivot = rectTransform.pivot;
+			Object.Destroy(obj);
+		}
+		else
+		{
+			Object.DestroyImmediate(obj);
+		}
+	}
+
+	public static void UpdateRect(RectTransform child, Vector2 offset)
+	{
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		Transform parent = ((Transform)child).parent;
+		RectTransform val = (RectTransform)(object)((parent is RectTransform) ? parent : null);
+		if (!((Object)(object)val == (Object)null))
+		{
+			child.pivot = val.pivot;
 			child.anchorMin = Vector2.zero;
 			child.anchorMax = Vector2.one;
 			child.offsetMax = Vector2.zero;
 			child.offsetMin = Vector2.zero;
-			child.localPosition = offset;
-			child.localScale = Vector3.one;
-			child.localEulerAngles = Vector3.zero;
+			((Transform)child).localPosition = Vector2.op_Implicit(offset);
+			((Transform)child).localScale = Vector3.one;
+			((Transform)child).localEulerAngles = Vector3.zero;
 		}
-
-		// Token: 0x04002F0D RID: 12045
-		public const int s_dyn_default_speed = 320;
-
-		// Token: 0x04002F0E RID: 12046
-		public const int s_offset_default_speed = 320;
-
-		// Token: 0x04002F0F RID: 12047
-		private static readonly VertexHelper s_VertexHelper = new VertexHelper();
-
-		// Token: 0x04002F10 RID: 12048
-		private static Font DefaultFont;
-
-		// Token: 0x04002F11 RID: 12049
-		public static Func<string, Sprite> s_get_sprite = null;
-
-		// Token: 0x04002F12 RID: 12050
-		public static Func<string, Font> s_get_font = null;
-
-		// Token: 0x04002F13 RID: 12051
-		public static Func<string, Cartoon> s_get_cartoon = null;
-
-		// Token: 0x04002F14 RID: 12052
-		public static Action<List<Cartoon>> s_get_cartoons = null;
 	}
 }

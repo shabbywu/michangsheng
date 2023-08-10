@@ -1,111 +1,129 @@
-﻿using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace CaiJi
+namespace CaiJi;
+
+public class CaiJiCell : MonoBehaviour
 {
-	// Token: 0x02000733 RID: 1843
-	public class CaiJiCell : MonoBehaviour
+	[SerializeField]
+	private FpBtn Btn;
+
+	public UIIconShow Item;
+
+	private bool CanClick = true;
+
+	private Sequence StopQuence;
+
+	private MessageData data = new MessageData(0);
+
+	public bool IsSelected;
+
+	public CaiJiCell Init(int itemId)
 	{
-		// Token: 0x06003AB5 RID: 15029 RVA: 0x00193FCC File Offset: 0x001921CC
-		public CaiJiCell Init(int itemId)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Expected O, but got Unknown
+		Item.SetItem(itemId);
+		data.valueInt = itemId;
+		((Component)this).gameObject.SetActive(true);
+		IsSelected = false;
+		Btn.mouseUpEvent.AddListener((UnityAction)delegate
 		{
-			this.Item.SetItem(itemId);
-			this.data.valueInt = itemId;
-			base.gameObject.SetActive(true);
-			this.IsSelected = false;
-			this.Btn.mouseUpEvent.AddListener(delegate()
+			if (CaiJiUIMag.inst.IsMax)
 			{
-				if (!CaiJiUIMag.inst.IsMax)
+				if (CanClick)
 				{
-					this.PlayerHideEffect();
-					MessageMag.Instance.Send("CaiJi_Item_Select", this.data);
-					this.IsSelected = true;
-					UToolTip.CloseOldTooltip();
-					return;
+					CanClick = false;
+					PlayerSharkeEffect();
 				}
-				if (!this.CanClick)
-				{
-					return;
-				}
-				this.CanClick = false;
-				this.PlayerSharkeEffect();
-			});
-			return this;
-		}
+			}
+			else
+			{
+				PlayerHideEffect();
+				MessageMag.Instance.Send("CaiJi_Item_Select", data);
+				IsSelected = true;
+				UToolTip.CloseOldTooltip();
+			}
+		});
+		return this;
+	}
 
-		// Token: 0x06003AB6 RID: 15030 RVA: 0x00194024 File Offset: 0x00192224
-		private void PlayerShowEffect()
+	private void PlayerShowEffect()
+	{
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Expected O, but got Unknown
+		TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(((Component)Item).gameObject.transform, Vector2.op_Implicit(new Vector2(0.94f, 0.94f)), 0.05f), (TweenCallback)delegate
 		{
-			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.94f, 0.94f), 0.05f), delegate()
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003f: Expected O, but got Unknown
+			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(((Component)Item).gameObject.transform, Vector2.op_Implicit(new Vector2(1.05f, 1.05f)), 0.05f), (TweenCallback)delegate
 			{
-				TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(1.05f, 1.05f), 0.05f), delegate()
+				//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+				//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+				//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+				//IL_003f: Expected O, but got Unknown
+				TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(((Component)Item).gameObject.transform, Vector2.op_Implicit(new Vector2(0.98f, 0.98f)), 0.05f), (TweenCallback)delegate
 				{
-					TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.98f, 0.98f), 0.05f), delegate()
+					ShortcutExtensions.DOScale(((Component)Item).gameObject.transform, 1f, 0.05f);
+				});
+			});
+		});
+	}
+
+	private void PlayerHideEffect()
+	{
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Expected O, but got Unknown
+		TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(((Component)Item).gameObject.transform, Vector2.op_Implicit(new Vector2(0.95f, 0.95f)), 0.05f), (TweenCallback)delegate
+		{
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0035: Expected O, but got Unknown
+			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(((Component)Item).gameObject.transform, Vector2.op_Implicit(Vector2.zero), 0f), (TweenCallback)delegate
+			{
+				((Component)this).gameObject.SetActive(false);
+			});
+		});
+	}
+
+	private void PlayerSharkeEffect()
+	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Expected O, but got Unknown
+		TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(((Component)Item).gameObject.transform, -10f, 0.005f, false), (Ease)2), (TweenCallback)delegate
+		{
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0037: Expected O, but got Unknown
+			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(((Component)Item).gameObject.transform, 9f, 0.1f, false), (Ease)2), (TweenCallback)delegate
+			{
+				//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+				//IL_0037: Expected O, but got Unknown
+				TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(((Component)Item).gameObject.transform, -2f, 0.05f, false), (Ease)2), (TweenCallback)delegate
+				{
+					//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+					//IL_0037: Expected O, but got Unknown
+					TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(((Component)Item).gameObject.transform, 0f, 0.025f, false), (Ease)2), (TweenCallback)delegate
 					{
-						ShortcutExtensions.DOScale(this.Item.gameObject.transform, 1f, 0.05f);
+						CanClick = true;
 					});
 				});
 			});
-		}
+		});
+	}
 
-		// Token: 0x06003AB7 RID: 15031 RVA: 0x00194074 File Offset: 0x00192274
-		private void PlayerHideEffect()
-		{
-			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.95f, 0.95f), 0.05f), delegate()
-			{
-				TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, Vector2.zero, 0f), delegate()
-				{
-					base.gameObject.SetActive(false);
-				});
-			});
-		}
-
-		// Token: 0x06003AB8 RID: 15032 RVA: 0x001940C1 File Offset: 0x001922C1
-		private void PlayerSharkeEffect()
-		{
-			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(this.Item.gameObject.transform, -10f, 0.005f, false), 2), delegate()
-			{
-				TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(this.Item.gameObject.transform, 9f, 0.1f, false), 2), delegate()
-				{
-					TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(this.Item.gameObject.transform, -2f, 0.05f, false), 2), delegate()
-					{
-						TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(this.Item.gameObject.transform, 0f, 0.025f, false), 2), delegate()
-						{
-							this.CanClick = true;
-						});
-					});
-				});
-			});
-		}
-
-		// Token: 0x06003AB9 RID: 15033 RVA: 0x001940FB File Offset: 0x001922FB
-		public void Show()
-		{
-			base.gameObject.SetActive(true);
-			this.PlayerShowEffect();
-			this.IsSelected = false;
-		}
-
-		// Token: 0x040032E6 RID: 13030
-		[SerializeField]
-		private FpBtn Btn;
-
-		// Token: 0x040032E7 RID: 13031
-		public UIIconShow Item;
-
-		// Token: 0x040032E8 RID: 13032
-		private bool CanClick = true;
-
-		// Token: 0x040032E9 RID: 13033
-		private Sequence StopQuence;
-
-		// Token: 0x040032EA RID: 13034
-		private MessageData data = new MessageData(0);
-
-		// Token: 0x040032EB RID: 13035
-		public bool IsSelected;
+	public void Show()
+	{
+		((Component)this).gameObject.SetActive(true);
+		PlayerShowEffect();
+		IsSelected = false;
 	}
 }

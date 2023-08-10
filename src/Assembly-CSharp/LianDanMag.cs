@@ -1,146 +1,157 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000462 RID: 1122
 public class LianDanMag : MonoBehaviour
 {
-	// Token: 0x06002328 RID: 9000 RVA: 0x000F021C File Offset: 0x000EE41C
+	public class DanyaoItem
+	{
+		public int ItemID = -1;
+
+		public int ItemNum;
+
+		public int YaoZhi;
+
+		public int YaoZhiType;
+	}
+
+	public Inventory2 inventoryCaiLiao;
+
+	public Inventory2 inventoryDanlu;
+
+	public Inventory2 InventoryShowDanlu;
+
+	public Inventory2 InventoryFinish;
+
+	public List<ItemCellEX> itemCells;
+
+	public static LianDanMag instence;
+
+	public List<List<int>> duiying;
+
+	public List<int> YaoZhi;
+
+	public List<int> ReduceNaijiu;
+
+	public List<int> MaxCaoYao;
+
+	public LianDanDanFang lianDanDanFang;
+
+	public LianDanFinsh zhaLu;
+
+	public LianDanFinsh finshPlan;
+
+	public GameObject DanLuPlan;
+
+	public GameObject AddDanluBtn;
+
+	public GameObject XuanZeDanLu;
+
+	public GameObject CaiLiaoItem;
+
+	public LianDanShu LianDanShu;
+
+	public GameObject DanfunPlan;
+
+	public GameObject YaoCaiPlan;
+
 	private void Awake()
 	{
-		LianDanMag.instence = this;
-		this.duiying = new List<List<int>>();
-		this.duiying.Add(new List<int>
+		instence = this;
+		duiying = new List<List<int>>();
+		duiying.Add(new List<int> { 0, 1, 3 });
+		duiying.Add(new List<int> { 0, 1, 3, 4 });
+		duiying.Add(new List<int> { 0, 1, 3, 4 });
+		duiying.Add(new List<int> { 0, 1, 3, 4 });
+		duiying.Add(new List<int> { 0, 1, 3, 4 });
+		duiying.Add(new List<int> { 0, 1, 2, 3, 4 });
+		for (int i = 0; i < (int)inventoryCaiLiao.count; i++)
 		{
-			0,
-			1,
-			3
-		});
-		this.duiying.Add(new List<int>
-		{
-			0,
-			1,
-			3,
-			4
-		});
-		this.duiying.Add(new List<int>
-		{
-			0,
-			1,
-			3,
-			4
-		});
-		this.duiying.Add(new List<int>
-		{
-			0,
-			1,
-			3,
-			4
-		});
-		this.duiying.Add(new List<int>
-		{
-			0,
-			1,
-			3,
-			4
-		});
-		this.duiying.Add(new List<int>
-		{
-			0,
-			1,
-			2,
-			3,
-			4
-		});
-		for (int i = 0; i < (int)this.inventoryCaiLiao.count; i++)
-		{
-			this.inventoryCaiLiao.inventory.Add(new item());
+			inventoryCaiLiao.inventory.Add(new item());
 		}
-		for (int j = 0; j < (int)this.inventoryDanlu.count; j++)
+		for (int j = 0; j < (int)inventoryDanlu.count; j++)
 		{
-			this.inventoryDanlu.inventory.Add(new item());
+			inventoryDanlu.inventory.Add(new item());
 		}
-		for (int k = 0; k < (int)this.InventoryShowDanlu.count; k++)
+		for (int k = 0; k < (int)InventoryShowDanlu.count; k++)
 		{
-			this.InventoryShowDanlu.inventory.Add(new item());
+			InventoryShowDanlu.inventory.Add(new item());
 		}
-		for (int l = 0; l < (int)this.InventoryFinish.count; l++)
+		for (int l = 0; l < (int)InventoryFinish.count; l++)
 		{
-			this.InventoryFinish.inventory.Add(new item());
+			InventoryFinish.inventory.Add(new item());
 		}
-		this.show();
+		show();
 	}
 
-	// Token: 0x06002329 RID: 9001 RVA: 0x000F03F4 File Offset: 0x000EE5F4
 	private void OnDestroy()
 	{
-		LianDanMag.instence = null;
+		instence = null;
 	}
 
-	// Token: 0x0600232A RID: 9002 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600232B RID: 9003 RVA: 0x000F03FC File Offset: 0x000EE5FC
 	public void OpenLianDanMag()
 	{
-		base.transform.localPosition = Vector3.zero;
-		base.gameObject.SetActive(true);
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		((Component)this).transform.localPosition = Vector3.zero;
+		((Component)this).gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600232C RID: 9004 RVA: 0x000F041A File Offset: 0x000EE61A
 	public void show()
 	{
-		this.closeDanlu();
-		this.XuanZeDanLu.SetActive(false);
+		closeDanlu();
+		XuanZeDanLu.SetActive(false);
 	}
 
-	// Token: 0x0600232D RID: 9005 RVA: 0x000F0430 File Offset: 0x000EE630
 	public void PlayDanfangIn()
 	{
-		if (this.DanfunPlan.transform.localPosition.x < -800f)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		if (DanfunPlan.transform.localPosition.x < -800f)
 		{
-			this.DanfunPlan.GetComponent<Animation>().Play("Danfangout");
-			return;
+			DanfunPlan.GetComponent<Animation>().Play("Danfangout");
 		}
-		this.DanfunPlan.GetComponent<Animation>().Play("Danfang");
+		else
+		{
+			DanfunPlan.GetComponent<Animation>().Play("Danfang");
+		}
 	}
 
-	// Token: 0x0600232E RID: 9006 RVA: 0x000F0488 File Offset: 0x000EE688
 	public void PlayYaoCai()
 	{
-		if (this.YaoCaiPlan.transform.localPosition.x > 50f)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		if (YaoCaiPlan.transform.localPosition.x > 50f)
 		{
-			this.YaoCaiPlan.GetComponent<Animation>().Play("yaocaiout");
-			return;
+			YaoCaiPlan.GetComponent<Animation>().Play("yaocaiout");
 		}
-		this.YaoCaiPlan.GetComponent<Animation>().Play("yaocaiin");
+		else
+		{
+			YaoCaiPlan.GetComponent<Animation>().Play("yaocaiin");
+		}
 	}
 
-	// Token: 0x0600232F RID: 9007 RVA: 0x000F04DE File Offset: 0x000EE6DE
 	public void showChoiceDanLu()
 	{
-		this.XuanZeDanLu.SetActive(true);
-		this.LianDanShu.gameObject.SetActive(false);
-		this.finshPlan.gameObject.SetActive(false);
+		XuanZeDanLu.SetActive(true);
+		((Component)LianDanShu).gameObject.SetActive(false);
+		((Component)finshPlan).gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002330 RID: 9008 RVA: 0x000F050E File Offset: 0x000EE70E
 	public void CloseChoiceDanlu()
 	{
-		this.XuanZeDanLu.SetActive(false);
+		XuanZeDanLu.SetActive(false);
 	}
 
-	// Token: 0x06002331 RID: 9009 RVA: 0x000F051C File Offset: 0x000EE71C
 	public bool DanLuIsFull()
 	{
 		bool result = true;
 		for (int i = 0; i < 5; i++)
 		{
-			if (!this.itemCells[i].JustShow && this.inventoryCaiLiao.inventory[i + 24].itemID <= 0)
+			if (!itemCells[i].JustShow && inventoryCaiLiao.inventory[i + 24].itemID <= 0)
 			{
 				result = false;
 			}
@@ -148,92 +159,92 @@ public class LianDanMag : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06002332 RID: 9010 RVA: 0x000F056C File Offset: 0x000EE76C
 	public void showDanlu()
 	{
-		this.AddDanluBtn.SetActive(false);
-		int itemID = this.InventoryShowDanlu.inventory[0].itemID;
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Expected O, but got Unknown
+		AddDanluBtn.SetActive(false);
+		int itemID = InventoryShowDanlu.inventory[0].itemID;
 		int num = (int)jsonData.instance.ItemJsonData[itemID.ToString()]["quality"].n;
 		int num2 = 0;
-		foreach (object obj in this.CaiLiaoItem.transform)
+		foreach (Transform item in CaiLiaoItem.transform)
 		{
-			Transform transform = (Transform)obj;
-			ItemCellEX component = transform.GetComponent<ItemCellEX>();
-			if (this.duiying[num - 1].Contains(num2))
+			Transform val = item;
+			ItemCellEX component = ((Component)val).GetComponent<ItemCellEX>();
+			if (duiying[num - 1].Contains(num2))
 			{
 				component.JustShow = false;
-				transform.Find("Background").GetComponent<UISprite>().spriteName = "liandna (22)";
+				((Component)val.Find("Background")).GetComponent<UISprite>().spriteName = "liandna (22)";
 			}
 			else
 			{
 				component.JustShow = true;
-				transform.Find("Background").GetComponent<UISprite>().spriteName = "liandna (23)";
+				((Component)val.Find("Background")).GetComponent<UISprite>().spriteName = "liandna (23)";
 			}
 			num2++;
 		}
-		this.DanLuPlan.SetActive(true);
+		DanLuPlan.SetActive(true);
 	}
 
-	// Token: 0x06002333 RID: 9011 RVA: 0x000F068C File Offset: 0x000EE88C
 	public void closeDanlu()
 	{
-		this.AddDanluBtn.SetActive(true);
-		this.DanLuPlan.SetActive(false);
+		AddDanluBtn.SetActive(true);
+		DanLuPlan.SetActive(false);
 	}
 
-	// Token: 0x06002334 RID: 9012 RVA: 0x000F06A8 File Offset: 0x000EE8A8
 	public void StartLianDan()
 	{
-		this.XuanZeDanLu.SetActive(false);
+		XuanZeDanLu.SetActive(false);
 		bool flag = false;
 		int num = 0;
-		foreach (ItemCellEX itemCellEX in LianDanMag.instence.itemCells)
+		foreach (ItemCellEX itemCell in instence.itemCells)
 		{
-			int itemID = LianDanMag.instence.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].itemID;
+			int itemID = instence.inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].itemID;
 			if (itemID > 0)
 			{
 				flag = true;
 			}
 			if (itemID > 0)
 			{
-				num += this.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].itemNum;
+				num += inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].itemNum;
 			}
 		}
-		int num2 = (int)jsonData.instance.ItemJsonData[this.InventoryShowDanlu.inventory[0].itemID.ToString()]["quality"].n;
-		if (num > this.MaxCaoYao[num2 - 1])
+		int num2 = (int)jsonData.instance.ItemJsonData[InventoryShowDanlu.inventory[0].itemID.ToString()]["quality"].n;
+		if (num > MaxCaoYao[num2 - 1])
 		{
-			UIPopTip.Inst.Pop("该品阶丹炉最大药材数" + this.MaxCaoYao[num2 - 1] + "个", PopTipIconType.叹号);
-			return;
+			UIPopTip.Inst.Pop("该品阶丹炉最大药材数" + MaxCaoYao[num2 - 1] + "个");
 		}
-		if (flag)
+		else if (flag)
 		{
-			this.LianDanShu.show();
+			LianDanShu.show();
 		}
 	}
 
-	// Token: 0x06002335 RID: 9013 RVA: 0x000F07E4 File Offset: 0x000EE9E4
-	public void GetYaoLeiList(List<int> indexToLeixin, List<LianDanMag.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
+	public void GetYaoLeiList(List<int> indexToLeixin, List<DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		int num = 0;
-		foreach (ItemCellEX itemCellEX in this.itemCells)
+		foreach (ItemCellEX itemCell in itemCells)
 		{
-			LianDanMag.DanyaoItem danyaoItem = new LianDanMag.DanyaoItem();
-			danyaoItem.ItemID = this.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].itemID;
-			danyaoItem.ItemNum = this.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].itemNum;
+			DanyaoItem danyaoItem = new DanyaoItem();
+			danyaoItem.ItemID = inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].itemID;
+			danyaoItem.ItemNum = inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].itemNum;
 			if (danyaoItem.ItemID != -1)
 			{
-				JSONObject jsonobject = jsonData.instance.ItemJsonData[danyaoItem.ItemID.ToString()];
-				int yaoZhiType = (int)jsonobject["yaoZhi" + indexToLeixin[num]].n;
-				int num2 = (int)jsonobject["quality"].n;
-				danyaoItem.YaoZhi = danyaoItem.ItemNum * this.YaoZhi[num2 - 1];
+				JSONObject jSONObject = jsonData.instance.ItemJsonData[danyaoItem.ItemID.ToString()];
+				int yaoZhiType = (int)jSONObject["yaoZhi" + indexToLeixin[num]].n;
+				int num2 = (int)jSONObject["quality"].n;
+				danyaoItem.YaoZhi = danyaoItem.ItemNum * YaoZhi[num2 - 1];
 				danyaoItem.YaoZhiType = yaoZhiType;
-				if (num == 1 || num == 2)
+				switch (num)
 				{
+				case 1:
+				case 2:
 					Tools.dictionaryAddNum(zhuyaoList, danyaoItem.YaoZhiType, danyaoItem.YaoZhi);
-				}
-				else if (num == 3 || num == 4)
-				{
+					break;
+				case 3:
+				case 4:
 					Tools.dictionaryAddNum(fuyaoList, danyaoItem.YaoZhiType, danyaoItem.YaoZhi);
+					break;
 				}
 				Tools.instance.getPlayer().AddYaoCaiShuXin(danyaoItem.ItemID, indexToLeixin[num]);
 			}
@@ -247,69 +258,70 @@ public class LianDanMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002336 RID: 9014 RVA: 0x000F0984 File Offset: 0x000EEB84
-	public void GetDanfangList(List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanMag.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
+	public void GetDanfangList(List<JSONObject> DanFans, List<int> indexToLeixin, List<DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
-		foreach (JSONObject jsonobject in jsonData.instance.LianDanDanFangBiao.list)
+		foreach (JSONObject item in jsonData.instance.LianDanDanFangBiao.list)
 		{
 			bool flag = true;
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
 			Dictionary<int, int> dictionary2 = new Dictionary<int, int>();
 			for (int i = 2; i <= 5; i++)
 			{
-				if ((int)jsonobject["value" + i].n != 0)
+				if ((int)item["value" + i].n != 0)
 				{
-					JSONObject jsonobject2 = jsonData.instance.ItemJsonData[((int)jsonobject["value" + i].n).ToString()];
-					int num = (int)jsonobject2["yaoZhi" + indexToLeixin[i - 1]].n;
-					int num2 = (int)jsonobject2["quality"].n;
-					int num3 = (int)jsonobject["num" + i].n * this.YaoZhi[num2 - 1];
+					JSONObject jSONObject = jsonData.instance.ItemJsonData[((int)item["value" + i].n).ToString()];
+					int num = (int)jSONObject["yaoZhi" + indexToLeixin[i - 1]].n;
+					int num2 = (int)jSONObject["quality"].n;
+					int num3 = (int)item["num" + i].n * YaoZhi[num2 - 1];
 					int key = num;
-					if (i == 2 || i == 3)
+					switch (i)
 					{
+					case 2:
+					case 3:
 						Tools.dictionaryAddNum(dictionary2, key, num3);
-					}
-					else if (i == 4 || i == 5)
-					{
+						break;
+					case 4:
+					case 5:
 						Tools.dictionaryAddNum(dictionary, key, num3);
+						break;
 					}
 				}
 			}
-			foreach (KeyValuePair<int, int> keyValuePair in dictionary)
+			foreach (KeyValuePair<int, int> item2 in dictionary)
 			{
-				if (!fuyaoList.ContainsKey(keyValuePair.Key) || fuyaoList[keyValuePair.Key] < keyValuePair.Value)
+				if (!fuyaoList.ContainsKey(item2.Key) || fuyaoList[item2.Key] < item2.Value)
 				{
 					flag = false;
 				}
 			}
-			foreach (KeyValuePair<int, int> keyValuePair2 in dictionary2)
+			foreach (KeyValuePair<int, int> item3 in dictionary2)
 			{
-				if (!zhuyaoList.ContainsKey(keyValuePair2.Key) || zhuyaoList[keyValuePair2.Key] < keyValuePair2.Value)
+				if (!zhuyaoList.ContainsKey(item3.Key) || zhuyaoList[item3.Key] < item3.Value)
 				{
 					flag = false;
 				}
 			}
 			if (flag)
 			{
-				DanFans.Add(jsonobject);
+				DanFans.Add(item);
 			}
 		}
 	}
 
-	// Token: 0x06002337 RID: 9015 RVA: 0x000F0BE4 File Offset: 0x000EEDE4
-	public void GetDanFang(out int maxNum, out int maxpingzhi, out JSONObject danFangItemID, List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanMag.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
+	public void GetDanFang(out int maxNum, out int maxpingzhi, out JSONObject danFangItemID, List<JSONObject> DanFans, List<int> indexToLeixin, List<DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		maxpingzhi = 0;
 		maxNum = 0;
 		danFangItemID = null;
-		foreach (JSONObject jsonobject in DanFans)
+		foreach (JSONObject DanFan in DanFans)
 		{
-			int i = jsonData.instance.ItemJsonData[jsonobject["ItemID"].I.ToString()]["quality"].I;
-			Debug.Log("丹方ID" + jsonobject["ItemID"].I);
+			int i = jsonData.instance.ItemJsonData[DanFan["ItemID"].I.ToString()]["quality"].I;
+			Debug.Log((object)("丹方ID" + DanFan["ItemID"].I));
 			if (i > maxpingzhi)
 			{
 				maxNum = 0;
 				maxpingzhi = i;
-				danFangItemID = jsonobject;
+				danFangItemID = DanFan;
 			}
 			if (i == maxpingzhi)
 			{
@@ -318,268 +330,234 @@ public class LianDanMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002338 RID: 9016 RVA: 0x000F0CAC File Offset: 0x000EEEAC
 	public int getDanFang()
 	{
-		List<LianDanMag.DanyaoItem> list = new List<LianDanMag.DanyaoItem>();
-		List<int> list2 = new List<int>
-		{
-			1,
-			2,
-			2,
-			3,
-			3
-		};
+		List<DanyaoItem> list = new List<DanyaoItem>();
+		List<int> list2 = new List<int> { 1, 2, 2, 3, 3 };
 		Dictionary<int, int> dictionary = new Dictionary<int, int>();
 		Dictionary<int, int> dictionary2 = new Dictionary<int, int>();
-		this.GetYaoLeiList(list2, list, dictionary, dictionary2);
+		GetYaoLeiList(list2, list, dictionary, dictionary2);
 		List<JSONObject> danFans = new List<JSONObject>();
-		this.GetDanfangList(danFans, list2, list, dictionary, dictionary2);
-		int num = 0;
-		int num2 = 0;
-		JSONObject jsonobject = null;
-		this.GetDanFang(out num2, out num, out jsonobject, danFans, list2, list, dictionary, dictionary2);
+		GetDanfangList(danFans, list2, list, dictionary, dictionary2);
+		int maxpingzhi = 0;
+		int maxNum = 0;
+		JSONObject danFangItemID = null;
+		GetDanFang(out maxNum, out maxpingzhi, out danFangItemID, danFans, list2, list, dictionary, dictionary2);
 		Avatar player = Tools.instance.getPlayer();
-		int num3 = this.LianDanShu.Num;
-		List<int> list3 = new List<int>
+		int num = LianDanShu.Num;
+		List<int> list3 = new List<int> { 3, 4, 5, 6, 7, 8 };
+		if (maxpingzhi > 0)
 		{
-			3,
-			4,
-			5,
-			6,
-			7,
-			8
-		};
-		if (num > 0)
-		{
-			player.AddTime(list3[num - 1] * num3, 0, 0);
+			player.AddTime(list3[maxpingzhi - 1] * num);
 		}
 		else
 		{
-			player.AddTime(3 * num3, 0, 0);
+			player.AddTime(3 * num);
 		}
-		foreach (ItemCellEX itemCellEX in this.itemCells)
+		foreach (ItemCellEX itemCell in itemCells)
 		{
-			if (this.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].itemID != -1)
+			if (inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].itemID != -1)
 			{
-				player.removeItem(this.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].UUID, this.inventoryCaiLiao.inventory[int.Parse(itemCellEX.name)].itemNum * num3);
+				player.removeItem(inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].UUID, inventoryCaiLiao.inventory[int.Parse(((Object)itemCell).name)].itemNum * num);
 			}
 		}
-		this.InventoryFinish.resteAllInventoryItem();
-		if (this.InventoryShowDanlu.inventory[0].itemID != -1)
+		InventoryFinish.resteAllInventoryItem();
+		if (InventoryShowDanlu.inventory[0].itemID != -1)
 		{
-			int num4 = (int)jsonData.instance.ItemJsonData[this.InventoryShowDanlu.inventory[0].itemID.ToString()]["quality"].n;
-			int num5 = num;
-			int num6 = 0;
-			if (num5 - num4 == 0)
+			int num2 = (int)jsonData.instance.ItemJsonData[InventoryShowDanlu.inventory[0].itemID.ToString()]["quality"].n;
+			int num3 = 0;
+			num3 = maxpingzhi;
+			int num4 = 0;
+			if (num3 - num2 == 0)
 			{
-				num6 = this.ReduceNaijiu[1];
+				num4 = ReduceNaijiu[1];
 			}
-			else if (num5 - num4 == 1)
+			else if (num3 - num2 == 1)
 			{
-				num6 = this.ReduceNaijiu[2];
+				num4 = ReduceNaijiu[2];
 			}
-			else if (num5 - num4 == 2)
+			else if (num3 - num2 == 2)
 			{
-				num6 = this.ReduceNaijiu[3];
+				num4 = ReduceNaijiu[3];
 			}
-			else if (num5 - num4 >= 3)
+			else if (num3 - num2 >= 3)
 			{
-				num6 = this.ReduceNaijiu[4];
+				num4 = ReduceNaijiu[4];
 			}
-			else if (num5 - num4 < 0)
+			else if (num3 - num2 < 0)
 			{
-				num6 = this.ReduceNaijiu[0];
+				num4 = ReduceNaijiu[0];
 			}
-			if (num <= 0)
+			if (maxpingzhi <= 0)
 			{
-				num6 = 2;
+				num4 = 2;
 			}
-			num6 *= num3;
-			if (num4 > num5 && player.getStaticSkillAddSum(13) != 0)
+			num4 *= num;
+			if (num2 > num3 && player.getStaticSkillAddSum(13) != 0)
 			{
-				num6 = 0;
+				num4 = 0;
 			}
-			List<int> list4 = new List<int>
+			List<int> list4 = new List<int> { 30, 40, 120, 200, 250, 300 };
+			if (!InventoryShowDanlu.inventory[0].Seid.HasField("NaiJiu"))
 			{
-				30,
-				40,
-				120,
-				200,
-				250,
-				300
-			};
-			if (this.InventoryShowDanlu.inventory[0].Seid.HasField("NaiJiu"))
+				UIPopTip.Inst.Pop("丹炉错误");
+				return -1;
+			}
+			int num5 = (int)InventoryShowDanlu.inventory[0].Seid["NaiJiu"].n;
+			if (num5 - num4 <= 0)
 			{
-				int num7 = (int)this.InventoryShowDanlu.inventory[0].Seid["NaiJiu"].n;
-				if (num7 - num6 <= 0)
+				zhaLu.SHowZhalu();
+				player.removeItem(InventoryShowDanlu.inventory[0].UUID);
+				inventoryCaiLiao.resteAllInventoryItem();
+				inventoryCaiLiao.LoadInventory();
+				inventoryDanlu.resteAllInventoryItem();
+				inventoryDanlu.LoadInventory();
+				closeDanlu();
+				int num6 = (int)jsonData.instance.ItemJsonData[InventoryShowDanlu.inventory[0].itemID.ToString()]["quality"].n;
+				player.AllMapAddHP(-list4[num6 - 1], DeathType.炉毁人亡);
+				return -1;
+			}
+			foreach (ITEM_INFO value in player.itemList.values)
+			{
+				if (value.uuid == InventoryShowDanlu.inventory[0].UUID)
 				{
-					this.zhaLu.SHowZhalu();
-					player.removeItem(this.InventoryShowDanlu.inventory[0].UUID);
-					this.inventoryCaiLiao.resteAllInventoryItem();
-					this.inventoryCaiLiao.LoadInventory();
-					this.inventoryDanlu.resteAllInventoryItem();
-					this.inventoryDanlu.LoadInventory();
-					this.closeDanlu();
-					int num8 = (int)jsonData.instance.ItemJsonData[this.InventoryShowDanlu.inventory[0].itemID.ToString()]["quality"].n;
-					player.AllMapAddHP(-list4[num8 - 1], DeathType.炉毁人亡);
-					return -1;
-				}
-				using (List<ITEM_INFO>.Enumerator enumerator2 = player.itemList.values.GetEnumerator())
-				{
-					while (enumerator2.MoveNext())
-					{
-						ITEM_INFO item_INFO = enumerator2.Current;
-						if (item_INFO.uuid == this.InventoryShowDanlu.inventory[0].UUID)
-						{
-							item_INFO.Seid.SetField("NaiJiu", num7 - num6);
-						}
-					}
-					goto IL_458;
+					value.Seid.SetField("NaiJiu", num5 - num4);
 				}
 			}
-			UIPopTip.Inst.Pop("丹炉错误", PopTipIconType.叹号);
-			return -1;
 		}
-		IL_458:
-		ItemDatebase component = jsonData.instance.gameObject.GetComponent<ItemDatebase>();
+		ItemDatebase component = ((Component)jsonData.instance).gameObject.GetComponent<ItemDatebase>();
 		Dictionary<int, int> dictionary3 = new Dictionary<int, int>();
-		if (jsonobject != null)
+		if (danFangItemID != null)
 		{
 			Dictionary<int, int> dictionary4 = new Dictionary<int, int>();
 			Dictionary<int, int> dictionary5 = new Dictionary<int, int>();
 			for (int i = 1; i <= 5; i++)
 			{
-				if (list[i - 1].ItemID > 0 && (int)jsonobject["value" + i].n != 0)
+				if (list[i - 1].ItemID <= 0 || (int)danFangItemID["value" + i].n == 0)
 				{
-					JSONObject jsonobject2 = jsonData.instance.ItemJsonData[((int)jsonobject["value" + i].n).ToString()];
-					int num9 = (int)jsonobject2["yaoZhi" + list2[i - 1]].n;
-					int num10 = (int)jsonobject2["quality"].n;
-					int num11 = (int)jsonobject["num" + i].n * this.YaoZhi[num10 - 1];
-					int key = num9;
-					if (i == 1)
+					continue;
+				}
+				JSONObject jSONObject = jsonData.instance.ItemJsonData[((int)danFangItemID["value" + i].n).ToString()];
+				int num7 = (int)jSONObject["yaoZhi" + list2[i - 1]].n;
+				int num8 = (int)jSONObject["quality"].n;
+				int num9 = (int)danFangItemID["num" + i].n * YaoZhi[num8 - 1];
+				int key = num7;
+				switch (i)
+				{
+				case 1:
+					if (list[i - 1].YaoZhi - num9 > 0)
 					{
-						if (list[i - 1].YaoZhi - num11 > 0)
-						{
-							dictionary3[list[i - 1].YaoZhiType] = list[i - 1].YaoZhi - num11;
-						}
+						dictionary3[list[i - 1].YaoZhiType] = list[i - 1].YaoZhi - num9;
 					}
-					else if (i == 2 || i == 3)
-					{
-						Tools.dictionaryAddNum(dictionary5, key, num11);
-					}
-					else if (i == 4 || i == 5)
-					{
-						Tools.dictionaryAddNum(dictionary4, key, num11);
-					}
+					break;
+				case 2:
+				case 3:
+					Tools.dictionaryAddNum(dictionary5, key, num9);
+					break;
+				case 4:
+				case 5:
+					Tools.dictionaryAddNum(dictionary4, key, num9);
+					break;
 				}
 			}
-			foreach (KeyValuePair<int, int> keyValuePair in dictionary)
+			foreach (KeyValuePair<int, int> item in dictionary)
 			{
-				if (dictionary4.ContainsKey(keyValuePair.Key) && keyValuePair.Value > dictionary4[keyValuePair.Key])
+				if (dictionary4.ContainsKey(item.Key) && item.Value > dictionary4[item.Key])
 				{
-					Tools.dictionaryAddNum(dictionary3, keyValuePair.Key, keyValuePair.Value - dictionary4[keyValuePair.Key]);
+					Tools.dictionaryAddNum(dictionary3, item.Key, item.Value - dictionary4[item.Key]);
 				}
 			}
-			using (Dictionary<int, int>.Enumerator enumerator3 = dictionary2.GetEnumerator())
+			foreach (KeyValuePair<int, int> item2 in dictionary2)
 			{
-				while (enumerator3.MoveNext())
+				if (dictionary5.ContainsKey(item2.Key) && item2.Value > dictionary5[item2.Key])
 				{
-					KeyValuePair<int, int> keyValuePair2 = enumerator3.Current;
-					if (dictionary5.ContainsKey(keyValuePair2.Key) && keyValuePair2.Value > dictionary5[keyValuePair2.Key])
-					{
-						Tools.dictionaryAddNum(dictionary3, keyValuePair2.Key, keyValuePair2.Value - dictionary5[keyValuePair2.Key]);
-					}
+					Tools.dictionaryAddNum(dictionary3, item2.Key, item2.Value - dictionary5[item2.Key]);
 				}
-				goto IL_71B;
 			}
 		}
-		for (int j = 1; j <= 5; j++)
+		else
 		{
-			if (list[j - 1].ItemID > 0)
+			for (int j = 1; j <= 5; j++)
 			{
-				dictionary3[list[j - 1].YaoZhiType] = list[j - 1].YaoZhi;
+				if (list[j - 1].ItemID > 0)
+				{
+					dictionary3[list[j - 1].YaoZhiType] = list[j - 1].YaoZhi;
+				}
 			}
 		}
-		IL_71B:
-		if (num2 != 1)
+		if (maxNum != 1)
 		{
-			if (num == 0)
+			if (maxpingzhi == 0)
 			{
-				int num12 = 0;
-				foreach (KeyValuePair<int, int> keyValuePair3 in dictionary3)
+				int num10 = 0;
+				foreach (KeyValuePair<int, int> item3 in dictionary3)
 				{
-					if (keyValuePair3.Key > 0)
+					if (item3.Key > 0)
 					{
-						this.FinishAddItem(num12, this.InventoryFinish, component, keyValuePair3.Key + 6900, keyValuePair3.Value * num3);
-						num12++;
+						FinishAddItem(num10, InventoryFinish, component, item3.Key + 6900, item3.Value * num);
+						num10++;
 					}
 				}
-				this.finshPlan.fail(13, num3);
+				finshPlan.fail(13, num);
 			}
 			else
 			{
-				this.FinishAddItem(0, this.InventoryFinish, component, num + 5900, num3);
-				player.addItem(num + 5900, num3, Tools.CreateItemSeid(jsonobject["ItemID"].I), false);
-				this.finshPlan.fail(15, num3);
+				FinishAddItem(0, InventoryFinish, component, maxpingzhi + 5900, num);
+				player.addItem(maxpingzhi + 5900, num, Tools.CreateItemSeid(danFangItemID["ItemID"].I));
+				finshPlan.fail(15, num);
 			}
-			this.setFinsh();
+			setFinsh();
 			return -1;
 		}
-		List<int> list5 = new List<int>
+		List<int> list5 = new List<int> { -1, 1, 0 };
+		int num11 = -1;
+		if (danFangItemID != null)
 		{
-			-1,
-			1,
-			0
-		};
-		int num13 = -1;
-		if (jsonobject != null)
-		{
-			int num14 = 0;
+			int num12 = 0;
 			for (int k = 2; k <= 5; k++)
 			{
 				if (list[k - 1].ItemID > 0)
 				{
-					int num15 = (int)jsonData.instance.ItemJsonData[list[k - 1].ItemID.ToString()]["yaoZhi1"].n;
-					num14 += list5[num15 - 1];
+					int num13 = (int)jsonData.instance.ItemJsonData[list[k - 1].ItemID.ToString()]["yaoZhi1"].n;
+					num12 += list5[num13 - 1];
 				}
 			}
-			if (num14 > 0)
+			if (num12 > 0)
 			{
-				num13 = 1;
+				num11 = 1;
 			}
-			else if (num14 == 0)
+			else if (num12 == 0)
 			{
-				num13 = 3;
+				num11 = 3;
 			}
-			else if (num14 < 0)
+			else if (num12 < 0)
 			{
-				num13 = 2;
+				num11 = 2;
 			}
 		}
-		if (list[0].YaoZhiType != num13)
+		if (list[0].YaoZhiType != num11)
 		{
-			this.FinishAddItem(0, this.InventoryFinish, component, num + 5906, num3);
-			player.addItem(num + 5906, num3, Tools.CreateItemSeid(num + 5906), false);
-			this.finshPlan.fail(14, num3);
-			this.setFinsh();
+			FinishAddItem(0, InventoryFinish, component, maxpingzhi + 5906, num);
+			player.addItem(maxpingzhi + 5906, num, Tools.CreateItemSeid(maxpingzhi + 5906));
+			finshPlan.fail(14, num);
+			setFinsh();
 			return -1;
 		}
-		JSONObject jsonobject3 = jsonData.instance.ItemJsonData[((int)jsonobject["value1"].n).ToString()];
-		float n = jsonobject3["yaoZhi1"].n;
-		int num16 = (int)jsonobject3["quality"].n;
-		int num17 = (int)jsonobject["num1"].n * this.YaoZhi[num16 - 1];
-		if (list[0].YaoZhi < num17)
+		JSONObject jSONObject2 = jsonData.instance.ItemJsonData[((int)danFangItemID["value1"].n).ToString()];
+		_ = jSONObject2["yaoZhi1"].n;
+		int num14 = (int)jSONObject2["quality"].n;
+		int num15 = (int)danFangItemID["num1"].n * YaoZhi[num14 - 1];
+		if (list[0].YaoZhi < num15)
 		{
-			this.FinishAddItem(0, this.InventoryFinish, component, num + 5906, num3);
-			player.addItem(num + 5906, num3, Tools.CreateItemSeid(num + 5906), false);
-			this.finshPlan.fail(14, num3);
-			this.setFinsh();
+			FinishAddItem(0, InventoryFinish, component, maxpingzhi + 5906, num);
+			player.addItem(maxpingzhi + 5906, num, Tools.CreateItemSeid(maxpingzhi + 5906));
+			finshPlan.fail(14, num);
+			setFinsh();
 			return -1;
 		}
-		if (num2 == 1 && num > 0)
+		if (maxNum == 1 && maxpingzhi > 0)
 		{
-			if (jsonobject != null)
+			if (danFangItemID != null)
 			{
 				List<int> list6 = new List<int>();
 				List<int> list7 = new List<int>();
@@ -588,63 +566,54 @@ public class LianDanMag : MonoBehaviour
 					list6.Add(list[l - 1].ItemID);
 					list7.Add(list[l - 1].ItemNum);
 				}
-				player.addDanFang(jsonobject["ItemID"].I, list6, list7);
+				player.addDanFang(danFangItemID["ItemID"].I, list6, list7);
 			}
-			int num18 = 0;
+			int num16 = 0;
 			if (player.getStaticSkillAddSum(17) != 0)
 			{
-				num3 *= 2;
+				num *= 2;
 			}
-			this.FinishAddItem(num18, this.InventoryFinish, component, jsonobject["ItemID"].I, num3);
-			num18++;
-			foreach (KeyValuePair<int, int> keyValuePair4 in dictionary3)
+			FinishAddItem(num16, InventoryFinish, component, danFangItemID["ItemID"].I, num);
+			num16++;
+			foreach (KeyValuePair<int, int> item4 in dictionary3)
 			{
-				if (keyValuePair4.Key > 0)
+				if (item4.Key > 0)
 				{
-					this.FinishAddItem(num18, this.InventoryFinish, component, keyValuePair4.Key + 6900, keyValuePair4.Value * num3);
-					num18++;
+					FinishAddItem(num16, InventoryFinish, component, item4.Key + 6900, item4.Value * num);
+					num16++;
 				}
 			}
-			player.addItem(jsonobject["ItemID"].I, num3, Tools.CreateItemSeid(jsonobject["ItemID"].I), false);
+			player.addItem(danFangItemID["ItemID"].I, num, Tools.CreateItemSeid(danFangItemID["ItemID"].I));
 			if (dictionary3.Count > 0)
 			{
-				this.finshPlan.succes(2 + (num - 1) * 2, num3);
+				finshPlan.succes(2 + (maxpingzhi - 1) * 2, num);
 			}
 			else
 			{
-				this.finshPlan.succes(1 + (num - 1) * 2, num3);
+				finshPlan.succes(1 + (maxpingzhi - 1) * 2, num);
 			}
 			try
 			{
-				LianDanMag.AddWuDaoLianDan(jsonobject["ItemID"].I, num3);
+				AddWuDaoLianDan(danFangItemID["ItemID"].I, num);
 			}
 			catch (Exception ex)
 			{
-				Debug.LogError(ex);
+				Debug.LogError((object)ex);
 			}
 		}
-		this.lianDanDanFang.InitDanFang();
-		this.setFinsh();
+		lianDanDanFang.InitDanFang();
+		setFinsh();
 		return -1;
 	}
 
-	// Token: 0x06002339 RID: 9017 RVA: 0x000F1898 File Offset: 0x000EFA98
 	public static void AddWuDaoLianDan(int ItemId, int Num)
 	{
-		JSONObject jsonobject = jsonData.instance.ItemJsonData[ItemId.ToString()];
-		int i = jsonobject["quality"].I;
-		int i2 = jsonobject["price"].I;
+		JSONObject jSONObject = jsonData.instance.ItemJsonData[ItemId.ToString()];
+		int i = jSONObject["quality"].I;
+		int i2 = jSONObject["price"].I;
 		Avatar player = Tools.instance.getPlayer();
-		List<int> list = new List<int>
-		{
-			10,
-			15,
-			30,
-			50,
-			70,
-			100
-		};
-		float itemPercent = LianDanMag.getItemPercent(i);
+		List<int> list = new List<int> { 10, 15, 30, 50, 70, 100 };
+		float itemPercent = getItemPercent(i);
 		if (!player.HasLianZhiDanYao.HasItem(ItemId))
 		{
 			player.HasLianZhiDanYao.Add(ItemId);
@@ -653,143 +622,59 @@ public class LianDanMag : MonoBehaviour
 		player.wuDaoMag.addWuDaoEx(21, (int)((float)i2 / (float)list[i - 1] * (float)Num * itemPercent));
 	}
 
-	// Token: 0x0600233A RID: 9018 RVA: 0x000F1984 File Offset: 0x000EFB84
 	public static float getItemPercent(int itemQuality)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(21);
-		float result;
+		float num = 1f;
 		if (wuDaoLevelByType <= itemQuality)
 		{
-			result = 1f;
+			return 1f;
 		}
-		else if (wuDaoLevelByType == itemQuality + 1)
+		if (wuDaoLevelByType == itemQuality + 1)
 		{
-			result = 0.5f;
+			return 0.5f;
 		}
-		else
-		{
-			result = 0f;
-		}
-		return result;
+		return 0f;
 	}
 
-	// Token: 0x0600233B RID: 9019 RVA: 0x000F19CF File Offset: 0x000EFBCF
 	public void setFinsh()
 	{
-		this.inventoryCaiLiao.resteAllInventoryItem();
-		this.inventoryCaiLiao.LoadInventory();
+		inventoryCaiLiao.resteAllInventoryItem();
+		inventoryCaiLiao.LoadInventory();
 	}
 
-	// Token: 0x0600233C RID: 9020 RVA: 0x000F19E7 File Offset: 0x000EFBE7
 	public void FinishAddItem(int index, Inventory2 InventoryFinish, ItemDatebase datebase, int id, int lianzhicishu)
 	{
 		InventoryFinish.inventory[index] = datebase.items[id].Clone();
 		InventoryFinish.inventory[index].itemNum = lianzhicishu;
 	}
 
-	// Token: 0x0600233D RID: 9021 RVA: 0x000F1A1C File Offset: 0x000EFC1C
 	public void addYaoCai(List<int> danyao, List<int> num)
 	{
-		if (!this.DanLuPlan.activeSelf)
+		if (!DanLuPlan.activeSelf)
 		{
 			return;
 		}
-		this.inventoryCaiLiao.resteAllInventoryItem();
-		this.inventoryCaiLiao.LoadInventory();
+		inventoryCaiLiao.resteAllInventoryItem();
+		inventoryCaiLiao.LoadInventory();
 		for (int i = 0; i < danyao.Count; i++)
 		{
-			if (danyao[i] > 0)
+			if (danyao[i] <= 0)
 			{
-				foreach (ITEM_INFO item_INFO in Tools.instance.getPlayer().itemList.values)
+				continue;
+			}
+			foreach (ITEM_INFO value in Tools.instance.getPlayer().itemList.values)
+			{
+				if (danyao[i] == value.itemId && num[i] <= value.itemCount)
 				{
-					if (danyao[i] == item_INFO.itemId && (long)num[i] <= (long)((ulong)item_INFO.itemCount))
-					{
-						this.inventoryCaiLiao.setindexItem(24 + i, danyao[i], num[i], item_INFO.uuid);
-						this.inventoryCaiLiao.reduceItem1(2, item_INFO.uuid, num[i]);
-					}
+					inventoryCaiLiao.setindexItem(24 + i, danyao[i], num[i], value.uuid);
+					inventoryCaiLiao.reduceItem1(2, value.uuid, num[i]);
 				}
 			}
 		}
 	}
 
-	// Token: 0x0600233E RID: 9022 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
-	}
-
-	// Token: 0x04001C4D RID: 7245
-	public Inventory2 inventoryCaiLiao;
-
-	// Token: 0x04001C4E RID: 7246
-	public Inventory2 inventoryDanlu;
-
-	// Token: 0x04001C4F RID: 7247
-	public Inventory2 InventoryShowDanlu;
-
-	// Token: 0x04001C50 RID: 7248
-	public Inventory2 InventoryFinish;
-
-	// Token: 0x04001C51 RID: 7249
-	public List<ItemCellEX> itemCells;
-
-	// Token: 0x04001C52 RID: 7250
-	public static LianDanMag instence;
-
-	// Token: 0x04001C53 RID: 7251
-	public List<List<int>> duiying;
-
-	// Token: 0x04001C54 RID: 7252
-	public List<int> YaoZhi;
-
-	// Token: 0x04001C55 RID: 7253
-	public List<int> ReduceNaijiu;
-
-	// Token: 0x04001C56 RID: 7254
-	public List<int> MaxCaoYao;
-
-	// Token: 0x04001C57 RID: 7255
-	public LianDanDanFang lianDanDanFang;
-
-	// Token: 0x04001C58 RID: 7256
-	public LianDanFinsh zhaLu;
-
-	// Token: 0x04001C59 RID: 7257
-	public LianDanFinsh finshPlan;
-
-	// Token: 0x04001C5A RID: 7258
-	public GameObject DanLuPlan;
-
-	// Token: 0x04001C5B RID: 7259
-	public GameObject AddDanluBtn;
-
-	// Token: 0x04001C5C RID: 7260
-	public GameObject XuanZeDanLu;
-
-	// Token: 0x04001C5D RID: 7261
-	public GameObject CaiLiaoItem;
-
-	// Token: 0x04001C5E RID: 7262
-	public LianDanShu LianDanShu;
-
-	// Token: 0x04001C5F RID: 7263
-	public GameObject DanfunPlan;
-
-	// Token: 0x04001C60 RID: 7264
-	public GameObject YaoCaiPlan;
-
-	// Token: 0x020013A0 RID: 5024
-	public class DanyaoItem
-	{
-		// Token: 0x040068E8 RID: 26856
-		public int ItemID = -1;
-
-		// Token: 0x040068E9 RID: 26857
-		public int ItemNum;
-
-		// Token: 0x040068EA RID: 26858
-		public int YaoZhi;
-
-		// Token: 0x040068EB RID: 26859
-		public int YaoZhiType;
 	}
 }

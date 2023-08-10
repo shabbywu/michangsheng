@@ -1,142 +1,134 @@
-﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-// Token: 0x020000D7 RID: 215
 public class CharacterStatus : MonoBehaviour
 {
-	// Token: 0x06000B30 RID: 2864 RVA: 0x00044384 File Offset: 0x00042584
+	public GameObject DeadbodyModel;
+
+	public GameObject ParticleObject;
+
+	public string Name = "";
+
+	public int HP = 10;
+
+	public int SP = 10;
+
+	public int SPmax = 10;
+
+	public int HPmax = 10;
+
+	public int Damage = 1;
+
+	public int Defend = 1;
+
+	public int HPregen = 1;
+
+	public int SPregen = 1;
+
+	public AudioClip[] SoundHit;
+
+	private Vector3 velocityDamage;
+
+	private float lastRegen;
+
 	private void Update()
 	{
-		if (Time.time - this.lastRegen >= 1f)
+		if (Time.time - lastRegen >= 1f)
 		{
-			this.lastRegen = Time.time;
-			this.HP += this.HPregen;
-			this.SP += this.SPregen;
+			lastRegen = Time.time;
+			HP += HPregen;
+			SP += SPregen;
 		}
-		if (this.HP > this.HPmax)
+		if (HP > HPmax)
 		{
-			this.HP = this.HPmax;
+			HP = HPmax;
 		}
-		if (this.SP > this.SPmax)
+		if (SP > SPmax)
 		{
-			this.SP = this.SPmax;
+			SP = SPmax;
 		}
 	}
 
-	// Token: 0x06000B31 RID: 2865 RVA: 0x0004440C File Offset: 0x0004260C
 	public int ApplayDamage(int damage, Vector3 dirdamge)
 	{
-		if (this.HP < 0)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		if (HP < 0)
 		{
 			return 0;
 		}
-		if (this.SoundHit.Length != 0)
+		if (SoundHit.Length != 0)
 		{
-			int num = Random.Range(0, this.SoundHit.Length);
-			if (this.SoundHit[num] != null)
+			int num = Random.Range(0, SoundHit.Length);
+			if ((Object)(object)SoundHit[num] != (Object)null)
 			{
-				AudioSource.PlayClipAtPoint(this.SoundHit[num], base.transform.position);
+				AudioSource.PlayClipAtPoint(SoundHit[num], ((Component)this).transform.position);
 			}
 		}
-		if (base.gameObject.GetComponent<CharacterSystem>())
+		if (Object.op_Implicit((Object)(object)((Component)this).gameObject.GetComponent<CharacterSystem>()))
 		{
-			base.gameObject.GetComponent<CharacterSystem>().GotHit(1f);
+			((Component)this).gameObject.GetComponent<CharacterSystem>().GotHit(1f);
 		}
-		int num2 = damage - this.Defend;
+		int num2 = damage - Defend;
 		if (num2 < 1)
 		{
 			num2 = 1;
 		}
-		this.HP -= num2;
-		this.velocityDamage = dirdamge;
-		if (this.HP <= 0)
+		HP -= num2;
+		velocityDamage = dirdamge;
+		if (HP <= 0)
 		{
-			this.Dead();
+			Dead();
 		}
 		return num2;
 	}
 
-	// Token: 0x06000B32 RID: 2866 RVA: 0x000444BF File Offset: 0x000426BF
 	public void AddParticle(Vector3 pos)
 	{
-		if (this.ParticleObject)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		if (Object.op_Implicit((Object)(object)ParticleObject))
 		{
-			Object.Destroy(Object.Instantiate<GameObject>(this.ParticleObject, pos, base.transform.rotation), 1f);
+			Object.Destroy((Object)(object)Object.Instantiate<GameObject>(ParticleObject, pos, ((Component)this).transform.rotation), 1f);
 		}
 	}
 
-	// Token: 0x06000B33 RID: 2867 RVA: 0x000444F0 File Offset: 0x000426F0
 	private void Dead()
 	{
-		if (this.DeadbodyModel)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		if (Object.op_Implicit((Object)(object)DeadbodyModel))
 		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.DeadbodyModel, base.gameObject.transform.position, base.gameObject.transform.rotation);
-			this.CopyTransformsRecurse(base.gameObject.transform, gameObject.transform);
-			Object.Destroy(gameObject, 10f);
+			GameObject val = Object.Instantiate<GameObject>(DeadbodyModel, ((Component)this).gameObject.transform.position, ((Component)this).gameObject.transform.rotation);
+			CopyTransformsRecurse(((Component)this).gameObject.transform, val.transform);
+			Object.Destroy((Object)(object)val, 10f);
 		}
-		Object.Destroy(base.gameObject);
+		Object.Destroy((Object)(object)((Component)this).gameObject);
 	}
 
-	// Token: 0x06000B34 RID: 2868 RVA: 0x00044564 File Offset: 0x00042764
 	public void CopyTransformsRecurse(Transform src, Transform dst)
 	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
 		dst.position = src.position;
 		dst.rotation = src.rotation;
 		dst.localScale = src.localScale;
-		foreach (Transform transform in dst.Cast<Transform>())
+		foreach (Transform item in ((IEnumerable)dst).Cast<Transform>())
 		{
-			Transform transform2 = src.Find(transform.name);
-			if (transform.GetComponent<Rigidbody>())
+			Transform val = src.Find(((Object)item).name);
+			if (Object.op_Implicit((Object)(object)((Component)item).GetComponent<Rigidbody>()))
 			{
-				transform.GetComponent<Rigidbody>().AddForce(this.velocityDamage / 3f);
+				((Component)item).GetComponent<Rigidbody>().AddForce(velocityDamage / 3f);
 			}
-			if (transform2)
+			if (Object.op_Implicit((Object)(object)val))
 			{
-				this.CopyTransformsRecurse(transform2, transform);
+				CopyTransformsRecurse(val, item);
 			}
 		}
 	}
-
-	// Token: 0x0400074D RID: 1869
-	public GameObject DeadbodyModel;
-
-	// Token: 0x0400074E RID: 1870
-	public GameObject ParticleObject;
-
-	// Token: 0x0400074F RID: 1871
-	public string Name = "";
-
-	// Token: 0x04000750 RID: 1872
-	public int HP = 10;
-
-	// Token: 0x04000751 RID: 1873
-	public int SP = 10;
-
-	// Token: 0x04000752 RID: 1874
-	public int SPmax = 10;
-
-	// Token: 0x04000753 RID: 1875
-	public int HPmax = 10;
-
-	// Token: 0x04000754 RID: 1876
-	public int Damage = 1;
-
-	// Token: 0x04000755 RID: 1877
-	public int Defend = 1;
-
-	// Token: 0x04000756 RID: 1878
-	public int HPregen = 1;
-
-	// Token: 0x04000757 RID: 1879
-	public int SPregen = 1;
-
-	// Token: 0x04000758 RID: 1880
-	public AudioClip[] SoundHit;
-
-	// Token: 0x04000759 RID: 1881
-	private Vector3 velocityDamage;
-
-	// Token: 0x0400075A RID: 1882
-	private float lastRegen;
 }

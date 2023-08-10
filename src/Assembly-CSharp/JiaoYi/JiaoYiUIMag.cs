@@ -1,68 +1,95 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace JiaoYi
+namespace JiaoYi;
+
+public class JiaoYiUIMag : MonoBehaviour, IESCClose
 {
-	// Token: 0x02000731 RID: 1841
-	public class JiaoYiUIMag : MonoBehaviour, IESCClose
+	public static JiaoYiUIMag Inst;
+
+	public int NpcId;
+
+	public JiaoBag PlayerBag;
+
+	public PlayerSetRandomFace PlayerFace;
+
+	public BagItemSelect bagItemSelect;
+
+	public Text PlayerName;
+
+	public Text PlayerTitle;
+
+	public JiaoBag NpcBag;
+
+	public PlayerSetRandomFace NpcFace;
+
+	public Text NpcName;
+
+	public Text NpcTitle;
+
+	public int PlayerGetMoney;
+
+	public Text PlayerGetMoneyText;
+
+	public GameObject NpcSayPanel;
+
+	public Text NpcSayText;
+
+	public UnityAction CloseAction;
+
+	private void Awake()
 	{
-		// Token: 0x06003AA3 RID: 15011 RVA: 0x001930C4 File Offset: 0x001912C4
-		private void Awake()
-		{
-			JiaoYiUIMag.Inst = this;
-			ESCCloseManager.Inst.RegisterClose(this);
-		}
+		Inst = this;
+		ESCCloseManager.Inst.RegisterClose(this);
+	}
 
-		// Token: 0x06003AA4 RID: 15012 RVA: 0x001930D7 File Offset: 0x001912D7
-		public void Init(int npcId)
-		{
-			this.NpcId = NPCEx.NPCIDToNew(npcId);
-			this.InitPlayerData();
-			this.InitNpcData();
-			base.transform.SetAsLastSibling();
-		}
+	public void Init(int npcId)
+	{
+		NpcId = NPCEx.NPCIDToNew(npcId);
+		InitPlayerData();
+		InitNpcData();
+		((Component)this).transform.SetAsLastSibling();
+	}
 
-		// Token: 0x06003AA5 RID: 15013 RVA: 0x001930FC File Offset: 0x001912FC
-		public void Init(int npcId, UnityAction action)
-		{
-			this.NpcId = npcId;
-			this.InitPlayerData();
-			this.InitNpcData();
-			base.transform.SetAsLastSibling();
-			this.CloseAction = action;
-			this.PlayerBag.UpdateMoney();
-			this.NpcBag.UpdateMoney();
-		}
+	public void Init(int npcId, UnityAction action)
+	{
+		NpcId = npcId;
+		InitPlayerData();
+		InitNpcData();
+		((Component)this).transform.SetAsLastSibling();
+		CloseAction = action;
+		PlayerBag.UpdateMoney();
+		NpcBag.UpdateMoney();
+	}
 
-		// Token: 0x06003AA6 RID: 15014 RVA: 0x00193139 File Offset: 0x00191339
-		private void InitPlayerData()
-		{
-			this.PlayerName.SetText(Tools.GetPlayerName());
-			this.PlayerTitle.SetText(Tools.GetPlayerTitle());
-			this.PlayerBag.Init(this.NpcId, true);
-		}
+	private void InitPlayerData()
+	{
+		PlayerName.SetText(Tools.GetPlayerName());
+		PlayerTitle.SetText(Tools.GetPlayerTitle());
+		PlayerBag.Init(NpcId, isPlayer: true);
+	}
 
-		// Token: 0x06003AA7 RID: 15015 RVA: 0x00193170 File Offset: 0x00191370
-		private void InitNpcData()
-		{
-			NpcJieSuanManager.inst.SortNpcPack(this.NpcId);
-			this.NpcName.text = jsonData.instance.AvatarRandomJsonData[this.NpcId.ToString()]["Name"].Str;
-			this.NpcTitle.text = jsonData.instance.AvatarJsonData[this.NpcId.ToString()]["Title"].Str;
-			this.NpcFace.SetNPCFace(this.NpcId);
-			this.NpcBag.Init(this.NpcId, false);
-		}
+	private void InitNpcData()
+	{
+		NpcJieSuanManager.inst.SortNpcPack(NpcId);
+		NpcName.text = jsonData.instance.AvatarRandomJsonData[NpcId.ToString()]["Name"].Str;
+		NpcTitle.text = jsonData.instance.AvatarJsonData[NpcId.ToString()]["Title"].Str;
+		NpcFace.SetNPCFace(NpcId);
+		NpcBag.Init(NpcId);
+	}
 
-		// Token: 0x06003AA8 RID: 15016 RVA: 0x00193218 File Offset: 0x00191418
-		public void SellItem(JiaoYiSlot dragSlot, JiaoYiSlot toSlot = null)
+	public void SellItem(JiaoYiSlot dragSlot, JiaoYiSlot toSlot = null)
+	{
+		//IL_02aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b5: Expected O, but got Unknown
+		if (!dragSlot.Item.CanSale)
 		{
-			if (!dragSlot.Item.CanSale)
-			{
-				UIPopTip.Inst.Pop("此物品无法交易", PopTipIconType.叹号);
-				return;
-			}
-			if (toSlot != null && !toSlot.IsNull() && (dragSlot.Item.Id != toSlot.Item.Id || dragSlot.Item.MaxNum < 2))
+			UIPopTip.Inst.Pop("此物品无法交易");
+		}
+		else
+		{
+			if ((Object)(object)toSlot != (Object)null && !toSlot.IsNull() && (dragSlot.Item.Id != toSlot.Item.Id || dragSlot.Item.MaxNum < 2))
 			{
 				return;
 			}
@@ -70,26 +97,26 @@ namespace JiaoYi
 			JiaoBag jiaoBag = null;
 			if (isPlayer)
 			{
-				jiaoBag = this.PlayerBag;
+				jiaoBag = PlayerBag;
 			}
 			else
 			{
-				jiaoBag = this.NpcBag;
+				jiaoBag = NpcBag;
 			}
 			if (dragSlot.Item.Count < 1)
 			{
-				UIPopTip.Inst.Pop("此物品数量小于0，无法交易", PopTipIconType.叹号);
+				UIPopTip.Inst.Pop("此物品数量小于0，无法交易");
 				return;
 			}
 			if (dragSlot.Item.Count == 1)
 			{
-				if (toSlot == null)
+				if ((Object)(object)toSlot == (Object)null)
 				{
 					toSlot = jiaoBag.GetNullSellList(dragSlot.Item.Uid);
 				}
-				if (toSlot == null)
+				if ((Object)(object)toSlot == (Object)null)
 				{
-					UIPopTip.Inst.Pop("没有空的格子", PopTipIconType.叹号);
+					UIPopTip.Inst.Pop("没有空的格子");
 					return;
 				}
 				if (toSlot.IsNull())
@@ -106,43 +133,42 @@ namespace JiaoYi
 				dragSlot.Item.Count--;
 				if (dragSlot.Item.Count <= 0)
 				{
-					jiaoBag.UpdateItem(false);
+					jiaoBag.UpdateItem();
 				}
-				this.UpdatePlayerGetMoney();
+				UpdatePlayerGetMoney();
 				return;
 			}
-			else
+			int num = 0;
+			if (dragSlot.Item.Count > 1)
 			{
-				int num = 0;
-				if (dragSlot.Item.Count > 1)
+				if (Input.GetKey((KeyCode)304) || Input.GetKey((KeyCode)303))
 				{
-					if (Input.GetKey(304) || Input.GetKey(303))
-					{
-						num = 5;
-						if (dragSlot.Item.Count < 5)
-						{
-							num = dragSlot.Item.Count;
-						}
-					}
-					if (Input.GetKey(306) || Input.GetKey(305))
+					num = 5;
+					if (dragSlot.Item.Count < 5)
 					{
 						num = dragSlot.Item.Count;
 					}
 				}
-				if (num <= 0)
+				if (Input.GetKey((KeyCode)306) || Input.GetKey((KeyCode)305))
 				{
-					this.bagItemSelect.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, delegate
+					num = dragSlot.Item.Count;
+				}
+			}
+			if (num <= 0)
+			{
+				bagItemSelect.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, (UnityAction)delegate
+				{
+					int curNum = bagItemSelect.CurNum;
+					if ((Object)(object)toSlot == (Object)null)
 					{
-						int curNum = this.bagItemSelect.CurNum;
-						if (toSlot == null)
-						{
-							toSlot = jiaoBag.GetNullSellList(dragSlot.Item.Uid);
-						}
-						if (toSlot == null)
-						{
-							UIPopTip.Inst.Pop("没有空的格子", PopTipIconType.叹号);
-							return;
-						}
+						toSlot = jiaoBag.GetNullSellList(dragSlot.Item.Uid);
+					}
+					if ((Object)(object)toSlot == (Object)null)
+					{
+						UIPopTip.Inst.Pop("没有空的格子");
+					}
+					else
+					{
 						if (toSlot.IsNull())
 						{
 							toSlot.SetSlotData(dragSlot.Item.Clone());
@@ -157,352 +183,301 @@ namespace JiaoYi
 						dragSlot.Item.Count -= curNum;
 						if (dragSlot.Item.Count <= 0)
 						{
-							jiaoBag.UpdateItem(false);
+							jiaoBag.UpdateItem();
 						}
 						else
 						{
 							dragSlot.UpdateUI();
 						}
-						this.UpdatePlayerGetMoney();
-					}, null);
-					return;
-				}
-				if (toSlot == null)
-				{
-					toSlot = jiaoBag.GetNullSellList(dragSlot.Item.Uid);
-				}
-				if (toSlot == null)
-				{
-					UIPopTip.Inst.Pop("没有空的格子", PopTipIconType.叹号);
-					return;
-				}
-				if (toSlot.IsNull())
-				{
-					toSlot.SetSlotData(dragSlot.Item.Clone());
-					toSlot.Item.Count = num;
-				}
-				else
-				{
-					toSlot.Item.Count += num;
-				}
-				toSlot.UpdateUI();
-				jiaoBag.RemoveTempItem(dragSlot.Item.Uid, num);
-				dragSlot.Item.Count -= num;
-				if (dragSlot.Item.Count <= 0)
-				{
-					jiaoBag.UpdateItem(false);
-				}
-				else
-				{
-					dragSlot.UpdateUI();
-				}
-				this.UpdatePlayerGetMoney();
+						UpdatePlayerGetMoney();
+					}
+				});
 				return;
 			}
-		}
-
-		// Token: 0x06003AA9 RID: 15017 RVA: 0x001935F0 File Offset: 0x001917F0
-		public void UpdatePlayerGetMoney()
-		{
-			this.PlayerGetMoney = 0;
-			foreach (JiaoYiSlot jiaoYiSlot in this.PlayerBag.SellList)
+			if ((Object)(object)toSlot == (Object)null)
 			{
-				if (!jiaoYiSlot.IsNull())
-				{
-					this.PlayerGetMoney += jiaoYiSlot.Item.GetJiaoYiPrice(this.NpcId, true, false) * jiaoYiSlot.Item.Count;
-				}
+				toSlot = jiaoBag.GetNullSellList(dragSlot.Item.Uid);
 			}
-			foreach (JiaoYiSlot jiaoYiSlot2 in this.NpcBag.SellList)
+			if ((Object)(object)toSlot == (Object)null)
 			{
-				if (!jiaoYiSlot2.IsNull())
-				{
-					this.PlayerGetMoney -= jiaoYiSlot2.Item.GetJiaoYiPrice(this.NpcId, false, false) * jiaoYiSlot2.Item.Count;
-				}
-			}
-			if (this.PlayerGetMoney >= 0)
-			{
-				this.PlayerGetMoneyText.SetText(string.Format("+{0}", this.PlayerGetMoney));
+				UIPopTip.Inst.Pop("没有空的格子");
 				return;
 			}
-			this.PlayerGetMoneyText.SetText(string.Format("{0}", this.PlayerGetMoney));
-		}
-
-		// Token: 0x06003AAA RID: 15018 RVA: 0x0019373C File Offset: 0x0019193C
-		public void BackItem(JiaoYiSlot dragSlot, JiaoYiSlot toSlot = null)
-		{
-			if (!dragSlot.Item.CanSale)
+			if (toSlot.IsNull())
 			{
-				UIPopTip.Inst.Pop("此物品无法交易", PopTipIconType.叹号);
-				return;
-			}
-			bool isPlayer = dragSlot.IsPlayer;
-			JiaoBag jiaoBag = null;
-			if (isPlayer)
-			{
-				jiaoBag = this.PlayerBag;
+				toSlot.SetSlotData(dragSlot.Item.Clone());
+				toSlot.Item.Count = num;
 			}
 			else
 			{
-				jiaoBag = this.NpcBag;
+				toSlot.Item.Count += num;
 			}
-			if (dragSlot.Item.Count < 1)
+			toSlot.UpdateUI();
+			jiaoBag.RemoveTempItem(dragSlot.Item.Uid, num);
+			dragSlot.Item.Count -= num;
+			if (dragSlot.Item.Count <= 0)
 			{
-				UIPopTip.Inst.Pop("此物品数量小于0，无法交易", PopTipIconType.叹号);
-				return;
+				jiaoBag.UpdateItem();
 			}
-			if (toSlot == null)
+			else
 			{
-				toSlot = (JiaoYiSlot)jiaoBag.GetNullBagSlot(dragSlot.Item.Uid);
+				dragSlot.UpdateUI();
 			}
-			if (dragSlot.Item.Count == 1)
+			UpdatePlayerGetMoney();
+		}
+	}
+
+	public void UpdatePlayerGetMoney()
+	{
+		PlayerGetMoney = 0;
+		foreach (JiaoYiSlot sell in PlayerBag.SellList)
+		{
+			if (!sell.IsNull())
 			{
-				jiaoBag.AddTempItem(dragSlot.Item, 1);
-				if (toSlot == null)
+				PlayerGetMoney += sell.Item.GetJiaoYiPrice(NpcId, isPlayer: true) * sell.Item.Count;
+			}
+		}
+		foreach (JiaoYiSlot sell2 in NpcBag.SellList)
+		{
+			if (!sell2.IsNull())
+			{
+				PlayerGetMoney -= sell2.Item.GetJiaoYiPrice(NpcId) * sell2.Item.Count;
+			}
+		}
+		if (PlayerGetMoney >= 0)
+		{
+			PlayerGetMoneyText.SetText($"+{PlayerGetMoney}");
+		}
+		else
+		{
+			PlayerGetMoneyText.SetText($"{PlayerGetMoney}");
+		}
+	}
+
+	public void BackItem(JiaoYiSlot dragSlot, JiaoYiSlot toSlot = null)
+	{
+		//IL_02a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b2: Expected O, but got Unknown
+		if (!dragSlot.Item.CanSale)
+		{
+			UIPopTip.Inst.Pop("此物品无法交易");
+			return;
+		}
+		bool isPlayer = dragSlot.IsPlayer;
+		JiaoBag jiaoBag = null;
+		if (isPlayer)
+		{
+			jiaoBag = PlayerBag;
+		}
+		else
+		{
+			jiaoBag = NpcBag;
+		}
+		if (dragSlot.Item.Count < 1)
+		{
+			UIPopTip.Inst.Pop("此物品数量小于0，无法交易");
+			return;
+		}
+		if ((Object)(object)toSlot == (Object)null)
+		{
+			toSlot = (JiaoYiSlot)jiaoBag.GetNullBagSlot(dragSlot.Item.Uid);
+		}
+		if (dragSlot.Item.Count == 1)
+		{
+			jiaoBag.AddTempItem(dragSlot.Item, 1);
+			if ((Object)(object)toSlot == (Object)null)
+			{
+				jiaoBag.UpdateItem();
+			}
+			else
+			{
+				if (toSlot.IsNull())
 				{
-					jiaoBag.UpdateItem(false);
+					toSlot.SetSlotData(dragSlot.Item.Clone());
+					toSlot.Item.Count = 1;
+				}
+				else if (toSlot.Item.Id == dragSlot.Item.Id && toSlot.Item.MaxNum > 1)
+				{
+					toSlot.Item.Count++;
+				}
+				else
+				{
+					jiaoBag.UpdateItem();
+				}
+				toSlot.UpdateUI();
+			}
+			dragSlot.Item.Count--;
+			if (dragSlot.Item.Count <= 0)
+			{
+				dragSlot.SetNull();
+			}
+			jiaoBag.UpdateItem();
+			UpdatePlayerGetMoney();
+			return;
+		}
+		int num = 0;
+		if (dragSlot.Item.Count > 1)
+		{
+			if (Input.GetKey((KeyCode)304) || Input.GetKey((KeyCode)303))
+			{
+				num = 5;
+				if (dragSlot.Item.Count < 5)
+				{
+					num = dragSlot.Item.Count;
+				}
+			}
+			if (Input.GetKey((KeyCode)306) || Input.GetKey((KeyCode)305))
+			{
+				num = dragSlot.Item.Count;
+			}
+		}
+		if (num <= 0)
+		{
+			bagItemSelect.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, (UnityAction)delegate
+			{
+				int curNum = bagItemSelect.CurNum;
+				jiaoBag.AddTempItem(dragSlot.Item, curNum);
+				if ((Object)(object)toSlot == (Object)null)
+				{
+					jiaoBag.UpdateItem();
 				}
 				else
 				{
 					if (toSlot.IsNull())
 					{
 						toSlot.SetSlotData(dragSlot.Item.Clone());
-						toSlot.Item.Count = 1;
+						toSlot.Item.Count = curNum;
 					}
 					else if (toSlot.Item.Id == dragSlot.Item.Id && toSlot.Item.MaxNum > 1)
 					{
-						toSlot.Item.Count++;
+						toSlot.Item.Count += curNum;
 					}
 					else
 					{
-						jiaoBag.UpdateItem(false);
+						jiaoBag.UpdateItem();
 					}
 					toSlot.UpdateUI();
 				}
-				dragSlot.Item.Count--;
+				dragSlot.Item.Count -= curNum;
 				if (dragSlot.Item.Count <= 0)
 				{
 					dragSlot.SetNull();
 				}
-				jiaoBag.UpdateItem(false);
-				this.UpdatePlayerGetMoney();
-				return;
-			}
-			int num = 0;
-			if (dragSlot.Item.Count > 1)
-			{
-				if (Input.GetKey(304) || Input.GetKey(303))
-				{
-					num = 5;
-					if (dragSlot.Item.Count < 5)
-					{
-						num = dragSlot.Item.Count;
-					}
-				}
-				if (Input.GetKey(306) || Input.GetKey(305))
-				{
-					num = dragSlot.Item.Count;
-				}
-			}
-			if (num <= 0)
-			{
-				this.bagItemSelect.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, delegate
-				{
-					int curNum = this.bagItemSelect.CurNum;
-					jiaoBag.AddTempItem(dragSlot.Item, curNum);
-					if (toSlot == null)
-					{
-						jiaoBag.UpdateItem(false);
-					}
-					else
-					{
-						if (toSlot.IsNull())
-						{
-							toSlot.SetSlotData(dragSlot.Item.Clone());
-							toSlot.Item.Count = curNum;
-						}
-						else if (toSlot.Item.Id == dragSlot.Item.Id && toSlot.Item.MaxNum > 1)
-						{
-							toSlot.Item.Count += curNum;
-						}
-						else
-						{
-							jiaoBag.UpdateItem(false);
-						}
-						toSlot.UpdateUI();
-					}
-					dragSlot.Item.Count -= curNum;
-					if (dragSlot.Item.Count <= 0)
-					{
-						dragSlot.SetNull();
-					}
-					else
-					{
-						dragSlot.UpdateUI();
-					}
-					jiaoBag.UpdateItem(false);
-					this.UpdatePlayerGetMoney();
-				}, null);
-				return;
-			}
-			jiaoBag.AddTempItem(dragSlot.Item, num);
-			if (toSlot == null)
-			{
-				jiaoBag.UpdateItem(false);
-			}
-			else
-			{
-				if (toSlot.IsNull())
-				{
-					toSlot.SetSlotData(dragSlot.Item.Clone());
-					toSlot.Item.Count = num;
-				}
-				else if (toSlot.Item.Id == dragSlot.Item.Id && toSlot.Item.MaxNum > 1)
-				{
-					toSlot.Item.Count += num;
-				}
 				else
 				{
-					jiaoBag.UpdateItem(false);
+					dragSlot.UpdateUI();
 				}
-				toSlot.UpdateUI();
-			}
-			dragSlot.Item.Count -= num;
-			if (dragSlot.Item.Count <= 0)
+				jiaoBag.UpdateItem();
+				UpdatePlayerGetMoney();
+			});
+			return;
+		}
+		jiaoBag.AddTempItem(dragSlot.Item, num);
+		if ((Object)(object)toSlot == (Object)null)
+		{
+			jiaoBag.UpdateItem();
+		}
+		else
+		{
+			if (toSlot.IsNull())
 			{
-				dragSlot.SetNull();
+				toSlot.SetSlotData(dragSlot.Item.Clone());
+				toSlot.Item.Count = num;
+			}
+			else if (toSlot.Item.Id == dragSlot.Item.Id && toSlot.Item.MaxNum > 1)
+			{
+				toSlot.Item.Count += num;
 			}
 			else
 			{
-				dragSlot.UpdateUI();
+				jiaoBag.UpdateItem();
 			}
-			jiaoBag.UpdateItem(false);
-			this.UpdatePlayerGetMoney();
+			toSlot.UpdateUI();
 		}
-
-		// Token: 0x06003AAB RID: 15019 RVA: 0x00193B28 File Offset: 0x00191D28
-		public void JiaoYiBtn()
+		dragSlot.Item.Count -= num;
+		if (dragSlot.Item.Count <= 0)
 		{
-			if (this.NpcSay())
+			dragSlot.SetNull();
+		}
+		else
+		{
+			dragSlot.UpdateUI();
+		}
+		jiaoBag.UpdateItem();
+		UpdatePlayerGetMoney();
+	}
+
+	public void JiaoYiBtn()
+	{
+		if (!NpcSay())
+		{
+			return;
+		}
+		Tools.instance.getPlayer().AddMoney(PlayerGetMoney);
+		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(NpcId, -PlayerGetMoney);
+		foreach (JiaoYiSlot sell in PlayerBag.SellList)
+		{
+			if (!sell.IsNull())
 			{
-				Tools.instance.getPlayer().AddMoney(this.PlayerGetMoney);
-				NpcJieSuanManager.inst.npcSetField.AddNpcMoney(this.NpcId, -this.PlayerGetMoney);
-				foreach (JiaoYiSlot jiaoYiSlot in this.PlayerBag.SellList)
-				{
-					if (!jiaoYiSlot.IsNull())
-					{
-						Tools.instance.RemoveItem(jiaoYiSlot.Item.Uid, jiaoYiSlot.Item.Count);
-						NpcJieSuanManager.inst.AddItemToNpcBackpack(this.NpcId, jiaoYiSlot.Item.Id, jiaoYiSlot.Item.Count, jiaoYiSlot.Item.Seid.Copy(), false);
-					}
-				}
-				foreach (JiaoYiSlot jiaoYiSlot2 in this.NpcBag.SellList)
-				{
-					if (!jiaoYiSlot2.IsNull())
-					{
-						Tools.instance.NewAddItem(jiaoYiSlot2.Item.Id, jiaoYiSlot2.Item.Count, jiaoYiSlot2.Item.Seid.Copy(), jiaoYiSlot2.Item.Uid, false);
-						NpcJieSuanManager.inst.RemoveItem(this.NpcId, jiaoYiSlot2.Item.Id, jiaoYiSlot2.Item.Count, jiaoYiSlot2.Item.Uid);
-					}
-				}
-				this.NpcBag.JiaoYiCallBack();
-				this.PlayerBag.JiaoYiCallBack();
-				this.UpdatePlayerGetMoney();
+				Tools.instance.RemoveItem(sell.Item.Uid, sell.Item.Count);
+				NpcJieSuanManager.inst.AddItemToNpcBackpack(NpcId, sell.Item.Id, sell.Item.Count, sell.Item.Seid.Copy());
 			}
 		}
-
-		// Token: 0x06003AAC RID: 15020 RVA: 0x00193CEC File Offset: 0x00191EEC
-		public bool NpcSay()
+		foreach (JiaoYiSlot sell2 in NpcBag.SellList)
 		{
-			bool result = true;
-			int money = this.NpcBag.GetMoney();
-			int money2 = this.PlayerBag.GetMoney();
-			if (this.PlayerGetMoney >= 0 && money < this.PlayerGetMoney)
+			if (!sell2.IsNull())
 			{
-				result = false;
-				int num = jsonData.instance.getRandom() % 10;
-				this.NpcSayText.SetText(Tools.getStr("exchengePlayer" + num));
-				this.NpcSayPanel.gameObject.SetActive(true);
-				base.Invoke("CloseSay", 1.5f);
+				Tools.instance.NewAddItem(sell2.Item.Id, sell2.Item.Count, sell2.Item.Seid.Copy(), sell2.Item.Uid);
+				NpcJieSuanManager.inst.RemoveItem(NpcId, sell2.Item.Id, sell2.Item.Count, sell2.Item.Uid);
 			}
-			else if (this.PlayerGetMoney < 0 && money2 + this.PlayerGetMoney < 0)
-			{
-				result = false;
-				int num2 = jsonData.instance.getRandom() % 10;
-				this.NpcSayText.SetText(Tools.getStr("exchengeMonstar" + num2));
-				this.NpcSayPanel.gameObject.SetActive(true);
-				base.Invoke("CloseSay", 1.5f);
-			}
-			return result;
 		}
+		NpcBag.JiaoYiCallBack();
+		PlayerBag.JiaoYiCallBack();
+		UpdatePlayerGetMoney();
+	}
 
-		// Token: 0x06003AAD RID: 15021 RVA: 0x00193DE0 File Offset: 0x00191FE0
-		public void CloseSay()
+	public bool NpcSay()
+	{
+		bool result = true;
+		int money = NpcBag.GetMoney();
+		int money2 = PlayerBag.GetMoney();
+		if (PlayerGetMoney >= 0 && money < PlayerGetMoney)
 		{
-			this.NpcSayPanel.gameObject.SetActive(false);
+			result = false;
+			int num = jsonData.instance.getRandom() % 10;
+			NpcSayText.SetText(Tools.getStr("exchengePlayer" + num));
+			NpcSayPanel.gameObject.SetActive(true);
+			((MonoBehaviour)this).Invoke("CloseSay", 1.5f);
 		}
-
-		// Token: 0x06003AAE RID: 15022 RVA: 0x00193DF3 File Offset: 0x00191FF3
-		public void Close()
+		else if (PlayerGetMoney < 0 && money2 + PlayerGetMoney < 0)
 		{
-			ESCCloseManager.Inst.UnRegisterClose(this);
-			if (this.CloseAction != null)
-			{
-				this.CloseAction.Invoke();
-			}
-			Object.Destroy(base.gameObject);
+			result = false;
+			int num2 = jsonData.instance.getRandom() % 10;
+			NpcSayText.SetText(Tools.getStr("exchengeMonstar" + num2));
+			NpcSayPanel.gameObject.SetActive(true);
+			((MonoBehaviour)this).Invoke("CloseSay", 1.5f);
 		}
+		return result;
+	}
 
-		// Token: 0x06003AAF RID: 15023 RVA: 0x00193E1E File Offset: 0x0019201E
-		public bool TryEscClose()
+	public void CloseSay()
+	{
+		NpcSayPanel.gameObject.SetActive(false);
+	}
+
+	public void Close()
+	{
+		ESCCloseManager.Inst.UnRegisterClose(this);
+		if (CloseAction != null)
 		{
-			this.Close();
-			return true;
+			CloseAction.Invoke();
 		}
+		Object.Destroy((Object)(object)((Component)this).gameObject);
+	}
 
-		// Token: 0x040032D2 RID: 13010
-		public static JiaoYiUIMag Inst;
-
-		// Token: 0x040032D3 RID: 13011
-		public int NpcId;
-
-		// Token: 0x040032D4 RID: 13012
-		public JiaoBag PlayerBag;
-
-		// Token: 0x040032D5 RID: 13013
-		public PlayerSetRandomFace PlayerFace;
-
-		// Token: 0x040032D6 RID: 13014
-		public BagItemSelect bagItemSelect;
-
-		// Token: 0x040032D7 RID: 13015
-		public Text PlayerName;
-
-		// Token: 0x040032D8 RID: 13016
-		public Text PlayerTitle;
-
-		// Token: 0x040032D9 RID: 13017
-		public JiaoBag NpcBag;
-
-		// Token: 0x040032DA RID: 13018
-		public PlayerSetRandomFace NpcFace;
-
-		// Token: 0x040032DB RID: 13019
-		public Text NpcName;
-
-		// Token: 0x040032DC RID: 13020
-		public Text NpcTitle;
-
-		// Token: 0x040032DD RID: 13021
-		public int PlayerGetMoney;
-
-		// Token: 0x040032DE RID: 13022
-		public Text PlayerGetMoneyText;
-
-		// Token: 0x040032DF RID: 13023
-		public GameObject NpcSayPanel;
-
-		// Token: 0x040032E0 RID: 13024
-		public Text NpcSayText;
-
-		// Token: 0x040032E1 RID: 13025
-		public UnityAction CloseAction;
+	public bool TryEscClose()
+	{
+		Close();
+		return true;
 	}
 }

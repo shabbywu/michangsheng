@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ChengHaoJsonData : IJSONClass
 {
-	// Token: 0x02000806 RID: 2054
-	public class ChengHaoJsonData : IJSONClass
+	public static Dictionary<int, ChengHaoJsonData> DataDict = new Dictionary<int, ChengHaoJsonData>();
+
+	public static List<ChengHaoJsonData> DataList = new List<ChengHaoJsonData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public string Name;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003E2A RID: 15914 RVA: 0x001A9280 File Offset: 0x001A7480
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ChengHaoJsonData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ChengHaoJsonData.list)
+			try
 			{
-				try
+				ChengHaoJsonData chengHaoJsonData = new ChengHaoJsonData();
+				chengHaoJsonData.id = item["id"].I;
+				chengHaoJsonData.Name = item["Name"].Str;
+				if (DataDict.ContainsKey(chengHaoJsonData.id))
 				{
-					ChengHaoJsonData chengHaoJsonData = new ChengHaoJsonData();
-					chengHaoJsonData.id = jsonobject["id"].I;
-					chengHaoJsonData.Name = jsonobject["Name"].Str;
-					if (ChengHaoJsonData.DataDict.ContainsKey(chengHaoJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ChengHaoJsonData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", chengHaoJsonData.id));
-					}
-					else
-					{
-						ChengHaoJsonData.DataDict.Add(chengHaoJsonData.id, chengHaoJsonData);
-						ChengHaoJsonData.DataList.Add(chengHaoJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ChengHaoJsonData.DataDict添加数据时出现重复的键，Key:{chengHaoJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ChengHaoJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(chengHaoJsonData.id, chengHaoJsonData);
+				DataList.Add(chengHaoJsonData);
 			}
-			if (ChengHaoJsonData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ChengHaoJsonData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ChengHaoJsonData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003E2B RID: 15915 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003935 RID: 14645
-		public static Dictionary<int, ChengHaoJsonData> DataDict = new Dictionary<int, ChengHaoJsonData>();
-
-		// Token: 0x04003936 RID: 14646
-		public static List<ChengHaoJsonData> DataList = new List<ChengHaoJsonData>();
-
-		// Token: 0x04003937 RID: 14647
-		public static Action OnInitFinishAction = new Action(ChengHaoJsonData.OnInitFinish);
-
-		// Token: 0x04003938 RID: 14648
-		public int id;
-
-		// Token: 0x04003939 RID: 14649
-		public string Name;
+	private static void OnInitFinish()
+	{
 	}
 }

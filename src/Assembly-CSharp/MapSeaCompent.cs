@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bag;
@@ -8,329 +7,382 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using Spine.Unity;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000198 RID: 408
 public class MapSeaCompent : MapInstComport
 {
-	// Token: 0x17000215 RID: 533
-	// (get) Token: 0x0600115A RID: 4442 RVA: 0x000688F0 File Offset: 0x00066AF0
-	public int X
-	{
-		get
-		{
-			return FuBenMap.getIndexX(this.NodeIndex, EndlessSeaMag.MapWide);
-		}
-	}
+	public float waitTime = 1f;
 
-	// Token: 0x17000216 RID: 534
-	// (get) Token: 0x0600115B RID: 4443 RVA: 0x00068902 File Offset: 0x00066B02
-	public int Y
-	{
-		get
-		{
-			return FuBenMap.getIndexY(this.NodeIndex, EndlessSeaMag.MapWide);
-		}
-	}
+	public GameObject MoveFlagUI;
 
-	// Token: 0x0600115C RID: 4444 RVA: 0x00068914 File Offset: 0x00066B14
+	public int G;
+
+	public int H;
+
+	public int F;
+
+	public bool IsInitYun;
+
+	public GameObject YunObject;
+
+	public MapSeaCompent SeaParent;
+
+	public Text Ftext;
+
+	public Text Htext;
+
+	public Text Gtext;
+
+	public GameObject IsLand;
+
+	public GameObject InIsLandBtn;
+
+	public GameObject BiGuanBtnObj;
+
+	[Header("是否显示按钮")]
+	public bool HideButton;
+
+	private bool WhetherHasIsLand;
+
+	[HideInInspector]
+	public bool WhetherHasJiZhi;
+
+	private float LaseSetLangHuangTime;
+
+	private float ResetTime = 5f;
+
+	[HideInInspector]
+	public int jiZhiType;
+
+	[HideInInspector]
+	public int jiZhiTalkID;
+
+	[HideInInspector]
+	public int jiZhiChuFaID;
+
+	public int X => FuBenMap.getIndexX(NodeIndex, EndlessSeaMag.MapWide);
+
+	public int Y => FuBenMap.getIndexY(NodeIndex, EndlessSeaMag.MapWide);
+
 	protected override void Awake()
 	{
-		this.NodeIndex = int.Parse(base.name);
-		this.AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
-		this.MapRandomJsonData = jsonData.instance.MapRandomJsonData;
-		this.AutoSetPositon();
+		NodeIndex = int.Parse(((Object)this).name);
+		AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
+		MapRandomJsonData = jsonData.instance.MapRandomJsonData;
+		AutoSetPositon();
 	}
 
-	// Token: 0x0600115D RID: 4445 RVA: 0x0006894D File Offset: 0x00066B4D
 	protected override void Start()
 	{
-		this.ResetTime = (float)(jsonData.GetRandom() % 20) + 0.2f * (float)(jsonData.GetRandom() % 6);
-		this.StartSeting();
-		this.WhetherHasIsLand = this.HasIsLand();
-		this.WhetherHasJiZhi = this.HasBoss();
+		ResetTime = (float)(jsonData.GetRandom() % 20) + 0.2f * (float)(jsonData.GetRandom() % 6);
+		StartSeting();
+		WhetherHasIsLand = HasIsLand();
+		WhetherHasJiZhi = HasBoss();
 	}
 
-	// Token: 0x0600115E RID: 4446 RVA: 0x0006898B File Offset: 0x00066B8B
 	public override void Update()
 	{
-		if (WASDMove.Inst != null)
+		if ((Object)(object)WASDMove.Inst != (Object)null)
 		{
 			if (WASDMove.Inst.IsMoved)
 			{
-				this.Refresh();
-				return;
+				Refresh();
 			}
 		}
 		else
 		{
-			this.Refresh();
+			Refresh();
 		}
 	}
 
-	// Token: 0x0600115F RID: 4447 RVA: 0x000689B4 File Offset: 0x00066BB4
 	public void AddLangHua()
 	{
-		if (Vector3.Distance(AllMapManage.instance.MapPlayerController.transform.position, base.transform.position) <= 18f && this.LaseSetLangHuangTime > this.ResetTime)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		if (Vector3.Distance(((Component)AllMapManage.instance.MapPlayerController).transform.position, ((Component)this).transform.position) <= 18f && LaseSetLangHuangTime > ResetTime)
 		{
-			GameObject gameObject = GameObjectPool.Get(EndlessSeaMag.Inst.LangHua);
+			GameObject obj = GameObjectPool.Get(EndlessSeaMag.Inst.LangHua);
 			float num = 0.34f * (float)(jsonData.GetRandom() % 11);
 			float num2 = 0.34f * (float)(jsonData.GetRandom() % 11);
-			gameObject.transform.position = new Vector3(base.transform.position.x + num, base.transform.position.y + num2, base.transform.position.z);
-			this.LaseSetLangHuangTime = 0f;
+			obj.transform.position = new Vector3(((Component)this).transform.position.x + num, ((Component)this).transform.position.y + num2, ((Component)this).transform.position.z);
+			LaseSetLangHuangTime = 0f;
 			int num3 = jsonData.GetRandom() % 12 + 1;
-			gameObject.GetComponentInChildren<SkeletonAnimation>().AnimationName = ((num3 < 10) ? "L0" : "L") + num3 + "_1";
-			this.ResetTime = (float)(jsonData.GetRandom() % 20) + 0.2f * (float)(jsonData.GetRandom() % 6) + 5f;
+			obj.GetComponentInChildren<SkeletonAnimation>().AnimationName = ((num3 < 10) ? "L0" : "L") + num3 + "_1";
+			ResetTime = (float)(jsonData.GetRandom() % 20) + 0.2f * (float)(jsonData.GetRandom() % 6) + 5f;
 		}
-		this.LaseSetLangHuangTime += 0.2f;
+		LaseSetLangHuangTime += 0.2f;
 	}
 
-	// Token: 0x06001160 RID: 4448 RVA: 0x00068AEA File Offset: 0x00066CEA
 	public void SetParent(MapSeaCompent parent, int g)
 	{
-		this.SeaParent = parent;
-		this.G = g;
-		this.F = this.G + this.H;
+		SeaParent = parent;
+		G = g;
+		F = G + H;
 	}
 
-	// Token: 0x06001161 RID: 4449 RVA: 0x00068B0D File Offset: 0x00066D0D
 	public bool NodeHasIsLand()
 	{
-		return this.WhetherHasIsLand || this.IsStatic;
+		if (!WhetherHasIsLand)
+		{
+			return IsStatic;
+		}
+		return true;
 	}
 
-	// Token: 0x06001162 RID: 4450 RVA: 0x00068B20 File Offset: 0x00066D20
 	public void Refresh()
 	{
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Expected O, but got Unknown
 		Avatar player = Tools.instance.getPlayer();
-		if (Tools.ContensInt((JArray)player.EndlessSeaAvatarSeeIsland["Island"], this.NodeIndex))
+		if (Tools.ContensInt((JArray)player.EndlessSeaAvatarSeeIsland["Island"], NodeIndex))
 		{
-			int avatarNowMapIndex = this.getAvatarNowMapIndex();
-			if (this.NodeHasIsLand())
+			int avatarNowMapIndex = getAvatarNowMapIndex();
+			if (NodeHasIsLand())
 			{
 				int num = int.Parse(SceneEx.NowSceneName.Replace("Sea", ""));
-				if (player.HideHaiYuTanSuo.HasItem(num) && SeaHaiYuTanSuo.DataDict[num].ZuoBiao == this.NodeIndex)
+				if (player.HideHaiYuTanSuo.HasItem(num) && SeaHaiYuTanSuo.DataDict[num].ZuoBiao == NodeIndex)
 				{
-					this.IsLand.gameObject.SetActive(false);
-					this.InIsLandBtn.gameObject.SetActive(false);
+					IsLand.gameObject.SetActive(false);
+					InIsLandBtn.gameObject.SetActive(false);
 					return;
 				}
-				this.IsLand.gameObject.SetActive(true);
-				if (!this.IsInitYun)
+				IsLand.gameObject.SetActive(true);
+				if (!IsInitYun)
 				{
-					if (this.YunObject != null)
+					if ((Object)(object)YunObject != (Object)null)
 					{
-						int id = this.GerLandId();
-						if (this.IsNeedYun(id))
+						int id = GerLandId();
+						if (IsNeedYun(id))
 						{
-							this.YunObject.SetActive(true);
+							YunObject.SetActive(true);
 						}
 						else
 						{
-							this.YunObject.SetActive(false);
+							YunObject.SetActive(false);
 						}
 					}
-					this.IsInitYun = true;
+					IsInitYun = true;
 				}
-				if (!this.HideButton)
+				if (HideButton)
 				{
-					if (avatarNowMapIndex != this.NodeIndex)
-					{
-						this.InIsLandBtn.gameObject.SetActive(false);
-						return;
-					}
-					this.InIsLandBtn.gameObject.SetActive(true);
-					if (this.BiGuanBtnObj != null)
+					return;
+				}
+				if (avatarNowMapIndex == NodeIndex)
+				{
+					InIsLandBtn.gameObject.SetActive(true);
+					if ((Object)(object)BiGuanBtnObj != (Object)null)
 					{
 						if (player.GetEquipLingZhouData() == null)
 						{
-							this.BiGuanBtnObj.SetActive(false);
-							return;
+							BiGuanBtnObj.SetActive(false);
 						}
-						this.BiGuanBtnObj.SetActive(true);
-						return;
+						else
+						{
+							BiGuanBtnObj.SetActive(true);
+						}
 					}
 				}
+				else
+				{
+					InIsLandBtn.gameObject.SetActive(false);
+				}
+			}
+			else if (WhetherHasJiZhi)
+			{
+				IsLand.gameObject.SetActive(true);
 			}
 			else
 			{
-				if (this.WhetherHasJiZhi)
-				{
-					this.IsLand.gameObject.SetActive(true);
-					return;
-				}
-				this.IsLand.gameObject.SetActive(false);
-				return;
+				IsLand.gameObject.SetActive(false);
 			}
 		}
 		else
 		{
-			this.IsLand.gameObject.SetActive(false);
+			IsLand.gameObject.SetActive(false);
 		}
 	}
 
-	// Token: 0x06001163 RID: 4451 RVA: 0x00068CD0 File Offset: 0x00066ED0
 	public void DengDaoBtn()
 	{
-		if (!Tools.instance.canClick(false, true))
+		if (Tools.instance.canClick())
 		{
-			return;
+			Avatar player = Tools.instance.getPlayer();
+			int inSeaID = player.seaNodeMag.GetInSeaID(NodeIndex, EndlessSeaMag.MapWide);
+			player.randomFuBenMag.GetInRandomFuBen(inSeaID);
 		}
-		Avatar player = Tools.instance.getPlayer();
-		int inSeaID = player.seaNodeMag.GetInSeaID(this.NodeIndex, EndlessSeaMag.MapWide);
-		player.randomFuBenMag.GetInRandomFuBen(inSeaID, -1);
 	}
 
-	// Token: 0x06001164 RID: 4452 RVA: 0x00068D19 File Offset: 0x00066F19
 	public int GerLandId()
 	{
-		return PlayerEx.Player.seaNodeMag.GetInSeaID(this.NodeIndex, EndlessSeaMag.MapWide);
+		return PlayerEx.Player.seaNodeMag.GetInSeaID(NodeIndex, EndlessSeaMag.MapWide);
 	}
 
-	// Token: 0x06001165 RID: 4453 RVA: 0x00068D38 File Offset: 0x00066F38
 	private bool IsNeedYun(int id)
 	{
-		return !PlayerEx.Player.RandomFuBenList.ContainsKey(id.ToString()) || (bool)PlayerEx.Player.RandomFuBenList[id.ToString()]["ShouldReset"] || PlayerEx.Player.RandomFuBenList[id.ToString()]["type"] == null;
+		if (!PlayerEx.Player.RandomFuBenList.ContainsKey(id.ToString()))
+		{
+			return true;
+		}
+		if (!(bool)PlayerEx.Player.RandomFuBenList[id.ToString()][(object)"ShouldReset"])
+		{
+			if (PlayerEx.Player.RandomFuBenList[id.ToString()][(object)"type"] == null)
+			{
+				return true;
+			}
+			return false;
+		}
+		return true;
 	}
 
-	// Token: 0x06001166 RID: 4454 RVA: 0x00068DB0 File Offset: 0x00066FB0
 	public void StaticBtn()
 	{
-		if (!Tools.instance.canClick(false, true))
+		if (Tools.instance.canClick())
 		{
-			return;
-		}
-		Transform transform = base.transform.Find("StaticFlowchat");
-		if (transform != null)
-		{
-			transform.GetComponent<Flowchart>().ExecuteBlock("startClick");
+			Transform val = ((Component)this).transform.Find("StaticFlowchat");
+			if ((Object)(object)val != (Object)null)
+			{
+				((Component)val).GetComponent<Flowchart>().ExecuteBlock("startClick");
+			}
 		}
 	}
 
-	// Token: 0x06001167 RID: 4455 RVA: 0x00068DF8 File Offset: 0x00066FF8
 	public void BiGuanBtn()
 	{
-		if (!Tools.instance.canClick(false, true))
+		if (Tools.instance.canClick())
 		{
-			return;
-		}
-		Transform transform = base.transform.Find("flowchat");
-		if (transform != null)
-		{
-			transform.GetComponent<Flowchart>().ExecuteBlock("startBiGuan");
+			Transform val = ((Component)this).transform.Find("flowchat");
+			if ((Object)(object)val != (Object)null)
+			{
+				((Component)val).GetComponent<Flowchart>().ExecuteBlock("startBiGuan");
+			}
 		}
 	}
 
-	// Token: 0x06001168 RID: 4456 RVA: 0x00068E40 File Offset: 0x00067040
 	public bool HasIsLand()
 	{
 		Avatar player = Tools.instance.getPlayer();
-		int inSeaID = player.seaNodeMag.GetInSeaID(this.NodeIndex, EndlessSeaMag.MapWide);
-		int num = (int)player.EndlessSea["AllIaLand"][inSeaID - 1];
-		using (List<FubenGrid.StaticNodeInfo>.Enumerator enumerator = EndlessSeaMag.Inst.seaGrid.StaticNodeList.GetEnumerator())
+		int inSeaID = player.seaNodeMag.GetInSeaID(NodeIndex, EndlessSeaMag.MapWide);
+		int num = (int)player.EndlessSea["AllIaLand"][(object)(inSeaID - 1)];
+		foreach (FubenGrid.StaticNodeInfo staticNode in EndlessSeaMag.Inst.seaGrid.StaticNodeList)
 		{
-			while (enumerator.MoveNext())
+			if (staticNode.index == inSeaID)
 			{
-				if (enumerator.Current.index == inSeaID)
-				{
-					return false;
-				}
+				return false;
 			}
 		}
-		return FuBenMap.getIndex(this.X % 7, this.Y % 7, 7) == num;
-	}
-
-	// Token: 0x06001169 RID: 4457 RVA: 0x00068F04 File Offset: 0x00067104
-	public bool HasBoss()
-	{
-		Avatar player = PlayerEx.Player;
-		foreach (SeaHaiYuJiZhiShuaXin seaHaiYuJiZhiShuaXin in SeaHaiYuJiZhiShuaXin.DataList)
+		if (FuBenMap.getIndex(X % 7, Y % 7, 7) == num)
 		{
-			if (player.EndlessSeaBoss.HasField(seaHaiYuJiZhiShuaXin.id.ToString()))
-			{
-				JSONObject jsonobject = player.EndlessSeaBoss[seaHaiYuJiZhiShuaXin.id.ToString()];
-				if (jsonobject["Pos"].I == this.NodeIndex && !jsonobject["Close"].b)
-				{
-					int i = jsonobject["JiZhiID"].I;
-					SeaJiZhiID seaJiZhiID = SeaJiZhiID.DataDict[i];
-					this.jiZhiType = seaJiZhiID.Type;
-					if (this.jiZhiType == 0)
-					{
-						this.jiZhiTalkID = seaJiZhiID.TalkID;
-						this.jiZhiChuFaID = jsonobject["AvatarID"].I;
-					}
-					else if (this.jiZhiType == 1)
-					{
-						this.jiZhiTalkID = seaJiZhiID.TalkID;
-						this.jiZhiChuFaID = seaJiZhiID.FuBenType;
-					}
-					if (ResRefHolder.Inst.SeaJiZhiRes.Count > seaJiZhiID.XingXiang - 1)
-					{
-						SkeletonDataAsset skeletonDataAsset = ResRefHolder.Inst.SeaJiZhiRes[seaJiZhiID.XingXiang - 1];
-						if (this.IsLand != null)
-						{
-							SkeletonAnimation componentInChildren = this.IsLand.GetComponentInChildren<SkeletonAnimation>(true);
-							if (componentInChildren != null)
-							{
-								componentInChildren.skeletonDataAsset = skeletonDataAsset;
-								SeaJiZhiXingXiang seaJiZhiXingXiang = SeaJiZhiXingXiang.DataDict[seaJiZhiID.XingXiang];
-								componentInChildren.initialSkinName = seaJiZhiXingXiang.Skin;
-								componentInChildren.Initialize(true);
-								componentInChildren.AnimationName = seaJiZhiXingXiang.Anim;
-								if (seaJiZhiXingXiang.OffsetX != 0 || seaJiZhiXingXiang.OffsetY != 0)
-								{
-									float num = componentInChildren.transform.localPosition.x;
-									float num2 = componentInChildren.transform.localPosition.y;
-									if (seaJiZhiXingXiang.OffsetX != 0)
-									{
-										num = (float)seaJiZhiXingXiang.OffsetX / 100f;
-									}
-									if (seaJiZhiXingXiang.OffsetY != 0)
-									{
-										num2 = (float)seaJiZhiXingXiang.OffsetY / 100f;
-									}
-									componentInChildren.transform.localPosition = new Vector3(num, num2, componentInChildren.transform.localPosition.z);
-								}
-								if (seaJiZhiXingXiang.ScaleX != 0 || seaJiZhiXingXiang.ScaleY != 0)
-								{
-									float num3 = componentInChildren.transform.localScale.x;
-									float num4 = componentInChildren.transform.localScale.y;
-									if (seaJiZhiXingXiang.ScaleX != 0)
-									{
-										num3 = (float)seaJiZhiXingXiang.ScaleX / 100f;
-									}
-									if (seaJiZhiXingXiang.ScaleY != 0)
-									{
-										num4 = (float)seaJiZhiXingXiang.ScaleY / 100f;
-									}
-									componentInChildren.transform.localScale = new Vector3(num3, num4, componentInChildren.transform.localScale.z);
-								}
-							}
-							else
-							{
-								Debug.LogError(string.Format("海格子{0}没有用于设置形象的spine骨骼，请检查", this.NodeIndex));
-							}
-						}
-						else
-						{
-							Debug.LogError(string.Format("海格子{0}没有岛屿子物体，请检查", this.NodeIndex));
-						}
-					}
-					else
-					{
-						Debug.LogError(string.Format("海域机制形象{0}超界，请在ResRefHolder配置形象", seaJiZhiID.XingXiang));
-					}
-					return true;
-				}
-			}
+			return true;
 		}
 		return false;
 	}
 
-	// Token: 0x0600116A RID: 4458 RVA: 0x0006926C File Offset: 0x0006746C
+	public bool HasBoss()
+	{
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b9: Unknown result type (might be due to invalid IL or missing references)
+		Avatar player = PlayerEx.Player;
+		foreach (SeaHaiYuJiZhiShuaXin data in SeaHaiYuJiZhiShuaXin.DataList)
+		{
+			if (!player.EndlessSeaBoss.HasField(data.id.ToString()))
+			{
+				continue;
+			}
+			JSONObject jSONObject = player.EndlessSeaBoss[data.id.ToString()];
+			if (jSONObject["Pos"].I != NodeIndex || jSONObject["Close"].b)
+			{
+				continue;
+			}
+			int i = jSONObject["JiZhiID"].I;
+			SeaJiZhiID seaJiZhiID = SeaJiZhiID.DataDict[i];
+			jiZhiType = seaJiZhiID.Type;
+			if (jiZhiType == 0)
+			{
+				jiZhiTalkID = seaJiZhiID.TalkID;
+				jiZhiChuFaID = jSONObject["AvatarID"].I;
+			}
+			else if (jiZhiType == 1)
+			{
+				jiZhiTalkID = seaJiZhiID.TalkID;
+				jiZhiChuFaID = seaJiZhiID.FuBenType;
+			}
+			if (ResRefHolder.Inst.SeaJiZhiRes.Count > seaJiZhiID.XingXiang - 1)
+			{
+				SkeletonDataAsset skeletonDataAsset = ResRefHolder.Inst.SeaJiZhiRes[seaJiZhiID.XingXiang - 1];
+				if ((Object)(object)IsLand != (Object)null)
+				{
+					SkeletonAnimation componentInChildren = IsLand.GetComponentInChildren<SkeletonAnimation>(true);
+					if ((Object)(object)componentInChildren != (Object)null)
+					{
+						((SkeletonRenderer)componentInChildren).skeletonDataAsset = skeletonDataAsset;
+						SeaJiZhiXingXiang seaJiZhiXingXiang = SeaJiZhiXingXiang.DataDict[seaJiZhiID.XingXiang];
+						((SkeletonRenderer)componentInChildren).initialSkinName = seaJiZhiXingXiang.Skin;
+						((SkeletonRenderer)componentInChildren).Initialize(true);
+						componentInChildren.AnimationName = seaJiZhiXingXiang.Anim;
+						if (seaJiZhiXingXiang.OffsetX != 0 || seaJiZhiXingXiang.OffsetY != 0)
+						{
+							float num = ((Component)componentInChildren).transform.localPosition.x;
+							float num2 = ((Component)componentInChildren).transform.localPosition.y;
+							if (seaJiZhiXingXiang.OffsetX != 0)
+							{
+								num = (float)seaJiZhiXingXiang.OffsetX / 100f;
+							}
+							if (seaJiZhiXingXiang.OffsetY != 0)
+							{
+								num2 = (float)seaJiZhiXingXiang.OffsetY / 100f;
+							}
+							((Component)componentInChildren).transform.localPosition = new Vector3(num, num2, ((Component)componentInChildren).transform.localPosition.z);
+						}
+						if (seaJiZhiXingXiang.ScaleX != 0 || seaJiZhiXingXiang.ScaleY != 0)
+						{
+							float num3 = ((Component)componentInChildren).transform.localScale.x;
+							float num4 = ((Component)componentInChildren).transform.localScale.y;
+							if (seaJiZhiXingXiang.ScaleX != 0)
+							{
+								num3 = (float)seaJiZhiXingXiang.ScaleX / 100f;
+							}
+							if (seaJiZhiXingXiang.ScaleY != 0)
+							{
+								num4 = (float)seaJiZhiXingXiang.ScaleY / 100f;
+							}
+							((Component)componentInChildren).transform.localScale = new Vector3(num3, num4, ((Component)componentInChildren).transform.localScale.z);
+						}
+					}
+					else
+					{
+						Debug.LogError((object)$"海格子{NodeIndex}没有用于设置形象的spine骨骼，请检查");
+					}
+				}
+				else
+				{
+					Debug.LogError((object)$"海格子{NodeIndex}没有岛屿子物体，请检查");
+				}
+			}
+			else
+			{
+				Debug.LogError((object)$"海域机制形象{seaJiZhiID.XingXiang}超界，请在ResRefHolder配置形象");
+			}
+			return true;
+		}
+		return false;
+	}
+
 	public void AutoSetPositon()
 	{
-		FubenGrid component = base.transform.parent.GetComponent<FubenGrid>();
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		FubenGrid component = ((Component)((Component)this).transform.parent).GetComponent<FubenGrid>();
 		int num = component.creatNum / component.num;
 		int num2 = component.num;
 		int num3 = 1;
@@ -339,9 +391,9 @@ public class MapSeaCompent : MapInstComport
 		{
 			for (int j = 0; j < num2; j++)
 			{
-				if (num3 == this.NodeIndex)
+				if (num3 == NodeIndex)
 				{
-					this.MapPositon = new Vector2((float)j, (float)i);
+					MapPositon = new Vector2((float)j, (float)i);
 					flag = true;
 					break;
 				}
@@ -354,128 +406,127 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x0600116B RID: 4459 RVA: 0x000692EC File Offset: 0x000674EC
 	public override void AvatarMoveToThis()
 	{
-		if (AllMapManage.instance != null)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)AllMapManage.instance != (Object)null)
 		{
-			int avatarNowMapIndex = this.getAvatarNowMapIndex();
-			int nodeIndex = this.NodeIndex;
-			SeaAvatarObjBase.Directon directon = this.GetDirecton(avatarNowMapIndex, nodeIndex);
+			int avatarNowMapIndex = getAvatarNowMapIndex();
+			int nodeIndex = NodeIndex;
+			SeaAvatarObjBase.Directon directon = GetDirecton(avatarNowMapIndex, nodeIndex);
 			EndlessSeaMag.Inst.PlayerDirecton = directon;
 			AllMapManage.instance.MapPlayerController.SeaShow.SetDir(directon);
 			AllMapManage.instance.MapPlayerController.SetSpeed(1);
-			iTween.MoveTo(AllMapManage.instance.MapPlayerController.gameObject, iTween.Hash(new object[]
+			iTween.MoveTo(((Component)AllMapManage.instance.MapPlayerController).gameObject, iTween.Hash(new object[12]
 			{
 				"x",
-				base.transform.position.x,
+				((Component)this).transform.position.x,
 				"y",
-				base.transform.position.y,
+				((Component)this).transform.position.y,
 				"z",
-				base.transform.position.z,
+				((Component)this).transform.position.z,
 				"time",
-				this.waitTime,
+				waitTime,
 				"islocal",
 				false,
 				"EaseType",
 				"linear"
 			}));
-			WASDMove.waitTime = this.waitTime;
+			WASDMove.waitTime = waitTime;
 			WASDMove.needWait = true;
-			this.setAvatarNowMapIndex();
+			setAvatarNowMapIndex();
 		}
 	}
 
-	// Token: 0x0600116C RID: 4460 RVA: 0x00069424 File Offset: 0x00067624
 	public void AutoMoveToThis()
 	{
 		List<int> list = new List<int>();
-		this.GetIndexList(list);
+		GetIndexList(list);
 		if (list.Count > 0)
 		{
 			((MapSeaCompent)AllMapManage.instance.mapIndex[list[0]]).SatrtMove();
 		}
 	}
 
-	// Token: 0x0600116D RID: 4461 RVA: 0x00069468 File Offset: 0x00067668
 	public void GetIndexList(List<int> NodeIndexList)
 	{
-		int avatarNowMapIndex = this.getAvatarNowMapIndex();
-		int nodeIndex = this.NodeIndex;
-		this.dieDaiAddIndex(NodeIndexList, avatarNowMapIndex);
+		int avatarNowMapIndex = getAvatarNowMapIndex();
+		_ = NodeIndex;
+		dieDaiAddIndex(NodeIndexList, avatarNowMapIndex);
 	}
 
-	// Token: 0x0600116E RID: 4462 RVA: 0x00024C5F File Offset: 0x00022E5F
 	public bool CheckCanGetIn(int index)
 	{
 		return true;
 	}
 
-	// Token: 0x0600116F RID: 4463 RVA: 0x0006948C File Offset: 0x0006768C
 	public void dieDaiAddIndex(List<int> NodeIndexList, int index)
 	{
-		MapSeaCompent mapSeaCompent = (MapSeaCompent)AllMapManage.instance.mapIndex[index];
-		Vector2 mapPositon = mapSeaCompent.MapPositon;
-		Vector2 mapPositon2 = this.MapPositon;
-		List<int> nextIndex = mapSeaCompent.nextIndex;
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		MapSeaCompent obj = (MapSeaCompent)AllMapManage.instance.mapIndex[index];
+		Vector2 mapPositon = obj.MapPositon;
+		Vector2 mapPositon2 = MapPositon;
+		List<int> list = obj.nextIndex;
 		int num = 0;
 		int num2 = -1;
 		float num3 = 1E+13f;
 		Avatar player = Tools.instance.getPlayer();
-		foreach (int num4 in nextIndex)
+		foreach (int item in list)
 		{
-			MapSeaCompent mapSeaCompent2 = (MapSeaCompent)AllMapManage.instance.mapIndex[num4];
-			float num5 = Vector2.Distance(mapPositon, mapPositon2);
-			int indexFengBaoLv = player.seaNodeMag.GetIndexFengBaoLv(this.NodeIndex, EndlessSeaMag.MapWide);
-			num5 += (float)indexFengBaoLv;
-			if (num5 < num3 && this.CheckCanGetIn(num4))
+			_ = (MapSeaCompent)AllMapManage.instance.mapIndex[item];
+			float num4 = Vector2.Distance(mapPositon, mapPositon2);
+			int indexFengBaoLv = player.seaNodeMag.GetIndexFengBaoLv(NodeIndex, EndlessSeaMag.MapWide);
+			num4 += (float)indexFengBaoLv;
+			if (num4 < num3 && CheckCanGetIn(item))
 			{
-				num3 = num5;
+				num3 = num4;
 				num2 = num;
 			}
 			num++;
 		}
-		if (num2 != -1 && num2 != this.NodeIndex)
+		if (num2 != -1 && num2 != NodeIndex)
 		{
-			this.dieDaiAddIndex(NodeIndexList, num2);
+			dieDaiAddIndex(NodeIndexList, num2);
 		}
 	}
 
-	// Token: 0x06001170 RID: 4464 RVA: 0x00069584 File Offset: 0x00067784
 	public void RestNodeLuXianIndex()
 	{
-		if (this.MoveFlagUI != null)
+		if ((Object)(object)MoveFlagUI != (Object)null)
 		{
-			this.MoveFlagUI.transform.Find("Image/Text").GetComponent<Text>().text = string.Concat(EndlessSeaMag.Inst.LuXian.IndexOf(this.NodeIndex));
+			((Component)MoveFlagUI.transform.Find("Image/Text")).GetComponent<Text>().text = string.Concat(EndlessSeaMag.Inst.LuXian.IndexOf(NodeIndex));
 		}
 	}
 
-	// Token: 0x06001171 RID: 4465 RVA: 0x00004095 File Offset: 0x00002295
 	public void NodeOnClick()
 	{
 	}
 
-	// Token: 0x06001172 RID: 4466 RVA: 0x000695DD File Offset: 0x000677DD
 	private void OnMouseUpAsButton()
 	{
-		if (Tools.instance.canClick(false, true))
+		if (Tools.instance.canClick())
 		{
-			this.NodeOnClick();
+			NodeOnClick();
 		}
 	}
 
-	// Token: 0x06001173 RID: 4467 RVA: 0x000695F3 File Offset: 0x000677F3
 	public override void EventRandom()
 	{
-		if (WASDMove.Inst != null)
+		if ((Object)(object)WASDMove.Inst != (Object)null)
 		{
 			WASDMove.Inst.IsMoved = true;
 		}
-		EndlessSeaMag.Inst.AddLuXianDian(this.NodeIndex);
+		EndlessSeaMag.Inst.AddLuXianDian(NodeIndex);
 		EndlessSeaMag.Inst.StartMove();
 	}
 
-	// Token: 0x06001174 RID: 4468 RVA: 0x00069628 File Offset: 0x00067828
 	public int GetAddTimeNum()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -484,15 +535,15 @@ public class MapSeaCompent : MapInstComport
 		int result = num;
 		if (equipLingZhouData != null)
 		{
-			JToken jtoken = jsonData.instance.LingZhouPinJie[equipLingZhouData.quality.ToString()];
-			result = num - (int)jtoken["speed"];
+			JToken val = jsonData.instance.LingZhouPinJie[equipLingZhouData.quality.ToString()];
+			result = num - (int)val[(object)"speed"];
 		}
 		else if (player.YuJianFeiXing())
 		{
-			JSONObject jsonobject = jsonData.instance.SeaCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= this.ComAvatar.dunSu);
-			if (jsonobject != null)
+			JSONObject jSONObject = jsonData.instance.SeaCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= ComAvatar.dunSu);
+			if (jSONObject != null)
 			{
-				result = (int)jsonobject["XiaoHao"].n;
+				result = (int)jSONObject["XiaoHao"].n;
 			}
 		}
 		else
@@ -502,46 +553,48 @@ public class MapSeaCompent : MapInstComport
 		return result;
 	}
 
-	// Token: 0x06001175 RID: 4469 RVA: 0x000696C8 File Offset: 0x000678C8
 	public override void BaseAddTime()
 	{
-		this.ComAvatar.AddTime(this.GetAddTimeNum(), 0, 0);
+		ComAvatar.AddTime(GetAddTimeNum());
 	}
 
-	// Token: 0x06001176 RID: 4470 RVA: 0x000696E0 File Offset: 0x000678E0
 	public bool SatrtMove()
 	{
-		if (!base.CanClick())
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Expected O, but got Unknown
+		//IL_0094: Expected O, but got Unknown
+		if (!CanClick())
 		{
 			return false;
 		}
-		this.fuBenSetClick();
-		this.movaAvatar();
-		SeaToOherScene seaToOther = base.GetComponent<SeaToOherScene>();
-		if (seaToOther != null)
+		fuBenSetClick();
+		movaAvatar();
+		SeaToOherScene seaToOther = ((Component)this).GetComponent<SeaToOherScene>();
+		if ((Object)(object)seaToOther != (Object)null)
 		{
-			JSONObject jsonobject = jsonData.instance.SceneNameJsonData[seaToOther.ToSceneName];
-			USelectBox.Show("是否进入" + jsonobject["EventName"].Str + "？", delegate
+			JSONObject jSONObject = jsonData.instance.SceneNameJsonData[seaToOther.ToSceneName];
+			USelectBox.Show("是否进入" + jSONObject["EventName"].Str + "？", (UnityAction)delegate
 			{
-				LoadFuBen.loadfuben(seaToOther.ToSceneName, this.NodeIndex);
-			}, delegate
+				LoadFuBen.loadfuben(seaToOther.ToSceneName, NodeIndex);
+			}, (UnityAction)delegate
 			{
-				if (AllMapManage.instance != null && AllMapManage.instance.mapIndex.ContainsKey(Tools.instance.fubenLastIndex))
+				if ((Object)(object)AllMapManage.instance != (Object)null && AllMapManage.instance.mapIndex.ContainsKey(Tools.instance.fubenLastIndex))
 				{
 					AllMapManage.instance.mapIndex[Tools.instance.fubenLastIndex].AvatarMoveToThis();
 					EndlessSeaMag.Inst.RemoveAllLuXian();
-					this.StartCoroutine(this.StopMove());
+					((MonoBehaviour)this).StartCoroutine(StopMove());
 				}
 			});
 			EndlessSeaMag.Inst.StopAllContens();
 			return true;
 		}
-		this.CastSeaCastHP();
-		foreach (SeaAvatarObjBase seaAvatarObjBase in EndlessSeaMag.Inst.MonstarList)
+		CastSeaCastHP();
+		foreach (SeaAvatarObjBase monstar in EndlessSeaMag.Inst.MonstarList)
 		{
-			if (seaAvatarObjBase != null)
+			if ((Object)(object)monstar != (Object)null)
 			{
-				seaAvatarObjBase.Think();
+				monstar.Think();
 			}
 		}
 		EndlessSeaMag.Inst.autoResetFengBao();
@@ -549,20 +602,16 @@ public class MapSeaCompent : MapInstComport
 		return true;
 	}
 
-	// Token: 0x06001177 RID: 4471 RVA: 0x000697FC File Offset: 0x000679FC
 	private IEnumerator StopMove()
 	{
-		yield return new WaitForSeconds(this.waitTime);
+		yield return (object)new WaitForSeconds(waitTime);
 		MapPlayerController.Inst.SetSpeed(0);
-		yield break;
 	}
 
-	// Token: 0x06001178 RID: 4472 RVA: 0x00004095 File Offset: 0x00002295
 	public void MonsterMoveIn(Avatar target)
 	{
 	}
 
-	// Token: 0x06001179 RID: 4473 RVA: 0x0006980C File Offset: 0x00067A0C
 	public SeaAvatarObjBase.Directon GetDirecton(int Lastindex, int nowIndex)
 	{
 		int indexX = FuBenMap.getIndexX(Lastindex, EndlessSeaMag.MapWide);
@@ -584,147 +633,84 @@ public class MapSeaCompent : MapInstComport
 		return SeaAvatarObjBase.Directon.Left;
 	}
 
-	// Token: 0x0600117A RID: 4474 RVA: 0x0006985C File Offset: 0x00067A5C
 	public void MonstarMoveToThis(SeaAvatarObjBase target)
 	{
-		if (AllMapManage.instance != null)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)AllMapManage.instance != (Object)null)
 		{
 			int nowMapIndex = target.NowMapIndex;
-			int nodeIndex = this.NodeIndex;
-			SeaAvatarObjBase.Directon directon = this.GetDirecton(nowMapIndex, nodeIndex);
-			Animator component = target.GetComponent<Animator>();
+			int nodeIndex = NodeIndex;
+			SeaAvatarObjBase.Directon directon = GetDirecton(nowMapIndex, nodeIndex);
+			Animator component = ((Component)target).GetComponent<Animator>();
 			component.SetInteger("direction", (int)directon);
 			component.SetInteger("speed", 1);
 			if (directon == SeaAvatarObjBase.Directon.Right)
 			{
-				target.transform.localScale = new Vector3(-Mathf.Abs(target.transform.localScale.x), target.transform.localScale.y, target.transform.localScale.z);
+				((Component)target).transform.localScale = new Vector3(0f - Mathf.Abs(((Component)target).transform.localScale.x), ((Component)target).transform.localScale.y, ((Component)target).transform.localScale.z);
 			}
 			else
 			{
-				target.transform.localScale = new Vector3(Mathf.Abs(target.transform.localScale.x), target.transform.localScale.y, target.transform.localScale.z);
+				((Component)target).transform.localScale = new Vector3(Mathf.Abs(((Component)target).transform.localScale.x), ((Component)target).transform.localScale.y, ((Component)target).transform.localScale.z);
 			}
-			iTween.MoveTo(target.gameObject, iTween.Hash(new object[]
+			iTween.MoveTo(((Component)target).gameObject, iTween.Hash(new object[12]
 			{
 				"x",
-				base.transform.position.x,
+				((Component)this).transform.position.x,
 				"y",
-				base.transform.position.y,
+				((Component)this).transform.position.y,
 				"z",
-				base.transform.position.z,
+				((Component)this).transform.position.z,
 				"time",
-				this.waitTime,
+				waitTime,
 				"islocal",
 				false,
 				"EaseType",
 				"linear"
 			}));
-			this.setMonstarNowMapIndex(target);
+			setMonstarNowMapIndex(target);
 		}
 	}
 
-	// Token: 0x0600117B RID: 4475 RVA: 0x000699F6 File Offset: 0x00067BF6
 	public void setMonstarNowMapIndex(SeaAvatarObjBase target)
 	{
-		target.NowMapIndex = this.NodeIndex;
-		Tools.instance.getPlayer().seaNodeMag.SetSeaMonstarIndex(target.UUID, target.SeaId, this.NodeIndex);
+		target.NowMapIndex = NodeIndex;
+		Tools.instance.getPlayer().seaNodeMag.SetSeaMonstarIndex(target.UUID, target.SeaId, NodeIndex);
 	}
 
-	// Token: 0x0600117C RID: 4476 RVA: 0x00069A2C File Offset: 0x00067C2C
 	public void CastSeaCastHP()
 	{
 		Avatar player = Tools.instance.getPlayer();
-		int indexFengBaoLv = player.seaNodeMag.GetIndexFengBaoLv(this.NodeIndex, EndlessSeaMag.MapWide);
+		int indexFengBaoLv = player.seaNodeMag.GetIndexFengBaoLv(NodeIndex, EndlessSeaMag.MapWide);
 		if (indexFengBaoLv > 0)
 		{
 			BaseItem lingZhou = player.GetLingZhou();
-			JToken jtoken = jsonData.instance.EndlessSeaLinQiSafeLvData[indexFengBaoLv.ToString()];
+			JToken val = jsonData.instance.EndlessSeaLinQiSafeLvData[indexFengBaoLv.ToString()];
 			if (lingZhou != null)
 			{
-				int num = Mathf.Clamp((int)jtoken["chuandemage"] - (int)player.GetNowLingZhouShuXinJson()["Defense"], 0, 99999);
-				this.ComAvatar.ReduceLingZhouNaiJiu(lingZhou, num);
-				return;
+				int num = Mathf.Clamp((int)val[(object)"chuandemage"] - (int)player.GetNowLingZhouShuXinJson()[(object)"Defense"], 0, 99999);
+				ComAvatar.ReduceLingZhouNaiJiu(lingZhou, num);
 			}
-			int num2 = (int)jtoken["damage"];
-			base.StartCoroutine(this.ReduceHP(-num2));
+			else
+			{
+				int num2 = (int)val[(object)"damage"];
+				((MonoBehaviour)this).StartCoroutine(ReduceHP(-num2));
+			}
 		}
 	}
 
-	// Token: 0x0600117D RID: 4477 RVA: 0x00069AE7 File Offset: 0x00067CE7
 	public IEnumerator ReduceHP(int realHp)
 	{
-		yield return new WaitForSeconds(this.waitTime);
-		this.ComAvatar.AllMapAddHP(realHp, DeathType.身死道消);
-		yield break;
+		yield return (object)new WaitForSeconds(waitTime);
+		ComAvatar.AllMapAddHP(realHp);
 	}
-
-	// Token: 0x04000C7C RID: 3196
-	public float waitTime = 1f;
-
-	// Token: 0x04000C7D RID: 3197
-	public GameObject MoveFlagUI;
-
-	// Token: 0x04000C7E RID: 3198
-	public int G;
-
-	// Token: 0x04000C7F RID: 3199
-	public int H;
-
-	// Token: 0x04000C80 RID: 3200
-	public int F;
-
-	// Token: 0x04000C81 RID: 3201
-	public bool IsInitYun;
-
-	// Token: 0x04000C82 RID: 3202
-	public GameObject YunObject;
-
-	// Token: 0x04000C83 RID: 3203
-	public MapSeaCompent SeaParent;
-
-	// Token: 0x04000C84 RID: 3204
-	public Text Ftext;
-
-	// Token: 0x04000C85 RID: 3205
-	public Text Htext;
-
-	// Token: 0x04000C86 RID: 3206
-	public Text Gtext;
-
-	// Token: 0x04000C87 RID: 3207
-	public GameObject IsLand;
-
-	// Token: 0x04000C88 RID: 3208
-	public GameObject InIsLandBtn;
-
-	// Token: 0x04000C89 RID: 3209
-	public GameObject BiGuanBtnObj;
-
-	// Token: 0x04000C8A RID: 3210
-	[Header("是否显示按钮")]
-	public bool HideButton;
-
-	// Token: 0x04000C8B RID: 3211
-	private bool WhetherHasIsLand;
-
-	// Token: 0x04000C8C RID: 3212
-	[HideInInspector]
-	public bool WhetherHasJiZhi;
-
-	// Token: 0x04000C8D RID: 3213
-	private float LaseSetLangHuangTime;
-
-	// Token: 0x04000C8E RID: 3214
-	private float ResetTime = 5f;
-
-	// Token: 0x04000C8F RID: 3215
-	[HideInInspector]
-	public int jiZhiType;
-
-	// Token: 0x04000C90 RID: 3216
-	[HideInInspector]
-	public int jiZhiTalkID;
-
-	// Token: 0x04000C91 RID: 3217
-	[HideInInspector]
-	public int jiZhiChuFaID;
 }

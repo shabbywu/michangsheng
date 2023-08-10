@@ -1,44 +1,35 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020002BF RID: 703
 public class UIGaoShiRenWuItem : MonoBehaviour
 {
-	// Token: 0x060018AF RID: 6319 RVA: 0x000B1690 File Offset: 0x000AF890
+	public Text Desc;
+
+	public Text LingShiTitle;
+
+	public Text LingShi;
+
+	public Image LingShiIcon;
+
+	public Text ShengWang;
+
+	public FpBtn TiJiaoBtn;
+
+	public RectMask2D YinZhangMask;
+
+	public RectTransform YinZhang;
+
 	public void SetYiLingQu(bool yiLingQu, JSONObject pos, bool anim = false)
 	{
 		if (yiLingQu)
 		{
-			this.TiJiaoBtn.gameObject.SetActive(false);
-			GaoShiManager.SetYinZhangShow(this.YinZhangMask, this.YinZhang, pos, anim);
-			return;
+			((Component)TiJiaoBtn).gameObject.SetActive(false);
+			GaoShiManager.SetYinZhangShow(YinZhangMask, YinZhang, pos, anim);
 		}
-		this.TiJiaoBtn.gameObject.SetActive(true);
-		this.YinZhang.gameObject.SetActive(false);
+		else
+		{
+			((Component)TiJiaoBtn).gameObject.SetActive(true);
+			((Component)YinZhang).gameObject.SetActive(false);
+		}
 	}
-
-	// Token: 0x040013B5 RID: 5045
-	public Text Desc;
-
-	// Token: 0x040013B6 RID: 5046
-	public Text LingShiTitle;
-
-	// Token: 0x040013B7 RID: 5047
-	public Text LingShi;
-
-	// Token: 0x040013B8 RID: 5048
-	public Image LingShiIcon;
-
-	// Token: 0x040013B9 RID: 5049
-	public Text ShengWang;
-
-	// Token: 0x040013BA RID: 5050
-	public FpBtn TiJiaoBtn;
-
-	// Token: 0x040013BB RID: 5051
-	public RectMask2D YinZhangMask;
-
-	// Token: 0x040013BC RID: 5052
-	public RectTransform YinZhang;
 }

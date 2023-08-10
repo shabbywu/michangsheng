@@ -1,25 +1,22 @@
-﻿using System;
-using script.MenPaiTask.ZhangLao.UI;
 using UnityEngine;
+using script.MenPaiTask.ZhangLao.UI;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTools", "打开长老任务界面", "打开长老任务界面", 0)]
+[AddComponentMenu("")]
+public class OpenZhangLaoTask : Command, INoCommand
 {
-	// Token: 0x02000F9C RID: 3996
-	[CommandInfo("YSTools", "打开长老任务界面", "打开长老任务界面", 0)]
-	[AddComponentMenu("")]
-	public class OpenZhangLaoTask : Command, INoCommand
+	public override void OnEnter()
 	{
-		// Token: 0x06006F9C RID: 28572 RVA: 0x002A723F File Offset: 0x002A543F
-		public override void OnEnter()
-		{
-			ElderTaskUIMag.Open();
-			this.Continue();
-		}
+		ElderTaskUIMag.Open();
+		Continue();
+	}
 
-		// Token: 0x06006F9D RID: 28573 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

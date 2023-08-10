@@ -1,126 +1,99 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class NPCChuShiShuZiDate : IJSONClass
 {
-	// Token: 0x0200089C RID: 2204
-	public class NPCChuShiShuZiDate : IJSONClass
+	public static Dictionary<int, NPCChuShiShuZiDate> DataDict = new Dictionary<int, NPCChuShiShuZiDate>();
+
+	public static List<NPCChuShiShuZiDate> DataList = new List<NPCChuShiShuZiDate>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int xiuwei;
+
+	public int equipWeapon;
+
+	public int equipWeapon2;
+
+	public int equipClothing;
+
+	public int equipRing;
+
+	public int bag;
+
+	public List<int> age = new List<int>();
+
+	public List<int> shouYuan = new List<int>();
+
+	public List<int> SexType = new List<int>();
+
+	public List<int> HP = new List<int>();
+
+	public List<int> ziZhi = new List<int>();
+
+	public List<int> wuXin = new List<int>();
+
+	public List<int> dunSu = new List<int>();
+
+	public List<int> shengShi = new List<int>();
+
+	public List<int> MoneyType = new List<int>();
+
+	public List<int> ShopType = new List<int>();
+
+	public List<int> quality = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004083 RID: 16515 RVA: 0x001B88C0 File Offset: 0x001B6AC0
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.NPCChuShiShuZiDate.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.NPCChuShiShuZiDate.list)
+			try
 			{
-				try
+				NPCChuShiShuZiDate nPCChuShiShuZiDate = new NPCChuShiShuZiDate();
+				nPCChuShiShuZiDate.id = item["id"].I;
+				nPCChuShiShuZiDate.xiuwei = item["xiuwei"].I;
+				nPCChuShiShuZiDate.equipWeapon = item["equipWeapon"].I;
+				nPCChuShiShuZiDate.equipWeapon2 = item["equipWeapon2"].I;
+				nPCChuShiShuZiDate.equipClothing = item["equipClothing"].I;
+				nPCChuShiShuZiDate.equipRing = item["equipRing"].I;
+				nPCChuShiShuZiDate.bag = item["bag"].I;
+				nPCChuShiShuZiDate.age = item["age"].ToList();
+				nPCChuShiShuZiDate.shouYuan = item["shouYuan"].ToList();
+				nPCChuShiShuZiDate.SexType = item["SexType"].ToList();
+				nPCChuShiShuZiDate.HP = item["HP"].ToList();
+				nPCChuShiShuZiDate.ziZhi = item["ziZhi"].ToList();
+				nPCChuShiShuZiDate.wuXin = item["wuXin"].ToList();
+				nPCChuShiShuZiDate.dunSu = item["dunSu"].ToList();
+				nPCChuShiShuZiDate.shengShi = item["shengShi"].ToList();
+				nPCChuShiShuZiDate.MoneyType = item["MoneyType"].ToList();
+				nPCChuShiShuZiDate.ShopType = item["ShopType"].ToList();
+				nPCChuShiShuZiDate.quality = item["quality"].ToList();
+				if (DataDict.ContainsKey(nPCChuShiShuZiDate.id))
 				{
-					NPCChuShiShuZiDate npcchuShiShuZiDate = new NPCChuShiShuZiDate();
-					npcchuShiShuZiDate.id = jsonobject["id"].I;
-					npcchuShiShuZiDate.xiuwei = jsonobject["xiuwei"].I;
-					npcchuShiShuZiDate.equipWeapon = jsonobject["equipWeapon"].I;
-					npcchuShiShuZiDate.equipWeapon2 = jsonobject["equipWeapon2"].I;
-					npcchuShiShuZiDate.equipClothing = jsonobject["equipClothing"].I;
-					npcchuShiShuZiDate.equipRing = jsonobject["equipRing"].I;
-					npcchuShiShuZiDate.bag = jsonobject["bag"].I;
-					npcchuShiShuZiDate.age = jsonobject["age"].ToList();
-					npcchuShiShuZiDate.shouYuan = jsonobject["shouYuan"].ToList();
-					npcchuShiShuZiDate.SexType = jsonobject["SexType"].ToList();
-					npcchuShiShuZiDate.HP = jsonobject["HP"].ToList();
-					npcchuShiShuZiDate.ziZhi = jsonobject["ziZhi"].ToList();
-					npcchuShiShuZiDate.wuXin = jsonobject["wuXin"].ToList();
-					npcchuShiShuZiDate.dunSu = jsonobject["dunSu"].ToList();
-					npcchuShiShuZiDate.shengShi = jsonobject["shengShi"].ToList();
-					npcchuShiShuZiDate.MoneyType = jsonobject["MoneyType"].ToList();
-					npcchuShiShuZiDate.ShopType = jsonobject["ShopType"].ToList();
-					npcchuShiShuZiDate.quality = jsonobject["quality"].ToList();
-					if (NPCChuShiShuZiDate.DataDict.ContainsKey(npcchuShiShuZiDate.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典NPCChuShiShuZiDate.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", npcchuShiShuZiDate.id));
-					}
-					else
-					{
-						NPCChuShiShuZiDate.DataDict.Add(npcchuShiShuZiDate.id, npcchuShiShuZiDate);
-						NPCChuShiShuZiDate.DataList.Add(npcchuShiShuZiDate);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典NPCChuShiShuZiDate.DataDict添加数据时出现重复的键，Key:{nPCChuShiShuZiDate.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典NPCChuShiShuZiDate.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(nPCChuShiShuZiDate.id, nPCChuShiShuZiDate);
+				DataList.Add(nPCChuShiShuZiDate);
 			}
-			if (NPCChuShiShuZiDate.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				NPCChuShiShuZiDate.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典NPCChuShiShuZiDate.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004084 RID: 16516 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003E14 RID: 15892
-		public static Dictionary<int, NPCChuShiShuZiDate> DataDict = new Dictionary<int, NPCChuShiShuZiDate>();
-
-		// Token: 0x04003E15 RID: 15893
-		public static List<NPCChuShiShuZiDate> DataList = new List<NPCChuShiShuZiDate>();
-
-		// Token: 0x04003E16 RID: 15894
-		public static Action OnInitFinishAction = new Action(NPCChuShiShuZiDate.OnInitFinish);
-
-		// Token: 0x04003E17 RID: 15895
-		public int id;
-
-		// Token: 0x04003E18 RID: 15896
-		public int xiuwei;
-
-		// Token: 0x04003E19 RID: 15897
-		public int equipWeapon;
-
-		// Token: 0x04003E1A RID: 15898
-		public int equipWeapon2;
-
-		// Token: 0x04003E1B RID: 15899
-		public int equipClothing;
-
-		// Token: 0x04003E1C RID: 15900
-		public int equipRing;
-
-		// Token: 0x04003E1D RID: 15901
-		public int bag;
-
-		// Token: 0x04003E1E RID: 15902
-		public List<int> age = new List<int>();
-
-		// Token: 0x04003E1F RID: 15903
-		public List<int> shouYuan = new List<int>();
-
-		// Token: 0x04003E20 RID: 15904
-		public List<int> SexType = new List<int>();
-
-		// Token: 0x04003E21 RID: 15905
-		public List<int> HP = new List<int>();
-
-		// Token: 0x04003E22 RID: 15906
-		public List<int> ziZhi = new List<int>();
-
-		// Token: 0x04003E23 RID: 15907
-		public List<int> wuXin = new List<int>();
-
-		// Token: 0x04003E24 RID: 15908
-		public List<int> dunSu = new List<int>();
-
-		// Token: 0x04003E25 RID: 15909
-		public List<int> shengShi = new List<int>();
-
-		// Token: 0x04003E26 RID: 15910
-		public List<int> MoneyType = new List<int>();
-
-		// Token: 0x04003E27 RID: 15911
-		public List<int> ShopType = new List<int>();
-
-		// Token: 0x04003E28 RID: 15912
-		public List<int> quality = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

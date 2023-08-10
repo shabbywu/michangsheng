@@ -1,65 +1,53 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ItemsSeidJsonData2 : IJSONClass
 {
-	// Token: 0x02000855 RID: 2133
-	public class ItemsSeidJsonData2 : IJSONClass
+	public static int SEIDID = 2;
+
+	public static Dictionary<int, ItemsSeidJsonData2> DataDict = new Dictionary<int, ItemsSeidJsonData2>();
+
+	public static List<ItemsSeidJsonData2> DataList = new List<ItemsSeidJsonData2>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int value1;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003F66 RID: 16230 RVA: 0x001B11B4 File Offset: 0x001AF3B4
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ItemsSeidJsonData[2].list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ItemsSeidJsonData[2].list)
+			try
 			{
-				try
+				ItemsSeidJsonData2 itemsSeidJsonData = new ItemsSeidJsonData2();
+				itemsSeidJsonData.id = item["id"].I;
+				itemsSeidJsonData.value1 = item["value1"].I;
+				if (DataDict.ContainsKey(itemsSeidJsonData.id))
 				{
-					ItemsSeidJsonData2 itemsSeidJsonData = new ItemsSeidJsonData2();
-					itemsSeidJsonData.id = jsonobject["id"].I;
-					itemsSeidJsonData.value1 = jsonobject["value1"].I;
-					if (ItemsSeidJsonData2.DataDict.ContainsKey(itemsSeidJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ItemsSeidJsonData2.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", itemsSeidJsonData.id));
-					}
-					else
-					{
-						ItemsSeidJsonData2.DataDict.Add(itemsSeidJsonData.id, itemsSeidJsonData);
-						ItemsSeidJsonData2.DataList.Add(itemsSeidJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ItemsSeidJsonData2.DataDict添加数据时出现重复的键，Key:{itemsSeidJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ItemsSeidJsonData2.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(itemsSeidJsonData.id, itemsSeidJsonData);
+				DataList.Add(itemsSeidJsonData);
 			}
-			if (ItemsSeidJsonData2.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ItemsSeidJsonData2.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ItemsSeidJsonData2.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003F67 RID: 16231 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003BB3 RID: 15283
-		public static int SEIDID = 2;
-
-		// Token: 0x04003BB4 RID: 15284
-		public static Dictionary<int, ItemsSeidJsonData2> DataDict = new Dictionary<int, ItemsSeidJsonData2>();
-
-		// Token: 0x04003BB5 RID: 15285
-		public static List<ItemsSeidJsonData2> DataList = new List<ItemsSeidJsonData2>();
-
-		// Token: 0x04003BB6 RID: 15286
-		public static Action OnInitFinishAction = new Action(ItemsSeidJsonData2.OnInitFinish);
-
-		// Token: 0x04003BB7 RID: 15287
-		public int id;
-
-		// Token: 0x04003BB8 RID: 15288
-		public int value1;
+	private static void OnInitFinish()
+	{
 	}
 }

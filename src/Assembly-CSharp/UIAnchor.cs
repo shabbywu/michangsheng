@@ -1,237 +1,251 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x020000A4 RID: 164
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/Anchor")]
 public class UIAnchor : MonoBehaviour
 {
-	// Token: 0x060008D3 RID: 2259 RVA: 0x00033DC3 File Offset: 0x00031FC3
-	private void Awake()
+	public enum Side
 	{
-		this.mTrans = base.transform;
-		this.mAnim = base.GetComponent<Animation>();
-		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
+		BottomLeft,
+		Left,
+		TopLeft,
+		Top,
+		TopRight,
+		Right,
+		BottomRight,
+		Bottom,
+		Center
 	}
 
-	// Token: 0x060008D4 RID: 2260 RVA: 0x00033DFD File Offset: 0x00031FFD
-	private void OnDestroy()
-	{
-		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
-	}
-
-	// Token: 0x060008D5 RID: 2261 RVA: 0x00033E1F File Offset: 0x0003201F
-	private void ScreenSizeChanged()
-	{
-		if (this.mStarted && this.runOnlyOnce)
-		{
-			this.Update();
-		}
-	}
-
-	// Token: 0x060008D6 RID: 2262 RVA: 0x00033E38 File Offset: 0x00032038
-	private void Start()
-	{
-		if (this.container == null && this.widgetContainer != null)
-		{
-			this.container = this.widgetContainer.gameObject;
-			this.widgetContainer = null;
-		}
-		this.mRoot = NGUITools.FindInParents<UIRoot>(base.gameObject);
-		if (this.uiCamera == null)
-		{
-			this.uiCamera = NGUITools.FindCameraForLayer(base.gameObject.layer);
-		}
-		this.Update();
-		this.mStarted = true;
-	}
-
-	// Token: 0x060008D7 RID: 2263 RVA: 0x00033EBC File Offset: 0x000320BC
-	private void Update()
-	{
-		if (this.mAnim != null && this.mAnim.enabled && this.mAnim.isPlaying)
-		{
-			return;
-		}
-		bool flag = false;
-		UIWidget uiwidget = (this.container == null) ? null : this.container.GetComponent<UIWidget>();
-		UIPanel uipanel = (this.container == null && uiwidget == null) ? null : this.container.GetComponent<UIPanel>();
-		if (uiwidget != null)
-		{
-			Bounds bounds = uiwidget.CalculateBounds(this.container.transform.parent);
-			this.mRect.x = bounds.min.x;
-			this.mRect.y = bounds.min.y;
-			this.mRect.width = bounds.size.x;
-			this.mRect.height = bounds.size.y;
-		}
-		else if (uipanel != null)
-		{
-			if (uipanel.clipping == UIDrawCall.Clipping.None)
-			{
-				float num = (this.mRoot != null) ? ((float)this.mRoot.activeHeight / (float)Screen.height * 0.5f) : 0.5f;
-				this.mRect.xMin = (float)(-(float)Screen.width) * num;
-				this.mRect.yMin = (float)(-(float)Screen.height) * num;
-				this.mRect.xMax = -this.mRect.xMin;
-				this.mRect.yMax = -this.mRect.yMin;
-			}
-			else
-			{
-				Vector4 finalClipRegion = uipanel.finalClipRegion;
-				this.mRect.x = finalClipRegion.x - finalClipRegion.z * 0.5f;
-				this.mRect.y = finalClipRegion.y - finalClipRegion.w * 0.5f;
-				this.mRect.width = finalClipRegion.z;
-				this.mRect.height = finalClipRegion.w;
-			}
-		}
-		else if (this.container != null)
-		{
-			Transform parent = this.container.transform.parent;
-			Bounds bounds2 = (parent != null) ? NGUIMath.CalculateRelativeWidgetBounds(parent, this.container.transform) : NGUIMath.CalculateRelativeWidgetBounds(this.container.transform);
-			this.mRect.x = bounds2.min.x;
-			this.mRect.y = bounds2.min.y;
-			this.mRect.width = bounds2.size.x;
-			this.mRect.height = bounds2.size.y;
-		}
-		else
-		{
-			if (!(this.uiCamera != null))
-			{
-				return;
-			}
-			flag = true;
-			this.mRect = this.uiCamera.pixelRect;
-		}
-		float num2 = (this.mRect.xMin + this.mRect.xMax) * 0.5f;
-		float num3 = (this.mRect.yMin + this.mRect.yMax) * 0.5f;
-		Vector3 vector;
-		vector..ctor(num2, num3, 0f);
-		if (this.side != UIAnchor.Side.Center)
-		{
-			if (this.side == UIAnchor.Side.Right || this.side == UIAnchor.Side.TopRight || this.side == UIAnchor.Side.BottomRight)
-			{
-				vector.x = this.mRect.xMax;
-			}
-			else if (this.side == UIAnchor.Side.Top || this.side == UIAnchor.Side.Center || this.side == UIAnchor.Side.Bottom)
-			{
-				vector.x = num2;
-			}
-			else
-			{
-				vector.x = this.mRect.xMin;
-			}
-			if (this.side == UIAnchor.Side.Top || this.side == UIAnchor.Side.TopRight || this.side == UIAnchor.Side.TopLeft)
-			{
-				vector.y = this.mRect.yMax;
-			}
-			else if (this.side == UIAnchor.Side.Left || this.side == UIAnchor.Side.Center || this.side == UIAnchor.Side.Right)
-			{
-				vector.y = num3;
-			}
-			else
-			{
-				vector.y = this.mRect.yMin;
-			}
-		}
-		float width = this.mRect.width;
-		float height = this.mRect.height;
-		vector.x += this.pixelOffset.x + this.relativeOffset.x * width;
-		vector.y += this.pixelOffset.y + this.relativeOffset.y * height;
-		if (flag)
-		{
-			if (this.uiCamera.orthographic)
-			{
-				vector.x = Mathf.Round(vector.x);
-				vector.y = Mathf.Round(vector.y);
-			}
-			vector.z = this.uiCamera.WorldToScreenPoint(this.mTrans.position).z;
-			vector = this.uiCamera.ScreenToWorldPoint(vector);
-		}
-		else
-		{
-			vector.x = Mathf.Round(vector.x);
-			vector.y = Mathf.Round(vector.y);
-			if (uipanel != null)
-			{
-				vector = uipanel.cachedTransform.TransformPoint(vector);
-			}
-			else if (this.container != null)
-			{
-				Transform parent2 = this.container.transform.parent;
-				if (parent2 != null)
-				{
-					vector = parent2.TransformPoint(vector);
-				}
-			}
-			vector.z = this.mTrans.position.z;
-		}
-		if (this.mTrans.position != vector)
-		{
-			this.mTrans.position = vector;
-		}
-		if (this.runOnlyOnce && Application.isPlaying)
-		{
-			base.enabled = false;
-		}
-	}
-
-	// Token: 0x04000567 RID: 1383
 	public Camera uiCamera;
 
-	// Token: 0x04000568 RID: 1384
 	public GameObject container;
 
-	// Token: 0x04000569 RID: 1385
-	public UIAnchor.Side side = UIAnchor.Side.Center;
+	public Side side = Side.Center;
 
-	// Token: 0x0400056A RID: 1386
 	public bool runOnlyOnce = true;
 
-	// Token: 0x0400056B RID: 1387
 	public Vector2 relativeOffset = Vector2.zero;
 
-	// Token: 0x0400056C RID: 1388
 	public Vector2 pixelOffset = Vector2.zero;
 
-	// Token: 0x0400056D RID: 1389
 	[HideInInspector]
 	[SerializeField]
 	private UIWidget widgetContainer;
 
-	// Token: 0x0400056E RID: 1390
 	private Transform mTrans;
 
-	// Token: 0x0400056F RID: 1391
 	private Animation mAnim;
 
-	// Token: 0x04000570 RID: 1392
 	private Rect mRect;
 
-	// Token: 0x04000571 RID: 1393
 	private UIRoot mRoot;
 
-	// Token: 0x04000572 RID: 1394
 	private bool mStarted;
 
-	// Token: 0x02001217 RID: 4631
-	public enum Side
+	private void Awake()
 	{
-		// Token: 0x0400647E RID: 25726
-		BottomLeft,
-		// Token: 0x0400647F RID: 25727
-		Left,
-		// Token: 0x04006480 RID: 25728
-		TopLeft,
-		// Token: 0x04006481 RID: 25729
-		Top,
-		// Token: 0x04006482 RID: 25730
-		TopRight,
-		// Token: 0x04006483 RID: 25731
-		Right,
-		// Token: 0x04006484 RID: 25732
-		BottomRight,
-		// Token: 0x04006485 RID: 25733
-		Bottom,
-		// Token: 0x04006486 RID: 25734
-		Center
+		mTrans = ((Component)this).transform;
+		mAnim = ((Component)this).GetComponent<Animation>();
+		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(ScreenSizeChanged));
+	}
+
+	private void OnDestroy()
+	{
+		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(ScreenSizeChanged));
+	}
+
+	private void ScreenSizeChanged()
+	{
+		if (mStarted && runOnlyOnce)
+		{
+			Update();
+		}
+	}
+
+	private void Start()
+	{
+		if ((Object)(object)container == (Object)null && (Object)(object)widgetContainer != (Object)null)
+		{
+			container = ((Component)widgetContainer).gameObject;
+			widgetContainer = null;
+		}
+		mRoot = NGUITools.FindInParents<UIRoot>(((Component)this).gameObject);
+		if ((Object)(object)uiCamera == (Object)null)
+		{
+			uiCamera = NGUITools.FindCameraForLayer(((Component)this).gameObject.layer);
+		}
+		Update();
+		mStarted = true;
+	}
+
+	private void Update()
+	{
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0195: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0251: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0256: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0277: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0504: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0506: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0475: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0488: Unknown result type (might be due to invalid IL or missing references)
+		//IL_054c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0561: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0566: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0542: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0575: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)mAnim != (Object)null && ((Behaviour)mAnim).enabled && mAnim.isPlaying)
+		{
+			return;
+		}
+		bool flag = false;
+		UIWidget uIWidget = (((Object)(object)container == (Object)null) ? null : container.GetComponent<UIWidget>());
+		UIPanel uIPanel = (((Object)(object)container == (Object)null && (Object)(object)uIWidget == (Object)null) ? null : container.GetComponent<UIPanel>());
+		if ((Object)(object)uIWidget != (Object)null)
+		{
+			Bounds val = uIWidget.CalculateBounds(container.transform.parent);
+			((Rect)(ref mRect)).x = ((Bounds)(ref val)).min.x;
+			((Rect)(ref mRect)).y = ((Bounds)(ref val)).min.y;
+			((Rect)(ref mRect)).width = ((Bounds)(ref val)).size.x;
+			((Rect)(ref mRect)).height = ((Bounds)(ref val)).size.y;
+		}
+		else if ((Object)(object)uIPanel != (Object)null)
+		{
+			if (uIPanel.clipping == UIDrawCall.Clipping.None)
+			{
+				float num = (((Object)(object)mRoot != (Object)null) ? ((float)mRoot.activeHeight / (float)Screen.height * 0.5f) : 0.5f);
+				((Rect)(ref mRect)).xMin = (float)(-Screen.width) * num;
+				((Rect)(ref mRect)).yMin = (float)(-Screen.height) * num;
+				((Rect)(ref mRect)).xMax = 0f - ((Rect)(ref mRect)).xMin;
+				((Rect)(ref mRect)).yMax = 0f - ((Rect)(ref mRect)).yMin;
+			}
+			else
+			{
+				Vector4 finalClipRegion = uIPanel.finalClipRegion;
+				((Rect)(ref mRect)).x = finalClipRegion.x - finalClipRegion.z * 0.5f;
+				((Rect)(ref mRect)).y = finalClipRegion.y - finalClipRegion.w * 0.5f;
+				((Rect)(ref mRect)).width = finalClipRegion.z;
+				((Rect)(ref mRect)).height = finalClipRegion.w;
+			}
+		}
+		else if ((Object)(object)container != (Object)null)
+		{
+			Transform parent = container.transform.parent;
+			Bounds val2 = (((Object)(object)parent != (Object)null) ? NGUIMath.CalculateRelativeWidgetBounds(parent, container.transform) : NGUIMath.CalculateRelativeWidgetBounds(container.transform));
+			((Rect)(ref mRect)).x = ((Bounds)(ref val2)).min.x;
+			((Rect)(ref mRect)).y = ((Bounds)(ref val2)).min.y;
+			((Rect)(ref mRect)).width = ((Bounds)(ref val2)).size.x;
+			((Rect)(ref mRect)).height = ((Bounds)(ref val2)).size.y;
+		}
+		else
+		{
+			if (!((Object)(object)uiCamera != (Object)null))
+			{
+				return;
+			}
+			flag = true;
+			mRect = uiCamera.pixelRect;
+		}
+		float num2 = (((Rect)(ref mRect)).xMin + ((Rect)(ref mRect)).xMax) * 0.5f;
+		float num3 = (((Rect)(ref mRect)).yMin + ((Rect)(ref mRect)).yMax) * 0.5f;
+		Vector3 val3 = default(Vector3);
+		((Vector3)(ref val3))._002Ector(num2, num3, 0f);
+		if (side != Side.Center)
+		{
+			if (side == Side.Right || side == Side.TopRight || side == Side.BottomRight)
+			{
+				val3.x = ((Rect)(ref mRect)).xMax;
+			}
+			else if (side == Side.Top || side == Side.Center || side == Side.Bottom)
+			{
+				val3.x = num2;
+			}
+			else
+			{
+				val3.x = ((Rect)(ref mRect)).xMin;
+			}
+			if (side == Side.Top || side == Side.TopRight || side == Side.TopLeft)
+			{
+				val3.y = ((Rect)(ref mRect)).yMax;
+			}
+			else if (side == Side.Left || side == Side.Center || side == Side.Right)
+			{
+				val3.y = num3;
+			}
+			else
+			{
+				val3.y = ((Rect)(ref mRect)).yMin;
+			}
+		}
+		float width = ((Rect)(ref mRect)).width;
+		float height = ((Rect)(ref mRect)).height;
+		val3.x += pixelOffset.x + relativeOffset.x * width;
+		val3.y += pixelOffset.y + relativeOffset.y * height;
+		if (flag)
+		{
+			if (uiCamera.orthographic)
+			{
+				val3.x = Mathf.Round(val3.x);
+				val3.y = Mathf.Round(val3.y);
+			}
+			val3.z = uiCamera.WorldToScreenPoint(mTrans.position).z;
+			val3 = uiCamera.ScreenToWorldPoint(val3);
+		}
+		else
+		{
+			val3.x = Mathf.Round(val3.x);
+			val3.y = Mathf.Round(val3.y);
+			if ((Object)(object)uIPanel != (Object)null)
+			{
+				val3 = uIPanel.cachedTransform.TransformPoint(val3);
+			}
+			else if ((Object)(object)container != (Object)null)
+			{
+				Transform parent2 = container.transform.parent;
+				if ((Object)(object)parent2 != (Object)null)
+				{
+					val3 = parent2.TransformPoint(val3);
+				}
+			}
+			val3.z = mTrans.position.z;
+		}
+		if (mTrans.position != val3)
+		{
+			mTrans.position = val3;
+		}
+		if (runOnlyOnce && Application.isPlaying)
+		{
+			((Behaviour)this).enabled = false;
+		}
 	}
 }

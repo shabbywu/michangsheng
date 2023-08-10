@@ -1,155 +1,132 @@
-﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace WXB
+namespace WXB;
+
+[ExecuteInEditMode]
+public class OutlineDraw : EffectDrawObjec, ICanvasElement
 {
-	// Token: 0x02000698 RID: 1688
-	[ExecuteInEditMode]
-	public class OutlineDraw : EffectDrawObjec, ICanvasElement
+	private DrawLineStruct m_Data;
+
+	private float currentWidth;
+
+	private float maxWidth;
+
+	public override DrawType type => DrawType.Outline;
+
+	public bool isOpenAlpha
 	{
-		// Token: 0x170004E9 RID: 1257
-		// (get) Token: 0x06003555 RID: 13653 RVA: 0x001709C1 File Offset: 0x0016EBC1
-		public override DrawType type
+		get
 		{
-			get
-			{
-				return DrawType.Outline;
-			}
+			return GetOpen(0);
 		}
-
-		// Token: 0x170004EA RID: 1258
-		// (get) Token: 0x06003556 RID: 13654 RVA: 0x0016F2BA File Offset: 0x0016D4BA
-		// (set) Token: 0x06003557 RID: 13655 RVA: 0x0016F2C3 File Offset: 0x0016D4C3
-		public bool isOpenAlpha
+		set
 		{
-			get
-			{
-				return base.GetOpen(0);
-			}
-			set
-			{
-				base.SetOpen<AlphaEffect>(0, value);
-			}
+			SetOpen<AlphaEffect>(0, value);
 		}
+	}
 
-		// Token: 0x06003558 RID: 13656 RVA: 0x001709C4 File Offset: 0x0016EBC4
-		public override void UpdateSelf(float deltaTime)
+	public override void UpdateSelf(float deltaTime)
+	{
+		base.UpdateSelf(deltaTime);
+		if (currentWidth >= maxWidth || m_Data == null)
 		{
-			base.UpdateSelf(deltaTime);
-			if (this.currentWidth >= this.maxWidth || this.m_Data == null)
-			{
-				return;
-			}
-			float num = this.currentWidth;
-			for (int i = 0; i < this.m_Data.lines.Count; i++)
-			{
-				DrawLineStruct.Line line = this.m_Data.lines[i];
-				if (num >= line.width)
-				{
-					num -= line.width;
-				}
-				else
-				{
-					float num2 = (line.width - num) / (float)line.dynSpeed;
-					if (num2 >= deltaTime)
-					{
-						this.currentWidth += deltaTime * (float)line.dynSpeed;
-						break;
-					}
-					this.currentWidth += (float)line.dynSpeed * num2;
-					deltaTime -= num2;
-					num -= (float)line.dynSpeed * num2;
-				}
-			}
-			CanvasUpdateRegistry.RegisterCanvasElementForGraphicRebuild(this);
+			return;
 		}
-
-		// Token: 0x06003559 RID: 13657 RVA: 0x00170A94 File Offset: 0x0016EC94
-		public void AddLine(TextNode n, Vector2 left, float width, float height, Color color, Vector2 uv, int speed)
+		float num = currentWidth;
+		for (int i = 0; i < m_Data.lines.Count; i++)
 		{
-			if (this.m_Data == null)
+			DrawLineStruct.Line line = m_Data.lines[i];
+			if (num >= line.width)
 			{
-				this.m_Data = new DrawLineStruct();
-				this.maxWidth = 0f;
-				this.currentWidth = 0f;
+				num -= line.width;
+				continue;
 			}
-			this.maxWidth += width;
-			this.m_Data.lines.Add(new DrawLineStruct.Line
+			float num2 = (line.width - num) / (float)line.dynSpeed;
+			if (num2 >= deltaTime)
 			{
-				leftPos = left,
-				width = width,
-				height = height,
-				color = color,
-				uv = uv,
-				node = n,
-				dynSpeed = speed
-			});
+				currentWidth += deltaTime * (float)line.dynSpeed;
+				break;
+			}
+			currentWidth += (float)line.dynSpeed * num2;
+			deltaTime -= num2;
+			num -= (float)line.dynSpeed * num2;
 		}
+		CanvasUpdateRegistry.RegisterCanvasElementForGraphicRebuild((ICanvasElement)(object)this);
+	}
 
-		// Token: 0x0600355A RID: 13658 RVA: 0x00170B2D File Offset: 0x0016ED2D
-		public override void UpdateMaterial(Material mat)
+	public void AddLine(TextNode n, Vector2 left, float width, float height, Color color, Vector2 uv, int speed)
+	{
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		if (m_Data == null)
 		{
-			base.UpdateMaterial(mat);
-			base.rectTransform.SetAsLastSibling();
+			m_Data = new DrawLineStruct();
+			maxWidth = 0f;
+			currentWidth = 0f;
 		}
-
-		// Token: 0x0600355B RID: 13659 RVA: 0x00170B44 File Offset: 0x0016ED44
-		public void Rebuild(CanvasUpdate executing)
+		maxWidth += width;
+		m_Data.lines.Add(new DrawLineStruct.Line
 		{
-			if (this.m_Data == null)
-			{
-				return;
-			}
-			if (executing != 3)
-			{
-				return;
-			}
-			float width = this.currentWidth;
+			leftPos = left,
+			width = width,
+			height = height,
+			color = color,
+			uv = uv,
+			node = n,
+			dynSpeed = speed
+		});
+	}
+
+	public override void UpdateMaterial(Material mat)
+	{
+		base.UpdateMaterial(mat);
+		((Transform)base.rectTransform).SetAsLastSibling();
+	}
+
+	public void Rebuild(CanvasUpdate executing)
+	{
+		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Invalid comparison between Unknown and I4
+		if (m_Data != null && (int)executing == 3)
+		{
+			float width = currentWidth;
 			VertexHelper vertexHelper = Tools.vertexHelper;
 			vertexHelper.Clear();
-			this.m_Data.Render(width, vertexHelper);
+			m_Data.Render(width, vertexHelper);
 			Mesh workerMesh = SymbolText.WorkerMesh;
 			vertexHelper.FillMesh(workerMesh);
 			base.canvasRenderer.SetMesh(workerMesh);
 		}
+	}
 
-		// Token: 0x0600355C RID: 13660 RVA: 0x00170B98 File Offset: 0x0016ED98
-		public override void Release()
-		{
-			base.Release();
-			this.m_Data = null;
-		}
+	public override void Release()
+	{
+		base.Release();
+		m_Data = null;
+	}
 
-		// Token: 0x0600355D RID: 13661 RVA: 0x00004095 File Offset: 0x00002295
-		public void GraphicUpdateComplete()
-		{
-		}
+	public void GraphicUpdateComplete()
+	{
+	}
 
-		// Token: 0x0600355E RID: 13662 RVA: 0x0016F3F8 File Offset: 0x0016D5F8
-		public bool IsDestroyed()
-		{
-			return this == null;
-		}
+	public bool IsDestroyed()
+	{
+		return (Object)(object)this == (Object)null;
+	}
 
-		// Token: 0x0600355F RID: 13663 RVA: 0x00004095 File Offset: 0x00002295
-		public void LayoutComplete()
-		{
-		}
+	public void LayoutComplete()
+	{
+	}
 
-		// Token: 0x06003561 RID: 13665 RVA: 0x0016F414 File Offset: 0x0016D614
-		Transform ICanvasElement.get_transform()
-		{
-			return base.transform;
-		}
-
-		// Token: 0x04002F00 RID: 12032
-		private DrawLineStruct m_Data;
-
-		// Token: 0x04002F01 RID: 12033
-		private float currentWidth;
-
-		// Token: 0x04002F02 RID: 12034
-		private float maxWidth;
+	[SpecialName]
+	Transform ICanvasElement.get_transform()
+	{
+		return ((Component)this).transform;
 	}
 }

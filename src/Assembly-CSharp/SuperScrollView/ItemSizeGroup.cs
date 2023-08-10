@@ -1,193 +1,162 @@
-﻿using System;
+namespace SuperScrollView;
 
-namespace SuperScrollView
+public class ItemSizeGroup
 {
-	// Token: 0x020006C2 RID: 1730
-	public class ItemSizeGroup
+	public float[] mItemSizeArray;
+
+	public float[] mItemStartPosArray;
+
+	public int mItemCount;
+
+	private int mDirtyBeginIndex = 100;
+
+	public float mGroupSize;
+
+	public float mGroupStartPos;
+
+	public float mGroupEndPos;
+
+	public int mGroupIndex;
+
+	private float mItemDefaultSize;
+
+	private int mMaxNoZeroIndex;
+
+	public bool IsDirty => mDirtyBeginIndex < mItemCount;
+
+	public ItemSizeGroup(int index, float itemDefaultSize)
 	{
-		// Token: 0x060036AB RID: 13995 RVA: 0x00175F07 File Offset: 0x00174107
-		public ItemSizeGroup(int index, float itemDefaultSize)
-		{
-			this.mGroupIndex = index;
-			this.mItemDefaultSize = itemDefaultSize;
-			this.Init();
-		}
+		mGroupIndex = index;
+		mItemDefaultSize = itemDefaultSize;
+		Init();
+	}
 
-		// Token: 0x060036AC RID: 13996 RVA: 0x00175F2C File Offset: 0x0017412C
-		public void Init()
+	public void Init()
+	{
+		mItemSizeArray = new float[100];
+		if (mItemDefaultSize != 0f)
 		{
-			this.mItemSizeArray = new float[100];
-			if (this.mItemDefaultSize != 0f)
+			for (int i = 0; i < mItemSizeArray.Length; i++)
 			{
-				for (int i = 0; i < this.mItemSizeArray.Length; i++)
-				{
-					this.mItemSizeArray[i] = this.mItemDefaultSize;
-				}
-			}
-			this.mItemStartPosArray = new float[100];
-			this.mItemStartPosArray[0] = 0f;
-			this.mItemCount = 100;
-			this.mGroupSize = this.mItemDefaultSize * (float)this.mItemSizeArray.Length;
-			if (this.mItemDefaultSize != 0f)
-			{
-				this.mDirtyBeginIndex = 0;
-				return;
-			}
-			this.mDirtyBeginIndex = 100;
-		}
-
-		// Token: 0x060036AD RID: 13997 RVA: 0x00175FC9 File Offset: 0x001741C9
-		public float GetItemStartPos(int index)
-		{
-			return this.mGroupStartPos + this.mItemStartPosArray[index];
-		}
-
-		// Token: 0x1700050C RID: 1292
-		// (get) Token: 0x060036AE RID: 13998 RVA: 0x00175FDA File Offset: 0x001741DA
-		public bool IsDirty
-		{
-			get
-			{
-				return this.mDirtyBeginIndex < this.mItemCount;
+				mItemSizeArray[i] = mItemDefaultSize;
 			}
 		}
-
-		// Token: 0x060036AF RID: 13999 RVA: 0x00175FEC File Offset: 0x001741EC
-		public float SetItemSize(int index, float size)
+		mItemStartPosArray = new float[100];
+		mItemStartPosArray[0] = 0f;
+		mItemCount = 100;
+		mGroupSize = mItemDefaultSize * (float)mItemSizeArray.Length;
+		if (mItemDefaultSize != 0f)
 		{
-			if (index > this.mMaxNoZeroIndex && size > 0f)
-			{
-				this.mMaxNoZeroIndex = index;
-			}
-			float num = this.mItemSizeArray[index];
-			if (num == size)
-			{
-				return 0f;
-			}
-			this.mItemSizeArray[index] = size;
-			if (index < this.mDirtyBeginIndex)
-			{
-				this.mDirtyBeginIndex = index;
-			}
-			float num2 = size - num;
-			this.mGroupSize += num2;
-			return num2;
+			mDirtyBeginIndex = 0;
 		}
-
-		// Token: 0x060036B0 RID: 14000 RVA: 0x00176050 File Offset: 0x00174250
-		public void SetItemCount(int count)
+		else
 		{
-			if (count < this.mMaxNoZeroIndex)
-			{
-				this.mMaxNoZeroIndex = count;
-			}
-			if (this.mItemCount == count)
-			{
-				return;
-			}
-			this.mItemCount = count;
-			this.RecalcGroupSize();
+			mDirtyBeginIndex = 100;
 		}
+	}
 
-		// Token: 0x060036B1 RID: 14001 RVA: 0x0017607C File Offset: 0x0017427C
-		public void RecalcGroupSize()
+	public float GetItemStartPos(int index)
+	{
+		return mGroupStartPos + mItemStartPosArray[index];
+	}
+
+	public float SetItemSize(int index, float size)
+	{
+		if (index > mMaxNoZeroIndex && size > 0f)
 		{
-			this.mGroupSize = 0f;
-			for (int i = 0; i < this.mItemCount; i++)
-			{
-				this.mGroupSize += this.mItemSizeArray[i];
-			}
+			mMaxNoZeroIndex = index;
 		}
-
-		// Token: 0x060036B2 RID: 14002 RVA: 0x001760BC File Offset: 0x001742BC
-		public int GetItemIndexByPos(float pos)
+		float num = mItemSizeArray[index];
+		if (num == size)
 		{
-			if (this.mItemCount == 0)
-			{
-				return -1;
-			}
-			int i = 0;
-			int num = this.mItemCount - 1;
-			if (this.mItemDefaultSize == 0f)
-			{
-				if (this.mMaxNoZeroIndex < 0)
-				{
-					this.mMaxNoZeroIndex = 0;
-				}
-				num = this.mMaxNoZeroIndex;
-			}
-			while (i <= num)
-			{
-				int num2 = (i + num) / 2;
-				float num3 = this.mItemStartPosArray[num2];
-				float num4 = num3 + this.mItemSizeArray[num2];
-				if (num3 <= pos && num4 >= pos)
-				{
-					return num2;
-				}
-				if (pos > num4)
-				{
-					i = num2 + 1;
-				}
-				else
-				{
-					num = num2 - 1;
-				}
-			}
+			return 0f;
+		}
+		mItemSizeArray[index] = size;
+		if (index < mDirtyBeginIndex)
+		{
+			mDirtyBeginIndex = index;
+		}
+		float num2 = size - num;
+		mGroupSize += num2;
+		return num2;
+	}
+
+	public void SetItemCount(int count)
+	{
+		if (count < mMaxNoZeroIndex)
+		{
+			mMaxNoZeroIndex = count;
+		}
+		if (mItemCount != count)
+		{
+			mItemCount = count;
+			RecalcGroupSize();
+		}
+	}
+
+	public void RecalcGroupSize()
+	{
+		mGroupSize = 0f;
+		for (int i = 0; i < mItemCount; i++)
+		{
+			mGroupSize += mItemSizeArray[i];
+		}
+	}
+
+	public int GetItemIndexByPos(float pos)
+	{
+		if (mItemCount == 0)
+		{
 			return -1;
 		}
-
-		// Token: 0x060036B3 RID: 14003 RVA: 0x0017613C File Offset: 0x0017433C
-		public void UpdateAllItemStartPos()
+		int num = 0;
+		int num2 = mItemCount - 1;
+		if (mItemDefaultSize == 0f)
 		{
-			if (this.mDirtyBeginIndex >= this.mItemCount)
+			if (mMaxNoZeroIndex < 0)
 			{
-				return;
+				mMaxNoZeroIndex = 0;
 			}
-			for (int i = (this.mDirtyBeginIndex < 1) ? 1 : this.mDirtyBeginIndex; i < this.mItemCount; i++)
-			{
-				this.mItemStartPosArray[i] = this.mItemStartPosArray[i - 1] + this.mItemSizeArray[i - 1];
-			}
-			this.mDirtyBeginIndex = this.mItemCount;
+			num2 = mMaxNoZeroIndex;
 		}
-
-		// Token: 0x060036B4 RID: 14004 RVA: 0x001761A4 File Offset: 0x001743A4
-		public void ClearOldData()
+		while (num <= num2)
 		{
-			for (int i = this.mItemCount; i < 100; i++)
+			int num3 = (num + num2) / 2;
+			float num4 = mItemStartPosArray[num3];
+			float num5 = num4 + mItemSizeArray[num3];
+			if (num4 <= pos && num5 >= pos)
 			{
-				this.mItemSizeArray[i] = 0f;
+				return num3;
+			}
+			if (pos > num5)
+			{
+				num = num3 + 1;
+			}
+			else
+			{
+				num2 = num3 - 1;
 			}
 		}
+		return -1;
+	}
 
-		// Token: 0x04002FB0 RID: 12208
-		public float[] mItemSizeArray;
+	public void UpdateAllItemStartPos()
+	{
+		if (mDirtyBeginIndex < mItemCount)
+		{
+			for (int i = ((mDirtyBeginIndex < 1) ? 1 : mDirtyBeginIndex); i < mItemCount; i++)
+			{
+				mItemStartPosArray[i] = mItemStartPosArray[i - 1] + mItemSizeArray[i - 1];
+			}
+			mDirtyBeginIndex = mItemCount;
+		}
+	}
 
-		// Token: 0x04002FB1 RID: 12209
-		public float[] mItemStartPosArray;
-
-		// Token: 0x04002FB2 RID: 12210
-		public int mItemCount;
-
-		// Token: 0x04002FB3 RID: 12211
-		private int mDirtyBeginIndex = 100;
-
-		// Token: 0x04002FB4 RID: 12212
-		public float mGroupSize;
-
-		// Token: 0x04002FB5 RID: 12213
-		public float mGroupStartPos;
-
-		// Token: 0x04002FB6 RID: 12214
-		public float mGroupEndPos;
-
-		// Token: 0x04002FB7 RID: 12215
-		public int mGroupIndex;
-
-		// Token: 0x04002FB8 RID: 12216
-		private float mItemDefaultSize;
-
-		// Token: 0x04002FB9 RID: 12217
-		private int mMaxNoZeroIndex;
+	public void ClearOldData()
+	{
+		for (int i = mItemCount; i < 100; i++)
+		{
+			mItemSizeArray[i] = 0f;
+		}
 	}
 }

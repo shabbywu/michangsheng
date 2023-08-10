@@ -1,118 +1,74 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x0200002B RID: 43
 public static class JSONTemplates
 {
-	// Token: 0x060003C8 RID: 968 RVA: 0x0001469C File Offset: 0x0001289C
+	private static readonly HashSet<object> touched = new HashSet<object>();
+
 	public static JSONObject TOJSON(object obj)
 	{
-		if (JSONTemplates.touched.Add(obj))
+		if (touched.Add(obj))
 		{
 			JSONObject obj2 = JSONObject.obj;
-			foreach (FieldInfo fieldInfo in obj.GetType().GetFields())
+			FieldInfo[] fields = obj.GetType().GetFields();
+			foreach (FieldInfo fieldInfo in fields)
 			{
-				JSONObject jsonobject = JSONObject.nullJO;
+				JSONObject jSONObject = JSONObject.nullJO;
 				if (!fieldInfo.GetValue(obj).Equals(null))
 				{
 					MethodInfo method = typeof(JSONTemplates).GetMethod("From" + fieldInfo.FieldType.Name);
-					if (method != null)
-					{
-						jsonobject = (JSONObject)method.Invoke(null, new object[]
-						{
-							fieldInfo.GetValue(obj)
-						});
-					}
-					else if (fieldInfo.FieldType == typeof(string))
-					{
-						jsonobject = JSONObject.CreateStringObject(fieldInfo.GetValue(obj).ToString());
-					}
-					else
-					{
-						jsonobject = JSONObject.Create(fieldInfo.GetValue(obj).ToString(), -2, false, false);
-					}
+					jSONObject = ((method != null) ? ((JSONObject)method.Invoke(null, new object[1] { fieldInfo.GetValue(obj) })) : ((!(fieldInfo.FieldType == typeof(string))) ? JSONObject.Create(fieldInfo.GetValue(obj).ToString()) : JSONObject.CreateStringObject(fieldInfo.GetValue(obj).ToString())));
 				}
-				if (jsonobject)
+				if ((bool)jSONObject)
 				{
-					if (jsonobject.type != JSONObject.Type.NULL)
+					if (jSONObject.type != 0)
 					{
-						obj2.AddField(fieldInfo.Name, jsonobject);
+						obj2.AddField(fieldInfo.Name, jSONObject);
+						continue;
 					}
-					else
-					{
-						Debug.LogWarning(string.Concat(new string[]
-						{
-							"Null for this non-null object, property ",
-							fieldInfo.Name,
-							" of class ",
-							obj.GetType().Name,
-							". Object type is ",
-							fieldInfo.FieldType.Name
-						}));
-					}
+					Debug.LogWarning((object)("Null for this non-null object, property " + fieldInfo.Name + " of class " + obj.GetType().Name + ". Object type is " + fieldInfo.FieldType.Name));
 				}
 			}
-			foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
+			PropertyInfo[] properties = obj.GetType().GetProperties();
+			foreach (PropertyInfo propertyInfo in properties)
 			{
-				JSONObject jsonobject2 = JSONObject.nullJO;
+				JSONObject jSONObject2 = JSONObject.nullJO;
 				if (!propertyInfo.GetValue(obj, null).Equals(null))
 				{
 					MethodInfo method2 = typeof(JSONTemplates).GetMethod("From" + propertyInfo.PropertyType.Name);
-					if (method2 != null)
-					{
-						jsonobject2 = (JSONObject)method2.Invoke(null, new object[]
-						{
-							propertyInfo.GetValue(obj, null)
-						});
-					}
-					else if (propertyInfo.PropertyType == typeof(string))
-					{
-						jsonobject2 = JSONObject.CreateStringObject(propertyInfo.GetValue(obj, null).ToString());
-					}
-					else
-					{
-						jsonobject2 = JSONObject.Create(propertyInfo.GetValue(obj, null).ToString(), -2, false, false);
-					}
+					jSONObject2 = ((method2 != null) ? ((JSONObject)method2.Invoke(null, new object[1] { propertyInfo.GetValue(obj, null) })) : ((!(propertyInfo.PropertyType == typeof(string))) ? JSONObject.Create(propertyInfo.GetValue(obj, null).ToString()) : JSONObject.CreateStringObject(propertyInfo.GetValue(obj, null).ToString())));
 				}
-				if (jsonobject2)
+				if ((bool)jSONObject2)
 				{
-					if (jsonobject2.type != JSONObject.Type.NULL)
+					if (jSONObject2.type != 0)
 					{
-						obj2.AddField(propertyInfo.Name, jsonobject2);
+						obj2.AddField(propertyInfo.Name, jSONObject2);
+						continue;
 					}
-					else
-					{
-						Debug.LogWarning(string.Concat(new string[]
-						{
-							"Null for this non-null object, property ",
-							propertyInfo.Name,
-							" of class ",
-							obj.GetType().Name,
-							". Object type is ",
-							propertyInfo.PropertyType.Name
-						}));
-					}
+					Debug.LogWarning((object)("Null for this non-null object, property " + propertyInfo.Name + " of class " + obj.GetType().Name + ". Object type is " + propertyInfo.PropertyType.Name));
 				}
 			}
 			return obj2;
 		}
-		Debug.LogWarning("trying to save the same data twice");
+		Debug.LogWarning((object)"trying to save the same data twice");
 		return JSONObject.nullJO;
 	}
 
-	// Token: 0x060003C9 RID: 969 RVA: 0x0001496C File Offset: 0x00012B6C
 	public static Vector2 ToVector2(JSONObject obj)
 	{
-		float num = obj["x"] ? obj["x"].f : 0f;
-		float num2 = obj["y"] ? obj["y"].f : 0f;
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		float num = (obj["x"] ? obj["x"].f : 0f);
+		float num2 = (obj["y"] ? obj["y"].f : 0f);
 		return new Vector2(num, num2);
 	}
 
-	// Token: 0x060003CA RID: 970 RVA: 0x000149D4 File Offset: 0x00012BD4
 	public static JSONObject FromVector2(Vector2 v)
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
 		if (v.x != 0f)
 		{
@@ -125,9 +81,14 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003CB RID: 971 RVA: 0x00014A24 File Offset: 0x00012C24
 	public static JSONObject FromVector3(Vector3 v)
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
 		if (v.x != 0f)
 		{
@@ -144,18 +105,25 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003CC RID: 972 RVA: 0x00014A94 File Offset: 0x00012C94
 	public static Vector3 ToVector3(JSONObject obj)
 	{
-		float num = obj["x"] ? obj["x"].f : 0f;
-		float num2 = obj["y"] ? obj["y"].f : 0f;
-		float num3 = obj["z"] ? obj["z"].f : 0f;
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+		float num = (obj["x"] ? obj["x"].f : 0f);
+		float num2 = (obj["y"] ? obj["y"].f : 0f);
+		float num3 = (obj["z"] ? obj["z"].f : 0f);
 		return new Vector3(num, num2, num3);
 	}
 
-	// Token: 0x060003CD RID: 973 RVA: 0x00014B28 File Offset: 0x00012D28
 	public static JSONObject FromVector4(Vector4 v)
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
 		if (v.x != 0f)
 		{
@@ -176,19 +144,50 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003CE RID: 974 RVA: 0x00014BB4 File Offset: 0x00012DB4
 	public static Vector4 ToVector4(JSONObject obj)
 	{
-		float num = obj["x"] ? obj["x"].f : 0f;
-		float num2 = obj["y"] ? obj["y"].f : 0f;
-		float num3 = obj["z"] ? obj["z"].f : 0f;
-		float num4 = obj["w"] ? obj["w"].f : 0f;
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		float num = (obj["x"] ? obj["x"].f : 0f);
+		float num2 = (obj["y"] ? obj["y"].f : 0f);
+		float num3 = (obj["z"] ? obj["z"].f : 0f);
+		float num4 = (obj["w"] ? obj["w"].f : 0f);
 		return new Vector4(num, num2, num3, num4);
 	}
 
-	// Token: 0x060003CF RID: 975 RVA: 0x00014C70 File Offset: 0x00012E70
 	public static JSONObject FromMatrix4x4(Matrix4x4 m)
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0150: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
 		if (m.m00 != 0f)
 		{
@@ -257,80 +256,88 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003D0 RID: 976 RVA: 0x00014E64 File Offset: 0x00013064
 	public static Matrix4x4 ToMatrix4x4(JSONObject obj)
 	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0298: Unknown result type (might be due to invalid IL or missing references)
 		Matrix4x4 result = default(Matrix4x4);
-		if (obj["m00"])
+		if ((bool)obj["m00"])
 		{
 			result.m00 = obj["m00"].f;
 		}
-		if (obj["m01"])
+		if ((bool)obj["m01"])
 		{
 			result.m01 = obj["m01"].f;
 		}
-		if (obj["m02"])
+		if ((bool)obj["m02"])
 		{
 			result.m02 = obj["m02"].f;
 		}
-		if (obj["m03"])
+		if ((bool)obj["m03"])
 		{
 			result.m03 = obj["m03"].f;
 		}
-		if (obj["m10"])
+		if ((bool)obj["m10"])
 		{
 			result.m10 = obj["m10"].f;
 		}
-		if (obj["m11"])
+		if ((bool)obj["m11"])
 		{
 			result.m11 = obj["m11"].f;
 		}
-		if (obj["m12"])
+		if ((bool)obj["m12"])
 		{
 			result.m12 = obj["m12"].f;
 		}
-		if (obj["m13"])
+		if ((bool)obj["m13"])
 		{
 			result.m13 = obj["m13"].f;
 		}
-		if (obj["m20"])
+		if ((bool)obj["m20"])
 		{
 			result.m20 = obj["m20"].f;
 		}
-		if (obj["m21"])
+		if ((bool)obj["m21"])
 		{
 			result.m21 = obj["m21"].f;
 		}
-		if (obj["m22"])
+		if ((bool)obj["m22"])
 		{
 			result.m22 = obj["m22"].f;
 		}
-		if (obj["m23"])
+		if ((bool)obj["m23"])
 		{
 			result.m23 = obj["m23"].f;
 		}
-		if (obj["m30"])
+		if ((bool)obj["m30"])
 		{
 			result.m30 = obj["m30"].f;
 		}
-		if (obj["m31"])
+		if ((bool)obj["m31"])
 		{
 			result.m31 = obj["m31"].f;
 		}
-		if (obj["m32"])
+		if ((bool)obj["m32"])
 		{
 			result.m32 = obj["m32"].f;
 		}
-		if (obj["m33"])
+		if ((bool)obj["m33"])
 		{
 			result.m33 = obj["m33"].f;
 		}
 		return result;
 	}
 
-	// Token: 0x060003D1 RID: 977 RVA: 0x0001510C File Offset: 0x0001330C
 	public static JSONObject FromQuaternion(Quaternion q)
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
 		if (q.w != 0f)
 		{
@@ -351,19 +358,26 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003D2 RID: 978 RVA: 0x00015198 File Offset: 0x00013398
 	public static Quaternion ToQuaternion(JSONObject obj)
 	{
-		float num = obj["x"] ? obj["x"].f : 0f;
-		float num2 = obj["y"] ? obj["y"].f : 0f;
-		float num3 = obj["z"] ? obj["z"].f : 0f;
-		float num4 = obj["w"] ? obj["w"].f : 0f;
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		float num = (obj["x"] ? obj["x"].f : 0f);
+		float num2 = (obj["y"] ? obj["y"].f : 0f);
+		float num3 = (obj["z"] ? obj["z"].f : 0f);
+		float num4 = (obj["w"] ? obj["w"].f : 0f);
 		return new Quaternion(num, num2, num3, num4);
 	}
 
-	// Token: 0x060003D3 RID: 979 RVA: 0x00015254 File Offset: 0x00013454
 	public static JSONObject FromColor(Color c)
 	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
 		if (c.r != 0f)
 		{
@@ -384,118 +398,96 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003D4 RID: 980 RVA: 0x000152E0 File Offset: 0x000134E0
 	public static Color ToColor(JSONObject obj)
 	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
 		Color result = default(Color);
 		for (int i = 0; i < obj.Count; i++)
 		{
-			string a = obj.keys[i];
-			if (!(a == "r"))
+			switch (obj.keys[i])
 			{
-				if (!(a == "g"))
-				{
-					if (!(a == "b"))
-					{
-						if (a == "a")
-						{
-							result.a = obj[i].f;
-						}
-					}
-					else
-					{
-						result.b = obj[i].f;
-					}
-				}
-				else
-				{
-					result.g = obj[i].f;
-				}
-			}
-			else
-			{
+			case "r":
 				result.r = obj[i].f;
+				break;
+			case "g":
+				result.g = obj[i].f;
+				break;
+			case "b":
+				result.b = obj[i].f;
+				break;
+			case "a":
+				result.a = obj[i].f;
+				break;
 			}
 		}
 		return result;
 	}
 
-	// Token: 0x060003D5 RID: 981 RVA: 0x000153A2 File Offset: 0x000135A2
 	public static JSONObject FromLayerMask(LayerMask l)
 	{
 		JSONObject obj = JSONObject.obj;
-		obj.AddField("value", l.value);
+		obj.AddField("value", ((LayerMask)(ref l)).value);
 		return obj;
 	}
 
-	// Token: 0x060003D6 RID: 982 RVA: 0x000153BC File Offset: 0x000135BC
 	public static LayerMask ToLayerMask(JSONObject obj)
 	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
 		LayerMask result = default(LayerMask);
-		result.value = (int)obj["value"].n;
+		((LayerMask)(ref result)).value = (int)obj["value"].n;
 		return result;
 	}
 
-	// Token: 0x060003D7 RID: 983 RVA: 0x000153EC File Offset: 0x000135EC
 	public static JSONObject FromRect(Rect r)
 	{
 		JSONObject obj = JSONObject.obj;
-		if (r.x != 0f)
+		if (((Rect)(ref r)).x != 0f)
 		{
-			obj.AddField("x", r.x);
+			obj.AddField("x", ((Rect)(ref r)).x);
 		}
-		if (r.y != 0f)
+		if (((Rect)(ref r)).y != 0f)
 		{
-			obj.AddField("y", r.y);
+			obj.AddField("y", ((Rect)(ref r)).y);
 		}
-		if (r.height != 0f)
+		if (((Rect)(ref r)).height != 0f)
 		{
-			obj.AddField("height", r.height);
+			obj.AddField("height", ((Rect)(ref r)).height);
 		}
-		if (r.width != 0f)
+		if (((Rect)(ref r)).width != 0f)
 		{
-			obj.AddField("width", r.width);
+			obj.AddField("width", ((Rect)(ref r)).width);
 		}
 		return obj;
 	}
 
-	// Token: 0x060003D8 RID: 984 RVA: 0x00015480 File Offset: 0x00013680
 	public static Rect ToRect(JSONObject obj)
 	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
 		Rect result = default(Rect);
 		for (int i = 0; i < obj.Count; i++)
 		{
-			string a = obj.keys[i];
-			if (!(a == "x"))
+			switch (obj.keys[i])
 			{
-				if (!(a == "y"))
-				{
-					if (!(a == "height"))
-					{
-						if (a == "width")
-						{
-							result.width = obj[i].f;
-						}
-					}
-					else
-					{
-						result.height = obj[i].f;
-					}
-				}
-				else
-				{
-					result.y = obj[i].f;
-				}
-			}
-			else
-			{
-				result.x = obj[i].f;
+			case "x":
+				((Rect)(ref result)).x = obj[i].f;
+				break;
+			case "y":
+				((Rect)(ref result)).y = obj[i].f;
+				break;
+			case "height":
+				((Rect)(ref result)).height = obj[i].f;
+				break;
+			case "width":
+				((Rect)(ref result)).width = obj[i].f;
+				break;
 			}
 		}
 		return result;
 	}
 
-	// Token: 0x060003D9 RID: 985 RVA: 0x00015544 File Offset: 0x00013744
 	public static JSONObject FromRectOffset(RectOffset r)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -518,130 +510,124 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x060003DA RID: 986 RVA: 0x000155BC File Offset: 0x000137BC
 	public static RectOffset ToRectOffset(JSONObject obj)
 	{
-		RectOffset rectOffset = new RectOffset();
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Expected O, but got Unknown
+		RectOffset val = new RectOffset();
 		for (int i = 0; i < obj.Count; i++)
 		{
-			string a = obj.keys[i];
-			if (!(a == "bottom"))
+			switch (obj.keys[i])
 			{
-				if (!(a == "left"))
-				{
-					if (!(a == "right"))
-					{
-						if (a == "top")
-						{
-							rectOffset.top = (int)obj[i].n;
-						}
-					}
-					else
-					{
-						rectOffset.right = (int)obj[i].n;
-					}
-				}
-				else
-				{
-					rectOffset.left = (int)obj[i].n;
-				}
-			}
-			else
-			{
-				rectOffset.bottom = (int)obj[i].n;
+			case "bottom":
+				val.bottom = (int)obj[i].n;
+				break;
+			case "left":
+				val.left = (int)obj[i].n;
+				break;
+			case "right":
+				val.right = (int)obj[i].n;
+				break;
+			case "top":
+				val.top = (int)obj[i].n;
+				break;
 			}
 		}
-		return rectOffset;
+		return val;
 	}
 
-	// Token: 0x060003DB RID: 987 RVA: 0x0001567C File Offset: 0x0001387C
 	public static AnimationCurve ToAnimationCurve(JSONObject obj)
 	{
-		AnimationCurve animationCurve = new AnimationCurve();
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Expected O, but got Unknown
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		AnimationCurve val = new AnimationCurve();
 		if (obj.HasField("keys"))
 		{
 			JSONObject field = obj.GetField("keys");
 			for (int i = 0; i < field.list.Count; i++)
 			{
-				animationCurve.AddKey(JSONTemplates.ToKeyframe(field[i]));
+				val.AddKey(ToKeyframe(field[i]));
 			}
 		}
 		if (obj.HasField("preWrapMode"))
 		{
-			animationCurve.preWrapMode = (int)obj.GetField("preWrapMode").n;
+			val.preWrapMode = (WrapMode)(int)obj.GetField("preWrapMode").n;
 		}
 		if (obj.HasField("postWrapMode"))
 		{
-			animationCurve.postWrapMode = (int)obj.GetField("postWrapMode").n;
+			val.postWrapMode = (WrapMode)(int)obj.GetField("postWrapMode").n;
 		}
-		return animationCurve;
+		return val;
 	}
 
-	// Token: 0x060003DC RID: 988 RVA: 0x0001571C File Offset: 0x0001391C
 	public static JSONObject FromAnimationCurve(AnimationCurve a)
 	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
 		JSONObject obj = JSONObject.obj;
-		obj.AddField("preWrapMode", a.preWrapMode.ToString());
-		obj.AddField("postWrapMode", a.postWrapMode.ToString());
+		WrapMode val = a.preWrapMode;
+		obj.AddField("preWrapMode", ((object)(WrapMode)(ref val)).ToString());
+		val = a.postWrapMode;
+		obj.AddField("postWrapMode", ((object)(WrapMode)(ref val)).ToString());
 		if (a.keys.Length != 0)
 		{
-			JSONObject jsonobject = JSONObject.Create();
+			JSONObject jSONObject = JSONObject.Create();
 			for (int i = 0; i < a.keys.Length; i++)
 			{
-				jsonobject.Add(JSONTemplates.FromKeyframe(a.keys[i]));
+				jSONObject.Add(FromKeyframe(a.keys[i]));
 			}
-			obj.AddField("keys", jsonobject);
+			obj.AddField("keys", jSONObject);
 		}
 		return obj;
 	}
 
-	// Token: 0x060003DD RID: 989 RVA: 0x000157B4 File Offset: 0x000139B4
 	public static Keyframe ToKeyframe(JSONObject obj)
 	{
-		Keyframe result;
-		result..ctor(obj.HasField("time") ? obj.GetField("time").n : 0f, obj.HasField("value") ? obj.GetField("value").n : 0f);
+		//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
+		Keyframe result = default(Keyframe);
+		((Keyframe)(ref result))._002Ector(obj.HasField("time") ? obj.GetField("time").n : 0f, obj.HasField("value") ? obj.GetField("value").n : 0f);
 		if (obj.HasField("inTangent"))
 		{
-			result.inTangent = obj.GetField("inTangent").n;
+			((Keyframe)(ref result)).inTangent = obj.GetField("inTangent").n;
 		}
 		if (obj.HasField("outTangent"))
 		{
-			result.outTangent = obj.GetField("outTangent").n;
+			((Keyframe)(ref result)).outTangent = obj.GetField("outTangent").n;
 		}
 		if (obj.HasField("tangentMode"))
 		{
-			result.tangentMode = (int)obj.GetField("tangentMode").n;
+			((Keyframe)(ref result)).tangentMode = (int)obj.GetField("tangentMode").n;
 		}
 		return result;
 	}
 
-	// Token: 0x060003DE RID: 990 RVA: 0x00015880 File Offset: 0x00013A80
 	public static JSONObject FromKeyframe(Keyframe k)
 	{
 		JSONObject obj = JSONObject.obj;
-		if (k.inTangent != 0f)
+		if (((Keyframe)(ref k)).inTangent != 0f)
 		{
-			obj.AddField("inTangent", k.inTangent);
+			obj.AddField("inTangent", ((Keyframe)(ref k)).inTangent);
 		}
-		if (k.outTangent != 0f)
+		if (((Keyframe)(ref k)).outTangent != 0f)
 		{
-			obj.AddField("outTangent", k.outTangent);
+			obj.AddField("outTangent", ((Keyframe)(ref k)).outTangent);
 		}
-		if (k.tangentMode != 0)
+		if (((Keyframe)(ref k)).tangentMode != 0)
 		{
-			obj.AddField("tangentMode", k.tangentMode);
+			obj.AddField("tangentMode", ((Keyframe)(ref k)).tangentMode);
 		}
-		if (k.time != 0f)
+		if (((Keyframe)(ref k)).time != 0f)
 		{
-			obj.AddField("time", k.time);
+			obj.AddField("time", ((Keyframe)(ref k)).time);
 		}
-		if (k.value != 0f)
+		if (((Keyframe)(ref k)).value != 0f)
 		{
-			obj.AddField("value", k.value);
+			obj.AddField("value", ((Keyframe)(ref k)).value);
 		}
 		return obj;
 	}
-
-	// Token: 0x0400020E RID: 526
-	private static readonly HashSet<object> touched = new HashSet<object>();
 }

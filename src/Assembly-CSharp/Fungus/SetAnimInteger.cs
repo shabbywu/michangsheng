@@ -1,85 +1,78 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Animation", "Set Anim Integer", "Sets an integer parameter on an Animator component to control a Unity animation", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class SetAnimInteger : Command
 {
-	// Token: 0x02000E31 RID: 3633
-	[CommandInfo("Animation", "Set Anim Integer", "Sets an integer parameter on an Animator component to control a Unity animation", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class SetAnimInteger : Command
+	[Tooltip("Reference to an Animator component in a game object")]
+	[SerializeField]
+	protected AnimatorData _animator;
+
+	[Tooltip("Name of the integer Animator parameter that will have its value changed")]
+	[SerializeField]
+	protected StringData _parameterName;
+
+	[Tooltip("The integer value to set the parameter to")]
+	[SerializeField]
+	protected IntegerData value;
+
+	[HideInInspector]
+	[FormerlySerializedAs("animator")]
+	public Animator animatorOLD;
+
+	[HideInInspector]
+	[FormerlySerializedAs("parameterName")]
+	public string parameterNameOLD = "";
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006655 RID: 26197 RVA: 0x002860F4 File Offset: 0x002842F4
-		public override void OnEnter()
+		if ((Object)(object)_animator.Value != (Object)null)
 		{
-			if (this._animator.Value != null)
-			{
-				this._animator.Value.SetInteger(this._parameterName.Value, this.value.Value);
-			}
-			this.Continue();
+			_animator.Value.SetInteger(_parameterName.Value, value.Value);
 		}
+		Continue();
+	}
 
-		// Token: 0x06006656 RID: 26198 RVA: 0x00286140 File Offset: 0x00284340
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)_animator.Value == (Object)null)
 		{
-			if (this._animator.Value == null)
-			{
-				return "Error: No animator selected";
-			}
-			return this._animator.Value.name + " (" + this._parameterName.Value + ")";
+			return "Error: No animator selected";
 		}
+		return ((Object)_animator.Value).name + " (" + _parameterName.Value + ")";
+	}
 
-		// Token: 0x06006657 RID: 26199 RVA: 0x002836B8 File Offset: 0x002818B8
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)170, (byte)204, (byte)169, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_animator.animatorRef == (Object)(object)variable) && !((Object)(object)_parameterName.stringRef == (Object)(object)variable) && !((Object)(object)value.integerRef == (Object)(object)variable))
 		{
-			return new Color32(170, 204, 169, byte.MaxValue);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x06006658 RID: 26200 RVA: 0x00286190 File Offset: 0x00284390
-		public override bool HasReference(Variable variable)
+	protected virtual void OnEnable()
+	{
+		if ((Object)(object)animatorOLD != (Object)null)
 		{
-			return this._animator.animatorRef == variable || this._parameterName.stringRef == variable || this.value.integerRef == variable || base.HasReference(variable);
+			_animator.Value = animatorOLD;
+			animatorOLD = null;
 		}
-
-		// Token: 0x06006659 RID: 26201 RVA: 0x002861E0 File Offset: 0x002843E0
-		protected virtual void OnEnable()
+		if (parameterNameOLD != "")
 		{
-			if (this.animatorOLD != null)
-			{
-				this._animator.Value = this.animatorOLD;
-				this.animatorOLD = null;
-			}
-			if (this.parameterNameOLD != "")
-			{
-				this._parameterName.Value = this.parameterNameOLD;
-				this.parameterNameOLD = "";
-			}
+			_parameterName.Value = parameterNameOLD;
+			parameterNameOLD = "";
 		}
-
-		// Token: 0x040057BE RID: 22462
-		[Tooltip("Reference to an Animator component in a game object")]
-		[SerializeField]
-		protected AnimatorData _animator;
-
-		// Token: 0x040057BF RID: 22463
-		[Tooltip("Name of the integer Animator parameter that will have its value changed")]
-		[SerializeField]
-		protected StringData _parameterName;
-
-		// Token: 0x040057C0 RID: 22464
-		[Tooltip("The integer value to set the parameter to")]
-		[SerializeField]
-		protected IntegerData value;
-
-		// Token: 0x040057C1 RID: 22465
-		[HideInInspector]
-		[FormerlySerializedAs("animator")]
-		public Animator animatorOLD;
-
-		// Token: 0x040057C2 RID: 22466
-		[HideInInspector]
-		[FormerlySerializedAs("parameterName")]
-		public string parameterNameOLD = "";
 	}
 }

@@ -1,36 +1,39 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200005D RID: 93
 [AddComponentMenu("NGUI/Interaction/Center Scroll View on Click")]
 public class UICenterOnClick : MonoBehaviour
 {
-	// Token: 0x060004D4 RID: 1236 RVA: 0x0001A6C4 File Offset: 0x000188C4
 	private void OnClick()
 	{
-		UICenterOnChild uicenterOnChild = NGUITools.FindInParents<UICenterOnChild>(base.gameObject);
-		UIPanel uipanel = NGUITools.FindInParents<UIPanel>(base.gameObject);
-		if (uicenterOnChild != null)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		UICenterOnChild uICenterOnChild = NGUITools.FindInParents<UICenterOnChild>(((Component)this).gameObject);
+		UIPanel uIPanel = NGUITools.FindInParents<UIPanel>(((Component)this).gameObject);
+		if ((Object)(object)uICenterOnChild != (Object)null)
 		{
-			if (uicenterOnChild.enabled)
+			if (((Behaviour)uICenterOnChild).enabled)
 			{
-				uicenterOnChild.CenterOn(base.transform);
-				return;
+				uICenterOnChild.CenterOn(((Component)this).transform);
 			}
 		}
-		else if (uipanel != null && uipanel.clipping != UIDrawCall.Clipping.None)
+		else if ((Object)(object)uIPanel != (Object)null && uIPanel.clipping != 0)
 		{
-			UIScrollView component = uipanel.GetComponent<UIScrollView>();
-			Vector3 pos = -uipanel.cachedTransform.InverseTransformPoint(base.transform.position);
+			UIScrollView component = ((Component)uIPanel).GetComponent<UIScrollView>();
+			Vector3 pos = -uIPanel.cachedTransform.InverseTransformPoint(((Component)this).transform.position);
 			if (!component.canMoveHorizontally)
 			{
-				pos.x = uipanel.cachedTransform.localPosition.x;
+				pos.x = uIPanel.cachedTransform.localPosition.x;
 			}
 			if (!component.canMoveVertically)
 			{
-				pos.y = uipanel.cachedTransform.localPosition.y;
+				pos.y = uIPanel.cachedTransform.localPosition.y;
 			}
-			SpringPanel.Begin(uipanel.cachedGameObject, pos, 6f);
+			SpringPanel.Begin(uIPanel.cachedGameObject, pos, 6f);
 		}
 	}
 }

@@ -1,193 +1,170 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GetWay
+namespace GetWay;
+
+public class MapGetWay : IGetWay
 {
-	// Token: 0x0200073D RID: 1853
-	public class MapGetWay : IGetWay
+	private static MapGetWay _inst;
+
+	public List<MapNode> OpenList;
+
+	public List<MapNode> CloseList;
+
+	public int CurTalk;
+
+	public bool IsStop;
+
+	public Dictionary<int, List<int>> Dict = new Dictionary<int, List<int>>();
+
+	public Dictionary<int, MapNode> NodeDict = new Dictionary<int, MapNode>();
+
+	private bool _isInit;
+
+	public static MapGetWay Inst
 	{
-		// Token: 0x170005A5 RID: 1445
-		// (get) Token: 0x06003B06 RID: 15110 RVA: 0x00195E53 File Offset: 0x00194053
-		public static MapGetWay Inst
+		get
 		{
-			get
+			if (_inst == null)
 			{
-				if (MapGetWay._inst == null)
+				_inst = new MapGetWay();
+			}
+			return _inst;
+		}
+	}
+
+	private bool Init()
+	{
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)MapNodeManager.inst == (Object)null)
+		{
+			return false;
+		}
+		int childCount = MapNodeManager.inst.MapNodeParent.transform.childCount;
+		for (int i = 0; i < childCount; i++)
+		{
+			MapComponent component = ((Component)MapNodeManager.inst.MapNodeParent.transform.GetChild(i)).GetComponent<MapComponent>();
+			Dict.Add(int.Parse(((Object)((Component)component).gameObject).name), new List<int>(component.nextIndex));
+			NodeDict.Add(component.NodeIndex, new MapNode(component.NodeIndex, ((Component)component).transform.position.x, ((Component)component).transform.position.y));
+		}
+		_isInit = true;
+		return true;
+	}
+
+	public List<int> GetBestList(int startIndex, int tagetIndex)
+	{
+		if (!_isInit && !Init())
+		{
+			Debug.LogError((object)"MapNodeManager并未初始化");
+			return null;
+		}
+		List<List<int>> list = new List<List<int>>();
+		foreach (int item in Dict[startIndex])
+		{
+			list.Add(GetNearlyBest(startIndex, item, tagetIndex));
+		}
+		List<int> list2 = null;
+		foreach (List<int> item2 in list)
+		{
+			if (item2 != null)
+			{
+				if (list2 == null)
 				{
-					MapGetWay._inst = new MapGetWay();
+					list2 = item2;
 				}
-				return MapGetWay._inst;
+				else if (list2.Count > item2.Count)
+				{
+					list2 = item2;
+				}
 			}
 		}
-
-		// Token: 0x06003B07 RID: 15111 RVA: 0x00195E6C File Offset: 0x0019406C
-		private bool Init()
+		if (list2 == null)
 		{
-			if (MapNodeManager.inst == null)
-			{
-				return false;
-			}
-			int childCount = MapNodeManager.inst.MapNodeParent.transform.childCount;
-			for (int i = 0; i < childCount; i++)
-			{
-				MapComponent component = MapNodeManager.inst.MapNodeParent.transform.GetChild(i).GetComponent<MapComponent>();
-				this.Dict.Add(int.Parse(component.gameObject.name), new List<int>(component.nextIndex));
-				this.NodeDict.Add(component.NodeIndex, new MapNode(component.NodeIndex, component.transform.position.x, component.transform.position.y));
-			}
-			this._isInit = true;
-			return true;
+			Debug.LogError((object)"无法前往");
 		}
+		return list2;
+	}
 
-		// Token: 0x06003B08 RID: 15112 RVA: 0x00195F34 File Offset: 0x00194134
-		public List<int> GetBestList(int startIndex, int tagetIndex)
+	public List<int> GetNearlyBest(int baseIndex, int startIndex, int tagetIndex)
+	{
+		MapNode mapNode = NodeDict[startIndex];
+		MapNode mapNode2 = NodeDict[tagetIndex];
+		foreach (int key in NodeDict.Keys)
 		{
-			if (!this._isInit && !this.Init())
+			NodeDict[key].Parent = null;
+			NodeDict[key].F = 0f;
+		}
+		CloseList = new List<MapNode>();
+		OpenList = new List<MapNode>();
+		CloseList.Add(mapNode);
+		do
+		{
+			GetFindNearlyNode(mapNode.Index, tagetIndex);
+			OpenList.Sort(SortOpenList);
+			if (OpenList.Count < 1)
 			{
-				Debug.LogError("MapNodeManager并未初始化");
 				return null;
 			}
-			List<List<int>> list = new List<List<int>>();
-			foreach (int startIndex2 in this.Dict[startIndex])
-			{
-				list.Add(this.GetNearlyBest(startIndex, startIndex2, tagetIndex));
-			}
-			List<int> list2 = null;
-			foreach (List<int> list3 in list)
-			{
-				if (list3 != null)
-				{
-					if (list2 == null)
-					{
-						list2 = list3;
-					}
-					else if (list2.Count > list3.Count)
-					{
-						list2 = list3;
-					}
-				}
-			}
-			if (list2 == null)
-			{
-				Debug.LogError("无法前往");
-			}
-			return list2;
+			CloseList.Add(OpenList[0]);
+			mapNode = OpenList[0];
+			OpenList.RemoveAt(0);
 		}
-
-		// Token: 0x06003B09 RID: 15113 RVA: 0x00196020 File Offset: 0x00194220
-		public List<int> GetNearlyBest(int baseIndex, int startIndex, int tagetIndex)
+		while (mapNode != mapNode2);
+		List<int> list = new List<int>();
+		while (mapNode2.Parent != null)
 		{
-			MapNode mapNode = this.NodeDict[startIndex];
-			MapNode mapNode2 = this.NodeDict[tagetIndex];
-			foreach (int key in this.NodeDict.Keys)
-			{
-				this.NodeDict[key].Parent = null;
-				this.NodeDict[key].F = 0f;
-			}
-			this.CloseList = new List<MapNode>();
-			this.OpenList = new List<MapNode>();
-			this.CloseList.Add(mapNode);
-			for (;;)
-			{
-				this.GetFindNearlyNode(mapNode.Index, tagetIndex);
-				this.OpenList.Sort(new Comparison<MapNode>(this.SortOpenList));
-				if (this.OpenList.Count < 1)
-				{
-					break;
-				}
-				this.CloseList.Add(this.OpenList[0]);
-				mapNode = this.OpenList[0];
-				this.OpenList.RemoveAt(0);
-				if (mapNode == mapNode2)
-				{
-					goto Block_3;
-				}
-			}
-			return null;
-			Block_3:
-			List<int> list = new List<int>();
-			while (mapNode2.Parent != null)
-			{
-				list.Add(mapNode2.Parent.Index);
-				mapNode2 = mapNode2.Parent;
-			}
-			list.Reverse();
-			list.Add(tagetIndex);
-			if (list[1] == baseIndex)
-			{
-				list.RemoveRange(0, 2);
-			}
-			return list;
+			list.Add(mapNode2.Parent.Index);
+			mapNode2 = mapNode2.Parent;
 		}
-
-		// Token: 0x06003B0A RID: 15114 RVA: 0x0019618C File Offset: 0x0019438C
-		public void GetFindNearlyNode(int id, int endId)
+		list.Reverse();
+		list.Add(tagetIndex);
+		if (list[1] == baseIndex)
 		{
-			MapNode mapNode = this.NodeDict[id];
-			new List<MapNode>();
-			foreach (int key in this.Dict[id])
+			list.RemoveRange(0, 2);
+		}
+		return list;
+	}
+
+	public void GetFindNearlyNode(int id, int endId)
+	{
+		_ = NodeDict[id];
+		new List<MapNode>();
+		foreach (int item in Dict[id])
+		{
+			MapNode mapNode = NodeDict[item];
+			if (!CloseList.Contains(mapNode) && !OpenList.Contains(mapNode))
 			{
-				MapNode mapNode2 = this.NodeDict[key];
-				if (!this.CloseList.Contains(mapNode2) && !this.OpenList.Contains(mapNode2))
-				{
-					mapNode2.Parent = this.NodeDict[id];
-					mapNode2.F += 1f;
-					this.OpenList.Add(mapNode2);
-				}
+				mapNode.Parent = NodeDict[id];
+				mapNode.F += 1f;
+				OpenList.Add(mapNode);
 			}
 		}
+	}
 
-		// Token: 0x06003B0B RID: 15115 RVA: 0x0019624C File Offset: 0x0019444C
-		public void StopAuToMove()
+	public void StopAuToMove()
+	{
+		Debug.Log((object)"终止寻路");
+		Inst.IsStop = true;
+		MapMoveTips.Hide();
+	}
+
+	public bool IsNearly(int index1, int index2)
+	{
+		if (!_isInit && !Init())
 		{
-			Debug.Log("终止寻路");
-			MapGetWay.Inst.IsStop = true;
-			MapMoveTips.Hide();
+			Debug.LogError((object)"MapNodeManager并未初始化");
+			return false;
 		}
+		return Dict[index1].Contains(index2);
+	}
 
-		// Token: 0x06003B0C RID: 15116 RVA: 0x00196268 File Offset: 0x00194468
-		public bool IsNearly(int index1, int index2)
+	private int SortOpenList(MapNode a, MapNode b)
+	{
+		if (a.F >= b.F)
 		{
-			if (!this._isInit && !this.Init())
-			{
-				Debug.LogError("MapNodeManager并未初始化");
-				return false;
-			}
-			return this.Dict[index1].Contains(index2);
+			return 1;
 		}
-
-		// Token: 0x06003B0D RID: 15117 RVA: 0x00196298 File Offset: 0x00194498
-		private int SortOpenList(MapNode a, MapNode b)
-		{
-			if (a.F >= b.F)
-			{
-				return 1;
-			}
-			return -1;
-		}
-
-		// Token: 0x04003337 RID: 13111
-		private static MapGetWay _inst;
-
-		// Token: 0x04003338 RID: 13112
-		public List<MapNode> OpenList;
-
-		// Token: 0x04003339 RID: 13113
-		public List<MapNode> CloseList;
-
-		// Token: 0x0400333A RID: 13114
-		public int CurTalk;
-
-		// Token: 0x0400333B RID: 13115
-		public bool IsStop;
-
-		// Token: 0x0400333C RID: 13116
-		public Dictionary<int, List<int>> Dict = new Dictionary<int, List<int>>();
-
-		// Token: 0x0400333D RID: 13117
-		public Dictionary<int, MapNode> NodeDict = new Dictionary<int, MapNode>();
-
-		// Token: 0x0400333E RID: 13118
-		private bool _isInit;
+		return -1;
 	}
 }

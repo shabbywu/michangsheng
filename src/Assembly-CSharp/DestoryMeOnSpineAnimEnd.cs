@@ -1,39 +1,35 @@
-﻿using System;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000446 RID: 1094
 public class DestoryMeOnSpineAnimEnd : MonoBehaviour
 {
-	// Token: 0x060022A3 RID: 8867 RVA: 0x000ED7CB File Offset: 0x000EB9CB
+	public SkeletonAnimation Anim;
+
 	private void Awake()
 	{
-		if (this.Anim == null)
+		if ((Object)(object)Anim == (Object)null)
 		{
-			this.Anim = base.GetComponent<SkeletonAnimation>();
+			Anim = ((Component)this).GetComponent<SkeletonAnimation>();
 		}
-		if (this.Anim == null)
+		if ((Object)(object)Anim == (Object)null)
 		{
-			this.Anim = base.GetComponentInChildren<SkeletonAnimation>();
+			Anim = ((Component)this).GetComponentInChildren<SkeletonAnimation>();
 		}
 	}
 
-	// Token: 0x060022A4 RID: 8868 RVA: 0x000ED801 File Offset: 0x000EBA01
 	private void Start()
 	{
-		if (this.Anim != null)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Expected O, but got Unknown
+		if ((Object)(object)Anim != (Object)null)
 		{
-			this.Anim.AnimationState.Complete += new AnimationState.TrackEntryDelegate(this.AnimationState_Complete);
+			Anim.AnimationState.Complete += new TrackEntryDelegate(AnimationState_Complete);
 		}
 	}
 
-	// Token: 0x060022A5 RID: 8869 RVA: 0x0005C928 File Offset: 0x0005AB28
 	private void AnimationState_Complete(TrackEntry trackEntry)
 	{
-		Object.Destroy(base.gameObject);
+		Object.Destroy((Object)(object)((Component)this).gameObject);
 	}
-
-	// Token: 0x04001BF9 RID: 7161
-	public SkeletonAnimation Anim;
 }

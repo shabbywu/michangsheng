@@ -1,82 +1,76 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Narrative", "Menu Timer", "Displays a timer bar and executes a target block if the player fails to select a menu option in time.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class MenuTimer : Command
 {
-	// Token: 0x02000E05 RID: 3589
-	[CommandInfo("Narrative", "Menu Timer", "Displays a timer bar and executes a target block if the player fails to select a menu option in time.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class MenuTimer : Command
+	[Tooltip("Length of time to display the timer for")]
+	[SerializeField]
+	protected FloatData _duration = new FloatData(1f);
+
+	[FormerlySerializedAs("targetSequence")]
+	[Tooltip("Block to execute when the timer expires")]
+	[SerializeField]
+	protected Block targetBlock;
+
+	[HideInInspector]
+	[FormerlySerializedAs("duration")]
+	public float durationOLD;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006562 RID: 25954 RVA: 0x00282E9C File Offset: 0x0028109C
-		public override void OnEnter()
+		MenuDialog menuDialog = MenuDialog.GetMenuDialog();
+		if ((Object)(object)menuDialog != (Object)null && (Object)(object)targetBlock != (Object)null)
 		{
-			MenuDialog menuDialog = MenuDialog.GetMenuDialog();
-			if (menuDialog != null && this.targetBlock != null)
-			{
-				menuDialog.ShowTimer(this._duration.Value, this.targetBlock);
-			}
-			this.Continue();
+			menuDialog.ShowTimer(_duration.Value, targetBlock);
 		}
+		Continue();
+	}
 
-		// Token: 0x06006563 RID: 25955 RVA: 0x00282EE3 File Offset: 0x002810E3
-		public override void GetConnectedBlocks(ref List<Block> connectedBlocks)
+	public override void GetConnectedBlocks(ref List<Block> connectedBlocks)
+	{
+		if ((Object)(object)targetBlock != (Object)null)
 		{
-			if (this.targetBlock != null)
-			{
-				connectedBlocks.Add(this.targetBlock);
-			}
+			connectedBlocks.Add(targetBlock);
 		}
+	}
 
-		// Token: 0x06006564 RID: 25956 RVA: 0x00282F00 File Offset: 0x00281100
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)targetBlock == (Object)null)
 		{
-			if (this.targetBlock == null)
-			{
-				return "Error: No target block selected";
-			}
-			return this.targetBlock.BlockName;
+			return "Error: No target block selected";
 		}
+		return targetBlock.BlockName;
+	}
 
-		// Token: 0x06006565 RID: 25957 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_duration.floatRef == (Object)(object)variable))
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			return base.HasReference(variable);
 		}
+		return true;
+	}
 
-		// Token: 0x06006566 RID: 25958 RVA: 0x00282F21 File Offset: 0x00281121
-		public override bool HasReference(Variable variable)
+	protected virtual void OnEnable()
+	{
+		if (durationOLD != 0f)
 		{
-			return this._duration.floatRef == variable || base.HasReference(variable);
+			_duration.Value = durationOLD;
+			durationOLD = 0f;
 		}
-
-		// Token: 0x06006567 RID: 25959 RVA: 0x00282F3F File Offset: 0x0028113F
-		protected virtual void OnEnable()
-		{
-			if (this.durationOLD != 0f)
-			{
-				this._duration.Value = this.durationOLD;
-				this.durationOLD = 0f;
-			}
-		}
-
-		// Token: 0x0400571C RID: 22300
-		[Tooltip("Length of time to display the timer for")]
-		[SerializeField]
-		protected FloatData _duration = new FloatData(1f);
-
-		// Token: 0x0400571D RID: 22301
-		[FormerlySerializedAs("targetSequence")]
-		[Tooltip("Block to execute when the timer expires")]
-		[SerializeField]
-		protected Block targetBlock;
-
-		// Token: 0x0400571E RID: 22302
-		[HideInInspector]
-		[FormerlySerializedAs("duration")]
-		public float durationOLD;
 	}
 }

@@ -1,93 +1,90 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Sprite", "Show Sprite", "Makes a sprite visible / invisible by setting the color alpha.", 0)]
+[AddComponentMenu("")]
+[ExecuteInEditMode]
+public class ShowSprite : Command
 {
-	// Token: 0x02000E4A RID: 3658
-	[CommandInfo("Sprite", "Show Sprite", "Makes a sprite visible / invisible by setting the color alpha.", 0)]
-	[AddComponentMenu("")]
-	[ExecuteInEditMode]
-	public class ShowSprite : Command
+	[Tooltip("Sprite object to be made visible / invisible")]
+	[SerializeField]
+	protected SpriteRenderer spriteRenderer;
+
+	[Tooltip("Make the sprite visible or invisible")]
+	[SerializeField]
+	protected BooleanData _visible = new BooleanData(v: false);
+
+	[Tooltip("Affect the visibility of child sprites")]
+	[SerializeField]
+	protected bool affectChildren = true;
+
+	[HideInInspector]
+	[FormerlySerializedAs("visible")]
+	public bool visibleOLD;
+
+	protected virtual void SetSpriteAlpha(SpriteRenderer renderer, bool visible)
 	{
-		// Token: 0x060066E2 RID: 26338 RVA: 0x00288178 File Offset: 0x00286378
-		protected virtual void SetSpriteAlpha(SpriteRenderer renderer, bool visible)
-		{
-			Color color = renderer.color;
-			color.a = (visible ? 1f : 0f);
-			renderer.color = color;
-		}
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		Color color = renderer.color;
+		color.a = (visible ? 1f : 0f);
+		renderer.color = color;
+	}
 
-		// Token: 0x060066E3 RID: 26339 RVA: 0x002881AC File Offset: 0x002863AC
-		public override void OnEnter()
+	public override void OnEnter()
+	{
+		if ((Object)(object)spriteRenderer != (Object)null)
 		{
-			if (this.spriteRenderer != null)
+			if (affectChildren)
 			{
-				if (this.affectChildren)
+				SpriteRenderer[] componentsInChildren = ((Component)spriteRenderer).gameObject.GetComponentsInChildren<SpriteRenderer>();
+				foreach (SpriteRenderer renderer in componentsInChildren)
 				{
-					foreach (SpriteRenderer renderer in this.spriteRenderer.gameObject.GetComponentsInChildren<SpriteRenderer>())
-					{
-						this.SetSpriteAlpha(renderer, this._visible.Value);
-					}
-				}
-				else
-				{
-					this.SetSpriteAlpha(this.spriteRenderer, this._visible.Value);
+					SetSpriteAlpha(renderer, _visible.Value);
 				}
 			}
-			this.Continue();
-		}
-
-		// Token: 0x060066E4 RID: 26340 RVA: 0x00288224 File Offset: 0x00286424
-		public override string GetSummary()
-		{
-			if (this.spriteRenderer == null)
+			else
 			{
-				return "Error: No sprite renderer selected";
-			}
-			return this.spriteRenderer.name + " to " + (this._visible.Value ? "visible" : "invisible");
-		}
-
-		// Token: 0x060066E5 RID: 26341 RVA: 0x0027ED1F File Offset: 0x0027CF1F
-		public override Color GetButtonColor()
-		{
-			return new Color32(221, 184, 169, byte.MaxValue);
-		}
-
-		// Token: 0x060066E6 RID: 26342 RVA: 0x00288273 File Offset: 0x00286473
-		public override bool HasReference(Variable variable)
-		{
-			return this._visible.booleanRef == variable || base.HasReference(variable);
-		}
-
-		// Token: 0x060066E7 RID: 26343 RVA: 0x00288291 File Offset: 0x00286491
-		protected virtual void OnEnable()
-		{
-			if (this.visibleOLD)
-			{
-				this._visible.Value = this.visibleOLD;
-				this.visibleOLD = false;
+				SetSpriteAlpha(spriteRenderer, _visible.Value);
 			}
 		}
+		Continue();
+	}
 
-		// Token: 0x04005810 RID: 22544
-		[Tooltip("Sprite object to be made visible / invisible")]
-		[SerializeField]
-		protected SpriteRenderer spriteRenderer;
+	public override string GetSummary()
+	{
+		if ((Object)(object)spriteRenderer == (Object)null)
+		{
+			return "Error: No sprite renderer selected";
+		}
+		return ((Object)spriteRenderer).name + " to " + (_visible.Value ? "visible" : "invisible");
+	}
 
-		// Token: 0x04005811 RID: 22545
-		[Tooltip("Make the sprite visible or invisible")]
-		[SerializeField]
-		protected BooleanData _visible = new BooleanData(false);
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)221, (byte)184, (byte)169, byte.MaxValue));
+	}
 
-		// Token: 0x04005812 RID: 22546
-		[Tooltip("Affect the visibility of child sprites")]
-		[SerializeField]
-		protected bool affectChildren = true;
+	public override bool HasReference(Variable variable)
+	{
+		if (!((Object)(object)_visible.booleanRef == (Object)(object)variable))
+		{
+			return base.HasReference(variable);
+		}
+		return true;
+	}
 
-		// Token: 0x04005813 RID: 22547
-		[HideInInspector]
-		[FormerlySerializedAs("visible")]
-		public bool visibleOLD;
+	protected virtual void OnEnable()
+	{
+		if (visibleOLD)
+		{
+			_visible.Value = visibleOLD;
+			visibleOLD = false;
+		}
 	}
 }

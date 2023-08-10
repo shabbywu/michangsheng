@@ -1,42 +1,41 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F4 RID: 244
 public class ShockWaveSkill : MonoBehaviour
 {
-	// Token: 0x06000B8F RID: 2959 RVA: 0x00046A97 File Offset: 0x00044C97
+	public GameObject Skill;
+
+	public float Speed;
+
+	public float Spawnrate;
+
+	public float LifeTime = 1f;
+
+	private float timeTemp;
+
 	private void Start()
 	{
-		Object.Destroy(base.gameObject, this.LifeTime);
+		Object.Destroy((Object)(object)((Component)this).gameObject, LifeTime);
 		ShakeCamera.Shake(0.2f, 0.7f);
 	}
 
-	// Token: 0x06000B90 RID: 2960 RVA: 0x00046ABC File Offset: 0x00044CBC
 	private void Update()
 	{
-		base.transform.position += base.transform.forward * this.Speed * Time.deltaTime;
-		if (Time.time > this.timeTemp + this.Spawnrate)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		Transform transform = ((Component)this).transform;
+		transform.position += ((Component)this).transform.forward * Speed * Time.deltaTime;
+		if (Time.time > timeTemp + Spawnrate)
 		{
-			if (this.Skill)
+			if (Object.op_Implicit((Object)(object)Skill))
 			{
-				Object.Instantiate<GameObject>(this.Skill, base.transform.position, Quaternion.identity);
+				Object.Instantiate<GameObject>(Skill, ((Component)this).transform.position, Quaternion.identity);
 			}
-			this.timeTemp = Time.time;
+			timeTemp = Time.time;
 		}
 	}
-
-	// Token: 0x040007D1 RID: 2001
-	public GameObject Skill;
-
-	// Token: 0x040007D2 RID: 2002
-	public float Speed;
-
-	// Token: 0x040007D3 RID: 2003
-	public float Spawnrate;
-
-	// Token: 0x040007D4 RID: 2004
-	public float LifeTime = 1f;
-
-	// Token: 0x040007D5 RID: 2005
-	private float timeTemp;
 }

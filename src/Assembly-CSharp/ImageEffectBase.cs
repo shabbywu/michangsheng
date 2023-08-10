@@ -1,52 +1,45 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000C4 RID: 196
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("")]
 public class ImageEffectBase : MonoBehaviour
 {
-	// Token: 0x06000ACC RID: 2764 RVA: 0x0004139E File Offset: 0x0003F59E
-	protected virtual void Start()
-	{
-		if (!SystemInfo.supportsImageEffects)
-		{
-			base.enabled = false;
-			return;
-		}
-		if (!this.shader || !this.shader.isSupported)
-		{
-			base.enabled = false;
-		}
-	}
+	public Shader shader;
 
-	// Token: 0x170001D0 RID: 464
-	// (get) Token: 0x06000ACD RID: 2765 RVA: 0x000413D0 File Offset: 0x0003F5D0
+	private Material m_Material;
+
 	protected Material material
 	{
 		get
 		{
-			if (this.m_Material == null)
+			//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001f: Expected O, but got Unknown
+			if ((Object)(object)m_Material == (Object)null)
 			{
-				this.m_Material = new Material(this.shader);
-				this.m_Material.hideFlags = 61;
+				m_Material = new Material(shader);
+				((Object)m_Material).hideFlags = (HideFlags)61;
 			}
-			return this.m_Material;
+			return m_Material;
 		}
 	}
 
-	// Token: 0x06000ACE RID: 2766 RVA: 0x00041404 File Offset: 0x0003F604
+	protected virtual void Start()
+	{
+		if (!SystemInfo.supportsImageEffects)
+		{
+			((Behaviour)this).enabled = false;
+		}
+		else if (!Object.op_Implicit((Object)(object)shader) || !shader.isSupported)
+		{
+			((Behaviour)this).enabled = false;
+		}
+	}
+
 	protected virtual void OnDisable()
 	{
-		if (this.m_Material)
+		if (Object.op_Implicit((Object)(object)m_Material))
 		{
-			Object.DestroyImmediate(this.m_Material);
+			Object.DestroyImmediate((Object)(object)m_Material);
 		}
 	}
-
-	// Token: 0x040006D1 RID: 1745
-	public Shader shader;
-
-	// Token: 0x040006D2 RID: 1746
-	private Material m_Material;
 }

@@ -1,11 +1,24 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000161 RID: 353
 public abstract class ModalBox : MonoBehaviour
 {
-	// Token: 0x06000F5E RID: 3934 RVA: 0x0005C7C0 File Offset: 0x0005A9C0
+	[Tooltip("The title text object that will be used to show the title of the dialog.")]
+	public Text Title;
+
+	[Tooltip("The message text object that will be used to show the message of the dialog.")]
+	public Text Message;
+
+	[Tooltip("The botton object that will be used to interact with the dialog. This will be cloned to produce additional options.")]
+	public Button Button;
+
+	[Tooltip("The RectTransform of the panel that contains the frame of the dialog window. This is needed so that it can be centered correctly after it's size is adjusted to the dialogs contents.")]
+	public RectTransform Panel;
+
+	private Transform buttonParent;
+
+	private bool isSetup;
+
 	private int stringHeight(string str)
 	{
 		int num = 0;
@@ -23,99 +36,78 @@ public abstract class ModalBox : MonoBehaviour
 		return num * 17 + 15;
 	}
 
-	// Token: 0x06000F5F RID: 3935 RVA: 0x0005C808 File Offset: 0x0005AA08
 	private void FixedUpdate()
 	{
-		if (!this.isSetup)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Expected O, but got Unknown
+		if (isSetup)
 		{
-			this.isSetup = true;
-			if (this.Title != null)
+			return;
+		}
+		isSetup = true;
+		if ((Object)(object)Title != (Object)null)
+		{
+			((Component)Title).GetComponent<LayoutElement>().minHeight = stringHeight(Title.text);
+		}
+		if ((Object)(object)Message != (Object)null)
+		{
+			((Component)Message).GetComponent<LayoutElement>().minHeight = Message.preferredHeight;
+			if (Message.preferredHeight < 20f)
 			{
-				this.Title.GetComponent<LayoutElement>().minHeight = (float)this.stringHeight(this.Title.text);
+				Message.alignment = (TextAnchor)1;
 			}
-			if (this.Message != null)
+		}
+		if (!((Object)(object)buttonParent != (Object)null))
+		{
+			return;
+		}
+		foreach (Transform item in buttonParent)
+		{
+			Transform val = item;
+			Text componentInChildren = ((Component)val).GetComponentInChildren<Text>();
+			if ((Object)(object)componentInChildren != (Object)null)
 			{
-				this.Message.GetComponent<LayoutElement>().minHeight = this.Message.preferredHeight;
-				if (this.Message.preferredHeight < 20f)
+				LayoutElement component = ((Component)val).GetComponent<LayoutElement>();
+				if ((Object)(object)component != (Object)null)
 				{
-					this.Message.alignment = 1;
-				}
-			}
-			if (this.buttonParent != null)
-			{
-				foreach (object obj in this.buttonParent)
-				{
-					Transform transform = (Transform)obj;
-					Text componentInChildren = transform.GetComponentInChildren<Text>();
-					if (componentInChildren != null)
-					{
-						LayoutElement component = transform.GetComponent<LayoutElement>();
-						if (component != null)
-						{
-							component.minHeight = (float)this.stringHeight(componentInChildren.text);
-						}
-					}
+					component.minHeight = stringHeight(componentInChildren.text);
 				}
 			}
 		}
 	}
 
-	// Token: 0x06000F60 RID: 3936 RVA: 0x0005C928 File Offset: 0x0005AB28
 	public virtual void Close()
 	{
-		Object.Destroy(base.gameObject);
+		Object.Destroy((Object)(object)((Component)this).gameObject);
 	}
 
-	// Token: 0x06000F61 RID: 3937 RVA: 0x0005C938 File Offset: 0x0005AB38
 	protected void SetText(string message, string title)
 	{
-		if (this.Button != null)
+		if ((Object)(object)Button != (Object)null)
 		{
-			this.buttonParent = this.Button.transform.parent;
+			buttonParent = ((Component)Button).transform.parent;
 		}
-		if (this.Title != null)
+		if ((Object)(object)Title != (Object)null)
 		{
 			if (!string.IsNullOrEmpty(title))
 			{
-				this.Title.text = title;
+				Title.text = title;
 			}
 			else
 			{
-				Object.Destroy(this.Title.gameObject);
-				this.Title = null;
+				Object.Destroy((Object)(object)((Component)Title).gameObject);
+				Title = null;
 			}
 		}
-		if (this.Message != null)
+		if ((Object)(object)Message != (Object)null)
 		{
 			if (!string.IsNullOrEmpty(message))
 			{
-				this.Message.text = (MessageBox.LocalizeTitleAndMessage ? MessageBox.Localize(message) : message);
+				Message.text = (MessageBox.LocalizeTitleAndMessage ? MessageBox.Localize(message) : message);
 				return;
 			}
-			Object.Destroy(this.Message.gameObject);
-			this.Message = null;
+			Object.Destroy((Object)(object)((Component)Message).gameObject);
+			Message = null;
 		}
 	}
-
-	// Token: 0x04000B77 RID: 2935
-	[Tooltip("The title text object that will be used to show the title of the dialog.")]
-	public Text Title;
-
-	// Token: 0x04000B78 RID: 2936
-	[Tooltip("The message text object that will be used to show the message of the dialog.")]
-	public Text Message;
-
-	// Token: 0x04000B79 RID: 2937
-	[Tooltip("The botton object that will be used to interact with the dialog. This will be cloned to produce additional options.")]
-	public Button Button;
-
-	// Token: 0x04000B7A RID: 2938
-	[Tooltip("The RectTransform of the panel that contains the frame of the dialog window. This is needed so that it can be centered correctly after it's size is adjusted to the dialogs contents.")]
-	public RectTransform Panel;
-
-	// Token: 0x04000B7B RID: 2939
-	private Transform buttonParent;
-
-	// Token: 0x04000B7C RID: 2940
-	private bool isSetup;
 }

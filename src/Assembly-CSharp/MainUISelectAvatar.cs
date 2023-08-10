@@ -1,150 +1,134 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x02000338 RID: 824
 public class MainUISelectAvatar : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001C63 RID: 7267 RVA: 0x000CB618 File Offset: 0x000C9818
+	private bool isInit;
+
+	public int maxNum;
+
+	public GameObject avatarTemp;
+
+	public Transform avatarList;
+
+	public MainUILoadData loadPlayerData;
+
+	private List<GameObject> cellList = new List<GameObject>();
+
 	public void Init()
 	{
-		if (!this.isInit)
+		if (!isInit)
 		{
 			ESCCloseManager.Inst.RegisterClose(this);
-			this.isInit = true;
+			isInit = true;
 		}
-		if (this.loadPlayerData.gameObject.activeSelf)
+		if (((Component)loadPlayerData).gameObject.activeSelf)
 		{
-			this.loadPlayerData.gameObject.SetActive(false);
+			((Component)loadPlayerData).gameObject.SetActive(false);
 		}
-		base.gameObject.SetActive(true);
+		((Component)this).gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001C64 RID: 7268 RVA: 0x000CB670 File Offset: 0x000C9870
 	public void RefreshSaveSlot()
 	{
-		for (int i = this.cellList.Count - 1; i >= 0; i--)
+		for (int num = cellList.Count - 1; num >= 0; num--)
 		{
-			Object.Destroy(this.cellList[i]);
+			Object.Destroy((Object)(object)cellList[num]);
 		}
-		this.cellList.Clear();
-		int j = 0;
-		while (j < this.maxNum)
+		cellList.Clear();
+		for (int i = 0; i < maxNum; i++)
 		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.avatarTemp, this.avatarList);
-			this.cellList.Add(gameObject);
-			MainUIAvatarCell component = gameObject.GetComponent<MainUIAvatarCell>();
+			GameObject val = Object.Instantiate<GameObject>(avatarTemp, avatarList);
+			cellList.Add(val);
+			MainUIAvatarCell component = val.GetComponent<MainUIAvatarCell>();
 			try
 			{
 				Stopwatch stopwatch = new Stopwatch();
 				stopwatch.Start();
 				bool flag = false;
-				for (int k = 0; k < 6; k++)
+				for (int j = 0; j < 6; j++)
 				{
-					if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + YSNewSaveSystem.GetAvatarSavePathPre(j, k) + "/AvatarInfo.json"))
+					if (!YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json"))
 					{
-						try
-						{
-							JSONObject jsonObject = YSNewSaveSystem.GetJsonObject(YSNewSaveSystem.GetAvatarSavePathPre(j, k) + "/AvatarInfo.json", null);
-							JSONObject face = null;
-							if (jsonObject.HasField("face"))
-							{
-								face = jsonObject["face"];
-							}
-							component.Init(j, true, jsonObject["firstName"].Str + jsonObject["lastName"].Str, jsonObject["avatarLevel"].I, k, face);
-							flag = true;
-							break;
-						}
-						catch
-						{
-						}
+						continue;
 					}
+					try
+					{
+						JSONObject jsonObject = YSNewSaveSystem.GetJsonObject(YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json");
+						JSONObject face = null;
+						if (jsonObject.HasField("face"))
+						{
+							face = jsonObject["face"];
+						}
+						component.Init(i, isHasAvatar: true, jsonObject["firstName"].Str + jsonObject["lastName"].Str, jsonObject["avatarLevel"].I, j, face);
+						flag = true;
+					}
+					catch
+					{
+						continue;
+					}
+					break;
 				}
 				if (!flag)
 				{
-					for (int l = 0; l < 6; l++)
+					for (int k = 0; k < 6; k++)
 					{
-						if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(j, l)))
+						if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(i, k)))
 						{
 							try
 							{
-								JSONObject jsonObject2 = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(j, l), null);
-								component.Init(j, true, jsonObject2["firstName"].Str + jsonObject2["lastName"].Str, jsonObject2["avatarLevel"].I, l, null);
+								JSONObject jsonObject2 = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(i, k));
+								component.Init(i, isHasAvatar: true, jsonObject2["firstName"].Str + jsonObject2["lastName"].Str, jsonObject2["avatarLevel"].I, k);
 								flag = true;
-								break;
 							}
 							catch
 							{
+								continue;
 							}
+							break;
 						}
 					}
 				}
 				if (!flag)
 				{
-					component.Init(j, false, "", 0, 0, null);
+					component.Init(i, isHasAvatar: false);
 				}
 				stopwatch.Stop();
-				Debug.Log(string.Format("刷新存档信息 {0} 耗时{1}ms，是否存在角色:{2}", j, stopwatch.ElapsedMilliseconds, flag));
+				Debug.Log((object)$"刷新存档信息 {i} 耗时{stopwatch.ElapsedMilliseconds}ms，是否存在角色:{flag}");
 			}
 			catch (Exception)
 			{
-				component.Init(j, false, "", 0, 0, null);
-				goto IL_23B;
+				component.Init(i, isHasAvatar: false);
+				continue;
 			}
-			goto IL_234;
-			IL_23B:
-			j++;
-			continue;
-			IL_234:
-			gameObject.SetActive(true);
-			goto IL_23B;
+			val.SetActive(true);
 		}
 	}
 
-	// Token: 0x06001C65 RID: 7269 RVA: 0x000CB914 File Offset: 0x000C9B14
 	public void ReturnMainPanel()
 	{
-		if (this.loadPlayerData.gameObject.activeSelf)
+		if (((Component)loadPlayerData).gameObject.activeSelf)
 		{
-			this.loadPlayerData.gameObject.SetActive(false);
+			((Component)loadPlayerData).gameObject.SetActive(false);
 			return;
 		}
-		base.gameObject.SetActive(false);
+		((Component)this).gameObject.SetActive(false);
 		MainUIMag.inst.mainPanel.SetActive(true);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001C66 RID: 7270 RVA: 0x000CB96C File Offset: 0x000C9B6C
 	public void OpenCreateAvatarPanel()
 	{
-		base.gameObject.SetActive(false);
+		((Component)this).gameObject.SetActive(false);
 		MainUIMag.inst.createAvatarPanel.Init();
 	}
 
-	// Token: 0x06001C67 RID: 7271 RVA: 0x000CB989 File Offset: 0x000C9B89
 	public bool TryEscClose()
 	{
-		this.ReturnMainPanel();
+		ReturnMainPanel();
 		return true;
 	}
-
-	// Token: 0x040016DC RID: 5852
-	private bool isInit;
-
-	// Token: 0x040016DD RID: 5853
-	public int maxNum;
-
-	// Token: 0x040016DE RID: 5854
-	public GameObject avatarTemp;
-
-	// Token: 0x040016DF RID: 5855
-	public Transform avatarList;
-
-	// Token: 0x040016E0 RID: 5856
-	public MainUILoadData loadPlayerData;
-
-	// Token: 0x040016E1 RID: 5857
-	private List<GameObject> cellList = new List<GameObject>();
 }

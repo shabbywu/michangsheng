@@ -1,66 +1,54 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class KillAvatarLingGuangJson : IJSONClass
 {
-	// Token: 0x02000870 RID: 2160
-	public class KillAvatarLingGuangJson : IJSONClass
+	public static Dictionary<int, KillAvatarLingGuangJson> DataDict = new Dictionary<int, KillAvatarLingGuangJson>();
+
+	public static List<KillAvatarLingGuangJson> DataList = new List<KillAvatarLingGuangJson>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int lingguangid;
+
+	public List<int> avatar = new List<int>();
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003FD3 RID: 16339 RVA: 0x001B39C0 File Offset: 0x001B1BC0
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.KillAvatarLingGuangJson.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.KillAvatarLingGuangJson.list)
+			try
 			{
-				try
+				KillAvatarLingGuangJson killAvatarLingGuangJson = new KillAvatarLingGuangJson();
+				killAvatarLingGuangJson.id = item["id"].I;
+				killAvatarLingGuangJson.lingguangid = item["lingguangid"].I;
+				killAvatarLingGuangJson.avatar = item["avatar"].ToList();
+				if (DataDict.ContainsKey(killAvatarLingGuangJson.id))
 				{
-					KillAvatarLingGuangJson killAvatarLingGuangJson = new KillAvatarLingGuangJson();
-					killAvatarLingGuangJson.id = jsonobject["id"].I;
-					killAvatarLingGuangJson.lingguangid = jsonobject["lingguangid"].I;
-					killAvatarLingGuangJson.avatar = jsonobject["avatar"].ToList();
-					if (KillAvatarLingGuangJson.DataDict.ContainsKey(killAvatarLingGuangJson.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典KillAvatarLingGuangJson.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", killAvatarLingGuangJson.id));
-					}
-					else
-					{
-						KillAvatarLingGuangJson.DataDict.Add(killAvatarLingGuangJson.id, killAvatarLingGuangJson);
-						KillAvatarLingGuangJson.DataList.Add(killAvatarLingGuangJson);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典KillAvatarLingGuangJson.DataDict添加数据时出现重复的键，Key:{killAvatarLingGuangJson.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典KillAvatarLingGuangJson.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(killAvatarLingGuangJson.id, killAvatarLingGuangJson);
+				DataList.Add(killAvatarLingGuangJson);
 			}
-			if (KillAvatarLingGuangJson.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				KillAvatarLingGuangJson.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典KillAvatarLingGuangJson.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003FD4 RID: 16340 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003C6E RID: 15470
-		public static Dictionary<int, KillAvatarLingGuangJson> DataDict = new Dictionary<int, KillAvatarLingGuangJson>();
-
-		// Token: 0x04003C6F RID: 15471
-		public static List<KillAvatarLingGuangJson> DataList = new List<KillAvatarLingGuangJson>();
-
-		// Token: 0x04003C70 RID: 15472
-		public static Action OnInitFinishAction = new Action(KillAvatarLingGuangJson.OnInitFinish);
-
-		// Token: 0x04003C71 RID: 15473
-		public int id;
-
-		// Token: 0x04003C72 RID: 15474
-		public int lingguangid;
-
-		// Token: 0x04003C73 RID: 15475
-		public List<int> avatar = new List<int>();
+	private static void OnInitFinish()
+	{
 	}
 }

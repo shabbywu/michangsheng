@@ -1,136 +1,257 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020004F1 RID: 1265
 public class ShopManager : MonoBehaviour
 {
-	// Token: 0x060028EF RID: 10479 RVA: 0x00128CE2 File Offset: 0x00126EE2
+	public static Transform shopHolder;
+
+	public static Transform shopLevaIvica;
+
+	public static Transform shopDesnaIvica;
+
+	public static GameObject shopHeaderOn;
+
+	public static GameObject shopHeaderOff;
+
+	public static GameObject freeCoinsHeaderOn;
+
+	public static GameObject freeCoinsHeaderOff;
+
+	public static GameObject holderShopCard;
+
+	public static GameObject holderFreeCoinsCard;
+
+	public static Transform buttonShopBack;
+
+	private string clickedItem;
+
+	private string releasedItem;
+
+	private float vremeKlika;
+
+	private float startX;
+
+	private float endX;
+
+	private float pomerajX;
+
+	private static float levaGranica;
+
+	private static float desnaGranica;
+
+	private bool moved;
+
+	private bool released;
+
+	private bool bounce;
+
+	private bool started;
+
+	private Transform tempObject;
+
+	private GameObject temp;
+
+	private float clickedPos;
+
+	public static bool shopExists = true;
+
+	public static bool freeCoinsExists = true;
+
+	private static Vector3 originalScale;
+
+	private static float offset;
+
+	private static DateTime timeToShowNextElement;
+
+	private bool helpBool;
+
+	private static bool videoNotAvailable = false;
+
+	public static bool otvorenShop = false;
+
 	private void Awake()
 	{
-		Object.DontDestroyOnLoad(base.gameObject);
+		Object.DontDestroyOnLoad((Object)(object)((Component)this).gameObject);
 	}
 
-	// Token: 0x060028F0 RID: 10480 RVA: 0x0013655C File Offset: 0x0013475C
 	private void Start()
 	{
-		ShopManager.shopHolder = GameObject.Find("_HolderShop").transform;
-		ShopManager.shopLevaIvica = GameObject.Find("ShopRamLevoHolder").transform;
-		ShopManager.shopDesnaIvica = GameObject.Find("ShopRamDesnoHolder").transform;
-		ShopManager.shopHeaderOn = GameObject.Find("ShopHeaderOn");
-		ShopManager.shopHeaderOff = GameObject.Find("ShopHeaderOff1");
-		ShopManager.freeCoinsHeaderOn = GameObject.Find("ShopHeaderOn1");
-		ShopManager.freeCoinsHeaderOff = GameObject.Find("ShopHeaderOff");
-		ShopManager.holderShopCard = GameObject.Find("HolderShopCard");
-		ShopManager.holderFreeCoinsCard = GameObject.Find("HolderFreeCoinsCard");
-		ShopManager.buttonShopBack = GameObject.Find("HolderBack").transform;
-		ShopManager.originalScale = ShopManager.shopHolder.localScale;
-		ShopManager.offset = 3.5f;
-		ShopManager.shopHolder.localScale = ShopManager.shopHolder.localScale * Camera.main.orthographicSize / 5f;
-		ShopManager.shopHolder.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one / 2f).x, ShopManager.shopHolder.position.y, Camera.main.transform.position.z + 5f);
-		ShopManager.shopLevaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x, ShopManager.shopLevaIvica.position.y, ShopManager.shopLevaIvica.position.z);
-		ShopManager.shopDesnaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x, ShopManager.shopLevaIvica.position.y, ShopManager.shopLevaIvica.position.z);
-		ShopManager.shopHolder.gameObject.SetActive(false);
-		ShopManager.desnaGranica = ShopManager.shopLevaIvica.transform.position.x + 3.5f;
-		base.transform.Find("HolderFrame/ShopRamDesnoHolder/ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOff/TextFreeCoinsDown").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOff/TextFreeCoinsUp").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOff1/TextShopDown").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOff1/TextShopUp").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOn/TextShopDown").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOn/TextShopUp").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOn1/TextFreeCoinsDown").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderHeader/ShopHeaderOn1/TextFreeCoinsUp").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderFrame/ShopBackground").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderFrame/ShopBackground_Dif").GetComponent<Renderer>().sortingLayerID = 1;
-		base.transform.Find("HolderFreeCoinsCard/HolderFreeCoinsCardAnimation/Card3_FC_WatchVideo/HolderCard_NotAvailable/ShopTextOnCard").GetComponent<Renderer>().sortingLayerID = 1;
-		foreach (object obj in base.transform.Find("HolderFreeCoinsCard").GetChild(0).transform)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0150: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0155: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0191: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0364: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0369: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0395: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0404: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0409: Unknown result type (might be due to invalid IL or missing references)
+		//IL_041f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0435: Unknown result type (might be due to invalid IL or missing references)
+		//IL_044b: Unknown result type (might be due to invalid IL or missing references)
+		shopHolder = GameObject.Find("_HolderShop").transform;
+		shopLevaIvica = GameObject.Find("ShopRamLevoHolder").transform;
+		shopDesnaIvica = GameObject.Find("ShopRamDesnoHolder").transform;
+		shopHeaderOn = GameObject.Find("ShopHeaderOn");
+		shopHeaderOff = GameObject.Find("ShopHeaderOff1");
+		freeCoinsHeaderOn = GameObject.Find("ShopHeaderOn1");
+		freeCoinsHeaderOff = GameObject.Find("ShopHeaderOff");
+		holderShopCard = GameObject.Find("HolderShopCard");
+		holderFreeCoinsCard = GameObject.Find("HolderFreeCoinsCard");
+		buttonShopBack = GameObject.Find("HolderBack").transform;
+		originalScale = shopHolder.localScale;
+		offset = 3.5f;
+		shopHolder.localScale = shopHolder.localScale * Camera.main.orthographicSize / 5f;
+		shopHolder.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one / 2f).x, shopHolder.position.y, ((Component)Camera.main).transform.position.z + 5f);
+		shopLevaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x, shopLevaIvica.position.y, shopLevaIvica.position.z);
+		shopDesnaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x, shopLevaIvica.position.y, shopLevaIvica.position.z);
+		((Component)shopHolder).gameObject.SetActive(false);
+		desnaGranica = ((Component)shopLevaIvica).transform.position.x + 3.5f;
+		((Component)((Component)this).transform.Find("HolderFrame/ShopRamDesnoHolder/ShopRamDesno/FinishCoins/TextFreeCoinsUp1")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOff/TextFreeCoinsDown")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOff/TextFreeCoinsUp")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOff1/TextShopDown")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOff1/TextShopUp")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOn/TextShopDown")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOn/TextShopUp")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOn1/TextFreeCoinsDown")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderHeader/ShopHeaderOn1/TextFreeCoinsUp")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderFrame/ShopBackground")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderFrame/ShopBackground_Dif")).GetComponent<Renderer>().sortingLayerID = 1;
+		((Component)((Component)this).transform.Find("HolderFreeCoinsCard/HolderFreeCoinsCardAnimation/Card3_FC_WatchVideo/HolderCard_NotAvailable/ShopTextOnCard")).GetComponent<Renderer>().sortingLayerID = 1;
+		foreach (Transform item in ((Component)((Component)this).transform.Find("HolderFreeCoinsCard").GetChild(0)).transform)
 		{
-			Transform transform = (Transform)obj;
-			transform.Find("HolderCard/ShopPriceButton/ShopTextCoins1").GetComponent<Renderer>().sortingLayerID = 1;
-			transform.Find("HolderCard/ShopPriceButton/ShopTextCoins2").GetComponent<Renderer>().sortingLayerID = 1;
-			transform.Find("HolderCard/ShopTextOnCard").GetComponent<Renderer>().sortingLayerID = 1;
-			transform.Find("HolderCard/ShopCardShine").GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item.Find("HolderCard/ShopPriceButton/ShopTextCoins1")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item.Find("HolderCard/ShopPriceButton/ShopTextCoins2")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item.Find("HolderCard/ShopTextOnCard")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item.Find("HolderCard/ShopCardShine")).GetComponent<Renderer>().sortingLayerID = 1;
 		}
-		foreach (object obj2 in base.transform.Find("HolderShopCard").GetChild(0).transform)
+		foreach (Transform item2 in ((Component)((Component)this).transform.Find("HolderShopCard").GetChild(0)).transform)
 		{
-			Transform transform2 = (Transform)obj2;
-			transform2.Find("HolderCard/ShopPriceButton/ShopTextCoins1").GetComponent<Renderer>().sortingLayerID = 1;
-			transform2.Find("HolderCard/ShopPriceButton/ShopTextCoins2").GetComponent<Renderer>().sortingLayerID = 1;
-			transform2.Find("HolderCard/ShopBuyCoins/ShopTextCoins1").GetComponent<Renderer>().sortingLayerID = 1;
-			transform2.Find("HolderCard/ShopBuyCoins/ShopTextCoins2").GetComponent<Renderer>().sortingLayerID = 1;
-			transform2.Find("HolderCard/ShopCardShine").GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item2.Find("HolderCard/ShopPriceButton/ShopTextCoins1")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item2.Find("HolderCard/ShopPriceButton/ShopTextCoins2")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item2.Find("HolderCard/ShopBuyCoins/ShopTextCoins1")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item2.Find("HolderCard/ShopBuyCoins/ShopTextCoins2")).GetComponent<Renderer>().sortingLayerID = 1;
+			((Component)item2.Find("HolderCard/ShopCardShine")).GetComponent<Renderer>().sortingLayerID = 1;
 		}
 	}
 
-	// Token: 0x060028F1 RID: 10481 RVA: 0x00136A18 File Offset: 0x00134C18
 	private void Update()
 	{
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0452: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0466: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0470: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0542: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0556: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0560: Unknown result type (might be due to invalid IL or missing references)
 		if (Input.GetMouseButtonDown(0))
 		{
-			if (this.released)
+			if (released)
 			{
-				this.released = false;
+				released = false;
 			}
-			this.clickedItem = this.RaycastFunction(Input.mousePosition);
-			this.vremeKlika = Time.time;
-			this.clickedPos = Input.mousePosition.x;
-			if (this.started)
+			clickedItem = RaycastFunction(Input.mousePosition);
+			vremeKlika = Time.time;
+			clickedPos = Input.mousePosition.x;
+			if (started)
 			{
-				this.started = false;
-				this.tempObject = null;
+				started = false;
+				tempObject = null;
 			}
-			if (this.clickedItem.StartsWith("Card"))
+			if (clickedItem.StartsWith("Card"))
 			{
-				this.startX = Input.mousePosition.x;
-				this.started = true;
-				this.tempObject = GameObject.Find(this.clickedItem).transform;
-				ShopManager.levaGranica = ShopManager.shopDesnaIvica.position.x - 1.5f - (float)(this.tempObject.parent.childCount - 1) * this.tempObject.GetComponent<BoxCollider>().bounds.extents.x * 2f - this.tempObject.GetComponent<BoxCollider>().bounds.extents.x;
+				startX = Input.mousePosition.x;
+				started = true;
+				tempObject = GameObject.Find(clickedItem).transform;
+				float num = shopDesnaIvica.position.x - 1.5f;
+				float num2 = tempObject.parent.childCount - 1;
+				Bounds bounds = ((Collider)((Component)tempObject).GetComponent<BoxCollider>()).bounds;
+				float num3 = num - num2 * ((Bounds)(ref bounds)).extents.x * 2f;
+				bounds = ((Collider)((Component)tempObject).GetComponent<BoxCollider>()).bounds;
+				levaGranica = num3 - ((Bounds)(ref bounds)).extents.x;
 			}
 		}
-		if (Input.GetMouseButton(0) && this.started && ((this.tempObject.parent.childCount > 2 && Camera.main.aspect < 1.7777778f) || (this.tempObject.parent.childCount > 3 && Camera.main.aspect >= 1.7777778f)))
+		if (Input.GetMouseButton(0) && started && ((tempObject.parent.childCount > 2 && Camera.main.aspect < 1.7777778f) || (tempObject.parent.childCount > 3 && Camera.main.aspect >= 1.7777778f)))
 		{
-			this.endX = Input.mousePosition.x;
-			this.pomerajX = (this.endX - this.startX) * Camera.main.orthographicSize / 250f;
-			if (this.pomerajX != 0f)
+			endX = Input.mousePosition.x;
+			pomerajX = (endX - startX) * Camera.main.orthographicSize / 250f;
+			if (pomerajX != 0f)
 			{
-				this.moved = true;
+				moved = true;
 			}
-			this.tempObject.parent.position = new Vector3(Mathf.Clamp(this.tempObject.parent.position.x + this.pomerajX, ShopManager.levaGranica, ShopManager.desnaGranica), this.tempObject.parent.position.y, this.tempObject.parent.position.z);
-			this.startX = this.endX;
-			Debug.Log("Uledj");
+			tempObject.parent.position = new Vector3(Mathf.Clamp(tempObject.parent.position.x + pomerajX, levaGranica, desnaGranica), tempObject.parent.position.y, tempObject.parent.position.z);
+			startX = endX;
+			Debug.Log((object)"Uledj");
 		}
-		if (this.released)
+		if (released)
 		{
-			if (this.tempObject.parent.position.x <= ShopManager.levaGranica - 0.5f)
+			if (tempObject.parent.position.x <= levaGranica - 0.5f)
 			{
-				if (this.bounce)
+				if (bounce)
 				{
-					this.pomerajX = 0.075f;
-					this.bounce = false;
+					pomerajX = 0.075f;
+					bounce = false;
 				}
 			}
-			else if (this.tempObject.parent.position.x >= ShopManager.desnaGranica && this.bounce)
+			else if (tempObject.parent.position.x >= desnaGranica && bounce)
 			{
-				this.pomerajX = -0.075f;
-				this.bounce = false;
+				pomerajX = -0.075f;
+				bounce = false;
 			}
-			this.tempObject.parent.Translate(this.pomerajX, 0f, 0f);
-			this.pomerajX *= 0.92f;
+			tempObject.parent.Translate(pomerajX, 0f, 0f);
+			pomerajX *= 0.92f;
 		}
 		else if (Input.GetMouseButtonUp(0))
 		{
-			this.releasedItem = this.RaycastFunction(Input.mousePosition);
-			if (this.moved)
+			releasedItem = RaycastFunction(Input.mousePosition);
+			if (moved)
 			{
-				this.moved = false;
-				this.released = true;
-				this.bounce = true;
+				moved = false;
+				released = true;
+				bounce = true;
 			}
-			this.startX = (this.endX = 0f);
-			if (this.clickedItem == this.releasedItem && this.releasedItem != string.Empty && Time.time - this.vremeKlika < 0.35f && Mathf.Abs(Input.mousePosition.x - this.clickedPos) < 50f)
+			startX = (endX = 0f);
+			if (clickedItem == releasedItem && releasedItem != string.Empty && Time.time - vremeKlika < 0.35f && Mathf.Abs(Input.mousePosition.x - clickedPos) < 50f)
 			{
-				if (this.releasedItem == "HolderBack")
+				if (releasedItem == "HolderBack")
 				{
 					if (PlaySounds.soundOn)
 					{
@@ -138,52 +259,52 @@ public class ShopManager : MonoBehaviour
 					}
 					if (Time.timeScale == 0f)
 					{
-						base.StartCoroutine(this.PausedAnim(ShopManager.buttonShopBack.GetChild(0), "BackButtonClick"));
-						base.StartCoroutine(this.CloseShopPaused());
+						((MonoBehaviour)this).StartCoroutine(PausedAnim(buttonShopBack.GetChild(0), "BackButtonClick"));
+						((MonoBehaviour)this).StartCoroutine(CloseShopPaused());
 					}
 					else
 					{
-						ShopManager.buttonShopBack.GetChild(0).GetComponent<Animation>().Play("BackButtonClick");
-						base.StartCoroutine(this.CloseShop());
+						((Component)buttonShopBack.GetChild(0)).GetComponent<Animation>().Play("BackButtonClick");
+						((MonoBehaviour)this).StartCoroutine(CloseShop());
 					}
 				}
-				else if (this.releasedItem == "ShopHeaderOff1")
+				else if (releasedItem == "ShopHeaderOff1")
 				{
-					ShopManager.holderShopCard.transform.position = new Vector3(ShopManager.desnaGranica, ShopManager.holderShopCard.transform.position.y, ShopManager.holderShopCard.transform.position.z);
-					ShopManager.shopHeaderOff.SetActive(false);
-					ShopManager.shopHeaderOn.SetActive(true);
-					ShopManager.freeCoinsHeaderOn.SetActive(false);
-					ShopManager.freeCoinsHeaderOff.SetActive(true);
-					ShopManager.holderFreeCoinsCard.SetActive(false);
-					ShopManager.holderShopCard.SetActive(true);
+					holderShopCard.transform.position = new Vector3(desnaGranica, holderShopCard.transform.position.y, holderShopCard.transform.position.z);
+					shopHeaderOff.SetActive(false);
+					shopHeaderOn.SetActive(true);
+					freeCoinsHeaderOn.SetActive(false);
+					freeCoinsHeaderOff.SetActive(true);
+					holderFreeCoinsCard.SetActive(false);
+					holderShopCard.SetActive(true);
 					if (Time.timeScale == 0f)
 					{
-						base.StartCoroutine(this.PausedAnim(ShopManager.holderShopCard.transform.GetChild(0), "DolazakShop_A"));
+						((MonoBehaviour)this).StartCoroutine(PausedAnim(holderShopCard.transform.GetChild(0), "DolazakShop_A"));
 					}
 					else
 					{
-						ShopManager.holderShopCard.transform.GetChild(0).GetComponent<Animation>().Play("DolazakShop_A");
+						((Component)holderShopCard.transform.GetChild(0)).GetComponent<Animation>().Play("DolazakShop_A");
 					}
 				}
-				else if (this.releasedItem == "ShopHeaderOff")
+				else if (releasedItem == "ShopHeaderOff")
 				{
-					ShopManager.holderFreeCoinsCard.transform.position = new Vector3(ShopManager.desnaGranica, ShopManager.holderFreeCoinsCard.transform.position.y, ShopManager.holderFreeCoinsCard.transform.position.z);
-					ShopManager.shopHeaderOn.SetActive(false);
-					ShopManager.shopHeaderOff.SetActive(true);
-					ShopManager.freeCoinsHeaderOff.SetActive(false);
-					ShopManager.freeCoinsHeaderOn.SetActive(true);
-					ShopManager.holderShopCard.SetActive(false);
-					ShopManager.holderFreeCoinsCard.SetActive(true);
+					holderFreeCoinsCard.transform.position = new Vector3(desnaGranica, holderFreeCoinsCard.transform.position.y, holderFreeCoinsCard.transform.position.z);
+					shopHeaderOn.SetActive(false);
+					shopHeaderOff.SetActive(true);
+					freeCoinsHeaderOff.SetActive(false);
+					freeCoinsHeaderOn.SetActive(true);
+					holderShopCard.SetActive(false);
+					holderFreeCoinsCard.SetActive(true);
 					if (Time.timeScale == 0f)
 					{
-						base.StartCoroutine(this.PausedAnim(ShopManager.holderFreeCoinsCard.transform.GetChild(0), "DolazakShop_A"));
+						((MonoBehaviour)this).StartCoroutine(PausedAnim(holderFreeCoinsCard.transform.GetChild(0), "DolazakShop_A"));
 					}
 					else
 					{
-						ShopManager.holderFreeCoinsCard.transform.GetChild(0).GetComponent<Animation>().Play("DolazakShop_A");
+						((Component)holderFreeCoinsCard.transform.GetChild(0)).GetComponent<Animation>().Play("DolazakShop_A");
 					}
 				}
-				else if (this.releasedItem.StartsWith("Card"))
+				else if (releasedItem.StartsWith("Card"))
 				{
 					if (PlaySounds.soundOn)
 					{
@@ -191,15 +312,15 @@ public class ShopManager : MonoBehaviour
 					}
 					if (Time.timeScale == 0f)
 					{
-						this.temp = GameObject.Find(this.releasedItem);
-						base.StartCoroutine(this.PausedAnim(this.temp.transform.GetChild(0), "ShopCardClick"));
+						temp = GameObject.Find(releasedItem);
+						((MonoBehaviour)this).StartCoroutine(PausedAnim(temp.transform.GetChild(0), "ShopCardClick"));
 					}
 					else
 					{
-						this.temp = GameObject.Find(this.releasedItem);
-						this.temp.transform.GetChild(0).GetComponent<Animation>().Play("ShopCardClick");
+						temp = GameObject.Find(releasedItem);
+						((Component)temp.transform.GetChild(0)).GetComponent<Animation>().Play("ShopCardClick");
 					}
-					if (this.releasedItem.Contains("LikeBananaIsland"))
+					if (releasedItem.Contains("LikeBananaIsland"))
 					{
 						FacebookManager.stranica = "BananaIsland";
 						if (FB.IsLoggedIn)
@@ -211,7 +332,7 @@ public class ShopManager : MonoBehaviour
 							GameObject.Find("FacebookManager").SendMessage("FacebookLogin");
 						}
 					}
-					else if (this.releasedItem.Contains("LikeWebelinx"))
+					else if (releasedItem.Contains("LikeWebelinx"))
 					{
 						FacebookManager.stranica = "Webelinx";
 						if (FB.IsLoggedIn)
@@ -223,15 +344,15 @@ public class ShopManager : MonoBehaviour
 							GameObject.Find("FacebookManager").SendMessage("FacebookLogin");
 						}
 					}
-					if (!this.releasedItem.Contains("WatchVideo") && this.releasedItem.Contains("Buy"))
+					if (!releasedItem.Contains("WatchVideo") && releasedItem.Contains("Buy"))
 					{
-						string str = this.releasedItem.Substring(this.releasedItem.IndexOf('y') + 1);
-						Debug.Log("Sta: " + str);
+						string text = releasedItem.Substring(releasedItem.IndexOf('y') + 1);
+						Debug.Log((object)("Sta: " + text));
 					}
 				}
 			}
 		}
-		if (Input.GetKeyUp(27) && ShopManager.shopHolder.gameObject.activeSelf)
+		if (Input.GetKeyUp((KeyCode)27) && ((Component)shopHolder).gameObject.activeSelf)
 		{
 			if (PlaySounds.soundOn)
 			{
@@ -239,325 +360,242 @@ public class ShopManager : MonoBehaviour
 			}
 			if (Time.timeScale == 0f)
 			{
-				base.StartCoroutine(this.PausedAnim(ShopManager.buttonShopBack.GetChild(0), "BackButtonClick"));
-				base.StartCoroutine(this.CloseShopPaused());
-				return;
+				((MonoBehaviour)this).StartCoroutine(PausedAnim(buttonShopBack.GetChild(0), "BackButtonClick"));
+				((MonoBehaviour)this).StartCoroutine(CloseShopPaused());
 			}
-			ShopManager.buttonShopBack.GetChild(0).GetComponent<Animation>().Play("BackButtonClick");
-			base.StartCoroutine(this.CloseShop());
+			else
+			{
+				((Component)buttonShopBack.GetChild(0)).GetComponent<Animation>().Play("BackButtonClick");
+				((MonoBehaviour)this).StartCoroutine(CloseShop());
+			}
 		}
 	}
 
-	// Token: 0x060028F2 RID: 10482 RVA: 0x0013722E File Offset: 0x0013542E
 	public static IEnumerator OpenShopCard()
 	{
-		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
-		ShopManager.shopHolder.transform.position = Camera.main.transform.position + Vector3.forward * 5f;
-		ShopManager.shopHeaderOff.SetActive(false);
-		ShopManager.shopHeaderOn.SetActive(true);
-		if (ShopManager.freeCoinsExists)
+		((Component)((Component)shopDesnaIvica).transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1")).GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
+		((Component)shopHolder).transform.position = ((Component)Camera.main).transform.position + Vector3.forward * 5f;
+		shopHeaderOff.SetActive(false);
+		shopHeaderOn.SetActive(true);
+		if (freeCoinsExists)
 		{
-			ShopManager.freeCoinsHeaderOn.SetActive(false);
-			ShopManager.freeCoinsHeaderOff.SetActive(true);
+			freeCoinsHeaderOn.SetActive(false);
+			freeCoinsHeaderOff.SetActive(true);
 		}
-		ShopManager.holderFreeCoinsCard.SetActive(false);
-		ShopManager.holderShopCard.SetActive(true);
-		ShopManager.holderShopCard.transform.position = new Vector3(ShopManager.desnaGranica, ShopManager.holderShopCard.transform.position.y, ShopManager.holderShopCard.transform.position.z);
-		yield return new WaitForSeconds(0.25f);
-		ShopManager.shopHolder.gameObject.SetActive(true);
-		ShopManager.otvorenShop = true;
-		ShopManager.holderShopCard.transform.GetChild(0).GetComponent<Animation>().Play("DolazakShop_A");
+		holderFreeCoinsCard.SetActive(false);
+		holderShopCard.SetActive(true);
+		holderShopCard.transform.position = new Vector3(desnaGranica, holderShopCard.transform.position.y, holderShopCard.transform.position.z);
+		yield return (object)new WaitForSeconds(0.25f);
+		((Component)shopHolder).gameObject.SetActive(true);
+		otvorenShop = true;
+		((Component)holderShopCard.transform.GetChild(0)).GetComponent<Animation>().Play("DolazakShop_A");
 		if (PlayerPrefs.HasKey("otisaoDaLajkuje"))
 		{
 			FacebookManager.lokacijaProvere = "Shop";
 			FacebookManager.stranica = PlayerPrefs.GetString("stranica");
 			FacebookManager.IDstranice = PlayerPrefs.GetString("IDstranice");
 			GameObject.Find("FacebookManager").SendMessage("CheckLikes");
-			Debug.Log("Nagradi ga iz Shop");
+			Debug.Log((object)"Nagradi ga iz Shop");
 		}
-		yield break;
 	}
 
-	// Token: 0x060028F3 RID: 10483 RVA: 0x00137236 File Offset: 0x00135436
 	public static IEnumerator OpenFreeCoinsCard()
 	{
-		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
-		ShopManager.shopHolder.transform.position = Camera.main.transform.position + Vector3.forward * 5f;
-		if (ShopManager.shopExists)
+		((Component)((Component)shopDesnaIvica).transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1")).GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
+		((Component)shopHolder).transform.position = ((Component)Camera.main).transform.position + Vector3.forward * 5f;
+		if (shopExists)
 		{
-			ShopManager.shopHeaderOn.SetActive(false);
-			ShopManager.shopHeaderOff.SetActive(true);
+			shopHeaderOn.SetActive(false);
+			shopHeaderOff.SetActive(true);
 		}
-		ShopManager.freeCoinsHeaderOff.SetActive(false);
-		ShopManager.freeCoinsHeaderOn.SetActive(true);
-		ShopManager.holderShopCard.SetActive(false);
-		ShopManager.holderFreeCoinsCard.SetActive(true);
-		ShopManager.holderFreeCoinsCard.transform.position = new Vector3(ShopManager.desnaGranica, ShopManager.holderFreeCoinsCard.transform.position.y, ShopManager.holderFreeCoinsCard.transform.position.z);
-		yield return new WaitForSeconds(0.25f);
-		ShopManager.shopHolder.gameObject.SetActive(true);
-		ShopManager.otvorenShop = true;
-		if (ShopManager.videoNotAvailable)
+		freeCoinsHeaderOff.SetActive(false);
+		freeCoinsHeaderOn.SetActive(true);
+		holderShopCard.SetActive(false);
+		holderFreeCoinsCard.SetActive(true);
+		holderFreeCoinsCard.transform.position = new Vector3(desnaGranica, holderFreeCoinsCard.transform.position.y, holderFreeCoinsCard.transform.position.z);
+		yield return (object)new WaitForSeconds(0.25f);
+		((Component)shopHolder).gameObject.SetActive(true);
+		otvorenShop = true;
+		if (videoNotAvailable)
 		{
-			ShopManager.ResetVideoNotAvailable();
+			ResetVideoNotAvailable();
 		}
-		ShopManager.holderFreeCoinsCard.transform.GetChild(0).GetComponent<Animation>().Play("DolazakShop_A");
+		((Component)holderFreeCoinsCard.transform.GetChild(0)).GetComponent<Animation>().Play("DolazakShop_A");
 		if (PlayerPrefs.HasKey("otisaoDaLajkuje"))
 		{
 			FacebookManager.lokacijaProvere = "Shop";
 			FacebookManager.stranica = PlayerPrefs.GetString("stranica");
 			FacebookManager.IDstranice = PlayerPrefs.GetString("IDstranice");
 			GameObject.Find("FacebookManager").SendMessage("CheckLikes");
-			Debug.Log("Nagradi ga iz Shop");
+			Debug.Log((object)"Nagradi ga iz Shop");
 		}
-		yield break;
 	}
 
-	// Token: 0x060028F4 RID: 10484 RVA: 0x0013723E File Offset: 0x0013543E
 	public void ShopCardPaused()
 	{
-		base.StartCoroutine(this.OpenShopCardPaused());
+		((MonoBehaviour)this).StartCoroutine(OpenShopCardPaused());
 	}
 
-	// Token: 0x060028F5 RID: 10485 RVA: 0x0013724D File Offset: 0x0013544D
 	public IEnumerator OpenShopCardPaused()
 	{
 		yield return null;
-		base.StartCoroutine(this.PausedAnim(ShopManager.holderShopCard.transform.GetChild(0), "DolazakShop_A"));
-		yield break;
+		((MonoBehaviour)this).StartCoroutine(PausedAnim(holderShopCard.transform.GetChild(0), "DolazakShop_A"));
 	}
 
-	// Token: 0x060028F6 RID: 10486 RVA: 0x0013725C File Offset: 0x0013545C
 	public void FreeCoinsCardPaused()
 	{
-		base.StartCoroutine(this.OpenFreeCoinsCardPaused());
+		((MonoBehaviour)this).StartCoroutine(OpenFreeCoinsCardPaused());
 	}
 
-	// Token: 0x060028F7 RID: 10487 RVA: 0x0013726C File Offset: 0x0013546C
 	public static void shopPreparation_Paused()
 	{
-		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
-		ShopManager.shopHolder.transform.position = Camera.main.transform.position + Vector3.forward * 5f;
-		ShopManager.shopHeaderOff.SetActive(false);
-		ShopManager.shopHeaderOn.SetActive(true);
-		if (ShopManager.freeCoinsExists)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		((Component)((Component)shopDesnaIvica).transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1")).GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
+		((Component)shopHolder).transform.position = ((Component)Camera.main).transform.position + Vector3.forward * 5f;
+		shopHeaderOff.SetActive(false);
+		shopHeaderOn.SetActive(true);
+		if (freeCoinsExists)
 		{
-			ShopManager.freeCoinsHeaderOn.SetActive(false);
-			ShopManager.freeCoinsHeaderOff.SetActive(true);
+			freeCoinsHeaderOn.SetActive(false);
+			freeCoinsHeaderOff.SetActive(true);
 		}
-		ShopManager.holderFreeCoinsCard.SetActive(false);
-		ShopManager.holderShopCard.SetActive(true);
-		ShopManager.holderShopCard.transform.position = new Vector3(ShopManager.desnaGranica, ShopManager.holderShopCard.transform.position.y, ShopManager.holderShopCard.transform.position.z);
-		ShopManager.shopHolder.gameObject.SetActive(true);
-		ShopManager.otvorenShop = true;
+		holderFreeCoinsCard.SetActive(false);
+		holderShopCard.SetActive(true);
+		holderShopCard.transform.position = new Vector3(desnaGranica, holderShopCard.transform.position.y, holderShopCard.transform.position.z);
+		((Component)shopHolder).gameObject.SetActive(true);
+		otvorenShop = true;
 	}
 
-	// Token: 0x060028F8 RID: 10488 RVA: 0x0013737B File Offset: 0x0013557B
 	public IEnumerator OpenFreeCoinsCardPaused()
 	{
 		yield return null;
-		base.StartCoroutine(this.PausedAnim(ShopManager.holderFreeCoinsCard.transform.GetChild(0), "DolazakShop_A"));
-		yield break;
+		((MonoBehaviour)this).StartCoroutine(PausedAnim(holderFreeCoinsCard.transform.GetChild(0), "DolazakShop_A"));
 	}
 
-	// Token: 0x060028F9 RID: 10489 RVA: 0x0013738C File Offset: 0x0013558C
 	public static void freeCoinsPreparation_Paused()
 	{
-		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
-		ShopManager.shopHolder.transform.position = Camera.main.transform.position + Vector3.forward * 5f;
-		if (ShopManager.shopExists)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		((Component)((Component)shopDesnaIvica).transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1")).GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
+		((Component)shopHolder).transform.position = ((Component)Camera.main).transform.position + Vector3.forward * 5f;
+		if (shopExists)
 		{
-			ShopManager.shopHeaderOn.SetActive(false);
-			ShopManager.shopHeaderOff.SetActive(true);
+			shopHeaderOn.SetActive(false);
+			shopHeaderOff.SetActive(true);
 		}
-		ShopManager.freeCoinsHeaderOff.SetActive(false);
-		ShopManager.freeCoinsHeaderOn.SetActive(true);
-		ShopManager.holderShopCard.SetActive(false);
-		ShopManager.holderFreeCoinsCard.SetActive(true);
-		ShopManager.holderFreeCoinsCard.transform.position = new Vector3(ShopManager.desnaGranica, ShopManager.holderFreeCoinsCard.transform.position.y, ShopManager.holderFreeCoinsCard.transform.position.z);
-		ShopManager.shopHolder.gameObject.SetActive(true);
-		ShopManager.otvorenShop = true;
-		if (ShopManager.videoNotAvailable)
+		freeCoinsHeaderOff.SetActive(false);
+		freeCoinsHeaderOn.SetActive(true);
+		holderShopCard.SetActive(false);
+		holderFreeCoinsCard.SetActive(true);
+		holderFreeCoinsCard.transform.position = new Vector3(desnaGranica, holderFreeCoinsCard.transform.position.y, holderFreeCoinsCard.transform.position.z);
+		((Component)shopHolder).gameObject.SetActive(true);
+		otvorenShop = true;
+		if (videoNotAvailable)
 		{
-			ShopManager.ResetVideoNotAvailable();
+			ResetVideoNotAvailable();
 		}
 	}
 
-	// Token: 0x060028FA RID: 10490 RVA: 0x001374A7 File Offset: 0x001356A7
 	private IEnumerator CloseShop()
 	{
-		yield return new WaitForSeconds(0.85f);
-		ShopManager.shopHolder.gameObject.SetActive(false);
-		ShopManager.otvorenShop = false;
-		ShopManager.shopHolder.position = new Vector3(-5f, -5f, ShopManager.shopHolder.position.z);
-		ShopManager.buttonShopBack.GetChild(0).localPosition = Vector3.zero;
-		yield break;
+		yield return (object)new WaitForSeconds(0.85f);
+		((Component)shopHolder).gameObject.SetActive(false);
+		otvorenShop = false;
+		shopHolder.position = new Vector3(-5f, -5f, shopHolder.position.z);
+		buttonShopBack.GetChild(0).localPosition = Vector3.zero;
 	}
 
-	// Token: 0x060028FB RID: 10491 RVA: 0x001374AF File Offset: 0x001356AF
 	private IEnumerator CloseShopPaused()
 	{
-		ShopManager.timeToShowNextElement = DateTime.Now.AddSeconds(0.8500000238418579);
-		while (DateTime.Now < ShopManager.timeToShowNextElement)
+		timeToShowNextElement = DateTime.Now.AddSeconds(0.8500000238418579);
+		while (DateTime.Now < timeToShowNextElement)
 		{
 			yield return null;
 		}
-		ShopManager.shopHolder.gameObject.SetActive(false);
-		ShopManager.otvorenShop = false;
-		ShopManager.shopHolder.position = new Vector3(-5f, -5f, ShopManager.shopHolder.position.z);
-		ShopManager.buttonShopBack.GetChild(0).localPosition = Vector3.zero;
-		yield break;
+		((Component)shopHolder).gameObject.SetActive(false);
+		otvorenShop = false;
+		shopHolder.position = new Vector3(-5f, -5f, shopHolder.position.z);
+		buttonShopBack.GetChild(0).localPosition = Vector3.zero;
 	}
 
-	// Token: 0x060028FC RID: 10492 RVA: 0x001374B8 File Offset: 0x001356B8
 	public string RaycastFunction(Vector3 vector)
 	{
-		RaycastHit raycastHit;
-		if (Physics.Raycast(Camera.main.ScreenPointToRay(vector), ref raycastHit))
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		RaycastHit val = default(RaycastHit);
+		if (Physics.Raycast(Camera.main.ScreenPointToRay(vector), ref val))
 		{
-			return raycastHit.collider.name;
+			return ((Object)((RaycastHit)(ref val)).collider).name;
 		}
 		return "";
 	}
 
-	// Token: 0x060028FD RID: 10493 RVA: 0x001374EC File Offset: 0x001356EC
 	public static void RescaleShop()
 	{
-		ShopManager.shopHolder.localScale = ShopManager.originalScale * Camera.main.orthographicSize / 5f;
-		float num = ShopManager.offset * Camera.main.orthographicSize / 5f;
-		ShopManager.shopHolder.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one / 2f).x, ShopManager.shopHolder.position.y, Camera.main.transform.position.z + 5f);
-		ShopManager.shopLevaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x, ShopManager.shopLevaIvica.position.y, ShopManager.shopLevaIvica.position.z);
-		ShopManager.shopDesnaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x, ShopManager.shopLevaIvica.position.y, ShopManager.shopLevaIvica.position.z);
-		ShopManager.shopHolder.gameObject.SetActive(false);
-		ShopManager.desnaGranica = ShopManager.shopLevaIvica.transform.position.x + num;
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0103: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
+		shopHolder.localScale = originalScale * Camera.main.orthographicSize / 5f;
+		float num = offset * Camera.main.orthographicSize / 5f;
+		shopHolder.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one / 2f).x, shopHolder.position.y, ((Component)Camera.main).transform.position.z + 5f);
+		shopLevaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x, shopLevaIvica.position.y, shopLevaIvica.position.z);
+		shopDesnaIvica.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x, shopLevaIvica.position.y, shopLevaIvica.position.z);
+		((Component)shopHolder).gameObject.SetActive(false);
+		desnaGranica = ((Component)shopLevaIvica).transform.position.x + num;
 	}
 
-	// Token: 0x060028FE RID: 10494 RVA: 0x0013763B File Offset: 0x0013583B
 	private IEnumerator PausedAnim(Transform obj, string ime)
 	{
-		base.StartCoroutine(obj.GetComponent<Animation>().Play(ime, false, delegate(bool what)
+		((MonoBehaviour)this).StartCoroutine(((Component)obj).GetComponent<Animation>().Play(ime, useTimeScale: false, delegate
 		{
-			this.helpBool = true;
+			helpBool = true;
 		}));
-		while (!this.helpBool)
+		while (!helpBool)
 		{
 			yield return null;
 		}
-		this.helpBool = false;
-		yield break;
+		helpBool = false;
 	}
 
-	// Token: 0x060028FF RID: 10495 RVA: 0x00137658 File Offset: 0x00135858
 	private void VideoNotAvailable()
 	{
-		GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard").gameObject.SetActive(false);
-		GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard_NotAvailable").gameObject.SetActive(true);
-		ShopManager.videoNotAvailable = true;
+		((Component)GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard")).gameObject.SetActive(false);
+		((Component)GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard_NotAvailable")).gameObject.SetActive(true);
+		videoNotAvailable = true;
 	}
 
-	// Token: 0x06002900 RID: 10496 RVA: 0x001376B4 File Offset: 0x001358B4
 	private static void ResetVideoNotAvailable()
 	{
-		GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard").gameObject.SetActive(true);
-		GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard_NotAvailable").gameObject.SetActive(false);
-		ShopManager.videoNotAvailable = false;
+		((Component)GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard")).gameObject.SetActive(true);
+		((Component)GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard_NotAvailable")).gameObject.SetActive(false);
+		videoNotAvailable = false;
 	}
-
-	// Token: 0x040024E8 RID: 9448
-	public static Transform shopHolder;
-
-	// Token: 0x040024E9 RID: 9449
-	public static Transform shopLevaIvica;
-
-	// Token: 0x040024EA RID: 9450
-	public static Transform shopDesnaIvica;
-
-	// Token: 0x040024EB RID: 9451
-	public static GameObject shopHeaderOn;
-
-	// Token: 0x040024EC RID: 9452
-	public static GameObject shopHeaderOff;
-
-	// Token: 0x040024ED RID: 9453
-	public static GameObject freeCoinsHeaderOn;
-
-	// Token: 0x040024EE RID: 9454
-	public static GameObject freeCoinsHeaderOff;
-
-	// Token: 0x040024EF RID: 9455
-	public static GameObject holderShopCard;
-
-	// Token: 0x040024F0 RID: 9456
-	public static GameObject holderFreeCoinsCard;
-
-	// Token: 0x040024F1 RID: 9457
-	public static Transform buttonShopBack;
-
-	// Token: 0x040024F2 RID: 9458
-	private string clickedItem;
-
-	// Token: 0x040024F3 RID: 9459
-	private string releasedItem;
-
-	// Token: 0x040024F4 RID: 9460
-	private float vremeKlika;
-
-	// Token: 0x040024F5 RID: 9461
-	private float startX;
-
-	// Token: 0x040024F6 RID: 9462
-	private float endX;
-
-	// Token: 0x040024F7 RID: 9463
-	private float pomerajX;
-
-	// Token: 0x040024F8 RID: 9464
-	private static float levaGranica;
-
-	// Token: 0x040024F9 RID: 9465
-	private static float desnaGranica;
-
-	// Token: 0x040024FA RID: 9466
-	private bool moved;
-
-	// Token: 0x040024FB RID: 9467
-	private bool released;
-
-	// Token: 0x040024FC RID: 9468
-	private bool bounce;
-
-	// Token: 0x040024FD RID: 9469
-	private bool started;
-
-	// Token: 0x040024FE RID: 9470
-	private Transform tempObject;
-
-	// Token: 0x040024FF RID: 9471
-	private GameObject temp;
-
-	// Token: 0x04002500 RID: 9472
-	private float clickedPos;
-
-	// Token: 0x04002501 RID: 9473
-	public static bool shopExists = true;
-
-	// Token: 0x04002502 RID: 9474
-	public static bool freeCoinsExists = true;
-
-	// Token: 0x04002503 RID: 9475
-	private static Vector3 originalScale;
-
-	// Token: 0x04002504 RID: 9476
-	private static float offset;
-
-	// Token: 0x04002505 RID: 9477
-	private static DateTime timeToShowNextElement;
-
-	// Token: 0x04002506 RID: 9478
-	private bool helpBool;
-
-	// Token: 0x04002507 RID: 9479
-	private static bool videoNotAvailable = false;
-
-	// Token: 0x04002508 RID: 9480
-	public static bool otvorenShop = false;
 }

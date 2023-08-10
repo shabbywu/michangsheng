@@ -1,143 +1,134 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200006A RID: 106
 [AddComponentMenu("NGUI/Interaction/Key Binding")]
 public class UIKeyBinding : MonoBehaviour
 {
-	// Token: 0x06000538 RID: 1336 RVA: 0x0001C81C File Offset: 0x0001AA1C
+	public enum Action
+	{
+		PressAndClick,
+		Select
+	}
+
+	public enum Modifier
+	{
+		None,
+		Shift,
+		Control,
+		Alt
+	}
+
+	public KeyCode keyCode;
+
+	public Modifier modifier;
+
+	public Action action;
+
+	private bool mIgnoreUp;
+
+	private bool mIsInput;
+
+	private bool mPress;
+
 	private void Start()
 	{
-		UIInput component = base.GetComponent<UIInput>();
-		this.mIsInput = (component != null);
-		if (component != null)
+		UIInput component = ((Component)this).GetComponent<UIInput>();
+		mIsInput = (Object)(object)component != (Object)null;
+		if ((Object)(object)component != (Object)null)
 		{
-			EventDelegate.Add(component.onSubmit, new EventDelegate.Callback(this.OnSubmit));
+			EventDelegate.Add(component.onSubmit, OnSubmit);
 		}
 	}
 
-	// Token: 0x06000539 RID: 1337 RVA: 0x0001C85E File Offset: 0x0001AA5E
 	private void OnSubmit()
 	{
-		if (UICamera.currentKey == this.keyCode && this.IsModifierActive())
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		if (UICamera.currentKey == keyCode && IsModifierActive())
 		{
-			this.mIgnoreUp = true;
+			mIgnoreUp = true;
 		}
 	}
 
-	// Token: 0x0600053A RID: 1338 RVA: 0x0001C87C File Offset: 0x0001AA7C
 	private bool IsModifierActive()
 	{
-		if (this.modifier == UIKeyBinding.Modifier.None)
+		if (modifier == Modifier.None)
 		{
 			return true;
 		}
-		if (this.modifier == UIKeyBinding.Modifier.Alt)
+		if (modifier == Modifier.Alt)
 		{
-			if (Input.GetKey(308) || Input.GetKey(307))
+			if (Input.GetKey((KeyCode)308) || Input.GetKey((KeyCode)307))
 			{
 				return true;
 			}
 		}
-		else if (this.modifier == UIKeyBinding.Modifier.Control)
+		else if (modifier == Modifier.Control)
 		{
-			if (Input.GetKey(306) || Input.GetKey(305))
+			if (Input.GetKey((KeyCode)306) || Input.GetKey((KeyCode)305))
 			{
 				return true;
 			}
 		}
-		else if (this.modifier == UIKeyBinding.Modifier.Shift && (Input.GetKey(304) || Input.GetKey(303)))
+		else if (modifier == Modifier.Shift && (Input.GetKey((KeyCode)304) || Input.GetKey((KeyCode)303)))
 		{
 			return true;
 		}
 		return false;
 	}
 
-	// Token: 0x0600053B RID: 1339 RVA: 0x0001C900 File Offset: 0x0001AB00
 	private void Update()
 	{
-		if (this.keyCode == null || !this.IsModifierActive())
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)keyCode == 0 || !IsModifierActive())
 		{
 			return;
 		}
-		if (this.action != UIKeyBinding.Action.PressAndClick)
+		if (action == Action.PressAndClick)
 		{
-			if (this.action == UIKeyBinding.Action.Select && Input.GetKeyUp(this.keyCode))
+			if (UICamera.inputHasFocus)
 			{
-				if (this.mIsInput)
+				return;
+			}
+			UICamera.currentTouch = UICamera.controller;
+			UICamera.currentScheme = UICamera.ControlScheme.Mouse;
+			UICamera.currentTouch.current = ((Component)this).gameObject;
+			if (Input.GetKeyDown(keyCode))
+			{
+				mPress = true;
+				UICamera.Notify(((Component)this).gameObject, "OnPress", true);
+			}
+			if (Input.GetKeyUp(keyCode))
+			{
+				UICamera.Notify(((Component)this).gameObject, "OnPress", false);
+				if (mPress)
 				{
-					if (!this.mIgnoreUp && !UICamera.inputHasFocus)
-					{
-						UICamera.selectedObject = base.gameObject;
-					}
-					this.mIgnoreUp = false;
-					return;
+					UICamera.Notify(((Component)this).gameObject, "OnClick", null);
+					mPress = false;
 				}
-				UICamera.selectedObject = base.gameObject;
 			}
-			return;
+			UICamera.currentTouch.current = null;
 		}
-		if (UICamera.inputHasFocus)
+		else
 		{
-			return;
-		}
-		UICamera.currentTouch = UICamera.controller;
-		UICamera.currentScheme = UICamera.ControlScheme.Mouse;
-		UICamera.currentTouch.current = base.gameObject;
-		if (Input.GetKeyDown(this.keyCode))
-		{
-			this.mPress = true;
-			UICamera.Notify(base.gameObject, "OnPress", true);
-		}
-		if (Input.GetKeyUp(this.keyCode))
-		{
-			UICamera.Notify(base.gameObject, "OnPress", false);
-			if (this.mPress)
+			if (action != Action.Select || !Input.GetKeyUp(keyCode))
 			{
-				UICamera.Notify(base.gameObject, "OnClick", null);
-				this.mPress = false;
+				return;
+			}
+			if (mIsInput)
+			{
+				if (!mIgnoreUp && !UICamera.inputHasFocus)
+				{
+					UICamera.selectedObject = ((Component)this).gameObject;
+				}
+				mIgnoreUp = false;
+			}
+			else
+			{
+				UICamera.selectedObject = ((Component)this).gameObject;
 			}
 		}
-		UICamera.currentTouch.current = null;
-	}
-
-	// Token: 0x0400035E RID: 862
-	public KeyCode keyCode;
-
-	// Token: 0x0400035F RID: 863
-	public UIKeyBinding.Modifier modifier;
-
-	// Token: 0x04000360 RID: 864
-	public UIKeyBinding.Action action;
-
-	// Token: 0x04000361 RID: 865
-	private bool mIgnoreUp;
-
-	// Token: 0x04000362 RID: 866
-	private bool mIsInput;
-
-	// Token: 0x04000363 RID: 867
-	private bool mPress;
-
-	// Token: 0x020011E5 RID: 4581
-	public enum Action
-	{
-		// Token: 0x040063E1 RID: 25569
-		PressAndClick,
-		// Token: 0x040063E2 RID: 25570
-		Select
-	}
-
-	// Token: 0x020011E6 RID: 4582
-	public enum Modifier
-	{
-		// Token: 0x040063E4 RID: 25572
-		None,
-		// Token: 0x040063E5 RID: 25573
-		Shift,
-		// Token: 0x040063E6 RID: 25574
-		Control,
-		// Token: 0x040063E7 RID: 25575
-		Alt
 	}
 }

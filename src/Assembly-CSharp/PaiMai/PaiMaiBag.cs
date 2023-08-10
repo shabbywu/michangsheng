@@ -1,10 +1,7 @@
-﻿using System;
 using Bag;
 
-namespace PaiMai
+namespace PaiMai;
+
+public class PaiMaiBag : BaseBag2
 {
-	// Token: 0x0200070A RID: 1802
-	public class PaiMaiBag : BaseBag2
-	{
-	}
 }

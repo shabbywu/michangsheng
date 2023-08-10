@@ -1,100 +1,98 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Variable", "Save Variable", "Save an Boolean, Integer, Float or String variable to persistent storage using a string key. The value can be loaded again later using the Load Variable command. You can also use the Set Save Profile command to manage separate save profiles for multiple players.", 0)]
+[AddComponentMenu("")]
+public class SaveVariable : Command
 {
-	// Token: 0x02000E26 RID: 3622
-	[CommandInfo("Variable", "Save Variable", "Save an Boolean, Integer, Float or String variable to persistent storage using a string key. The value can be loaded again later using the Load Variable command. You can also use the Set Save Profile command to manage separate save profiles for multiple players.", 0)]
-	[AddComponentMenu("")]
-	public class SaveVariable : Command
+	[Tooltip("Name of the saved value. Supports variable substition e.g. \"player_{$PlayerNumber}")]
+	[SerializeField]
+	protected string key = "";
+
+	[Tooltip("Variable to read the value from. Only Boolean, Integer, Float and String are supported.")]
+	[VariableProperty(new Type[]
 	{
-		// Token: 0x06006613 RID: 26131 RVA: 0x00285050 File Offset: 0x00283250
-		public override void OnEnter()
+		typeof(BooleanVariable),
+		typeof(IntegerVariable),
+		typeof(FloatVariable),
+		typeof(StringVariable)
+	})]
+	[SerializeField]
+	protected Variable variable;
+
+	public override void OnEnter()
+	{
+		if (key == "" || (Object)(object)variable == (Object)null)
 		{
-			if (this.key == "" || this.variable == null)
-			{
-				this.Continue();
-				return;
-			}
-			Flowchart flowchart = this.GetFlowchart();
-			string text = SetSaveProfile.SaveProfile + "_" + flowchart.SubstituteVariables(this.key);
-			Type type = this.variable.GetType();
-			if (type == typeof(BooleanVariable))
-			{
-				BooleanVariable booleanVariable = this.variable as BooleanVariable;
-				if (booleanVariable != null)
-				{
-					PlayerPrefs.SetInt(text, booleanVariable.Value ? 1 : 0);
-				}
-			}
-			else if (type == typeof(IntegerVariable))
-			{
-				IntegerVariable integerVariable = this.variable as IntegerVariable;
-				if (integerVariable != null)
-				{
-					PlayerPrefs.SetInt(text, integerVariable.Value);
-				}
-			}
-			else if (type == typeof(FloatVariable))
-			{
-				FloatVariable floatVariable = this.variable as FloatVariable;
-				if (floatVariable != null)
-				{
-					PlayerPrefs.SetFloat(text, floatVariable.Value);
-				}
-			}
-			else if (type == typeof(StringVariable))
-			{
-				StringVariable stringVariable = this.variable as StringVariable;
-				if (stringVariable != null)
-				{
-					PlayerPrefs.SetString(text, stringVariable.Value);
-				}
-			}
-			this.Continue();
+			Continue();
+			return;
 		}
-
-		// Token: 0x06006614 RID: 26132 RVA: 0x002851A0 File Offset: 0x002833A0
-		public override string GetSummary()
+		Flowchart flowchart = GetFlowchart();
+		string text = SetSaveProfile.SaveProfile + "_" + flowchart.SubstituteVariables(key);
+		Type type = ((object)variable).GetType();
+		if (type == typeof(BooleanVariable))
 		{
-			if (this.key.Length == 0)
+			BooleanVariable booleanVariable = variable as BooleanVariable;
+			if ((Object)(object)booleanVariable != (Object)null)
 			{
-				return "Error: No stored value key selected";
+				PlayerPrefs.SetInt(text, booleanVariable.Value ? 1 : 0);
 			}
-			if (this.variable == null)
+		}
+		else if (type == typeof(IntegerVariable))
+		{
+			IntegerVariable integerVariable = variable as IntegerVariable;
+			if ((Object)(object)integerVariable != (Object)null)
 			{
-				return "Error: No variable selected";
+				PlayerPrefs.SetInt(text, integerVariable.Value);
 			}
-			return this.variable.Key + " into '" + this.key + "'";
 		}
-
-		// Token: 0x06006615 RID: 26133 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+		else if (type == typeof(FloatVariable))
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			FloatVariable floatVariable = variable as FloatVariable;
+			if ((Object)(object)floatVariable != (Object)null)
+			{
+				PlayerPrefs.SetFloat(text, floatVariable.Value);
+			}
 		}
-
-		// Token: 0x06006616 RID: 26134 RVA: 0x002851F4 File Offset: 0x002833F4
-		public override bool HasReference(Variable in_variable)
+		else if (type == typeof(StringVariable))
 		{
-			return this.variable == in_variable || base.HasReference(in_variable);
+			StringVariable stringVariable = variable as StringVariable;
+			if ((Object)(object)stringVariable != (Object)null)
+			{
+				PlayerPrefs.SetString(text, stringVariable.Value);
+			}
 		}
+		Continue();
+	}
 
-		// Token: 0x0400578D RID: 22413
-		[Tooltip("Name of the saved value. Supports variable substition e.g. \"player_{$PlayerNumber}")]
-		[SerializeField]
-		protected string key = "";
-
-		// Token: 0x0400578E RID: 22414
-		[Tooltip("Variable to read the value from. Only Boolean, Integer, Float and String are supported.")]
-		[VariableProperty(new Type[]
+	public override string GetSummary()
+	{
+		if (key.Length == 0)
 		{
-			typeof(BooleanVariable),
-			typeof(IntegerVariable),
-			typeof(FloatVariable),
-			typeof(StringVariable)
-		})]
-		[SerializeField]
-		protected Variable variable;
+			return "Error: No stored value key selected";
+		}
+		if ((Object)(object)variable == (Object)null)
+		{
+			return "Error: No variable selected";
+		}
+		return variable.Key + " into '" + key + "'";
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable in_variable)
+	{
+		if (!((Object)(object)variable == (Object)(object)in_variable))
+		{
+			return base.HasReference(in_variable);
+		}
+		return true;
 	}
 }

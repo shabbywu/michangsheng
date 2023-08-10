@@ -1,69 +1,66 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[Serializable]
+public struct ColorData
 {
-	// Token: 0x02000EDA RID: 3802
-	[Serializable]
-	public struct ColorData
+	[SerializeField]
+	[VariableProperty("<Value>", new Type[] { typeof(ColorVariable) })]
+	public ColorVariable colorRef;
+
+	[SerializeField]
+	public Color colorVal;
+
+	public Color Value
 	{
-		// Token: 0x06006B33 RID: 27443 RVA: 0x00295DCA File Offset: 0x00293FCA
-		public ColorData(Color v)
+		get
 		{
-			this.colorVal = v;
-			this.colorRef = null;
-		}
-
-		// Token: 0x06006B34 RID: 27444 RVA: 0x00295DDA File Offset: 0x00293FDA
-		public static implicit operator Color(ColorData colorData)
-		{
-			return colorData.Value;
-		}
-
-		// Token: 0x170008BB RID: 2235
-		// (get) Token: 0x06006B35 RID: 27445 RVA: 0x00295DE3 File Offset: 0x00293FE3
-		// (set) Token: 0x06006B36 RID: 27446 RVA: 0x00295E05 File Offset: 0x00294005
-		public Color Value
-		{
-			get
+			//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+			if (!((Object)(object)colorRef == (Object)null))
 			{
-				if (!(this.colorRef == null))
-				{
-					return this.colorRef.Value;
-				}
-				return this.colorVal;
+				return colorRef.Value;
 			}
-			set
+			return colorVal;
+		}
+		set
+		{
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			if ((Object)(object)colorRef == (Object)null)
 			{
-				if (this.colorRef == null)
-				{
-					this.colorVal = value;
-					return;
-				}
-				this.colorRef.Value = value;
+				colorVal = value;
+			}
+			else
+			{
+				colorRef.Value = value;
 			}
 		}
+	}
 
-		// Token: 0x06006B37 RID: 27447 RVA: 0x00295E29 File Offset: 0x00294029
-		public string GetDescription()
+	public ColorData(Color v)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		colorVal = v;
+		colorRef = null;
+	}
+
+	public static implicit operator Color(ColorData colorData)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		return colorData.Value;
+	}
+
+	public string GetDescription()
+	{
+		if ((Object)(object)colorRef == (Object)null)
 		{
-			if (this.colorRef == null)
-			{
-				return this.colorVal.ToString();
-			}
-			return this.colorRef.Key;
+			return ((object)(Color)(ref colorVal)).ToString();
 		}
-
-		// Token: 0x04005A72 RID: 23154
-		[SerializeField]
-		[VariableProperty("<Value>", new Type[]
-		{
-			typeof(ColorVariable)
-		})]
-		public ColorVariable colorRef;
-
-		// Token: 0x04005A73 RID: 23155
-		[SerializeField]
-		public Color colorVal;
+		return colorRef.Key;
 	}
 }

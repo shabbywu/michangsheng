@@ -1,114 +1,97 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020003F4 RID: 1012
 public class UIpopulTooll : MonoBehaviour
 {
-	// Token: 0x060020AC RID: 8364 RVA: 0x000E61CE File Offset: 0x000E43CE
-	private void Start()
+	public enum TType
 	{
-		this.popupList = base.GetComponent<UIPopupList>();
+		wight,
+		hight
 	}
 
-	// Token: 0x060020AD RID: 8365 RVA: 0x000E61DC File Offset: 0x000E43DC
+	public GameObject uiBase;
+
+	public UIGrid TextGrid;
+
+	public UI2DSprite i2DSprite;
+
+	public UILabel iLabelBase;
+
+	public int WightSize;
+
+	public int StartSize;
+
+	public TType ttypeA;
+
+	private UIPopupList popupList;
+
+	private void Start()
+	{
+		popupList = ((Component)this).GetComponent<UIPopupList>();
+	}
+
 	public void OnCheng()
 	{
-		this.popupList.Close();
-		if (this.uiBase.activeSelf)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Expected O, but got Unknown
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		popupList.Close();
+		if (uiBase.activeSelf)
 		{
-			this.uiBase.SetActive(false);
+			uiBase.SetActive(false);
 			return;
 		}
-		this.uiBase.SetActive(true);
-		foreach (object obj in this.TextGrid.transform)
+		uiBase.SetActive(true);
+		foreach (Transform item in ((Component)TextGrid).transform)
 		{
-			Transform transform = (Transform)obj;
-			if (transform.gameObject.activeSelf)
+			Transform val = item;
+			if (((Component)val).gameObject.activeSelf)
 			{
-				Object.Destroy(transform.gameObject);
+				Object.Destroy((Object)(object)((Component)val).gameObject);
 			}
 		}
 		int num = 0;
 		int i = 0;
-		int count = this.popupList.items.Count;
-		while (i < count)
+		for (int count = popupList.items.Count; i < count; i++)
 		{
-			string text = this.popupList.items[i];
-			UILabel uilabel = Object.Instantiate<UILabel>(this.iLabelBase);
-			uilabel.gameObject.SetActive(true);
-			uilabel.transform.parent = this.TextGrid.transform;
-			uilabel.transform.localScale = Vector3.one;
-			uilabel.text = text;
-			UIEventListener uieventListener = UIEventListener.Get(uilabel.gameObject);
-			uieventListener.onHover = new UIEventListener.BoolDelegate(this.popupList.OnItemHover);
-			uieventListener.onPress = new UIEventListener.BoolDelegate(this.ItemPress);
-			uieventListener.onClick = new UIEventListener.VoidDelegate(this.ItemClicek);
-			uieventListener.parameter = text;
-			num += this.WightSize;
-			i++;
+			string text = popupList.items[i];
+			UILabel uILabel = Object.Instantiate<UILabel>(iLabelBase);
+			((Component)uILabel).gameObject.SetActive(true);
+			((Component)uILabel).transform.parent = ((Component)TextGrid).transform;
+			((Component)uILabel).transform.localScale = Vector3.one;
+			uILabel.text = text;
+			UIEventListener uIEventListener = UIEventListener.Get(((Component)uILabel).gameObject);
+			uIEventListener.onHover = popupList.OnItemHover;
+			uIEventListener.onPress = ItemPress;
+			uIEventListener.onClick = ItemClicek;
+			uIEventListener.parameter = text;
+			num += WightSize;
 		}
-		num += this.StartSize;
-		if (this.ttypeA == UIpopulTooll.TType.wight)
+		num += StartSize;
+		if (ttypeA == TType.wight)
 		{
-			this.i2DSprite.width = num;
+			i2DSprite.width = num;
 		}
 		else
 		{
-			this.i2DSprite.height = num;
+			i2DSprite.height = num;
 		}
-		this.TextGrid.repositionNow = true;
+		TextGrid.repositionNow = true;
 	}
 
-	// Token: 0x060020AE RID: 8366 RVA: 0x000E638C File Offset: 0x000E458C
 	public void ItemPress(GameObject go, bool isslelct)
 	{
-		this.popupList.OnItemPress(go, isslelct);
-		this.Close();
+		popupList.OnItemPress(go, isslelct);
+		Close();
 	}
 
-	// Token: 0x060020AF RID: 8367 RVA: 0x000E63A1 File Offset: 0x000E45A1
 	public void ItemClicek(GameObject go)
 	{
-		this.Close();
+		Close();
 	}
 
-	// Token: 0x060020B0 RID: 8368 RVA: 0x000E63A9 File Offset: 0x000E45A9
 	public void Close()
 	{
-		this.uiBase.SetActive(false);
-		base.GetComponent<UIToggle>().value = false;
-	}
-
-	// Token: 0x04001A8E RID: 6798
-	public GameObject uiBase;
-
-	// Token: 0x04001A8F RID: 6799
-	public UIGrid TextGrid;
-
-	// Token: 0x04001A90 RID: 6800
-	public UI2DSprite i2DSprite;
-
-	// Token: 0x04001A91 RID: 6801
-	public UILabel iLabelBase;
-
-	// Token: 0x04001A92 RID: 6802
-	public int WightSize;
-
-	// Token: 0x04001A93 RID: 6803
-	public int StartSize;
-
-	// Token: 0x04001A94 RID: 6804
-	public UIpopulTooll.TType ttypeA;
-
-	// Token: 0x04001A95 RID: 6805
-	private UIPopupList popupList;
-
-	// Token: 0x02001393 RID: 5011
-	public enum TType
-	{
-		// Token: 0x040068CB RID: 26827
-		wight,
-		// Token: 0x040068CC RID: 26828
-		hight
+		uiBase.SetActive(false);
+		((Component)this).GetComponent<UIToggle>().value = false;
 	}
 }

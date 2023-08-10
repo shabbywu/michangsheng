@@ -1,165 +1,156 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000470 RID: 1136
 public class showUIJinDan : MonoBehaviour
 {
-	// Token: 0x0600238A RID: 9098 RVA: 0x000F328B File Offset: 0x000F148B
+	public TooltipScale tooltips;
+
+	public UILabel iLabel;
+
+	public GameObject Icon;
+
+	public GameObject yuanYinIcon;
+
 	private void Start()
 	{
-		if (this.getJinDanID() != -1)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		if (getJinDanID() != -1)
 		{
-			this.Icon.transform.localScale = Vector3.one;
-			return;
+			Icon.transform.localScale = Vector3.one;
 		}
-		this.Icon.transform.localScale = Vector3.zero;
+		else
+		{
+			Icon.transform.localScale = Vector3.zero;
+		}
 	}
 
-	// Token: 0x0600238B RID: 9099 RVA: 0x000F32C4 File Offset: 0x000F14C4
 	public int getJinDanID()
 	{
 		Avatar player = Tools.instance.getPlayer();
 		int result = -1;
-		foreach (SkillItem skillItem in player.hasJieDanSkillList)
+		foreach (SkillItem hasJieDanSkill in player.hasJieDanSkillList)
 		{
-			result = skillItem.itemId;
+			result = hasJieDanSkill.itemId;
 		}
 		return result;
 	}
 
-	// Token: 0x0600238C RID: 9100 RVA: 0x000F3324 File Offset: 0x000F1524
 	public void OnPress()
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
-			this.OnHover(true);
-			return;
+			OnHover(isOver: true);
 		}
-		if (Input.GetMouseButtonUp(0))
+		else if (Input.GetMouseButtonUp(0))
 		{
-			this.OnHover(false);
+			OnHover(isOver: false);
 		}
 	}
 
-	// Token: 0x0600238D RID: 9101 RVA: 0x000F3348 File Offset: 0x000F1548
 	private void OnHover(bool isOver)
 	{
-		int jinDanID = this.getJinDanID();
-		if (!isOver || jinDanID == -1)
+		int jinDanID = getJinDanID();
+		if (isOver && jinDanID != -1)
 		{
-			this.tooltips.showTooltip = false;
-			this.tooltips.gameObject.SetActive(false);
-			return;
-		}
-		if (jinDanID != -1)
-		{
-			JSONObject jsonobject = jsonData.instance.JieDanBiao[jinDanID.ToString()];
-			string text = Tools.Code64(Tools.getStr("shuzi" + (int)jsonobject["JinDanQuality"].n)) + "品" + Tools.Code64(jsonobject["name"].str) + "[-]";
-			string text2 = "[c7c479]气血[-][dbffa2]+" + Tools.instance.getPlayer().getJieDanSkillAddHP();
-			string text3 = "[c7c479]修炼速度[-][dbffa2]+" + (int)(Math.Ceiling((double)(Tools.instance.getPlayer().getJieDanSkillAddExp() * 100f)) - 100.0) + "%";
-			string text4 = "";
-			if (this.IsYuanYing())
+			if (jinDanID != -1)
 			{
-				text = "[ce49ff]元婴[-]";
-				foreach (SkillItem skillItem in Tools.instance.getPlayer().equipStaticSkillList)
+				JSONObject jSONObject = jsonData.instance.JieDanBiao[jinDanID.ToString()];
+				string text = Tools.Code64(Tools.getStr("shuzi" + (int)jSONObject["JinDanQuality"].n)) + "品" + Tools.Code64(jSONObject["name"].str) + "[-]";
+				string text2 = "[c7c479]气血[-][dbffa2]+" + Tools.instance.getPlayer().getJieDanSkillAddHP();
+				string text3 = "[c7c479]修炼速度[-][dbffa2]+" + (int)(Math.Ceiling(Tools.instance.getPlayer().getJieDanSkillAddExp() * 100f) - 100.0) + "%";
+				string text4 = "";
+				if (IsYuanYing())
 				{
-					int staticSkillKeyByID = Tools.instance.getStaticSkillKeyByID(skillItem.itemId);
-					if (skillItem.itemIndex == 6)
+					text = "[ce49ff]元婴[-]";
+					foreach (SkillItem equipStaticSkill in Tools.instance.getPlayer().equipStaticSkillList)
 					{
-						text4 = Tools.instance.getPlayer().getYuanYingStaticDesc(skillItem, staticSkillKeyByID);
-						break;
+						int staticSkillKeyByID = Tools.instance.getStaticSkillKeyByID(equipStaticSkill.itemId);
+						if (equipStaticSkill.itemIndex == 6)
+						{
+							text4 = Tools.instance.getPlayer().getYuanYingStaticDesc(equipStaticSkill, staticSkillKeyByID);
+							break;
+						}
 					}
 				}
-			}
-			string text5 = "";
-			int num = 0;
-			foreach (JSONObject jsonobject2 in jsonobject["LinGengType"].list)
-			{
-				text5 = string.Concat(new object[]
+				string text5 = "";
+				int num = 0;
+				foreach (JSONObject item in jSONObject["LinGengType"].list)
 				{
-					text5,
-					"\n[c7c479]",
-					Tools.Code64(Tools.getStr("xibieFight" + (int)jsonobject2.n)),
-					"灵根权重[-][dbffa2]+",
-					(int)jsonobject["LinGengZongShu"][num].n,
-					"[-]"
-				});
-				num++;
-			}
-			if (jsonobject["desc"].str != "")
-			{
-				text5 = text5 + "\n[c7c479]" + Tools.Code64(jsonobject["desc"].str) + "[-]";
-			}
-			if (this.IsYuanYing())
-			{
-				string text6 = string.Concat(new string[]
-				{
-					text2,
-					"\n",
-					text3,
-					text5,
-					"\n第二元神：元婴能够单独修炼一门功法，并根据功法属性解锁独有特性."
-				});
-				if (text4 != "")
-				{
-					text6 = text6 + "\n元婴九变：" + Tools.Code64(text4);
+					text5 = text5 + "\n[c7c479]" + Tools.Code64(Tools.getStr("xibieFight" + (int)item.n)) + "灵根权重[-][dbffa2]+" + (int)jSONObject["LinGengZongShu"][num].n + "[-]";
+					num++;
 				}
-				this.tooltips.uILabel.text = text6;
+				if (jSONObject["desc"].str != "")
+				{
+					text5 = text5 + "\n[c7c479]" + Tools.Code64(jSONObject["desc"].str) + "[-]";
+				}
+				if (IsYuanYing())
+				{
+					string text6 = text2 + "\n" + text3 + text5 + "\n第二元神：元婴能够单独修炼一门功法，并根据功法属性解锁独有特性.";
+					if (text4 != "")
+					{
+						text6 = text6 + "\n元婴九变：" + Tools.Code64(text4);
+					}
+					tooltips.uILabel.text = text6;
+				}
+				else
+				{
+					tooltips.uILabel.text = text2 + "\n" + text3 + text5;
+				}
+				iLabel.text = text;
+				tooltips.showTooltip = true;
+				((Component)tooltips).gameObject.SetActive(true);
+			}
+			else if (IsYuanYing())
+			{
+				tooltips.uILabel.text = "尚未凝结金丹";
+				tooltips.showTooltip = true;
 			}
 			else
 			{
-				this.tooltips.uILabel.text = text2 + "\n" + text3 + text5;
+				tooltips.showTooltip = false;
 			}
-			this.iLabel.text = text;
-			this.tooltips.showTooltip = true;
-			this.tooltips.gameObject.SetActive(true);
-			return;
 		}
-		if (this.IsYuanYing())
+		else
 		{
-			this.tooltips.uILabel.text = "尚未凝结金丹";
-			this.tooltips.showTooltip = true;
-			return;
+			tooltips.showTooltip = false;
+			((Component)tooltips).gameObject.SetActive(false);
 		}
-		this.tooltips.showTooltip = false;
 	}
 
-	// Token: 0x0600238E RID: 9102 RVA: 0x000F36D8 File Offset: 0x000F18D8
 	private void Update()
 	{
-		int jinDanID = this.getJinDanID();
-		if (this.IsYuanYing())
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		int jinDanID = getJinDanID();
+		if (IsYuanYing())
 		{
-			this.yuanYinIcon.transform.localScale = Vector3.one;
-			this.Icon.transform.localScale = Vector3.zero;
-			return;
+			yuanYinIcon.transform.localScale = Vector3.one;
+			Icon.transform.localScale = Vector3.zero;
 		}
-		if (jinDanID != -1)
+		else if (jinDanID != -1)
 		{
-			this.Icon.transform.localScale = Vector3.one;
-			this.yuanYinIcon.transform.localScale = Vector3.zero;
-			return;
+			Icon.transform.localScale = Vector3.one;
+			yuanYinIcon.transform.localScale = Vector3.zero;
 		}
-		this.Icon.transform.localScale = Vector3.zero;
-		this.yuanYinIcon.transform.localScale = Vector3.zero;
+		else
+		{
+			Icon.transform.localScale = Vector3.zero;
+			yuanYinIcon.transform.localScale = Vector3.zero;
+		}
 	}
 
-	// Token: 0x0600238F RID: 9103 RVA: 0x000F3778 File Offset: 0x000F1978
 	private bool IsYuanYing()
 	{
-		return Tools.instance.getPlayer().level >= 10;
+		if (Tools.instance.getPlayer().level >= 10)
+		{
+			return true;
+		}
+		return false;
 	}
-
-	// Token: 0x04001C7B RID: 7291
-	public TooltipScale tooltips;
-
-	// Token: 0x04001C7C RID: 7292
-	public UILabel iLabel;
-
-	// Token: 0x04001C7D RID: 7293
-	public GameObject Icon;
-
-	// Token: 0x04001C7E RID: 7294
-	public GameObject yuanYinIcon;
 }

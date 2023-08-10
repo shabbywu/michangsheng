@@ -1,4 +1,3 @@
-﻿using System;
 using Bag;
 using Fungus;
 using JSONClass;
@@ -7,13 +6,39 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020002DE RID: 734
 public class UIMiniShop : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001979 RID: 6521 RVA: 0x000B6340 File Offset: 0x000B4540
+	public static UIMiniShop Inst;
+
+	public BaseSlot ItemSlot;
+
+	public Text CostText;
+
+	public FpBtn LeftBtn;
+
+	public FpBtn RightBtn;
+
+	public FpBtn OkBtn;
+
+	public FpBtn CloseBtn;
+
+	public Slider NumSlider;
+
+	private int itemID;
+
+	private int price;
+
+	private int maxSellCount;
+
+	private BaseItem item;
+
+	private Command cmd;
+
+	private int nowSelectCount;
+
 	public static void Show(int itemID, int price, int maxSellCount, Command cmd = null)
 	{
-		UIMiniShop component = Object.Instantiate<GameObject>(Resources.Load<GameObject>("Prefab/UIMiniShop"), NewUICanvas.Inst.Canvas.transform).GetComponent<UIMiniShop>();
+		UIMiniShop component = Object.Instantiate<GameObject>(Resources.Load<GameObject>("Prefab/UIMiniShop"), ((Component)NewUICanvas.Inst.Canvas).transform).GetComponent<UIMiniShop>();
 		component.itemID = itemID;
 		component.price = price;
 		component.cmd = cmd;
@@ -21,152 +46,116 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		component.RefreshUI();
 	}
 
-	// Token: 0x0600197A RID: 6522 RVA: 0x000B6394 File Offset: 0x000B4594
 	public void RefreshUI()
 	{
-		UIMiniShop.Inst = this;
-		this.item = BaseItem.Create(this.itemID, 1, Tools.getUUID(), Tools.CreateItemSeid(this.itemID));
-		this.ItemSlot.SetSlotData(this.item);
-		this.OkBtn.mouseUpEvent.AddListener(new UnityAction(this.OnOkBtnClick));
-		this.CloseBtn.mouseUpEvent.AddListener(new UnityAction(this.Close));
-		this.LeftBtn.mouseUpEvent.AddListener(new UnityAction(this.OnSubClick));
-		this.RightBtn.mouseUpEvent.AddListener(new UnityAction(this.OnAddClick));
-		this.NumSlider.minValue = 0f;
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Expected O, but got Unknown
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Expected O, but got Unknown
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Expected O, but got Unknown
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Expected O, but got Unknown
+		Inst = this;
+		item = BaseItem.Create(itemID, 1, Tools.getUUID(), Tools.CreateItemSeid(itemID));
+		ItemSlot.SetSlotData(item);
+		OkBtn.mouseUpEvent.AddListener(new UnityAction(OnOkBtnClick));
+		CloseBtn.mouseUpEvent.AddListener(new UnityAction(Close));
+		LeftBtn.mouseUpEvent.AddListener(new UnityAction(OnSubClick));
+		RightBtn.mouseUpEvent.AddListener(new UnityAction(OnAddClick));
+		NumSlider.minValue = 0f;
 		int num = (int)PlayerEx.Player.money;
-		_ItemJsonData itemJsonData = _ItemJsonData.DataDict[this.itemID];
-		if (this.price == 0)
+		_ItemJsonData itemJsonData = _ItemJsonData.DataDict[itemID];
+		if (price == 0)
 		{
-			this.price = itemJsonData.price;
-			if (this.price == 0)
+			price = itemJsonData.price;
+			if (price == 0)
 			{
-				this.price = 1;
-				Debug.LogError("MiniShop传入了价格为0的商品，以自动保底为1灵石");
+				price = 1;
+				Debug.LogError((object)"MiniShop传入了价格为0的商品，以自动保底为1灵石");
 			}
 		}
-		int num2 = num / this.price;
-		if (this.maxSellCount > 0)
+		int num2 = num / price;
+		if (maxSellCount > 0)
 		{
-			num2 = Mathf.Min(num2, this.maxSellCount);
+			num2 = Mathf.Min(num2, maxSellCount);
 		}
-		this.NumSlider.maxValue = (float)num2;
+		NumSlider.maxValue = num2;
 		if (num2 < 1)
 		{
-			this.NumSlider.interactable = false;
-			this.LeftBtn.enabled = false;
-			this.RightBtn.enabled = false;
-			return;
+			((Selectable)NumSlider).interactable = false;
+			((Behaviour)LeftBtn).enabled = false;
+			((Behaviour)RightBtn).enabled = false;
 		}
-		this.NumSlider.value = 1f;
-		this.nowSelectCount = 1;
-		this.RefreshCount();
-		this.NumSlider.onValueChanged.AddListener(new UnityAction<float>(this.OnSliderValueChanged));
+		else
+		{
+			NumSlider.value = 1f;
+			nowSelectCount = 1;
+			RefreshCount();
+			((UnityEvent<float>)(object)NumSlider.onValueChanged).AddListener((UnityAction<float>)OnSliderValueChanged);
+		}
 	}
 
-	// Token: 0x0600197B RID: 6523 RVA: 0x000B6530 File Offset: 0x000B4730
 	public void RefreshCount()
 	{
-		this.ItemSlot.Item.Count = this.nowSelectCount;
-		this.ItemSlot.UpdateUI();
-		this.CostText.text = (this.nowSelectCount * this.price).ToString();
+		ItemSlot.Item.Count = nowSelectCount;
+		ItemSlot.UpdateUI();
+		CostText.text = (nowSelectCount * price).ToString();
 	}
 
-	// Token: 0x0600197C RID: 6524 RVA: 0x000B6580 File Offset: 0x000B4780
 	public void OnSliderValueChanged(float value)
 	{
 		int num = Mathf.RoundToInt(value);
-		this.nowSelectCount = num;
-		this.RefreshCount();
+		nowSelectCount = num;
+		RefreshCount();
 	}
 
-	// Token: 0x0600197D RID: 6525 RVA: 0x000B65A1 File Offset: 0x000B47A1
 	public void OnAddClick()
 	{
-		this.NumSlider.value += 1f;
+		Slider numSlider = NumSlider;
+		numSlider.value += 1f;
 	}
 
-	// Token: 0x0600197E RID: 6526 RVA: 0x000B65BA File Offset: 0x000B47BA
 	public void OnSubClick()
 	{
-		this.NumSlider.value -= 1f;
+		Slider numSlider = NumSlider;
+		numSlider.value -= 1f;
 	}
 
-	// Token: 0x0600197F RID: 6527 RVA: 0x000B65D4 File Offset: 0x000B47D4
 	public void OnOkBtnClick()
 	{
-		if (this.nowSelectCount == 0)
+		if (nowSelectCount == 0)
 		{
-			this.Close();
+			Close();
 			return;
 		}
-		int num = this.nowSelectCount * this.price;
+		int num = nowSelectCount * price;
 		Avatar player = PlayerEx.Player;
 		if ((int)player.money >= num)
 		{
 			player.AddMoney(-num);
-			player.addItem(this.itemID, this.item.Seid, this.item.Count);
-			UIPopTip.Inst.PopAddItem(this.item.GetName(), this.item.Count);
-			this.Close();
-			return;
+			player.addItem(itemID, item.Seid, item.Count);
+			UIPopTip.Inst.PopAddItem(item.GetName(), item.Count);
+			Close();
 		}
-		UIPopTip.Inst.Pop("灵石不足", PopTipIconType.叹号);
+		else
+		{
+			UIPopTip.Inst.Pop("灵石不足");
+		}
 	}
 
-	// Token: 0x06001980 RID: 6528 RVA: 0x000B666F File Offset: 0x000B486F
 	private void Close()
 	{
-		if (this.cmd != null)
+		if ((Object)(object)cmd != (Object)null)
 		{
-			this.cmd.Continue();
+			cmd.Continue();
 		}
-		Object.Destroy(base.gameObject);
+		Object.Destroy((Object)(object)((Component)this).gameObject);
 	}
 
-	// Token: 0x06001981 RID: 6529 RVA: 0x000B6695 File Offset: 0x000B4895
 	bool IESCClose.TryEscClose()
 	{
-		this.Close();
+		Close();
 		return true;
 	}
-
-	// Token: 0x040014A9 RID: 5289
-	public static UIMiniShop Inst;
-
-	// Token: 0x040014AA RID: 5290
-	public BaseSlot ItemSlot;
-
-	// Token: 0x040014AB RID: 5291
-	public Text CostText;
-
-	// Token: 0x040014AC RID: 5292
-	public FpBtn LeftBtn;
-
-	// Token: 0x040014AD RID: 5293
-	public FpBtn RightBtn;
-
-	// Token: 0x040014AE RID: 5294
-	public FpBtn OkBtn;
-
-	// Token: 0x040014AF RID: 5295
-	public FpBtn CloseBtn;
-
-	// Token: 0x040014B0 RID: 5296
-	public Slider NumSlider;
-
-	// Token: 0x040014B1 RID: 5297
-	private int itemID;
-
-	// Token: 0x040014B2 RID: 5298
-	private int price;
-
-	// Token: 0x040014B3 RID: 5299
-	private int maxSellCount;
-
-	// Token: 0x040014B4 RID: 5300
-	private BaseItem item;
-
-	// Token: 0x040014B5 RID: 5301
-	private Command cmd;
-
-	// Token: 0x040014B6 RID: 5302
-	private int nowSelectCount;
 }

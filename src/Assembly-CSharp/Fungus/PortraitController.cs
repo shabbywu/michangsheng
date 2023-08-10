@@ -1,414 +1,420 @@
-﻿using System;
+using System;
 using System.Collections;
 using MoonSharp.Interpreter;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Fungus
-{
-	// Token: 0x02000E7F RID: 3711
-	public class PortraitController : MonoBehaviour
-	{
-		// Token: 0x060068F2 RID: 26866 RVA: 0x0028EBB2 File Offset: 0x0028CDB2
-		protected virtual void Awake()
-		{
-			this.stage = base.GetComponentInParent<Stage>();
-		}
+namespace Fungus;
 
-		// Token: 0x060068F3 RID: 26867 RVA: 0x0028EBC0 File Offset: 0x0028CDC0
-		protected virtual void FinishCommand(PortraitOptions options)
+public class PortraitController : MonoBehaviour
+{
+	protected float waitTimer;
+
+	protected Stage stage;
+
+	protected virtual void Awake()
+	{
+		stage = ((Component)this).GetComponentInParent<Stage>();
+	}
+
+	protected virtual void FinishCommand(PortraitOptions options)
+	{
+		if (options.onComplete != null)
 		{
-			if (options.onComplete == null)
-			{
-				base.StartCoroutine(this.WaitUntilFinished(options.fadeDuration, null));
-				return;
-			}
 			if (!options.waitUntilFinished)
 			{
 				options.onComplete();
-				return;
 			}
-			base.StartCoroutine(this.WaitUntilFinished(options.fadeDuration, options.onComplete));
+			else
+			{
+				((MonoBehaviour)this).StartCoroutine(WaitUntilFinished(options.fadeDuration, options.onComplete));
+			}
 		}
-
-		// Token: 0x060068F4 RID: 26868 RVA: 0x0028EC18 File Offset: 0x0028CE18
-		protected virtual PortraitOptions CleanPortraitOptions(PortraitOptions options)
+		else
 		{
-			if (options.useDefaultSettings)
-			{
-				options.fadeDuration = this.stage.FadeDuration;
-				options.moveDuration = this.stage.MoveDuration;
-				options.shiftOffset = this.stage.ShiftOffset;
-			}
-			if (options.character.State.portrait == null)
-			{
-				options.character.State.portrait = options.character.ProfileSprite;
-			}
-			if (options.portrait == null)
-			{
-				options.portrait = options.character.State.portrait;
-			}
-			if (options.character.State.position == null)
-			{
-				options.character.State.position = this.stage.DefaultPosition.rectTransform;
-			}
-			if (options.toPosition == null)
-			{
-				options.toPosition = options.character.State.position;
-			}
-			if (options.replacedCharacter != null && options.replacedCharacter.State.position == null)
-			{
-				options.replacedCharacter.State.position = this.stage.DefaultPosition.rectTransform;
-			}
-			if (options.display == DisplayType.Replace)
-			{
-				options.toPosition = options.replacedCharacter.State.position;
-			}
-			if (options.fromPosition == null)
-			{
-				options.fromPosition = options.character.State.position;
-			}
-			if (!options.move)
-			{
-				options.fromPosition = options.toPosition;
-			}
-			if (options.display == DisplayType.Hide)
-			{
-				options.fromPosition = options.character.State.position;
-			}
-			if (options.character.State.facing == FacingDirection.None)
-			{
-				options.character.State.facing = options.character.PortraitsFace;
-			}
-			if (options.facing == FacingDirection.None)
-			{
-				options.facing = options.character.State.facing;
-			}
-			if (options.character.State.portraitImage == null)
-			{
-				this.CreatePortraitObject(options.character, options.fadeDuration);
-			}
-			return options;
+			((MonoBehaviour)this).StartCoroutine(WaitUntilFinished(options.fadeDuration));
 		}
+	}
 
-		// Token: 0x060068F5 RID: 26869 RVA: 0x0028EE48 File Offset: 0x0028D048
-		protected virtual void CreatePortraitObject(Character character, float fadeDuration)
+	protected virtual PortraitOptions CleanPortraitOptions(PortraitOptions options)
+	{
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		if (options.useDefaultSettings)
 		{
-			GameObject gameObject = new GameObject(character.name, new Type[]
+			options.fadeDuration = stage.FadeDuration;
+			options.moveDuration = stage.MoveDuration;
+			options.shiftOffset = stage.ShiftOffset;
+		}
+		if ((Object)(object)options.character.State.portrait == (Object)null)
+		{
+			options.character.State.portrait = options.character.ProfileSprite;
+		}
+		if ((Object)(object)options.portrait == (Object)null)
+		{
+			options.portrait = options.character.State.portrait;
+		}
+		if ((Object)(object)options.character.State.position == (Object)null)
+		{
+			options.character.State.position = ((Graphic)stage.DefaultPosition).rectTransform;
+		}
+		if ((Object)(object)options.toPosition == (Object)null)
+		{
+			options.toPosition = options.character.State.position;
+		}
+		if ((Object)(object)options.replacedCharacter != (Object)null && (Object)(object)options.replacedCharacter.State.position == (Object)null)
+		{
+			options.replacedCharacter.State.position = ((Graphic)stage.DefaultPosition).rectTransform;
+		}
+		if (options.display == DisplayType.Replace)
+		{
+			options.toPosition = options.replacedCharacter.State.position;
+		}
+		if ((Object)(object)options.fromPosition == (Object)null)
+		{
+			options.fromPosition = options.character.State.position;
+		}
+		if (!options.move)
+		{
+			options.fromPosition = options.toPosition;
+		}
+		if (options.display == DisplayType.Hide)
+		{
+			options.fromPosition = options.character.State.position;
+		}
+		if (options.character.State.facing == FacingDirection.None)
+		{
+			options.character.State.facing = options.character.PortraitsFace;
+		}
+		if (options.facing == FacingDirection.None)
+		{
+			options.facing = options.character.State.facing;
+		}
+		if ((Object)(object)options.character.State.portraitImage == (Object)null)
+		{
+			CreatePortraitObject(options.character, options.fadeDuration);
+		}
+		return options;
+	}
+
+	protected virtual void CreatePortraitObject(Character character, float fadeDuration)
+	{
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		GameObject val = new GameObject(((Object)character).name, new Type[3]
+		{
+			typeof(RectTransform),
+			typeof(CanvasRenderer),
+			typeof(Image)
+		});
+		val.transform.SetParent(((Component)stage.PortraitCanvas).transform, true);
+		Image component = val.GetComponent<Image>();
+		component.preserveAspect = true;
+		component.sprite = character.ProfileSprite;
+		((Graphic)component).color = new Color(1f, 1f, 1f, 0f);
+		float time = ((fadeDuration > 0f) ? fadeDuration : float.Epsilon);
+		Transform transform = ((Component)component).transform;
+		LeanTween.alpha((RectTransform)(object)((transform is RectTransform) ? transform : null), 1f, time).setEase(stage.FadeEaseType).setRecursive(useRecursion: false);
+		character.State.portraitImage = component;
+	}
+
+	protected virtual IEnumerator WaitUntilFinished(float duration, Action onComplete = null)
+	{
+		waitTimer = duration;
+		while (waitTimer > 0f)
+		{
+			waitTimer -= Time.deltaTime;
+			yield return null;
+		}
+		yield return (object)new WaitForEndOfFrame();
+		onComplete?.Invoke();
+	}
+
+	protected virtual void SetupPortrait(PortraitOptions options)
+	{
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
+		SetRectTransform(((Graphic)options.character.State.portraitImage).rectTransform, options.fromPosition);
+		if (options.character.State.facing != options.character.PortraitsFace)
+		{
+			((Transform)((Graphic)options.character.State.portraitImage).rectTransform).localScale = new Vector3(-1f, 1f, 1f);
+		}
+		else
+		{
+			((Transform)((Graphic)options.character.State.portraitImage).rectTransform).localScale = new Vector3(1f, 1f, 1f);
+		}
+		if (options.facing != options.character.PortraitsFace)
+		{
+			((Transform)((Graphic)options.character.State.portraitImage).rectTransform).localScale = new Vector3(-1f, 1f, 1f);
+		}
+		else
+		{
+			((Transform)((Graphic)options.character.State.portraitImage).rectTransform).localScale = new Vector3(1f, 1f, 1f);
+		}
+	}
+
+	protected virtual void DoMoveTween(Character character, RectTransform fromPosition, RectTransform toPosition, float moveDuration, bool waitUntilFinished)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		portraitOptions.fromPosition = fromPosition;
+		portraitOptions.toPosition = toPosition;
+		portraitOptions.moveDuration = moveDuration;
+		portraitOptions.waitUntilFinished = waitUntilFinished;
+		DoMoveTween(portraitOptions);
+	}
+
+	protected virtual void DoMoveTween(PortraitOptions options)
+	{
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		CleanPortraitOptions(options);
+		float time = ((options.moveDuration > 0f) ? options.moveDuration : float.Epsilon);
+		LeanTween.move(((Component)options.character.State.portraitImage).gameObject, ((Transform)options.toPosition).position, time).setEase(stage.FadeEaseType);
+		if (options.waitUntilFinished)
+		{
+			waitTimer = time;
+		}
+	}
+
+	public static void SetRectTransform(RectTransform oldRectTransform, RectTransform newRectTransform)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		((Transform)oldRectTransform).eulerAngles = ((Transform)newRectTransform).eulerAngles;
+		((Transform)oldRectTransform).position = ((Transform)newRectTransform).position;
+		((Transform)oldRectTransform).rotation = ((Transform)newRectTransform).rotation;
+		oldRectTransform.anchoredPosition = newRectTransform.anchoredPosition;
+		oldRectTransform.sizeDelta = newRectTransform.sizeDelta;
+		oldRectTransform.anchorMax = newRectTransform.anchorMax;
+		oldRectTransform.anchorMin = newRectTransform.anchorMin;
+		oldRectTransform.pivot = newRectTransform.pivot;
+		((Transform)oldRectTransform).localScale = ((Transform)newRectTransform).localScale;
+	}
+
+	public virtual void RunPortraitCommand(PortraitOptions options, Action onComplete)
+	{
+		waitTimer = 0f;
+		if ((Object)(object)options.character == (Object)null)
+		{
+			onComplete();
+			return;
+		}
+		if (options.display == DisplayType.Replace && (Object)(object)options.replacedCharacter == (Object)null)
+		{
+			onComplete();
+			return;
+		}
+		if (options.display == DisplayType.Hide && !options.character.State.onScreen)
+		{
+			onComplete();
+			return;
+		}
+		options = CleanPortraitOptions(options);
+		options.onComplete = onComplete;
+		switch (options.display)
+		{
+		case DisplayType.Show:
+			Show(options);
+			break;
+		case DisplayType.Hide:
+			Hide(options);
+			break;
+		case DisplayType.Replace:
+			Show(options);
+			Hide(options.replacedCharacter, ((Object)options.replacedCharacter.State.position).name);
+			break;
+		case DisplayType.MoveToFront:
+			MoveToFront(options);
+			break;
+		}
+	}
+
+	public virtual void MoveToFront(Character character)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		MoveToFront(CleanPortraitOptions(portraitOptions));
+	}
+
+	public virtual void MoveToFront(PortraitOptions options)
+	{
+		((Component)options.character.State.portraitImage).transform.SetSiblingIndex(((Component)options.character.State.portraitImage).transform.parent.childCount);
+		options.character.State.display = DisplayType.MoveToFront;
+		FinishCommand(options);
+	}
+
+	public virtual void Show(Character character, string position)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		portraitOptions.fromPosition = (portraitOptions.toPosition = stage.GetPosition(position));
+		Show(portraitOptions);
+	}
+
+	public virtual void Show(Character character, string portrait, string fromPosition, string toPosition)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		portraitOptions.portrait = character.GetPortrait(portrait);
+		portraitOptions.fromPosition = stage.GetPosition(fromPosition);
+		portraitOptions.toPosition = stage.GetPosition(toPosition);
+		portraitOptions.move = true;
+		Show(portraitOptions);
+	}
+
+	public virtual void Show(Table optionsTable)
+	{
+		Show(PortraitUtil.ConvertTableToPortraitOptions(optionsTable, stage));
+	}
+
+	public virtual void Show(PortraitOptions options)
+	{
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0108: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0233: Unknown result type (might be due to invalid IL or missing references)
+		options = CleanPortraitOptions(options);
+		if (options.shiftIntoPlace)
+		{
+			options.fromPosition = Object.Instantiate<RectTransform>(options.toPosition);
+			if (options.offset == PositionOffset.OffsetLeft)
 			{
-				typeof(RectTransform),
-				typeof(CanvasRenderer),
-				typeof(Image)
-			});
-			gameObject.transform.SetParent(this.stage.PortraitCanvas.transform, true);
-			Image component = gameObject.GetComponent<Image>();
+				options.fromPosition.anchoredPosition = new Vector2(options.fromPosition.anchoredPosition.x - Mathf.Abs(options.shiftOffset.x), options.fromPosition.anchoredPosition.y - Mathf.Abs(options.shiftOffset.y));
+			}
+			else if (options.offset == PositionOffset.OffsetRight)
+			{
+				options.fromPosition.anchoredPosition = new Vector2(options.fromPosition.anchoredPosition.x + Mathf.Abs(options.shiftOffset.x), options.fromPosition.anchoredPosition.y + Mathf.Abs(options.shiftOffset.y));
+			}
+			else
+			{
+				options.fromPosition.anchoredPosition = new Vector2(options.fromPosition.anchoredPosition.x, options.fromPosition.anchoredPosition.y);
+			}
+		}
+		SetupPortrait(options);
+		float time = ((options.fadeDuration > 0f) ? options.fadeDuration : float.Epsilon);
+		if ((Object)(object)options.character.State.portraitImage != (Object)null && (Object)(object)options.character.State.portraitImage.sprite != (Object)null)
+		{
+			GameObject tempGO = Object.Instantiate<GameObject>(((Component)options.character.State.portraitImage).gameObject);
+			tempGO.transform.SetParent(((Component)options.character.State.portraitImage).transform, false);
+			tempGO.transform.localPosition = Vector3.zero;
+			tempGO.transform.localScale = ((Transform)options.character.State.position).localScale;
+			Image component = tempGO.GetComponent<Image>();
+			component.sprite = options.character.State.portraitImage.sprite;
 			component.preserveAspect = true;
-			component.sprite = character.ProfileSprite;
-			component.color = new Color(1f, 1f, 1f, 0f);
-			float time = (fadeDuration > 0f) ? fadeDuration : float.Epsilon;
-			LeanTween.alpha(component.transform as RectTransform, 1f, time).setEase(this.stage.FadeEaseType).setRecursive(false);
-			character.State.portraitImage = component;
+			((Graphic)component).color = ((Graphic)options.character.State.portraitImage).color;
+			LeanTween.alpha(((Graphic)component).rectTransform, 0f, time).setEase(stage.FadeEaseType).setOnComplete((Action)delegate
+			{
+				Object.Destroy((Object)(object)tempGO);
+			})
+				.setRecursive(useRecursion: false);
 		}
-
-		// Token: 0x060068F6 RID: 26870 RVA: 0x0028EF2B File Offset: 0x0028D12B
-		protected virtual IEnumerator WaitUntilFinished(float duration, Action onComplete = null)
+		if ((Object)(object)options.character.State.portraitImage.sprite != (Object)(object)options.portrait || ((Graphic)options.character.State.portraitImage).color.a < 1f)
 		{
-			this.waitTimer = duration;
-			while (this.waitTimer > 0f)
-			{
-				this.waitTimer -= Time.deltaTime;
-				yield return null;
-			}
-			yield return new WaitForEndOfFrame();
-			if (onComplete != null)
-			{
-				onComplete();
-			}
-			yield break;
+			options.character.State.portraitImage.sprite = options.portrait;
+			((Graphic)options.character.State.portraitImage).color = new Color(1f, 1f, 1f, 0f);
+			LeanTween.alpha(((Graphic)options.character.State.portraitImage).rectTransform, 1f, time).setEase(stage.FadeEaseType).setRecursive(useRecursion: false);
 		}
-
-		// Token: 0x060068F7 RID: 26871 RVA: 0x0028EF48 File Offset: 0x0028D148
-		protected virtual void SetupPortrait(PortraitOptions options)
+		DoMoveTween(options);
+		FinishCommand(options);
+		if (!stage.CharactersOnStage.Contains(options.character))
 		{
-			PortraitController.SetRectTransform(options.character.State.portraitImage.rectTransform, options.fromPosition);
-			if (options.character.State.facing != options.character.PortraitsFace)
-			{
-				options.character.State.portraitImage.rectTransform.localScale = new Vector3(-1f, 1f, 1f);
-			}
-			else
-			{
-				options.character.State.portraitImage.rectTransform.localScale = new Vector3(1f, 1f, 1f);
-			}
-			if (options.facing != options.character.PortraitsFace)
-			{
-				options.character.State.portraitImage.rectTransform.localScale = new Vector3(-1f, 1f, 1f);
-				return;
-			}
-			options.character.State.portraitImage.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+			stage.CharactersOnStage.Add(options.character);
 		}
+		options.character.State.onScreen = true;
+		options.character.State.display = DisplayType.Show;
+		options.character.State.portrait = options.portrait;
+		options.character.State.facing = options.facing;
+		options.character.State.position = options.toPosition;
+	}
 
-		// Token: 0x060068F8 RID: 26872 RVA: 0x0028F060 File Offset: 0x0028D260
-		protected virtual void DoMoveTween(Character character, RectTransform fromPosition, RectTransform toPosition, float moveDuration, bool waitUntilFinished)
+	public virtual void ShowPortrait(Character character, string portrait)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		portraitOptions.portrait = character.GetPortrait(portrait);
+		if ((Object)(object)character.State.position == (Object)null)
 		{
-			this.DoMoveTween(new PortraitOptions(true)
-			{
-				character = character,
-				fromPosition = fromPosition,
-				toPosition = toPosition,
-				moveDuration = moveDuration,
-				waitUntilFinished = waitUntilFinished
-			});
+			portraitOptions.toPosition = (portraitOptions.fromPosition = stage.GetPosition("middle"));
 		}
-
-		// Token: 0x060068F9 RID: 26873 RVA: 0x0028F0A0 File Offset: 0x0028D2A0
-		protected virtual void DoMoveTween(PortraitOptions options)
+		else
 		{
-			this.CleanPortraitOptions(options);
-			float time = (options.moveDuration > 0f) ? options.moveDuration : float.Epsilon;
-			LeanTween.move(options.character.State.portraitImage.gameObject, options.toPosition.position, time).setEase(this.stage.FadeEaseType);
-			if (options.waitUntilFinished)
-			{
-				this.waitTimer = time;
-			}
+			portraitOptions.fromPosition = (portraitOptions.toPosition = character.State.position);
 		}
+		Show(portraitOptions);
+	}
 
-		// Token: 0x060068FA RID: 26874 RVA: 0x0028F118 File Offset: 0x0028D318
-		public static void SetRectTransform(RectTransform oldRectTransform, RectTransform newRectTransform)
-		{
-			oldRectTransform.eulerAngles = newRectTransform.eulerAngles;
-			oldRectTransform.position = newRectTransform.position;
-			oldRectTransform.rotation = newRectTransform.rotation;
-			oldRectTransform.anchoredPosition = newRectTransform.anchoredPosition;
-			oldRectTransform.sizeDelta = newRectTransform.sizeDelta;
-			oldRectTransform.anchorMax = newRectTransform.anchorMax;
-			oldRectTransform.anchorMin = newRectTransform.anchorMin;
-			oldRectTransform.pivot = newRectTransform.pivot;
-			oldRectTransform.localScale = newRectTransform.localScale;
-		}
+	public virtual void Hide(Character character)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		Hide(portraitOptions);
+	}
 
-		// Token: 0x060068FB RID: 26875 RVA: 0x0028F194 File Offset: 0x0028D394
-		public virtual void RunPortraitCommand(PortraitOptions options, Action onComplete)
-		{
-			this.waitTimer = 0f;
-			if (options.character == null)
-			{
-				onComplete();
-				return;
-			}
-			if (options.display == DisplayType.Replace && options.replacedCharacter == null)
-			{
-				onComplete();
-				return;
-			}
-			if (options.display == DisplayType.Hide && !options.character.State.onScreen)
-			{
-				onComplete();
-				return;
-			}
-			options = this.CleanPortraitOptions(options);
-			options.onComplete = onComplete;
-			switch (options.display)
-			{
-			case DisplayType.Show:
-				this.Show(options);
-				return;
-			case DisplayType.Hide:
-				this.Hide(options);
-				return;
-			case DisplayType.Replace:
-				this.Show(options);
-				this.Hide(options.replacedCharacter, options.replacedCharacter.State.position.name);
-				return;
-			case DisplayType.MoveToFront:
-				this.MoveToFront(options);
-				return;
-			default:
-				return;
-			}
-		}
+	public virtual void Hide(Character character, string toPosition)
+	{
+		PortraitOptions portraitOptions = new PortraitOptions();
+		portraitOptions.character = character;
+		portraitOptions.toPosition = stage.GetPosition(toPosition);
+		portraitOptions.move = true;
+		Hide(portraitOptions);
+	}
 
-		// Token: 0x060068FC RID: 26876 RVA: 0x0028F274 File Offset: 0x0028D474
-		public virtual void MoveToFront(Character character)
-		{
-			this.MoveToFront(this.CleanPortraitOptions(new PortraitOptions(true)
-			{
-				character = character
-			}));
-		}
+	public virtual void Hide(Table optionsTable)
+	{
+		Hide(PortraitUtil.ConvertTableToPortraitOptions(optionsTable, stage));
+	}
 
-		// Token: 0x060068FD RID: 26877 RVA: 0x0028F29C File Offset: 0x0028D49C
-		public virtual void MoveToFront(PortraitOptions options)
+	public virtual void Hide(PortraitOptions options)
+	{
+		CleanPortraitOptions(options);
+		if (options.character.State.display != 0)
 		{
-			options.character.State.portraitImage.transform.SetSiblingIndex(options.character.State.portraitImage.transform.parent.childCount);
-			options.character.State.display = DisplayType.MoveToFront;
-			this.FinishCommand(options);
-		}
-
-		// Token: 0x060068FE RID: 26878 RVA: 0x0028F2FC File Offset: 0x0028D4FC
-		public virtual void Show(Character character, string position)
-		{
-			PortraitOptions portraitOptions = new PortraitOptions(true);
-			portraitOptions.character = character;
-			portraitOptions.fromPosition = (portraitOptions.toPosition = this.stage.GetPosition(position));
-			this.Show(portraitOptions);
-		}
-
-		// Token: 0x060068FF RID: 26879 RVA: 0x0028F33C File Offset: 0x0028D53C
-		public virtual void Show(Character character, string portrait, string fromPosition, string toPosition)
-		{
-			this.Show(new PortraitOptions(true)
-			{
-				character = character,
-				portrait = character.GetPortrait(portrait),
-				fromPosition = this.stage.GetPosition(fromPosition),
-				toPosition = this.stage.GetPosition(toPosition),
-				move = true
-			});
-		}
-
-		// Token: 0x06006900 RID: 26880 RVA: 0x0028F397 File Offset: 0x0028D597
-		public virtual void Show(Table optionsTable)
-		{
-			this.Show(PortraitUtil.ConvertTableToPortraitOptions(optionsTable, this.stage));
-		}
-
-		// Token: 0x06006901 RID: 26881 RVA: 0x0028F3AC File Offset: 0x0028D5AC
-		public virtual void Show(PortraitOptions options)
-		{
-			options = this.CleanPortraitOptions(options);
-			if (options.shiftIntoPlace)
-			{
-				options.fromPosition = Object.Instantiate<RectTransform>(options.toPosition);
-				if (options.offset == PositionOffset.OffsetLeft)
-				{
-					options.fromPosition.anchoredPosition = new Vector2(options.fromPosition.anchoredPosition.x - Mathf.Abs(options.shiftOffset.x), options.fromPosition.anchoredPosition.y - Mathf.Abs(options.shiftOffset.y));
-				}
-				else if (options.offset == PositionOffset.OffsetRight)
-				{
-					options.fromPosition.anchoredPosition = new Vector2(options.fromPosition.anchoredPosition.x + Mathf.Abs(options.shiftOffset.x), options.fromPosition.anchoredPosition.y + Mathf.Abs(options.shiftOffset.y));
-				}
-				else
-				{
-					options.fromPosition.anchoredPosition = new Vector2(options.fromPosition.anchoredPosition.x, options.fromPosition.anchoredPosition.y);
-				}
-			}
-			this.SetupPortrait(options);
-			float time = (options.fadeDuration > 0f) ? options.fadeDuration : float.Epsilon;
-			if (options.character.State.portraitImage != null && options.character.State.portraitImage.sprite != null)
-			{
-				GameObject tempGO = Object.Instantiate<GameObject>(options.character.State.portraitImage.gameObject);
-				tempGO.transform.SetParent(options.character.State.portraitImage.transform, false);
-				tempGO.transform.localPosition = Vector3.zero;
-				tempGO.transform.localScale = options.character.State.position.localScale;
-				Image component = tempGO.GetComponent<Image>();
-				component.sprite = options.character.State.portraitImage.sprite;
-				component.preserveAspect = true;
-				component.color = options.character.State.portraitImage.color;
-				LeanTween.alpha(component.rectTransform, 0f, time).setEase(this.stage.FadeEaseType).setOnComplete(delegate()
-				{
-					Object.Destroy(tempGO);
-				}).setRecursive(false);
-			}
-			if (options.character.State.portraitImage.sprite != options.portrait || options.character.State.portraitImage.color.a < 1f)
-			{
-				options.character.State.portraitImage.sprite = options.portrait;
-				options.character.State.portraitImage.color = new Color(1f, 1f, 1f, 0f);
-				LeanTween.alpha(options.character.State.portraitImage.rectTransform, 1f, time).setEase(this.stage.FadeEaseType).setRecursive(false);
-			}
-			this.DoMoveTween(options);
-			this.FinishCommand(options);
-			if (!this.stage.CharactersOnStage.Contains(options.character))
-			{
-				this.stage.CharactersOnStage.Add(options.character);
-			}
-			options.character.State.onScreen = true;
-			options.character.State.display = DisplayType.Show;
-			options.character.State.portrait = options.portrait;
-			options.character.State.facing = options.facing;
-			options.character.State.position = options.toPosition;
-		}
-
-		// Token: 0x06006902 RID: 26882 RVA: 0x0028F794 File Offset: 0x0028D994
-		public virtual void ShowPortrait(Character character, string portrait)
-		{
-			PortraitOptions portraitOptions = new PortraitOptions(true);
-			portraitOptions.character = character;
-			portraitOptions.portrait = character.GetPortrait(portrait);
-			if (character.State.position == null)
-			{
-				portraitOptions.toPosition = (portraitOptions.fromPosition = this.stage.GetPosition("middle"));
-			}
-			else
-			{
-				portraitOptions.fromPosition = (portraitOptions.toPosition = character.State.position);
-			}
-			this.Show(portraitOptions);
-		}
-
-		// Token: 0x06006903 RID: 26883 RVA: 0x0028F814 File Offset: 0x0028DA14
-		public virtual void Hide(Character character)
-		{
-			this.Hide(new PortraitOptions(true)
-			{
-				character = character
-			});
-		}
-
-		// Token: 0x06006904 RID: 26884 RVA: 0x0028F838 File Offset: 0x0028DA38
-		public virtual void Hide(Character character, string toPosition)
-		{
-			this.Hide(new PortraitOptions(true)
-			{
-				character = character,
-				toPosition = this.stage.GetPosition(toPosition),
-				move = true
-			});
-		}
-
-		// Token: 0x06006905 RID: 26885 RVA: 0x0028F873 File Offset: 0x0028DA73
-		public virtual void Hide(Table optionsTable)
-		{
-			this.Hide(PortraitUtil.ConvertTableToPortraitOptions(optionsTable, this.stage));
-		}
-
-		// Token: 0x06006906 RID: 26886 RVA: 0x0028F888 File Offset: 0x0028DA88
-		public virtual void Hide(PortraitOptions options)
-		{
-			this.CleanPortraitOptions(options);
-			if (options.character.State.display == DisplayType.None)
-			{
-				return;
-			}
-			this.SetupPortrait(options);
-			float time = (options.fadeDuration > 0f) ? options.fadeDuration : float.Epsilon;
-			LeanTween.alpha(options.character.State.portraitImage.rectTransform, 0f, time).setEase(this.stage.FadeEaseType).setRecursive(false);
-			this.DoMoveTween(options);
-			this.stage.CharactersOnStage.Remove(options.character);
+			SetupPortrait(options);
+			float time = ((options.fadeDuration > 0f) ? options.fadeDuration : float.Epsilon);
+			LeanTween.alpha(((Graphic)options.character.State.portraitImage).rectTransform, 0f, time).setEase(stage.FadeEaseType).setRecursive(useRecursion: false);
+			DoMoveTween(options);
+			stage.CharactersOnStage.Remove(options.character);
 			options.character.State.onScreen = false;
 			options.character.State.portrait = options.portrait;
 			options.character.State.facing = options.facing;
 			options.character.State.position = options.toPosition;
 			options.character.State.display = DisplayType.Hide;
-			this.FinishCommand(options);
+			FinishCommand(options);
 		}
+	}
 
-		// Token: 0x06006907 RID: 26887 RVA: 0x0028F994 File Offset: 0x0028DB94
-		public virtual void SetDimmed(Character character, bool dimmedState)
+	public virtual void SetDimmed(Character character, bool dimmedState)
+	{
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		if (character.State.dimmed != dimmedState)
 		{
-			if (character.State.dimmed == dimmedState)
-			{
-				return;
-			}
 			character.State.dimmed = dimmedState;
-			Color to = dimmedState ? this.stage.DimColor : Color.white;
-			float time = (this.stage.FadeDuration > 0f) ? this.stage.FadeDuration : float.Epsilon;
-			LeanTween.color(character.State.portraitImage.rectTransform, to, time).setEase(this.stage.FadeEaseType).setRecursive(false);
+			Color to = (dimmedState ? stage.DimColor : Color.white);
+			float time = ((stage.FadeDuration > 0f) ? stage.FadeDuration : float.Epsilon);
+			LeanTween.color(((Graphic)character.State.portraitImage).rectTransform, to, time).setEase(stage.FadeEaseType).setRecursive(useRecursion: false);
 		}
-
-		// Token: 0x0400591C RID: 22812
-		protected float waitTimer;
-
-		// Token: 0x0400591D RID: 22813
-		protected Stage stage;
 	}
 }

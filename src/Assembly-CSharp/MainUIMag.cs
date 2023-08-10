@@ -1,78 +1,130 @@
-﻿using System;
+using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using GUIPackage;
 using KBEngine;
-using script.Steam;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YSGame;
 using YSGame.TuJian;
+using script.Steam;
 
-// Token: 0x02000336 RID: 822
 public class MainUIMag : MonoBehaviour
 {
-	// Token: 0x06001C45 RID: 7237 RVA: 0x000CA68C File Offset: 0x000C888C
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
+
+		public static UnityAction _003C_003E9__15_0;
+
+		internal void _003COpenWorkShop_003Eb__15_0()
+		{
+			PlayerPrefs.SetInt("HasReadWorkShop", 1);
+			WorkShopMag.Open();
+		}
+	}
+
+	public static MainUIMag inst;
+
+	[SerializeField]
+	private Text gameVersionText;
+
+	public FpBtn ModBtn;
+
+	public GameObject mainPanel;
+
+	public MainUISelectAvatar selectAvatarPanel;
+
+	public MainUICreateAvatar createAvatarPanel;
+
+	public MainUIDF dfPanel;
+
+	public MainConfig SetPanel;
+
+	public MainUITooltip tooltip;
+
+	public int maxNum;
+
+	public int smallDataNum;
+
+	public int maxLevel;
+
+	private static bool isSendGameStartEvent;
+
 	private void Awake()
 	{
-		if (SetFaceUI.Inst != null)
+		if ((Object)(object)SetFaceUI.Inst != (Object)null)
 		{
-			Object.Destroy(SetFaceUI.Inst.gameObject);
+			Object.Destroy((Object)(object)((Component)SetFaceUI.Inst).gameObject);
 		}
-		if (PanelMamager.inst.UISceneGameObject != null)
+		if ((Object)(object)PanelMamager.inst.UISceneGameObject != (Object)null)
 		{
-			Object.Destroy(PanelMamager.inst.UISceneGameObject);
+			Object.Destroy((Object)(object)PanelMamager.inst.UISceneGameObject);
 		}
-		if (PanelMamager.inst.UIBlackMaskGameObject != null)
+		if ((Object)(object)PanelMamager.inst.UIBlackMaskGameObject != (Object)null)
 		{
-			Object.Destroy(PanelMamager.inst.UIBlackMaskGameObject);
+			Object.Destroy((Object)(object)PanelMamager.inst.UIBlackMaskGameObject);
 		}
-		MainUIMag.inst = this;
-		this.SetPanel = new MainConfig(this.mainPanel.transform.Find("ConfigPanel").gameObject);
-		this.gameVersionText.text = "当前版本：" + clientApp.VersionStr;
-		Debug.Log(string.Format("MainUIMag.Awake:{0}", DateTime.Now));
+		inst = this;
+		SetPanel = new MainConfig(((Component)mainPanel.transform.Find("ConfigPanel")).gameObject);
+		gameVersionText.text = "当前版本：" + clientApp.VersionStr;
+		Debug.Log((object)$"MainUIMag.Awake:{DateTime.Now}");
 		MusicMag.instance.playMusic(0);
-		this.RefreshSave();
+		RefreshSave();
 	}
 
-	// Token: 0x06001C46 RID: 7238 RVA: 0x000CA766 File Offset: 0x000C8966
 	public void RefreshSave()
 	{
-		this.InitMaxLevel();
-		this.selectAvatarPanel.RefreshSaveSlot();
-		this.dfPanel.RefreshSaveSlot();
+		InitMaxLevel();
+		selectAvatarPanel.RefreshSaveSlot();
+		dfPanel.RefreshSaveSlot();
 	}
 
-	// Token: 0x06001C47 RID: 7239 RVA: 0x000CA784 File Offset: 0x000C8984
 	public void OpenWorkShop()
 	{
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Expected O, but got Unknown
 		if (PlayerPrefs.GetInt("HasReadWorkShop", 0) == 0)
 		{
-			USelectBox.Show("在创意工坊中启用某些模组可能会影响游戏稳定性，包括但不限于闪退、卡顿、坏档等问题。\n是否继续打开？", delegate
+			object obj = _003C_003Ec._003C_003E9__15_0;
+			if (obj == null)
 			{
-				PlayerPrefs.SetInt("HasReadWorkShop", 1);
-				WorkShopMag.Open();
-			}, null);
-			return;
+				UnityAction val = delegate
+				{
+					PlayerPrefs.SetInt("HasReadWorkShop", 1);
+					WorkShopMag.Open();
+				};
+				_003C_003Ec._003C_003E9__15_0 = val;
+				obj = (object)val;
+			}
+			USelectBox.Show("在创意工坊中启用某些模组可能会影响游戏稳定性，包括但不限于闪退、卡顿、坏档等问题。\n是否继续打开？", (UnityAction)obj);
 		}
-		WorkShopMag.Open();
+		else
+		{
+			WorkShopMag.Open();
+		}
 	}
 
-	// Token: 0x06001C48 RID: 7240 RVA: 0x000CA7C4 File Offset: 0x000C89C4
 	public void CheckModFile()
 	{
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Expected O, but got Unknown
 		try
 		{
 			if (!new FileInfo(Application.dataPath + "/../winhttp.dll").Exists)
 			{
-				this.ModBtn.gameObject.SetActive(true);
-				this.ModBtn.mouseUpEvent.RemoveAllListeners();
-				this.ModBtn.mouseUpEvent.AddListener(new UnityAction(this.ModBtnEvent));
+				((Component)ModBtn).gameObject.SetActive(true);
+				((UnityEventBase)ModBtn.mouseUpEvent).RemoveAllListeners();
+				ModBtn.mouseUpEvent.AddListener(new UnityAction(ModBtnEvent));
 			}
 			else
 			{
-				this.ModBtn.gameObject.SetActive(false);
+				((Component)ModBtn).gameObject.SetActive(false);
 			}
 		}
 		catch (Exception ex)
@@ -81,12 +133,13 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C49 RID: 7241 RVA: 0x000CA858 File Offset: 0x000C8A58
 	private void ModBtnEvent()
 	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Expected O, but got Unknown
 		try
 		{
-			USelectBox.Show("是否启用Mod框架？", new UnityAction(this.ModBtnEvent_Select), null);
+			USelectBox.Show("是否启用Mod框架？", new UnityAction(ModBtnEvent_Select));
 		}
 		catch (Exception ex)
 		{
@@ -94,9 +147,12 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C4A RID: 7242 RVA: 0x000CA898 File Offset: 0x000C8A98
 	private void ModBtnEvent_Select()
 	{
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Expected O, but got Unknown
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Expected O, but got Unknown
 		try
 		{
 			FileInfo fileInfo = new FileInfo(Application.dataPath + "/../winhttp.dll");
@@ -105,82 +161,73 @@ public class MainUIMag : MonoBehaviour
 			FileInfo fileInfo4 = new FileInfo(Application.dataPath + "/../OtherFile/BepInEx.cfg");
 			if (fileInfo2.Exists)
 			{
-				File.Copy(fileInfo2.FullName, fileInfo.FullName, true);
-				File.Copy(fileInfo4.FullName, fileInfo3.FullName, true);
+				File.Copy(fileInfo2.FullName, fileInfo.FullName, overwrite: true);
+				File.Copy(fileInfo4.FullName, fileInfo3.FullName, overwrite: true);
 			}
-			UCheckBox.Show("Mod框架启用完毕，请重新启动游戏", new UnityAction(this.ModBtnEvent_Check));
+			UCheckBox.Show("Mod框架启用完毕，请重新启动游戏", new UnityAction(ModBtnEvent_Check));
 		}
 		catch (Exception ex)
 		{
-			UCheckBox.Show("启用Mod框架时出现异常:" + ex.Message + "\n请检查游戏完整性重试", new UnityAction(this.ModBtnEvent_Check));
+			UCheckBox.Show("启用Mod框架时出现异常:" + ex.Message + "\n请检查游戏完整性重试", new UnityAction(ModBtnEvent_Check));
 			Debug.LogException(ex);
 		}
 	}
 
-	// Token: 0x06001C4B RID: 7243 RVA: 0x00049258 File Offset: 0x00047458
 	private void ModBtnEvent_Check()
 	{
 		Application.Quit();
 	}
 
-	// Token: 0x06001C4C RID: 7244 RVA: 0x000CA980 File Offset: 0x000C8B80
 	private void Start()
 	{
-		if (!MainUIMag.isSendGameStartEvent)
+		if (!isSendGameStartEvent)
 		{
-			MainUIMag.isSendGameStartEvent = true;
-			MessageMag.Instance.Send(MessageName.MSG_GameInitFinish, null);
+			isSendGameStartEvent = true;
+			MessageMag.Instance.Send(MessageName.MSG_GameInitFinish);
 		}
 		if (Screen.width <= 400)
 		{
-			UIPopTip.Inst.Pop("检测到当前分辨率异常，自动重置", PopTipIconType.叹号);
+			UIPopTip.Inst.Pop("检测到当前分辨率异常，自动重置");
 			SystemConfig.Inst.Reset();
 		}
 	}
 
-	// Token: 0x06001C4D RID: 7245 RVA: 0x000CA9D0 File Offset: 0x000C8BD0
 	public void StartGame()
 	{
-		this.mainPanel.SetActive(false);
-		this.selectAvatarPanel.Init();
+		mainPanel.SetActive(false);
+		selectAvatarPanel.Init();
 	}
 
-	// Token: 0x06001C4E RID: 7246 RVA: 0x000CA9E9 File Offset: 0x000C8BE9
 	public void DoFaClick()
 	{
-		this.dfPanel.Init();
+		dfPanel.Init();
 	}
 
-	// Token: 0x06001C4F RID: 7247 RVA: 0x000CA9F6 File Offset: 0x000C8BF6
 	public void OpenTuJian()
 	{
 		TuJianManager.Inst.OpenTuJian();
 	}
 
-	// Token: 0x06001C50 RID: 7248 RVA: 0x000CAA02 File Offset: 0x000C8C02
 	public void GameSet()
 	{
-		this.SetPanel.Show();
+		SetPanel.Show();
 	}
 
-	// Token: 0x06001C51 RID: 7249 RVA: 0x00049258 File Offset: 0x00047458
 	public void QuitGame()
 	{
 		Application.Quit();
 	}
 
-	// Token: 0x06001C52 RID: 7250 RVA: 0x000CAA0F File Offset: 0x000C8C0F
 	private void OnDestroy()
 	{
-		MainUIMag.inst = null;
+		inst = null;
 	}
 
-	// Token: 0x06001C53 RID: 7251 RVA: 0x000CAA18 File Offset: 0x000C8C18
 	public void startGame(int id, int index, int DFIndex = -1)
 	{
 		Tools.instance.IsCanLoadSetTalk = false;
 		MusicMag.instance.stopMusic();
-		this.addAvatar(id, index);
+		addAvatar(id, index);
 		Tools.instance.getPlayer().Load(id, index);
 		Tools.instance.getPlayer().nomelTaskMag.restAllTaskType();
 		Avatar player = Tools.instance.getPlayer();
@@ -218,14 +265,15 @@ public class MainUIMag : MonoBehaviour
 		SceneManager.LoadScene("LoadingScreen");
 	}
 
-	// Token: 0x06001C54 RID: 7252 RVA: 0x000CAB9C File Offset: 0x000C8D9C
 	private void addAvatar(int id, int index)
 	{
-		this.creatAvatar(10, 51, 40, new Vector3(-5f, -1.7f, -1f), new Vector3(0f, 0f, 80f), 1);
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		creatAvatar(10, 51, 40, new Vector3(-5f, -1.7f, -1f), new Vector3(0f, 0f, 80f));
 		KBEngineApp.app.entity_id = 10;
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
 		Tools.GetValue<Avatar>("Avatar" + Tools.instance.getSaveID(id, index), avatar);
-		this.initSkill();
+		initSkill();
 		jsonData.instance.loadAvatarFace(id, index);
 		StaticSkill.resetSeid(avatar);
 		WuDaoStaticSkill.resetWuDaoSeid(avatar);
@@ -234,7 +282,6 @@ public class MainUIMag : MonoBehaviour
 		avatar.seaNodeMag.INITSEA();
 	}
 
-	// Token: 0x06001C55 RID: 7253 RVA: 0x000CAC50 File Offset: 0x000C8E50
 	private void initSkill()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -242,46 +289,49 @@ public class MainUIMag : MonoBehaviour
 		avatar.equipStaticSkillList = avatar.configEquipStaticSkill[avatar.nowConfigEquipStaticSkill];
 	}
 
-	// Token: 0x06001C56 RID: 7254 RVA: 0x000CAC94 File Offset: 0x000C8E94
 	private void setAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, Avatar avatar, int AvatarID = 1)
 	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
 		avatar.position = position;
 		avatar.direction = direction;
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[string.Concat(AvatarID)];
+		JSONObject jSONObject = jsonData.instance.AvatarJsonData[string.Concat(AvatarID)];
 		int num = 0;
-		foreach (JSONObject jsonobject2 in jsonobject["skills"].list)
+		foreach (JSONObject item2 in jSONObject["skills"].list)
 		{
-			avatar.addHasSkillList((int)jsonobject2.n);
-			avatar.equipSkill((int)jsonobject2.n, num);
+			avatar.addHasSkillList((int)item2.n);
+			avatar.equipSkill((int)item2.n, num);
 			num++;
 		}
 		int num2 = 0;
-		foreach (JSONObject jsonobject3 in jsonobject["staticSkills"].list)
+		foreach (JSONObject item3 in jSONObject["staticSkills"].list)
 		{
-			avatar.addHasStaticSkillList((int)jsonobject3.n, 1);
-			avatar.equipStaticSkill((int)jsonobject3.n, num2);
+			avatar.addHasStaticSkillList((int)item3.n);
+			avatar.equipStaticSkill((int)item3.n, num2);
 			num2++;
 		}
-		for (int j = 0; j < jsonobject["LingGen"].Count; j++)
+		for (int j = 0; j < jSONObject["LingGen"].Count; j++)
 		{
-			int item = (int)jsonobject["LingGen"][j].n;
+			int item = (int)jSONObject["LingGen"][j].n;
 			avatar.LingGeng.Add(item);
 		}
-		avatar.ZiZhi = (int)jsonobject["ziZhi"].n;
-		avatar.dunSu = (int)jsonobject["dunSu"].n;
-		avatar.wuXin = (uint)jsonobject["wuXin"].n;
-		avatar.shengShi = (int)jsonobject["shengShi"].n;
-		avatar.shaQi = (uint)jsonobject["shaQi"].n;
-		avatar.shouYuan = (uint)jsonobject["shouYuan"].n;
-		avatar.age = (uint)jsonobject["age"].n;
-		avatar.HP_Max = (int)jsonobject["HP"].n;
-		avatar.HP = (int)jsonobject["HP"].n;
-		avatar.money = (ulong)((uint)jsonobject["MoneyType"].n);
-		avatar.level = (ushort)jsonobject["Level"].n;
-		avatar.AvatarType = (uint)((ushort)jsonobject["AvatarType"].n);
-		avatar.roleTypeCell = (uint)jsonobject["fightFace"].n;
-		avatar.roleType = (uint)jsonobject["face"].n;
-		avatar.Sex = (int)jsonobject["SexType"].n;
+		avatar.ZiZhi = (int)jSONObject["ziZhi"].n;
+		avatar.dunSu = (int)jSONObject["dunSu"].n;
+		avatar.wuXin = (uint)jSONObject["wuXin"].n;
+		avatar.shengShi = (int)jSONObject["shengShi"].n;
+		avatar.shaQi = (uint)jSONObject["shaQi"].n;
+		avatar.shouYuan = (uint)jSONObject["shouYuan"].n;
+		avatar.age = (uint)jSONObject["age"].n;
+		avatar.HP_Max = (int)jSONObject["HP"].n;
+		avatar.HP = (int)jSONObject["HP"].n;
+		avatar.money = (uint)jSONObject["MoneyType"].n;
+		avatar.level = (ushort)jSONObject["Level"].n;
+		avatar.AvatarType = (ushort)jSONObject["AvatarType"].n;
+		avatar.roleTypeCell = (uint)jSONObject["fightFace"].n;
+		avatar.roleType = (uint)jSONObject["face"].n;
+		avatar.Sex = (int)jSONObject["SexType"].n;
 		avatar.configEquipSkill[0] = avatar.equipSkillList;
 		avatar.configEquipStaticSkill[0] = avatar.equipStaticSkillList;
 		avatar.equipItemList.values.ForEach(delegate(ITEM_INFO i)
@@ -290,103 +340,63 @@ public class MainUIMag : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001C57 RID: 7255 RVA: 0x000CB014 File Offset: 0x000C9214
 	public void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, int AvatarID = 1)
 	{
-		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		KBEngineApp.app.Client_onCreatedProxies((ulong)avaterID, avaterID, "Avatar");
 		Avatar avatar = (Avatar)KBEngineApp.app.entities[avaterID];
-		this.setAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
+		setAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
 	}
 
-	// Token: 0x06001C58 RID: 7256 RVA: 0x000CB05C File Offset: 0x000C925C
 	private void InitMaxLevel()
 	{
-		this.maxLevel = 0;
+		maxLevel = 0;
 		if (YSSaveGame.HasFile(Paths.GetSavePath(), "MaxLevelJson"))
 		{
-			this.maxLevel = YSSaveGame.GetInt("MaxLevelJson", 0);
+			maxLevel = YSSaveGame.GetInt("MaxLevelJson");
 		}
 		if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/MaxLevelJson.txt"))
 		{
-			this.maxLevel = YSNewSaveSystem.LoadInt("MaxLevelJson.txt", false);
+			maxLevel = YSNewSaveSystem.LoadInt("MaxLevelJson.txt", autoPath: false);
 		}
-		if (this.maxLevel == 0)
+		if (maxLevel != 0)
 		{
-			for (int i = 0; i < this.maxNum; i++)
+			return;
+		}
+		for (int i = 0; i < maxNum; i++)
+		{
+			for (int j = 0; j < smallDataNum; j++)
 			{
-				for (int j = 0; j < this.smallDataNum; j++)
+				try
 				{
-					try
+					JSONObject jSONObject = null;
+					if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json"))
 					{
-						JSONObject jsonobject = null;
-						if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json"))
-						{
-							jsonobject = YSNewSaveSystem.LoadJSONObject(YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json", true);
-						}
-						else if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(i, j)))
-						{
-							jsonobject = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(i, j), null);
-						}
-						if (jsonobject != null && jsonobject["avatarLevel"].I > MainUIMag.inst.maxLevel)
-						{
-							this.maxLevel = jsonobject["avatarLevel"].I;
-						}
+						jSONObject = YSNewSaveSystem.LoadJSONObject(YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json");
 					}
-					catch (Exception)
+					else if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(i, j)))
 					{
+						jSONObject = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(i, j));
+					}
+					if (jSONObject != null && jSONObject["avatarLevel"].I > inst.maxLevel)
+					{
+						maxLevel = jSONObject["avatarLevel"].I;
 					}
 				}
+				catch (Exception)
+				{
+				}
 			}
-			YSNewSaveSystem.Save("MaxLevelJson.txt", this.maxLevel, false);
 		}
+		YSNewSaveSystem.Save("MaxLevelJson.txt", maxLevel, autoPath: false);
 	}
 
-	// Token: 0x06001C59 RID: 7257 RVA: 0x000CB1CC File Offset: 0x000C93CC
 	private void Update()
 	{
-		if (Input.GetKeyDown(292))
+		if (Input.GetKeyDown((KeyCode)292))
 		{
 			SystemConfig.Inst.Reset();
 		}
 	}
-
-	// Token: 0x040016C6 RID: 5830
-	public static MainUIMag inst;
-
-	// Token: 0x040016C7 RID: 5831
-	[SerializeField]
-	private Text gameVersionText;
-
-	// Token: 0x040016C8 RID: 5832
-	public FpBtn ModBtn;
-
-	// Token: 0x040016C9 RID: 5833
-	public GameObject mainPanel;
-
-	// Token: 0x040016CA RID: 5834
-	public MainUISelectAvatar selectAvatarPanel;
-
-	// Token: 0x040016CB RID: 5835
-	public MainUICreateAvatar createAvatarPanel;
-
-	// Token: 0x040016CC RID: 5836
-	public MainUIDF dfPanel;
-
-	// Token: 0x040016CD RID: 5837
-	public MainConfig SetPanel;
-
-	// Token: 0x040016CE RID: 5838
-	public MainUITooltip tooltip;
-
-	// Token: 0x040016CF RID: 5839
-	public int maxNum;
-
-	// Token: 0x040016D0 RID: 5840
-	public int smallDataNum;
-
-	// Token: 0x040016D1 RID: 5841
-	public int maxLevel;
-
-	// Token: 0x040016D2 RID: 5842
-	private static bool isSendGameStartEvent;
 }

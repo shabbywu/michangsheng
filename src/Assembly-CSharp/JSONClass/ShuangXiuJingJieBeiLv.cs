@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class ShuangXiuJingJieBeiLv : IJSONClass
 {
-	// Token: 0x020008DE RID: 2270
-	public class ShuangXiuJingJieBeiLv : IJSONClass
+	public static Dictionary<int, ShuangXiuJingJieBeiLv> DataDict = new Dictionary<int, ShuangXiuJingJieBeiLv>();
+
+	public static List<ShuangXiuJingJieBeiLv> DataList = new List<ShuangXiuJingJieBeiLv>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int BeiLv;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x0600418B RID: 16779 RVA: 0x001C0B30 File Offset: 0x001BED30
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.ShuangXiuJingJieBeiLv.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.ShuangXiuJingJieBeiLv.list)
+			try
 			{
-				try
+				ShuangXiuJingJieBeiLv shuangXiuJingJieBeiLv = new ShuangXiuJingJieBeiLv();
+				shuangXiuJingJieBeiLv.id = item["id"].I;
+				shuangXiuJingJieBeiLv.BeiLv = item["BeiLv"].I;
+				if (DataDict.ContainsKey(shuangXiuJingJieBeiLv.id))
 				{
-					ShuangXiuJingJieBeiLv shuangXiuJingJieBeiLv = new ShuangXiuJingJieBeiLv();
-					shuangXiuJingJieBeiLv.id = jsonobject["id"].I;
-					shuangXiuJingJieBeiLv.BeiLv = jsonobject["BeiLv"].I;
-					if (ShuangXiuJingJieBeiLv.DataDict.ContainsKey(shuangXiuJingJieBeiLv.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典ShuangXiuJingJieBeiLv.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", shuangXiuJingJieBeiLv.id));
-					}
-					else
-					{
-						ShuangXiuJingJieBeiLv.DataDict.Add(shuangXiuJingJieBeiLv.id, shuangXiuJingJieBeiLv);
-						ShuangXiuJingJieBeiLv.DataList.Add(shuangXiuJingJieBeiLv);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典ShuangXiuJingJieBeiLv.DataDict添加数据时出现重复的键，Key:{shuangXiuJingJieBeiLv.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典ShuangXiuJingJieBeiLv.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(shuangXiuJingJieBeiLv.id, shuangXiuJingJieBeiLv);
+				DataList.Add(shuangXiuJingJieBeiLv);
 			}
-			if (ShuangXiuJingJieBeiLv.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				ShuangXiuJingJieBeiLv.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典ShuangXiuJingJieBeiLv.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x0600418C RID: 16780 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040040EF RID: 16623
-		public static Dictionary<int, ShuangXiuJingJieBeiLv> DataDict = new Dictionary<int, ShuangXiuJingJieBeiLv>();
-
-		// Token: 0x040040F0 RID: 16624
-		public static List<ShuangXiuJingJieBeiLv> DataList = new List<ShuangXiuJingJieBeiLv>();
-
-		// Token: 0x040040F1 RID: 16625
-		public static Action OnInitFinishAction = new Action(ShuangXiuJingJieBeiLv.OnInitFinish);
-
-		// Token: 0x040040F2 RID: 16626
-		public int id;
-
-		// Token: 0x040040F3 RID: 16627
-		public int BeiLv;
+	private static void OnInitFinish()
+	{
 	}
 }

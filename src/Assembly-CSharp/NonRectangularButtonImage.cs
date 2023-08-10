@@ -1,44 +1,44 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000355 RID: 853
 [RequireComponent(typeof(PolygonCollider2D))]
 public class NonRectangularButtonImage : Image
 {
-	// Token: 0x06001CE5 RID: 7397 RVA: 0x000CE2AF File Offset: 0x000CC4AF
-	protected NonRectangularButtonImage()
-	{
-		base.useLegacyMeshGeneration = true;
-	}
+	private PolygonCollider2D areaPolygon;
 
-	// Token: 0x17000258 RID: 600
-	// (get) Token: 0x06001CE6 RID: 7398 RVA: 0x000CE2BE File Offset: 0x000CC4BE
 	private PolygonCollider2D Polygon
 	{
 		get
 		{
-			if (this.areaPolygon != null)
+			if ((Object)(object)areaPolygon != (Object)null)
 			{
-				return this.areaPolygon;
+				return areaPolygon;
 			}
-			this.areaPolygon = base.GetComponent<PolygonCollider2D>();
-			return this.areaPolygon;
+			areaPolygon = ((Component)this).GetComponent<PolygonCollider2D>();
+			return areaPolygon;
 		}
 	}
 
-	// Token: 0x06001CE7 RID: 7399 RVA: 0x000CE2E7 File Offset: 0x000CC4E7
+	protected NonRectangularButtonImage()
+	{
+		((Graphic)this).useLegacyMeshGeneration = true;
+	}
+
 	protected override void OnPopulateMesh(VertexHelper vh)
 	{
 		vh.Clear();
 	}
 
-	// Token: 0x06001CE8 RID: 7400 RVA: 0x000CE2EF File Offset: 0x000CC4EF
 	public override bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
 	{
-		return !(eventCamera == null) && this.Polygon.OverlapPoint(eventCamera.ScreenToWorldPoint(screenPoint));
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)eventCamera == (Object)null)
+		{
+			return false;
+		}
+		return ((Collider2D)Polygon).OverlapPoint(Vector2.op_Implicit(eventCamera.ScreenToWorldPoint(Vector2.op_Implicit(screenPoint))));
 	}
-
-	// Token: 0x04001770 RID: 6000
-	private PolygonCollider2D areaPolygon;
 }

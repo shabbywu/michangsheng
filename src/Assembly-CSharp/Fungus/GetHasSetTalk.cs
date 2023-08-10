@@ -1,40 +1,34 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Get", "GetHasSetTalk", "根据流派和境界获取NpcId", 0)]
+[AddComponentMenu("")]
+public class GetHasSetTalk : Command
 {
-	// Token: 0x02000F42 RID: 3906
-	[CommandInfo("YSNew/Get", "GetHasSetTalk", "根据流派和境界获取NpcId", 0)]
-	[AddComponentMenu("")]
-	public class GetHasSetTalk : Command
+	[Tooltip("是否有setTalk")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable flag;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006E4A RID: 28234 RVA: 0x002A49AB File Offset: 0x002A2BAB
-		public override void OnEnter()
+		if (GlobalValue.Get(0, GetCommandSourceDesc()) > 0)
 		{
-			if (GlobalValue.Get(0, base.GetCommandSourceDesc()) > 0)
-			{
-				this.flag.Value = true;
-			}
-			else
-			{
-				this.flag.Value = false;
-			}
-			this.Continue();
+			flag.Value = true;
 		}
-
-		// Token: 0x06006E4B RID: 28235 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			flag.Value = false;
 		}
+		Continue();
+	}
 
-		// Token: 0x04005B93 RID: 23443
-		[Tooltip("是否有setTalk")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable flag;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

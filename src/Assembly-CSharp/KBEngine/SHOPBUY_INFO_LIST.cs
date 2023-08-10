@@ -1,12 +1,8 @@
-﻿using System;
 using System.Collections.Generic;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class SHOPBUY_INFO_LIST
 {
-	// Token: 0x02000BCE RID: 3022
-	public class SHOPBUY_INFO_LIST
-	{
-		// Token: 0x0400505E RID: 20574
-		public List<ShopBuyInfo> values = new List<ShopBuyInfo>();
-	}
+	public List<ShopBuyInfo> values = new List<ShopBuyInfo>();
 }

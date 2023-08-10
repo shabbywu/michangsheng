@@ -1,74 +1,60 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class NpcQingJiaoXiaoHaoData : IJSONClass
 {
-	// Token: 0x020008A9 RID: 2217
-	public class NpcQingJiaoXiaoHaoData : IJSONClass
+	public static Dictionary<int, NpcQingJiaoXiaoHaoData> DataDict = new Dictionary<int, NpcQingJiaoXiaoHaoData>();
+
+	public static List<NpcQingJiaoXiaoHaoData> DataList = new List<NpcQingJiaoXiaoHaoData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int Type;
+
+	public int quality;
+
+	public int typePinJie;
+
+	public int QingFen;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x060040B7 RID: 16567 RVA: 0x001BA6DC File Offset: 0x001B88DC
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.NpcQingJiaoXiaoHaoData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.NpcQingJiaoXiaoHaoData.list)
+			try
 			{
-				try
+				NpcQingJiaoXiaoHaoData npcQingJiaoXiaoHaoData = new NpcQingJiaoXiaoHaoData();
+				npcQingJiaoXiaoHaoData.id = item["id"].I;
+				npcQingJiaoXiaoHaoData.Type = item["Type"].I;
+				npcQingJiaoXiaoHaoData.quality = item["quality"].I;
+				npcQingJiaoXiaoHaoData.typePinJie = item["typePinJie"].I;
+				npcQingJiaoXiaoHaoData.QingFen = item["QingFen"].I;
+				if (DataDict.ContainsKey(npcQingJiaoXiaoHaoData.id))
 				{
-					NpcQingJiaoXiaoHaoData npcQingJiaoXiaoHaoData = new NpcQingJiaoXiaoHaoData();
-					npcQingJiaoXiaoHaoData.id = jsonobject["id"].I;
-					npcQingJiaoXiaoHaoData.Type = jsonobject["Type"].I;
-					npcQingJiaoXiaoHaoData.quality = jsonobject["quality"].I;
-					npcQingJiaoXiaoHaoData.typePinJie = jsonobject["typePinJie"].I;
-					npcQingJiaoXiaoHaoData.QingFen = jsonobject["QingFen"].I;
-					if (NpcQingJiaoXiaoHaoData.DataDict.ContainsKey(npcQingJiaoXiaoHaoData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典NpcQingJiaoXiaoHaoData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", npcQingJiaoXiaoHaoData.id));
-					}
-					else
-					{
-						NpcQingJiaoXiaoHaoData.DataDict.Add(npcQingJiaoXiaoHaoData.id, npcQingJiaoXiaoHaoData);
-						NpcQingJiaoXiaoHaoData.DataList.Add(npcQingJiaoXiaoHaoData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典NpcQingJiaoXiaoHaoData.DataDict添加数据时出现重复的键，Key:{npcQingJiaoXiaoHaoData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典NpcQingJiaoXiaoHaoData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(npcQingJiaoXiaoHaoData.id, npcQingJiaoXiaoHaoData);
+				DataList.Add(npcQingJiaoXiaoHaoData);
 			}
-			if (NpcQingJiaoXiaoHaoData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				NpcQingJiaoXiaoHaoData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典NpcQingJiaoXiaoHaoData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x060040B8 RID: 16568 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003ECA RID: 16074
-		public static Dictionary<int, NpcQingJiaoXiaoHaoData> DataDict = new Dictionary<int, NpcQingJiaoXiaoHaoData>();
-
-		// Token: 0x04003ECB RID: 16075
-		public static List<NpcQingJiaoXiaoHaoData> DataList = new List<NpcQingJiaoXiaoHaoData>();
-
-		// Token: 0x04003ECC RID: 16076
-		public static Action OnInitFinishAction = new Action(NpcQingJiaoXiaoHaoData.OnInitFinish);
-
-		// Token: 0x04003ECD RID: 16077
-		public int id;
-
-		// Token: 0x04003ECE RID: 16078
-		public int Type;
-
-		// Token: 0x04003ECF RID: 16079
-		public int quality;
-
-		// Token: 0x04003ED0 RID: 16080
-		public int typePinJie;
-
-		// Token: 0x04003ED1 RID: 16081
-		public int QingFen;
+	private static void OnInitFinish()
+	{
 	}
 }

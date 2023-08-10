@@ -1,19 +1,19 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000152 RID: 338
 public class ReloadSceneOnKeyDown : MonoBehaviour
 {
-	// Token: 0x06000EFA RID: 3834 RVA: 0x0005B304 File Offset: 0x00059504
+	public KeyCode reloadKey = (KeyCode)114;
+
 	private void Update()
 	{
-		if (Input.GetKeyDown(this.reloadKey))
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		if (Input.GetKeyDown(reloadKey))
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, 0);
+			Scene activeScene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(((Scene)(ref activeScene)).buildIndex, (LoadSceneMode)0);
 		}
 	}
-
-	// Token: 0x04000B3A RID: 2874
-	public KeyCode reloadKey = 114;
 }

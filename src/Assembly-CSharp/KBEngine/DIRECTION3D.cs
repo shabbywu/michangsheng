@@ -1,75 +1,63 @@
-﻿using System;
 using UnityEngine;
 
-namespace KBEngine
+namespace KBEngine;
+
+public struct DIRECTION3D
 {
-	// Token: 0x02000BBE RID: 3006
-	public struct DIRECTION3D
+	private Vector3 value;
+
+	public float x
 	{
-		// Token: 0x060053D4 RID: 21460 RVA: 0x00233ED6 File Offset: 0x002320D6
-		private DIRECTION3D(Vector3 value)
+		get
 		{
-			this.value = value;
+			return value.x;
 		}
-
-		// Token: 0x060053D5 RID: 21461 RVA: 0x00233EDF File Offset: 0x002320DF
-		public static implicit operator Vector3(DIRECTION3D value)
+		set
 		{
-			return value.value;
+			this.value.x = value;
 		}
+	}
 
-		// Token: 0x060053D6 RID: 21462 RVA: 0x00233EE7 File Offset: 0x002320E7
-		public static implicit operator DIRECTION3D(Vector3 value)
+	public float y
+	{
+		get
 		{
-			return new DIRECTION3D(value);
+			return value.y;
 		}
-
-		// Token: 0x17000647 RID: 1607
-		// (get) Token: 0x060053D7 RID: 21463 RVA: 0x00233EEF File Offset: 0x002320EF
-		// (set) Token: 0x060053D8 RID: 21464 RVA: 0x00233EFC File Offset: 0x002320FC
-		public float x
+		set
 		{
-			get
-			{
-				return this.value.x;
-			}
-			set
-			{
-				this.value.x = value;
-			}
+			this.value.y = value;
 		}
+	}
 
-		// Token: 0x17000648 RID: 1608
-		// (get) Token: 0x060053D9 RID: 21465 RVA: 0x00233F0A File Offset: 0x0023210A
-		// (set) Token: 0x060053DA RID: 21466 RVA: 0x00233F17 File Offset: 0x00232117
-		public float y
+	public float z
+	{
+		get
 		{
-			get
-			{
-				return this.value.y;
-			}
-			set
-			{
-				this.value.y = value;
-			}
+			return value.z;
 		}
-
-		// Token: 0x17000649 RID: 1609
-		// (get) Token: 0x060053DB RID: 21467 RVA: 0x00233F25 File Offset: 0x00232125
-		// (set) Token: 0x060053DC RID: 21468 RVA: 0x00233F32 File Offset: 0x00232132
-		public float z
+		set
 		{
-			get
-			{
-				return this.value.z;
-			}
-			set
-			{
-				this.value.z = value;
-			}
+			this.value.z = value;
 		}
+	}
 
-		// Token: 0x0400504A RID: 20554
-		private Vector3 value;
+	private DIRECTION3D(Vector3 value)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		this.value = value;
+	}
+
+	public static implicit operator Vector3(DIRECTION3D value)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		return value.value;
+	}
+
+	public static implicit operator DIRECTION3D(Vector3 value)
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		return new DIRECTION3D(value);
 	}
 }

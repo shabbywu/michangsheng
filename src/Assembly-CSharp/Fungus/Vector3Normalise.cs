@@ -1,48 +1,50 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Vector3", "Normalise", "Normalise a Vector3", 0)]
+[AddComponentMenu("")]
+public class Vector3Normalise : Command
 {
-	// Token: 0x02000E5B RID: 3675
-	[CommandInfo("Vector3", "Normalise", "Normalise a Vector3", 0)]
-	[AddComponentMenu("")]
-	public class Vector3Normalise : Command
+	[SerializeField]
+	protected Vector3Data vec3In;
+
+	[SerializeField]
+	protected Vector3Data vec3Out;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006737 RID: 26423 RVA: 0x00289CD0 File Offset: 0x00287ED0
-		public override void OnEnter()
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		ref Vector3Data reference = ref vec3Out;
+		Vector3 value = vec3In.Value;
+		reference.Value = ((Vector3)(ref value)).normalized;
+		Continue();
+	}
+
+	public override string GetSummary()
+	{
+		if ((Object)(object)vec3Out.vector3Ref == (Object)null)
 		{
-			this.vec3Out.Value = this.vec3In.Value.normalized;
-			this.Continue();
+			return "";
 		}
+		return vec3Out.vector3Ref.Key;
+	}
 
-		// Token: 0x06006738 RID: 26424 RVA: 0x00289D01 File Offset: 0x00287F01
-		public override string GetSummary()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if ((Object)(object)vec3In.vector3Ref == (Object)(object)variable || (Object)(object)vec3Out.vector3Ref == (Object)(object)variable)
 		{
-			if (this.vec3Out.vector3Ref == null)
-			{
-				return "";
-			}
-			return this.vec3Out.vector3Ref.Key;
+			return true;
 		}
-
-		// Token: 0x06006739 RID: 26425 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
-		{
-			return new Color32(235, 191, 217, byte.MaxValue);
-		}
-
-		// Token: 0x0600673A RID: 26426 RVA: 0x00289D2C File Offset: 0x00287F2C
-		public override bool HasReference(Variable variable)
-		{
-			return this.vec3In.vector3Ref == variable || this.vec3Out.vector3Ref == variable;
-		}
-
-		// Token: 0x0400584F RID: 22607
-		[SerializeField]
-		protected Vector3Data vec3In;
-
-		// Token: 0x04005850 RID: 22608
-		[SerializeField]
-		protected Vector3Data vec3Out;
+		return false;
 	}
 }

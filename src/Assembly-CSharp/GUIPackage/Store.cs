@@ -1,183 +1,162 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class Store : MonoBehaviour
 {
-	// Token: 0x02000A6F RID: 2671
-	public class Store : MonoBehaviour
+	public List<item> store = new List<item>();
+
+	public GameObject StoreUI;
+
+	public GameObject NumInput;
+
+	public GameObject Sure;
+
+	public GameObject Cancel;
+
+	public GameObject Notice;
+
+	private ItemDatebase datebase;
+
+	private bool Show_Store;
+
+	private int ShopID;
+
+	private int num = 1;
+
+	private void Start()
 	{
-		// Token: 0x06004B10 RID: 19216 RVA: 0x001FEEE5 File Offset: 0x001FD0E5
-		private void Start()
-		{
-			this.InitNumInput();
-			this.HideNumInput();
-			this.datebase = jsonData.instance.gameObject.GetComponent<ItemDatebase>();
-			this.initStore();
-		}
+		InitNumInput();
+		HideNumInput();
+		datebase = ((Component)jsonData.instance).gameObject.GetComponent<ItemDatebase>();
+		initStore();
+	}
 
-		// Token: 0x06004B11 RID: 19217 RVA: 0x001FEF0E File Offset: 0x001FD10E
-		private void Update()
-		{
-			this.SetMaxShop();
-		}
+	private void Update()
+	{
+		SetMaxShop();
+	}
 
-		// Token: 0x06004B12 RID: 19218 RVA: 0x001FEF18 File Offset: 0x001FD118
-		private void InitNumInput()
-		{
-			this.Sure = base.transform.Find("Win/NumInput/Sure").gameObject;
-			this.Cancel = base.transform.Find("Win/NumInput/Cancel").gameObject;
-			UIEventListener.Get(this.Sure).onClick = new UIEventListener.VoidDelegate(this.SureClick);
-			UIEventListener.Get(this.Cancel).onClick = new UIEventListener.VoidDelegate(this.CancelClick);
-		}
+	private void InitNumInput()
+	{
+		Sure = ((Component)((Component)this).transform.Find("Win/NumInput/Sure")).gameObject;
+		Cancel = ((Component)((Component)this).transform.Find("Win/NumInput/Cancel")).gameObject;
+		UIEventListener.Get(Sure).onClick = SureClick;
+		UIEventListener.Get(Cancel).onClick = CancelClick;
+	}
 
-		// Token: 0x06004B13 RID: 19219 RVA: 0x001FEF93 File Offset: 0x001FD193
-		private void SureClick(GameObject button)
+	private void SureClick(GameObject button)
+	{
+		if (NumInput.GetComponentInChildren<UIInput>().value != "" && num > 0)
 		{
-			if (this.NumInput.GetComponentInChildren<UIInput>().value != "" && this.num > 0)
+			Shop_Item(ShopID);
+			HideNumInput();
+		}
+	}
+
+	private void SetMaxShop()
+	{
+		if (!NumInput.activeSelf || !(NumInput.GetComponentInChildren<UIInput>().value != ""))
+		{
+			return;
+		}
+		num = int.Parse(NumInput.GetComponentInChildren<UIInput>().value);
+		if (num <= 0)
+		{
+			return;
+		}
+		if (store[ShopID].itemType == item.ItemType.Potion)
+		{
+			if (num > store[ShopID].itemMaxNum)
 			{
-				this.Shop_Item(this.ShopID);
-				this.HideNumInput();
+				NumInput.GetComponentInChildren<UIInput>().value = store[ShopID].itemMaxNum.ToString();
 			}
 		}
-
-		// Token: 0x06004B14 RID: 19220 RVA: 0x001FEFCC File Offset: 0x001FD1CC
-		private void SetMaxShop()
+		else if (num > Singleton.inventory.GetSoltNum())
 		{
-			if (this.NumInput.activeSelf && this.NumInput.GetComponentInChildren<UIInput>().value != "")
+			NumInput.GetComponentInChildren<UIInput>().value = Singleton.inventory.GetSoltNum().ToString();
+		}
+	}
+
+	private void CancelClick(GameObject button)
+	{
+		HideNumInput();
+	}
+
+	private void initStore()
+	{
+		((Component)this).GetComponentInChildren<UIGrid>().repositionNow = true;
+		((Component)this).GetComponentInChildren<UIScrollView>().Press(pressed: true);
+		StoreUI.SetActive(false);
+		Notice.SetActive(false);
+	}
+
+	private void OnGUI()
+	{
+	}
+
+	private void Show()
+	{
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		Show_Store = !Show_Store;
+		if (!Show_Store)
+		{
+			Singleton.inventory.showTooltip = false;
+		}
+		if (Show_Store)
+		{
+			((Component)this).transform.Find("Win").position = ((Component)this).transform.position;
+		}
+		StoreUI.SetActive(Show_Store);
+		Singleton.UI.UI_Top(StoreUI.transform.parent);
+	}
+
+	public void ShowNumInput(int id)
+	{
+		NumInput.SetActive(true);
+		ShopID = id;
+		if (store[id].itemType != item.ItemType.Potion)
+		{
+			NumInput.GetComponentInChildren<UIInput>().value = "1";
+		}
+	}
+
+	public void HideNumInput()
+	{
+		NumInput.SetActive(false);
+	}
+
+	public void Shop_Item(int ID)
+	{
+		if (!Singleton.inventory.is_Full(store[ID], num))
+		{
+			if (Singleton.money.money >= store[ID].itemPrice * num)
 			{
-				this.num = int.Parse(this.NumInput.GetComponentInChildren<UIInput>().value);
-				if (this.num > 0)
+				for (int i = 0; i < num; i++)
 				{
-					if (this.store[this.ShopID].itemType == item.ItemType.Potion)
-					{
-						if (this.num > this.store[this.ShopID].itemMaxNum)
-						{
-							this.NumInput.GetComponentInChildren<UIInput>().value = this.store[this.ShopID].itemMaxNum.ToString();
-							return;
-						}
-					}
-					else if (this.num > Singleton.inventory.GetSoltNum())
-					{
-						this.NumInput.GetComponentInChildren<UIInput>().value = Singleton.inventory.GetSoltNum().ToString();
-					}
+					Singleton.inventory.AddItem(store[ID].itemID);
+					Tools.instance.getPlayer().addItem(store[ID].itemID, store[ID].Seid);
 				}
+				Singleton.money.Set_money(Singleton.money.money - store[ID].itemPrice * num);
 			}
-		}
-
-		// Token: 0x06004B15 RID: 19221 RVA: 0x001FF0C6 File Offset: 0x001FD2C6
-		private void CancelClick(GameObject button)
-		{
-			this.HideNumInput();
-		}
-
-		// Token: 0x06004B16 RID: 19222 RVA: 0x001FF0CE File Offset: 0x001FD2CE
-		private void initStore()
-		{
-			base.GetComponentInChildren<UIGrid>().repositionNow = true;
-			base.GetComponentInChildren<UIScrollView>().Press(true);
-			this.StoreUI.SetActive(false);
-			this.Notice.SetActive(false);
-		}
-
-		// Token: 0x06004B17 RID: 19223 RVA: 0x00004095 File Offset: 0x00002295
-		private void OnGUI()
-		{
-		}
-
-		// Token: 0x06004B18 RID: 19224 RVA: 0x001FF100 File Offset: 0x001FD300
-		private void Show()
-		{
-			this.Show_Store = !this.Show_Store;
-			if (!this.Show_Store)
+			else
 			{
-				Singleton.inventory.showTooltip = false;
+				((MonoBehaviour)this).StartCoroutine(ShowNotice("金币不足,无法购买"));
 			}
-			if (this.Show_Store)
-			{
-				base.transform.Find("Win").position = base.transform.position;
-			}
-			this.StoreUI.SetActive(this.Show_Store);
-			Singleton.UI.UI_Top(this.StoreUI.transform.parent);
 		}
-
-		// Token: 0x06004B19 RID: 19225 RVA: 0x001FF182 File Offset: 0x001FD382
-		public void ShowNumInput(int id)
+		else
 		{
-			this.NumInput.SetActive(true);
-			this.ShopID = id;
-			if (this.store[id].itemType != item.ItemType.Potion)
-			{
-				this.NumInput.GetComponentInChildren<UIInput>().value = "1";
-			}
+			((MonoBehaviour)this).StartCoroutine(ShowNotice("背包已满"));
 		}
+	}
 
-		// Token: 0x06004B1A RID: 19226 RVA: 0x001FF1C0 File Offset: 0x001FD3C0
-		public void HideNumInput()
-		{
-			this.NumInput.SetActive(false);
-		}
-
-		// Token: 0x06004B1B RID: 19227 RVA: 0x001FF1D0 File Offset: 0x001FD3D0
-		public void Shop_Item(int ID)
-		{
-			if (Singleton.inventory.is_Full(this.store[ID], this.num))
-			{
-				base.StartCoroutine(this.ShowNotice("背包已满"));
-				return;
-			}
-			if (Singleton.money.money >= this.store[ID].itemPrice * this.num)
-			{
-				for (int i = 0; i < this.num; i++)
-				{
-					Singleton.inventory.AddItem(this.store[ID].itemID);
-					Tools.instance.getPlayer().addItem(this.store[ID].itemID, this.store[ID].Seid, 1);
-				}
-				Singleton.money.Set_money(Singleton.money.money - this.store[ID].itemPrice * this.num, false);
-				return;
-			}
-			base.StartCoroutine(this.ShowNotice("金币不足,无法购买"));
-		}
-
-		// Token: 0x06004B1C RID: 19228 RVA: 0x001FF2D7 File Offset: 0x001FD4D7
-		private IEnumerator ShowNotice(string s)
-		{
-			this.Notice.SetActive(true);
-			this.Notice.GetComponentInChildren<UILabel>().text = "提示:" + s;
-			yield return new WaitForSeconds(3f);
-			this.Notice.SetActive(false);
-			yield break;
-		}
-
-		// Token: 0x04004A39 RID: 19001
-		public List<item> store = new List<item>();
-
-		// Token: 0x04004A3A RID: 19002
-		public GameObject StoreUI;
-
-		// Token: 0x04004A3B RID: 19003
-		public GameObject NumInput;
-
-		// Token: 0x04004A3C RID: 19004
-		public GameObject Sure;
-
-		// Token: 0x04004A3D RID: 19005
-		public GameObject Cancel;
-
-		// Token: 0x04004A3E RID: 19006
-		public GameObject Notice;
-
-		// Token: 0x04004A3F RID: 19007
-		private ItemDatebase datebase;
-
-		// Token: 0x04004A40 RID: 19008
-		private bool Show_Store;
-
-		// Token: 0x04004A41 RID: 19009
-		private int ShopID;
-
-		// Token: 0x04004A42 RID: 19010
-		private int num = 1;
+	private IEnumerator ShowNotice(string s)
+	{
+		Notice.SetActive(true);
+		Notice.GetComponentInChildren<UILabel>().text = "提示:" + s;
+		yield return (object)new WaitForSeconds(3f);
+		Notice.SetActive(false);
 	}
 }

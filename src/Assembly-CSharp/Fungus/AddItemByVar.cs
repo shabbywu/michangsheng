@@ -1,61 +1,50 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Add", "AddItemByVar", "增加物品", 0)]
+[AddComponentMenu("")]
+public class AddItemByVar : Command
 {
-	// Token: 0x02000F2D RID: 3885
-	[CommandInfo("YSNew/Add", "AddItemByVar", "增加物品", 0)]
-	[AddComponentMenu("")]
-	public class AddItemByVar : Command
+	[Tooltip("增加物品的ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable ItemID;
+
+	[Tooltip("增加物品的数量")]
+	[SerializeField]
+	protected int ItemNum;
+
+	[Tooltip("增加物品的数量(如果为Null则使用数字)")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable ItemNumVar;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006DFC RID: 28156 RVA: 0x002A4144 File Offset: 0x002A2344
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		int num = ItemNum;
+		if ((Object)(object)ItemNumVar != (Object)null)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			int num = this.ItemNum;
-			if (this.ItemNumVar != null)
-			{
-				num = this.ItemNumVar.Value;
-			}
-			if (num > 0)
-			{
-				player.addItem(this.ItemID.Value, num, Tools.CreateItemSeid(this.ItemID.Value), true);
-			}
-			else
-			{
-				player.removeItem(this.ItemID.Value, Mathf.Abs(num));
-			}
-			this.Continue();
+			num = ItemNumVar.Value;
 		}
-
-		// Token: 0x06006DFD RID: 28157 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		if (num > 0)
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			player.addItem(ItemID.Value, num, Tools.CreateItemSeid(ItemID.Value), ShowText: true);
 		}
-
-		// Token: 0x04005B6C RID: 23404
-		[Tooltip("增加物品的ID")]
-		[VariableProperty(new Type[]
+		else
 		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable ItemID;
+			player.removeItem(ItemID.Value, Mathf.Abs(num));
+		}
+		Continue();
+	}
 
-		// Token: 0x04005B6D RID: 23405
-		[Tooltip("增加物品的数量")]
-		[SerializeField]
-		protected int ItemNum;
-
-		// Token: 0x04005B6E RID: 23406
-		[Tooltip("增加物品的数量(如果为Null则使用数字)")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable ItemNumVar;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

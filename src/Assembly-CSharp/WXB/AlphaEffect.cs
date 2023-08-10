@@ -1,69 +1,60 @@
-﻿using System;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class AlphaEffect : IEffect
 {
-	// Token: 0x0200067F RID: 1663
-	public class AlphaEffect : IEffect
+	protected float last_update_time = -1f;
+
+	protected bool isFoward;
+
+	protected float space_timer = 0.05f;
+
+	protected float alpha = 1f;
+
+	public void UpdateEffect(Draw draw, float deltaTime)
 	{
-		// Token: 0x060034CA RID: 13514 RVA: 0x0016EFD0 File Offset: 0x0016D1D0
-		public void UpdateEffect(Draw draw, float deltaTime)
+		if (last_update_time == -1f)
 		{
-			if (this.last_update_time == -1f)
-			{
-				this.last_update_time = Time.realtimeSinceStartup;
-				return;
-			}
-			float realtimeSinceStartup = Time.realtimeSinceStartup;
-			float num = realtimeSinceStartup - this.last_update_time;
-			if (num <= this.space_timer)
-			{
-				return;
-			}
-			this.space_timer = 0.05f;
-			num = this.space_timer;
-			this.last_update_time = realtimeSinceStartup;
-			if (this.isFoward)
-			{
-				this.alpha += num;
-				if (this.alpha > 1f)
-				{
-					this.alpha = 1f;
-					this.isFoward = false;
-					this.space_timer = 0.5f;
-				}
-			}
-			else
-			{
-				this.alpha -= num;
-				if (this.alpha < 0f)
-				{
-					this.alpha = -this.alpha;
-					this.isFoward = true;
-				}
-			}
-			draw.canvasRenderer.SetAlpha(this.alpha);
+			last_update_time = Time.realtimeSinceStartup;
+			return;
 		}
-
-		// Token: 0x060034CB RID: 13515 RVA: 0x0016F0AA File Offset: 0x0016D2AA
-		public void Release()
+		float realtimeSinceStartup = Time.realtimeSinceStartup;
+		float num = realtimeSinceStartup - last_update_time;
+		if (num <= space_timer)
 		{
-			this.last_update_time = -1f;
-			this.isFoward = false;
-			this.space_timer = 0.05f;
-			this.alpha = 1f;
+			return;
 		}
+		space_timer = 0.05f;
+		num = space_timer;
+		last_update_time = realtimeSinceStartup;
+		if (isFoward)
+		{
+			alpha += num;
+			if (alpha > 1f)
+			{
+				alpha = 1f;
+				isFoward = false;
+				space_timer = 0.5f;
+			}
+		}
+		else
+		{
+			alpha -= num;
+			if (alpha < 0f)
+			{
+				alpha = 0f - alpha;
+				isFoward = true;
+			}
+		}
+		draw.canvasRenderer.SetAlpha(alpha);
+	}
 
-		// Token: 0x04002EBD RID: 11965
-		protected float last_update_time = -1f;
-
-		// Token: 0x04002EBE RID: 11966
-		protected bool isFoward;
-
-		// Token: 0x04002EBF RID: 11967
-		protected float space_timer = 0.05f;
-
-		// Token: 0x04002EC0 RID: 11968
-		protected float alpha = 1f;
+	public void Release()
+	{
+		last_update_time = -1f;
+		isFoward = false;
+		space_timer = 0.05f;
+		alpha = 1f;
 	}
 }

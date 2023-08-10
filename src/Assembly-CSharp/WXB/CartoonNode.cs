@@ -1,27 +1,22 @@
-﻿using System;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class CartoonNode : RectNode
 {
-	// Token: 0x020006A5 RID: 1701
-	public class CartoonNode : RectNode
+	public Cartoon cartoon;
+
+	public override float getWidth()
 	{
-		// Token: 0x060035B7 RID: 13751 RVA: 0x00171D5A File Offset: 0x0016FF5A
-		public override float getWidth()
-		{
-			return (float)((int)(this.width + this.cartoon.space));
-		}
+		return (int)(width + cartoon.space);
+	}
 
-		// Token: 0x060035B8 RID: 13752 RVA: 0x00171D70 File Offset: 0x0016FF70
-		protected override void OnRectRender(RenderCache cache, Line line, Rect rect)
-		{
-			float space = this.cartoon.space;
-			rect.x += space / 2f;
-			rect.width -= space;
-			cache.cacheCartoon(line, this, this.cartoon, rect);
-		}
-
-		// Token: 0x04002F1C RID: 12060
-		public Cartoon cartoon;
+	protected override void OnRectRender(RenderCache cache, Line line, Rect rect)
+	{
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		float space = cartoon.space;
+		((Rect)(ref rect)).x = ((Rect)(ref rect)).x + space / 2f;
+		((Rect)(ref rect)).width = ((Rect)(ref rect)).width - space;
+		cache.cacheCartoon(line, this, cartoon, rect);
 	}
 }

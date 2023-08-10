@@ -1,72 +1,63 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E3 RID: 1251
 public class ObjLeaderboard : MonoBehaviour
 {
-	// Token: 0x06002871 RID: 10353 RVA: 0x00132390 File Offset: 0x00130590
+	public static bool Leaderboard;
+
+	public static SwipeControlLeaderboard swipeCtrl;
+
+	public Transform[] obj = (Transform[])(object)new Transform[0];
+
+	public float minXPos;
+
+	public float maxXPos = 55f;
+
+	private float xDist;
+
+	private float xDistFactor;
+
+	private float swipeSmoothFactor = 1f;
+
+	private float rememberYPos;
+
 	private void Awake()
 	{
-		ObjLeaderboard.Leaderboard = false;
+		Leaderboard = false;
 	}
 
-	// Token: 0x06002872 RID: 10354 RVA: 0x00132398 File Offset: 0x00130598
 	private void Start()
 	{
-		this.xDist = this.maxXPos - this.minXPos;
-		this.xDistFactor = 1f / this.xDist;
-		if (!ObjLeaderboard.swipeCtrl)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		xDist = maxXPos - minXPos;
+		xDistFactor = 1f / xDist;
+		if (!Object.op_Implicit((Object)(object)swipeCtrl))
 		{
-			ObjLeaderboard.swipeCtrl = base.gameObject.AddComponent<SwipeControlLeaderboard>();
+			swipeCtrl = ((Component)this).gameObject.AddComponent<SwipeControlLeaderboard>();
 		}
-		ObjLeaderboard.swipeCtrl.skipAutoSetup = true;
-		ObjLeaderboard.swipeCtrl.clickEdgeToSwitch = false;
-		ObjLeaderboard.swipeCtrl.SetMouseRect(new Rect(0f, 0f, (float)Screen.width, (float)Screen.height));
-		ObjLeaderboard.swipeCtrl.maxValue = this.obj.Length - 1;
-		ObjLeaderboard.swipeCtrl.currentValue = this.obj.Length - 2;
-		ObjLeaderboard.swipeCtrl.startValue = this.obj.Length - 2;
-		ObjLeaderboard.swipeCtrl.partWidth = (float)(Screen.width / ObjLeaderboard.swipeCtrl.maxValue);
-		ObjLeaderboard.swipeCtrl.Setup();
-		this.swipeSmoothFactor = 1f / (float)ObjLeaderboard.swipeCtrl.maxValue;
-		this.rememberYPos = this.obj[0].position.y;
+		swipeCtrl.skipAutoSetup = true;
+		swipeCtrl.clickEdgeToSwitch = false;
+		swipeCtrl.SetMouseRect(new Rect(0f, 0f, (float)Screen.width, (float)Screen.height));
+		swipeCtrl.maxValue = obj.Length - 1;
+		swipeCtrl.currentValue = obj.Length - 2;
+		swipeCtrl.startValue = obj.Length - 2;
+		swipeCtrl.partWidth = Screen.width / swipeCtrl.maxValue;
+		swipeCtrl.Setup();
+		swipeSmoothFactor = 1f / (float)swipeCtrl.maxValue;
+		rememberYPos = obj[0].position.y;
 	}
 
-	// Token: 0x06002873 RID: 10355 RVA: 0x001324B4 File Offset: 0x001306B4
 	private void Update()
 	{
-		if (ObjLeaderboard.Leaderboard)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		if (Leaderboard)
 		{
-			for (int i = 0; i < this.obj.Length; i++)
+			for (int i = 0; i < obj.Length; i++)
 			{
-				this.obj[i].position = new Vector3(this.obj[i].position.x, this.minXPos - (float)i * (this.xDist * this.swipeSmoothFactor) - ObjLeaderboard.swipeCtrl.smoothValue * this.swipeSmoothFactor * this.xDist, this.obj[i].position.z);
+				obj[i].position = new Vector3(obj[i].position.x, minXPos - (float)i * (xDist * swipeSmoothFactor) - swipeCtrl.smoothValue * swipeSmoothFactor * xDist, obj[i].position.z);
 			}
 		}
 	}
-
-	// Token: 0x040023AA RID: 9130
-	public static bool Leaderboard;
-
-	// Token: 0x040023AB RID: 9131
-	public static SwipeControlLeaderboard swipeCtrl;
-
-	// Token: 0x040023AC RID: 9132
-	public Transform[] obj = new Transform[0];
-
-	// Token: 0x040023AD RID: 9133
-	public float minXPos;
-
-	// Token: 0x040023AE RID: 9134
-	public float maxXPos = 55f;
-
-	// Token: 0x040023AF RID: 9135
-	private float xDist;
-
-	// Token: 0x040023B0 RID: 9136
-	private float xDistFactor;
-
-	// Token: 0x040023B1 RID: 9137
-	private float swipeSmoothFactor = 1f;
-
-	// Token: 0x040023B2 RID: 9138
-	private float rememberYPos;
 }

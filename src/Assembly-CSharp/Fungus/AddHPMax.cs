@@ -1,34 +1,29 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Add", "AddHPMax", "增加生命最大值", 0)]
+[AddComponentMenu("")]
+public class AddHPMax : Command
 {
-	// Token: 0x02000F2B RID: 3883
-	[CommandInfo("YSNew/Add", "AddHPMax", "增加生命最大值", 0)]
-	[AddComponentMenu("")]
-	public class AddHPMax : Command
+	[Tooltip("增加经验的数量")]
+	[SerializeField]
+	protected int AddHPMaxNum;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006DF4 RID: 28148 RVA: 0x002A40B7 File Offset: 0x002A22B7
-		public override void OnEnter()
-		{
-			Tools.instance.getPlayer().AllMapAddHPMax(this.AddHPMaxNum);
-			this.Continue();
-		}
+		Tools.instance.getPlayer().AllMapAddHPMax(AddHPMaxNum);
+		Continue();
+	}
 
-		// Token: 0x06006DF5 RID: 28149 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006DF6 RID: 28150 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005B68 RID: 23400
-		[Tooltip("增加经验的数量")]
-		[SerializeField]
-		protected int AddHPMaxNum;
+	public override void OnReset()
+	{
 	}
 }

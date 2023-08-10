@@ -1,1647 +1,1633 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SoftMasking.Extensions;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.Sprites;
 using UnityEngine.UI;
 
-namespace SoftMasking
+namespace SoftMasking;
+
+[ExecuteInEditMode]
+[DisallowMultipleComponent]
+[AddComponentMenu("UI/Soft Mask", 14)]
+[RequireComponent(typeof(RectTransform))]
+[HelpURL("https://docs.google.com/document/d/1xFZQGn_odhTCokMFR0LyCPXWtqWXN-bBGVS9GETglx8")]
+public class SoftMask : UIBehaviour, ISoftMask, ICanvasRaycastFilter
 {
-	// Token: 0x020006E0 RID: 1760
-	[ExecuteInEditMode]
-	[DisallowMultipleComponent]
-	[AddComponentMenu("UI/Soft Mask", 14)]
-	[RequireComponent(typeof(RectTransform))]
-	[HelpURL("https://docs.google.com/document/d/1xFZQGn_odhTCokMFR0LyCPXWtqWXN-bBGVS9GETglx8")]
-	public class SoftMask : UIBehaviour, ISoftMask, ICanvasRaycastFilter
+	[Serializable]
+	public enum MaskSource
 	{
-		// Token: 0x06003878 RID: 14456 RVA: 0x00183844 File Offset: 0x00181A44
-		public SoftMask()
+		Graphic,
+		Sprite,
+		Texture
+	}
+
+	[Serializable]
+	public enum BorderMode
+	{
+		Simple,
+		Sliced,
+		Tiled
+	}
+
+	[Serializable]
+	[Flags]
+	public enum Errors
+	{
+		NoError = 0,
+		UnsupportedShaders = 1,
+		NestedMasks = 2,
+		TightPackedSprite = 4,
+		AlphaSplitSprite = 8,
+		UnsupportedImageType = 0x10,
+		UnreadableTexture = 0x20,
+		UnreadableRenderTexture = 0x40
+	}
+
+	private struct SourceParameters
+	{
+		public Image image;
+
+		public Sprite sprite;
+
+		public BorderMode spriteBorderMode;
+
+		public float spritePixelsPerUnit;
+
+		public Texture texture;
+
+		public Rect textureUVRect;
+	}
+
+	private class MaterialReplacerImpl : IMaterialReplacer
+	{
+		private readonly SoftMask _owner;
+
+		public int order => 0;
+
+		public MaterialReplacerImpl(SoftMask owner)
 		{
-			MaterialReplacerChain replacer = new MaterialReplacerChain(MaterialReplacer.globalReplacers, new SoftMask.MaterialReplacerImpl(this));
-			this._materials = new MaterialReplacements(replacer, delegate(Material m)
-			{
-				this._parameters.Apply(m);
-			});
-			this._warningReporter = new SoftMask.WarningReporter(this);
+			_owner = owner;
 		}
 
-		// Token: 0x17000584 RID: 1412
-		// (get) Token: 0x06003879 RID: 14457 RVA: 0x001838AD File Offset: 0x00181AAD
-		// (set) Token: 0x0600387A RID: 14458 RVA: 0x001838B5 File Offset: 0x00181AB5
-		public Shader defaultShader
+		public Material Replace(Material original)
 		{
-			get
+			//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+			//IL_004c: Expected O, but got Unknown
+			if ((Object)(object)original == (Object)null || original.HasDefaultUIShader())
 			{
-				return this._defaultShader;
+				return Replace(original, _owner._defaultShader);
 			}
-			set
+			if (original.HasDefaultETC1UIShader())
 			{
-				this.SetShader(ref this._defaultShader, value, true);
+				return Replace(original, _owner._defaultETC1Shader);
 			}
-		}
-
-		// Token: 0x17000585 RID: 1413
-		// (get) Token: 0x0600387B RID: 14459 RVA: 0x001838C5 File Offset: 0x00181AC5
-		// (set) Token: 0x0600387C RID: 14460 RVA: 0x001838CD File Offset: 0x00181ACD
-		public Shader defaultETC1Shader
-		{
-			get
+			if (original.SupportsSoftMask())
 			{
-				return this._defaultETC1Shader;
-			}
-			set
-			{
-				this.SetShader(ref this._defaultETC1Shader, value, false);
-			}
-		}
-
-		// Token: 0x17000586 RID: 1414
-		// (get) Token: 0x0600387D RID: 14461 RVA: 0x001838DD File Offset: 0x00181ADD
-		// (set) Token: 0x0600387E RID: 14462 RVA: 0x001838E5 File Offset: 0x00181AE5
-		public SoftMask.MaskSource source
-		{
-			get
-			{
-				return this._source;
-			}
-			set
-			{
-				if (this._source != value)
-				{
-					this.Set<SoftMask.MaskSource>(ref this._source, value);
-				}
-			}
-		}
-
-		// Token: 0x17000587 RID: 1415
-		// (get) Token: 0x0600387F RID: 14463 RVA: 0x001838FD File Offset: 0x00181AFD
-		// (set) Token: 0x06003880 RID: 14464 RVA: 0x00183905 File Offset: 0x00181B05
-		public RectTransform separateMask
-		{
-			get
-			{
-				return this._separateMask;
-			}
-			set
-			{
-				if (this._separateMask != value)
-				{
-					this.Set<RectTransform>(ref this._separateMask, value);
-					this._graphic = null;
-					this._maskTransform = null;
-				}
-			}
-		}
-
-		// Token: 0x17000588 RID: 1416
-		// (get) Token: 0x06003881 RID: 14465 RVA: 0x00183930 File Offset: 0x00181B30
-		// (set) Token: 0x06003882 RID: 14466 RVA: 0x00183938 File Offset: 0x00181B38
-		public Sprite sprite
-		{
-			get
-			{
-				return this._sprite;
-			}
-			set
-			{
-				if (this._sprite != value)
-				{
-					this.Set<Sprite>(ref this._sprite, value);
-				}
-			}
-		}
-
-		// Token: 0x17000589 RID: 1417
-		// (get) Token: 0x06003883 RID: 14467 RVA: 0x00183955 File Offset: 0x00181B55
-		// (set) Token: 0x06003884 RID: 14468 RVA: 0x0018395D File Offset: 0x00181B5D
-		public SoftMask.BorderMode spriteBorderMode
-		{
-			get
-			{
-				return this._spriteBorderMode;
-			}
-			set
-			{
-				if (this._spriteBorderMode != value)
-				{
-					this.Set<SoftMask.BorderMode>(ref this._spriteBorderMode, value);
-				}
-			}
-		}
-
-		// Token: 0x1700058A RID: 1418
-		// (get) Token: 0x06003885 RID: 14469 RVA: 0x00183975 File Offset: 0x00181B75
-		// (set) Token: 0x06003886 RID: 14470 RVA: 0x0018397D File Offset: 0x00181B7D
-		public float spritePixelsPerUnitMultiplier
-		{
-			get
-			{
-				return this._spritePixelsPerUnitMultiplier;
-			}
-			set
-			{
-				if (this._spritePixelsPerUnitMultiplier != value)
-				{
-					this.Set<float>(ref this._spritePixelsPerUnitMultiplier, SoftMask.ClampPixelsPerUnitMultiplier(value));
-				}
-			}
-		}
-
-		// Token: 0x1700058B RID: 1419
-		// (get) Token: 0x06003887 RID: 14471 RVA: 0x0018399A File Offset: 0x00181B9A
-		// (set) Token: 0x06003888 RID: 14472 RVA: 0x001839A7 File Offset: 0x00181BA7
-		public Texture2D texture
-		{
-			get
-			{
-				return this._texture as Texture2D;
-			}
-			set
-			{
-				if (this._texture != value)
-				{
-					this.Set<Texture>(ref this._texture, value);
-				}
-			}
-		}
-
-		// Token: 0x1700058C RID: 1420
-		// (get) Token: 0x06003889 RID: 14473 RVA: 0x001839C4 File Offset: 0x00181BC4
-		// (set) Token: 0x0600388A RID: 14474 RVA: 0x001839A7 File Offset: 0x00181BA7
-		public RenderTexture renderTexture
-		{
-			get
-			{
-				return this._texture as RenderTexture;
-			}
-			set
-			{
-				if (this._texture != value)
-				{
-					this.Set<Texture>(ref this._texture, value);
-				}
-			}
-		}
-
-		// Token: 0x1700058D RID: 1421
-		// (get) Token: 0x0600388B RID: 14475 RVA: 0x001839D1 File Offset: 0x00181BD1
-		// (set) Token: 0x0600388C RID: 14476 RVA: 0x001839D9 File Offset: 0x00181BD9
-		public Rect textureUVRect
-		{
-			get
-			{
-				return this._textureUVRect;
-			}
-			set
-			{
-				if (this._textureUVRect != value)
-				{
-					this.Set<Rect>(ref this._textureUVRect, value);
-				}
-			}
-		}
-
-		// Token: 0x1700058E RID: 1422
-		// (get) Token: 0x0600388D RID: 14477 RVA: 0x001839F6 File Offset: 0x00181BF6
-		// (set) Token: 0x0600388E RID: 14478 RVA: 0x001839FE File Offset: 0x00181BFE
-		public Color channelWeights
-		{
-			get
-			{
-				return this._channelWeights;
-			}
-			set
-			{
-				if (this._channelWeights != value)
-				{
-					this.Set<Color>(ref this._channelWeights, value);
-				}
-			}
-		}
-
-		// Token: 0x1700058F RID: 1423
-		// (get) Token: 0x0600388F RID: 14479 RVA: 0x00183A1B File Offset: 0x00181C1B
-		// (set) Token: 0x06003890 RID: 14480 RVA: 0x00183A23 File Offset: 0x00181C23
-		public float raycastThreshold
-		{
-			get
-			{
-				return this._raycastThreshold;
-			}
-			set
-			{
-				this._raycastThreshold = value;
-			}
-		}
-
-		// Token: 0x17000590 RID: 1424
-		// (get) Token: 0x06003891 RID: 14481 RVA: 0x00183A2C File Offset: 0x00181C2C
-		// (set) Token: 0x06003892 RID: 14482 RVA: 0x00183A34 File Offset: 0x00181C34
-		public bool invertMask
-		{
-			get
-			{
-				return this._invertMask;
-			}
-			set
-			{
-				if (this._invertMask != value)
-				{
-					this.Set<bool>(ref this._invertMask, value);
-				}
-			}
-		}
-
-		// Token: 0x17000591 RID: 1425
-		// (get) Token: 0x06003893 RID: 14483 RVA: 0x00183A4C File Offset: 0x00181C4C
-		// (set) Token: 0x06003894 RID: 14484 RVA: 0x00183A54 File Offset: 0x00181C54
-		public bool invertOutsides
-		{
-			get
-			{
-				return this._invertOutsides;
-			}
-			set
-			{
-				if (this._invertOutsides != value)
-				{
-					this.Set<bool>(ref this._invertOutsides, value);
-				}
-			}
-		}
-
-		// Token: 0x17000592 RID: 1426
-		// (get) Token: 0x06003895 RID: 14485 RVA: 0x00183A6C File Offset: 0x00181C6C
-		public bool isUsingRaycastFiltering
-		{
-			get
-			{
-				return this._raycastThreshold > 0f;
-			}
-		}
-
-		// Token: 0x17000593 RID: 1427
-		// (get) Token: 0x06003896 RID: 14486 RVA: 0x00183A7B File Offset: 0x00181C7B
-		public bool isMaskingEnabled
-		{
-			get
-			{
-				return base.isActiveAndEnabled && this.canvas;
-			}
-		}
-
-		// Token: 0x06003897 RID: 14487 RVA: 0x00183A94 File Offset: 0x00181C94
-		public SoftMask.Errors PollErrors()
-		{
-			return new SoftMask.Diagnostics(this).PollErrors();
-		}
-
-		// Token: 0x06003898 RID: 14488 RVA: 0x00183AB0 File Offset: 0x00181CB0
-		public bool IsRaycastLocationValid(Vector2 sp, Camera cam)
-		{
-			Vector2 vector;
-			if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(this.maskTransform, sp, cam, ref vector))
-			{
-				return false;
-			}
-			if (!SoftMask.Mathr.Inside(vector, this.LocalMaskRect(Vector4.zero)))
-			{
-				return this._invertOutsides;
-			}
-			if (!this._parameters.texture)
-			{
-				return true;
-			}
-			if (!this.isUsingRaycastFiltering)
-			{
-				return true;
-			}
-			float num;
-			SoftMask.MaterialParameters.SampleMaskResult sampleMaskResult = this._parameters.SampleMask(vector, out num);
-			this._warningReporter.TextureRead(this._parameters.texture, sampleMaskResult);
-			if (sampleMaskResult != SoftMask.MaterialParameters.SampleMaskResult.Success)
-			{
-				return true;
-			}
-			if (this._invertMask)
-			{
-				num = 1f - num;
-			}
-			return num >= this._raycastThreshold;
-		}
-
-		// Token: 0x06003899 RID: 14489 RVA: 0x00183B4F File Offset: 0x00181D4F
-		protected override void Start()
-		{
-			base.Start();
-			this.WarnIfDefaultShaderIsNotSet();
-		}
-
-		// Token: 0x0600389A RID: 14490 RVA: 0x00183B5D File Offset: 0x00181D5D
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			this.SubscribeOnWillRenderCanvases();
-			this.SpawnMaskablesInChildren(base.transform);
-			this.FindGraphic();
-			if (this.isMaskingEnabled)
-			{
-				this.UpdateMaskParameters();
-			}
-			this.NotifyChildrenThatMaskMightChanged();
-		}
-
-		// Token: 0x0600389B RID: 14491 RVA: 0x00183B94 File Offset: 0x00181D94
-		protected override void OnDisable()
-		{
-			base.OnDisable();
-			this.UnsubscribeFromWillRenderCanvases();
-			if (this._graphic)
-			{
-				this._graphic.UnregisterDirtyVerticesCallback(new UnityAction(this.OnGraphicDirty));
-				this._graphic.UnregisterDirtyMaterialCallback(new UnityAction(this.OnGraphicDirty));
-				this._graphic = null;
-			}
-			this.NotifyChildrenThatMaskMightChanged();
-			this.DestroyMaterials();
-		}
-
-		// Token: 0x0600389C RID: 14492 RVA: 0x00183BFB File Offset: 0x00181DFB
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-			this._destroyed = true;
-			this.NotifyChildrenThatMaskMightChanged();
-		}
-
-		// Token: 0x0600389D RID: 14493 RVA: 0x00183C10 File Offset: 0x00181E10
-		protected virtual void LateUpdate()
-		{
-			bool isMaskingEnabled = this.isMaskingEnabled;
-			if (isMaskingEnabled)
-			{
-				if (this._maskingWasEnabled != isMaskingEnabled)
-				{
-					this.SpawnMaskablesInChildren(base.transform);
-				}
-				Graphic graphic = this._graphic;
-				this.FindGraphic();
-				if (this._lastMaskRect != this.maskTransform.rect || this._graphic != graphic)
-				{
-					this._dirty = true;
-				}
-			}
-			this._maskingWasEnabled = isMaskingEnabled;
-		}
-
-		// Token: 0x0600389E RID: 14494 RVA: 0x00183C78 File Offset: 0x00181E78
-		protected override void OnRectTransformDimensionsChange()
-		{
-			base.OnRectTransformDimensionsChange();
-			this._dirty = true;
-		}
-
-		// Token: 0x0600389F RID: 14495 RVA: 0x00183C87 File Offset: 0x00181E87
-		protected override void OnDidApplyAnimationProperties()
-		{
-			base.OnDidApplyAnimationProperties();
-			this._dirty = true;
-		}
-
-		// Token: 0x060038A0 RID: 14496 RVA: 0x00183C96 File Offset: 0x00181E96
-		private static float ClampPixelsPerUnitMultiplier(float value)
-		{
-			return Mathf.Max(value, 0.01f);
-		}
-
-		// Token: 0x060038A1 RID: 14497 RVA: 0x00183CA3 File Offset: 0x00181EA3
-		protected override void OnTransformParentChanged()
-		{
-			base.OnTransformParentChanged();
-			this._canvas = null;
-			this._dirty = true;
-		}
-
-		// Token: 0x060038A2 RID: 14498 RVA: 0x00183CB9 File Offset: 0x00181EB9
-		protected override void OnCanvasHierarchyChanged()
-		{
-			base.OnCanvasHierarchyChanged();
-			this._canvas = null;
-			this._dirty = true;
-			this.NotifyChildrenThatMaskMightChanged();
-		}
-
-		// Token: 0x060038A3 RID: 14499 RVA: 0x00183CD5 File Offset: 0x00181ED5
-		private void OnTransformChildrenChanged()
-		{
-			this.SpawnMaskablesInChildren(base.transform);
-		}
-
-		// Token: 0x060038A4 RID: 14500 RVA: 0x00183CE3 File Offset: 0x00181EE3
-		private void SubscribeOnWillRenderCanvases()
-		{
-			SoftMask.Touch<CanvasUpdateRegistry>(CanvasUpdateRegistry.instance);
-			Canvas.willRenderCanvases += new Canvas.WillRenderCanvases(this.OnWillRenderCanvases);
-		}
-
-		// Token: 0x060038A5 RID: 14501 RVA: 0x00183D01 File Offset: 0x00181F01
-		private void UnsubscribeFromWillRenderCanvases()
-		{
-			Canvas.willRenderCanvases -= new Canvas.WillRenderCanvases(this.OnWillRenderCanvases);
-		}
-
-		// Token: 0x060038A6 RID: 14502 RVA: 0x00183D14 File Offset: 0x00181F14
-		private void OnWillRenderCanvases()
-		{
-			if (this.isMaskingEnabled)
-			{
-				this.UpdateMaskParameters();
-			}
-		}
-
-		// Token: 0x060038A7 RID: 14503 RVA: 0x00183D24 File Offset: 0x00181F24
-		private static T Touch<T>(T obj)
-		{
-			return obj;
-		}
-
-		// Token: 0x17000594 RID: 1428
-		// (get) Token: 0x060038A8 RID: 14504 RVA: 0x00183D28 File Offset: 0x00181F28
-		private RectTransform maskTransform
-		{
-			get
-			{
-				if (!this._maskTransform)
-				{
-					return this._maskTransform = (this._separateMask ? this._separateMask : base.GetComponent<RectTransform>());
-				}
-				return this._maskTransform;
-			}
-		}
-
-		// Token: 0x17000595 RID: 1429
-		// (get) Token: 0x060038A9 RID: 14505 RVA: 0x00183D70 File Offset: 0x00181F70
-		private Canvas canvas
-		{
-			get
-			{
-				if (!this._canvas)
-				{
-					return this._canvas = this.NearestEnabledCanvas();
-				}
-				return this._canvas;
-			}
-		}
-
-		// Token: 0x17000596 RID: 1430
-		// (get) Token: 0x060038AA RID: 14506 RVA: 0x00183DA0 File Offset: 0x00181FA0
-		private bool isBasedOnGraphic
-		{
-			get
-			{
-				return this._source == SoftMask.MaskSource.Graphic;
-			}
-		}
-
-		// Token: 0x17000597 RID: 1431
-		// (get) Token: 0x060038AB RID: 14507 RVA: 0x00183DAB File Offset: 0x00181FAB
-		bool ISoftMask.isAlive
-		{
-			get
-			{
-				return this && !this._destroyed;
-			}
-		}
-
-		// Token: 0x060038AC RID: 14508 RVA: 0x00183DC0 File Offset: 0x00181FC0
-		Material ISoftMask.GetReplacement(Material original)
-		{
-			return this._materials.Get(original);
-		}
-
-		// Token: 0x060038AD RID: 14509 RVA: 0x00183DCE File Offset: 0x00181FCE
-		void ISoftMask.ReleaseReplacement(Material replacement)
-		{
-			this._materials.Release(replacement);
-		}
-
-		// Token: 0x060038AE RID: 14510 RVA: 0x00183DDC File Offset: 0x00181FDC
-		void ISoftMask.UpdateTransformChildren(Transform transform)
-		{
-			this.SpawnMaskablesInChildren(transform);
-		}
-
-		// Token: 0x060038AF RID: 14511 RVA: 0x00183DE5 File Offset: 0x00181FE5
-		private void OnGraphicDirty()
-		{
-			if (this.isBasedOnGraphic)
-			{
-				this._dirty = true;
-			}
-		}
-
-		// Token: 0x060038B0 RID: 14512 RVA: 0x00183DF8 File Offset: 0x00181FF8
-		private void FindGraphic()
-		{
-			if (!this._graphic && this.isBasedOnGraphic)
-			{
-				this._graphic = this.maskTransform.GetComponent<Graphic>();
-				if (this._graphic)
-				{
-					this._graphic.RegisterDirtyVerticesCallback(new UnityAction(this.OnGraphicDirty));
-					this._graphic.RegisterDirtyMaterialCallback(new UnityAction(this.OnGraphicDirty));
-				}
-			}
-		}
-
-		// Token: 0x060038B1 RID: 14513 RVA: 0x00183E68 File Offset: 0x00182068
-		private Canvas NearestEnabledCanvas()
-		{
-			Canvas[] componentsInParent = base.GetComponentsInParent<Canvas>(false);
-			for (int i = 0; i < componentsInParent.Length; i++)
-			{
-				if (componentsInParent[i].isActiveAndEnabled)
-				{
-					return componentsInParent[i];
-				}
+				return new Material(original);
 			}
 			return null;
 		}
 
-		// Token: 0x060038B2 RID: 14514 RVA: 0x00183E9C File Offset: 0x0018209C
-		private void UpdateMaskParameters()
+		private static Material Replace(Material original, Shader defaultReplacementShader)
 		{
-			if (this._dirty || this.maskTransform.hasChanged)
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			Material val = ((!Object.op_Implicit((Object)(object)defaultReplacementShader)) ? ((Material)null) : new Material(defaultReplacementShader));
+			if (Object.op_Implicit((Object)(object)val) && Object.op_Implicit((Object)(object)original))
 			{
-				this.CalculateMaskParameters();
-				this.maskTransform.hasChanged = false;
-				this._lastMaskRect = this.maskTransform.rect;
-				this._dirty = false;
+				val.CopyPropertiesFromMaterial(original);
 			}
-			this._materials.ApplyAll();
+			return val;
+		}
+	}
+
+	private static class Mathr
+	{
+		public static Vector4 ToVector(Rect r)
+		{
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector4(((Rect)(ref r)).xMin, ((Rect)(ref r)).yMin, ((Rect)(ref r)).xMax, ((Rect)(ref r)).yMax);
 		}
 
-		// Token: 0x060038B3 RID: 14515 RVA: 0x00183EF4 File Offset: 0x001820F4
-		private void SpawnMaskablesInChildren(Transform root)
+		public static Vector4 Div(Vector4 v, Vector2 s)
 		{
-			using (new ClearListAtExit<SoftMaskable>(SoftMask.s_maskables))
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector4(v.x / s.x, v.y / s.y, v.z / s.x, v.w / s.y);
+		}
+
+		public static Vector2 Div(Vector2 v, Vector2 s)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector2(v.x / s.x, v.y / s.y);
+		}
+
+		public static Vector4 Mul(Vector4 v, Vector2 s)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector4(v.x * s.x, v.y * s.y, v.z * s.x, v.w * s.y);
+		}
+
+		public static Vector2 Size(Vector4 r)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector2(r.z - r.x, r.w - r.y);
+		}
+
+		public static Vector4 Move(Vector4 v, Vector2 o)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector4(v.x + o.x, v.y + o.y, v.z + o.x, v.w + o.y);
+		}
+
+		public static Vector4 BorderOf(Vector4 outer, Vector4 inner)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector4(inner.x - outer.x, inner.y - outer.y, outer.z - inner.z, outer.w - inner.w);
+		}
+
+		public static Vector4 ApplyBorder(Vector4 v, Vector4 b)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector4(v.x + b.x, v.y + b.y, v.z - b.z, v.w - b.w);
+		}
+
+		public static Vector2 Min(Vector4 r)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector2(r.x, r.y);
+		}
+
+		public static Vector2 Max(Vector4 r)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector2(r.z, r.w);
+		}
+
+		public static Vector2 Remap(Vector2 c, Vector4 from, Vector4 to)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 s = Max(from) - Min(from);
+			Vector2 val = Max(to) - Min(to);
+			return Vector2.Scale(Div(c - Min(from), s), val) + Min(to);
+		}
+
+		public static bool Inside(Vector2 v, Vector4 r)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+			if (v.x >= r.x && v.y >= r.y && v.x <= r.z)
 			{
-				for (int i = 0; i < root.childCount; i++)
+				return v.y <= r.w;
+			}
+			return false;
+		}
+	}
+
+	private struct MaterialParameters
+	{
+		public enum SampleMaskResult
+		{
+			Success,
+			NonReadable,
+			NonTexture2D
+		}
+
+		private static class Ids
+		{
+			public static readonly int SoftMask = Shader.PropertyToID("_SoftMask");
+
+			public static readonly int SoftMask_Rect = Shader.PropertyToID("_SoftMask_Rect");
+
+			public static readonly int SoftMask_UVRect = Shader.PropertyToID("_SoftMask_UVRect");
+
+			public static readonly int SoftMask_ChannelWeights = Shader.PropertyToID("_SoftMask_ChannelWeights");
+
+			public static readonly int SoftMask_WorldToMask = Shader.PropertyToID("_SoftMask_WorldToMask");
+
+			public static readonly int SoftMask_BorderRect = Shader.PropertyToID("_SoftMask_BorderRect");
+
+			public static readonly int SoftMask_UVBorderRect = Shader.PropertyToID("_SoftMask_UVBorderRect");
+
+			public static readonly int SoftMask_TileRepeat = Shader.PropertyToID("_SoftMask_TileRepeat");
+
+			public static readonly int SoftMask_InvertMask = Shader.PropertyToID("_SoftMask_InvertMask");
+
+			public static readonly int SoftMask_InvertOutsides = Shader.PropertyToID("_SoftMask_InvertOutsides");
+		}
+
+		public Vector4 maskRect;
+
+		public Vector4 maskBorder;
+
+		public Vector4 maskRectUV;
+
+		public Vector4 maskBorderUV;
+
+		public Vector2 tileRepeat;
+
+		public Color maskChannelWeights;
+
+		public Matrix4x4 worldToMask;
+
+		public Texture texture;
+
+		public BorderMode borderMode;
+
+		public bool invertMask;
+
+		public bool invertOutsides;
+
+		public Texture activeTexture
+		{
+			get
+			{
+				if (!Object.op_Implicit((Object)(object)texture))
 				{
-					Transform child = root.GetChild(i);
-					child.GetComponents<SoftMaskable>(SoftMask.s_maskables);
-					if (SoftMask.s_maskables.Count == 0)
-					{
-						child.gameObject.AddComponent<SoftMaskable>();
-					}
+					return (Texture)(object)Texture2D.whiteTexture;
+				}
+				return texture;
+			}
+		}
+
+		public SampleMaskResult SampleMask(Vector2 localPos, out float mask)
+		{
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+			mask = 0f;
+			Texture obj = texture;
+			Texture2D val = (Texture2D)(object)((obj is Texture2D) ? obj : null);
+			if (!Object.op_Implicit((Object)(object)val))
+			{
+				return SampleMaskResult.NonTexture2D;
+			}
+			Vector2 val2 = XY2UV(localPos);
+			try
+			{
+				mask = MaskValue(val.GetPixelBilinear(val2.x, val2.y));
+				return SampleMaskResult.Success;
+			}
+			catch (UnityException)
+			{
+				return SampleMaskResult.NonReadable;
+			}
+		}
+
+		public void Apply(Material mat)
+		{
+			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+			mat.SetTexture(Ids.SoftMask, activeTexture);
+			mat.SetVector(Ids.SoftMask_Rect, maskRect);
+			mat.SetVector(Ids.SoftMask_UVRect, maskRectUV);
+			mat.SetColor(Ids.SoftMask_ChannelWeights, maskChannelWeights);
+			mat.SetMatrix(Ids.SoftMask_WorldToMask, worldToMask);
+			mat.SetFloat(Ids.SoftMask_InvertMask, (float)(invertMask ? 1 : 0));
+			mat.SetFloat(Ids.SoftMask_InvertOutsides, (float)(invertOutsides ? 1 : 0));
+			mat.EnableKeyword("SOFTMASK_SIMPLE", borderMode == BorderMode.Simple);
+			mat.EnableKeyword("SOFTMASK_SLICED", borderMode == BorderMode.Sliced);
+			mat.EnableKeyword("SOFTMASK_TILED", borderMode == BorderMode.Tiled);
+			if (borderMode != 0)
+			{
+				mat.SetVector(Ids.SoftMask_BorderRect, maskBorder);
+				mat.SetVector(Ids.SoftMask_UVBorderRect, maskBorderUV);
+				if (borderMode == BorderMode.Tiled)
+				{
+					mat.SetVector(Ids.SoftMask_TileRepeat, Vector4.op_Implicit(tileRepeat));
 				}
 			}
 		}
 
-		// Token: 0x060038B4 RID: 14516 RVA: 0x00183F6C File Offset: 0x0018216C
-		private void InvalidateChildren()
+		private Vector2 XY2UV(Vector2 localPos)
 		{
-			this.ForEachChildMaskable(delegate(SoftMaskable x)
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+			return (Vector2)(borderMode switch
 			{
-				x.Invalidate();
+				BorderMode.Simple => MapSimple(localPos), 
+				BorderMode.Sliced => MapBorder(localPos, repeat: false), 
+				BorderMode.Tiled => MapBorder(localPos, repeat: true), 
+				_ => MapSimple(localPos), 
 			});
 		}
 
-		// Token: 0x060038B5 RID: 14517 RVA: 0x00183F93 File Offset: 0x00182193
-		private void NotifyChildrenThatMaskMightChanged()
+		private Vector2 MapSimple(Vector2 localPos)
 		{
-			this.ForEachChildMaskable(delegate(SoftMaskable x)
-			{
-				x.MaskMightChanged();
-			});
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			return Mathr.Remap(localPos, maskRect, maskRectUV);
 		}
 
-		// Token: 0x060038B6 RID: 14518 RVA: 0x00183FBC File Offset: 0x001821BC
-		private void ForEachChildMaskable(Action<SoftMaskable> f)
+		private Vector2 MapBorder(Vector2 localPos, bool repeat)
 		{
-			base.transform.GetComponentsInChildren<SoftMaskable>(SoftMask.s_maskables);
-			using (new ClearListAtExit<SoftMaskable>(SoftMask.s_maskables))
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+			return new Vector2(Inset(localPos.x, maskRect.x, maskBorder.x, maskBorder.z, maskRect.z, maskRectUV.x, maskBorderUV.x, maskBorderUV.z, maskRectUV.z, repeat ? tileRepeat.x : 1f), Inset(localPos.y, maskRect.y, maskBorder.y, maskBorder.w, maskRect.w, maskRectUV.y, maskBorderUV.y, maskBorderUV.w, maskRectUV.w, repeat ? tileRepeat.y : 1f));
+		}
+
+		private float Inset(float v, float x1, float x2, float u1, float u2, float repeat = 1f)
+		{
+			float num = x2 - x1;
+			return Mathf.Lerp(u1, u2, (num != 0f) ? Frac((v - x1) / num * repeat) : 0f);
+		}
+
+		private float Inset(float v, float x1, float x2, float x3, float x4, float u1, float u2, float u3, float u4, float repeat = 1f)
+		{
+			if (v < x2)
 			{
-				for (int i = 0; i < SoftMask.s_maskables.Count; i++)
+				return Inset(v, x1, x2, u1, u2);
+			}
+			if (v < x3)
+			{
+				return Inset(v, x2, x3, u2, u3, repeat);
+			}
+			return Inset(v, x3, x4, u3, u4);
+		}
+
+		private float Frac(float v)
+		{
+			return v - Mathf.Floor(v);
+		}
+
+		private float MaskValue(Color mask)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+			Color val = mask * maskChannelWeights;
+			return val.a + val.r + val.g + val.b;
+		}
+	}
+
+	private struct Diagnostics
+	{
+		private SoftMask _softMask;
+
+		private Image image => _softMask.DeduceSourceParameters().image;
+
+		private Sprite sprite => _softMask.DeduceSourceParameters().sprite;
+
+		private Texture texture => _softMask.DeduceSourceParameters().texture;
+
+		public Diagnostics(SoftMask softMask)
+		{
+			_softMask = softMask;
+		}
+
+		public Errors PollErrors()
+		{
+			SoftMask softMask = _softMask;
+			Errors errors = Errors.NoError;
+			((Component)softMask).GetComponentsInChildren<SoftMaskable>(s_maskables);
+			using (new ClearListAtExit<SoftMaskable>(s_maskables))
+			{
+				if (s_maskables.Any((SoftMaskable m) => m.mask == softMask && m.shaderIsNotSupported))
 				{
-					SoftMaskable softMaskable = SoftMask.s_maskables[i];
-					if (softMaskable && softMaskable.gameObject != base.gameObject)
-					{
-						f(softMaskable);
-					}
+					errors |= Errors.UnsupportedShaders;
+				}
+			}
+			if (ThereAreNestedMasks())
+			{
+				errors |= Errors.NestedMasks;
+			}
+			errors |= CheckSprite(sprite);
+			errors |= CheckImage();
+			return errors | CheckTexture();
+		}
+
+		public static Errors CheckSprite(Sprite sprite)
+		{
+			//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+			Errors errors = Errors.NoError;
+			if (!Object.op_Implicit((Object)(object)sprite))
+			{
+				return errors;
+			}
+			if (sprite.packed && (int)sprite.packingMode == 0)
+			{
+				errors |= Errors.TightPackedSprite;
+			}
+			if (Object.op_Implicit((Object)(object)sprite.associatedAlphaSplitTexture))
+			{
+				errors |= Errors.AlphaSplitSprite;
+			}
+			return errors;
+		}
+
+		private bool ThereAreNestedMasks()
+		{
+			SoftMask softMask = _softMask;
+			bool flag = false;
+			using (new ClearListAtExit<SoftMask>(s_masks))
+			{
+				((Component)softMask).GetComponentsInParent<SoftMask>(false, s_masks);
+				flag |= s_masks.Any((SoftMask x) => AreCompeting(softMask, x));
+				((Component)softMask).GetComponentsInChildren<SoftMask>(false, s_masks);
+				return flag | s_masks.Any((SoftMask x) => AreCompeting(softMask, x));
+			}
+		}
+
+		private Errors CheckImage()
+		{
+			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+			Errors errors = Errors.NoError;
+			if (!_softMask.isBasedOnGraphic)
+			{
+				return errors;
+			}
+			if (Object.op_Implicit((Object)(object)image) && !IsImageTypeSupported(image.type))
+			{
+				errors |= Errors.UnsupportedImageType;
+			}
+			return errors;
+		}
+
+		private Errors CheckTexture()
+		{
+			Errors errors = Errors.NoError;
+			if (_softMask.isUsingRaycastFiltering && Object.op_Implicit((Object)(object)texture))
+			{
+				Texture obj = texture;
+				Texture2D val = (Texture2D)(object)((obj is Texture2D) ? obj : null);
+				if (!Object.op_Implicit((Object)(object)val))
+				{
+					errors |= Errors.UnreadableRenderTexture;
+				}
+				else if (!IsReadable(val))
+				{
+					errors |= Errors.UnreadableTexture;
+				}
+			}
+			return errors;
+		}
+
+		private static bool AreCompeting(SoftMask softMask, SoftMask other)
+		{
+			if (softMask.isMaskingEnabled && (Object)(object)softMask != (Object)(object)other && other.isMaskingEnabled && (Object)(object)softMask.canvas.rootCanvas == (Object)(object)other.canvas.rootCanvas)
+			{
+				return !SelectChild<SoftMask>(softMask, other).canvas.overrideSorting;
+			}
+			return false;
+		}
+
+		private static T SelectChild<T>(T first, T second) where T : Component
+		{
+			if (!((Component)first).transform.IsChildOf(((Component)second).transform))
+			{
+				return second;
+			}
+			return first;
+		}
+
+		private static bool IsReadable(Texture2D texture)
+		{
+			//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+			try
+			{
+				texture.GetPixel(0, 0);
+				return true;
+			}
+			catch (UnityException)
+			{
+				return false;
+			}
+		}
+	}
+
+	private struct WarningReporter
+	{
+		private Object _owner;
+
+		private Texture _lastReadTexture;
+
+		private Sprite _lastUsedSprite;
+
+		private Sprite _lastUsedImageSprite;
+
+		private Type _lastUsedImageType;
+
+		public WarningReporter(Object owner)
+		{
+			//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+			_owner = owner;
+			_lastReadTexture = null;
+			_lastUsedSprite = null;
+			_lastUsedImageSprite = null;
+			_lastUsedImageType = (Type)0;
+		}
+
+		public void TextureRead(Texture texture, MaterialParameters.SampleMaskResult sampleResult)
+		{
+			if (!((Object)(object)_lastReadTexture == (Object)(object)texture))
+			{
+				_lastReadTexture = texture;
+				switch (sampleResult)
+				{
+				case MaterialParameters.SampleMaskResult.NonReadable:
+					Debug.LogErrorFormat(_owner, "Raycast Threshold greater than 0 can't be used on Soft Mask with texture '{0}' because it's not readable. You can make the texture readable in the Texture Import Settings.", new object[1] { ((Object)texture).name });
+					break;
+				case MaterialParameters.SampleMaskResult.NonTexture2D:
+					Debug.LogErrorFormat(_owner, "Raycast Threshold greater than 0 can't be used on Soft Mask with texture '{0}' because it's not a Texture2D. Raycast Threshold may be used only with regular 2D textures.", new object[1] { ((Object)texture).name });
+					break;
 				}
 			}
 		}
 
-		// Token: 0x060038B7 RID: 14519 RVA: 0x00184048 File Offset: 0x00182248
-		private void DestroyMaterials()
+		public void SpriteUsed(Sprite sprite, Errors errors)
 		{
-			this._materials.DestroyAllAndClear();
+			if (!((Object)(object)_lastUsedSprite == (Object)(object)sprite))
+			{
+				_lastUsedSprite = sprite;
+				if ((errors & Errors.TightPackedSprite) != 0)
+				{
+					Debug.LogError((object)"SoftMask doesn't support tight packed sprites", _owner);
+				}
+				if ((errors & Errors.AlphaSplitSprite) != 0)
+				{
+					Debug.LogError((object)"SoftMask doesn't support sprites with an alpha split texture", _owner);
+				}
+			}
 		}
 
-		// Token: 0x060038B8 RID: 14520 RVA: 0x00184058 File Offset: 0x00182258
-		private SoftMask.SourceParameters DeduceSourceParameters()
+		public void ImageUsed(Image image)
 		{
-			SoftMask.SourceParameters result = default(SoftMask.SourceParameters);
-			switch (this._source)
+			//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+			//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+			if (!Object.op_Implicit((Object)(object)image))
 			{
-			case SoftMask.MaskSource.Graphic:
-				if (this._graphic is Image)
+				_lastUsedImageSprite = null;
+				_lastUsedImageType = (Type)0;
+			}
+			else if (!((Object)(object)_lastUsedImageSprite == (Object)(object)image.sprite) || _lastUsedImageType != image.type)
+			{
+				_lastUsedImageSprite = image.sprite;
+				_lastUsedImageType = image.type;
+				if (Object.op_Implicit((Object)(object)image) && !IsImageTypeSupported(image.type))
 				{
-					Image image = (Image)this._graphic;
-					Sprite sprite = image.sprite;
-					result.image = image;
-					result.sprite = sprite;
-					result.spriteBorderMode = SoftMask.ImageTypeToBorderMode(image.type);
-					if (sprite)
-					{
-						result.spritePixelsPerUnit = sprite.pixelsPerUnit;
-						result.texture = sprite.texture;
-					}
-					else
-					{
-						result.spritePixelsPerUnit = 100f;
-					}
+					Debug.LogErrorFormat(_owner, "SoftMask doesn't support image type {0}. Image type Simple will be used.", new object[1] { image.type });
 				}
-				else if (this._graphic is RawImage)
+			}
+		}
+	}
+
+	[SerializeField]
+	private Shader _defaultShader;
+
+	[SerializeField]
+	private Shader _defaultETC1Shader;
+
+	[SerializeField]
+	private MaskSource _source;
+
+	[SerializeField]
+	private RectTransform _separateMask;
+
+	[SerializeField]
+	private Sprite _sprite;
+
+	[SerializeField]
+	private BorderMode _spriteBorderMode;
+
+	[SerializeField]
+	private float _spritePixelsPerUnitMultiplier = 1f;
+
+	[SerializeField]
+	private Texture _texture;
+
+	[SerializeField]
+	private Rect _textureUVRect = DefaultUVRect;
+
+	[SerializeField]
+	private Color _channelWeights = MaskChannel.alpha;
+
+	[SerializeField]
+	private float _raycastThreshold;
+
+	[SerializeField]
+	private bool _invertMask;
+
+	[SerializeField]
+	private bool _invertOutsides;
+
+	private MaterialReplacements _materials;
+
+	private MaterialParameters _parameters;
+
+	private WarningReporter _warningReporter;
+
+	private Rect _lastMaskRect;
+
+	private bool _maskingWasEnabled;
+
+	private bool _destroyed;
+
+	private bool _dirty;
+
+	private RectTransform _maskTransform;
+
+	private Graphic _graphic;
+
+	private Canvas _canvas;
+
+	private static readonly Rect DefaultUVRect = new Rect(0f, 0f, 1f, 1f);
+
+	private const float DefaultPixelsPerUnit = 100f;
+
+	private static readonly List<SoftMask> s_masks = new List<SoftMask>();
+
+	private static readonly List<SoftMaskable> s_maskables = new List<SoftMaskable>();
+
+	public Shader defaultShader
+	{
+		get
+		{
+			return _defaultShader;
+		}
+		set
+		{
+			SetShader(ref _defaultShader, value);
+		}
+	}
+
+	public Shader defaultETC1Shader
+	{
+		get
+		{
+			return _defaultETC1Shader;
+		}
+		set
+		{
+			SetShader(ref _defaultETC1Shader, value, warnIfNotSet: false);
+		}
+	}
+
+	public MaskSource source
+	{
+		get
+		{
+			return _source;
+		}
+		set
+		{
+			if (_source != value)
+			{
+				Set(ref _source, value);
+			}
+		}
+	}
+
+	public RectTransform separateMask
+	{
+		get
+		{
+			return _separateMask;
+		}
+		set
+		{
+			if ((Object)(object)_separateMask != (Object)(object)value)
+			{
+				Set(ref _separateMask, value);
+				_graphic = null;
+				_maskTransform = null;
+			}
+		}
+	}
+
+	public Sprite sprite
+	{
+		get
+		{
+			return _sprite;
+		}
+		set
+		{
+			if ((Object)(object)_sprite != (Object)(object)value)
+			{
+				Set(ref _sprite, value);
+			}
+		}
+	}
+
+	public BorderMode spriteBorderMode
+	{
+		get
+		{
+			return _spriteBorderMode;
+		}
+		set
+		{
+			if (_spriteBorderMode != value)
+			{
+				Set(ref _spriteBorderMode, value);
+			}
+		}
+	}
+
+	public float spritePixelsPerUnitMultiplier
+	{
+		get
+		{
+			return _spritePixelsPerUnitMultiplier;
+		}
+		set
+		{
+			if (_spritePixelsPerUnitMultiplier != value)
+			{
+				Set(ref _spritePixelsPerUnitMultiplier, ClampPixelsPerUnitMultiplier(value));
+			}
+		}
+	}
+
+	public Texture2D texture
+	{
+		get
+		{
+			Texture obj = _texture;
+			return (Texture2D)(object)((obj is Texture2D) ? obj : null);
+		}
+		set
+		{
+			if ((Object)(object)_texture != (Object)(object)value)
+			{
+				Set(ref _texture, (Texture)(object)value);
+			}
+		}
+	}
+
+	public RenderTexture renderTexture
+	{
+		get
+		{
+			Texture obj = _texture;
+			return (RenderTexture)(object)((obj is RenderTexture) ? obj : null);
+		}
+		set
+		{
+			if ((Object)(object)_texture != (Object)(object)value)
+			{
+				Set(ref _texture, (Texture)(object)value);
+			}
+		}
+	}
+
+	public Rect textureUVRect
+	{
+		get
+		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return _textureUVRect;
+		}
+		set
+		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+			if (_textureUVRect != value)
+			{
+				Set(ref _textureUVRect, value);
+			}
+		}
+	}
+
+	public Color channelWeights
+	{
+		get
+		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return _channelWeights;
+		}
+		set
+		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+			if (_channelWeights != value)
+			{
+				Set(ref _channelWeights, value);
+			}
+		}
+	}
+
+	public float raycastThreshold
+	{
+		get
+		{
+			return _raycastThreshold;
+		}
+		set
+		{
+			_raycastThreshold = value;
+		}
+	}
+
+	public bool invertMask
+	{
+		get
+		{
+			return _invertMask;
+		}
+		set
+		{
+			if (_invertMask != value)
+			{
+				Set(ref _invertMask, value);
+			}
+		}
+	}
+
+	public bool invertOutsides
+	{
+		get
+		{
+			return _invertOutsides;
+		}
+		set
+		{
+			if (_invertOutsides != value)
+			{
+				Set(ref _invertOutsides, value);
+			}
+		}
+	}
+
+	public bool isUsingRaycastFiltering => _raycastThreshold > 0f;
+
+	public bool isMaskingEnabled
+	{
+		get
+		{
+			if (((Behaviour)this).isActiveAndEnabled)
+			{
+				return Object.op_Implicit((Object)(object)canvas);
+			}
+			return false;
+		}
+	}
+
+	private RectTransform maskTransform
+	{
+		get
+		{
+			if (!Object.op_Implicit((Object)(object)_maskTransform))
+			{
+				return _maskTransform = (Object.op_Implicit((Object)(object)_separateMask) ? _separateMask : ((Component)this).GetComponent<RectTransform>());
+			}
+			return _maskTransform;
+		}
+	}
+
+	private Canvas canvas
+	{
+		get
+		{
+			if (!Object.op_Implicit((Object)(object)_canvas))
+			{
+				return _canvas = NearestEnabledCanvas();
+			}
+			return _canvas;
+		}
+	}
+
+	private bool isBasedOnGraphic => _source == MaskSource.Graphic;
+
+	bool ISoftMask.isAlive
+	{
+		get
+		{
+			if (Object.op_Implicit((Object)(object)this))
+			{
+				return !_destroyed;
+			}
+			return false;
+		}
+	}
+
+	public SoftMask()
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		MaterialReplacerChain replacer = new MaterialReplacerChain(MaterialReplacer.globalReplacers, new MaterialReplacerImpl(this));
+		_materials = new MaterialReplacements(replacer, delegate(Material m)
+		{
+			_parameters.Apply(m);
+		});
+		_warningReporter = new WarningReporter((Object)(object)this);
+	}
+
+	public Errors PollErrors()
+	{
+		return new Diagnostics(this).PollErrors();
+	}
+
+	public bool IsRaycastLocationValid(Vector2 sp, Camera cam)
+	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = default(Vector2);
+		if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(maskTransform, sp, cam, ref val))
+		{
+			return false;
+		}
+		if (!Mathr.Inside(val, LocalMaskRect(Vector4.zero)))
+		{
+			return _invertOutsides;
+		}
+		if (!Object.op_Implicit((Object)(object)_parameters.texture))
+		{
+			return true;
+		}
+		if (!isUsingRaycastFiltering)
+		{
+			return true;
+		}
+		float mask;
+		MaterialParameters.SampleMaskResult sampleMaskResult = _parameters.SampleMask(val, out mask);
+		_warningReporter.TextureRead(_parameters.texture, sampleMaskResult);
+		if (sampleMaskResult != 0)
+		{
+			return true;
+		}
+		if (_invertMask)
+		{
+			mask = 1f - mask;
+		}
+		return mask >= _raycastThreshold;
+	}
+
+	protected override void Start()
+	{
+		((UIBehaviour)this).Start();
+		WarnIfDefaultShaderIsNotSet();
+	}
+
+	protected override void OnEnable()
+	{
+		((UIBehaviour)this).OnEnable();
+		SubscribeOnWillRenderCanvases();
+		SpawnMaskablesInChildren(((Component)this).transform);
+		FindGraphic();
+		if (isMaskingEnabled)
+		{
+			UpdateMaskParameters();
+		}
+		NotifyChildrenThatMaskMightChanged();
+	}
+
+	protected override void OnDisable()
+	{
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Expected O, but got Unknown
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Expected O, but got Unknown
+		((UIBehaviour)this).OnDisable();
+		UnsubscribeFromWillRenderCanvases();
+		if (Object.op_Implicit((Object)(object)_graphic))
+		{
+			_graphic.UnregisterDirtyVerticesCallback(new UnityAction(OnGraphicDirty));
+			_graphic.UnregisterDirtyMaterialCallback(new UnityAction(OnGraphicDirty));
+			_graphic = null;
+		}
+		NotifyChildrenThatMaskMightChanged();
+		DestroyMaterials();
+	}
+
+	protected override void OnDestroy()
+	{
+		((UIBehaviour)this).OnDestroy();
+		_destroyed = true;
+		NotifyChildrenThatMaskMightChanged();
+	}
+
+	protected virtual void LateUpdate()
+	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		bool flag = isMaskingEnabled;
+		if (flag)
+		{
+			if (_maskingWasEnabled != flag)
+			{
+				SpawnMaskablesInChildren(((Component)this).transform);
+			}
+			Graphic graphic = _graphic;
+			FindGraphic();
+			if (_lastMaskRect != maskTransform.rect || _graphic != graphic)
+			{
+				_dirty = true;
+			}
+		}
+		_maskingWasEnabled = flag;
+	}
+
+	protected override void OnRectTransformDimensionsChange()
+	{
+		((UIBehaviour)this).OnRectTransformDimensionsChange();
+		_dirty = true;
+	}
+
+	protected override void OnDidApplyAnimationProperties()
+	{
+		((UIBehaviour)this).OnDidApplyAnimationProperties();
+		_dirty = true;
+	}
+
+	private static float ClampPixelsPerUnitMultiplier(float value)
+	{
+		return Mathf.Max(value, 0.01f);
+	}
+
+	protected override void OnTransformParentChanged()
+	{
+		((UIBehaviour)this).OnTransformParentChanged();
+		_canvas = null;
+		_dirty = true;
+	}
+
+	protected override void OnCanvasHierarchyChanged()
+	{
+		((UIBehaviour)this).OnCanvasHierarchyChanged();
+		_canvas = null;
+		_dirty = true;
+		NotifyChildrenThatMaskMightChanged();
+	}
+
+	private void OnTransformChildrenChanged()
+	{
+		SpawnMaskablesInChildren(((Component)this).transform);
+	}
+
+	private void SubscribeOnWillRenderCanvases()
+	{
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Expected O, but got Unknown
+		Touch<CanvasUpdateRegistry>(CanvasUpdateRegistry.instance);
+		Canvas.willRenderCanvases += new WillRenderCanvases(OnWillRenderCanvases);
+	}
+
+	private void UnsubscribeFromWillRenderCanvases()
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Expected O, but got Unknown
+		Canvas.willRenderCanvases -= new WillRenderCanvases(OnWillRenderCanvases);
+	}
+
+	private void OnWillRenderCanvases()
+	{
+		if (isMaskingEnabled)
+		{
+			UpdateMaskParameters();
+		}
+	}
+
+	private static T Touch<T>(T obj)
+	{
+		return obj;
+	}
+
+	Material ISoftMask.GetReplacement(Material original)
+	{
+		return _materials.Get(original);
+	}
+
+	void ISoftMask.ReleaseReplacement(Material replacement)
+	{
+		_materials.Release(replacement);
+	}
+
+	void ISoftMask.UpdateTransformChildren(Transform transform)
+	{
+		SpawnMaskablesInChildren(transform);
+	}
+
+	private void OnGraphicDirty()
+	{
+		if (isBasedOnGraphic)
+		{
+			_dirty = true;
+		}
+	}
+
+	private void FindGraphic()
+	{
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Expected O, but got Unknown
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Expected O, but got Unknown
+		if (!Object.op_Implicit((Object)(object)_graphic) && isBasedOnGraphic)
+		{
+			_graphic = ((Component)maskTransform).GetComponent<Graphic>();
+			if (Object.op_Implicit((Object)(object)_graphic))
+			{
+				_graphic.RegisterDirtyVerticesCallback(new UnityAction(OnGraphicDirty));
+				_graphic.RegisterDirtyMaterialCallback(new UnityAction(OnGraphicDirty));
+			}
+		}
+	}
+
+	private Canvas NearestEnabledCanvas()
+	{
+		Canvas[] componentsInParent = ((Component)this).GetComponentsInParent<Canvas>(false);
+		for (int i = 0; i < componentsInParent.Length; i++)
+		{
+			if (((Behaviour)componentsInParent[i]).isActiveAndEnabled)
+			{
+				return componentsInParent[i];
+			}
+		}
+		return null;
+	}
+
+	private void UpdateMaskParameters()
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		if (_dirty || ((Transform)maskTransform).hasChanged)
+		{
+			CalculateMaskParameters();
+			((Transform)maskTransform).hasChanged = false;
+			_lastMaskRect = maskTransform.rect;
+			_dirty = false;
+		}
+		_materials.ApplyAll();
+	}
+
+	private void SpawnMaskablesInChildren(Transform root)
+	{
+		using (new ClearListAtExit<SoftMaskable>(s_maskables))
+		{
+			for (int i = 0; i < root.childCount; i++)
+			{
+				Transform child = root.GetChild(i);
+				((Component)child).GetComponents<SoftMaskable>(s_maskables);
+				if (s_maskables.Count == 0)
 				{
-					RawImage rawImage = (RawImage)this._graphic;
-					result.texture = rawImage.texture;
-					result.textureUVRect = rawImage.uvRect;
+					((Component)child).gameObject.AddComponent<SoftMaskable>();
 				}
-				break;
-			case SoftMask.MaskSource.Sprite:
-				result.sprite = this._sprite;
-				result.spriteBorderMode = this._spriteBorderMode;
-				if (this._sprite)
+			}
+		}
+	}
+
+	private void InvalidateChildren()
+	{
+		ForEachChildMaskable(delegate(SoftMaskable x)
+		{
+			x.Invalidate();
+		});
+	}
+
+	private void NotifyChildrenThatMaskMightChanged()
+	{
+		ForEachChildMaskable(delegate(SoftMaskable x)
+		{
+			x.MaskMightChanged();
+		});
+	}
+
+	private void ForEachChildMaskable(Action<SoftMaskable> f)
+	{
+		((Component)((Component)this).transform).GetComponentsInChildren<SoftMaskable>(s_maskables);
+		using (new ClearListAtExit<SoftMaskable>(s_maskables))
+		{
+			for (int i = 0; i < s_maskables.Count; i++)
+			{
+				SoftMaskable softMaskable = s_maskables[i];
+				if (Object.op_Implicit((Object)(object)softMaskable) && (Object)(object)((Component)softMaskable).gameObject != (Object)(object)((Component)this).gameObject)
 				{
-					result.spritePixelsPerUnit = this._sprite.pixelsPerUnit * this._spritePixelsPerUnitMultiplier;
-					result.texture = this._sprite.texture;
+					f(softMaskable);
+				}
+			}
+		}
+	}
+
+	private void DestroyMaterials()
+	{
+		_materials.DestroyAllAndClear();
+	}
+
+	private SourceParameters DeduceSourceParameters()
+	{
+		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0152: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Expected O, but got Unknown
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Expected O, but got Unknown
+		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
+		SourceParameters result = default(SourceParameters);
+		switch (_source)
+		{
+		case MaskSource.Graphic:
+			if (_graphic is Image)
+			{
+				Image val = (Image)_graphic;
+				Sprite val2 = val.sprite;
+				result.image = val;
+				result.sprite = val2;
+				result.spriteBorderMode = ImageTypeToBorderMode(val.type);
+				if (Object.op_Implicit((Object)(object)val2))
+				{
+					result.spritePixelsPerUnit = val2.pixelsPerUnit;
+					result.texture = (Texture)(object)val2.texture;
 				}
 				else
 				{
 					result.spritePixelsPerUnit = 100f;
 				}
-				break;
-			case SoftMask.MaskSource.Texture:
-				result.texture = this._texture;
-				result.textureUVRect = this._textureUVRect;
-				break;
 			}
-			return result;
-		}
-
-		// Token: 0x060038B9 RID: 14521 RVA: 0x001841BD File Offset: 0x001823BD
-		public static SoftMask.BorderMode ImageTypeToBorderMode(Image.Type type)
-		{
-			switch (type)
+			else if (_graphic is RawImage)
 			{
-			case 0:
-				return SoftMask.BorderMode.Simple;
-			case 1:
-				return SoftMask.BorderMode.Sliced;
-			case 2:
-				return SoftMask.BorderMode.Tiled;
-			default:
-				return SoftMask.BorderMode.Simple;
+				RawImage val3 = (RawImage)_graphic;
+				result.texture = val3.texture;
+				result.textureUVRect = val3.uvRect;
 			}
-		}
-
-		// Token: 0x060038BA RID: 14522 RVA: 0x001841DA File Offset: 0x001823DA
-		public static bool IsImageTypeSupported(Image.Type type)
-		{
-			return type == null || type == 1 || type == 2;
-		}
-
-		// Token: 0x060038BB RID: 14523 RVA: 0x001841EC File Offset: 0x001823EC
-		private void CalculateMaskParameters()
-		{
-			SoftMask.SourceParameters sourceParameters = this.DeduceSourceParameters();
-			this._warningReporter.ImageUsed(sourceParameters.image);
-			SoftMask.Errors errors = SoftMask.Diagnostics.CheckSprite(sourceParameters.sprite);
-			this._warningReporter.SpriteUsed(sourceParameters.sprite, errors);
-			if (sourceParameters.sprite)
+			break;
+		case MaskSource.Sprite:
+			result.sprite = _sprite;
+			result.spriteBorderMode = _spriteBorderMode;
+			if (Object.op_Implicit((Object)(object)_sprite))
 			{
-				if (errors == SoftMask.Errors.NoError)
-				{
-					this.CalculateSpriteBased(sourceParameters.sprite, sourceParameters.spriteBorderMode, sourceParameters.spritePixelsPerUnit);
-					return;
-				}
-				this.CalculateSolidFill();
-				return;
+				result.spritePixelsPerUnit = _sprite.pixelsPerUnit * _spritePixelsPerUnitMultiplier;
+				result.texture = (Texture)(object)_sprite.texture;
 			}
 			else
 			{
-				if (sourceParameters.texture)
-				{
-					this.CalculateTextureBased(sourceParameters.texture, sourceParameters.textureUVRect);
-					return;
-				}
-				this.CalculateSolidFill();
-				return;
+				result.spritePixelsPerUnit = 100f;
 			}
+			break;
+		case MaskSource.Texture:
+			result.texture = _texture;
+			result.textureUVRect = _textureUVRect;
+			break;
 		}
+		return result;
+	}
 
-		// Token: 0x060038BC RID: 14524 RVA: 0x00184288 File Offset: 0x00182488
-		private void CalculateSpriteBased(Sprite sprite, SoftMask.BorderMode borderMode, float spritePixelsPerUnit)
+	public static BorderMode ImageTypeToBorderMode(Type type)
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Expected I4, but got Unknown
+		return (int)type switch
 		{
-			this.FillCommonParameters();
-			Vector4 innerUV = DataUtility.GetInnerUV(sprite);
-			Vector4 outerUV = DataUtility.GetOuterUV(sprite);
-			Vector4 padding = DataUtility.GetPadding(sprite);
-			Vector4 vector = this.LocalMaskRect(Vector4.zero);
-			this._parameters.maskRectUV = outerUV;
-			if (borderMode == SoftMask.BorderMode.Simple)
+			0 => BorderMode.Simple, 
+			1 => BorderMode.Sliced, 
+			2 => BorderMode.Tiled, 
+			_ => BorderMode.Simple, 
+		};
+	}
+
+	public static bool IsImageTypeSupported(Type type)
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0005: Invalid comparison between Unknown and I4
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0009: Invalid comparison between Unknown and I4
+		if ((int)type != 0 && (int)type != 1)
+		{
+			return (int)type == 2;
+		}
+		return true;
+	}
+
+	private void CalculateMaskParameters()
+	{
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		SourceParameters sourceParameters = DeduceSourceParameters();
+		_warningReporter.ImageUsed(sourceParameters.image);
+		Errors errors = Diagnostics.CheckSprite(sourceParameters.sprite);
+		_warningReporter.SpriteUsed(sourceParameters.sprite, errors);
+		if (Object.op_Implicit((Object)(object)sourceParameters.sprite))
+		{
+			if (errors == Errors.NoError)
 			{
-				Vector4 v = SoftMask.Mathr.Div(padding, sprite.rect.size);
-				this._parameters.maskRect = SoftMask.Mathr.ApplyBorder(vector, SoftMask.Mathr.Mul(v, SoftMask.Mathr.Size(vector)));
+				CalculateSpriteBased(sourceParameters.sprite, sourceParameters.spriteBorderMode, sourceParameters.spritePixelsPerUnit);
 			}
 			else
 			{
-				float num = this.SpriteToCanvasScale(spritePixelsPerUnit);
-				this._parameters.maskRect = SoftMask.Mathr.ApplyBorder(vector, padding * num);
-				Vector4 border = SoftMask.AdjustBorders(sprite.border * num, vector);
-				this._parameters.maskBorder = this.LocalMaskRect(border);
-				this._parameters.maskBorderUV = innerUV;
+				CalculateSolidFill();
 			}
-			this._parameters.texture = sprite.texture;
-			this._parameters.borderMode = borderMode;
-			if (borderMode == SoftMask.BorderMode.Tiled)
+		}
+		else if (Object.op_Implicit((Object)(object)sourceParameters.texture))
+		{
+			CalculateTextureBased(sourceParameters.texture, sourceParameters.textureUVRect);
+		}
+		else
+		{
+			CalculateSolidFill();
+		}
+	}
+
+	private void CalculateSpriteBased(Sprite sprite, BorderMode borderMode, float spritePixelsPerUnit)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		FillCommonParameters();
+		Vector4 innerUV = DataUtility.GetInnerUV(sprite);
+		Vector4 outerUV = DataUtility.GetOuterUV(sprite);
+		Vector4 padding = DataUtility.GetPadding(sprite);
+		Vector4 val = LocalMaskRect(Vector4.zero);
+		_parameters.maskRectUV = outerUV;
+		if (borderMode == BorderMode.Simple)
+		{
+			Rect rect = sprite.rect;
+			Vector4 v = Mathr.Div(padding, ((Rect)(ref rect)).size);
+			_parameters.maskRect = Mathr.ApplyBorder(val, Mathr.Mul(v, Mathr.Size(val)));
+		}
+		else
+		{
+			float num = SpriteToCanvasScale(spritePixelsPerUnit);
+			_parameters.maskRect = Mathr.ApplyBorder(val, padding * num);
+			Vector4 border = AdjustBorders(sprite.border * num, val);
+			_parameters.maskBorder = LocalMaskRect(border);
+			_parameters.maskBorderUV = innerUV;
+		}
+		_parameters.texture = (Texture)(object)sprite.texture;
+		_parameters.borderMode = borderMode;
+		if (borderMode == BorderMode.Tiled)
+		{
+			_parameters.tileRepeat = MaskRepeat(sprite, spritePixelsPerUnit, _parameters.maskBorder);
+		}
+	}
+
+	private static Vector4 AdjustBorders(Vector4 border, Vector4 rect)
+	{
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		Vector2 val = Mathr.Size(rect);
+		for (int i = 0; i <= 1; i++)
+		{
+			float num = ((Vector4)(ref border))[i] + ((Vector4)(ref border))[i + 2];
+			if (((Vector2)(ref val))[i] < num && num != 0f)
 			{
-				this._parameters.tileRepeat = this.MaskRepeat(sprite, spritePixelsPerUnit, this._parameters.maskBorder);
+				float num2 = ((Vector2)(ref val))[i] / num;
+				ref Vector4 reference = ref border;
+				int num3 = i;
+				((Vector4)(ref reference))[num3] = ((Vector4)(ref reference))[num3] * num2;
+				reference = ref border;
+				num3 = i + 2;
+				((Vector4)(ref reference))[num3] = ((Vector4)(ref reference))[num3] * num2;
 			}
 		}
+		return border;
+	}
 
-		// Token: 0x060038BD RID: 14525 RVA: 0x00184398 File Offset: 0x00182598
-		private static Vector4 AdjustBorders(Vector4 border, Vector4 rect)
+	private void CalculateTextureBased(Texture texture, Rect uvRect)
+	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		FillCommonParameters();
+		_parameters.maskRect = LocalMaskRect(Vector4.zero);
+		_parameters.maskRectUV = Mathr.ToVector(uvRect);
+		_parameters.texture = texture;
+		_parameters.borderMode = BorderMode.Simple;
+	}
+
+	private void CalculateSolidFill()
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		CalculateTextureBased(null, DefaultUVRect);
+	}
+
+	private void FillCommonParameters()
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		_parameters.worldToMask = WorldToMask();
+		_parameters.maskChannelWeights = _channelWeights;
+		_parameters.invertMask = _invertMask;
+		_parameters.invertOutsides = _invertOutsides;
+	}
+
+	private float SpriteToCanvasScale(float spritePixelsPerUnit)
+	{
+		return (Object.op_Implicit((Object)(object)canvas) ? canvas.referencePixelsPerUnit : 100f) / spritePixelsPerUnit;
+	}
+
+	private Matrix4x4 WorldToMask()
+	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		return ((Transform)maskTransform).worldToLocalMatrix * ((Component)canvas.rootCanvas).transform.localToWorldMatrix;
+	}
+
+	private Vector4 LocalMaskRect(Vector4 border)
+	{
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		return Mathr.ApplyBorder(Mathr.ToVector(maskTransform.rect), border);
+	}
+
+	private Vector2 MaskRepeat(Sprite sprite, float spritePixelsPerUnit, Vector4 centralPart)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		Vector4 r = Mathr.ApplyBorder(Mathr.ToVector(sprite.rect), sprite.border);
+		return Mathr.Div(Mathr.Size(centralPart) * SpriteToCanvasScale(spritePixelsPerUnit), Mathr.Size(r));
+	}
+
+	private void WarnIfDefaultShaderIsNotSet()
+	{
+		if (!Object.op_Implicit((Object)(object)_defaultShader))
 		{
-			Vector2 vector = SoftMask.Mathr.Size(rect);
-			for (int i = 0; i <= 1; i++)
-			{
-				float num = border[i] + border[i + 2];
-				if (vector[i] < num && num != 0f)
-				{
-					float num2 = vector[i] / num;
-					ref Vector4 ptr = ref border;
-					int num3 = i;
-					ptr[num3] *= num2;
-					ptr = ref border;
-					num3 = i + 2;
-					ptr[num3] *= num2;
-				}
-			}
-			return border;
+			Debug.LogWarning((object)"SoftMask may not work because its defaultShader is not set", (Object)(object)this);
 		}
+	}
 
-		// Token: 0x060038BE RID: 14526 RVA: 0x00184424 File Offset: 0x00182624
-		private void CalculateTextureBased(Texture texture, Rect uvRect)
-		{
-			this.FillCommonParameters();
-			this._parameters.maskRect = this.LocalMaskRect(Vector4.zero);
-			this._parameters.maskRectUV = SoftMask.Mathr.ToVector(uvRect);
-			this._parameters.texture = texture;
-			this._parameters.borderMode = SoftMask.BorderMode.Simple;
-		}
+	private void Set<T>(ref T field, T value)
+	{
+		field = value;
+		_dirty = true;
+	}
 
-		// Token: 0x060038BF RID: 14527 RVA: 0x00184476 File Offset: 0x00182676
-		private void CalculateSolidFill()
-		{
-			this.CalculateTextureBased(null, SoftMask.DefaultUVRect);
-		}
-
-		// Token: 0x060038C0 RID: 14528 RVA: 0x00184484 File Offset: 0x00182684
-		private void FillCommonParameters()
-		{
-			this._parameters.worldToMask = this.WorldToMask();
-			this._parameters.maskChannelWeights = this._channelWeights;
-			this._parameters.invertMask = this._invertMask;
-			this._parameters.invertOutsides = this._invertOutsides;
-		}
-
-		// Token: 0x060038C1 RID: 14529 RVA: 0x001844D5 File Offset: 0x001826D5
-		private float SpriteToCanvasScale(float spritePixelsPerUnit)
-		{
-			return (this.canvas ? this.canvas.referencePixelsPerUnit : 100f) / spritePixelsPerUnit;
-		}
-
-		// Token: 0x060038C2 RID: 14530 RVA: 0x001844F8 File Offset: 0x001826F8
-		private Matrix4x4 WorldToMask()
-		{
-			return this.maskTransform.worldToLocalMatrix * this.canvas.rootCanvas.transform.localToWorldMatrix;
-		}
-
-		// Token: 0x060038C3 RID: 14531 RVA: 0x0018451F File Offset: 0x0018271F
-		private Vector4 LocalMaskRect(Vector4 border)
-		{
-			return SoftMask.Mathr.ApplyBorder(SoftMask.Mathr.ToVector(this.maskTransform.rect), border);
-		}
-
-		// Token: 0x060038C4 RID: 14532 RVA: 0x00184538 File Offset: 0x00182738
-		private Vector2 MaskRepeat(Sprite sprite, float spritePixelsPerUnit, Vector4 centralPart)
-		{
-			Vector4 r = SoftMask.Mathr.ApplyBorder(SoftMask.Mathr.ToVector(sprite.rect), sprite.border);
-			return SoftMask.Mathr.Div(SoftMask.Mathr.Size(centralPart) * this.SpriteToCanvasScale(spritePixelsPerUnit), SoftMask.Mathr.Size(r));
-		}
-
-		// Token: 0x060038C5 RID: 14533 RVA: 0x00184579 File Offset: 0x00182779
-		private void WarnIfDefaultShaderIsNotSet()
-		{
-			if (!this._defaultShader)
-			{
-				Debug.LogWarning("SoftMask may not work because its defaultShader is not set", this);
-			}
-		}
-
-		// Token: 0x060038C6 RID: 14534 RVA: 0x00184593 File Offset: 0x00182793
-		private void Set<T>(ref T field, T value)
+	private void SetShader(ref Shader field, Shader value, bool warnIfNotSet = true)
+	{
+		if ((Object)(object)field != (Object)(object)value)
 		{
 			field = value;
-			this._dirty = true;
-		}
-
-		// Token: 0x060038C7 RID: 14535 RVA: 0x001845A3 File Offset: 0x001827A3
-		private void SetShader(ref Shader field, Shader value, bool warnIfNotSet = true)
-		{
-			if (field != value)
+			if (warnIfNotSet)
 			{
-				field = value;
-				if (warnIfNotSet)
-				{
-					this.WarnIfDefaultShaderIsNotSet();
-				}
-				this.DestroyMaterials();
-				this.InvalidateChildren();
+				WarnIfDefaultShaderIsNotSet();
 			}
-		}
-
-		// Token: 0x040030D8 RID: 12504
-		[SerializeField]
-		private Shader _defaultShader;
-
-		// Token: 0x040030D9 RID: 12505
-		[SerializeField]
-		private Shader _defaultETC1Shader;
-
-		// Token: 0x040030DA RID: 12506
-		[SerializeField]
-		private SoftMask.MaskSource _source;
-
-		// Token: 0x040030DB RID: 12507
-		[SerializeField]
-		private RectTransform _separateMask;
-
-		// Token: 0x040030DC RID: 12508
-		[SerializeField]
-		private Sprite _sprite;
-
-		// Token: 0x040030DD RID: 12509
-		[SerializeField]
-		private SoftMask.BorderMode _spriteBorderMode;
-
-		// Token: 0x040030DE RID: 12510
-		[SerializeField]
-		private float _spritePixelsPerUnitMultiplier = 1f;
-
-		// Token: 0x040030DF RID: 12511
-		[SerializeField]
-		private Texture _texture;
-
-		// Token: 0x040030E0 RID: 12512
-		[SerializeField]
-		private Rect _textureUVRect = SoftMask.DefaultUVRect;
-
-		// Token: 0x040030E1 RID: 12513
-		[SerializeField]
-		private Color _channelWeights = MaskChannel.alpha;
-
-		// Token: 0x040030E2 RID: 12514
-		[SerializeField]
-		private float _raycastThreshold;
-
-		// Token: 0x040030E3 RID: 12515
-		[SerializeField]
-		private bool _invertMask;
-
-		// Token: 0x040030E4 RID: 12516
-		[SerializeField]
-		private bool _invertOutsides;
-
-		// Token: 0x040030E5 RID: 12517
-		private MaterialReplacements _materials;
-
-		// Token: 0x040030E6 RID: 12518
-		private SoftMask.MaterialParameters _parameters;
-
-		// Token: 0x040030E7 RID: 12519
-		private SoftMask.WarningReporter _warningReporter;
-
-		// Token: 0x040030E8 RID: 12520
-		private Rect _lastMaskRect;
-
-		// Token: 0x040030E9 RID: 12521
-		private bool _maskingWasEnabled;
-
-		// Token: 0x040030EA RID: 12522
-		private bool _destroyed;
-
-		// Token: 0x040030EB RID: 12523
-		private bool _dirty;
-
-		// Token: 0x040030EC RID: 12524
-		private RectTransform _maskTransform;
-
-		// Token: 0x040030ED RID: 12525
-		private Graphic _graphic;
-
-		// Token: 0x040030EE RID: 12526
-		private Canvas _canvas;
-
-		// Token: 0x040030EF RID: 12527
-		private static readonly Rect DefaultUVRect = new Rect(0f, 0f, 1f, 1f);
-
-		// Token: 0x040030F0 RID: 12528
-		private const float DefaultPixelsPerUnit = 100f;
-
-		// Token: 0x040030F1 RID: 12529
-		private static readonly List<SoftMask> s_masks = new List<SoftMask>();
-
-		// Token: 0x040030F2 RID: 12530
-		private static readonly List<SoftMaskable> s_maskables = new List<SoftMaskable>();
-
-		// Token: 0x02001517 RID: 5399
-		[Serializable]
-		public enum MaskSource
-		{
-			// Token: 0x04006E67 RID: 28263
-			Graphic,
-			// Token: 0x04006E68 RID: 28264
-			Sprite,
-			// Token: 0x04006E69 RID: 28265
-			Texture
-		}
-
-		// Token: 0x02001518 RID: 5400
-		[Serializable]
-		public enum BorderMode
-		{
-			// Token: 0x04006E6B RID: 28267
-			Simple,
-			// Token: 0x04006E6C RID: 28268
-			Sliced,
-			// Token: 0x04006E6D RID: 28269
-			Tiled
-		}
-
-		// Token: 0x02001519 RID: 5401
-		[Flags]
-		[Serializable]
-		public enum Errors
-		{
-			// Token: 0x04006E6F RID: 28271
-			NoError = 0,
-			// Token: 0x04006E70 RID: 28272
-			UnsupportedShaders = 1,
-			// Token: 0x04006E71 RID: 28273
-			NestedMasks = 2,
-			// Token: 0x04006E72 RID: 28274
-			TightPackedSprite = 4,
-			// Token: 0x04006E73 RID: 28275
-			AlphaSplitSprite = 8,
-			// Token: 0x04006E74 RID: 28276
-			UnsupportedImageType = 16,
-			// Token: 0x04006E75 RID: 28277
-			UnreadableTexture = 32,
-			// Token: 0x04006E76 RID: 28278
-			UnreadableRenderTexture = 64
-		}
-
-		// Token: 0x0200151A RID: 5402
-		private struct SourceParameters
-		{
-			// Token: 0x04006E77 RID: 28279
-			public Image image;
-
-			// Token: 0x04006E78 RID: 28280
-			public Sprite sprite;
-
-			// Token: 0x04006E79 RID: 28281
-			public SoftMask.BorderMode spriteBorderMode;
-
-			// Token: 0x04006E7A RID: 28282
-			public float spritePixelsPerUnit;
-
-			// Token: 0x04006E7B RID: 28283
-			public Texture texture;
-
-			// Token: 0x04006E7C RID: 28284
-			public Rect textureUVRect;
-		}
-
-		// Token: 0x0200151B RID: 5403
-		private class MaterialReplacerImpl : IMaterialReplacer
-		{
-			// Token: 0x06008307 RID: 33543 RVA: 0x002DD56D File Offset: 0x002DB76D
-			public MaterialReplacerImpl(SoftMask owner)
-			{
-				this._owner = owner;
-			}
-
-			// Token: 0x17000B34 RID: 2868
-			// (get) Token: 0x06008308 RID: 33544 RVA: 0x0000280F File Offset: 0x00000A0F
-			public int order
-			{
-				get
-				{
-					return 0;
-				}
-			}
-
-			// Token: 0x06008309 RID: 33545 RVA: 0x002DD57C File Offset: 0x002DB77C
-			public Material Replace(Material original)
-			{
-				if (original == null || original.HasDefaultUIShader())
-				{
-					return SoftMask.MaterialReplacerImpl.Replace(original, this._owner._defaultShader);
-				}
-				if (original.HasDefaultETC1UIShader())
-				{
-					return SoftMask.MaterialReplacerImpl.Replace(original, this._owner._defaultETC1Shader);
-				}
-				if (original.SupportsSoftMask())
-				{
-					return new Material(original);
-				}
-				return null;
-			}
-
-			// Token: 0x0600830A RID: 33546 RVA: 0x002DD5D8 File Offset: 0x002DB7D8
-			private static Material Replace(Material original, Shader defaultReplacementShader)
-			{
-				Material material = defaultReplacementShader ? new Material(defaultReplacementShader) : null;
-				if (material && original)
-				{
-					material.CopyPropertiesFromMaterial(original);
-				}
-				return material;
-			}
-
-			// Token: 0x04006E7D RID: 28285
-			private readonly SoftMask _owner;
-		}
-
-		// Token: 0x0200151C RID: 5404
-		private static class Mathr
-		{
-			// Token: 0x0600830B RID: 33547 RVA: 0x002DD60F File Offset: 0x002DB80F
-			public static Vector4 ToVector(Rect r)
-			{
-				return new Vector4(r.xMin, r.yMin, r.xMax, r.yMax);
-			}
-
-			// Token: 0x0600830C RID: 33548 RVA: 0x002DD632 File Offset: 0x002DB832
-			public static Vector4 Div(Vector4 v, Vector2 s)
-			{
-				return new Vector4(v.x / s.x, v.y / s.y, v.z / s.x, v.w / s.y);
-			}
-
-			// Token: 0x0600830D RID: 33549 RVA: 0x002DD66D File Offset: 0x002DB86D
-			public static Vector2 Div(Vector2 v, Vector2 s)
-			{
-				return new Vector2(v.x / s.x, v.y / s.y);
-			}
-
-			// Token: 0x0600830E RID: 33550 RVA: 0x002DD68E File Offset: 0x002DB88E
-			public static Vector4 Mul(Vector4 v, Vector2 s)
-			{
-				return new Vector4(v.x * s.x, v.y * s.y, v.z * s.x, v.w * s.y);
-			}
-
-			// Token: 0x0600830F RID: 33551 RVA: 0x002DD6C9 File Offset: 0x002DB8C9
-			public static Vector2 Size(Vector4 r)
-			{
-				return new Vector2(r.z - r.x, r.w - r.y);
-			}
-
-			// Token: 0x06008310 RID: 33552 RVA: 0x002DD6EA File Offset: 0x002DB8EA
-			public static Vector4 Move(Vector4 v, Vector2 o)
-			{
-				return new Vector4(v.x + o.x, v.y + o.y, v.z + o.x, v.w + o.y);
-			}
-
-			// Token: 0x06008311 RID: 33553 RVA: 0x002DD725 File Offset: 0x002DB925
-			public static Vector4 BorderOf(Vector4 outer, Vector4 inner)
-			{
-				return new Vector4(inner.x - outer.x, inner.y - outer.y, outer.z - inner.z, outer.w - inner.w);
-			}
-
-			// Token: 0x06008312 RID: 33554 RVA: 0x002DD760 File Offset: 0x002DB960
-			public static Vector4 ApplyBorder(Vector4 v, Vector4 b)
-			{
-				return new Vector4(v.x + b.x, v.y + b.y, v.z - b.z, v.w - b.w);
-			}
-
-			// Token: 0x06008313 RID: 33555 RVA: 0x002DD79B File Offset: 0x002DB99B
-			public static Vector2 Min(Vector4 r)
-			{
-				return new Vector2(r.x, r.y);
-			}
-
-			// Token: 0x06008314 RID: 33556 RVA: 0x002DD7AE File Offset: 0x002DB9AE
-			public static Vector2 Max(Vector4 r)
-			{
-				return new Vector2(r.z, r.w);
-			}
-
-			// Token: 0x06008315 RID: 33557 RVA: 0x002DD7C4 File Offset: 0x002DB9C4
-			public static Vector2 Remap(Vector2 c, Vector4 from, Vector4 to)
-			{
-				Vector2 s = SoftMask.Mathr.Max(from) - SoftMask.Mathr.Min(from);
-				Vector2 vector = SoftMask.Mathr.Max(to) - SoftMask.Mathr.Min(to);
-				return Vector2.Scale(SoftMask.Mathr.Div(c - SoftMask.Mathr.Min(from), s), vector) + SoftMask.Mathr.Min(to);
-			}
-
-			// Token: 0x06008316 RID: 33558 RVA: 0x002DD818 File Offset: 0x002DBA18
-			public static bool Inside(Vector2 v, Vector4 r)
-			{
-				return v.x >= r.x && v.y >= r.y && v.x <= r.z && v.y <= r.w;
-			}
-		}
-
-		// Token: 0x0200151D RID: 5405
-		private struct MaterialParameters
-		{
-			// Token: 0x17000B35 RID: 2869
-			// (get) Token: 0x06008317 RID: 33559 RVA: 0x002DD857 File Offset: 0x002DBA57
-			public Texture activeTexture
-			{
-				get
-				{
-					if (!this.texture)
-					{
-						return Texture2D.whiteTexture;
-					}
-					return this.texture;
-				}
-			}
-
-			// Token: 0x06008318 RID: 33560 RVA: 0x002DD874 File Offset: 0x002DBA74
-			public SoftMask.MaterialParameters.SampleMaskResult SampleMask(Vector2 localPos, out float mask)
-			{
-				mask = 0f;
-				Texture2D texture2D = this.texture as Texture2D;
-				if (!texture2D)
-				{
-					return SoftMask.MaterialParameters.SampleMaskResult.NonTexture2D;
-				}
-				Vector2 vector = this.XY2UV(localPos);
-				SoftMask.MaterialParameters.SampleMaskResult result;
-				try
-				{
-					mask = this.MaskValue(texture2D.GetPixelBilinear(vector.x, vector.y));
-					result = SoftMask.MaterialParameters.SampleMaskResult.Success;
-				}
-				catch (UnityException)
-				{
-					result = SoftMask.MaterialParameters.SampleMaskResult.NonReadable;
-				}
-				return result;
-			}
-
-			// Token: 0x06008319 RID: 33561 RVA: 0x002DD8DC File Offset: 0x002DBADC
-			public void Apply(Material mat)
-			{
-				mat.SetTexture(SoftMask.MaterialParameters.Ids.SoftMask, this.activeTexture);
-				mat.SetVector(SoftMask.MaterialParameters.Ids.SoftMask_Rect, this.maskRect);
-				mat.SetVector(SoftMask.MaterialParameters.Ids.SoftMask_UVRect, this.maskRectUV);
-				mat.SetColor(SoftMask.MaterialParameters.Ids.SoftMask_ChannelWeights, this.maskChannelWeights);
-				mat.SetMatrix(SoftMask.MaterialParameters.Ids.SoftMask_WorldToMask, this.worldToMask);
-				mat.SetFloat(SoftMask.MaterialParameters.Ids.SoftMask_InvertMask, (float)(this.invertMask ? 1 : 0));
-				mat.SetFloat(SoftMask.MaterialParameters.Ids.SoftMask_InvertOutsides, (float)(this.invertOutsides ? 1 : 0));
-				mat.EnableKeyword("SOFTMASK_SIMPLE", this.borderMode == SoftMask.BorderMode.Simple);
-				mat.EnableKeyword("SOFTMASK_SLICED", this.borderMode == SoftMask.BorderMode.Sliced);
-				mat.EnableKeyword("SOFTMASK_TILED", this.borderMode == SoftMask.BorderMode.Tiled);
-				if (this.borderMode != SoftMask.BorderMode.Simple)
-				{
-					mat.SetVector(SoftMask.MaterialParameters.Ids.SoftMask_BorderRect, this.maskBorder);
-					mat.SetVector(SoftMask.MaterialParameters.Ids.SoftMask_UVBorderRect, this.maskBorderUV);
-					if (this.borderMode == SoftMask.BorderMode.Tiled)
-					{
-						mat.SetVector(SoftMask.MaterialParameters.Ids.SoftMask_TileRepeat, this.tileRepeat);
-					}
-				}
-			}
-
-			// Token: 0x0600831A RID: 33562 RVA: 0x002DD9F4 File Offset: 0x002DBBF4
-			private Vector2 XY2UV(Vector2 localPos)
-			{
-				switch (this.borderMode)
-				{
-				case SoftMask.BorderMode.Simple:
-					return this.MapSimple(localPos);
-				case SoftMask.BorderMode.Sliced:
-					return this.MapBorder(localPos, false);
-				case SoftMask.BorderMode.Tiled:
-					return this.MapBorder(localPos, true);
-				default:
-					return this.MapSimple(localPos);
-				}
-			}
-
-			// Token: 0x0600831B RID: 33563 RVA: 0x002DDA3D File Offset: 0x002DBC3D
-			private Vector2 MapSimple(Vector2 localPos)
-			{
-				return SoftMask.Mathr.Remap(localPos, this.maskRect, this.maskRectUV);
-			}
-
-			// Token: 0x0600831C RID: 33564 RVA: 0x002DDA54 File Offset: 0x002DBC54
-			private Vector2 MapBorder(Vector2 localPos, bool repeat)
-			{
-				return new Vector2(this.Inset(localPos.x, this.maskRect.x, this.maskBorder.x, this.maskBorder.z, this.maskRect.z, this.maskRectUV.x, this.maskBorderUV.x, this.maskBorderUV.z, this.maskRectUV.z, repeat ? this.tileRepeat.x : 1f), this.Inset(localPos.y, this.maskRect.y, this.maskBorder.y, this.maskBorder.w, this.maskRect.w, this.maskRectUV.y, this.maskBorderUV.y, this.maskBorderUV.w, this.maskRectUV.w, repeat ? this.tileRepeat.y : 1f));
-			}
-
-			// Token: 0x0600831D RID: 33565 RVA: 0x002DDB58 File Offset: 0x002DBD58
-			private float Inset(float v, float x1, float x2, float u1, float u2, float repeat = 1f)
-			{
-				float num = x2 - x1;
-				return Mathf.Lerp(u1, u2, (num != 0f) ? this.Frac((v - x1) / num * repeat) : 0f);
-			}
-
-			// Token: 0x0600831E RID: 33566 RVA: 0x002DDB90 File Offset: 0x002DBD90
-			private float Inset(float v, float x1, float x2, float x3, float x4, float u1, float u2, float u3, float u4, float repeat = 1f)
-			{
-				if (v < x2)
-				{
-					return this.Inset(v, x1, x2, u1, u2, 1f);
-				}
-				if (v < x3)
-				{
-					return this.Inset(v, x2, x3, u2, u3, repeat);
-				}
-				return this.Inset(v, x3, x4, u3, u4, 1f);
-			}
-
-			// Token: 0x0600831F RID: 33567 RVA: 0x002DDBDE File Offset: 0x002DBDDE
-			private float Frac(float v)
-			{
-				return v - Mathf.Floor(v);
-			}
-
-			// Token: 0x06008320 RID: 33568 RVA: 0x002DDBE8 File Offset: 0x002DBDE8
-			private float MaskValue(Color mask)
-			{
-				Color color = mask * this.maskChannelWeights;
-				return color.a + color.r + color.g + color.b;
-			}
-
-			// Token: 0x04006E7E RID: 28286
-			public Vector4 maskRect;
-
-			// Token: 0x04006E7F RID: 28287
-			public Vector4 maskBorder;
-
-			// Token: 0x04006E80 RID: 28288
-			public Vector4 maskRectUV;
-
-			// Token: 0x04006E81 RID: 28289
-			public Vector4 maskBorderUV;
-
-			// Token: 0x04006E82 RID: 28290
-			public Vector2 tileRepeat;
-
-			// Token: 0x04006E83 RID: 28291
-			public Color maskChannelWeights;
-
-			// Token: 0x04006E84 RID: 28292
-			public Matrix4x4 worldToMask;
-
-			// Token: 0x04006E85 RID: 28293
-			public Texture texture;
-
-			// Token: 0x04006E86 RID: 28294
-			public SoftMask.BorderMode borderMode;
-
-			// Token: 0x04006E87 RID: 28295
-			public bool invertMask;
-
-			// Token: 0x04006E88 RID: 28296
-			public bool invertOutsides;
-
-			// Token: 0x0200175B RID: 5979
-			public enum SampleMaskResult
-			{
-				// Token: 0x0400759D RID: 30109
-				Success,
-				// Token: 0x0400759E RID: 30110
-				NonReadable,
-				// Token: 0x0400759F RID: 30111
-				NonTexture2D
-			}
-
-			// Token: 0x0200175C RID: 5980
-			private static class Ids
-			{
-				// Token: 0x040075A0 RID: 30112
-				public static readonly int SoftMask = Shader.PropertyToID("_SoftMask");
-
-				// Token: 0x040075A1 RID: 30113
-				public static readonly int SoftMask_Rect = Shader.PropertyToID("_SoftMask_Rect");
-
-				// Token: 0x040075A2 RID: 30114
-				public static readonly int SoftMask_UVRect = Shader.PropertyToID("_SoftMask_UVRect");
-
-				// Token: 0x040075A3 RID: 30115
-				public static readonly int SoftMask_ChannelWeights = Shader.PropertyToID("_SoftMask_ChannelWeights");
-
-				// Token: 0x040075A4 RID: 30116
-				public static readonly int SoftMask_WorldToMask = Shader.PropertyToID("_SoftMask_WorldToMask");
-
-				// Token: 0x040075A5 RID: 30117
-				public static readonly int SoftMask_BorderRect = Shader.PropertyToID("_SoftMask_BorderRect");
-
-				// Token: 0x040075A6 RID: 30118
-				public static readonly int SoftMask_UVBorderRect = Shader.PropertyToID("_SoftMask_UVBorderRect");
-
-				// Token: 0x040075A7 RID: 30119
-				public static readonly int SoftMask_TileRepeat = Shader.PropertyToID("_SoftMask_TileRepeat");
-
-				// Token: 0x040075A8 RID: 30120
-				public static readonly int SoftMask_InvertMask = Shader.PropertyToID("_SoftMask_InvertMask");
-
-				// Token: 0x040075A9 RID: 30121
-				public static readonly int SoftMask_InvertOutsides = Shader.PropertyToID("_SoftMask_InvertOutsides");
-			}
-		}
-
-		// Token: 0x0200151E RID: 5406
-		private struct Diagnostics
-		{
-			// Token: 0x06008321 RID: 33569 RVA: 0x002DDC1D File Offset: 0x002DBE1D
-			public Diagnostics(SoftMask softMask)
-			{
-				this._softMask = softMask;
-			}
-
-			// Token: 0x06008322 RID: 33570 RVA: 0x002DDC28 File Offset: 0x002DBE28
-			public SoftMask.Errors PollErrors()
-			{
-				SoftMask softMask = this._softMask;
-				SoftMask.Errors errors = SoftMask.Errors.NoError;
-				softMask.GetComponentsInChildren<SoftMaskable>(SoftMask.s_maskables);
-				using (new ClearListAtExit<SoftMaskable>(SoftMask.s_maskables))
-				{
-					if (SoftMask.s_maskables.Any((SoftMaskable m) => m.mask == softMask && m.shaderIsNotSupported))
-					{
-						errors |= SoftMask.Errors.UnsupportedShaders;
-					}
-				}
-				if (this.ThereAreNestedMasks())
-				{
-					errors |= SoftMask.Errors.NestedMasks;
-				}
-				errors |= SoftMask.Diagnostics.CheckSprite(this.sprite);
-				errors |= this.CheckImage();
-				errors |= this.CheckTexture();
-				return errors;
-			}
-
-			// Token: 0x06008323 RID: 33571 RVA: 0x002DDCD0 File Offset: 0x002DBED0
-			public static SoftMask.Errors CheckSprite(Sprite sprite)
-			{
-				SoftMask.Errors errors = SoftMask.Errors.NoError;
-				if (!sprite)
-				{
-					return errors;
-				}
-				if (sprite.packed && sprite.packingMode == null)
-				{
-					errors |= SoftMask.Errors.TightPackedSprite;
-				}
-				if (sprite.associatedAlphaSplitTexture)
-				{
-					errors |= SoftMask.Errors.AlphaSplitSprite;
-				}
-				return errors;
-			}
-
-			// Token: 0x17000B36 RID: 2870
-			// (get) Token: 0x06008324 RID: 33572 RVA: 0x002DDD0F File Offset: 0x002DBF0F
-			private Image image
-			{
-				get
-				{
-					return this._softMask.DeduceSourceParameters().image;
-				}
-			}
-
-			// Token: 0x17000B37 RID: 2871
-			// (get) Token: 0x06008325 RID: 33573 RVA: 0x002DDD21 File Offset: 0x002DBF21
-			private Sprite sprite
-			{
-				get
-				{
-					return this._softMask.DeduceSourceParameters().sprite;
-				}
-			}
-
-			// Token: 0x17000B38 RID: 2872
-			// (get) Token: 0x06008326 RID: 33574 RVA: 0x002DDD33 File Offset: 0x002DBF33
-			private Texture texture
-			{
-				get
-				{
-					return this._softMask.DeduceSourceParameters().texture;
-				}
-			}
-
-			// Token: 0x06008327 RID: 33575 RVA: 0x002DDD48 File Offset: 0x002DBF48
-			private bool ThereAreNestedMasks()
-			{
-				SoftMask softMask = this._softMask;
-				bool flag = false;
-				using (new ClearListAtExit<SoftMask>(SoftMask.s_masks))
-				{
-					softMask.GetComponentsInParent<SoftMask>(false, SoftMask.s_masks);
-					flag |= SoftMask.s_masks.Any((SoftMask x) => SoftMask.Diagnostics.AreCompeting(softMask, x));
-					softMask.GetComponentsInChildren<SoftMask>(false, SoftMask.s_masks);
-					flag |= SoftMask.s_masks.Any((SoftMask x) => SoftMask.Diagnostics.AreCompeting(softMask, x));
-				}
-				return flag;
-			}
-
-			// Token: 0x06008328 RID: 33576 RVA: 0x002DDDEC File Offset: 0x002DBFEC
-			private SoftMask.Errors CheckImage()
-			{
-				SoftMask.Errors errors = SoftMask.Errors.NoError;
-				if (!this._softMask.isBasedOnGraphic)
-				{
-					return errors;
-				}
-				if (this.image && !SoftMask.IsImageTypeSupported(this.image.type))
-				{
-					errors |= SoftMask.Errors.UnsupportedImageType;
-				}
-				return errors;
-			}
-
-			// Token: 0x06008329 RID: 33577 RVA: 0x002DDE30 File Offset: 0x002DC030
-			private SoftMask.Errors CheckTexture()
-			{
-				SoftMask.Errors errors = SoftMask.Errors.NoError;
-				if (this._softMask.isUsingRaycastFiltering && this.texture)
-				{
-					Texture2D texture2D = this.texture as Texture2D;
-					if (!texture2D)
-					{
-						errors |= SoftMask.Errors.UnreadableRenderTexture;
-					}
-					else if (!SoftMask.Diagnostics.IsReadable(texture2D))
-					{
-						errors |= SoftMask.Errors.UnreadableTexture;
-					}
-				}
-				return errors;
-			}
-
-			// Token: 0x0600832A RID: 33578 RVA: 0x002DDE84 File Offset: 0x002DC084
-			private static bool AreCompeting(SoftMask softMask, SoftMask other)
-			{
-				return softMask.isMaskingEnabled && softMask != other && other.isMaskingEnabled && softMask.canvas.rootCanvas == other.canvas.rootCanvas && !SoftMask.Diagnostics.SelectChild<SoftMask>(softMask, other).canvas.overrideSorting;
-			}
-
-			// Token: 0x0600832B RID: 33579 RVA: 0x002DDEDD File Offset: 0x002DC0DD
-			private static T SelectChild<T>(T first, T second) where T : Component
-			{
-				if (!first.transform.IsChildOf(second.transform))
-				{
-					return second;
-				}
-				return first;
-			}
-
-			// Token: 0x0600832C RID: 33580 RVA: 0x002DDF00 File Offset: 0x002DC100
-			private static bool IsReadable(Texture2D texture)
-			{
-				bool result;
-				try
-				{
-					texture.GetPixel(0, 0);
-					result = true;
-				}
-				catch (UnityException)
-				{
-					result = false;
-				}
-				return result;
-			}
-
-			// Token: 0x04006E89 RID: 28297
-			private SoftMask _softMask;
-		}
-
-		// Token: 0x0200151F RID: 5407
-		private struct WarningReporter
-		{
-			// Token: 0x0600832D RID: 33581 RVA: 0x002DDF30 File Offset: 0x002DC130
-			public WarningReporter(Object owner)
-			{
-				this._owner = owner;
-				this._lastReadTexture = null;
-				this._lastUsedSprite = null;
-				this._lastUsedImageSprite = null;
-				this._lastUsedImageType = 0;
-			}
-
-			// Token: 0x0600832E RID: 33582 RVA: 0x002DDF58 File Offset: 0x002DC158
-			public void TextureRead(Texture texture, SoftMask.MaterialParameters.SampleMaskResult sampleResult)
-			{
-				if (this._lastReadTexture == texture)
-				{
-					return;
-				}
-				this._lastReadTexture = texture;
-				if (sampleResult == SoftMask.MaterialParameters.SampleMaskResult.NonReadable)
-				{
-					Debug.LogErrorFormat(this._owner, "Raycast Threshold greater than 0 can't be used on Soft Mask with texture '{0}' because it's not readable. You can make the texture readable in the Texture Import Settings.", new object[]
-					{
-						texture.name
-					});
-					return;
-				}
-				if (sampleResult != SoftMask.MaterialParameters.SampleMaskResult.NonTexture2D)
-				{
-					return;
-				}
-				Debug.LogErrorFormat(this._owner, "Raycast Threshold greater than 0 can't be used on Soft Mask with texture '{0}' because it's not a Texture2D. Raycast Threshold may be used only with regular 2D textures.", new object[]
-				{
-					texture.name
-				});
-			}
-
-			// Token: 0x0600832F RID: 33583 RVA: 0x002DDFC4 File Offset: 0x002DC1C4
-			public void SpriteUsed(Sprite sprite, SoftMask.Errors errors)
-			{
-				if (this._lastUsedSprite == sprite)
-				{
-					return;
-				}
-				this._lastUsedSprite = sprite;
-				if ((errors & SoftMask.Errors.TightPackedSprite) != SoftMask.Errors.NoError)
-				{
-					Debug.LogError("SoftMask doesn't support tight packed sprites", this._owner);
-				}
-				if ((errors & SoftMask.Errors.AlphaSplitSprite) != SoftMask.Errors.NoError)
-				{
-					Debug.LogError("SoftMask doesn't support sprites with an alpha split texture", this._owner);
-				}
-			}
-
-			// Token: 0x06008330 RID: 33584 RVA: 0x002DE014 File Offset: 0x002DC214
-			public void ImageUsed(Image image)
-			{
-				if (!image)
-				{
-					this._lastUsedImageSprite = null;
-					this._lastUsedImageType = 0;
-					return;
-				}
-				if (this._lastUsedImageSprite == image.sprite && this._lastUsedImageType == image.type)
-				{
-					return;
-				}
-				this._lastUsedImageSprite = image.sprite;
-				this._lastUsedImageType = image.type;
-				if (!image)
-				{
-					return;
-				}
-				if (SoftMask.IsImageTypeSupported(image.type))
-				{
-					return;
-				}
-				Debug.LogErrorFormat(this._owner, "SoftMask doesn't support image type {0}. Image type Simple will be used.", new object[]
-				{
-					image.type
-				});
-			}
-
-			// Token: 0x04006E8A RID: 28298
-			private Object _owner;
-
-			// Token: 0x04006E8B RID: 28299
-			private Texture _lastReadTexture;
-
-			// Token: 0x04006E8C RID: 28300
-			private Sprite _lastUsedSprite;
-
-			// Token: 0x04006E8D RID: 28301
-			private Sprite _lastUsedImageSprite;
-
-			// Token: 0x04006E8E RID: 28302
-			private Image.Type _lastUsedImageType;
+			DestroyMaterials();
+			InvalidateChildren();
 		}
 	}
 }

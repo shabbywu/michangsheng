@@ -1,15 +1,12 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000DD RID: 221
 public class Orbit : MonoBehaviour
 {
-	// Token: 0x06000B4F RID: 2895 RVA: 0x00044FBB File Offset: 0x000431BB
+	public SphericalVector Data = new SphericalVector(0f, 0f, 1f);
+
 	protected virtual void Update()
 	{
-		base.gameObject.transform.position = this.Data.Position;
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		((Component)this).gameObject.transform.position = Data.Position;
 	}
-
-	// Token: 0x04000783 RID: 1923
-	public SphericalVector Data = new SphericalVector(0f, 0f, 1f);
 }

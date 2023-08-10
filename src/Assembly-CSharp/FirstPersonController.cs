@@ -1,109 +1,112 @@
-﻿using System;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200012C RID: 300
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
-	// Token: 0x06000E1B RID: 3611 RVA: 0x00053540 File Offset: 0x00051740
-	private void Start()
-	{
-		this.firstPersonCamera = Camera.main.GetComponent<Camera>();
-		this.characterController = base.GetComponent<CharacterController>();
-		if ((GameObject)KBEngineApp.app.player().renderObj != null)
-		{
-			PlayerInventory component = ((GameObject)KBEngineApp.app.player().renderObj).GetComponent<PlayerInventory>();
-			if (component.inventory != null)
-			{
-				this.inventory = component.inventory;
-			}
-			if (component.craftSystem != null)
-			{
-				this.craftSystem = component.craftSystem;
-			}
-			if (component.characterSystem != null)
-			{
-				this.characterSystem = component.characterSystem;
-			}
-		}
-	}
-
-	// Token: 0x06000E1C RID: 3612 RVA: 0x000535F0 File Offset: 0x000517F0
-	private void Update()
-	{
-		if (!this.lockMovement())
-		{
-			float num = Input.GetAxis("Mouse X") * this.mouseSensitivity;
-			base.transform.Rotate(0f, num, 0f);
-			this.verticalRotation -= Input.GetAxis("Mouse Y") * this.mouseSensitivity;
-			this.verticalRotation = Mathf.Clamp(this.verticalRotation, -this.verticalAngleLimit, this.verticalAngleLimit);
-			this.firstPersonCamera.transform.localRotation = Quaternion.Euler(this.verticalRotation, 0f, 0f);
-			float num2 = Input.GetAxis("Vertical") * this.movementspeed;
-			float num3 = Input.GetAxis("Horizontal") * this.movementspeed;
-			this.verticalVelocity += Physics.gravity.y * Time.deltaTime;
-			if (Input.GetButtonDown("Jump") && this.characterController.isGrounded)
-			{
-				this.verticalVelocity = this.jumpSpeed;
-			}
-			Vector3 vector;
-			vector..ctor(num3, this.verticalVelocity, num2);
-			vector = base.transform.rotation * vector;
-			this.characterController.Move(vector * Time.deltaTime);
-		}
-	}
-
-	// Token: 0x06000E1D RID: 3613 RVA: 0x00053730 File Offset: 0x00051930
-	private bool lockMovement()
-	{
-		return (this.inventory != null && this.inventory.activeSelf) || (this.characterSystem != null && this.characterSystem.activeSelf) || (this.craftSystem != null && this.craftSystem.activeSelf);
-	}
-
-	// Token: 0x04000A06 RID: 2566
 	public float movementspeed = 5f;
 
-	// Token: 0x04000A07 RID: 2567
 	public float mouseSensitivity = 2f;
 
-	// Token: 0x04000A08 RID: 2568
 	public float verticalAngleLimit = 60f;
 
-	// Token: 0x04000A09 RID: 2569
 	public float jumpSpeed = 5f;
 
-	// Token: 0x04000A0A RID: 2570
 	private float verticalRotation;
 
-	// Token: 0x04000A0B RID: 2571
 	private GameObject _inventory;
 
-	// Token: 0x04000A0C RID: 2572
 	private GameObject _tooltip;
 
-	// Token: 0x04000A0D RID: 2573
 	private GameObject _character;
 
-	// Token: 0x04000A0E RID: 2574
 	private GameObject _dropBox;
 
-	// Token: 0x04000A0F RID: 2575
 	public bool showInventory;
 
-	// Token: 0x04000A10 RID: 2576
 	private float verticalVelocity;
 
-	// Token: 0x04000A11 RID: 2577
 	private GameObject inventory;
 
-	// Token: 0x04000A12 RID: 2578
 	private GameObject craftSystem;
 
-	// Token: 0x04000A13 RID: 2579
 	private GameObject characterSystem;
 
-	// Token: 0x04000A14 RID: 2580
 	private Camera firstPersonCamera;
 
-	// Token: 0x04000A15 RID: 2581
 	private CharacterController characterController;
+
+	private void Start()
+	{
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Expected O, but got Unknown
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		firstPersonCamera = ((Component)Camera.main).GetComponent<Camera>();
+		characterController = ((Component)this).GetComponent<CharacterController>();
+		if ((Object)(GameObject)KBEngineApp.app.player().renderObj != (Object)null)
+		{
+			PlayerInventory component = ((GameObject)KBEngineApp.app.player().renderObj).GetComponent<PlayerInventory>();
+			if ((Object)(object)component.inventory != (Object)null)
+			{
+				inventory = component.inventory;
+			}
+			if ((Object)(object)component.craftSystem != (Object)null)
+			{
+				craftSystem = component.craftSystem;
+			}
+			if ((Object)(object)component.characterSystem != (Object)null)
+			{
+				characterSystem = component.characterSystem;
+			}
+		}
+	}
+
+	private void Update()
+	{
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0115: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		if (!lockMovement())
+		{
+			float num = Input.GetAxis("Mouse X") * mouseSensitivity;
+			((Component)this).transform.Rotate(0f, num, 0f);
+			verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+			verticalRotation = Mathf.Clamp(verticalRotation, 0f - verticalAngleLimit, verticalAngleLimit);
+			((Component)firstPersonCamera).transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+			float num2 = Input.GetAxis("Vertical") * movementspeed;
+			float num3 = Input.GetAxis("Horizontal") * movementspeed;
+			verticalVelocity += Physics.gravity.y * Time.deltaTime;
+			if (Input.GetButtonDown("Jump") && characterController.isGrounded)
+			{
+				verticalVelocity = jumpSpeed;
+			}
+			Vector3 val = default(Vector3);
+			((Vector3)(ref val))._002Ector(num3, verticalVelocity, num2);
+			val = ((Component)this).transform.rotation * val;
+			characterController.Move(val * Time.deltaTime);
+		}
+	}
+
+	private bool lockMovement()
+	{
+		if ((Object)(object)inventory != (Object)null && inventory.activeSelf)
+		{
+			return true;
+		}
+		if ((Object)(object)characterSystem != (Object)null && characterSystem.activeSelf)
+		{
+			return true;
+		}
+		if ((Object)(object)craftSystem != (Object)null && craftSystem.activeSelf)
+		{
+			return true;
+		}
+		return false;
+	}
 }

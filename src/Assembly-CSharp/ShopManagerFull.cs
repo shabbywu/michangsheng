@@ -1,185 +1,391 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 
-// Token: 0x020004C5 RID: 1221
 public class ShopManagerFull : MonoBehaviour
 {
-	// Token: 0x060026FA RID: 9978 RVA: 0x0011A074 File Offset: 0x00118274
+	public bool EarsAndHairCustomization;
+
+	public Transform[] HatsObjects = (Transform[])(object)new Transform[0];
+
+	public Transform[] ShirtsObjects = (Transform[])(object)new Transform[0];
+
+	public Transform[] BackPacksObjects = (Transform[])(object)new Transform[0];
+
+	public Transform[] PowerUpsObjects = (Transform[])(object)new Transform[0];
+
+	public static int BuyButtonState;
+
+	public static bool PreviewState = false;
+
+	private GameObject ZidFooter;
+
+	private GameObject Custumization;
+
+	private bool ImaNovihMajica;
+
+	private bool ImaNovihKapa;
+
+	private bool ImaNovihRanceva;
+
+	private GameObject ButtonShop;
+
+	private GameObject ButtonShopSprite;
+
+	private GameObject PreviewShopButton;
+
+	private GameObject ShopBanana;
+
+	public static int AktivanSesir;
+
+	public static int AktivnaMajica;
+
+	public static int AktivanRanac;
+
+	private int PreviewSesir;
+
+	private int PreviewMajica;
+
+	private int PreviewRanac;
+
+	public static bool otvorenShop = false;
+
+	public static int AktivanTab;
+
+	public static int AktivanCustomizationTab;
+
+	public static int AktivanItemSesir;
+
+	public static int AktivanItemMajica;
+
+	public static int AktivanItemRanac;
+
+	private int TrenutniSelektovanSesir = 999;
+
+	private int TrenutnoSelektovanaMajica = 999;
+
+	private int TrenutnoSelektovanRanac = 999;
+
+	private string[] Hats;
+
+	private string[] Shirts;
+
+	private string[] BackPacks;
+
+	private string[] AktivniItemi;
+
+	private string AktivniItemString;
+
+	private GameObject MajmunBobo;
+
+	private Vector3 MainScenaPozicija;
+
+	private Vector3 ShopCustomizationPozicija;
+
+	public static bool ImaUsi;
+
+	public static bool ImaKosu;
+
+	public static ShopManagerFull ShopObject;
+
+	private string releasedItem;
+
+	private string clickedItem;
+
+	private Vector3 originalScale;
+
+	private static Color KakiBoja = new Color(0.97255f, 0.79216f, 0.40784f);
+
+	private static Color PopustBoja = new Color(0.11373f, 0.82353f, 0.38039f);
+
+	private static float gornjaGranica;
+
+	private static float donjaGranica;
+
+	private TextAsset aset2;
+
+	private string aset;
+
+	public static bool ShopInicijalizovan = false;
+
+	private int BrojItemaShopHats;
+
+	private int BrojItemaShopShirts;
+
+	private int BrojItemaShopBackPack;
+
+	private int BrojItemaShop;
+
+	public static List<int> SveStvariZaOblacenjeHats = new List<int>();
+
+	public static List<int> SveStvariZaOblacenjeShirts = new List<int>();
+
+	public static List<int> SveStvariZaOblacenjeBackPack = new List<int>();
+
+	private List<string> ImenaHats;
+
+	private List<string> ImenaShirts;
+
+	private List<string> ImenaBackPacks;
+
+	private List<string> ImenaPowerUps;
+
+	private string ImeBanana;
+
+	public List<string> CoinsHats;
+
+	private List<string> CoinsShirts;
+
+	private List<string> CoinsBackPacks;
+
+	private List<string> CoinsPowerUps;
+
+	private string cenaBanana;
+
+	private List<string> BananaHats = new List<string>();
+
+	private List<string> BananaShirts = new List<string>();
+
+	private List<string> BananaBackPacks = new List<string>();
+
+	private List<string> PopustHats = new List<string>();
+
+	private List<string> PopustShirts = new List<string>();
+
+	private List<string> PopustBackPacks = new List<string>();
+
+	private List<string> PopustPowerUps = new List<string>();
+
+	private string PopustBanana;
+
+	private List<string> UsiHats = new List<string>();
+
+	private List<string> KosaHats = new List<string>();
+
+	private float ProcenatOtkljucan;
+
+	private string StariBrojOtkljucanihItema;
+
+	private string[] StariBrojOtkljucanihItemaNiz;
+
+	public static int BrojOtkljucanihMajici;
+
+	public static int BrojOtkljucanihRanceva;
+
+	public static int BrojOtkljucanihKapa;
+
+	public static int StariBrojOtkljucanihMajici;
+
+	public static int StariBrojOtkljucanihRanceva;
+
+	public static int StariBrojOtkljucanihKapa;
+
+	private List<int> ZakljucaniHats = new List<int>();
+
+	private List<int> ZakljucaniShirts = new List<int>();
+
+	private List<int> ZakljucaniBackPacks = new List<int>();
+
+	private GameObject CustomizationHats;
+
+	private GameObject CustomizationShirts;
+
+	private GameObject CustomizationBackPack;
+
+	private GameObject CoinsNumber;
+
+	private GameObject temp;
+
+	private bool mozeDaOtvoriSledeciTab = true;
+
+	private bool kliknuoJednomNaTab = true;
+
+	public Color[] TShirtColors;
+
 	private void Awake()
 	{
-		ShopManagerFull.ShopObject = this;
-		if (this.EarsAndHairCustomization)
+		ShopObject = this;
+		if (EarsAndHairCustomization)
 		{
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("0");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("0");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
-			this.KosaHats.Add("0");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("0");
+			UsiHats.Add("1");
+			UsiHats.Add("0");
+			UsiHats.Add("1");
+			UsiHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("1");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
+			KosaHats.Add("0");
 		}
 		else
 		{
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.UsiHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
-			this.KosaHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			UsiHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
+			KosaHats.Add("1");
 		}
-		this.ButtonShop = GameObject.Find("ButtonBuy");
-		this.ButtonShopSprite = GameObject.Find("Buy Button");
-		this.PreviewShopButton = GameObject.Find("Preview Button");
+		ButtonShop = GameObject.Find("ButtonBuy");
+		ButtonShopSprite = GameObject.Find("Buy Button");
+		PreviewShopButton = GameObject.Find("Preview Button");
 	}
 
-	// Token: 0x060026FB RID: 9979 RVA: 0x0011A488 File Offset: 0x00118688
 	private void Start()
 	{
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0211: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fe: Unknown result type (might be due to invalid IL or missing references)
 		if ((double)Camera.main.aspect < 1.51)
 		{
 			GameObject.Find("ButtonBackShop").transform.localPosition = new Vector3(-1.58f, -0.8f, 0f);
 		}
-		this.ShopBanana = GameObject.Find("Shop Banana");
-		ShopManagerFull.AktivanCustomizationTab = 1;
-		this.ZidFooter = GameObject.Find("ZidFooterShop");
-		this.Custumization = GameObject.Find("Custumization");
-		this.Custumization.transform.Find("Znak Uzvika telo").gameObject.SetActive(false);
-		this.CoinsNumber = GameObject.Find("Shop/Shop Interface/Coins");
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		ShopBanana = GameObject.Find("Shop Banana");
+		AktivanCustomizationTab = 1;
+		ZidFooter = GameObject.Find("ZidFooterShop");
+		Custumization = GameObject.Find("Custumization");
+		((Component)Custumization.transform.Find("Znak Uzvika telo")).gameObject.SetActive(false);
+		CoinsNumber = GameObject.Find("Shop/Shop Interface/Coins");
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number/Number").GetComponent<TextMesh>().text = StagesParser.currentBananas.ToString();
-		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Double Coins Number/Number").GetComponent<TextMesh>().text = StagesParser.powerup_doublecoins.ToString();
-		GameObject.Find("Double Coins Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Double Coins Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Magnet Number/Number").GetComponent<TextMesh>().text = StagesParser.powerup_magnets.ToString();
-		GameObject.Find("Magnet Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Magnet Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Shield Number/Number").GetComponent<TextMesh>().text = StagesParser.powerup_shields.ToString();
-		GameObject.Find("Shield Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-		this.ImaNovihMajica = false;
-		this.ImaNovihKapa = false;
-		this.ImaNovihRanceva = false;
+		GameObject.Find("Shield Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		ImaNovihMajica = false;
+		ImaNovihKapa = false;
+		ImaNovihRanceva = false;
 		if (Application.loadedLevel == 1)
 		{
-			this.ShopCustomizationPozicija = new Vector3(6.586132f, -5.05306f, -31.75042f);
+			ShopCustomizationPozicija = new Vector3(6.586132f, -5.05306f, -31.75042f);
 		}
 		else
 		{
-			this.ShopCustomizationPozicija = new Vector3(-16.58703f, -98.95457f, -50f);
+			ShopCustomizationPozicija = new Vector3(-16.58703f, -98.95457f, -50f);
 		}
 		if (PlayerPrefs.HasKey("AktivniItemi"))
 		{
-			this.AktivniItemString = PlayerPrefs.GetString("AktivniItemi");
-			this.AktivniItemi = this.AktivniItemString.Split(new char[]
-			{
-				'#'
-			});
-			ShopManagerFull.AktivanSesir = int.Parse(this.AktivniItemi[0]);
-			ShopManagerFull.AktivnaMajica = int.Parse(this.AktivniItemi[1]);
-			ShopManagerFull.AktivanRanac = int.Parse(this.AktivniItemi[2]);
+			AktivniItemString = PlayerPrefs.GetString("AktivniItemi");
+			AktivniItemi = AktivniItemString.Split(new char[1] { '#' });
+			AktivanSesir = int.Parse(AktivniItemi[0]);
+			AktivnaMajica = int.Parse(AktivniItemi[1]);
+			AktivanRanac = int.Parse(AktivniItemi[2]);
 		}
 		else
 		{
-			ShopManagerFull.AktivanSesir = -1;
-			ShopManagerFull.AktivnaMajica = -1;
-			ShopManagerFull.AktivanRanac = -1;
+			AktivanSesir = -1;
+			AktivnaMajica = -1;
+			AktivanRanac = -1;
 		}
-		this.PreviewSesir = -1;
-		this.PreviewMajica = -1;
-		this.PreviewRanac = -1;
-		this.MajmunBobo = GameObject.Find("MonkeyHolder");
-		this.CustomizationHats = GameObject.Find("1Hats");
-		this.CustomizationShirts = GameObject.Find("2Shirts");
-		this.CustomizationBackPack = GameObject.Find("3BackPack");
-		this.MainScenaPozicija = this.MajmunBobo.transform.position;
-		this.BrojItemaShopHats = this.CountItemsInShop(GameObject.Find("Shop/3 Customize/Customize Tabovi/1Hats").GetComponent<Transform>());
-		this.BrojItemaShopShirts = this.CountItemsInShop(GameObject.Find("Shop/3 Customize/Customize Tabovi/2Shirts").GetComponent<Transform>());
-		this.BrojItemaShopBackPack = this.CountItemsInShop(GameObject.Find("Shop/3 Customize/Customize Tabovi/3BackPack").GetComponent<Transform>());
-		this.BrojItemaShop = this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack;
-		this.ObuciMajmunaNaStartu();
-		base.transform.name = "Shop";
-		this.SviItemiInvetory();
-		base.StartCoroutine(this.PokreniInicijalizacijuShopa());
+		PreviewSesir = -1;
+		PreviewMajica = -1;
+		PreviewRanac = -1;
+		MajmunBobo = GameObject.Find("MonkeyHolder");
+		CustomizationHats = GameObject.Find("1Hats");
+		CustomizationShirts = GameObject.Find("2Shirts");
+		CustomizationBackPack = GameObject.Find("3BackPack");
+		MainScenaPozicija = MajmunBobo.transform.position;
+		BrojItemaShopHats = CountItemsInShop(GameObject.Find("Shop/3 Customize/Customize Tabovi/1Hats").GetComponent<Transform>());
+		BrojItemaShopShirts = CountItemsInShop(GameObject.Find("Shop/3 Customize/Customize Tabovi/2Shirts").GetComponent<Transform>());
+		BrojItemaShopBackPack = CountItemsInShop(GameObject.Find("Shop/3 Customize/Customize Tabovi/3BackPack").GetComponent<Transform>());
+		BrojItemaShop = BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack;
+		ObuciMajmunaNaStartu();
+		((Object)((Component)this).transform).name = "Shop";
+		SviItemiInvetory();
+		((MonoBehaviour)this).StartCoroutine(PokreniInicijalizacijuShopa());
 	}
 
-	// Token: 0x060026FC RID: 9980 RVA: 0x0011A82C File Offset: 0x00118A2C
 	private void Update()
 	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
 		if (Input.GetMouseButtonDown(0))
 		{
-			this.clickedItem = this.RaycastFunction(Input.mousePosition);
-			if (this.clickedItem.Equals("NekiNaziv") || this.clickedItem.Equals("NekiNaziv1"))
+			clickedItem = RaycastFunction(Input.mousePosition);
+			if (clickedItem.Equals("NekiNaziv") || clickedItem.Equals("NekiNaziv1"))
 			{
-				this.temp = GameObject.Find(this.clickedItem);
-				this.originalScale = this.temp.transform.localScale;
-				this.temp.transform.localScale = this.originalScale * 0.8f;
+				temp = GameObject.Find(clickedItem);
+				originalScale = temp.transform.localScale;
+				temp.transform.localScale = originalScale * 0.8f;
 			}
-			else if (this.clickedItem != string.Empty)
+			else if (clickedItem != string.Empty)
 			{
-				this.temp = GameObject.Find(this.clickedItem);
-				this.originalScale = this.temp.transform.localScale;
+				temp = GameObject.Find(clickedItem);
+				originalScale = temp.transform.localScale;
 			}
 		}
 		if (Input.GetMouseButtonUp(0))
 		{
-			this.releasedItem = this.RaycastFunction(Input.mousePosition);
-			if (!this.clickedItem.Equals(string.Empty))
+			releasedItem = RaycastFunction(Input.mousePosition);
+			if (!clickedItem.Equals(string.Empty))
 			{
-				if (this.temp != null)
+				if ((Object)(object)temp != (Object)null)
 				{
-					this.temp.transform.localScale = this.originalScale;
+					temp.transform.localScale = originalScale;
 				}
-				if (this.releasedItem == "NekoDugme" && PlaySounds.soundOn)
+				if (releasedItem == "NekoDugme" && PlaySounds.soundOn)
 				{
 					PlaySounds.Play_Button_OpenLevel();
 				}
@@ -187,980 +393,951 @@ public class ShopManagerFull : MonoBehaviour
 		}
 		if (ObjCustomizationHats.CustomizationHats || ObjCustomizationShirts.CustomizationShirts || ObjCustomizationBackPacks.CustomizationBackPacks)
 		{
-			if (ShopManagerFull.AktivanCustomizationTab == 1)
+			if (AktivanCustomizationTab == 1)
 			{
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
-				return;
+				ProveraTrenutnogItema(AktivanItemSesir);
 			}
-			if (ShopManagerFull.AktivanCustomizationTab == 2)
+			else if (AktivanCustomizationTab == 2)
 			{
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
-				return;
+				ProveraTrenutnogItema(AktivanItemMajica);
 			}
-			if (ShopManagerFull.AktivanCustomizationTab == 3)
+			else if (AktivanCustomizationTab == 3)
 			{
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
+				ProveraTrenutnogItema(AktivanItemRanac);
 			}
 		}
 	}
 
-	// Token: 0x060026FD RID: 9981 RVA: 0x0011A9B8 File Offset: 0x00118BB8
 	private string RaycastFunction(Vector3 vector)
 	{
-		RaycastHit raycastHit;
-		if (Physics.Raycast(Camera.main.ScreenPointToRay(vector), ref raycastHit))
+		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		RaycastHit val = default(RaycastHit);
+		if (Physics.Raycast(Camera.main.ScreenPointToRay(vector), ref val))
 		{
-			return raycastHit.collider.name;
+			return ((Object)((RaycastHit)(ref val)).collider).name;
 		}
 		return "";
 	}
 
-	// Token: 0x060026FE RID: 9982 RVA: 0x0011A9EC File Offset: 0x00118BEC
 	private int CountItemsInShop(Transform Shop)
 	{
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
 		int num = 0;
-		foreach (object obj in Shop)
+		foreach (Transform item in Shop)
 		{
-			Transform transform = (Transform)obj;
+			_ = item;
 			num++;
 		}
 		return num;
 	}
 
-	// Token: 0x060026FF RID: 9983 RVA: 0x0011AA40 File Offset: 0x00118C40
 	public void RefresujImenaItema()
 	{
-		base.StartCoroutine(this.ParsirajImenaItemaIzRadnje());
+		((MonoBehaviour)this).StartCoroutine(ParsirajImenaItemaIzRadnje());
 	}
 
-	// Token: 0x06002700 RID: 9984 RVA: 0x0011AA4F File Offset: 0x00118C4F
 	public void PobrisiSveOtkljucanoIzShopa()
 	{
-		this.ZakljucaniHats.Clear();
-		this.ZakljucaniShirts.Clear();
-		this.ZakljucaniBackPacks.Clear();
+		ZakljucaniHats.Clear();
+		ZakljucaniShirts.Clear();
+		ZakljucaniBackPacks.Clear();
 	}
 
-	// Token: 0x06002701 RID: 9985 RVA: 0x0011AA72 File Offset: 0x00118C72
 	private IEnumerator ParsirajImenaItemaIzRadnje()
 	{
 		yield return null;
-		this.aset2 = (TextAsset)Resources.Load("xmls/Shop/Shop" + LanguageManager.chosenLanguage);
-		this.aset = this.aset2.text;
-		this.CoinsHats = new List<string>();
-		this.CoinsShirts = new List<string>();
-		this.CoinsBackPacks = new List<string>();
-		this.CoinsPowerUps = new List<string>();
-		this.ImenaHats = new List<string>();
-		this.ImenaShirts = new List<string>();
-		this.ImenaBackPacks = new List<string>();
-		this.ImenaPowerUps = new List<string>();
-		IEnumerable<XElement> source = XElement.Parse(this.aset.ToString()).Elements();
-		source.Count<XElement>();
+		aset2 = (TextAsset)Resources.Load("xmls/Shop/Shop" + LanguageManager.chosenLanguage);
+		aset = aset2.text;
+		CoinsHats = new List<string>();
+		CoinsShirts = new List<string>();
+		CoinsBackPacks = new List<string>();
+		CoinsPowerUps = new List<string>();
+		ImenaHats = new List<string>();
+		ImenaShirts = new List<string>();
+		ImenaBackPacks = new List<string>();
+		ImenaPowerUps = new List<string>();
+		IEnumerable<XElement> source = ((XContainer)XElement.Parse(aset.ToString())).Elements();
+		source.Count();
 		if (StagesParser.unlockedWorlds[4])
 		{
-			this.ProcenatOtkljucan = 1f;
+			ProcenatOtkljucan = 1f;
 		}
 		else if (StagesParser.unlockedWorlds[3])
 		{
-			this.ProcenatOtkljucan = 0.9f;
+			ProcenatOtkljucan = 0.9f;
 		}
 		else if (StagesParser.unlockedWorlds[2])
 		{
-			this.ProcenatOtkljucan = 0.8f;
+			ProcenatOtkljucan = 0.8f;
 		}
 		else if (StagesParser.unlockedWorlds[1])
 		{
-			this.ProcenatOtkljucan = 0.7f;
+			ProcenatOtkljucan = 0.7f;
 		}
 		else if (StagesParser.unlockedWorlds[0])
 		{
-			this.ProcenatOtkljucan = 0.6f;
+			ProcenatOtkljucan = 0.6f;
 		}
 		if (PlayerPrefs.HasKey("OtkljucaniItemi"))
 		{
-			this.StariBrojOtkljucanihItema = PlayerPrefs.GetString("OtkljucaniItemi");
+			StariBrojOtkljucanihItema = PlayerPrefs.GetString("OtkljucaniItemi");
 		}
 		else
 		{
-			this.StariBrojOtkljucanihItema = "0#0#0";
+			StariBrojOtkljucanihItema = "0#0#0";
 		}
-		this.StariBrojOtkljucanihItemaNiz = this.StariBrojOtkljucanihItema.Split(new char[]
-		{
-			'#'
-		});
-		ShopManagerFull.StariBrojOtkljucanihKapa = int.Parse(this.StariBrojOtkljucanihItemaNiz[0]);
-		ShopManagerFull.StariBrojOtkljucanihMajici = int.Parse(this.StariBrojOtkljucanihItemaNiz[1]);
-		ShopManagerFull.StariBrojOtkljucanihRanceva = int.Parse(this.StariBrojOtkljucanihItemaNiz[2]);
-		ShopManagerFull.BrojOtkljucanihKapa = Mathf.FloorToInt((float)this.BrojItemaShopHats * this.ProcenatOtkljucan) - 1;
-		ShopManagerFull.BrojOtkljucanihMajici = Mathf.FloorToInt((float)this.BrojItemaShopShirts * this.ProcenatOtkljucan) - 1;
-		ShopManagerFull.BrojOtkljucanihRanceva = Mathf.FloorToInt((float)this.BrojItemaShopBackPack * this.ProcenatOtkljucan) - 1;
-		this.StariBrojOtkljucanihItema = string.Concat(new object[]
-		{
-			ShopManagerFull.BrojOtkljucanihKapa,
-			"#",
-			ShopManagerFull.BrojOtkljucanihMajici,
-			"#",
-			ShopManagerFull.BrojOtkljucanihRanceva
-		});
-		PlayerPrefs.SetString("OtkljucaniItemi", this.StariBrojOtkljucanihItema);
+		StariBrojOtkljucanihItemaNiz = StariBrojOtkljucanihItema.Split(new char[1] { '#' });
+		StariBrojOtkljucanihKapa = int.Parse(StariBrojOtkljucanihItemaNiz[0]);
+		StariBrojOtkljucanihMajici = int.Parse(StariBrojOtkljucanihItemaNiz[1]);
+		StariBrojOtkljucanihRanceva = int.Parse(StariBrojOtkljucanihItemaNiz[2]);
+		BrojOtkljucanihKapa = Mathf.FloorToInt((float)BrojItemaShopHats * ProcenatOtkljucan) - 1;
+		BrojOtkljucanihMajici = Mathf.FloorToInt((float)BrojItemaShopShirts * ProcenatOtkljucan) - 1;
+		BrojOtkljucanihRanceva = Mathf.FloorToInt((float)BrojItemaShopBackPack * ProcenatOtkljucan) - 1;
+		StariBrojOtkljucanihItema = BrojOtkljucanihKapa + "#" + BrojOtkljucanihMajici + "#" + BrojOtkljucanihRanceva;
+		PlayerPrefs.SetString("OtkljucaniItemi", StariBrojOtkljucanihItema);
 		PlayerPrefs.Save();
-		for (int i = 0; i < this.BrojItemaShopHats; i++)
+		for (int i = 0; i < BrojItemaShopHats; i++)
 		{
-			if (ShopManagerFull.BrojOtkljucanihKapa >= i)
+			if (BrojOtkljucanihKapa >= i)
 			{
-				this.ZakljucaniHats.Add(1);
+				ZakljucaniHats.Add(1);
 			}
 			else
 			{
-				this.ZakljucaniHats.Add(0);
+				ZakljucaniHats.Add(0);
 			}
 		}
-		for (int j = 0; j < this.BrojItemaShopShirts; j++)
+		for (int j = 0; j < BrojItemaShopShirts; j++)
 		{
-			if (ShopManagerFull.BrojOtkljucanihMajici >= j)
+			if (BrojOtkljucanihMajici >= j)
 			{
-				this.ZakljucaniShirts.Add(1);
+				ZakljucaniShirts.Add(1);
 			}
 			else
 			{
-				this.ZakljucaniShirts.Add(0);
+				ZakljucaniShirts.Add(0);
 			}
 		}
-		for (int k = 0; k < this.BrojItemaShopBackPack; k++)
+		for (int k = 0; k < BrojItemaShopBackPack; k++)
 		{
-			if (ShopManagerFull.BrojOtkljucanihRanceva >= k)
+			if (BrojOtkljucanihRanceva >= k)
 			{
-				this.ZakljucaniBackPacks.Add(1);
+				ZakljucaniBackPacks.Add(1);
 			}
 			else
 			{
-				this.ZakljucaniBackPacks.Add(0);
+				ZakljucaniBackPacks.Add(0);
 			}
 		}
-		if (source.Count<XElement>() == this.BrojItemaShop + 4)
+		if (source.Count() != BrojItemaShop + 4)
 		{
-			for (int l = 0; l < this.BrojItemaShopHats; l++)
+			yield break;
+		}
+		for (int l = 0; l < BrojItemaShopHats; l++)
+		{
+			if (ZakljucaniHats[l] == 1)
 			{
-				if (this.ZakljucaniHats[l] == 1)
+				((Component)HatsObjects[l].Find("Zakkljucano")).gameObject.SetActive(false);
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(true);
+			}
+			else
+			{
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)HatsObjects[l].Find("Bedz - Popust")).gameObject.SetActive(false);
+				((Component)HatsObjects[l].Find("Zakkljucano")).gameObject.SetActive(true);
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+			}
+			if (!(source.ElementAt(l).Attribute(XName.op_Implicit("kategorija")).Value == "Hats"))
+			{
+				continue;
+			}
+			ImenaHats.Add(source.ElementAt(l).Value);
+			CoinsHats.Add(source.ElementAt(l).Attribute(XName.op_Implicit("coins")).Value);
+			BananaHats.Add(source.ElementAt(l).Attribute(XName.op_Implicit("banana")).Value);
+			PopustHats.Add(source.ElementAt(l).Attribute(XName.op_Implicit("popust")).Value);
+			if (SveStvariZaOblacenjeHats[l] == 1)
+			{
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)HatsObjects[l].Find("Bedz - Popust")).gameObject.SetActive(false);
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+			}
+			else if (PopustHats[l] == "0")
+			{
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsHats[l];
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				if ((l > StariBrojOtkljucanihKapa) & (l <= BrojOtkljucanihKapa))
 				{
-					this.HatsObjects[l].Find("Zakkljucano").gameObject.SetActive(false);
-					this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(true);
+					ImaNovihKapa = true;
+					((Component)HatsObjects[l].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)HatsObjects[l].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
 				}
 				else
 				{
-					this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-					this.HatsObjects[l].Find("Bedz - Popust").gameObject.SetActive(false);
-					this.HatsObjects[l].Find("Zakkljucano").gameObject.SetActive(true);
-					this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-				}
-				if (source.ElementAt(l).Attribute("kategorija").Value == "Hats")
-				{
-					this.ImenaHats.Add(source.ElementAt(l).Value);
-					this.CoinsHats.Add(source.ElementAt(l).Attribute("coins").Value);
-					this.BananaHats.Add(source.ElementAt(l).Attribute("banana").Value);
-					this.PopustHats.Add(source.ElementAt(l).Attribute("popust").Value);
-					if (ShopManagerFull.SveStvariZaOblacenjeHats[l] == 1)
-					{
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-						this.HatsObjects[l].Find("Bedz - Popust").gameObject.SetActive(false);
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-					}
-					else if (this.PopustHats[l] == "0")
-					{
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsHats[l];
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						if (l > ShopManagerFull.StariBrojOtkljucanihKapa & l <= ShopManagerFull.BrojOtkljucanihKapa)
-						{
-							this.ImaNovihKapa = true;
-							this.HatsObjects[l].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-							this.HatsObjects[l].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-						}
-						else
-						{
-							this.HatsObjects[l].Find("Bedz - Popust").gameObject.SetActive(false);
-						}
-					}
-					else if (l > ShopManagerFull.StariBrojOtkljucanihKapa & l <= ShopManagerFull.BrojOtkljucanihKapa)
-					{
-						this.ImaNovihKapa = true;
-						this.HatsObjects[l].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-						this.HatsObjects[l].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-						if (this.ZakljucaniHats[l] == 1)
-						{
-							this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-							this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = this.CoinsHats[l];
-							if (this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").gameObject.activeSelf)
-							{
-								this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-							}
-							string s = "0." + this.PopustHats[l];
-							float num = float.Parse(this.CoinsHats[l]) - float.Parse(this.CoinsHats[l]) * float.Parse(s);
-							this.CoinsHats[l] = num.ToString();
-							this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num.ToString();
-							this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-							this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-						}
-					}
-					else if (this.ZakljucaniHats[l] == 1)
-					{
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-						this.HatsObjects[l].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustHats[l] + "%";
-						this.HatsObjects[l].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustHats[l] + "%";
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = this.CoinsHats[l];
-						if (this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").gameObject.activeSelf)
-						{
-							this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						}
-						string s2 = "0." + this.PopustHats[l];
-						float num2 = float.Parse(this.CoinsHats[l]) - float.Parse(this.CoinsHats[l]) * float.Parse(s2);
-						this.CoinsHats[l] = num2.ToString();
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num2.ToString();
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						this.HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-					}
-					this.HatsObjects[l].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaHats[l];
-					this.HatsObjects[l].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+					((Component)HatsObjects[l].Find("Bedz - Popust")).gameObject.SetActive(false);
 				}
 			}
-			for (int m = 0; m < this.BrojItemaShopShirts; m++)
+			else if ((l > StariBrojOtkljucanihKapa) & (l <= BrojOtkljucanihKapa))
 			{
-				if (this.ZakljucaniShirts[m] == 1)
+				ImaNovihKapa = true;
+				((Component)HatsObjects[l].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+				((Component)HatsObjects[l].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				if (ZakljucaniHats[l] == 1)
 				{
-					this.ShirtsObjects[m].Find("Zakkljucano").gameObject.SetActive(false);
-					this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(true);
+					((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+					((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = CoinsHats[l];
+					if (((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).gameObject.activeSelf)
+					{
+						((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					}
+					string s = "0." + PopustHats[l];
+					float num = float.Parse(CoinsHats[l]) - float.Parse(CoinsHats[l]) * float.Parse(s);
+					CoinsHats[l] = num.ToString();
+					((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num.ToString();
+					((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+				}
+			}
+			else if (ZakljucaniHats[l] == 1)
+			{
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+				((Component)HatsObjects[l].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustHats[l] + "%";
+				((Component)HatsObjects[l].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustHats[l] + "%";
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = CoinsHats[l];
+				if (((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).gameObject.activeSelf)
+				{
+					((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				}
+				string s2 = "0." + PopustHats[l];
+				float num2 = float.Parse(CoinsHats[l]) - float.Parse(CoinsHats[l]) * float.Parse(s2);
+				CoinsHats[l] = num2.ToString();
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num2.ToString();
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				((Component)HatsObjects[l].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+			}
+			((Component)HatsObjects[l].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaHats[l];
+			((Component)HatsObjects[l].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		for (int m = 0; m < BrojItemaShopShirts; m++)
+		{
+			if (ZakljucaniShirts[m] == 1)
+			{
+				((Component)ShirtsObjects[m].Find("Zakkljucano")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(true);
+			}
+			else
+			{
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[m].Find("Bedz - Popust")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[m].Find("Zakkljucano")).gameObject.SetActive(true);
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+			}
+			if (!(source.ElementAt(BrojItemaShopHats + m).Attribute(XName.op_Implicit("kategorija")).Value == "Shirts"))
+			{
+				continue;
+			}
+			ImenaShirts.Add(source.ElementAt(BrojItemaShopHats + m).Value);
+			CoinsShirts.Add(source.ElementAt(BrojItemaShopHats + m).Attribute(XName.op_Implicit("coins")).Value);
+			BananaShirts.Add(source.ElementAt(BrojItemaShopHats + m).Attribute(XName.op_Implicit("banana")).Value);
+			PopustShirts.Add(source.ElementAt(BrojItemaShopHats + m).Attribute(XName.op_Implicit("popust")).Value);
+			if (SveStvariZaOblacenjeShirts[m] == 1)
+			{
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[m].Find("Bedz - Popust")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+			}
+			else if (PopustShirts[m] == "0")
+			{
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsShirts[m];
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				if ((m > StariBrojOtkljucanihMajici) & (m <= BrojOtkljucanihMajici))
+				{
+					ImaNovihMajica = true;
+					((Component)ShirtsObjects[m].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)ShirtsObjects[m].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
 				}
 				else
 				{
-					this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-					this.ShirtsObjects[m].Find("Bedz - Popust").gameObject.SetActive(false);
-					this.ShirtsObjects[m].Find("Zakkljucano").gameObject.SetActive(true);
-					this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-				}
-				if (source.ElementAt(this.BrojItemaShopHats + m).Attribute("kategorija").Value == "Shirts")
-				{
-					this.ImenaShirts.Add(source.ElementAt(this.BrojItemaShopHats + m).Value);
-					this.CoinsShirts.Add(source.ElementAt(this.BrojItemaShopHats + m).Attribute("coins").Value);
-					this.BananaShirts.Add(source.ElementAt(this.BrojItemaShopHats + m).Attribute("banana").Value);
-					this.PopustShirts.Add(source.ElementAt(this.BrojItemaShopHats + m).Attribute("popust").Value);
-					if (ShopManagerFull.SveStvariZaOblacenjeShirts[m] == 1)
-					{
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-						this.ShirtsObjects[m].Find("Bedz - Popust").gameObject.SetActive(false);
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-					}
-					else if (this.PopustShirts[m] == "0")
-					{
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsShirts[m];
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						if (m > ShopManagerFull.StariBrojOtkljucanihMajici & m <= ShopManagerFull.BrojOtkljucanihMajici)
-						{
-							this.ImaNovihMajica = true;
-							this.ShirtsObjects[m].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-							this.ShirtsObjects[m].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-						}
-						else
-						{
-							this.ShirtsObjects[m].Find("Bedz - Popust").gameObject.SetActive(false);
-						}
-					}
-					else if (m > ShopManagerFull.StariBrojOtkljucanihMajici & m <= ShopManagerFull.BrojOtkljucanihMajici)
-					{
-						this.ImaNovihMajica = true;
-						this.ShirtsObjects[m].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-						this.ShirtsObjects[m].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-						if (this.ZakljucaniShirts[m] == 1)
-						{
-							this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-							this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = this.CoinsShirts[m].ToString();
-							if (this.ShirtsObjects[m].parent.gameObject.activeSelf)
-							{
-								this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-							}
-							string s3 = "0." + this.PopustShirts[m];
-							float num3 = float.Parse(this.CoinsShirts[m]) - float.Parse(this.CoinsShirts[m]) * float.Parse(s3);
-							this.CoinsShirts[m] = num3.ToString();
-							this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num3.ToString();
-							this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-							this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-						}
-					}
-					else if (this.ZakljucaniShirts[m] == 1)
-					{
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-						this.ShirtsObjects[m].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustShirts[m] + "%";
-						this.ShirtsObjects[m].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustShirts[m] + "%";
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = this.CoinsShirts[m].ToString();
-						if (this.ShirtsObjects[m].parent.gameObject.activeSelf)
-						{
-							this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						}
-						string s4 = "0." + this.PopustShirts[m];
-						float num4 = float.Parse(this.CoinsShirts[m]) - float.Parse(this.CoinsShirts[m]) * float.Parse(s4);
-						this.CoinsShirts[m] = num4.ToString();
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num4.ToString();
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						this.ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-					}
-					this.ShirtsObjects[m].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaShirts[m];
-					this.ShirtsObjects[m].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+					((Component)ShirtsObjects[m].Find("Bedz - Popust")).gameObject.SetActive(false);
 				}
 			}
-			for (int n = 0; n < this.BrojItemaShopBackPack; n++)
+			else if ((m > StariBrojOtkljucanihMajici) & (m <= BrojOtkljucanihMajici))
 			{
-				if (this.ZakljucaniBackPacks[n] == 1)
+				ImaNovihMajica = true;
+				((Component)ShirtsObjects[m].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+				((Component)ShirtsObjects[m].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				if (ZakljucaniShirts[m] == 1)
 				{
-					this.BackPacksObjects[n].Find("Zakkljucano").gameObject.SetActive(false);
-					this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(true);
+					((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+					((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = CoinsShirts[m].ToString();
+					if (((Component)ShirtsObjects[m].parent).gameObject.activeSelf)
+					{
+						((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					}
+					string s3 = "0." + PopustShirts[m];
+					float num3 = float.Parse(CoinsShirts[m]) - float.Parse(CoinsShirts[m]) * float.Parse(s3);
+					CoinsShirts[m] = num3.ToString();
+					((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num3.ToString();
+					((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+				}
+			}
+			else if (ZakljucaniShirts[m] == 1)
+			{
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+				((Component)ShirtsObjects[m].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustShirts[m] + "%";
+				((Component)ShirtsObjects[m].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustShirts[m] + "%";
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = CoinsShirts[m].ToString();
+				if (((Component)ShirtsObjects[m].parent).gameObject.activeSelf)
+				{
+					((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				}
+				string s4 = "0." + PopustShirts[m];
+				float num4 = float.Parse(CoinsShirts[m]) - float.Parse(CoinsShirts[m]) * float.Parse(s4);
+				CoinsShirts[m] = num4.ToString();
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num4.ToString();
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				((Component)ShirtsObjects[m].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+			}
+			((Component)ShirtsObjects[m].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaShirts[m];
+			((Component)ShirtsObjects[m].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		for (int n = 0; n < BrojItemaShopBackPack; n++)
+		{
+			if (ZakljucaniBackPacks[n] == 1)
+			{
+				((Component)BackPacksObjects[n].Find("Zakkljucano")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(true);
+			}
+			else
+			{
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[n].Find("Bedz - Popust")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[n].Find("Zakkljucano")).gameObject.SetActive(true);
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+			}
+			if (!(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + n).Attribute(XName.op_Implicit("kategorija")).Value == "BackPack"))
+			{
+				continue;
+			}
+			ImenaBackPacks.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + n).Value);
+			CoinsBackPacks.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + n).Attribute(XName.op_Implicit("coins")).Value);
+			BananaBackPacks.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + n).Attribute(XName.op_Implicit("banana")).Value);
+			PopustBackPacks.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + n).Attribute(XName.op_Implicit("popust")).Value);
+			if (SveStvariZaOblacenjeBackPack[n] == 1)
+			{
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[n].Find("Bedz - Popust")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+			}
+			else if (PopustBackPacks[n] == "0")
+			{
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsBackPacks[n];
+				((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				if ((n > StariBrojOtkljucanihRanceva) & (n <= BrojOtkljucanihRanceva))
+				{
+					ImaNovihRanceva = true;
+					((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
 				}
 				else
 				{
-					this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-					this.BackPacksObjects[n].Find("Bedz - Popust").gameObject.SetActive(false);
-					this.BackPacksObjects[n].Find("Zakkljucano").gameObject.SetActive(true);
-					this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-				}
-				if (source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + n).Attribute("kategorija").Value == "BackPack")
-				{
-					this.ImenaBackPacks.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + n).Value);
-					this.CoinsBackPacks.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + n).Attribute("coins").Value);
-					this.BananaBackPacks.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + n).Attribute("banana").Value);
-					this.PopustBackPacks.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + n).Attribute("popust").Value);
-					if (ShopManagerFull.SveStvariZaOblacenjeBackPack[n] == 1)
-					{
-						this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-						this.BackPacksObjects[n].Find("Bedz - Popust").gameObject.SetActive(false);
-						this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-					}
-					else if (this.PopustBackPacks[n] == "0")
-					{
-						this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsBackPacks[n];
-						this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						if (n > ShopManagerFull.StariBrojOtkljucanihRanceva & n <= ShopManagerFull.BrojOtkljucanihRanceva)
-						{
-							this.ImaNovihRanceva = true;
-							this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-							this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-						}
-						else
-						{
-							this.BackPacksObjects[n].Find("Bedz - Popust").gameObject.SetActive(false);
-						}
-					}
-					else
-					{
-						this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustBackPacks[n] + "%";
-						this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustBackPacks[n] + "%";
-						if (n > ShopManagerFull.StariBrojOtkljucanihRanceva & n <= ShopManagerFull.BrojOtkljucanihRanceva)
-						{
-							this.ImaNovihRanceva = true;
-							this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-							this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-							if (this.ZakljucaniBackPacks[n] == 1)
-							{
-								this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-								this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = this.CoinsBackPacks[n].ToString();
-								if (this.BackPacksObjects[n].parent.gameObject.activeSelf)
-								{
-									this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-								}
-								string s5 = "0." + this.PopustBackPacks[n];
-								float num5 = float.Parse(this.CoinsBackPacks[n]) - float.Parse(this.CoinsBackPacks[n]) * float.Parse(s5);
-								this.CoinsBackPacks[n] = num5.ToString();
-								this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num5.ToString();
-								this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-								this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-							}
-						}
-						else if (this.ZakljucaniBackPacks[n] == 1)
-						{
-							this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-							this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustBackPacks[n] + "%";
-							this.BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustBackPacks[n] + "%";
-							this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = this.CoinsBackPacks[n].ToString();
-							if (this.BackPacksObjects[n].parent.gameObject.activeSelf)
-							{
-								this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-							}
-							string s6 = "0." + this.PopustBackPacks[n];
-							float num6 = float.Parse(this.CoinsBackPacks[n]) - float.Parse(this.CoinsBackPacks[n]) * float.Parse(s6);
-							this.CoinsBackPacks[n] = num6.ToString();
-							this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num6.ToString();
-							this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-							this.BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-						}
-					}
-					this.BackPacksObjects[n].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaBackPacks[n];
-					this.BackPacksObjects[n].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+					((Component)BackPacksObjects[n].Find("Bedz - Popust")).gameObject.SetActive(false);
 				}
 			}
-			for (int num7 = 0; num7 < 3; num7++)
+			else
 			{
-				if (source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + num7).Attribute("kategorija").Value == "PowerUps")
+				((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustBackPacks[n] + "%";
+				((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustBackPacks[n] + "%";
+				if ((n > StariBrojOtkljucanihRanceva) & (n <= BrojOtkljucanihRanceva))
 				{
-					this.ImenaPowerUps.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + num7).Value);
-					this.CoinsPowerUps.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + num7).Attribute("coins").Value);
-					this.PopustPowerUps.Add(source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + num7).Attribute("popust").Value);
-					if (this.PopustPowerUps[num7] == "0")
+					ImaNovihRanceva = true;
+					((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+					if (ZakljucaniBackPacks[n] == 1)
 					{
-						this.PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsPowerUps[num7];
-						this.PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						this.PowerUpsObjects[num7].Find("Popust").gameObject.SetActive(false);
+						((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+						((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = CoinsBackPacks[n].ToString();
+						if (((Component)BackPacksObjects[n].parent).gameObject.activeSelf)
+						{
+							((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+						}
+						string s5 = "0." + PopustBackPacks[n];
+						float num5 = float.Parse(CoinsBackPacks[n]) - float.Parse(CoinsBackPacks[n]) * float.Parse(s5);
+						CoinsBackPacks[n] = num5.ToString();
+						((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num5.ToString();
+						((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+						((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
 					}
-					else
+				}
+				else if (ZakljucaniBackPacks[n] == 1)
+				{
+					((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+					((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustBackPacks[n] + "%";
+					((Component)BackPacksObjects[n].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustBackPacks[n] + "%";
+					((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = CoinsBackPacks[n].ToString();
+					if (((Component)BackPacksObjects[n].parent).gameObject.activeSelf)
 					{
-						this.PowerUpsObjects[num7].Find("Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustPowerUps[num7] + "%";
-						this.PowerUpsObjects[num7].Find("Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustPowerUps[num7] + "%";
-						string s7 = "0." + this.PopustPowerUps[num7];
-						float num8 = float.Parse(this.CoinsPowerUps[num7]) - float.Parse(this.CoinsPowerUps[num7]) * float.Parse(s7);
-						this.CoinsPowerUps[num7] = num8.ToString();
-						this.PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = num8.ToString();
-						this.PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-						this.PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
+						((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
 					}
-					this.PowerUpsObjects[num7].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaPowerUps[num7];
-					this.PowerUpsObjects[num7].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+					string s6 = "0." + PopustBackPacks[n];
+					float num6 = float.Parse(CoinsBackPacks[n]) - float.Parse(CoinsBackPacks[n]) * float.Parse(s6);
+					CoinsBackPacks[n] = num6.ToString();
+					((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num6.ToString();
+					((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)BackPacksObjects[n].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
 				}
 			}
-			StagesParser.cost_doublecoins = int.Parse(this.CoinsPowerUps[0]);
-			StagesParser.cost_magnet = int.Parse(this.CoinsPowerUps[1]);
-			StagesParser.cost_shield = int.Parse(this.CoinsPowerUps[2]);
-			if (source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + 3).Attribute("kategorija").Value == "Banana")
+			((Component)BackPacksObjects[n].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaBackPacks[n];
+			((Component)BackPacksObjects[n].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		for (int num7 = 0; num7 < 3; num7++)
+		{
+			if (source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + num7).Attribute(XName.op_Implicit("kategorija")).Value == "PowerUps")
 			{
-				this.ImeBanana = source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + 3).Value;
-				this.cenaBanana = source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + 3).Attribute("coins").Value;
-				this.PopustBanana = source.ElementAt(this.BrojItemaShopHats + this.BrojItemaShopShirts + this.BrojItemaShopBackPack + 3).Attribute("popust").Value;
-				string s8 = "0." + this.PopustBanana;
-				float num9 = float.Parse(this.cenaBanana) - float.Parse(this.cenaBanana) * float.Parse(s8);
-				this.cenaBanana = num9.ToString();
-				StagesParser.bananaCost = (int)num9;
-				if (int.Parse(this.PopustBanana) > 0)
+				ImenaPowerUps.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + num7).Value);
+				CoinsPowerUps.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + num7).Attribute(XName.op_Implicit("coins")).Value);
+				PopustPowerUps.Add(source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + num7).Attribute(XName.op_Implicit("popust")).Value);
+				if (PopustPowerUps[num7] == "0")
 				{
-					this.ShopBanana.transform.Find("Popust").gameObject.SetActive(true);
-					this.ShopBanana.transform.Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-					this.ShopBanana.transform.Find("Popust/Text/Number").GetComponent<TextMesh>().text = this.PopustBanana + "%";
-					this.ShopBanana.transform.Find("Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustBanana + "%";
+					((Component)PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsPowerUps[num7];
+					((Component)PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)PowerUpsObjects[num7].Find("Popust")).gameObject.SetActive(false);
 				}
 				else
 				{
-					this.ShopBanana.transform.Find("Popust").gameObject.SetActive(false);
+					((Component)PowerUpsObjects[num7].Find("Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustPowerUps[num7] + "%";
+					((Component)PowerUpsObjects[num7].Find("Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustPowerUps[num7] + "%";
+					string s7 = "0." + PopustPowerUps[num7];
+					float num8 = float.Parse(CoinsPowerUps[num7]) - float.Parse(CoinsPowerUps[num7]) * float.Parse(s7);
+					CoinsPowerUps[num7] = num8.ToString();
+					((Component)PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = num8.ToString();
+					((Component)PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)PowerUpsObjects[num7].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
 				}
-				this.ShopBanana.transform.Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.cenaBanana;
-				this.ShopBanana.transform.Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-				this.ShopBanana.transform.Find("Text/Banana").GetComponent<TextMesh>().text = this.ImeBanana;
-				this.ShopBanana.transform.Find("Text/Banana").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-			}
-			if (this.ImaNovihKapa)
-			{
-				this.ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo").gameObject.SetActive(true);
-			}
-			else
-			{
-				this.ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo").gameObject.SetActive(false);
-			}
-			if (this.ImaNovihMajica)
-			{
-				this.ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo").gameObject.SetActive(true);
-			}
-			else
-			{
-				this.ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo").gameObject.SetActive(false);
-			}
-			if (this.ImaNovihRanceva)
-			{
-				this.ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo").gameObject.SetActive(true);
-			}
-			else
-			{
-				this.ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo").gameObject.SetActive(false);
-			}
-			if (this.ImaNovihKapa | this.ImaNovihMajica | this.ImaNovihRanceva)
-			{
-				this.Custumization.transform.Find("Znak Uzvika telo").gameObject.SetActive(true);
-				this.Custumization.GetComponent<Animation>().PlayQueued("Button Customization Idle", 0);
-			}
-			else
-			{
-				this.Custumization.transform.Find("Znak Uzvika telo").gameObject.SetActive(false);
+				((Component)PowerUpsObjects[num7].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaPowerUps[num7];
+				((Component)PowerUpsObjects[num7].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 			}
 		}
-		yield break;
+		StagesParser.cost_doublecoins = int.Parse(CoinsPowerUps[0]);
+		StagesParser.cost_magnet = int.Parse(CoinsPowerUps[1]);
+		StagesParser.cost_shield = int.Parse(CoinsPowerUps[2]);
+		if (source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + 3).Attribute(XName.op_Implicit("kategorija")).Value == "Banana")
+		{
+			ImeBanana = source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + 3).Value;
+			cenaBanana = source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + 3).Attribute(XName.op_Implicit("coins")).Value;
+			PopustBanana = source.ElementAt(BrojItemaShopHats + BrojItemaShopShirts + BrojItemaShopBackPack + 3).Attribute(XName.op_Implicit("popust")).Value;
+			string s8 = "0." + PopustBanana;
+			float num9 = float.Parse(cenaBanana) - float.Parse(cenaBanana) * float.Parse(s8);
+			cenaBanana = num9.ToString();
+			StagesParser.bananaCost = (int)num9;
+			if (int.Parse(PopustBanana) > 0)
+			{
+				((Component)ShopBanana.transform.Find("Popust")).gameObject.SetActive(true);
+				((Component)ShopBanana.transform.Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+				((Component)ShopBanana.transform.Find("Popust/Text/Number")).GetComponent<TextMesh>().text = PopustBanana + "%";
+				((Component)ShopBanana.transform.Find("Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustBanana + "%";
+			}
+			else
+			{
+				((Component)ShopBanana.transform.Find("Popust")).gameObject.SetActive(false);
+			}
+			((Component)ShopBanana.transform.Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = cenaBanana;
+			((Component)ShopBanana.transform.Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+			((Component)ShopBanana.transform.Find("Text/Banana")).GetComponent<TextMesh>().text = ImeBanana;
+			((Component)ShopBanana.transform.Find("Text/Banana")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		if (ImaNovihKapa)
+		{
+			((Component)ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+		if (ImaNovihMajica)
+		{
+			((Component)ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+		if (ImaNovihRanceva)
+		{
+			((Component)ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+		if (ImaNovihKapa | ImaNovihMajica | ImaNovihRanceva)
+		{
+			((Component)Custumization.transform.Find("Znak Uzvika telo")).gameObject.SetActive(true);
+			Custumization.GetComponent<Animation>().PlayQueued("Button Customization Idle", (QueueMode)0);
+		}
+		else
+		{
+			((Component)Custumization.transform.Find("Znak Uzvika telo")).gameObject.SetActive(false);
+		}
 	}
 
-	// Token: 0x06002702 RID: 9986 RVA: 0x0011AA84 File Offset: 0x00118C84
 	public void SviItemiInvetory()
 	{
-		ShopManagerFull.SveStvariZaOblacenjeHats.Clear();
-		ShopManagerFull.SveStvariZaOblacenjeShirts.Clear();
-		ShopManagerFull.SveStvariZaOblacenjeBackPack.Clear();
-		this.Hats = StagesParser.svekupovineGlava.Split(new char[]
+		SveStvariZaOblacenjeHats.Clear();
+		SveStvariZaOblacenjeShirts.Clear();
+		SveStvariZaOblacenjeBackPack.Clear();
+		Hats = StagesParser.svekupovineGlava.Split(new char[1] { '#' });
+		Shirts = StagesParser.svekupovineMajica.Split(new char[1] { '#' });
+		BackPacks = StagesParser.svekupovineLedja.Split(new char[1] { '#' });
+		for (int i = 0; i < BrojItemaShopHats; i++)
 		{
-			'#'
-		});
-		this.Shirts = StagesParser.svekupovineMajica.Split(new char[]
-		{
-			'#'
-		});
-		this.BackPacks = StagesParser.svekupovineLedja.Split(new char[]
-		{
-			'#'
-		});
-		for (int i = 0; i < this.BrojItemaShopHats; i++)
-		{
-			if (this.Hats.Length - 1 > i)
+			if (Hats.Length - 1 > i)
 			{
-				ShopManagerFull.SveStvariZaOblacenjeHats.Add(int.Parse(this.Hats[i]));
+				SveStvariZaOblacenjeHats.Add(int.Parse(Hats[i]));
 			}
 			else
 			{
-				ShopManagerFull.SveStvariZaOblacenjeHats.Add(0);
+				SveStvariZaOblacenjeHats.Add(0);
 			}
-			if (ShopManagerFull.SveStvariZaOblacenjeHats[i] == 0)
+			if (SveStvariZaOblacenjeHats[i] == 0)
 			{
-				this.HatsObjects[i].Find("Stikla").gameObject.SetActive(false);
+				((Component)HatsObjects[i].Find("Stikla")).gameObject.SetActive(false);
 			}
 			else
 			{
-				this.HatsObjects[i].Find("Stikla").gameObject.SetActive(true);
+				((Component)HatsObjects[i].Find("Stikla")).gameObject.SetActive(true);
 			}
 		}
-		for (int j = 0; j < this.BrojItemaShopShirts; j++)
+		for (int j = 0; j < BrojItemaShopShirts; j++)
 		{
-			if (this.Shirts.Length - 1 > j)
+			if (Shirts.Length - 1 > j)
 			{
-				ShopManagerFull.SveStvariZaOblacenjeShirts.Add(int.Parse(this.Shirts[j]));
+				SveStvariZaOblacenjeShirts.Add(int.Parse(Shirts[j]));
 			}
 			else
 			{
-				ShopManagerFull.SveStvariZaOblacenjeShirts.Add(0);
+				SveStvariZaOblacenjeShirts.Add(0);
 			}
-			if (ShopManagerFull.SveStvariZaOblacenjeShirts[j] == 0)
+			if (SveStvariZaOblacenjeShirts[j] == 0)
 			{
-				this.ShirtsObjects[j].Find("Stikla").gameObject.SetActive(false);
+				((Component)ShirtsObjects[j].Find("Stikla")).gameObject.SetActive(false);
 			}
 			else
 			{
-				this.ShirtsObjects[j].Find("Stikla").gameObject.SetActive(true);
+				((Component)ShirtsObjects[j].Find("Stikla")).gameObject.SetActive(true);
 			}
 		}
-		for (int k = 0; k < this.BrojItemaShopBackPack; k++)
+		for (int k = 0; k < BrojItemaShopBackPack; k++)
 		{
-			if (this.BackPacks.Length - 1 > k)
+			if (BackPacks.Length - 1 > k)
 			{
-				ShopManagerFull.SveStvariZaOblacenjeBackPack.Add(int.Parse(this.BackPacks[k]));
+				SveStvariZaOblacenjeBackPack.Add(int.Parse(BackPacks[k]));
 			}
 			else
 			{
-				ShopManagerFull.SveStvariZaOblacenjeBackPack.Add(0);
+				SveStvariZaOblacenjeBackPack.Add(0);
 			}
-			if (ShopManagerFull.SveStvariZaOblacenjeBackPack[k] == 0)
+			if (SveStvariZaOblacenjeBackPack[k] == 0)
 			{
-				this.BackPacksObjects[k].Find("Stikla").gameObject.SetActive(false);
+				((Component)BackPacksObjects[k].Find("Stikla")).gameObject.SetActive(false);
 			}
 			else
 			{
-				this.BackPacksObjects[k].Find("Stikla").gameObject.SetActive(true);
+				((Component)BackPacksObjects[k].Find("Stikla")).gameObject.SetActive(true);
 			}
 		}
-		ShopManagerFull.ShopInicijalizovan = true;
-		this.PokreniShop();
-		this.Hats = null;
-		this.Shirts = null;
-		this.BackPacks = null;
+		ShopInicijalizovan = true;
+		PokreniShop();
+		Hats = null;
+		Shirts = null;
+		BackPacks = null;
 	}
 
-	// Token: 0x06002703 RID: 9987 RVA: 0x0011ACCB File Offset: 0x00118ECB
 	private IEnumerator PokreniInicijalizacijuShopa()
 	{
 		if (FacebookManager.KorisnikoviPodaciSpremni)
 		{
-			base.StartCoroutine(this.ParsirajImenaItemaIzRadnje());
+			((MonoBehaviour)this).StartCoroutine(ParsirajImenaItemaIzRadnje());
+			yield break;
 		}
-		else
+		FacebookManager.UserCoins = StagesParser.currentMoney;
+		FacebookManager.UserScore = StagesParser.currentPoints;
+		FacebookManager.UserLanguage = LanguageManager.chosenLanguage;
+		FacebookManager.UserBanana = StagesParser.currentBananas;
+		FacebookManager.UserPowerMagnet = StagesParser.powerup_magnets;
+		FacebookManager.UserPowerShield = StagesParser.powerup_shields;
+		FacebookManager.UserPowerDoubleCoins = StagesParser.powerup_doublecoins;
+		FacebookManager.UserSveKupovineHats = StagesParser.svekupovineGlava;
+		FacebookManager.UserSveKupovineShirts = StagesParser.svekupovineMajica;
+		FacebookManager.UserSveKupovineBackPacks = StagesParser.svekupovineLedja;
+		FacebookManager.GlavaItem = StagesParser.glava;
+		FacebookManager.TeloItem = StagesParser.majica;
+		FacebookManager.LedjaItem = StagesParser.ledja;
+		FacebookManager.Usi = StagesParser.imaUsi;
+		FacebookManager.Kosa = StagesParser.imaKosu;
+		FacebookManager.KorisnikoviPodaciSpremni = true;
+		while (!FacebookManager.KorisnikoviPodaciSpremni)
 		{
-			FacebookManager.UserCoins = StagesParser.currentMoney;
-			FacebookManager.UserScore = StagesParser.currentPoints;
-			FacebookManager.UserLanguage = LanguageManager.chosenLanguage;
-			FacebookManager.UserBanana = StagesParser.currentBananas;
-			FacebookManager.UserPowerMagnet = StagesParser.powerup_magnets;
-			FacebookManager.UserPowerShield = StagesParser.powerup_shields;
-			FacebookManager.UserPowerDoubleCoins = StagesParser.powerup_doublecoins;
-			FacebookManager.UserSveKupovineHats = StagesParser.svekupovineGlava;
-			FacebookManager.UserSveKupovineShirts = StagesParser.svekupovineMajica;
-			FacebookManager.UserSveKupovineBackPacks = StagesParser.svekupovineLedja;
-			FacebookManager.GlavaItem = StagesParser.glava;
-			FacebookManager.TeloItem = StagesParser.majica;
-			FacebookManager.LedjaItem = StagesParser.ledja;
-			FacebookManager.Usi = StagesParser.imaUsi;
-			FacebookManager.Kosa = StagesParser.imaKosu;
-			FacebookManager.KorisnikoviPodaciSpremni = true;
-			while (!FacebookManager.KorisnikoviPodaciSpremni)
-			{
-				yield return null;
-			}
-			base.StartCoroutine(this.PokreniInicijalizacijuShopa());
+			yield return null;
 		}
-		yield break;
+		((MonoBehaviour)this).StartCoroutine(PokreniInicijalizacijuShopa());
 	}
 
-	// Token: 0x06002704 RID: 9988 RVA: 0x0011ACDA File Offset: 0x00118EDA
 	public void PokreniShop()
 	{
-		if (!ShopManagerFull.ShopInicijalizovan)
+		if (!ShopInicijalizovan)
 		{
-			base.StartCoroutine(this.PokreniInicijalizacijuShopa());
+			((MonoBehaviour)this).StartCoroutine(PokreniInicijalizacijuShopa());
 		}
 	}
 
-	// Token: 0x06002705 RID: 9989 RVA: 0x0011ACF0 File Offset: 0x00118EF0
 	public void SkloniShop()
 	{
+		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
 		if (Application.loadedLevel == 1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla").GetComponent<Animator>().Play("Idle Main Screen");
-			this.MajmunBobo.transform.Find("ButterflyHolder").gameObject.SetActive(true);
-			if (ShopManagerFull.AktivanRanac == 0)
+			((Component)MajmunBobo.transform.Find("PrinceGorilla")).GetComponent<Animator>().Play("Idle Main Screen");
+			((Component)MajmunBobo.transform.Find("ButterflyHolder")).gameObject.SetActive(true);
+			if (AktivanRanac == 0)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_AndjeoskaKrila").GetComponent<MeshFilter>().mesh;
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_AndjeoskaKrila").GetComponent<MeshFilter>().mesh;
 			}
-			else if (ShopManagerFull.AktivanRanac == 5)
+			else if (AktivanRanac == 5)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_SlepiMisKrila").GetComponent<MeshFilter>().mesh;
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_SlepiMisKrila").GetComponent<MeshFilter>().mesh;
 			}
 		}
-		ShopManagerFull.otvorenShop = false;
-		this.OcistiPreview();
-		this.DeaktivirajCustomization();
-		this.MajmunBobo.transform.position = this.MainScenaPozicija;
-		this.MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Euler(new Vector3(0f, 104f, 0f));
-		this.DeaktivirajFreeCoins();
-		this.DeaktivirajPowerUps();
-		this.DeaktivirajShopTab();
+		otvorenShop = false;
+		OcistiPreview();
+		DeaktivirajCustomization();
+		MajmunBobo.transform.position = MainScenaPozicija;
+		MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Euler(new Vector3(0f, 104f, 0f));
+		DeaktivirajFreeCoins();
+		DeaktivirajPowerUps();
+		DeaktivirajShopTab();
 		if (PlayerPrefs.HasKey("OtkljucaniItemi"))
 		{
-			this.StariBrojOtkljucanihItema = PlayerPrefs.GetString("OtkljucaniItemi");
+			StariBrojOtkljucanihItema = PlayerPrefs.GetString("OtkljucaniItemi");
 		}
 		else
 		{
-			this.StariBrojOtkljucanihItema = "0#0#0";
+			StariBrojOtkljucanihItema = "0#0#0";
 		}
-		this.StariBrojOtkljucanihItemaNiz = this.StariBrojOtkljucanihItema.Split(new char[]
+		StariBrojOtkljucanihItemaNiz = StariBrojOtkljucanihItema.Split(new char[1] { '#' });
+		StariBrojOtkljucanihKapa = int.Parse(StariBrojOtkljucanihItemaNiz[0]);
+		StariBrojOtkljucanihMajici = int.Parse(StariBrojOtkljucanihItemaNiz[1]);
+		StariBrojOtkljucanihRanceva = int.Parse(StariBrojOtkljucanihItemaNiz[2]);
+		if (ImaNovihKapa)
 		{
-			'#'
-		});
-		ShopManagerFull.StariBrojOtkljucanihKapa = int.Parse(this.StariBrojOtkljucanihItemaNiz[0]);
-		ShopManagerFull.StariBrojOtkljucanihMajici = int.Parse(this.StariBrojOtkljucanihItemaNiz[1]);
-		ShopManagerFull.StariBrojOtkljucanihRanceva = int.Parse(this.StariBrojOtkljucanihItemaNiz[2]);
-		if (this.ImaNovihKapa)
-		{
-			ShopManagerFull.BrojOtkljucanihKapa = Mathf.FloorToInt((float)this.BrojItemaShopHats * this.ProcenatOtkljucan) - 1;
+			BrojOtkljucanihKapa = Mathf.FloorToInt((float)BrojItemaShopHats * ProcenatOtkljucan) - 1;
 		}
 		else
 		{
-			ShopManagerFull.BrojOtkljucanihKapa = ShopManagerFull.StariBrojOtkljucanihKapa;
+			BrojOtkljucanihKapa = StariBrojOtkljucanihKapa;
 		}
-		if (this.ImaNovihMajica)
+		if (ImaNovihMajica)
 		{
-			ShopManagerFull.BrojOtkljucanihMajici = Mathf.FloorToInt((float)this.BrojItemaShopShirts * this.ProcenatOtkljucan) - 1;
-		}
-		else
-		{
-			ShopManagerFull.BrojOtkljucanihMajici = ShopManagerFull.StariBrojOtkljucanihMajici;
-		}
-		if (this.ImaNovihRanceva)
-		{
-			ShopManagerFull.BrojOtkljucanihRanceva = Mathf.FloorToInt((float)this.BrojItemaShopBackPack * this.ProcenatOtkljucan) - 1;
+			BrojOtkljucanihMajici = Mathf.FloorToInt((float)BrojItemaShopShirts * ProcenatOtkljucan) - 1;
 		}
 		else
 		{
-			ShopManagerFull.BrojOtkljucanihRanceva = ShopManagerFull.StariBrojOtkljucanihRanceva;
+			BrojOtkljucanihMajici = StariBrojOtkljucanihMajici;
 		}
-		if (!this.ImaNovihKapa && !this.ImaNovihMajica && !this.ImaNovihRanceva)
+		if (ImaNovihRanceva)
 		{
-			this.StariBrojOtkljucanihItema = string.Concat(new object[]
-			{
-				ShopManagerFull.BrojOtkljucanihKapa,
-				"#",
-				ShopManagerFull.BrojOtkljucanihMajici,
-				"#",
-				ShopManagerFull.BrojOtkljucanihRanceva
-			});
-			PlayerPrefs.SetString("OtkljucaniItemi", this.StariBrojOtkljucanihItema);
+			BrojOtkljucanihRanceva = Mathf.FloorToInt((float)BrojItemaShopBackPack * ProcenatOtkljucan) - 1;
+		}
+		else
+		{
+			BrojOtkljucanihRanceva = StariBrojOtkljucanihRanceva;
+		}
+		if (!ImaNovihKapa && !ImaNovihMajica && !ImaNovihRanceva)
+		{
+			StariBrojOtkljucanihItema = BrojOtkljucanihKapa + "#" + BrojOtkljucanihMajici + "#" + BrojOtkljucanihRanceva;
+			PlayerPrefs.SetString("OtkljucaniItemi", StariBrojOtkljucanihItema);
 			PlayerPrefs.Save();
 		}
-		this.ProveriStanjeCelogShopa();
+		ProveriStanjeCelogShopa();
 		GameObject.Find("Shop").GetComponent<Animation>().Play("MeniOdlazak");
-		if (ShopManagerFull.AktivanTab == 1)
+		if (AktivanTab == 1)
 		{
 			GameObject.Find("ButtonFreeCoins").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
 		}
-		else if (ShopManagerFull.AktivanTab == 2)
+		else if (AktivanTab == 2)
 		{
 			GameObject.Find("ButtonShop").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
 		}
-		else if (ShopManagerFull.AktivanTab == 3)
+		else if (AktivanTab == 3)
 		{
 			GameObject.Find("ButtonCustomize").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
 		}
-		else if (ShopManagerFull.AktivanTab == 4)
+		else if (AktivanTab == 4)
 		{
 			GameObject.Find("ButtonPowerUps").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
 		}
-		ShopManagerFull.AktivanTab = 0;
-		ShopManagerFull.AktivanItemSesir = 998;
-		ShopManagerFull.AktivanItemMajica = 998;
-		ShopManagerFull.AktivanItemRanac = 998;
+		AktivanTab = 0;
+		AktivanItemSesir = 998;
+		AktivanItemMajica = 998;
+		AktivanItemRanac = 998;
 	}
 
-	// Token: 0x06002706 RID: 9990 RVA: 0x0011B0EC File Offset: 0x001192EC
 	public void PozoviTab(int RedniBrojTaba)
 	{
-		if (this.mozeDaOtvoriSledeciTab && this.kliknuoJednomNaTab)
+		//IL_01fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0362: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0399: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0478: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0491: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0514: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0562: Unknown result type (might be due to invalid IL or missing references)
+		//IL_057b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0594: Unknown result type (might be due to invalid IL or missing references)
+		if (mozeDaOtvoriSledeciTab && kliknuoJednomNaTab)
 		{
-			this.mozeDaOtvoriSledeciTab = false;
-			this.kliknuoJednomNaTab = false;
+			mozeDaOtvoriSledeciTab = false;
+			kliknuoJednomNaTab = false;
 			if (RedniBrojTaba == 3)
 			{
-				base.Invoke("MozeDaKliknePonovoNaTab", 1.5f);
+				((MonoBehaviour)this).Invoke("MozeDaKliknePonovoNaTab", 1.5f);
 			}
 			else
 			{
-				base.Invoke("MozeDaKliknePonovoNaTab", 0.75f);
+				((MonoBehaviour)this).Invoke("MozeDaKliknePonovoNaTab", 0.75f);
 			}
 			if (StagesParser.otvaraoShopNekad == 0)
 			{
 				StagesParser.otvaraoShopNekad = 1;
-				PlayerPrefs.SetString("OdgledaoTutorial", StagesParser.odgledaoTutorial.ToString() + "#" + StagesParser.otvaraoShopNekad.ToString());
+				PlayerPrefs.SetString("OdgledaoTutorial", StagesParser.odgledaoTutorial + "#" + StagesParser.otvaraoShopNekad);
 				PlayerPrefs.Save();
 			}
-			ShopManagerFull.otvorenShop = true;
-			this.CustomizationShirts.SetActive(false);
-			this.CustomizationBackPack.SetActive(false);
-			this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-			this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-			if (ShopManagerFull.AktivanTab == RedniBrojTaba)
+			otvorenShop = true;
+			CustomizationShirts.SetActive(false);
+			CustomizationBackPack.SetActive(false);
+			((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+			((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+			if (AktivanTab != RedniBrojTaba)
 			{
-				return;
-			}
-			if (ShopManagerFull.AktivanTab == 1)
-			{
-				this.DeaktivirajFreeCoins();
-				GameObject.Find("ButtonFreeCoins").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/1 Free Coins").GetComponent<Animation>().Play("TabOdlazak");
-			}
-			else if (ShopManagerFull.AktivanTab == 2)
-			{
-				this.DeaktivirajShopTab();
-				GameObject.Find("ButtonShop").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/2 Shop - BANANA").GetComponent<Animation>().Play("TabOdlazak");
-			}
-			else if (ShopManagerFull.AktivanTab == 3)
-			{
-				this.DeaktivirajCustomization();
-				GameObject.Find("ButtonCustomize").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/3 Customize").GetComponent<Animation>().Play("TabOdlazak");
-				this.MajmunBobo.transform.position = this.MainScenaPozicija;
-			}
-			else if (ShopManagerFull.AktivanTab == 4)
-			{
-				this.DeaktivirajPowerUps();
-				GameObject.Find("ButtonPowerUps").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/4 Power-Ups").GetComponent<Animation>().Play("TabOdlazak");
-			}
-			ShopManagerFull.AktivanTab = RedniBrojTaba;
-			if (ShopManagerFull.AktivanTab == 1)
-			{
-				if (PlayerPrefs.HasKey("LikeBananaIsland"))
+				if (AktivanTab == 1)
 				{
-					ShopManagerFull.ShopObject.transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCBILikePage").GetComponent<Collider>().enabled = false;
-					ShopManagerFull.ShopObject.transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCBILikePage").GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
-					ShopManagerFull.ShopObject.transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCBILikePage/Like BananaIsland FC").GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
+					DeaktivirajFreeCoins();
+					GameObject.Find("ButtonFreeCoins").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/1 Free Coins").GetComponent<Animation>().Play("TabOdlazak");
 				}
-				if (PlayerPrefs.HasKey("LikeWebelinx"))
+				else if (AktivanTab == 2)
 				{
-					ShopManagerFull.ShopObject.transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCWLLikePage").GetComponent<Collider>().enabled = false;
-					ShopManagerFull.ShopObject.transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCWLLikePage").GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
-					ShopManagerFull.ShopObject.transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCWLLikePage/Like Webelinx FC").GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
+					DeaktivirajShopTab();
+					GameObject.Find("ButtonShop").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/2 Shop - BANANA").GetComponent<Animation>().Play("TabOdlazak");
 				}
-				GameObject.Find("ButtonFreeCoins").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/1 Free Coins").GetComponent<Animation>().Play("TabDolazak");
-				this.AktivirajFreeCoins();
-				return;
+				else if (AktivanTab == 3)
+				{
+					DeaktivirajCustomization();
+					GameObject.Find("ButtonCustomize").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/3 Customize").GetComponent<Animation>().Play("TabOdlazak");
+					MajmunBobo.transform.position = MainScenaPozicija;
+				}
+				else if (AktivanTab == 4)
+				{
+					DeaktivirajPowerUps();
+					GameObject.Find("ButtonPowerUps").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTab").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/4 Power-Ups").GetComponent<Animation>().Play("TabOdlazak");
+				}
+				AktivanTab = RedniBrojTaba;
+				if (AktivanTab == 1)
+				{
+					if (PlayerPrefs.HasKey("LikeBananaIsland"))
+					{
+						((Component)((Component)ShopObject).transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCBILikePage")).GetComponent<Collider>().enabled = false;
+						((Component)((Component)ShopObject).transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCBILikePage")).GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
+						((Component)((Component)ShopObject).transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCBILikePage/Like BananaIsland FC")).GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
+					}
+					if (PlayerPrefs.HasKey("LikeWebelinx"))
+					{
+						((Component)((Component)ShopObject).transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCWLLikePage")).GetComponent<Collider>().enabled = false;
+						((Component)((Component)ShopObject).transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCWLLikePage")).GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
+						((Component)((Component)ShopObject).transform.Find("1 Free Coins/Free Coins Tabovi/ShopFCWLLikePage/Like Webelinx FC")).GetComponent<Renderer>().material.color = new Color(0.58f, 0.58f, 0.58f);
+					}
+					GameObject.Find("ButtonFreeCoins").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/1 Free Coins").GetComponent<Animation>().Play("TabDolazak");
+					AktivirajFreeCoins();
+				}
+				else if (AktivanTab == 2)
+				{
+					AktivirajShopTab();
+					GameObject.Find("ButtonShop").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/2 Shop - BANANA").GetComponent<Animation>().Play("TabDolazak");
+				}
+				else if (AktivanTab == 3)
+				{
+					if (AktivanCustomizationTab == 1)
+					{
+						GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
+						GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+						GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+						ImaNovihKapa = false;
+						CustomizationHats.SetActive(true);
+						CustomizationShirts.SetActive(false);
+						CustomizationBackPack.SetActive(false);
+					}
+					else if (AktivanCustomizationTab == 2)
+					{
+						GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+						GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
+						GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+						ImaNovihMajica = false;
+						CustomizationHats.SetActive(false);
+						CustomizationShirts.SetActive(true);
+						CustomizationBackPack.SetActive(false);
+					}
+					else if (AktivanCustomizationTab == 3)
+					{
+						GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+						GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+						GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = Color.green;
+						ImaNovihRanceva = false;
+						CustomizationHats.SetActive(false);
+						CustomizationShirts.SetActive(false);
+						CustomizationBackPack.SetActive(true);
+					}
+					GameObject.Find("ButtonCustomize").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/3 Customize").GetComponent<Animation>().Play("TabDolazak");
+					((MonoBehaviour)this).Invoke("AktivirajCustomization", 0.4f);
+					((Component)MajmunBobo.transform.Find("PrinceGorilla")).GetComponent<Animator>().Play("Povlacenje");
+					((Component)MajmunBobo.transform.Find("ButterflyHolder")).gameObject.SetActive(false);
+				}
+				else if (AktivanTab == 4)
+				{
+					AktivirajPowerUps();
+					GameObject.Find("ButtonPowerUps").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
+					GameObject.Find("Shop/4 Power-Ups").GetComponent<Animation>().Play("TabDolazak");
+				}
 			}
-			if (ShopManagerFull.AktivanTab == 2)
+			else
 			{
-				this.AktivirajShopTab();
-				GameObject.Find("ButtonShop").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/2 Shop - BANANA").GetComponent<Animation>().Play("TabDolazak");
-				return;
-			}
-			if (ShopManagerFull.AktivanTab == 3)
-			{
-				if (ShopManagerFull.AktivanCustomizationTab == 1)
-				{
-					GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-					GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-					GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-					this.ImaNovihKapa = false;
-					this.CustomizationHats.SetActive(true);
-					this.CustomizationShirts.SetActive(false);
-					this.CustomizationBackPack.SetActive(false);
-				}
-				else if (ShopManagerFull.AktivanCustomizationTab == 2)
-				{
-					GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-					GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-					GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-					this.ImaNovihMajica = false;
-					this.CustomizationHats.SetActive(false);
-					this.CustomizationShirts.SetActive(true);
-					this.CustomizationBackPack.SetActive(false);
-				}
-				else if (ShopManagerFull.AktivanCustomizationTab == 3)
-				{
-					GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-					GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-					GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-					this.ImaNovihRanceva = false;
-					this.CustomizationHats.SetActive(false);
-					this.CustomizationShirts.SetActive(false);
-					this.CustomizationBackPack.SetActive(true);
-				}
-				GameObject.Find("ButtonCustomize").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/3 Customize").GetComponent<Animation>().Play("TabDolazak");
-				base.Invoke("AktivirajCustomization", 0.4f);
-				this.MajmunBobo.transform.Find("PrinceGorilla").GetComponent<Animator>().Play("Povlacenje");
-				this.MajmunBobo.transform.Find("ButterflyHolder").gameObject.SetActive(false);
-				return;
-			}
-			if (ShopManagerFull.AktivanTab == 4)
-			{
-				this.AktivirajPowerUps();
-				GameObject.Find("ButtonPowerUps").GetComponent<SpriteRenderer>().sprite = GameObject.Find("ShopTabSelected").GetComponent<SpriteRenderer>().sprite;
-				GameObject.Find("Shop/4 Power-Ups").GetComponent<Animation>().Play("TabDolazak");
-				return;
+				_ = 3;
 			}
 		}
-		else if (!this.mozeDaOtvoriSledeciTab && this.kliknuoJednomNaTab)
+		else if (!mozeDaOtvoriSledeciTab && kliknuoJednomNaTab)
 		{
-			this.kliknuoJednomNaTab = false;
+			kliknuoJednomNaTab = false;
 		}
 	}
 
-	// Token: 0x06002707 RID: 9991 RVA: 0x0011B7C6 File Offset: 0x001199C6
 	private void MozeDaKliknePonovoNaTab()
 	{
-		this.mozeDaOtvoriSledeciTab = true;
-		this.kliknuoJednomNaTab = true;
+		mozeDaOtvoriSledeciTab = true;
+		kliknuoJednomNaTab = true;
 	}
 
-	// Token: 0x06002708 RID: 9992 RVA: 0x0011B7D6 File Offset: 0x001199D6
 	public void PozoviCustomizationTab(int RedniBrojCustomizationTaba)
 	{
-		base.StopCoroutine("CustomizationTab");
-		base.StartCoroutine("CustomizationTab", RedniBrojCustomizationTaba);
+		((MonoBehaviour)this).StopCoroutine("CustomizationTab");
+		((MonoBehaviour)this).StartCoroutine("CustomizationTab", (object)RedniBrojCustomizationTaba);
 	}
 
-	// Token: 0x06002709 RID: 9993 RVA: 0x0011B7F5 File Offset: 0x001199F5
 	public IEnumerator CustomizationTab(int RedniBrojCustomizationTaba1)
 	{
-		if (ShopManagerFull.AktivanCustomizationTab != RedniBrojCustomizationTaba1)
+		if (AktivanCustomizationTab != RedniBrojCustomizationTaba1)
 		{
-			if (ShopManagerFull.AktivanCustomizationTab == 1)
+			if (AktivanCustomizationTab == 1)
 			{
-				GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-				this.CustomizationHats.SetActive(false);
-				this.ImaNovihKapa = false;
+				GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+				CustomizationHats.SetActive(false);
+				ImaNovihKapa = false;
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 2)
+			else if (AktivanCustomizationTab == 2)
 			{
-				GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-				this.CustomizationShirts.SetActive(false);
-				this.ImaNovihMajica = false;
+				GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+				CustomizationShirts.SetActive(false);
+				ImaNovihMajica = false;
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 3)
+			else if (AktivanCustomizationTab == 3)
 			{
-				GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = ShopManagerFull.KakiBoja;
-				this.CustomizationBackPack.SetActive(false);
-				this.ImaNovihRanceva = false;
+				GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = KakiBoja;
+				CustomizationBackPack.SetActive(false);
+				ImaNovihRanceva = false;
 			}
-			yield return new WaitForSeconds(0.15f);
-			ShopManagerFull.AktivanCustomizationTab = RedniBrojCustomizationTaba1;
-			if (ShopManagerFull.AktivanCustomizationTab == 1)
+			yield return (object)new WaitForSeconds(0.15f);
+			AktivanCustomizationTab = RedniBrojCustomizationTaba1;
+			if (AktivanCustomizationTab == 1)
 			{
-				this.TrenutniSelektovanSesir = 999;
+				TrenutniSelektovanSesir = 999;
 				GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-				this.CustomizationHats.SetActive(true);
-				this.ImaNovihKapa = false;
-				Quaternion a = Quaternion.Euler(new Vector3(0f, 90f, 0f));
-				float t = 0f;
-				while (t < 0.3f)
+				CustomizationHats.SetActive(true);
+				ImaNovihKapa = false;
+				Quaternion a3 = Quaternion.Euler(new Vector3(0f, 90f, 0f));
+				float t3 = 0f;
+				while (t3 < 0.3f)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Lerp(this.MajmunBobo.transform.Find("PrinceGorilla").rotation, a, t);
-					t += Time.deltaTime / 2f;
+					MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Lerp(MajmunBobo.transform.Find("PrinceGorilla").rotation, a3, t3);
+					t3 += Time.deltaTime / 2f;
 					yield return null;
 				}
-				a = default(Quaternion);
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 2)
+			else if (AktivanCustomizationTab == 2)
 			{
-				this.TrenutnoSelektovanaMajica = 999;
+				TrenutnoSelektovanaMajica = 999;
 				GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-				this.CustomizationShirts.SetActive(true);
-				this.ImaNovihMajica = false;
-				Quaternion a = Quaternion.Euler(new Vector3(0f, 150f, 0f));
-				float t = 0f;
-				while (t < 0.3f)
+				CustomizationShirts.SetActive(true);
+				ImaNovihMajica = false;
+				Quaternion a3 = Quaternion.Euler(new Vector3(0f, 150f, 0f));
+				float t3 = 0f;
+				while (t3 < 0.3f)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Lerp(this.MajmunBobo.transform.Find("PrinceGorilla").rotation, a, t);
-					t += Time.deltaTime / 2f;
+					MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Lerp(MajmunBobo.transform.Find("PrinceGorilla").rotation, a3, t3);
+					t3 += Time.deltaTime / 2f;
 					yield return null;
 				}
-				a = default(Quaternion);
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 3)
+			else if (AktivanCustomizationTab == 3)
 			{
-				this.TrenutnoSelektovanRanac = 999;
+				TrenutnoSelektovanRanac = 999;
 				GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-				this.CustomizationBackPack.SetActive(true);
-				this.ImaNovihRanceva = false;
-				Quaternion a = Quaternion.Euler(new Vector3(0f, 35f, 0f));
-				float t = 0f;
-				while (t < 0.3f)
+				CustomizationBackPack.SetActive(true);
+				ImaNovihRanceva = false;
+				Quaternion a3 = Quaternion.Euler(new Vector3(0f, 35f, 0f));
+				float t3 = 0f;
+				while (t3 < 0.3f)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Lerp(this.MajmunBobo.transform.Find("PrinceGorilla").rotation, a, t);
-					t += Time.deltaTime / 2f;
+					MajmunBobo.transform.Find("PrinceGorilla").rotation = Quaternion.Lerp(MajmunBobo.transform.Find("PrinceGorilla").rotation, a3, t3);
+					t3 += Time.deltaTime / 2f;
 					yield return null;
 				}
-				a = default(Quaternion);
 			}
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 1)
+		else if (AktivanCustomizationTab == 1)
 		{
-			this.TrenutniSelektovanSesir = 999;
+			TrenutniSelektovanSesir = 999;
 			GameObject.Find("1HatsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-			this.CustomizationHats.SetActive(true);
+			CustomizationHats.SetActive(true);
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 2)
+		else if (AktivanCustomizationTab == 2)
 		{
-			this.TrenutnoSelektovanaMajica = 999;
+			TrenutnoSelektovanaMajica = 999;
 			GameObject.Find("2TShirtsShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-			this.CustomizationShirts.SetActive(true);
+			CustomizationShirts.SetActive(true);
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 3)
+		else if (AktivanCustomizationTab == 3)
 		{
-			this.TrenutnoSelektovanRanac = 999;
+			TrenutnoSelektovanRanac = 999;
 			GameObject.Find("3BackPackShopTab").GetComponent<SpriteRenderer>().color = Color.green;
-			this.CustomizationBackPack.SetActive(true);
+			CustomizationBackPack.SetActive(true);
 		}
-		this.AktivirajCustomization();
-		yield break;
+		AktivirajCustomization();
 	}
 
-	// Token: 0x0600270A RID: 9994 RVA: 0x0011B80C File Offset: 0x00119A0C
 	public void AktivirajCustomization()
 	{
-		if (ShopManagerFull.AktivanCustomizationTab == 1)
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		if (AktivanCustomizationTab == 1)
 		{
 			ObjCustomizationShirts.CustomizationShirts = false;
 			SwipeControlCustomizationShirts.controlEnabled = false;
@@ -1169,7 +1346,7 @@ public class ShopManagerFull : MonoBehaviour
 			ObjCustomizationHats.CustomizationHats = true;
 			SwipeControlCustomizationHats.controlEnabled = true;
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 2)
+		else if (AktivanCustomizationTab == 2)
 		{
 			ObjCustomizationHats.CustomizationHats = false;
 			SwipeControlCustomizationHats.controlEnabled = false;
@@ -1178,7 +1355,7 @@ public class ShopManagerFull : MonoBehaviour
 			ObjCustomizationBackPacks.CustomizationBackPacks = false;
 			SwipeControlCustomizationBackPacks.controlEnabled = false;
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 3)
+		else if (AktivanCustomizationTab == 3)
 		{
 			ObjCustomizationHats.CustomizationHats = false;
 			SwipeControlCustomizationHats.controlEnabled = false;
@@ -1187,526 +1364,538 @@ public class ShopManagerFull : MonoBehaviour
 			ObjCustomizationBackPacks.CustomizationBackPacks = true;
 			SwipeControlCustomizationBackPacks.controlEnabled = true;
 		}
-		this.MajmunBobo.transform.position = this.ShopCustomizationPozicija;
+		MajmunBobo.transform.position = ShopCustomizationPozicija;
 	}
 
-	// Token: 0x0600270B RID: 9995 RVA: 0x0011B8B7 File Offset: 0x00119AB7
 	public void DeaktivirajCustomization()
 	{
-		if (ShopManagerFull.AktivanCustomizationTab == 1)
+		if (AktivanCustomizationTab == 1)
 		{
 			ObjCustomizationHats.CustomizationHats = false;
 			SwipeControlCustomizationHats.controlEnabled = false;
-			return;
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 2)
+		else if (AktivanCustomizationTab == 2)
 		{
 			ObjCustomizationShirts.CustomizationShirts = false;
 			SwipeControlCustomizationShirts.controlEnabled = false;
-			return;
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 3)
+		else if (AktivanCustomizationTab == 3)
 		{
 			ObjCustomizationBackPacks.CustomizationBackPacks = false;
 			SwipeControlCustomizationBackPacks.controlEnabled = false;
 		}
 	}
 
-	// Token: 0x0600270C RID: 9996 RVA: 0x0011B8F7 File Offset: 0x00119AF7
 	public void AktivirajFreeCoins()
 	{
 		ObjFreeCoins.FreeCoins = true;
 		SwipeControlFreeCoins.controlEnabled = true;
 	}
 
-	// Token: 0x0600270D RID: 9997 RVA: 0x0011B905 File Offset: 0x00119B05
 	public void DeaktivirajFreeCoins()
 	{
 		ObjFreeCoins.FreeCoins = false;
 		SwipeControlFreeCoins.controlEnabled = false;
 	}
 
-	// Token: 0x0600270E RID: 9998 RVA: 0x0011B913 File Offset: 0x00119B13
 	public void AktivirajPowerUps()
 	{
 		ObjPowerUps.PowerUps = true;
 		SwipeControlPowerUps.controlEnabled = true;
 	}
 
-	// Token: 0x0600270F RID: 9999 RVA: 0x0011B921 File Offset: 0x00119B21
 	public void DeaktivirajPowerUps()
 	{
 		ObjPowerUps.PowerUps = false;
 		SwipeControlPowerUps.controlEnabled = false;
 	}
 
-	// Token: 0x06002710 RID: 10000 RVA: 0x0011B92F File Offset: 0x00119B2F
 	public void AktivirajShopTab()
 	{
-		Debug.Log("Aktiviraj Shop pozvan");
+		Debug.Log((object)"Aktiviraj Shop pozvan");
 		ObjShop.Shop = true;
 		SwipeControlShop.controlEnabled = true;
 	}
 
-	// Token: 0x06002711 RID: 10001 RVA: 0x0011B947 File Offset: 0x00119B47
 	public void DeaktivirajShopTab()
 	{
-		Debug.Log("Deaktiviraj Shop pozvan");
+		Debug.Log((object)"Deaktiviraj Shop pozvan");
 		ObjShop.Shop = false;
 		SwipeControlShop.controlEnabled = false;
 	}
 
-	// Token: 0x06002712 RID: 10002 RVA: 0x0011B95F File Offset: 0x00119B5F
 	public void ProveraTrenutnogItema(int TrenutniItem)
 	{
-		if (ShopManagerFull.AktivanCustomizationTab == 1)
+		if (AktivanCustomizationTab == 1)
 		{
-			this.ProveriStanjeSesira(TrenutniItem);
-			return;
+			ProveriStanjeSesira(TrenutniItem);
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 2)
+		else if (AktivanCustomizationTab == 2)
 		{
-			this.ProveriStanjeMajica(TrenutniItem);
-			return;
+			ProveriStanjeMajica(TrenutniItem);
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 3)
+		else if (AktivanCustomizationTab == 3)
 		{
-			this.ProveriStanjeRanca(TrenutniItem);
+			ProveriStanjeRanca(TrenutniItem);
 		}
 	}
 
-	// Token: 0x06002713 RID: 10003 RVA: 0x0011B990 File Offset: 0x00119B90
 	public void ProveriStanjeSesira(int TrenutniItem)
 	{
-		if (TrenutniItem != this.TrenutniSelektovanSesir)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+		if (TrenutniItem == TrenutniSelektovanSesir)
 		{
-			this.TrenutniSelektovanSesir = TrenutniItem;
-			if (TrenutniItem < ShopManagerFull.SveStvariZaOblacenjeHats.Count)
-			{
-				if (ShopManagerFull.SveStvariZaOblacenjeHats[this.TrenutniSelektovanSesir] == 1)
-				{
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
-					ShopManagerFull.PreviewState = false;
-					if (ShopManagerFull.AktivanSesir == TrenutniItem)
-					{
-						this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Unequip;
-						ShopManagerFull.BuyButtonState = 3;
-					}
-					else
-					{
-						this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Equip;
-						ShopManagerFull.BuyButtonState = 2;
-					}
-					this.ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-					return;
-				}
-				ShopManagerFull.PreviewState = true;
-				this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Buy;
-				this.ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-				int num = int.Parse(this.CoinsHats[TrenutniItem]);
-				if (this.ZakljucaniHats[this.TrenutniSelektovanSesir] == 1)
-				{
-					if (StagesParser.currentMoney < num)
-					{
-						this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
-						ShopManagerFull.BuyButtonState = 1;
-						return;
-					}
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
-					ShopManagerFull.BuyButtonState = 0;
-					return;
-				}
-				else
-				{
-					ShopManagerFull.BuyButtonState = 4;
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
-				}
-			}
-		}
-	}
-
-	// Token: 0x06002714 RID: 10004 RVA: 0x0011BB10 File Offset: 0x00119D10
-	public void ProveriStanjeMajica(int TrenutniItem)
-	{
-		if (TrenutniItem != this.TrenutnoSelektovanaMajica)
-		{
-			this.TrenutnoSelektovanaMajica = TrenutniItem;
-			if (TrenutniItem < ShopManagerFull.SveStvariZaOblacenjeShirts.Count)
-			{
-				if (ShopManagerFull.SveStvariZaOblacenjeShirts[TrenutniItem] == 1)
-				{
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
-					ShopManagerFull.PreviewState = false;
-					if (ShopManagerFull.AktivnaMajica == TrenutniItem)
-					{
-						this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Unequip;
-						ShopManagerFull.BuyButtonState = 3;
-					}
-					else
-					{
-						this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Equip;
-						ShopManagerFull.BuyButtonState = 2;
-					}
-					this.ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-					return;
-				}
-				ShopManagerFull.PreviewState = true;
-				this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Buy;
-				this.ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-				int num = int.Parse(this.CoinsShirts[TrenutniItem]);
-				if (this.ZakljucaniShirts[this.TrenutnoSelektovanaMajica] == 1)
-				{
-					if (StagesParser.currentMoney < num)
-					{
-						this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
-						ShopManagerFull.BuyButtonState = 1;
-						return;
-					}
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
-					ShopManagerFull.BuyButtonState = 0;
-					return;
-				}
-				else
-				{
-					ShopManagerFull.BuyButtonState = 4;
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
-				}
-			}
-		}
-	}
-
-	// Token: 0x06002715 RID: 10005 RVA: 0x0011BC8C File Offset: 0x00119E8C
-	public void ProveriStanjeRanca(int TrenutniItem)
-	{
-		if (TrenutniItem != this.TrenutnoSelektovanRanac)
-		{
-			this.TrenutnoSelektovanRanac = TrenutniItem;
-			if (TrenutniItem < ShopManagerFull.SveStvariZaOblacenjeBackPack.Count)
-			{
-				if (ShopManagerFull.SveStvariZaOblacenjeBackPack[TrenutniItem] == 1)
-				{
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
-					ShopManagerFull.PreviewState = false;
-					if (ShopManagerFull.AktivanRanac == TrenutniItem)
-					{
-						this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Unequip;
-						ShopManagerFull.BuyButtonState = 3;
-					}
-					else
-					{
-						this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Equip;
-						ShopManagerFull.BuyButtonState = 2;
-					}
-					this.ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-					return;
-				}
-				ShopManagerFull.PreviewState = true;
-				this.ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Buy;
-				this.ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-				int num = int.Parse(this.CoinsBackPacks[TrenutniItem]);
-				if (this.ZakljucaniBackPacks[this.TrenutnoSelektovanRanac] == 1)
-				{
-					if (StagesParser.currentMoney < num)
-					{
-						this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
-						ShopManagerFull.BuyButtonState = 1;
-						return;
-					}
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
-					ShopManagerFull.BuyButtonState = 0;
-					return;
-				}
-				else
-				{
-					ShopManagerFull.BuyButtonState = 4;
-					this.ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
-				}
-			}
-		}
-	}
-
-	// Token: 0x06002716 RID: 10006 RVA: 0x0011BE08 File Offset: 0x0011A008
-	public void ProveriStanjeCelogShopa()
-	{
-		for (int i = 0; i < this.BrojItemaShopHats; i++)
-		{
-			if (this.ZakljucaniHats[i] == 1)
-			{
-				this.HatsObjects[i].Find("Zakkljucano").gameObject.SetActive(false);
-			}
-			else
-			{
-				this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.HatsObjects[i].Find("Bedz - Popust").gameObject.SetActive(false);
-			}
-			if (ShopManagerFull.SveStvariZaOblacenjeHats[i] == 1)
-			{
-				this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.HatsObjects[i].Find("Bedz - Popust").gameObject.SetActive(false);
-			}
-			else if (this.PopustHats[i] == "0")
-			{
-				this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsHats[i];
-				this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-				if (i > ShopManagerFull.StariBrojOtkljucanihKapa & i <= ShopManagerFull.BrojOtkljucanihKapa)
-				{
-					this.ImaNovihKapa = true;
-					this.HatsObjects[i].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-					this.HatsObjects[i].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-				}
-				else
-				{
-					this.HatsObjects[i].Find("Bedz - Popust").gameObject.SetActive(false);
-				}
-			}
-			else
-			{
-				if (i > ShopManagerFull.StariBrojOtkljucanihKapa & i <= ShopManagerFull.BrojOtkljucanihKapa)
-				{
-					this.ImaNovihKapa = true;
-					this.HatsObjects[i].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-					this.HatsObjects[i].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-				}
-				else
-				{
-					this.HatsObjects[i].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustHats[i] + "%";
-					this.HatsObjects[i].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustHats[i] + "%";
-				}
-				string s = "0." + this.PopustHats[i];
-				if (this.ZakljucaniHats[i] == 1)
-				{
-					float num = float.Parse(this.CoinsHats[i]) / (1f - float.Parse(s));
-					this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-					this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = num.ToString();
-					if (this.HatsObjects[i].parent.gameObject.activeSelf)
-					{
-						this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-					}
-					this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsHats[i];
-					this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-					this.HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-				}
-			}
-			this.HatsObjects[i].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaHats[i];
-			this.HatsObjects[i].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-		}
-		for (int j = 0; j < this.BrojItemaShopShirts; j++)
-		{
-			if (this.ZakljucaniShirts[j] == 1)
-			{
-				this.ShirtsObjects[j].Find("Zakkljucano").gameObject.SetActive(false);
-			}
-			else
-			{
-				this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.ShirtsObjects[j].Find("Bedz - Popust").gameObject.SetActive(false);
-			}
-			if (ShopManagerFull.SveStvariZaOblacenjeShirts[j] == 1)
-			{
-				this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.ShirtsObjects[j].Find("Bedz - Popust").gameObject.SetActive(false);
-			}
-			else if (this.PopustShirts[j] == "0")
-			{
-				this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsShirts[j];
-				this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-				if (j > ShopManagerFull.StariBrojOtkljucanihMajici & j <= ShopManagerFull.BrojOtkljucanihMajici)
-				{
-					this.ImaNovihMajica = true;
-					this.ShirtsObjects[j].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-					this.ShirtsObjects[j].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-				}
-				else
-				{
-					this.ShirtsObjects[j].Find("Bedz - Popust").gameObject.SetActive(false);
-				}
-			}
-			else
-			{
-				if (j > ShopManagerFull.StariBrojOtkljucanihMajici & j <= ShopManagerFull.BrojOtkljucanihMajici)
-				{
-					this.ImaNovihMajica = true;
-					this.ShirtsObjects[j].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-					this.ShirtsObjects[j].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-				}
-				else
-				{
-					this.ShirtsObjects[j].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustShirts[j] + "%";
-					this.ShirtsObjects[j].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustShirts[j] + "%";
-				}
-				string s2 = "0." + this.PopustShirts[j];
-				if (this.ZakljucaniShirts[j] == 1)
-				{
-					float num2 = float.Parse(this.CoinsShirts[j]) / (1f - float.Parse(s2));
-					this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-					this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = num2.ToString();
-					if (this.ShirtsObjects[j].parent.gameObject.activeSelf)
-					{
-						this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-					}
-					this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsShirts[j];
-					this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-					this.ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-				}
-			}
-			this.ShirtsObjects[j].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaShirts[j];
-			this.ShirtsObjects[j].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-		}
-		for (int k = 0; k < this.BrojItemaShopBackPack; k++)
-		{
-			if (this.ZakljucaniBackPacks[k] == 1)
-			{
-				this.BackPacksObjects[k].Find("Zakkljucano").gameObject.SetActive(false);
-			}
-			else
-			{
-				this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.BackPacksObjects[k].Find("Bedz - Popust").gameObject.SetActive(false);
-			}
-			if (ShopManagerFull.SveStvariZaOblacenjeBackPack[k] == 1)
-			{
-				this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.BackPacksObjects[k].Find("Bedz - Popust").gameObject.SetActive(false);
-			}
-			else if (this.PopustBackPacks[k] == "0")
-			{
-				this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsBackPacks[k];
-				this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-				if (k > ShopManagerFull.StariBrojOtkljucanihRanceva & k <= ShopManagerFull.BrojOtkljucanihRanceva)
-				{
-					this.ImaNovihRanceva = true;
-					this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-					this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-				}
-				else
-				{
-					this.BackPacksObjects[k].Find("Bedz - Popust").gameObject.SetActive(false);
-				}
-			}
-			else
-			{
-				this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustBackPacks[k] + "%";
-				this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustBackPacks[k] + "%";
-				if (k > ShopManagerFull.StariBrojOtkljucanihRanceva & k <= ShopManagerFull.BrojOtkljucanihRanceva)
-				{
-					this.ImaNovihRanceva = true;
-					this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = LanguageManager.New;
-					this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = LanguageManager.New;
-				}
-				else
-				{
-					this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number").GetComponent<TextMesh>().text = "-" + this.PopustBackPacks[k] + "%";
-					this.BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow").GetComponent<TextMesh>().text = this.PopustBackPacks[k] + "%";
-				}
-				string s3 = "0." + this.PopustBackPacks[k];
-				if (this.ZakljucaniBackPacks[k] == 1)
-				{
-					float num3 = float.Parse(this.CoinsBackPacks[k]) / (1f - float.Parse(s3));
-					this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(true);
-					this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMesh>().text = num3.ToString();
-					if (this.BackPacksObjects[k].parent.gameObject.activeSelf)
-					{
-						this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-					}
-					this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().text = this.CoinsBackPacks[k];
-					this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
-					this.BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number").GetComponent<TextMesh>().color = ShopManagerFull.PopustBoja;
-				}
-			}
-			this.BackPacksObjects[k].Find("Text/ime").GetComponent<TextMesh>().text = this.ImenaBackPacks[k];
-			this.BackPacksObjects[k].Find("Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
-		}
-		if (this.ImaNovihKapa)
-		{
-			this.ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo").gameObject.SetActive(true);
-		}
-		else
-		{
-			this.ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo").gameObject.SetActive(false);
-		}
-		if (this.ImaNovihMajica)
-		{
-			this.ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo").gameObject.SetActive(true);
-		}
-		else
-		{
-			this.ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo").gameObject.SetActive(false);
-		}
-		if (this.ImaNovihRanceva)
-		{
-			this.ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo").gameObject.SetActive(true);
-		}
-		else
-		{
-			this.ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo").gameObject.SetActive(false);
-		}
-		if (this.ImaNovihKapa | this.ImaNovihMajica | this.ImaNovihRanceva)
-		{
-			this.Custumization.transform.Find("Znak Uzvika telo").gameObject.SetActive(true);
 			return;
 		}
-		this.Custumization.transform.Find("Znak Uzvika telo").gameObject.SetActive(false);
+		TrenutniSelektovanSesir = TrenutniItem;
+		if (TrenutniItem >= SveStvariZaOblacenjeHats.Count)
+		{
+			return;
+		}
+		if (SveStvariZaOblacenjeHats[TrenutniSelektovanSesir] == 1)
+		{
+			ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
+			PreviewState = false;
+			if (AktivanSesir == TrenutniItem)
+			{
+				ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Unequip;
+				BuyButtonState = 3;
+			}
+			else
+			{
+				ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Equip;
+				BuyButtonState = 2;
+			}
+			ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+			return;
+		}
+		PreviewState = true;
+		ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Buy;
+		ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		int num = int.Parse(CoinsHats[TrenutniItem]);
+		if (ZakljucaniHats[TrenutniSelektovanSesir] == 1)
+		{
+			if (StagesParser.currentMoney < num)
+			{
+				ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
+				BuyButtonState = 1;
+			}
+			else
+			{
+				ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
+				BuyButtonState = 0;
+			}
+		}
+		else
+		{
+			BuyButtonState = 4;
+			ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
+		}
 	}
 
-	// Token: 0x06002717 RID: 10007 RVA: 0x0011CBB0 File Offset: 0x0011ADB0
+	public void ProveriStanjeMajica(int TrenutniItem)
+	{
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		if (TrenutniItem == TrenutnoSelektovanaMajica)
+		{
+			return;
+		}
+		TrenutnoSelektovanaMajica = TrenutniItem;
+		if (TrenutniItem >= SveStvariZaOblacenjeShirts.Count)
+		{
+			return;
+		}
+		if (SveStvariZaOblacenjeShirts[TrenutniItem] == 1)
+		{
+			ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
+			PreviewState = false;
+			if (AktivnaMajica == TrenutniItem)
+			{
+				ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Unequip;
+				BuyButtonState = 3;
+			}
+			else
+			{
+				ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Equip;
+				BuyButtonState = 2;
+			}
+			ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+			return;
+		}
+		PreviewState = true;
+		ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Buy;
+		ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		int num = int.Parse(CoinsShirts[TrenutniItem]);
+		if (ZakljucaniShirts[TrenutnoSelektovanaMajica] == 1)
+		{
+			if (StagesParser.currentMoney < num)
+			{
+				ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
+				BuyButtonState = 1;
+			}
+			else
+			{
+				ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
+				BuyButtonState = 0;
+			}
+		}
+		else
+		{
+			BuyButtonState = 4;
+			ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
+		}
+	}
+
+	public void ProveriStanjeRanca(int TrenutniItem)
+	{
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		if (TrenutniItem == TrenutnoSelektovanRanac)
+		{
+			return;
+		}
+		TrenutnoSelektovanRanac = TrenutniItem;
+		if (TrenutniItem >= SveStvariZaOblacenjeBackPack.Count)
+		{
+			return;
+		}
+		if (SveStvariZaOblacenjeBackPack[TrenutniItem] == 1)
+		{
+			ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
+			PreviewState = false;
+			if (AktivanRanac == TrenutniItem)
+			{
+				ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Unequip;
+				BuyButtonState = 3;
+			}
+			else
+			{
+				ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Equip;
+				BuyButtonState = 2;
+			}
+			ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+			return;
+		}
+		PreviewState = true;
+		ButtonShop.GetComponent<TextMesh>().text = LanguageManager.Buy;
+		ButtonShop.GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		int num = int.Parse(CoinsBackPacks[TrenutniItem]);
+		if (ZakljucaniBackPacks[TrenutnoSelektovanRanac] == 1)
+		{
+			if (StagesParser.currentMoney < num)
+			{
+				ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
+				BuyButtonState = 1;
+			}
+			else
+			{
+				ButtonShopSprite.GetComponent<SpriteRenderer>().color = Color.white;
+				BuyButtonState = 0;
+			}
+		}
+		else
+		{
+			BuyButtonState = 4;
+			ButtonShopSprite.GetComponent<SpriteRenderer>().color = new Color(0.41176f, 0.41176f, 0.41176f);
+		}
+	}
+
+	public void ProveriStanjeCelogShopa()
+	{
+		//IL_038c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_077c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bfd: Unknown result type (might be due to invalid IL or missing references)
+		for (int i = 0; i < BrojItemaShopHats; i++)
+		{
+			if (ZakljucaniHats[i] == 1)
+			{
+				((Component)HatsObjects[i].Find("Zakkljucano")).gameObject.SetActive(false);
+			}
+			else
+			{
+				((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)HatsObjects[i].Find("Bedz - Popust")).gameObject.SetActive(false);
+			}
+			if (SveStvariZaOblacenjeHats[i] == 1)
+			{
+				((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)HatsObjects[i].Find("Bedz - Popust")).gameObject.SetActive(false);
+			}
+			else if (PopustHats[i] == "0")
+			{
+				((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsHats[i];
+				((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				if ((i > StariBrojOtkljucanihKapa) & (i <= BrojOtkljucanihKapa))
+				{
+					ImaNovihKapa = true;
+					((Component)HatsObjects[i].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)HatsObjects[i].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				}
+				else
+				{
+					((Component)HatsObjects[i].Find("Bedz - Popust")).gameObject.SetActive(false);
+				}
+			}
+			else
+			{
+				if ((i > StariBrojOtkljucanihKapa) & (i <= BrojOtkljucanihKapa))
+				{
+					ImaNovihKapa = true;
+					((Component)HatsObjects[i].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)HatsObjects[i].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				}
+				else
+				{
+					((Component)HatsObjects[i].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustHats[i] + "%";
+					((Component)HatsObjects[i].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustHats[i] + "%";
+				}
+				string s = "0." + PopustHats[i];
+				if (ZakljucaniHats[i] == 1)
+				{
+					float num = float.Parse(CoinsHats[i]) / (1f - float.Parse(s));
+					((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+					((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = num.ToString();
+					if (((Component)HatsObjects[i].parent).gameObject.activeSelf)
+					{
+						((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					}
+					((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsHats[i];
+					((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)HatsObjects[i].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+				}
+			}
+			((Component)HatsObjects[i].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaHats[i];
+			((Component)HatsObjects[i].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		for (int j = 0; j < BrojItemaShopShirts; j++)
+		{
+			if (ZakljucaniShirts[j] == 1)
+			{
+				((Component)ShirtsObjects[j].Find("Zakkljucano")).gameObject.SetActive(false);
+			}
+			else
+			{
+				((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[j].Find("Bedz - Popust")).gameObject.SetActive(false);
+			}
+			if (SveStvariZaOblacenjeShirts[j] == 1)
+			{
+				((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[j].Find("Bedz - Popust")).gameObject.SetActive(false);
+			}
+			else if (PopustShirts[j] == "0")
+			{
+				((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsShirts[j];
+				((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				if ((j > StariBrojOtkljucanihMajici) & (j <= BrojOtkljucanihMajici))
+				{
+					ImaNovihMajica = true;
+					((Component)ShirtsObjects[j].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)ShirtsObjects[j].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				}
+				else
+				{
+					((Component)ShirtsObjects[j].Find("Bedz - Popust")).gameObject.SetActive(false);
+				}
+			}
+			else
+			{
+				if ((j > StariBrojOtkljucanihMajici) & (j <= BrojOtkljucanihMajici))
+				{
+					ImaNovihMajica = true;
+					((Component)ShirtsObjects[j].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)ShirtsObjects[j].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				}
+				else
+				{
+					((Component)ShirtsObjects[j].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustShirts[j] + "%";
+					((Component)ShirtsObjects[j].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustShirts[j] + "%";
+				}
+				string s2 = "0." + PopustShirts[j];
+				if (ZakljucaniShirts[j] == 1)
+				{
+					float num2 = float.Parse(CoinsShirts[j]) / (1f - float.Parse(s2));
+					((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+					((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = num2.ToString();
+					if (((Component)ShirtsObjects[j].parent).gameObject.activeSelf)
+					{
+						((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					}
+					((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsShirts[j];
+					((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)ShirtsObjects[j].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+				}
+			}
+			((Component)ShirtsObjects[j].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaShirts[j];
+			((Component)ShirtsObjects[j].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		for (int k = 0; k < BrojItemaShopBackPack; k++)
+		{
+			if (ZakljucaniBackPacks[k] == 1)
+			{
+				((Component)BackPacksObjects[k].Find("Zakkljucano")).gameObject.SetActive(false);
+			}
+			else
+			{
+				((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[k].Find("Bedz - Popust")).gameObject.SetActive(false);
+			}
+			if (SveStvariZaOblacenjeBackPack[k] == 1)
+			{
+				((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[k].Find("Bedz - Popust")).gameObject.SetActive(false);
+			}
+			else if (PopustBackPacks[k] == "0")
+			{
+				((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsBackPacks[k];
+				((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+				if ((k > StariBrojOtkljucanihRanceva) & (k <= BrojOtkljucanihRanceva))
+				{
+					ImaNovihRanceva = true;
+					((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				}
+				else
+				{
+					((Component)BackPacksObjects[k].Find("Bedz - Popust")).gameObject.SetActive(false);
+				}
+			}
+			else
+			{
+				((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustBackPacks[k] + "%";
+				((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustBackPacks[k] + "%";
+				if ((k > StariBrojOtkljucanihRanceva) & (k <= BrojOtkljucanihRanceva))
+				{
+					ImaNovihRanceva = true;
+					((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = LanguageManager.New;
+					((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = LanguageManager.New;
+				}
+				else
+				{
+					((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number")).GetComponent<TextMesh>().text = "-" + PopustBackPacks[k] + "%";
+					((Component)BackPacksObjects[k].Find("Bedz - Popust/Text/Number/Number Shadow")).GetComponent<TextMesh>().text = PopustBackPacks[k] + "%";
+				}
+				string s3 = "0." + PopustBackPacks[k];
+				if (ZakljucaniBackPacks[k] == 1)
+				{
+					float num3 = float.Parse(CoinsBackPacks[k]) / (1f - float.Parse(s3));
+					((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(true);
+					((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMesh>().text = num3.ToString();
+					if (((Component)BackPacksObjects[k].parent).gameObject.activeSelf)
+					{
+						((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop_NoDiscount/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					}
+					((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().text = CoinsBackPacks[k];
+					((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
+					((Component)BackPacksObjects[k].Find("Polje za unos COINA U shopu - Shop/Coins Number")).GetComponent<TextMesh>().color = PopustBoja;
+				}
+			}
+			((Component)BackPacksObjects[k].Find("Text/ime")).GetComponent<TextMesh>().text = ImenaBackPacks[k];
+			((Component)BackPacksObjects[k].Find("Text/ime")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
+		}
+		if (ImaNovihKapa)
+		{
+			((Component)ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)ZidFooter.transform.Find("1HatsShopTab/Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+		if (ImaNovihMajica)
+		{
+			((Component)ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)ZidFooter.transform.Find("2TShirtsShopTab/Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+		if (ImaNovihRanceva)
+		{
+			((Component)ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)ZidFooter.transform.Find("3BackPackShopTab/Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+		if (ImaNovihKapa | ImaNovihMajica | ImaNovihRanceva)
+		{
+			((Component)Custumization.transform.Find("Znak Uzvika telo")).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)Custumization.transform.Find("Znak Uzvika telo")).gameObject.SetActive(false);
+		}
+	}
+
 	public void KupiItem()
 	{
-		if (ShopManagerFull.BuyButtonState == 0)
+		//IL_06f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_072b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0730: Unknown result type (might be due to invalid IL or missing references)
+		if (BuyButtonState == 0)
 		{
-			if (ShopManagerFull.AktivanCustomizationTab == 1)
+			if (AktivanCustomizationTab == 1)
 			{
-				StagesParser.currentMoney -= int.Parse(this.CoinsHats[ShopManagerFull.AktivanItemSesir]);
-				ShopManagerFull.SveStvariZaOblacenjeHats[ShopManagerFull.AktivanItemSesir] = 1;
-				this.HatsObjects[ShopManagerFull.AktivanItemSesir].Find("Stikla").gameObject.SetActive(true);
-				this.HatsObjects[ShopManagerFull.AktivanItemSesir].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.HatsObjects[ShopManagerFull.AktivanItemSesir].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-				this.HatsObjects[ShopManagerFull.AktivanItemSesir].Find("Bedz - Popust").gameObject.SetActive(false);
-				this.TrenutniSelektovanSesir = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
+				StagesParser.currentMoney -= int.Parse(CoinsHats[AktivanItemSesir]);
+				SveStvariZaOblacenjeHats[AktivanItemSesir] = 1;
+				((Component)HatsObjects[AktivanItemSesir].Find("Stikla")).gameObject.SetActive(true);
+				((Component)HatsObjects[AktivanItemSesir].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)HatsObjects[AktivanItemSesir].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+				((Component)HatsObjects[AktivanItemSesir].Find("Bedz - Popust")).gameObject.SetActive(false);
+				TrenutniSelektovanSesir = -1;
+				ProveraTrenutnogItema(AktivanItemSesir);
 				FacebookManager.UserSveKupovineHats = "";
-				for (int i = 0; i < ShopManagerFull.SveStvariZaOblacenjeHats.Count; i++)
+				for (int i = 0; i < SveStvariZaOblacenjeHats.Count; i++)
 				{
-					FacebookManager.UserSveKupovineHats += ShopManagerFull.SveStvariZaOblacenjeHats[i] + "#";
+					FacebookManager.UserSveKupovineHats += SveStvariZaOblacenjeHats[i] + "#";
 				}
 				StagesParser.svekupovineGlava = FacebookManager.UserSveKupovineHats;
 				PlayerPrefs.SetString("UserSveKupovineHats", FacebookManager.UserSveKupovineHats);
 				PlayerPrefs.SetInt("TotalMoney", StagesParser.currentMoney);
 				PlayerPrefs.Save();
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 2)
+			else if (AktivanCustomizationTab == 2)
 			{
-				StagesParser.currentMoney -= int.Parse(this.CoinsShirts[ShopManagerFull.AktivanItemMajica]);
-				ShopManagerFull.SveStvariZaOblacenjeShirts[ShopManagerFull.AktivanItemMajica] = 1;
-				this.ShirtsObjects[ShopManagerFull.AktivanItemMajica].Find("Stikla").gameObject.SetActive(true);
-				this.ShirtsObjects[ShopManagerFull.AktivanItemMajica].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.ShirtsObjects[ShopManagerFull.AktivanItemMajica].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-				this.ShirtsObjects[ShopManagerFull.AktivanItemMajica].Find("Bedz - Popust").gameObject.SetActive(false);
-				this.TrenutnoSelektovanaMajica = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
+				StagesParser.currentMoney -= int.Parse(CoinsShirts[AktivanItemMajica]);
+				SveStvariZaOblacenjeShirts[AktivanItemMajica] = 1;
+				((Component)ShirtsObjects[AktivanItemMajica].Find("Stikla")).gameObject.SetActive(true);
+				((Component)ShirtsObjects[AktivanItemMajica].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[AktivanItemMajica].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+				((Component)ShirtsObjects[AktivanItemMajica].Find("Bedz - Popust")).gameObject.SetActive(false);
+				TrenutnoSelektovanaMajica = -1;
+				ProveraTrenutnogItema(AktivanItemMajica);
 				FacebookManager.UserSveKupovineShirts = "";
-				for (int j = 0; j < ShopManagerFull.SveStvariZaOblacenjeShirts.Count; j++)
+				for (int j = 0; j < SveStvariZaOblacenjeShirts.Count; j++)
 				{
-					FacebookManager.UserSveKupovineShirts += ShopManagerFull.SveStvariZaOblacenjeShirts[j] + "#";
+					FacebookManager.UserSveKupovineShirts += SveStvariZaOblacenjeShirts[j] + "#";
 				}
 				StagesParser.svekupovineMajica = FacebookManager.UserSveKupovineShirts;
 				PlayerPrefs.SetString("UserSveKupovineShirts", FacebookManager.UserSveKupovineShirts);
 				PlayerPrefs.SetInt("TotalMoney", StagesParser.currentMoney);
 				PlayerPrefs.Save();
 			}
-			if (ShopManagerFull.AktivanCustomizationTab == 3)
+			if (AktivanCustomizationTab == 3)
 			{
-				StagesParser.currentMoney -= int.Parse(this.CoinsBackPacks[ShopManagerFull.AktivanItemRanac]);
-				ShopManagerFull.SveStvariZaOblacenjeBackPack[ShopManagerFull.AktivanItemRanac] = 1;
-				this.BackPacksObjects[ShopManagerFull.AktivanItemRanac].Find("Stikla").gameObject.SetActive(true);
-				this.BackPacksObjects[ShopManagerFull.AktivanItemRanac].Find("Polje za unos COINA U shopu - Shop").gameObject.SetActive(false);
-				this.BackPacksObjects[ShopManagerFull.AktivanItemRanac].Find("Polje za unos COINA U shopu - Shop_NoDiscount").gameObject.SetActive(false);
-				this.BackPacksObjects[ShopManagerFull.AktivanItemRanac].Find("Bedz - Popust").gameObject.SetActive(false);
-				this.TrenutnoSelektovanRanac = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
+				StagesParser.currentMoney -= int.Parse(CoinsBackPacks[AktivanItemRanac]);
+				SveStvariZaOblacenjeBackPack[AktivanItemRanac] = 1;
+				((Component)BackPacksObjects[AktivanItemRanac].Find("Stikla")).gameObject.SetActive(true);
+				((Component)BackPacksObjects[AktivanItemRanac].Find("Polje za unos COINA U shopu - Shop")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[AktivanItemRanac].Find("Polje za unos COINA U shopu - Shop_NoDiscount")).gameObject.SetActive(false);
+				((Component)BackPacksObjects[AktivanItemRanac].Find("Bedz - Popust")).gameObject.SetActive(false);
+				TrenutnoSelektovanRanac = -1;
+				ProveraTrenutnogItema(AktivanItemRanac);
 				FacebookManager.UserSveKupovineBackPacks = "";
-				for (int k = 0; k < ShopManagerFull.SveStvariZaOblacenjeBackPack.Count; k++)
+				for (int k = 0; k < SveStvariZaOblacenjeBackPack.Count; k++)
 				{
-					FacebookManager.UserSveKupovineBackPacks += ShopManagerFull.SveStvariZaOblacenjeBackPack[k] + "#";
+					FacebookManager.UserSveKupovineBackPacks += SveStvariZaOblacenjeBackPack[k] + "#";
 				}
 				StagesParser.svekupovineLedja = FacebookManager.UserSveKupovineBackPacks;
 				PlayerPrefs.SetString("UserSveKupovineBackPacks", FacebookManager.UserSveKupovineBackPacks);
@@ -1714,522 +1903,485 @@ public class ShopManagerFull : MonoBehaviour
 				PlayerPrefs.Save();
 			}
 			StagesParser.ServerUpdate = 1;
-			this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-			this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
+			((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+			((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: false, hasWhiteSpaces: true);
 		}
-		else if (ShopManagerFull.BuyButtonState == 1)
+		else if (BuyButtonState == 1)
 		{
-			this.CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
+			CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
 		}
-		else if (ShopManagerFull.BuyButtonState == 2)
+		else if (BuyButtonState == 2)
 		{
-			if (ShopManagerFull.AktivanCustomizationTab == 1)
+			if (AktivanCustomizationTab == 1)
 			{
-				if (this.PreviewSesir != -1)
+				if (PreviewSesir != -1)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + this.PreviewSesir).transform.GetChild(0).gameObject.SetActive(false);
-					this.PreviewSesir = -1;
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + PreviewSesir)).transform.GetChild(0)).gameObject.SetActive(false);
+					PreviewSesir = -1;
 				}
-				if (int.Parse(this.UsiHats[ShopManagerFull.AktivanItemSesir]) == 1)
+				if (int.Parse(UsiHats[AktivanItemSesir]) == 1)
 				{
-					if (!ShopManagerFull.ImaUsi)
+					if (!ImaUsi)
 					{
-						ShopManagerFull.ImaUsi = true;
-						this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
+						ImaUsi = true;
+						((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
 					}
 				}
-				else if (ShopManagerFull.ImaUsi)
+				else if (ImaUsi)
 				{
-					ShopManagerFull.ImaUsi = false;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(false);
+					ImaUsi = false;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(false);
 				}
-				if (int.Parse(this.KosaHats[ShopManagerFull.AktivanItemSesir]) == 1)
+				if (int.Parse(KosaHats[AktivanItemSesir]) == 1)
 				{
-					ShopManagerFull.ImaKosu = true;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
+					ImaKosu = true;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
 				}
 				else
 				{
-					ShopManagerFull.ImaKosu = false;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(false);
+					ImaKosu = false;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(false);
 				}
-				if (ShopManagerFull.AktivanSesir != -1)
+				if (AktivanSesir != -1)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanSesir).transform.GetChild(0).gameObject.SetActive(false);
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanSesir)).transform.GetChild(0)).gameObject.SetActive(false);
 				}
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanItemSesir).transform.GetChild(0).gameObject.SetActive(true);
-				ShopManagerFull.AktivanSesir = ShopManagerFull.AktivanItemSesir;
-				this.TrenutniSelektovanSesir = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
-				StagesParser.glava = ShopManagerFull.AktivanSesir;
-				StagesParser.imaKosu = ShopManagerFull.ImaKosu;
-				StagesParser.imaUsi = ShopManagerFull.ImaUsi;
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanItemSesir)).transform.GetChild(0)).gameObject.SetActive(true);
+				AktivanSesir = AktivanItemSesir;
+				TrenutniSelektovanSesir = -1;
+				ProveraTrenutnogItema(AktivanItemSesir);
+				StagesParser.glava = AktivanSesir;
+				StagesParser.imaKosu = ImaKosu;
+				StagesParser.imaUsi = ImaUsi;
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 2)
+			else if (AktivanCustomizationTab == 2)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(true);
-				Texture texture = Resources.Load("Majice/Bg" + ShopManagerFull.AktivanItemMajica) as Texture;
-				this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.SetTexture("_MainTex", texture);
-				this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.color = this.TShirtColors[ShopManagerFull.AktivanItemMajica];
-				ShopManagerFull.AktivnaMajica = ShopManagerFull.AktivanItemMajica;
-				this.TrenutnoSelektovanaMajica = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
-				StagesParser.majica = ShopManagerFull.AktivnaMajica;
-				StagesParser.bojaMajice = this.TShirtColors[ShopManagerFull.AktivnaMajica];
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(true);
+				Object obj = Resources.Load("Majice/Bg" + AktivanItemMajica);
+				Texture val = (Texture)(object)((obj is Texture) ? obj : null);
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.SetTexture("_MainTex", val);
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.color = TShirtColors[AktivanItemMajica];
+				AktivnaMajica = AktivanItemMajica;
+				TrenutnoSelektovanaMajica = -1;
+				ProveraTrenutnogItema(AktivanItemMajica);
+				StagesParser.majica = AktivnaMajica;
+				StagesParser.bojaMajice = TShirtColors[AktivnaMajica];
 			}
-			if (ShopManagerFull.AktivanCustomizationTab == 3)
+			if (AktivanCustomizationTab == 3)
 			{
-				if (this.PreviewRanac != -1)
+				if (PreviewRanac != -1)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + this.PreviewRanac).transform.GetChild(0).gameObject.SetActive(false);
-					this.PreviewRanac = -1;
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + PreviewRanac)).transform.GetChild(0)).gameObject.SetActive(false);
+					PreviewRanac = -1;
 				}
-				if (ShopManagerFull.AktivanRanac != -1)
+				if (AktivanRanac != -1)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).gameObject.SetActive(false);
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).gameObject.SetActive(false);
 				}
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanItemRanac).transform.GetChild(0).gameObject.SetActive(true);
-				ShopManagerFull.AktivanRanac = ShopManagerFull.AktivanItemRanac;
-				this.TrenutnoSelektovanRanac = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
-				StagesParser.ledja = ShopManagerFull.AktivanRanac;
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanItemRanac)).transform.GetChild(0)).gameObject.SetActive(true);
+				AktivanRanac = AktivanItemRanac;
+				TrenutnoSelektovanRanac = -1;
+				ProveraTrenutnogItema(AktivanItemRanac);
+				StagesParser.ledja = AktivanRanac;
 			}
-			string text = string.Concat(new string[]
-			{
-				ShopManagerFull.AktivanSesir.ToString(),
-				"#",
-				ShopManagerFull.AktivnaMajica.ToString(),
-				"#",
-				ShopManagerFull.AktivanRanac.ToString()
-			});
+			string text = AktivanSesir + "#" + AktivnaMajica + "#" + AktivanRanac;
 			PlayerPrefs.SetString("AktivniItemi", text);
 			PlayerPrefs.Save();
 		}
-		else if (ShopManagerFull.BuyButtonState == 3)
+		else if (BuyButtonState == 3)
 		{
-			if (ShopManagerFull.AktivanCustomizationTab == 1)
+			if (AktivanCustomizationTab == 1)
 			{
-				ShopManagerFull.ImaUsi = true;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
-				ShopManagerFull.ImaKosu = true;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanItemSesir).transform.GetChild(0).gameObject.SetActive(false);
-				ShopManagerFull.AktivanSesir = -1;
-				this.TrenutniSelektovanSesir = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
+				ImaUsi = true;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
+				ImaKosu = true;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanItemSesir)).transform.GetChild(0)).gameObject.SetActive(false);
+				AktivanSesir = -1;
+				TrenutniSelektovanSesir = -1;
+				ProveraTrenutnogItema(AktivanItemSesir);
 				StagesParser.imaKosu = true;
 				StagesParser.imaUsi = true;
 				StagesParser.glava = -1;
 			}
-			else if (ShopManagerFull.AktivanCustomizationTab == 2)
+			else if (AktivanCustomizationTab == 2)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(false);
-				ShopManagerFull.AktivnaMajica = -1;
-				this.TrenutnoSelektovanaMajica = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(false);
+				AktivnaMajica = -1;
+				TrenutnoSelektovanaMajica = -1;
+				ProveraTrenutnogItema(AktivanItemMajica);
 				StagesParser.majica = -1;
 			}
-			if (ShopManagerFull.AktivanCustomizationTab == 3)
+			if (AktivanCustomizationTab == 3)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanItemRanac).transform.GetChild(0).gameObject.SetActive(false);
-				ShopManagerFull.AktivanRanac = -1;
-				this.TrenutnoSelektovanRanac = -1;
-				this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanItemRanac)).transform.GetChild(0)).gameObject.SetActive(false);
+				AktivanRanac = -1;
+				TrenutnoSelektovanRanac = -1;
+				ProveraTrenutnogItema(AktivanItemRanac);
 				StagesParser.ledja = -1;
 			}
-			string text2 = string.Concat(new string[]
-			{
-				ShopManagerFull.AktivanSesir.ToString(),
-				"#",
-				ShopManagerFull.AktivnaMajica.ToString(),
-				"#",
-				ShopManagerFull.AktivanRanac.ToString()
-			});
+			string text2 = AktivanSesir + "#" + AktivnaMajica + "#" + AktivanRanac;
 			PlayerPrefs.SetString("AktivniItemi", text2);
 			PlayerPrefs.Save();
 		}
-		int buyButtonState = ShopManagerFull.BuyButtonState;
+		_ = BuyButtonState;
+		_ = 4;
 	}
 
-	// Token: 0x06002718 RID: 10008 RVA: 0x0011D610 File Offset: 0x0011B810
 	public void PreviewItem()
 	{
-		if (ShopManagerFull.AktivanCustomizationTab == 1)
+		//IL_0292: Unknown result type (might be due to invalid IL or missing references)
+		if (AktivanCustomizationTab == 1)
 		{
-			if (this.ZakljucaniHats[ShopManagerFull.AktivanItemSesir] == 1)
+			if (ZakljucaniHats[AktivanItemSesir] == 1)
 			{
-				if (int.Parse(this.UsiHats[ShopManagerFull.AktivanItemSesir]) == 1)
+				if (int.Parse(UsiHats[AktivanItemSesir]) == 1)
 				{
-					if (!ShopManagerFull.ImaUsi)
+					if (!ImaUsi)
 					{
-						ShopManagerFull.ImaUsi = true;
-						this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
+						ImaUsi = true;
+						((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
 					}
 				}
-				else if (ShopManagerFull.ImaUsi)
+				else if (ImaUsi)
 				{
-					ShopManagerFull.ImaUsi = false;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(false);
+					ImaUsi = false;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(false);
 				}
-				if (int.Parse(this.KosaHats[ShopManagerFull.AktivanItemSesir]) == 1)
+				if (int.Parse(KosaHats[AktivanItemSesir]) == 1)
 				{
-					ShopManagerFull.ImaKosu = true;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
+					ImaKosu = true;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
 				}
 				else
 				{
-					ShopManagerFull.ImaKosu = false;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(false);
+					ImaKosu = false;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(false);
 				}
-				if (this.PreviewSesir != -1)
+				if (PreviewSesir != -1)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + this.PreviewSesir).transform.GetChild(0).gameObject.SetActive(false);
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + PreviewSesir)).transform.GetChild(0)).gameObject.SetActive(false);
 				}
-				if (ShopManagerFull.AktivanSesir != -1)
+				if (AktivanSesir != -1)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanSesir).transform.GetChild(0).gameObject.SetActive(false);
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanSesir)).transform.GetChild(0)).gameObject.SetActive(false);
 				}
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanItemSesir).transform.GetChild(0).gameObject.SetActive(true);
-				this.PreviewSesir = ShopManagerFull.AktivanItemSesir;
-				this.TrenutniSelektovanSesir = -1;
-				this.ProveraTrenutnogItema(this.PreviewSesir);
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanItemSesir)).transform.GetChild(0)).gameObject.SetActive(true);
+				PreviewSesir = AktivanItemSesir;
+				TrenutniSelektovanSesir = -1;
+				ProveraTrenutnogItema(PreviewSesir);
 			}
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 2 && this.ZakljucaniShirts[ShopManagerFull.AktivanItemMajica] == 1)
+		else if (AktivanCustomizationTab == 2 && ZakljucaniShirts[AktivanItemMajica] == 1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(true);
-			Texture texture = Resources.Load("Majice/Bg" + ShopManagerFull.AktivanItemMajica) as Texture;
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.SetTexture("_MainTex", texture);
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.color = this.TShirtColors[ShopManagerFull.AktivanItemMajica];
-			this.PreviewMajica = ShopManagerFull.AktivanItemMajica;
-			this.TrenutnoSelektovanaMajica = -1;
-			this.ProveraTrenutnogItema(this.PreviewMajica);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(true);
+			Object obj = Resources.Load("Majice/Bg" + AktivanItemMajica);
+			Texture val = (Texture)(object)((obj is Texture) ? obj : null);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.SetTexture("_MainTex", val);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.color = TShirtColors[AktivanItemMajica];
+			PreviewMajica = AktivanItemMajica;
+			TrenutnoSelektovanaMajica = -1;
+			ProveraTrenutnogItema(PreviewMajica);
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 3 && this.ZakljucaniBackPacks[ShopManagerFull.AktivanItemRanac] == 1)
+		if (AktivanCustomizationTab == 3 && ZakljucaniBackPacks[AktivanItemRanac] == 1)
 		{
-			if (this.PreviewRanac != -1)
+			if (PreviewRanac != -1)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + this.PreviewRanac).transform.GetChild(0).gameObject.SetActive(false);
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + PreviewRanac)).transform.GetChild(0)).gameObject.SetActive(false);
 			}
-			if (ShopManagerFull.AktivanRanac != -1)
+			if (AktivanRanac != -1)
 			{
-				this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).gameObject.SetActive(false);
+				((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).gameObject.SetActive(false);
 			}
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanItemRanac).transform.GetChild(0).gameObject.SetActive(true);
-			this.PreviewRanac = ShopManagerFull.AktivanItemRanac;
-			this.TrenutnoSelektovanRanac = -1;
-			this.ProveraTrenutnogItema(this.PreviewRanac);
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanItemRanac)).transform.GetChild(0)).gameObject.SetActive(true);
+			PreviewRanac = AktivanItemRanac;
+			TrenutnoSelektovanRanac = -1;
+			ProveraTrenutnogItema(PreviewRanac);
 		}
 	}
 
-	// Token: 0x06002719 RID: 10009 RVA: 0x0011D9D8 File Offset: 0x0011BBD8
 	public void KupiDoubleCoins()
 	{
-		if (StagesParser.currentMoney < int.Parse(this.CoinsPowerUps[0]))
+		if (StagesParser.currentMoney < int.Parse(CoinsPowerUps[0]))
 		{
-			this.CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
+			CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
 			return;
 		}
-		StagesParser.currentMoney -= int.Parse(this.CoinsPowerUps[0]);
+		StagesParser.currentMoney -= int.Parse(CoinsPowerUps[0]);
 		StagesParser.powerup_doublecoins++;
 		GameObject.Find("Double Coins Number").GetComponent<Animation>().Play("BoughtPowerUp");
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Double Coins Number/Number").GetComponent<TextMesh>().text = StagesParser.powerup_doublecoins.ToString();
-		GameObject.Find("Double Coins Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Double Coins Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		PlayerPrefs.SetInt("TotalMoney", StagesParser.currentMoney);
-		PlayerPrefs.SetString("PowerUps", string.Concat(new object[]
-		{
-			StagesParser.powerup_doublecoins,
-			"#",
-			StagesParser.powerup_magnets,
-			"#",
-			StagesParser.powerup_shields
-		}));
+		PlayerPrefs.SetString("PowerUps", StagesParser.powerup_doublecoins + "#" + StagesParser.powerup_magnets + "#" + StagesParser.powerup_shields);
 		PlayerPrefs.Save();
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x0600271A RID: 10010 RVA: 0x0011DB3C File Offset: 0x0011BD3C
 	public void KupiMagnet()
 	{
-		if (StagesParser.currentMoney < int.Parse(this.CoinsPowerUps[1]))
+		if (StagesParser.currentMoney < int.Parse(CoinsPowerUps[1]))
 		{
-			this.CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
+			CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
 			return;
 		}
-		StagesParser.currentMoney -= int.Parse(this.CoinsPowerUps[1]);
+		StagesParser.currentMoney -= int.Parse(CoinsPowerUps[1]);
 		StagesParser.powerup_magnets++;
 		GameObject.Find("Magnet Number").GetComponent<Animation>().Play("BoughtPowerUp");
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Magnet Number/Number").GetComponent<TextMesh>().text = StagesParser.powerup_magnets.ToString();
-		GameObject.Find("Magnet Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Magnet Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		PlayerPrefs.SetInt("TotalMoney", StagesParser.currentMoney);
-		PlayerPrefs.SetString("PowerUps", string.Concat(new object[]
-		{
-			StagesParser.powerup_doublecoins,
-			"#",
-			StagesParser.powerup_magnets,
-			"#",
-			StagesParser.powerup_shields
-		}));
+		PlayerPrefs.SetString("PowerUps", StagesParser.powerup_doublecoins + "#" + StagesParser.powerup_magnets + "#" + StagesParser.powerup_shields);
 		PlayerPrefs.Save();
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x0600271B RID: 10011 RVA: 0x0011DCA0 File Offset: 0x0011BEA0
 	public void KupiShield()
 	{
-		if (StagesParser.currentMoney < int.Parse(this.CoinsPowerUps[2]))
+		if (StagesParser.currentMoney < int.Parse(CoinsPowerUps[2]))
 		{
-			this.CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
+			CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
 			return;
 		}
-		StagesParser.currentMoney -= int.Parse(this.CoinsPowerUps[2]);
+		StagesParser.currentMoney -= int.Parse(CoinsPowerUps[2]);
 		StagesParser.powerup_shields++;
 		GameObject.Find("Shield Number").GetComponent<Animation>().Play("BoughtPowerUp");
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Shield Number/Number").GetComponent<TextMesh>().text = StagesParser.powerup_shields.ToString();
-		GameObject.Find("Shield Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Shield Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		PlayerPrefs.SetInt("TotalMoney", StagesParser.currentMoney);
-		PlayerPrefs.SetString("PowerUps", string.Concat(new object[]
-		{
-			StagesParser.powerup_doublecoins,
-			"#",
-			StagesParser.powerup_magnets,
-			"#",
-			StagesParser.powerup_shields
-		}));
+		PlayerPrefs.SetString("PowerUps", StagesParser.powerup_doublecoins + "#" + StagesParser.powerup_magnets + "#" + StagesParser.powerup_shields);
 		PlayerPrefs.Save();
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x0600271C RID: 10012 RVA: 0x0011DE04 File Offset: 0x0011C004
 	public void KupiBananu()
 	{
 		if (StagesParser.currentMoney < StagesParser.bananaCost)
 		{
-			this.CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
+			CoinsNumber.GetComponent<Animation>().Play("Not Enough Coins");
 			return;
 		}
 		StagesParser.currentMoney -= StagesParser.bananaCost;
 		StagesParser.currentBananas++;
 		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number").GetComponent<Animation>().Play("BoughtPowerUp");
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
-		this.CoinsNumber.transform.Find("Coins Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMesh>().text = StagesParser.currentMoney.ToString();
+		((Component)CoinsNumber.transform.Find("Coins Number")).GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number/Number").GetComponent<TextMesh>().text = StagesParser.currentBananas.ToString();
-		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
+		GameObject.Find("Shop/2 Shop - BANANA/Zid Shop/Zid Header i Footer/Zid Footer Shop/Banana Number/Number").GetComponent<TextMeshEffects>().RefreshTextOutline(adjustTextSize: true, hasWhiteSpaces: true);
 		PlayerPrefs.SetInt("TotalMoney", StagesParser.currentMoney);
 		PlayerPrefs.SetInt("TotalBananas", StagesParser.currentBananas);
 		PlayerPrefs.Save();
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x0600271D RID: 10013 RVA: 0x0011DF14 File Offset: 0x0011C114
 	public void OcistiPreview()
 	{
-		if (this.PreviewSesir != -1)
+		//IL_0336: Unknown result type (might be due to invalid IL or missing references)
+		if (PreviewSesir != -1)
 		{
-			ShopManagerFull.ImaUsi = true;
-			this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
-			ShopManagerFull.ImaKosu = true;
-			this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + this.PreviewSesir).transform.GetChild(0).gameObject.SetActive(false);
-			this.PreviewSesir = -1;
+			ImaUsi = true;
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
+			ImaKosu = true;
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + PreviewSesir)).transform.GetChild(0)).gameObject.SetActive(false);
+			PreviewSesir = -1;
 		}
-		if (this.PreviewMajica != -1)
+		if (PreviewMajica != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(false);
-			this.PreviewMajica = -1;
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(false);
+			PreviewMajica = -1;
 		}
-		if (this.PreviewRanac != -1)
+		if (PreviewRanac != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + this.PreviewRanac).transform.GetChild(0).gameObject.SetActive(false);
-			this.PreviewRanac = -1;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + PreviewRanac)).transform.GetChild(0)).gameObject.SetActive(false);
+			PreviewRanac = -1;
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 1)
+		if (AktivanCustomizationTab == 1)
 		{
-			this.TrenutniSelektovanSesir = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
+			TrenutniSelektovanSesir = -1;
+			ProveraTrenutnogItema(AktivanItemSesir);
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 2)
+		else if (AktivanCustomizationTab == 2)
 		{
-			this.TrenutnoSelektovanaMajica = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
+			TrenutnoSelektovanaMajica = -1;
+			ProveraTrenutnogItema(AktivanItemMajica);
 		}
-		else if (ShopManagerFull.AktivanCustomizationTab == 3)
+		else if (AktivanCustomizationTab == 3)
 		{
-			this.TrenutnoSelektovanRanac = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
+			TrenutnoSelektovanRanac = -1;
+			ProveraTrenutnogItema(AktivanItemRanac);
 		}
-		if (ShopManagerFull.AktivanSesir != -1)
+		if (AktivanSesir != -1)
 		{
-			if (int.Parse(this.UsiHats[ShopManagerFull.AktivanSesir]) == 1)
+			if (int.Parse(UsiHats[AktivanSesir]) == 1)
 			{
-				if (!ShopManagerFull.ImaUsi)
+				if (!ImaUsi)
 				{
-					ShopManagerFull.ImaUsi = true;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
+					ImaUsi = true;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
 				}
 			}
-			else if (ShopManagerFull.ImaUsi)
+			else if (ImaUsi)
 			{
-				ShopManagerFull.ImaUsi = false;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(false);
+				ImaUsi = false;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(false);
 			}
-			if (int.Parse(this.KosaHats[ShopManagerFull.AktivanSesir]) == 1)
+			if (int.Parse(KosaHats[AktivanSesir]) == 1)
 			{
-				ShopManagerFull.ImaKosu = true;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
+				ImaKosu = true;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
 			}
 			else
 			{
-				ShopManagerFull.ImaKosu = false;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(false);
+				ImaKosu = false;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(false);
 			}
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanSesir).transform.GetChild(0).gameObject.SetActive(true);
-			this.TrenutniSelektovanSesir = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanSesir)).transform.GetChild(0)).gameObject.SetActive(true);
+			TrenutniSelektovanSesir = -1;
+			ProveraTrenutnogItema(AktivanItemSesir);
 		}
-		if (ShopManagerFull.AktivnaMajica != -1)
+		if (AktivnaMajica != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(true);
-			Texture texture = Resources.Load("Majice/Bg" + ShopManagerFull.AktivnaMajica) as Texture;
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.SetTexture("_MainTex", texture);
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.color = this.TShirtColors[ShopManagerFull.AktivnaMajica];
-			this.TrenutnoSelektovanaMajica = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(true);
+			Object obj = Resources.Load("Majice/Bg" + AktivnaMajica);
+			Texture val = (Texture)(object)((obj is Texture) ? obj : null);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.SetTexture("_MainTex", val);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.color = TShirtColors[AktivnaMajica];
+			TrenutnoSelektovanaMajica = -1;
+			ProveraTrenutnogItema(AktivanItemMajica);
 		}
-		if (ShopManagerFull.AktivanRanac != -1)
+		if (AktivanRanac != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).gameObject.SetActive(true);
-			this.TrenutnoSelektovanRanac = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).gameObject.SetActive(true);
+			TrenutnoSelektovanRanac = -1;
+			ProveraTrenutnogItema(AktivanItemRanac);
 		}
 	}
 
-	// Token: 0x0600271E RID: 10014 RVA: 0x0011E2C8 File Offset: 0x0011C4C8
 	public void OcistiMajmuna()
 	{
-		ShopManagerFull.ImaUsi = true;
-		this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
-		ShopManagerFull.ImaKosu = true;
-		this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
+		ImaUsi = true;
+		((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
+		ImaKosu = true;
+		((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
 		StagesParser.glava = -1;
 		StagesParser.majica = -1;
 		StagesParser.ledja = -1;
 		StagesParser.imaKosu = true;
 		StagesParser.imaUsi = true;
-		this.AktivniItemString = "-1#-1#-1";
-		PlayerPrefs.SetString("AktivniItemi", this.AktivniItemString);
+		AktivniItemString = "-1#-1#-1";
+		PlayerPrefs.SetString("AktivniItemi", AktivniItemString);
 		PlayerPrefs.Save();
-		if (ShopManagerFull.AktivanSesir != -1)
+		if (AktivanSesir != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanSesir).transform.GetChild(0).gameObject.SetActive(false);
-			ShopManagerFull.AktivanSesir = -1;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanSesir)).transform.GetChild(0)).gameObject.SetActive(false);
+			AktivanSesir = -1;
 		}
-		if (this.PreviewSesir != -1)
+		if (PreviewSesir != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + this.PreviewSesir).transform.GetChild(0).gameObject.SetActive(false);
-			this.PreviewSesir = -1;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + PreviewSesir)).transform.GetChild(0)).gameObject.SetActive(false);
+			PreviewSesir = -1;
 		}
-		if (ShopManagerFull.AktivnaMajica != -1)
+		if (AktivnaMajica != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(false);
-			ShopManagerFull.AktivnaMajica = -1;
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(false);
+			AktivnaMajica = -1;
 		}
-		if (this.PreviewMajica != -1)
+		if (PreviewMajica != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(false);
-			this.PreviewMajica = -1;
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(false);
+			PreviewMajica = -1;
 		}
-		if (ShopManagerFull.AktivanRanac != -1)
+		if (AktivanRanac != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).gameObject.SetActive(false);
-			ShopManagerFull.AktivanRanac = -1;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).gameObject.SetActive(false);
+			AktivanRanac = -1;
 		}
-		if (this.PreviewRanac != -1)
+		if (PreviewRanac != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + this.PreviewRanac).transform.GetChild(0).gameObject.SetActive(false);
-			this.PreviewRanac = -1;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + PreviewRanac)).transform.GetChild(0)).gameObject.SetActive(false);
+			PreviewRanac = -1;
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 1)
+		if (AktivanCustomizationTab == 1)
 		{
-			this.TrenutniSelektovanSesir = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemSesir);
-			return;
+			TrenutniSelektovanSesir = -1;
+			ProveraTrenutnogItema(AktivanItemSesir);
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 2)
+		else if (AktivanCustomizationTab == 2)
 		{
-			this.TrenutnoSelektovanaMajica = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemMajica);
-			return;
+			TrenutnoSelektovanaMajica = -1;
+			ProveraTrenutnogItema(AktivanItemMajica);
 		}
-		if (ShopManagerFull.AktivanCustomizationTab == 3)
+		else if (AktivanCustomizationTab == 3)
 		{
-			this.TrenutnoSelektovanRanac = -1;
-			this.ProveraTrenutnogItema(ShopManagerFull.AktivanItemRanac);
+			TrenutnoSelektovanRanac = -1;
+			ProveraTrenutnogItema(AktivanItemRanac);
 		}
 	}
 
-	// Token: 0x0600271F RID: 10015 RVA: 0x0011E534 File Offset: 0x0011C734
 	public void ObuciMajmunaNaStartu()
 	{
+		//IL_02c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0293: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b7: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerPrefs.HasKey("AktivniItemi"))
 		{
-			this.AktivniItemString = PlayerPrefs.GetString("AktivniItemi");
-			this.AktivniItemi = this.AktivniItemString.Split(new char[]
-			{
-				'#'
-			});
-			ShopManagerFull.AktivanSesir = int.Parse(this.AktivniItemi[0]);
-			ShopManagerFull.AktivnaMajica = int.Parse(this.AktivniItemi[1]);
-			ShopManagerFull.AktivanRanac = int.Parse(this.AktivniItemi[2]);
+			AktivniItemString = PlayerPrefs.GetString("AktivniItemi");
+			AktivniItemi = AktivniItemString.Split(new char[1] { '#' });
+			AktivanSesir = int.Parse(AktivniItemi[0]);
+			AktivnaMajica = int.Parse(AktivniItemi[1]);
+			AktivanRanac = int.Parse(AktivniItemi[2]);
 		}
 		else
 		{
-			ShopManagerFull.AktivanSesir = -1;
-			ShopManagerFull.AktivnaMajica = -1;
-			ShopManagerFull.AktivanRanac = -1;
+			AktivanSesir = -1;
+			AktivnaMajica = -1;
+			AktivanRanac = -1;
 			StagesParser.glava = -1;
 			StagesParser.imaKosu = true;
 			StagesParser.imaUsi = true;
 			StagesParser.majica = -1;
 			StagesParser.ledja = -1;
 		}
-		if (ShopManagerFull.AktivanSesir != -1)
+		if (AktivanSesir != -1)
 		{
-			if (int.Parse(this.UsiHats[ShopManagerFull.AktivanSesir]) == 1)
+			if (int.Parse(UsiHats[AktivanSesir]) == 1)
 			{
-				if (!ShopManagerFull.ImaUsi)
+				if (!ImaUsi)
 				{
-					ShopManagerFull.ImaUsi = true;
-					this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(true);
+					ImaUsi = true;
+					((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(true);
 					StagesParser.imaUsi = true;
 				}
 			}
-			else if (ShopManagerFull.ImaUsi)
+			else if (ImaUsi)
 			{
-				ShopManagerFull.ImaUsi = false;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Usi").gameObject.SetActive(false);
+				ImaUsi = false;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Usi")).gameObject.SetActive(false);
 				StagesParser.imaUsi = false;
 			}
-			if (int.Parse(this.KosaHats[ShopManagerFull.AktivanSesir]) == 1)
+			if (int.Parse(KosaHats[AktivanSesir]) == 1)
 			{
-				ShopManagerFull.ImaKosu = true;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(true);
+				ImaKosu = true;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(true);
 				StagesParser.imaKosu = true;
 			}
 			else
 			{
-				ShopManagerFull.ImaKosu = false;
-				this.MajmunBobo.transform.Find("PrinceGorilla/Kosa").gameObject.SetActive(false);
+				ImaKosu = false;
+				((Component)MajmunBobo.transform.Find("PrinceGorilla/Kosa")).gameObject.SetActive(false);
 				StagesParser.imaKosu = false;
 			}
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + ShopManagerFull.AktivanSesir).transform.GetChild(0).gameObject.SetActive(true);
-			StagesParser.glava = ShopManagerFull.AktivanSesir;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/Chest/Neck/Head/" + AktivanSesir)).transform.GetChild(0)).gameObject.SetActive(true);
+			StagesParser.glava = AktivanSesir;
 		}
 		else
 		{
@@ -2237,349 +2389,47 @@ public class ShopManagerFull : MonoBehaviour
 			StagesParser.imaKosu = true;
 			StagesParser.imaUsi = true;
 		}
-		if (ShopManagerFull.AktivnaMajica != -1)
+		if (AktivnaMajica != -1)
 		{
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").gameObject.SetActive(true);
-			Texture texture = Resources.Load("Majice/Bg" + ShopManagerFull.AktivnaMajica) as Texture;
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.SetTexture("_MainTex", texture);
-			this.MajmunBobo.transform.Find("PrinceGorilla/custom_Majica").GetComponent<Renderer>().material.color = this.TShirtColors[ShopManagerFull.AktivnaMajica];
-			StagesParser.majica = ShopManagerFull.AktivnaMajica;
-			StagesParser.bojaMajice = this.TShirtColors[ShopManagerFull.AktivnaMajica];
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).gameObject.SetActive(true);
+			Object obj = Resources.Load("Majice/Bg" + AktivnaMajica);
+			Texture val = (Texture)(object)((obj is Texture) ? obj : null);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.SetTexture("_MainTex", val);
+			((Component)MajmunBobo.transform.Find("PrinceGorilla/custom_Majica")).GetComponent<Renderer>().material.color = TShirtColors[AktivnaMajica];
+			StagesParser.majica = AktivnaMajica;
+			StagesParser.bojaMajice = TShirtColors[AktivnaMajica];
 		}
 		else
 		{
 			StagesParser.majica = -1;
 			StagesParser.bojaMajice = Color.white;
 		}
-		if (ShopManagerFull.AktivanRanac != -1)
+		if (AktivanRanac != -1)
 		{
 			if (Application.loadedLevel == 1)
 			{
-				if (ShopManagerFull.AktivanRanac == 0)
+				if (AktivanRanac == 0)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_AndjeoskaKrila").GetComponent<MeshFilter>().mesh;
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_AndjeoskaKrila").GetComponent<MeshFilter>().mesh;
 				}
-				else if (ShopManagerFull.AktivanRanac == 5)
+				else if (AktivanRanac == 5)
 				{
-					this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_SlepiMisKrila").GetComponent<MeshFilter>().mesh;
+					((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).GetComponent<MeshFilter>().mesh = GameObject.Find("RefZaSedenje_SlepiMisKrila").GetComponent<MeshFilter>().mesh;
 				}
 			}
-			this.MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + ShopManagerFull.AktivanRanac).transform.GetChild(0).gameObject.SetActive(true);
-			StagesParser.ledja = ShopManagerFull.AktivanRanac;
-			return;
+			((Component)((Component)MajmunBobo.transform.Find("PrinceGorilla/ROOT/Hip/Spine/" + AktivanRanac)).transform.GetChild(0)).gameObject.SetActive(true);
+			StagesParser.ledja = AktivanRanac;
 		}
-		StagesParser.ledja = -1;
+		else
+		{
+			StagesParser.ledja = -1;
+		}
 	}
 
-	// Token: 0x06002720 RID: 10016 RVA: 0x0011E91C File Offset: 0x0011CB1C
 	private void OnApplicationQuit()
 	{
-		this.StariBrojOtkljucanihItema = string.Concat(new object[]
-		{
-			ShopManagerFull.BrojOtkljucanihKapa,
-			"#",
-			ShopManagerFull.BrojOtkljucanihMajici,
-			"#",
-			ShopManagerFull.BrojOtkljucanihRanceva
-		});
-		PlayerPrefs.SetString("OtkljucaniItemi", this.StariBrojOtkljucanihItema);
+		StariBrojOtkljucanihItema = BrojOtkljucanihKapa + "#" + BrojOtkljucanihMajici + "#" + BrojOtkljucanihRanceva;
+		PlayerPrefs.SetString("OtkljucaniItemi", StariBrojOtkljucanihItema);
 		PlayerPrefs.Save();
 	}
-
-	// Token: 0x040020C8 RID: 8392
-	public bool EarsAndHairCustomization;
-
-	// Token: 0x040020C9 RID: 8393
-	public Transform[] HatsObjects = new Transform[0];
-
-	// Token: 0x040020CA RID: 8394
-	public Transform[] ShirtsObjects = new Transform[0];
-
-	// Token: 0x040020CB RID: 8395
-	public Transform[] BackPacksObjects = new Transform[0];
-
-	// Token: 0x040020CC RID: 8396
-	public Transform[] PowerUpsObjects = new Transform[0];
-
-	// Token: 0x040020CD RID: 8397
-	public static int BuyButtonState;
-
-	// Token: 0x040020CE RID: 8398
-	public static bool PreviewState = false;
-
-	// Token: 0x040020CF RID: 8399
-	private GameObject ZidFooter;
-
-	// Token: 0x040020D0 RID: 8400
-	private GameObject Custumization;
-
-	// Token: 0x040020D1 RID: 8401
-	private bool ImaNovihMajica;
-
-	// Token: 0x040020D2 RID: 8402
-	private bool ImaNovihKapa;
-
-	// Token: 0x040020D3 RID: 8403
-	private bool ImaNovihRanceva;
-
-	// Token: 0x040020D4 RID: 8404
-	private GameObject ButtonShop;
-
-	// Token: 0x040020D5 RID: 8405
-	private GameObject ButtonShopSprite;
-
-	// Token: 0x040020D6 RID: 8406
-	private GameObject PreviewShopButton;
-
-	// Token: 0x040020D7 RID: 8407
-	private GameObject ShopBanana;
-
-	// Token: 0x040020D8 RID: 8408
-	public static int AktivanSesir;
-
-	// Token: 0x040020D9 RID: 8409
-	public static int AktivnaMajica;
-
-	// Token: 0x040020DA RID: 8410
-	public static int AktivanRanac;
-
-	// Token: 0x040020DB RID: 8411
-	private int PreviewSesir;
-
-	// Token: 0x040020DC RID: 8412
-	private int PreviewMajica;
-
-	// Token: 0x040020DD RID: 8413
-	private int PreviewRanac;
-
-	// Token: 0x040020DE RID: 8414
-	public static bool otvorenShop = false;
-
-	// Token: 0x040020DF RID: 8415
-	public static int AktivanTab;
-
-	// Token: 0x040020E0 RID: 8416
-	public static int AktivanCustomizationTab;
-
-	// Token: 0x040020E1 RID: 8417
-	public static int AktivanItemSesir;
-
-	// Token: 0x040020E2 RID: 8418
-	public static int AktivanItemMajica;
-
-	// Token: 0x040020E3 RID: 8419
-	public static int AktivanItemRanac;
-
-	// Token: 0x040020E4 RID: 8420
-	private int TrenutniSelektovanSesir = 999;
-
-	// Token: 0x040020E5 RID: 8421
-	private int TrenutnoSelektovanaMajica = 999;
-
-	// Token: 0x040020E6 RID: 8422
-	private int TrenutnoSelektovanRanac = 999;
-
-	// Token: 0x040020E7 RID: 8423
-	private string[] Hats;
-
-	// Token: 0x040020E8 RID: 8424
-	private string[] Shirts;
-
-	// Token: 0x040020E9 RID: 8425
-	private string[] BackPacks;
-
-	// Token: 0x040020EA RID: 8426
-	private string[] AktivniItemi;
-
-	// Token: 0x040020EB RID: 8427
-	private string AktivniItemString;
-
-	// Token: 0x040020EC RID: 8428
-	private GameObject MajmunBobo;
-
-	// Token: 0x040020ED RID: 8429
-	private Vector3 MainScenaPozicija;
-
-	// Token: 0x040020EE RID: 8430
-	private Vector3 ShopCustomizationPozicija;
-
-	// Token: 0x040020EF RID: 8431
-	public static bool ImaUsi;
-
-	// Token: 0x040020F0 RID: 8432
-	public static bool ImaKosu;
-
-	// Token: 0x040020F1 RID: 8433
-	public static ShopManagerFull ShopObject;
-
-	// Token: 0x040020F2 RID: 8434
-	private string releasedItem;
-
-	// Token: 0x040020F3 RID: 8435
-	private string clickedItem;
-
-	// Token: 0x040020F4 RID: 8436
-	private Vector3 originalScale;
-
-	// Token: 0x040020F5 RID: 8437
-	private static Color KakiBoja = new Color(0.97255f, 0.79216f, 0.40784f);
-
-	// Token: 0x040020F6 RID: 8438
-	private static Color PopustBoja = new Color(0.11373f, 0.82353f, 0.38039f);
-
-	// Token: 0x040020F7 RID: 8439
-	private static float gornjaGranica;
-
-	// Token: 0x040020F8 RID: 8440
-	private static float donjaGranica;
-
-	// Token: 0x040020F9 RID: 8441
-	private TextAsset aset2;
-
-	// Token: 0x040020FA RID: 8442
-	private string aset;
-
-	// Token: 0x040020FB RID: 8443
-	public static bool ShopInicijalizovan = false;
-
-	// Token: 0x040020FC RID: 8444
-	private int BrojItemaShopHats;
-
-	// Token: 0x040020FD RID: 8445
-	private int BrojItemaShopShirts;
-
-	// Token: 0x040020FE RID: 8446
-	private int BrojItemaShopBackPack;
-
-	// Token: 0x040020FF RID: 8447
-	private int BrojItemaShop;
-
-	// Token: 0x04002100 RID: 8448
-	public static List<int> SveStvariZaOblacenjeHats = new List<int>();
-
-	// Token: 0x04002101 RID: 8449
-	public static List<int> SveStvariZaOblacenjeShirts = new List<int>();
-
-	// Token: 0x04002102 RID: 8450
-	public static List<int> SveStvariZaOblacenjeBackPack = new List<int>();
-
-	// Token: 0x04002103 RID: 8451
-	private List<string> ImenaHats;
-
-	// Token: 0x04002104 RID: 8452
-	private List<string> ImenaShirts;
-
-	// Token: 0x04002105 RID: 8453
-	private List<string> ImenaBackPacks;
-
-	// Token: 0x04002106 RID: 8454
-	private List<string> ImenaPowerUps;
-
-	// Token: 0x04002107 RID: 8455
-	private string ImeBanana;
-
-	// Token: 0x04002108 RID: 8456
-	public List<string> CoinsHats;
-
-	// Token: 0x04002109 RID: 8457
-	private List<string> CoinsShirts;
-
-	// Token: 0x0400210A RID: 8458
-	private List<string> CoinsBackPacks;
-
-	// Token: 0x0400210B RID: 8459
-	private List<string> CoinsPowerUps;
-
-	// Token: 0x0400210C RID: 8460
-	private string cenaBanana;
-
-	// Token: 0x0400210D RID: 8461
-	private List<string> BananaHats = new List<string>();
-
-	// Token: 0x0400210E RID: 8462
-	private List<string> BananaShirts = new List<string>();
-
-	// Token: 0x0400210F RID: 8463
-	private List<string> BananaBackPacks = new List<string>();
-
-	// Token: 0x04002110 RID: 8464
-	private List<string> PopustHats = new List<string>();
-
-	// Token: 0x04002111 RID: 8465
-	private List<string> PopustShirts = new List<string>();
-
-	// Token: 0x04002112 RID: 8466
-	private List<string> PopustBackPacks = new List<string>();
-
-	// Token: 0x04002113 RID: 8467
-	private List<string> PopustPowerUps = new List<string>();
-
-	// Token: 0x04002114 RID: 8468
-	private string PopustBanana;
-
-	// Token: 0x04002115 RID: 8469
-	private List<string> UsiHats = new List<string>();
-
-	// Token: 0x04002116 RID: 8470
-	private List<string> KosaHats = new List<string>();
-
-	// Token: 0x04002117 RID: 8471
-	private float ProcenatOtkljucan;
-
-	// Token: 0x04002118 RID: 8472
-	private string StariBrojOtkljucanihItema;
-
-	// Token: 0x04002119 RID: 8473
-	private string[] StariBrojOtkljucanihItemaNiz;
-
-	// Token: 0x0400211A RID: 8474
-	public static int BrojOtkljucanihMajici;
-
-	// Token: 0x0400211B RID: 8475
-	public static int BrojOtkljucanihRanceva;
-
-	// Token: 0x0400211C RID: 8476
-	public static int BrojOtkljucanihKapa;
-
-	// Token: 0x0400211D RID: 8477
-	public static int StariBrojOtkljucanihMajici;
-
-	// Token: 0x0400211E RID: 8478
-	public static int StariBrojOtkljucanihRanceva;
-
-	// Token: 0x0400211F RID: 8479
-	public static int StariBrojOtkljucanihKapa;
-
-	// Token: 0x04002120 RID: 8480
-	private List<int> ZakljucaniHats = new List<int>();
-
-	// Token: 0x04002121 RID: 8481
-	private List<int> ZakljucaniShirts = new List<int>();
-
-	// Token: 0x04002122 RID: 8482
-	private List<int> ZakljucaniBackPacks = new List<int>();
-
-	// Token: 0x04002123 RID: 8483
-	private GameObject CustomizationHats;
-
-	// Token: 0x04002124 RID: 8484
-	private GameObject CustomizationShirts;
-
-	// Token: 0x04002125 RID: 8485
-	private GameObject CustomizationBackPack;
-
-	// Token: 0x04002126 RID: 8486
-	private GameObject CoinsNumber;
-
-	// Token: 0x04002127 RID: 8487
-	private GameObject temp;
-
-	// Token: 0x04002128 RID: 8488
-	private bool mozeDaOtvoriSledeciTab = true;
-
-	// Token: 0x04002129 RID: 8489
-	private bool kliknuoJednomNaTab = true;
-
-	// Token: 0x0400212A RID: 8490
-	public Color[] TShirtColors;
 }

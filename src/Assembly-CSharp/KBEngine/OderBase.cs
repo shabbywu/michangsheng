@@ -1,156 +1,145 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KBEngine
+namespace KBEngine;
+
+public abstract class OderBase : Entity
 {
-	// Token: 0x02000C55 RID: 3157
-	public abstract class OderBase : Entity
+	public EntityBaseEntityCall_OderBase baseEntityCall;
+
+	public EntityCellEntityCall_OderBase cellEntityCall;
+
+	public OderBase()
 	{
-		// Token: 0x060055C2 RID: 21954 RVA: 0x00220682 File Offset: 0x0021E882
-		public OderBase()
-		{
-		}
+	}
 
-		// Token: 0x060055C3 RID: 21955 RVA: 0x00004095 File Offset: 0x00002295
-		public override void onComponentsEnterworld()
-		{
-		}
+	public override void onComponentsEnterworld()
+	{
+	}
 
-		// Token: 0x060055C4 RID: 21956 RVA: 0x00004095 File Offset: 0x00002295
-		public override void onComponentsLeaveworld()
-		{
-		}
+	public override void onComponentsLeaveworld()
+	{
+	}
 
-		// Token: 0x060055C5 RID: 21957 RVA: 0x0023A0D4 File Offset: 0x002382D4
-		public override void onGetBase()
-		{
-			this.baseEntityCall = new EntityBaseEntityCall_OderBase(this.id, this.className);
-		}
+	public override void onGetBase()
+	{
+		baseEntityCall = new EntityBaseEntityCall_OderBase(id, className);
+	}
 
-		// Token: 0x060055C6 RID: 21958 RVA: 0x0023A0ED File Offset: 0x002382ED
-		public override void onGetCell()
-		{
-			this.cellEntityCall = new EntityCellEntityCall_OderBase(this.id, this.className);
-		}
+	public override void onGetCell()
+	{
+		cellEntityCall = new EntityCellEntityCall_OderBase(id, className);
+	}
 
-		// Token: 0x060055C7 RID: 21959 RVA: 0x0023A106 File Offset: 0x00238306
-		public override void onLoseCell()
-		{
-			this.cellEntityCall = null;
-		}
+	public override void onLoseCell()
+	{
+		cellEntityCall = null;
+	}
 
-		// Token: 0x060055C8 RID: 21960 RVA: 0x0023A10F File Offset: 0x0023830F
-		public override EntityCall getBaseEntityCall()
-		{
-			return this.baseEntityCall;
-		}
+	public override EntityCall getBaseEntityCall()
+	{
+		return baseEntityCall;
+	}
 
-		// Token: 0x060055C9 RID: 21961 RVA: 0x0023A117 File Offset: 0x00238317
-		public override EntityCall getCellEntityCall()
-		{
-			return this.cellEntityCall;
-		}
+	public override EntityCall getCellEntityCall()
+	{
+		return cellEntityCall;
+	}
 
-		// Token: 0x060055CA RID: 21962 RVA: 0x00004095 File Offset: 0x00002295
-		public override void attachComponents()
-		{
-		}
+	public override void attachComponents()
+	{
+	}
 
-		// Token: 0x060055CB RID: 21963 RVA: 0x00004095 File Offset: 0x00002295
-		public override void detachComponents()
-		{
-		}
+	public override void detachComponents()
+	{
+	}
 
-		// Token: 0x060055CC RID: 21964 RVA: 0x0023A120 File Offset: 0x00238320
-		public override void onRemoteMethodCall(MemoryStream stream)
+	public override void onRemoteMethodCall(MemoryStream stream)
+	{
+		ScriptModule scriptModule = EntityDef.moduledefs["Oder"];
+		ushort num = 0;
+		ushort num2 = 0;
+		num2 = ((!scriptModule.usePropertyDescrAlias) ? stream.readUint16() : stream.readUint8());
+		num = ((!scriptModule.useMethodDescrAlias) ? stream.readUint16() : stream.readUint8());
+		Method method = null;
+		if (num2 == 0)
 		{
-			ScriptModule scriptModule = EntityDef.moduledefs["Oder"];
-			ushort num;
+			method = scriptModule.idmethods[num];
+			_ = method.methodUtype;
+		}
+		else
+		{
+			_ = scriptModule.idpropertys[num2].properUtype;
+		}
+	}
+
+	public override void onUpdatePropertys(MemoryStream stream)
+	{
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0105: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		ScriptModule scriptModule = EntityDef.moduledefs["Oder"];
+		Dictionary<ushort, Property> idpropertys = scriptModule.idpropertys;
+		while (stream.length() != 0)
+		{
+			ushort num = 0;
+			ushort num2 = 0;
 			if (scriptModule.usePropertyDescrAlias)
 			{
-				num = (ushort)stream.readUint8();
+				num = stream.readUint8();
+				num2 = stream.readUint8();
 			}
 			else
 			{
 				num = stream.readUint16();
+				num2 = stream.readUint16();
 			}
-			ushort key;
-			if (scriptModule.useMethodDescrAlias)
-			{
-				key = (ushort)stream.readUint8();
-			}
-			else
-			{
-				key = stream.readUint16();
-			}
+			Property property = null;
 			if (num == 0)
 			{
-				Method method = scriptModule.idmethods[key];
-				ushort methodUtype = method.methodUtype;
-				return;
-			}
-			ushort properUtype = scriptModule.idpropertys[num].properUtype;
-		}
-
-		// Token: 0x060055CD RID: 21965 RVA: 0x0023A1A0 File Offset: 0x002383A0
-		public override void onUpdatePropertys(MemoryStream stream)
-		{
-			ScriptModule scriptModule = EntityDef.moduledefs["Oder"];
-			Dictionary<ushort, Property> idpropertys = scriptModule.idpropertys;
-			while (stream.length() > 0U)
-			{
-				ushort num;
-				ushort key;
-				if (scriptModule.usePropertyDescrAlias)
-				{
-					num = (ushort)stream.readUint8();
-					key = (ushort)stream.readUint8();
-				}
-				else
-				{
-					num = stream.readUint16();
-					key = stream.readUint16();
-				}
-				if (num != 0)
-				{
-					ushort properUtype = idpropertys[num].properUtype;
-					return;
-				}
-				Property property = idpropertys[key];
+				property = idpropertys[num2];
 				switch (property.properUtype)
 				{
-				case 40000:
+				case 40001:
 				{
-					Vector3 position = this.position;
-					this.position = stream.readVector3();
+					Vector3 oldValue2 = direction;
+					direction = stream.readVector3();
 					if (property.isBase())
 					{
-						if (this.inited)
+						if (inited)
 						{
-							this.onPositionChanged(position);
+							onDirectionChanged(oldValue2);
 						}
 					}
-					else if (this.inWorld)
+					else if (inWorld)
 					{
-						this.onPositionChanged(position);
+						onDirectionChanged(oldValue2);
 					}
 					break;
 				}
-				case 40001:
+				case 40000:
 				{
-					Vector3 direction = this.direction;
-					this.direction = stream.readVector3();
+					Vector3 oldValue = position;
+					position = stream.readVector3();
 					if (property.isBase())
 					{
-						if (this.inited)
+						if (inited)
 						{
-							this.onDirectionChanged(direction);
+							onPositionChanged(oldValue);
 						}
 					}
-					else if (this.inWorld)
+					else if (inWorld)
 					{
-						this.onDirectionChanged(direction);
+						onPositionChanged(oldValue);
 					}
 					break;
 				}
@@ -158,46 +147,49 @@ namespace KBEngine
 					stream.readUint32();
 					break;
 				}
+				continue;
 			}
+			_ = idpropertys[num].properUtype;
+			break;
 		}
+	}
 
-		// Token: 0x060055CE RID: 21966 RVA: 0x0023A2D0 File Offset: 0x002384D0
-		public override void callPropertysSetMethods()
+	public override void callPropertysSetMethods()
+	{
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Oder"].idpropertys;
+		Vector3 oldValue = direction;
+		Property property = idpropertys[2];
+		if (property.isBase())
 		{
-			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Oder"].idpropertys;
-			Vector3 direction = this.direction;
-			Property property = idpropertys[2];
-			if (property.isBase())
+			if (inited && !inWorld)
 			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onDirectionChanged(direction);
-				}
-			}
-			else if (this.inWorld && (!property.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onDirectionChanged(direction);
-			}
-			Vector3 position = this.position;
-			Property property2 = idpropertys[1];
-			if (property2.isBase())
-			{
-				if (this.inited && !this.inWorld)
-				{
-					this.onPositionChanged(position);
-					return;
-				}
-			}
-			else if (this.inWorld && (!property2.isOwnerOnly() || base.isPlayer()))
-			{
-				this.onPositionChanged(position);
+				onDirectionChanged(oldValue);
 			}
 		}
-
-		// Token: 0x040050C6 RID: 20678
-		public EntityBaseEntityCall_OderBase baseEntityCall;
-
-		// Token: 0x040050C7 RID: 20679
-		public EntityCellEntityCall_OderBase cellEntityCall;
+		else if (inWorld && (!property.isOwnerOnly() || isPlayer()))
+		{
+			onDirectionChanged(oldValue);
+		}
+		Vector3 oldValue2 = position;
+		Property property2 = idpropertys[1];
+		if (property2.isBase())
+		{
+			if (inited && !inWorld)
+			{
+				onPositionChanged(oldValue2);
+			}
+		}
+		else if (inWorld && (!property2.isOwnerOnly() || isPlayer()))
+		{
+			onPositionChanged(oldValue2);
+		}
 	}
 }

@@ -1,18 +1,14 @@
-﻿using System;
 using UnityEngine;
 
-namespace WXB
-{
-	// Token: 0x020006AE RID: 1710
-	public class SpriteNode : RectNode
-	{
-		// Token: 0x060035F8 RID: 13816 RVA: 0x00172903 File Offset: 0x00170B03
-		protected override void OnRectRender(RenderCache cache, Line line, Rect rect)
-		{
-			cache.cacheSprite(line, this, this.sprite, rect);
-		}
+namespace WXB;
 
-		// Token: 0x04002F3E RID: 12094
-		public Sprite sprite;
+public class SpriteNode : RectNode
+{
+	public Sprite sprite;
+
+	protected override void OnRectRender(RenderCache cache, Line line, Rect rect)
+	{
+		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+		cache.cacheSprite(line, this, sprite, rect);
 	}
 }

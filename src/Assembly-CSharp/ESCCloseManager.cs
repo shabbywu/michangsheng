@@ -1,122 +1,107 @@
-﻿using System;
 using System.Collections.Generic;
 using GetWay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000351 RID: 849
 public class ESCCloseManager : MonoBehaviour
 {
-	// Token: 0x17000253 RID: 595
-	// (get) Token: 0x06001CD5 RID: 7381 RVA: 0x000CDFD0 File Offset: 0x000CC1D0
+	private static ESCCloseManager inst;
+
+	private List<IESCClose> closeList = new List<IESCClose>();
+
+	private IESCClose tmpClose;
+
+	private float cd;
+
 	public static ESCCloseManager Inst
 	{
 		get
 		{
-			if (ESCCloseManager.inst == null)
+			//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001d: Expected O, but got Unknown
+			if ((Object)(object)inst == (Object)null)
 			{
-				GameObject gameObject = new GameObject("ESCCloseManager");
-				Object.DontDestroyOnLoad(gameObject);
-				ESCCloseManager.inst = gameObject.AddComponent<ESCCloseManager>();
-				SceneManager.activeSceneChanged += delegate(Scene s1, Scene s2)
+				GameObject val = new GameObject("ESCCloseManager");
+				Object.DontDestroyOnLoad((Object)val);
+				inst = val.AddComponent<ESCCloseManager>();
+				SceneManager.activeSceneChanged += delegate
 				{
-					ESCCloseManager.inst.closeList.Clear();
+					inst.closeList.Clear();
 				};
 			}
-			return ESCCloseManager.inst;
+			return inst;
 		}
 	}
 
-	// Token: 0x17000254 RID: 596
-	// (get) Token: 0x06001CD6 RID: 7382 RVA: 0x000CE02D File Offset: 0x000CC22D
-	public bool ReadyESC
-	{
-		get
-		{
-			return this.cd <= 0f;
-		}
-	}
+	public bool ReadyESC => cd <= 0f;
 
-	// Token: 0x06001CD7 RID: 7383 RVA: 0x000CE03F File Offset: 0x000CC23F
 	public void RegisterClose(IESCClose close)
 	{
-		this.tmpClose = close;
-		base.Invoke("InsideRegisterClose", 0.1f);
+		tmpClose = close;
+		((MonoBehaviour)this).Invoke("InsideRegisterClose", 0.1f);
 	}
 
-	// Token: 0x06001CD8 RID: 7384 RVA: 0x000CE058 File Offset: 0x000CC258
 	public void CloseAll()
 	{
-		for (int i = this.closeList.Count - 1; i >= 0; i--)
+		for (int num = closeList.Count - 1; num >= 0; num--)
 		{
-			IESCClose iescclose = this.closeList[i];
-			if (iescclose != null && iescclose.TryEscClose())
+			IESCClose iESCClose = closeList[num];
+			if (iESCClose != null && iESCClose.TryEscClose())
 			{
-				this.cd = 0.1f;
+				cd = 0.1f;
 			}
 		}
 		UToolTip.Close();
 	}
 
-	// Token: 0x06001CD9 RID: 7385 RVA: 0x000CE0A5 File Offset: 0x000CC2A5
 	public void UnRegisterClose(IESCClose close)
 	{
-		if (this.closeList.Contains(close))
+		if (closeList.Contains(close))
 		{
-			this.closeList.Remove(close);
+			closeList.Remove(close);
 		}
 	}
 
-	// Token: 0x06001CDA RID: 7386 RVA: 0x000CE0C4 File Offset: 0x000CC2C4
 	private void InsideRegisterClose()
 	{
-		if (this.tmpClose != null)
+		if (tmpClose != null)
 		{
-			if (this.closeList.Contains(this.tmpClose))
+			if (closeList.Contains(tmpClose))
 			{
-				this.closeList.Remove(this.tmpClose);
-				this.closeList.Add(this.tmpClose);
-				return;
+				closeList.Remove(tmpClose);
+				closeList.Add(tmpClose);
 			}
-			this.closeList.Add(this.tmpClose);
+			else
+			{
+				closeList.Add(tmpClose);
+			}
 		}
 	}
 
-	// Token: 0x06001CDB RID: 7387 RVA: 0x000CE124 File Offset: 0x000CC324
 	private void Update()
 	{
-		if (this.cd > 0f)
+		if (cd > 0f)
 		{
-			this.cd -= Time.deltaTime;
+			cd -= Time.deltaTime;
 		}
 		if (Input.anyKeyDown && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
 		{
 			MapGetWay.Inst.IsStop = true;
 		}
-		if (Input.GetKeyUp(27) && this.ReadyESC)
+		if (!Input.GetKeyUp((KeyCode)27) || !ReadyESC)
 		{
-			for (int i = this.closeList.Count - 1; i >= 0; i--)
+			return;
+		}
+		for (int num = closeList.Count - 1; num >= 0; num--)
+		{
+			IESCClose iESCClose = closeList[num];
+			if (iESCClose != null && iESCClose.TryEscClose())
 			{
-				IESCClose iescclose = this.closeList[i];
-				if (iescclose != null && iescclose.TryEscClose())
-				{
-					UToolTip.Close();
-					this.cd = 0.1f;
-					return;
-				}
+				UToolTip.Close();
+				cd = 0.1f;
+				break;
 			}
 		}
 	}
-
-	// Token: 0x04001767 RID: 5991
-	private static ESCCloseManager inst;
-
-	// Token: 0x04001768 RID: 5992
-	private List<IESCClose> closeList = new List<IESCClose>();
-
-	// Token: 0x04001769 RID: 5993
-	private IESCClose tmpClose;
-
-	// Token: 0x0400176A RID: 5994
-	private float cd;
 }

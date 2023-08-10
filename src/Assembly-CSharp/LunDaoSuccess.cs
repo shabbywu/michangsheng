@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
@@ -8,64 +8,82 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200031E RID: 798
 public class LunDaoSuccess : MonoBehaviour
 {
-	// Token: 0x06001B9D RID: 7069 RVA: 0x000C46DC File Offset: 0x000C28DC
+	[SerializeField]
+	private Image siXuCell;
+
+	[SerializeField]
+	private Transform siXuCellParent;
+
+	public List<Sprite> siXuList;
+
+	[SerializeField]
+	private Image curJinDu;
+
+	[SerializeField]
+	private Text jinDu;
+
+	[SerializeField]
+	private Text addWuDaoZhiText;
+
+	[SerializeField]
+	private Text addWuDaoDian;
+
 	public void Init()
 	{
-		if (base.gameObject.activeSelf)
+		if (((Component)this).gameObject.activeSelf)
 		{
 			return;
 		}
-		base.gameObject.SetActive(true);
+		((Component)this).gameObject.SetActive(true);
 		Avatar player = Tools.instance.getPlayer();
 		int npcStateId = LunDaoManager.inst.npcController.npcStateId;
-		foreach (int num in LunDaoManager.inst.getWuDaoExp.Keys)
+		foreach (int key in LunDaoManager.inst.getWuDaoExp.Keys)
 		{
-			GameObject gameObject = Object.Instantiate<GameObject>(this.siXuCell.gameObject, this.siXuCellParent);
-			gameObject.GetComponent<Image>().sprite = this.siXuList[num - 1];
-			gameObject.SetActive(true);
+			GameObject obj = Object.Instantiate<GameObject>(((Component)siXuCell).gameObject, siXuCellParent);
+			obj.GetComponent<Image>().sprite = siXuList[key - 1];
+			obj.SetActive(true);
 		}
-		this.AddPlayerLunDaoSiXu();
-		int wuDaoZhi = this.GetWuDaoZhi();
+		AddPlayerLunDaoSiXu();
+		int wuDaoZhi = GetWuDaoZhi();
 		if (npcStateId != 4)
 		{
 			NpcJieSuanManager.inst.npcSetField.AddNpcWuDaoZhi(LunDaoManager.inst.npcId, wuDaoZhi);
-			this.AddNpcWuDaoExp();
+			AddNpcWuDaoExp();
 		}
 		player.ReduceLingGan(jsonData.instance.LunDaoStateData[player.LunDaoState.ToString()]["LingGanXiaoHao"].I);
-		this.addWuDaoZhiText.text = wuDaoZhi.ToString();
+		addWuDaoZhiText.text = wuDaoZhi.ToString();
 		int wuDaoZhiLevel = player.WuDaoZhiLevel;
 		int startWuDaoZhi = player.WuDaoZhi;
-		int wuDaoZhi2 = 0;
+		int endExp = 0;
 		player.WuDaoZhi += wuDaoZhi;
-		player.WuDaoZhiLevel = this.GetPlayerLevel(wuDaoZhiLevel, player.WuDaoZhi, ref wuDaoZhi2);
+		player.WuDaoZhiLevel = GetPlayerLevel(wuDaoZhiLevel, player.WuDaoZhi, ref endExp);
 		int curMax = jsonData.instance.WuDaoZhiData[wuDaoZhiLevel.ToString()]["LevelUpExp"].I;
-		this.curJinDu.fillAmount = (float)startWuDaoZhi / (float)curMax;
+		curJinDu.fillAmount = (float)startWuDaoZhi / (float)curMax;
 		if (player.WuDaoZhiLevel - wuDaoZhiLevel > 0)
 		{
-			this.addWuDaoDian.text = string.Format("悟道点+{0}({1}/{2})", player.WuDaoZhiLevel - wuDaoZhiLevel, player.WuDaoZhiLevel, WuDaoZhiData.DataList.Count - 1);
+			addWuDaoDian.text = $"悟道点+{player.WuDaoZhiLevel - wuDaoZhiLevel}({player.WuDaoZhiLevel}/{WuDaoZhiData.DataList.Count - 1})";
 			player._WuDaoDian += player.WuDaoZhiLevel - wuDaoZhiLevel;
-			this.addWuDaoDian.gameObject.SetActive(true);
+			((Component)addWuDaoDian).gameObject.SetActive(true);
 			float time = 0.5f / (float)(player.WuDaoZhiLevel - wuDaoZhiLevel);
-			this.MoreSlider(startWuDaoZhi, player.WuDaoZhi, wuDaoZhiLevel, time, false);
+			MoreSlider(startWuDaoZhi, player.WuDaoZhi, wuDaoZhiLevel, time);
 		}
 		else if (startWuDaoZhi > curMax)
 		{
-			this.jinDu.text = string.Format("({0}/极限)", startWuDaoZhi);
+			jinDu.text = $"({startWuDaoZhi}/极限)";
 		}
 		else
 		{
-			float num2 = (float)player.WuDaoZhi / (float)curMax;
-			DOTweenModuleUI.DOFillAmount(this.curJinDu, num2, 0.5f);
-			DOTween.To(() => startWuDaoZhi, delegate(int x)
+			float num = (float)player.WuDaoZhi / (float)curMax;
+			DOTweenModuleUI.DOFillAmount(curJinDu, num, 0.5f);
+			DOTween.To((DOGetter<int>)(() => startWuDaoZhi), (DOSetter<int>)delegate(int x)
 			{
 				startWuDaoZhi = x;
-				this.jinDu.text = string.Format("({0}/{1})", startWuDaoZhi, curMax);
+				jinDu.text = $"({startWuDaoZhi}/{curMax})";
 			}, player.WuDaoZhi, 0.5f);
 		}
-		player.WuDaoZhi = wuDaoZhi2;
+		player.WuDaoZhi = endExp;
 		if (NpcJieSuanManager.inst.lunDaoNpcList.Contains(LunDaoManager.inst.npcId))
 		{
 			NpcJieSuanManager.inst.lunDaoNpcList.Remove(LunDaoManager.inst.npcId);
@@ -73,22 +91,20 @@ public class LunDaoSuccess : MonoBehaviour
 		NpcJieSuanManager.inst.npcNoteBook.NoteLunDaoSuccess(LunDaoManager.inst.npcId, player.name);
 	}
 
-	// Token: 0x06001B9E RID: 7070 RVA: 0x000C4A18 File Offset: 0x000C2C18
 	private int GetWuDaoZhi()
 	{
-		int num = LunDaoManager.inst.getWuDaoZhi;
+		int getWuDaoZhi = LunDaoManager.inst.getWuDaoZhi;
 		float f = jsonData.instance.LunDaoStateData[LunDaoManager.inst.npcController.npcStateId.ToString()]["WuDaoZhi"].f;
 		float f2 = jsonData.instance.LunDaoStateData[LunDaoManager.inst.playerController.playerStateId.ToString()]["WuDaoZhi"].f;
-		float num2 = (f + f2) / 100f;
-		num += (int)((float)num * num2);
-		if (num < 0)
+		float num = (f + f2) / 100f;
+		getWuDaoZhi += (int)((float)getWuDaoZhi * num);
+		if (getWuDaoZhi < 0)
 		{
-			num = 0;
+			getWuDaoZhi = 0;
 		}
-		return num;
+		return getWuDaoZhi;
 	}
 
-	// Token: 0x06001B9F RID: 7071 RVA: 0x000C4AB0 File Offset: 0x000C2CB0
 	private int GetPlayerLevel(int curLevel, int curExp, ref int endExp)
 	{
 		int i = jsonData.instance.WuDaoZhiData[curLevel.ToString()]["LevelUpExp"].I;
@@ -96,69 +112,72 @@ public class LunDaoSuccess : MonoBehaviour
 		while (curExp >= i)
 		{
 			num++;
-			if (!jsonData.instance.WuDaoZhiData.HasField(num.ToString()))
+			if (jsonData.instance.WuDaoZhiData.HasField(num.ToString()))
 			{
-				num--;
-				break;
+				curExp -= i;
+				i = jsonData.instance.WuDaoZhiData[num.ToString()]["LevelUpExp"].I;
+				continue;
 			}
-			curExp -= i;
-			i = jsonData.instance.WuDaoZhiData[num.ToString()]["LevelUpExp"].I;
+			num--;
+			break;
 		}
 		endExp = curExp;
 		return num;
 	}
 
-	// Token: 0x06001BA0 RID: 7072 RVA: 0x000C4B40 File Offset: 0x000C2D40
 	private void MoreSlider(int curExp, int endExp, int curLevel, float time, bool flag = false)
 	{
+		//IL_012f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0139: Expected O, but got Unknown
 		int nextExp = jsonData.instance.WuDaoZhiData[curLevel.ToString()]["LevelUpExp"].I;
 		if (flag)
 		{
-			TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(DOTween.To(() => this.curJinDu.fillAmount, delegate(float x)
+			TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(DOTween.To((DOGetter<float>)(() => curJinDu.fillAmount), (DOSetter<float>)delegate(float x)
 			{
-				this.curJinDu.fillAmount = x;
+				curJinDu.fillAmount = x;
 			}, (float)endExp / (float)nextExp, time));
-			TweenExtensions.Play<TweenerCore<int, int, NoOptions>>(DOTween.To(() => curExp, delegate(int x)
+			TweenExtensions.Play<TweenerCore<int, int, NoOptions>>(DOTween.To((DOGetter<int>)(() => curExp), (DOSetter<int>)delegate(int x)
 			{
 				curExp = x;
-				this.jinDu.text = string.Format("({0}/{1})", curExp, nextExp);
+				jinDu.text = $"({curExp}/{nextExp})";
 			}, endExp, time));
 			return;
 		}
-		TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(DOTween.To(() => this.curJinDu.fillAmount, delegate(float x)
+		TweenExtensions.Play<TweenerCore<float, float, FloatOptions>>(DOTween.To((DOGetter<float>)(() => curJinDu.fillAmount), (DOSetter<float>)delegate(float x)
 		{
-			this.curJinDu.fillAmount = x;
+			curJinDu.fillAmount = x;
 		}, 1f, time));
-		TweenExtensions.Play<TweenerCore<int, int, NoOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<int, int, NoOptions>>(DOTween.To(() => curExp, delegate(int x)
+		TweenExtensions.Play<TweenerCore<int, int, NoOptions>>(TweenSettingsExtensions.OnComplete<TweenerCore<int, int, NoOptions>>(DOTween.To((DOGetter<int>)(() => curExp), (DOSetter<int>)delegate(int x)
 		{
 			curExp = x;
-			this.jinDu.text = string.Format("({0}/{1})", curExp, nextExp);
-		}, nextExp, time), delegate()
+			jinDu.text = $"({curExp}/{nextExp})";
+		}, nextExp, time), (TweenCallback)delegate
 		{
-			if (flag)
+			if (!flag)
 			{
-				return;
+				endExp -= nextExp;
+				curLevel++;
+				curJinDu.fillAmount = 0f;
+				if (jsonData.instance.WuDaoZhiData.HasField(curLevel.ToString()))
+				{
+					nextExp = jsonData.instance.WuDaoZhiData[curLevel.ToString()]["LevelUpExp"].I;
+					if (endExp > nextExp)
+					{
+						MoreSlider(0, endExp, curLevel, time);
+					}
+					else
+					{
+						MoreSlider(0, endExp, curLevel, time, flag: true);
+					}
+				}
+				else
+				{
+					jinDu.text = $"({curExp}/极限)";
+				}
 			}
-			endExp -= nextExp;
-			int curLevel2 = curLevel;
-			curLevel = curLevel2 + 1;
-			this.curJinDu.fillAmount = 0f;
-			if (!jsonData.instance.WuDaoZhiData.HasField(curLevel.ToString()))
-			{
-				this.jinDu.text = string.Format("({0}/极限)", curExp);
-				return;
-			}
-			nextExp = jsonData.instance.WuDaoZhiData[curLevel.ToString()]["LevelUpExp"].I;
-			if (endExp > nextExp)
-			{
-				this.MoreSlider(0, endExp, curLevel, time, false);
-				return;
-			}
-			this.MoreSlider(0, endExp, curLevel, time, true);
 		}));
 	}
 
-	// Token: 0x06001BA1 RID: 7073 RVA: 0x000C4C8C File Offset: 0x000C2E8C
 	private void AddPlayerLunDaoSiXu()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -166,23 +185,24 @@ public class LunDaoSuccess : MonoBehaviour
 		int num = 0;
 		int num2 = 0;
 		DateTime nowTime = player.worldTimeMag.getNowTime();
-		string text = string.Format("{0}年{1}月{2}日", nowTime.Year, nowTime.Month, nowTime.Day);
+		string text = $"{nowTime.Year}年{nowTime.Month}月{nowTime.Day}日";
 		string npcName = LunDaoManager.inst.npcController.GetNpcName();
-		float i = (float)jsonData.instance.LunDaoStateData[LunDaoManager.inst.npcController.npcStateId.ToString()]["WuDaoExp"].I;
-		float num3 = (float)jsonData.instance.LunDaoStateData[LunDaoManager.inst.playerController.playerStateId.ToString()]["WuDaoExp"].I;
-		float num4 = (i + num3) / 100f;
-		foreach (int num5 in getWuDaoExp.Keys)
+		string text2 = "";
+		int i = jsonData.instance.LunDaoStateData[LunDaoManager.inst.npcController.npcStateId.ToString()]["WuDaoExp"].I;
+		float num3 = jsonData.instance.LunDaoStateData[LunDaoManager.inst.playerController.playerStateId.ToString()]["WuDaoExp"].I;
+		float num4 = ((float)i + num3) / 100f;
+		foreach (int key in getWuDaoExp.Keys)
 		{
 			num = 0;
 			num2 = 0;
-			int num6 = 0;
-			foreach (int num7 in getWuDaoExp[num5])
+			int num5 = 0;
+			foreach (int item in getWuDaoExp[key])
 			{
-				num2 += num7;
-				num += jsonData.instance.LunDaoShouYiData[num7.ToString()]["WuDaoExp"].I;
-				num6++;
+				num2 += item;
+				num += jsonData.instance.LunDaoShouYiData[item.ToString()]["WuDaoExp"].I;
+				num5++;
 			}
-			if (num6 == 2)
+			if (num5 == 2)
 			{
 				if (num2 % 2 > 0)
 				{
@@ -197,32 +217,23 @@ public class LunDaoSuccess : MonoBehaviour
 			num += (int)((float)num * num4);
 			if (num > 0)
 			{
-				string str = jsonData.instance.WuDaoAllTypeJson[num5.ToString()]["name1"].Str;
-				int num8 = num / jsonData.instance.LunDaoSiXuData[num2.ToString()]["SiXvXiaoLv"].I;
-				int num9 = LingGanTimeMaxData.DataDict[(int)player.level].MaxTime;
-				int lunDaoState = player.GetLunDaoState();
-				if (lunDaoState == 1)
+				text2 = jsonData.instance.WuDaoAllTypeJson[key.ToString()]["name1"].Str;
+				int num6 = num / jsonData.instance.LunDaoSiXuData[num2.ToString()]["SiXvXiaoLv"].I;
+				int num7 = LingGanTimeMaxData.DataDict[player.level].MaxTime;
+				switch (player.GetLunDaoState())
 				{
-					num9 *= 4;
+				case 1:
+					num7 *= 4;
+					break;
+				case 2:
+					num7 *= 2;
+					break;
 				}
-				else if (lunDaoState == 2)
+				if (num6 > num7)
 				{
-					num9 *= 2;
+					num6 = num7;
 				}
-				if (num8 > num9)
-				{
-					num8 = num9;
-				}
-				player.wuDaoMag.AddLingGuang("对" + str + "的感悟", num5, num8, 1825, string.Concat(new string[]
-				{
-					"在",
-					text,
-					"你与",
-					npcName,
-					"论道时，对",
-					str,
-					"产生了灵光一现的感悟"
-				}), jsonData.instance.LunDaoSiXuData[num2.ToString()]["PinJie"].I, true);
+				player.wuDaoMag.AddLingGuang("对" + text2 + "的感悟", key, num6, 1825, "在" + text + "你与" + npcName + "论道时，对" + text2 + "产生了灵光一现的感悟", jsonData.instance.LunDaoSiXuData[num2.ToString()]["PinJie"].I, isLunDao: true);
 			}
 		}
 		if (num4 > -1f)
@@ -231,53 +242,25 @@ public class LunDaoSuccess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA2 RID: 7074 RVA: 0x000C4FAC File Offset: 0x000C31AC
 	private void AddNpcWuDaoExp()
 	{
 		int npcId = LunDaoManager.inst.npcId;
 		Dictionary<int, List<int>> getWuDaoExp = LunDaoManager.inst.getWuDaoExp;
-		foreach (int num in getWuDaoExp.Keys)
+		foreach (int key in getWuDaoExp.Keys)
 		{
-			int num2 = 0;
-			float i = (float)jsonData.instance.LunDaoStateData[LunDaoManager.inst.npcController.npcStateId.ToString()]["WuDaoExp"].I;
-			float num3 = (float)jsonData.instance.LunDaoStateData[LunDaoManager.inst.playerController.playerStateId.ToString()]["WuDaoExp"].I;
-			float num4 = (i + num3) / 100f;
-			foreach (int num5 in getWuDaoExp[num])
+			int num = 0;
+			int i = jsonData.instance.LunDaoStateData[LunDaoManager.inst.npcController.npcStateId.ToString()]["WuDaoExp"].I;
+			float num2 = jsonData.instance.LunDaoStateData[LunDaoManager.inst.playerController.playerStateId.ToString()]["WuDaoExp"].I;
+			float num3 = ((float)i + num2) / 100f;
+			foreach (int item in getWuDaoExp[key])
 			{
-				num2 += jsonData.instance.LunDaoShouYiData[num5.ToString()]["WuDaoExp"].I;
+				num += jsonData.instance.LunDaoShouYiData[item.ToString()]["WuDaoExp"].I;
 			}
-			num2 += (int)((float)num2 * num4);
-			if (num2 >= 0)
+			num += (int)((float)num * num3);
+			if (num >= 0)
 			{
-				NpcJieSuanManager.inst.npcSetField.AddNpcWuDaoExp(npcId, num, num2);
+				NpcJieSuanManager.inst.npcSetField.AddNpcWuDaoExp(npcId, key, num);
 			}
 		}
 	}
-
-	// Token: 0x04001621 RID: 5665
-	[SerializeField]
-	private Image siXuCell;
-
-	// Token: 0x04001622 RID: 5666
-	[SerializeField]
-	private Transform siXuCellParent;
-
-	// Token: 0x04001623 RID: 5667
-	public List<Sprite> siXuList;
-
-	// Token: 0x04001624 RID: 5668
-	[SerializeField]
-	private Image curJinDu;
-
-	// Token: 0x04001625 RID: 5669
-	[SerializeField]
-	private Text jinDu;
-
-	// Token: 0x04001626 RID: 5670
-	[SerializeField]
-	private Text addWuDaoZhiText;
-
-	// Token: 0x04001627 RID: 5671
-	[SerializeField]
-	private Text addWuDaoDian;
 }

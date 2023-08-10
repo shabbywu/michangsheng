@@ -1,11 +1,6 @@
-﻿using System;
+namespace KBEngine;
 
-namespace KBEngine
+public enum CardTypeNum
 {
-	// Token: 0x02000C72 RID: 3186
-	public enum CardTypeNum
-	{
-		// Token: 0x040051F5 RID: 20981
-		MAXType = 6
-	}
+	MAXType = 6
 }

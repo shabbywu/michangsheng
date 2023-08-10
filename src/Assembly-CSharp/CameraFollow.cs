@@ -1,88 +1,84 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000497 RID: 1175
 public class CameraFollow : MonoBehaviour
 {
-	// Token: 0x06002516 RID: 9494 RVA: 0x00101BF2 File Offset: 0x000FFDF2
+	public GameObject cameraTarget;
+
+	public GameObject player;
+
+	public float smoothTime = 0.1f;
+
+	public bool cameraFollowX = true;
+
+	public bool cameraFollowY = true;
+
+	public bool cameraFollowHeight;
+
+	public float cameraHeight = 2.5f;
+
+	public Vector2 velocity;
+
+	private Transform thisTransform;
+
+	public bool changeHeight;
+
+	private MonkeyController2D monkeyControll;
+
 	private void Start()
 	{
-		this.thisTransform = base.transform;
-		this.monkeyControll = GameObject.Find("Player").GetComponent<MonkeyController2D>();
+		thisTransform = ((Component)this).transform;
+		monkeyControll = GameObject.Find("Player").GetComponent<MonkeyController2D>();
 	}
 
-	// Token: 0x06002517 RID: 9495 RVA: 0x00101C18 File Offset: 0x000FFE18
 	private void Update()
 	{
-		if (this.cameraFollowX)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		if (cameraFollowX)
 		{
-			float num = Mathf.SmoothDamp(this.thisTransform.position.x, this.cameraTarget.transform.position.x, ref this.velocity.x, this.smoothTime);
-			this.thisTransform.position = new Vector3(num, this.thisTransform.position.y, this.thisTransform.position.z);
+			float num = Mathf.SmoothDamp(thisTransform.position.x, cameraTarget.transform.position.x, ref velocity.x, smoothTime);
+			thisTransform.position = new Vector3(num, thisTransform.position.y, thisTransform.position.z);
 		}
-		if (this.cameraFollowY)
+		if (cameraFollowY)
 		{
-			float num2 = Mathf.SmoothDamp(this.thisTransform.position.y, this.cameraTarget.transform.position.y, ref this.velocity.y, this.smoothTime);
-			this.thisTransform.position = new Vector3(this.thisTransform.position.x, num2, this.thisTransform.position.z);
+			float num2 = Mathf.SmoothDamp(thisTransform.position.y, cameraTarget.transform.position.y, ref velocity.y, smoothTime);
+			thisTransform.position = new Vector3(thisTransform.position.x, num2, thisTransform.position.z);
 		}
-		if (!this.cameraFollowY && this.cameraFollowHeight)
+		if (!cameraFollowY && cameraFollowHeight)
 		{
-			Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, this.cameraHeight, Camera.main.transform.position.z);
+			((Component)Camera.main).transform.position = new Vector3(((Component)Camera.main).transform.position.x, cameraHeight, ((Component)Camera.main).transform.position.z);
 		}
-		if (this.changeHeight)
+		if (changeHeight)
 		{
-			base.StartCoroutine(this.catchCameraY());
+			((MonoBehaviour)this).StartCoroutine(catchCameraY());
 		}
-		bool flag = this.changeHeight;
+		_ = changeHeight;
 	}
 
-	// Token: 0x06002518 RID: 9496 RVA: 0x00101D7D File Offset: 0x000FFF7D
 	private IEnumerator catchCameraY()
 	{
 		for (float i = 0f; i < 1f; i += 0.001f)
 		{
-			Debug.Log("Usao u korutinu: " + i);
+			Debug.Log((object)("Usao u korutinu: " + i));
 			yield return null;
-			if (!this.changeHeight)
+			if (!changeHeight)
 			{
 				break;
 			}
-			this.thisTransform.position = new Vector3(this.thisTransform.position.x, Mathf.MoveTowards(this.thisTransform.position.y, this.cameraTarget.transform.position.y, i), this.thisTransform.position.z);
+			thisTransform.position = new Vector3(thisTransform.position.x, Mathf.MoveTowards(thisTransform.position.y, cameraTarget.transform.position.y, i), thisTransform.position.z);
 		}
-		this.changeHeight = false;
-		yield break;
+		changeHeight = false;
 	}
-
-	// Token: 0x04001DE2 RID: 7650
-	public GameObject cameraTarget;
-
-	// Token: 0x04001DE3 RID: 7651
-	public GameObject player;
-
-	// Token: 0x04001DE4 RID: 7652
-	public float smoothTime = 0.1f;
-
-	// Token: 0x04001DE5 RID: 7653
-	public bool cameraFollowX = true;
-
-	// Token: 0x04001DE6 RID: 7654
-	public bool cameraFollowY = true;
-
-	// Token: 0x04001DE7 RID: 7655
-	public bool cameraFollowHeight;
-
-	// Token: 0x04001DE8 RID: 7656
-	public float cameraHeight = 2.5f;
-
-	// Token: 0x04001DE9 RID: 7657
-	public Vector2 velocity;
-
-	// Token: 0x04001DEA RID: 7658
-	private Transform thisTransform;
-
-	// Token: 0x04001DEB RID: 7659
-	public bool changeHeight;
-
-	// Token: 0x04001DEC RID: 7660
-	private MonkeyController2D monkeyControll;
 }

@@ -1,55 +1,46 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tab
+namespace Tab;
+
+public class TabSavePanel : ISysPanelBase
 {
-	// Token: 0x02000701 RID: 1793
-	public class TabSavePanel : ISysPanelBase
+	private bool _isInit;
+
+	public List<TabDataBase> SaveList;
+
+	public TabSavePanel(GameObject go)
 	{
-		// Token: 0x06003984 RID: 14724 RVA: 0x00189C00 File Offset: 0x00187E00
-		public TabSavePanel(GameObject go)
+		_go = go;
+		_isInit = false;
+		SaveList = new List<TabDataBase>();
+	}
+
+	public override void Show()
+	{
+		if (!_isInit)
 		{
-			this._go = go;
-			this._isInit = false;
-			this.SaveList = new List<TabDataBase>();
+			Init();
+			_isInit = true;
 		}
+		UpdateUI();
+		_go.SetActive(true);
+	}
 
-		// Token: 0x06003985 RID: 14725 RVA: 0x00189C21 File Offset: 0x00187E21
-		public override void Show()
+	private void Init()
+	{
+		Transform transform = Get("SaveList/ViewPort/Content").transform;
+		for (int i = 0; i < transform.childCount; i++)
 		{
-			if (!this._isInit)
-			{
-				this.Init();
-				this._isInit = true;
-			}
-			this.UpdateUI();
-			this._go.SetActive(true);
+			SaveList.Add(new TabDataBase(((Component)transform.GetChild(i)).gameObject));
 		}
+	}
 
-		// Token: 0x06003986 RID: 14726 RVA: 0x00189C4C File Offset: 0x00187E4C
-		private void Init()
+	private void UpdateUI()
+	{
+		foreach (TabDataBase save in SaveList)
 		{
-			Transform transform = base.Get("SaveList/ViewPort/Content", true).transform;
-			for (int i = 0; i < transform.childCount; i++)
-			{
-				this.SaveList.Add(new TabDataBase(transform.GetChild(i).gameObject, 0));
-			}
+			save.UpdateDate();
 		}
-
-		// Token: 0x06003987 RID: 14727 RVA: 0x00189C9C File Offset: 0x00187E9C
-		private void UpdateUI()
-		{
-			foreach (TabDataBase tabDataBase in this.SaveList)
-			{
-				tabDataBase.UpdateDate();
-			}
-		}
-
-		// Token: 0x040031A0 RID: 12704
-		private bool _isInit;
-
-		// Token: 0x040031A1 RID: 12705
-		public List<TabDataBase> SaveList;
 	}
 }

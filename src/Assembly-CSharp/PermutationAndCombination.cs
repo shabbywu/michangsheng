@@ -1,26 +1,22 @@
-﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020001C7 RID: 455
 public class PermutationAndCombination<T>
 {
-	// Token: 0x060012F1 RID: 4849 RVA: 0x0007703C File Offset: 0x0007523C
 	public static void Swap(ref T a, ref T b)
 	{
-		T t = a;
+		T val = a;
 		a = b;
-		b = t;
+		b = val;
 	}
 
-	// Token: 0x060012F2 RID: 4850 RVA: 0x00077064 File Offset: 0x00075264
 	private static void GetCombination(ref List<T[]> list, T[] t, int n, int m, int[] b, int M)
 	{
-		for (int i = n; i >= m; i--)
+		for (int num = n; num >= m; num--)
 		{
-			b[m - 1] = i - 1;
+			b[m - 1] = num - 1;
 			if (m > 1)
 			{
-				PermutationAndCombination<T>.GetCombination(ref list, t, i - 1, m - 1, b, M);
+				GetCombination(ref list, t, num - 1, m - 1, b, M);
 			}
 			else
 			{
@@ -29,16 +25,15 @@ public class PermutationAndCombination<T>
 					list = new List<T[]>();
 				}
 				T[] array = new T[M];
-				for (int j = 0; j < b.Length; j++)
+				for (int i = 0; i < b.Length; i++)
 				{
-					array[j] = t[b[j]];
+					array[i] = t[b[i]];
 				}
 				list.Add(array);
 			}
 		}
 	}
 
-	// Token: 0x060012F3 RID: 4851 RVA: 0x000770D8 File Offset: 0x000752D8
 	private static void GetPermutation(ref List<T[]> list, T[] t, int startIndex, int endIndex)
 	{
 		if (startIndex == endIndex)
@@ -50,35 +45,34 @@ public class PermutationAndCombination<T>
 			T[] array = new T[t.Length];
 			t.CopyTo(array, 0);
 			list.Add(array);
-			return;
 		}
-		for (int i = startIndex; i <= endIndex; i++)
+		else
 		{
-			PermutationAndCombination<T>.Swap(ref t[startIndex], ref t[i]);
-			PermutationAndCombination<T>.GetPermutation(ref list, t, startIndex + 1, endIndex);
-			PermutationAndCombination<T>.Swap(ref t[startIndex], ref t[i]);
+			for (int i = startIndex; i <= endIndex; i++)
+			{
+				Swap(ref t[startIndex], ref t[i]);
+				GetPermutation(ref list, t, startIndex + 1, endIndex);
+				Swap(ref t[startIndex], ref t[i]);
+			}
 		}
 	}
 
-	// Token: 0x060012F4 RID: 4852 RVA: 0x0007714C File Offset: 0x0007534C
 	public static List<T[]> GetPermutation(T[] t, int startIndex, int endIndex)
 	{
 		if (startIndex < 0 || endIndex > t.Length - 1)
 		{
 			return null;
 		}
-		List<T[]> result = new List<T[]>();
-		PermutationAndCombination<T>.GetPermutation(ref result, t, startIndex, endIndex);
-		return result;
+		List<T[]> list = new List<T[]>();
+		GetPermutation(ref list, t, startIndex, endIndex);
+		return list;
 	}
 
-	// Token: 0x060012F5 RID: 4853 RVA: 0x00077178 File Offset: 0x00075378
 	public static List<T[]> GetPermutation(T[] t)
 	{
-		return PermutationAndCombination<T>.GetPermutation(t, 0, t.Length - 1);
+		return GetPermutation(t, 0, t.Length - 1);
 	}
 
-	// Token: 0x060012F6 RID: 4854 RVA: 0x00077188 File Offset: 0x00075388
 	public static List<T[]> GetPermutation(T[] t, int n)
 	{
 		if (n > t.Length)
@@ -86,17 +80,16 @@ public class PermutationAndCombination<T>
 			return null;
 		}
 		List<T[]> list = new List<T[]>();
-		List<T[]> combination = PermutationAndCombination<T>.GetCombination(t, n);
+		List<T[]> combination = GetCombination(t, n);
 		for (int i = 0; i < combination.Count; i++)
 		{
-			List<T[]> collection = new List<T[]>();
-			PermutationAndCombination<T>.GetPermutation(ref collection, combination[i], 0, n - 1);
-			list.AddRange(collection);
+			List<T[]> list2 = new List<T[]>();
+			GetPermutation(ref list2, combination[i], 0, n - 1);
+			list.AddRange(list2);
 		}
 		return list;
 	}
 
-	// Token: 0x060012F7 RID: 4855 RVA: 0x000771DC File Offset: 0x000753DC
 	public static List<T[]> GetCombination(T[] t, int n)
 	{
 		if (t.Length < n)
@@ -104,8 +97,8 @@ public class PermutationAndCombination<T>
 			return null;
 		}
 		int[] b = new int[n];
-		List<T[]> result = new List<T[]>();
-		PermutationAndCombination<T>.GetCombination(ref result, t, t.Length, n, b, n);
-		return result;
+		List<T[]> list = new List<T[]>();
+		GetCombination(ref list, t, t.Length, n, b, n);
+		return list;
 	}
 }

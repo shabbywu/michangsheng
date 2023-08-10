@@ -1,92 +1,81 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004F8 RID: 1272
 [RequireComponent(typeof(TextMesh))]
 public class TextMeshEffects : MonoBehaviour
 {
-	// Token: 0x06002939 RID: 10553 RVA: 0x0013A26E File Offset: 0x0013846E
+	private TextMesh thisComponent;
+
+	private Transform myTransform;
+
+	public static string chosenLanguage = "_en";
+
+	public bool neMenjajFont;
+
 	private void Awake()
 	{
-		this.myTransform = base.transform;
-		this.thisComponent = base.GetComponent<TextMesh>();
+		myTransform = ((Component)this).transform;
+		thisComponent = ((Component)this).GetComponent<TextMesh>();
 	}
 
-	// Token: 0x0600293A RID: 10554 RVA: 0x0013A288 File Offset: 0x00138488
 	public void RefreshTextOutline(bool adjustTextSize, bool hasWhiteSpaces, bool increaseFont = true)
 	{
-		if (!this.neMenjajFont)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Expected O, but got Unknown
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Expected O, but got Unknown
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Expected O, but got Unknown
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Expected O, but got Unknown
+		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013f: Expected O, but got Unknown
+		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012d: Expected O, but got Unknown
+		if (!neMenjajFont)
 		{
 			if (LanguageManager.chosenLanguage != "_en" && LanguageManager.chosenLanguage != "_us")
 			{
-				Font font;
-				if (LanguageManager.chosenLanguage == "_th")
-				{
-					font = (Font)Resources.Load("Angsana New Bold");
-				}
-				else
-				{
-					font = (Font)Resources.Load("ARIBLK");
-				}
-				this.thisComponent.font = font;
-				this.thisComponent.GetComponent<Renderer>().sharedMaterial = font.material;
+				Font val = ((!(LanguageManager.chosenLanguage == "_th")) ? ((Font)Resources.Load("ARIBLK")) : ((Font)Resources.Load("Angsana New Bold")));
+				thisComponent.font = val;
+				((Component)thisComponent).GetComponent<Renderer>().sharedMaterial = val.material;
 			}
 			else
 			{
-				Font font2 = (Font)Resources.Load("SOUPOFJUSTICE");
-				this.thisComponent.font = font2;
-				this.thisComponent.GetComponent<Renderer>().sharedMaterial = font2.material;
+				Font val2 = (Font)Resources.Load("SOUPOFJUSTICE");
+				thisComponent.font = val2;
+				((Component)thisComponent).GetComponent<Renderer>().sharedMaterial = val2.material;
 			}
 		}
 		if (adjustTextSize)
 		{
-			this.thisComponent.AdjustFontSize(true, hasWhiteSpaces, increaseFont);
+			thisComponent.AdjustFontSize(rowSplit: true, hasWhiteSpaces, increaseFont);
 		}
-		if (this.myTransform.childCount == 8)
+		if (myTransform.childCount != 8)
 		{
-			for (int i = 0; i < 8; i++)
+			return;
+		}
+		for (int i = 0; i < 8; i++)
+		{
+			if (!neMenjajFont)
 			{
-				if (!this.neMenjajFont)
+				if (LanguageManager.chosenLanguage != "_en" && LanguageManager.chosenLanguage != "_us")
 				{
-					if (LanguageManager.chosenLanguage != "_en" && LanguageManager.chosenLanguage != "_us")
-					{
-						Font font3;
-						if (LanguageManager.chosenLanguage == "_th")
-						{
-							font3 = (Font)Resources.Load("Angsana New Bold");
-						}
-						else
-						{
-							font3 = (Font)Resources.Load("ARIBLK");
-						}
-						this.myTransform.GetChild(i).GetComponent<TextMesh>().font = font3;
-						this.myTransform.GetChild(i).GetComponent<TextMesh>().GetComponent<Renderer>().sharedMaterial = font3.material;
-					}
-					else
-					{
-						Font font4 = (Font)Resources.Load("SOUPOFJUSTICE");
-						this.myTransform.GetChild(i).GetComponent<TextMesh>().font = font4;
-						this.myTransform.GetChild(i).GetComponent<TextMesh>().GetComponent<Renderer>().sharedMaterial = font4.material;
-					}
+					Font val3 = ((!(LanguageManager.chosenLanguage == "_th")) ? ((Font)Resources.Load("ARIBLK")) : ((Font)Resources.Load("Angsana New Bold")));
+					((Component)myTransform.GetChild(i)).GetComponent<TextMesh>().font = val3;
+					((Component)((Component)myTransform.GetChild(i)).GetComponent<TextMesh>()).GetComponent<Renderer>().sharedMaterial = val3.material;
 				}
-				this.myTransform.GetChild(i).GetComponent<TextMesh>().text = this.thisComponent.text;
-				if (adjustTextSize)
+				else
 				{
-					this.myTransform.GetChild(i).GetComponent<TextMesh>().characterSize = this.thisComponent.characterSize;
+					Font val4 = (Font)Resources.Load("SOUPOFJUSTICE");
+					((Component)myTransform.GetChild(i)).GetComponent<TextMesh>().font = val4;
+					((Component)((Component)myTransform.GetChild(i)).GetComponent<TextMesh>()).GetComponent<Renderer>().sharedMaterial = val4.material;
 				}
+			}
+			((Component)myTransform.GetChild(i)).GetComponent<TextMesh>().text = thisComponent.text;
+			if (adjustTextSize)
+			{
+				((Component)myTransform.GetChild(i)).GetComponent<TextMesh>().characterSize = thisComponent.characterSize;
 			}
 		}
 	}
-
-	// Token: 0x0400256A RID: 9578
-	private TextMesh thisComponent;
-
-	// Token: 0x0400256B RID: 9579
-	private Transform myTransform;
-
-	// Token: 0x0400256C RID: 9580
-	public static string chosenLanguage = "_en";
-
-	// Token: 0x0400256D RID: 9581
-	public bool neMenjajFont;
 }

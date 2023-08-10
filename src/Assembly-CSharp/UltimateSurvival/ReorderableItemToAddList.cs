@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using UltimateSurvival.Debugging;
 
-namespace UltimateSurvival
+namespace UltimateSurvival;
+
+[Serializable]
+public class ReorderableItemToAddList : ReorderableGenericList<StartupItems.ItemToAdd>
 {
-	// Token: 0x020005A6 RID: 1446
-	[Serializable]
-	public class ReorderableItemToAddList : ReorderableGenericList<StartupItems.ItemToAdd>
-	{
-	}
 }

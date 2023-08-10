@@ -1,9 +1,5 @@
-﻿using System;
+namespace WXB;
 
-namespace WXB
+public class DrawStruct
 {
-	// Token: 0x02000689 RID: 1673
-	public class DrawStruct
-	{
-	}
 }

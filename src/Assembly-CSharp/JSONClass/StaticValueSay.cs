@@ -1,70 +1,57 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class StaticValueSay : IJSONClass
 {
-	// Token: 0x0200096B RID: 2411
-	public class StaticValueSay : IJSONClass
+	public static Dictionary<int, StaticValueSay> DataDict = new Dictionary<int, StaticValueSay>();
+
+	public static List<StaticValueSay> DataList = new List<StaticValueSay>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int StaticID;
+
+	public int staticValue;
+
+	public string ChinaText;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x060043BE RID: 17342 RVA: 0x001CD680 File Offset: 0x001CB880
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.StaticValueSay.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.StaticValueSay.list)
+			try
 			{
-				try
+				StaticValueSay staticValueSay = new StaticValueSay();
+				staticValueSay.id = item["id"].I;
+				staticValueSay.StaticID = item["StaticID"].I;
+				staticValueSay.staticValue = item["staticValue"].I;
+				staticValueSay.ChinaText = item["ChinaText"].Str;
+				if (DataDict.ContainsKey(staticValueSay.id))
 				{
-					StaticValueSay staticValueSay = new StaticValueSay();
-					staticValueSay.id = jsonobject["id"].I;
-					staticValueSay.StaticID = jsonobject["StaticID"].I;
-					staticValueSay.staticValue = jsonobject["staticValue"].I;
-					staticValueSay.ChinaText = jsonobject["ChinaText"].Str;
-					if (StaticValueSay.DataDict.ContainsKey(staticValueSay.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典StaticValueSay.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", staticValueSay.id));
-					}
-					else
-					{
-						StaticValueSay.DataDict.Add(staticValueSay.id, staticValueSay);
-						StaticValueSay.DataList.Add(staticValueSay);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典StaticValueSay.DataDict添加数据时出现重复的键，Key:{staticValueSay.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典StaticValueSay.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(staticValueSay.id, staticValueSay);
+				DataList.Add(staticValueSay);
 			}
-			if (StaticValueSay.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				StaticValueSay.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典StaticValueSay.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x060043BF RID: 17343 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040044B2 RID: 17586
-		public static Dictionary<int, StaticValueSay> DataDict = new Dictionary<int, StaticValueSay>();
-
-		// Token: 0x040044B3 RID: 17587
-		public static List<StaticValueSay> DataList = new List<StaticValueSay>();
-
-		// Token: 0x040044B4 RID: 17588
-		public static Action OnInitFinishAction = new Action(StaticValueSay.OnInitFinish);
-
-		// Token: 0x040044B5 RID: 17589
-		public int id;
-
-		// Token: 0x040044B6 RID: 17590
-		public int StaticID;
-
-		// Token: 0x040044B7 RID: 17591
-		public int staticValue;
-
-		// Token: 0x040044B8 RID: 17592
-		public string ChinaText;
+	private static void OnInitFinish()
+	{
 	}
 }

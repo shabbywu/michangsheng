@@ -1,105 +1,148 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using KBEngine;
-using script.NewLianDan;
-using script.Submit;
 using UnityEngine;
 using UnityEngine.Events;
 using YSGame;
+using script.NewLianDan;
+using script.Submit;
 
-namespace Tab
+namespace Tab;
+
+[Serializable]
+public class TabSystemPanel : ITabPanelBase
 {
-	// Token: 0x02000703 RID: 1795
 	[Serializable]
-	public class TabSystemPanel : ITabPanelBase
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
 	{
-		// Token: 0x06003996 RID: 14742 RVA: 0x0018A378 File Offset: 0x00188578
-		public TabSystemPanel(GameObject gameObject)
-		{
-			this.PanelList = new List<ISysPanelBase>();
-			this._go = gameObject;
-			this._isInit = false;
-		}
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		// Token: 0x06003997 RID: 14743 RVA: 0x0018A39C File Offset: 0x0018859C
-		private void Init()
-		{
-			this.SavePanel = new TabSavePanel(base.Get("Select/Panel/保存", true));
-			this.LoadPanel = new TabLoadPanel(base.Get("Select/Panel/读取", true));
-			this.SetPanel = new TabSetPanel(base.Get("Select/Panel/设置", true));
-			this.SelectMag = new SysSelectMag(base.Get("Select", true));
-			base.Get<FpBtn>("Select/返回标题/UnSelect").mouseUpEvent.AddListener(new UnityAction(this.ReturnTittle));
-			base.Get<FpBtn>("Select/退出/UnSelect").mouseUpEvent.AddListener(new UnityAction(this.QuitGame));
-			this._isInit = true;
-			this.SelectMag.SetDeafultSelect(0);
-		}
+		public static UnityAction _003C_003E9__9_0;
 
-		// Token: 0x06003998 RID: 14744 RVA: 0x0018A45A File Offset: 0x0018865A
-		public override void Show()
+		internal void _003CReturnTittle_003Eb__9_0()
 		{
-			if (!this._isInit)
+			if ((Object)(object)FpUIMag.inst != (Object)null)
 			{
-				this.Init();
-				this._isInit = true;
+				Object.Destroy((Object)(object)((Component)FpUIMag.inst).gameObject);
 			}
-			this._go.SetActive(true);
-		}
-
-		// Token: 0x06003999 RID: 14745 RVA: 0x0018A47D File Offset: 0x0018867D
-		public void ReturnTittle()
-		{
-			TySelect.inst.Show("是否要返回主界面？", delegate
+			if ((Object)(object)TpUIMag.inst != (Object)null)
 			{
-				if (FpUIMag.inst != null)
+				Object.Destroy((Object)(object)((Component)TpUIMag.inst).gameObject);
+			}
+			if ((Object)(object)SubmitUIMag.Inst != (Object)null)
+			{
+				SubmitUIMag.Inst.Close();
+			}
+			if ((Object)(object)LianDanUIMag.Instance != (Object)null)
+			{
+				Object.Destroy((Object)(object)((Component)LianDanUIMag.Instance).gameObject);
+			}
+			if ((Object)(object)LianQiTotalManager.inst != (Object)null)
+			{
+				Object.Destroy((Object)(object)((Component)LianQiTotalManager.inst).gameObject);
+			}
+			SingletonMono<TabUIMag>.Instance.TryEscClose();
+			YSSaveGame.Reset();
+			KBEngineApp.app.entities[10] = null;
+			KBEngineApp.app.entities.Remove(10);
+			Tools.instance.loadOtherScenes("MainMenu");
+		}
+	}
+
+	private bool _isInit;
+
+	public TabSavePanel SavePanel;
+
+	public TabLoadPanel LoadPanel;
+
+	public TabSetPanel SetPanel;
+
+	public SysSelectMag SelectMag;
+
+	public List<ISysPanelBase> PanelList;
+
+	public TabSystemPanel(GameObject gameObject)
+	{
+		PanelList = new List<ISysPanelBase>();
+		_go = gameObject;
+		_isInit = false;
+	}
+
+	private void Init()
+	{
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Expected O, but got Unknown
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Expected O, but got Unknown
+		SavePanel = new TabSavePanel(Get("Select/Panel/保存"));
+		LoadPanel = new TabLoadPanel(Get("Select/Panel/读取"));
+		SetPanel = new TabSetPanel(Get("Select/Panel/设置"));
+		SelectMag = new SysSelectMag(Get("Select"));
+		Get<FpBtn>("Select/返回标题/UnSelect").mouseUpEvent.AddListener(new UnityAction(ReturnTittle));
+		Get<FpBtn>("Select/退出/UnSelect").mouseUpEvent.AddListener(new UnityAction(QuitGame));
+		_isInit = true;
+		SelectMag.SetDeafultSelect();
+	}
+
+	public override void Show()
+	{
+		if (!_isInit)
+		{
+			Init();
+			_isInit = true;
+		}
+		_go.SetActive(true);
+	}
+
+	public void ReturnTittle()
+	{
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Expected O, but got Unknown
+		TySelect inst = TySelect.inst;
+		object obj = _003C_003Ec._003C_003E9__9_0;
+		if (obj == null)
+		{
+			UnityAction val = delegate
+			{
+				if ((Object)(object)FpUIMag.inst != (Object)null)
 				{
-					Object.Destroy(FpUIMag.inst.gameObject);
+					Object.Destroy((Object)(object)((Component)FpUIMag.inst).gameObject);
 				}
-				if (TpUIMag.inst != null)
+				if ((Object)(object)TpUIMag.inst != (Object)null)
 				{
-					Object.Destroy(TpUIMag.inst.gameObject);
+					Object.Destroy((Object)(object)((Component)TpUIMag.inst).gameObject);
 				}
-				if (SubmitUIMag.Inst != null)
+				if ((Object)(object)SubmitUIMag.Inst != (Object)null)
 				{
 					SubmitUIMag.Inst.Close();
 				}
-				if (LianDanUIMag.Instance != null)
+				if ((Object)(object)LianDanUIMag.Instance != (Object)null)
 				{
-					Object.Destroy(LianDanUIMag.Instance.gameObject);
+					Object.Destroy((Object)(object)((Component)LianDanUIMag.Instance).gameObject);
 				}
-				if (LianQiTotalManager.inst != null)
+				if ((Object)(object)LianQiTotalManager.inst != (Object)null)
 				{
-					Object.Destroy(LianQiTotalManager.inst.gameObject);
+					Object.Destroy((Object)(object)((Component)LianQiTotalManager.inst).gameObject);
 				}
 				SingletonMono<TabUIMag>.Instance.TryEscClose();
 				YSSaveGame.Reset();
 				KBEngineApp.app.entities[10] = null;
 				KBEngineApp.app.entities.Remove(10);
 				Tools.instance.loadOtherScenes("MainMenu");
-			}, null, true);
+			};
+			_003C_003Ec._003C_003E9__9_0 = val;
+			obj = (object)val;
 		}
+		inst.Show("是否要返回主界面？", (UnityAction)obj);
+	}
 
-		// Token: 0x0600399A RID: 14746 RVA: 0x0018A4AF File Offset: 0x001886AF
-		public void QuitGame()
-		{
-			TySelect.inst.Show("是否要退出游戏？", new UnityAction(Application.Quit), null, true);
-		}
-
-		// Token: 0x040031AF RID: 12719
-		private bool _isInit;
-
-		// Token: 0x040031B0 RID: 12720
-		public TabSavePanel SavePanel;
-
-		// Token: 0x040031B1 RID: 12721
-		public TabLoadPanel LoadPanel;
-
-		// Token: 0x040031B2 RID: 12722
-		public TabSetPanel SetPanel;
-
-		// Token: 0x040031B3 RID: 12723
-		public SysSelectMag SelectMag;
-
-		// Token: 0x040031B4 RID: 12724
-		public List<ISysPanelBase> PanelList;
+	public void QuitGame()
+	{
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Expected O, but got Unknown
+		TySelect.inst.Show("是否要退出游戏？", new UnityAction(Application.Quit));
 	}
 }

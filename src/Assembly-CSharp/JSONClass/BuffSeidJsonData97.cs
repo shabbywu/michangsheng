@@ -1,65 +1,53 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class BuffSeidJsonData97 : IJSONClass
 {
-	// Token: 0x02000800 RID: 2048
-	public class BuffSeidJsonData97 : IJSONClass
+	public static int SEIDID = 97;
+
+	public static Dictionary<int, BuffSeidJsonData97> DataDict = new Dictionary<int, BuffSeidJsonData97>();
+
+	public static List<BuffSeidJsonData97> DataList = new List<BuffSeidJsonData97>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int value1;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003E12 RID: 15890 RVA: 0x001A88E4 File Offset: 0x001A6AE4
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.BuffSeidJsonData[97].list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.BuffSeidJsonData[97].list)
+			try
 			{
-				try
+				BuffSeidJsonData97 buffSeidJsonData = new BuffSeidJsonData97();
+				buffSeidJsonData.id = item["id"].I;
+				buffSeidJsonData.value1 = item["value1"].I;
+				if (DataDict.ContainsKey(buffSeidJsonData.id))
 				{
-					BuffSeidJsonData97 buffSeidJsonData = new BuffSeidJsonData97();
-					buffSeidJsonData.id = jsonobject["id"].I;
-					buffSeidJsonData.value1 = jsonobject["value1"].I;
-					if (BuffSeidJsonData97.DataDict.ContainsKey(buffSeidJsonData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典BuffSeidJsonData97.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", buffSeidJsonData.id));
-					}
-					else
-					{
-						BuffSeidJsonData97.DataDict.Add(buffSeidJsonData.id, buffSeidJsonData);
-						BuffSeidJsonData97.DataList.Add(buffSeidJsonData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典BuffSeidJsonData97.DataDict添加数据时出现重复的键，Key:{buffSeidJsonData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典BuffSeidJsonData97.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(buffSeidJsonData.id, buffSeidJsonData);
+				DataList.Add(buffSeidJsonData);
 			}
-			if (BuffSeidJsonData97.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				BuffSeidJsonData97.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典BuffSeidJsonData97.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003E13 RID: 15891 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003904 RID: 14596
-		public static int SEIDID = 97;
-
-		// Token: 0x04003905 RID: 14597
-		public static Dictionary<int, BuffSeidJsonData97> DataDict = new Dictionary<int, BuffSeidJsonData97>();
-
-		// Token: 0x04003906 RID: 14598
-		public static List<BuffSeidJsonData97> DataList = new List<BuffSeidJsonData97>();
-
-		// Token: 0x04003907 RID: 14599
-		public static Action OnInitFinishAction = new Action(BuffSeidJsonData97.OnInitFinish);
-
-		// Token: 0x04003908 RID: 14600
-		public int id;
-
-		// Token: 0x04003909 RID: 14601
-		public int value1;
+	private static void OnInitFinish()
+	{
 	}
 }

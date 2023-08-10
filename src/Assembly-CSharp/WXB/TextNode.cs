@@ -1,398 +1,355 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class TextNode : NodeBase
 {
-	// Token: 0x020006AF RID: 1711
-	public class TextNode : NodeBase
+	private struct Helper
 	{
-		// Token: 0x060035FA RID: 13818 RVA: 0x00172914 File Offset: 0x00170B14
-		public bool isFontSame(TextNode n)
+		public RenderCache cache;
+
+		public float x;
+
+		public uint yline;
+
+		public List<Line> lines;
+
+		public Anchor xFormatting;
+
+		public float offsetX;
+
+		public float offsetY;
+
+		public StringBuilder sb;
+
+		public float pixelsPerUnit;
+
+		private Vector2 pt;
+
+		private float alignedX;
+
+		private TextNode node;
+
+		private float maxWidth;
+
+		private float fHeight;
+
+		public Helper(float maxWidth, RenderCache cache, float x, uint yline, List<Line> lines, Anchor xFormatting, float offsetX, float offsetY, StringBuilder sb)
 		{
-			return this.d_font == n.d_font && this.d_fontSize == n.d_fontSize && this.d_fontStyle == n.d_fontStyle;
+			//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+			this.maxWidth = maxWidth;
+			this.cache = cache;
+			this.x = x;
+			this.yline = yline;
+			this.lines = lines;
+			this.xFormatting = xFormatting;
+			this.offsetX = offsetX;
+			this.offsetY = offsetY;
+			pixelsPerUnit = 1f;
+			alignedX = 0f;
+			pt = Vector2.zero;
+			node = null;
+			fHeight = 0f;
+			this.sb = sb;
 		}
 
-		// Token: 0x060035FB RID: 13819 RVA: 0x00172948 File Offset: 0x00170B48
-		public override void Reset(Owner o, Anchor hf)
+		private void DrawCurrent(bool isnewLine, Around around)
 		{
-			base.Reset(o, hf);
-			this.d_font = null;
-			this.d_bUnderline = false;
-			this.d_bStrickout = false;
-		}
-
-		// Token: 0x060035FC RID: 13820 RVA: 0x00172967 File Offset: 0x00170B67
-		protected virtual bool isUnderLine()
-		{
-			return this.d_bUnderline;
-		}
-
-		// Token: 0x170004FB RID: 1275
-		// (get) Token: 0x060035FD RID: 13821 RVA: 0x0017296F File Offset: 0x00170B6F
-		public virtual Color currentColor
-		{
-			get
+			//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+			if (sb.Length != 0)
 			{
-				return this.d_color;
+				Rect rect = default(Rect);
+				((Rect)(ref rect))._002Ector(pt.x + alignedX, pt.y, x - pt.x + offsetX, node.getHeight());
+				cache.cacheText(lines[(int)yline], node, sb.ToString(), rect);
+				sb.Remove(0, sb.Length);
+			}
+			if (isnewLine)
+			{
+				yline++;
+				x = 0f;
+				pt.x = offsetX;
+				pt.y = offsetY;
+				for (int i = 0; i < yline; i++)
+				{
+					pt.y += lines[i].y;
+				}
+				if (yline >= lines.Count)
+				{
+					yline--;
+				}
+				alignedX = NodeBase.AlignedFormatting(node.owner, xFormatting, maxWidth, lines[(int)yline].x);
+				if (!around.isContain(pt.x + alignedX, pt.y, 1f, node.getHeight(), out var ox))
+				{
+					pt.x = ox - alignedX;
+					x = pt.x;
+				}
 			}
 		}
 
-		// Token: 0x060035FE RID: 13822 RVA: 0x00172977 File Offset: 0x00170B77
-		public override float getHeight()
+		public void Draw(TextNode n)
 		{
-			return this.size.y;
-		}
-
-		// Token: 0x060035FF RID: 13823 RVA: 0x00172984 File Offset: 0x00170B84
-		public override float getWidth()
-		{
-			return this.size.x;
-		}
-
-		// Token: 0x06003600 RID: 13824 RVA: 0x00172994 File Offset: 0x00170B94
-		protected override void UpdateWidthList(out List<NodeBase.Element> widths, float pixelsPerUnit)
-		{
-			widths = this.d_widthList;
-			this.d_widthList.Clear();
-			if (this.d_text.Length == 0)
+			//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			node = n;
+			pt = new Vector2(x + offsetX, offsetY);
+			for (int i = 0; i < yline; i++)
+			{
+				pt.y += lines[i].y;
+			}
+			if (maxWidth == 0f)
 			{
 				return;
 			}
-			float unitsPerPixel = 1f / pixelsPerUnit;
-			int fontsize = (int)((float)this.d_fontSize * pixelsPerUnit);
-			this.size.x = 0f;
-			this.size.y = (float)FontCache.GetLineHeight(this.d_font, fontsize, this.d_fontStyle) * unitsPerPixel;
-			Func<char, float> func = (char code) => (float)FontCache.GetAdvance(this.d_font, fontsize, this.d_fontStyle, code) * unitsPerPixel;
-			ElementSegment elementSegment = this.owner.elementSegment;
-			if (elementSegment == null)
+			alignedX = NodeBase.AlignedFormatting(n.owner, xFormatting, maxWidth, lines[(int)yline].x);
+			fHeight = node.getHeight();
+			sb.Remove(0, sb.Length);
+			Around around = n.owner.around;
+			int num = 0;
+			float ox = 0f;
+			for (int j = 0; j < node.d_widthList.Count; j++)
 			{
-				for (int i = 0; i < this.d_text.Length; i++)
+				Element element = node.d_widthList[j];
+				float totalwidth = element.totalwidth;
+				if (x + totalwidth > maxWidth)
 				{
-					NodeBase.Element item = new NodeBase.Element(func(this.d_text[i]));
-					widths.Add(item);
-				}
-			}
-			else
-			{
-				elementSegment.Segment(this.d_text, widths, func);
-			}
-			for (int j = 0; j < this.d_widthList.Count; j++)
-			{
-				this.size.x = this.size.x + this.d_widthList[j].totalwidth;
-			}
-		}
-
-		// Token: 0x06003601 RID: 13825 RVA: 0x0000280F File Offset: 0x00000A0F
-		public virtual bool IsHyText()
-		{
-			return false;
-		}
-
-		// Token: 0x06003602 RID: 13826 RVA: 0x00172ACC File Offset: 0x00170CCC
-		public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
-		{
-			if (this.d_font == null)
-			{
-				return;
-			}
-			using (PD<StringBuilder> sb = Pool.GetSB())
-			{
-				TextNode.Helper helper = new TextNode.Helper(maxWidth, cache, x, yline, lines, this.formatting, offsetX, offsetY, sb.value);
-				helper.Draw(this);
-				x = helper.x;
-				yline = helper.yline;
-			}
-		}
-
-		// Token: 0x170004FC RID: 1276
-		// (get) Token: 0x06003603 RID: 13827 RVA: 0x00172B48 File Offset: 0x00170D48
-		public new long keyPrefix
-		{
-			get
-			{
-				long num = base.keyPrefix;
-				if (this.d_bDynStrickout)
-				{
-					num += 8192L;
-				}
-				if (this.d_bDynUnderline)
-				{
-					num += 8192L;
-				}
-				return num;
-			}
-		}
-
-		// Token: 0x06003604 RID: 13828 RVA: 0x00172B80 File Offset: 0x00170D80
-		public override void SetConfig(TextParser.Config c)
-		{
-			base.SetConfig(c);
-			this.d_font = c.font;
-			this.d_bUnderline = c.isUnderline;
-			this.d_fontSize = c.fontSize;
-			this.d_fontStyle = c.fontStyle;
-			this.d_bStrickout = c.isStrickout;
-			this.d_bDynUnderline = c.isDyncUnderline;
-			this.d_bDynStrickout = c.isDyncStrickout;
-			this.d_dynSpeed = c.dyncSpeed;
-			this.effectType = c.effectType;
-			this.effectColor = c.effectColor;
-			this.effectDistance = c.effectDistance;
-		}
-
-		// Token: 0x06003605 RID: 13829 RVA: 0x00172C18 File Offset: 0x00170E18
-		public void GetLineCharacterInfo(out CharacterInfo info)
-		{
-			if (!this.d_font.GetCharacterInfo('_', ref info, 20, 1))
-			{
-				this.d_font.RequestCharactersInTexture("_", 20, 1);
-				this.d_font.GetCharacterInfo('_', ref info, 20, 1);
-			}
-		}
-
-		// Token: 0x06003606 RID: 13830 RVA: 0x00172C52 File Offset: 0x00170E52
-		public override void Release()
-		{
-			base.Release();
-			this.d_text = null;
-			this.d_font = null;
-			this.d_fontSize = 0;
-			this.d_bUnderline = false;
-			this.d_bDynUnderline = false;
-			this.d_bDynStrickout = false;
-			this.d_dynSpeed = 0;
-		}
-
-		// Token: 0x04002F3F RID: 12095
-		private Vector2 size = Vector2.zero;
-
-		// Token: 0x04002F40 RID: 12096
-		private List<NodeBase.Element> d_widthList = new List<NodeBase.Element>();
-
-		// Token: 0x04002F41 RID: 12097
-		public string d_text;
-
-		// Token: 0x04002F42 RID: 12098
-		public Font d_font;
-
-		// Token: 0x04002F43 RID: 12099
-		public int d_fontSize;
-
-		// Token: 0x04002F44 RID: 12100
-		public FontStyle d_fontStyle;
-
-		// Token: 0x04002F45 RID: 12101
-		public bool d_bUnderline;
-
-		// Token: 0x04002F46 RID: 12102
-		public bool d_bStrickout;
-
-		// Token: 0x04002F47 RID: 12103
-		public bool d_bDynUnderline;
-
-		// Token: 0x04002F48 RID: 12104
-		public bool d_bDynStrickout;
-
-		// Token: 0x04002F49 RID: 12105
-		public int d_dynSpeed;
-
-		// Token: 0x04002F4A RID: 12106
-		public EffectType effectType;
-
-		// Token: 0x04002F4B RID: 12107
-		public Color effectColor;
-
-		// Token: 0x04002F4C RID: 12108
-		public Vector2 effectDistance;
-
-		// Token: 0x02001508 RID: 5384
-		private struct Helper
-		{
-			// Token: 0x060082D2 RID: 33490 RVA: 0x002DC75C File Offset: 0x002DA95C
-			public Helper(float maxWidth, RenderCache cache, float x, uint yline, List<Line> lines, Anchor xFormatting, float offsetX, float offsetY, StringBuilder sb)
-			{
-				this.maxWidth = maxWidth;
-				this.cache = cache;
-				this.x = x;
-				this.yline = yline;
-				this.lines = lines;
-				this.xFormatting = xFormatting;
-				this.offsetX = offsetX;
-				this.offsetY = offsetY;
-				this.pixelsPerUnit = 1f;
-				this.alignedX = 0f;
-				this.pt = Vector2.zero;
-				this.node = null;
-				this.fHeight = 0f;
-				this.sb = sb;
-			}
-
-			// Token: 0x060082D3 RID: 33491 RVA: 0x002DC7E4 File Offset: 0x002DA9E4
-			private void DrawCurrent(bool isnewLine, Around around)
-			{
-				if (this.sb.Length != 0)
-				{
-					Rect rect;
-					rect..ctor(this.pt.x + this.alignedX, this.pt.y, this.x - this.pt.x + this.offsetX, this.node.getHeight());
-					this.cache.cacheText(this.lines[(int)this.yline], this.node, this.sb.ToString(), rect);
-					this.sb.Remove(0, this.sb.Length);
-				}
-				if (isnewLine)
-				{
-					this.yline += 1U;
-					this.x = 0f;
-					this.pt.x = this.offsetX;
-					this.pt.y = this.offsetY;
-					int num = 0;
-					while ((long)num < (long)((ulong)this.yline))
+					if (x != 0f)
 					{
-						this.pt.y = this.pt.y + this.lines[num].y;
-						num++;
+						DrawCurrent(isnewLine: true, around);
 					}
-					if ((ulong)this.yline >= (ulong)((long)this.lines.Count))
+					if (element.widths == null)
 					{
-						this.yline -= 1U;
-					}
-					this.alignedX = NodeBase.AlignedFormatting(this.node.owner, this.xFormatting, this.maxWidth, this.lines[(int)this.yline].x);
-					float num2;
-					if (!around.isContain(this.pt.x + this.alignedX, this.pt.y, 1f, this.node.getHeight(), out num2))
-					{
-						this.pt.x = num2 - this.alignedX;
-						this.x = this.pt.x;
-					}
-				}
-			}
-
-			// Token: 0x060082D4 RID: 33492 RVA: 0x002DC9BC File Offset: 0x002DABBC
-			public void Draw(TextNode n)
-			{
-				this.node = n;
-				this.pt = new Vector2(this.x + this.offsetX, this.offsetY);
-				int num = 0;
-				while ((long)num < (long)((ulong)this.yline))
-				{
-					this.pt.y = this.pt.y + this.lines[num].y;
-					num++;
-				}
-				if (this.maxWidth == 0f)
-				{
-					return;
-				}
-				this.alignedX = NodeBase.AlignedFormatting(n.owner, this.xFormatting, this.maxWidth, this.lines[(int)this.yline].x);
-				this.fHeight = this.node.getHeight();
-				this.sb.Remove(0, this.sb.Length);
-				Around around = n.owner.around;
-				int num2 = 0;
-				float num3 = 0f;
-				for (int i = 0; i < this.node.d_widthList.Count; i++)
-				{
-					NodeBase.Element element = this.node.d_widthList[i];
-					float totalwidth = element.totalwidth;
-					if (this.x + totalwidth > this.maxWidth)
-					{
-						if (this.x != 0f)
+						if (x + element.totalwidth > maxWidth)
 						{
-							this.DrawCurrent(true, around);
+							DrawCurrent(isnewLine: true, around);
+							continue;
 						}
-						if (element.widths == null)
-						{
-							if (this.x + element.totalwidth > this.maxWidth)
-							{
-								this.DrawCurrent(true, around);
-							}
-							else
-							{
-								this.x += element.totalwidth;
-								this.sb.Append(this.node.d_text[num2++]);
-							}
-						}
-						else
-						{
-							int j = 0;
-							while (j < element.widths.Count)
-							{
-								if (this.x != 0f && this.x + element.widths[j] > this.maxWidth)
-								{
-									this.DrawCurrent(true, around);
-								}
-								else
-								{
-									this.x += element.widths[j];
-									this.sb.Append(this.node.d_text[num2++]);
-									j++;
-								}
-							}
-						}
+						x += element.totalwidth;
+						sb.Append(node.d_text[num++]);
+						continue;
 					}
-					else if (!around.isContain(this.x, this.pt.y, totalwidth, this.fHeight, out num3))
+					int num2 = 0;
+					while (num2 < element.widths.Count)
 					{
-						this.DrawCurrent(false, around);
-						this.x = num3;
-						this.pt.x = num3;
-						i--;
-					}
-					else
-					{
-						int count = element.count;
-						this.sb.Append(this.node.d_text.Substring(num2, count));
-						num2 += count;
-						this.x += totalwidth;
+						if (x != 0f && x + element.widths[num2] > maxWidth)
+						{
+							DrawCurrent(isnewLine: true, around);
+							continue;
+						}
+						x += element.widths[num2];
+						sb.Append(node.d_text[num++]);
+						num2++;
 					}
 				}
-				if (this.sb.Length != 0)
+				else if (!around.isContain(x, pt.y, totalwidth, fHeight, out ox))
 				{
-					this.DrawCurrent(false, around);
+					DrawCurrent(isnewLine: false, around);
+					x = ox;
+					pt.x = ox;
+					j--;
 				}
-				if (this.node.d_bNewLine)
+				else
 				{
-					this.yline += 1U;
-					this.x = 0f;
+					int count = element.count;
+					sb.Append(node.d_text.Substring(num, count));
+					num += count;
+					x += totalwidth;
 				}
 			}
-
-			// Token: 0x04006E19 RID: 28185
-			public RenderCache cache;
-
-			// Token: 0x04006E1A RID: 28186
-			public float x;
-
-			// Token: 0x04006E1B RID: 28187
-			public uint yline;
-
-			// Token: 0x04006E1C RID: 28188
-			public List<Line> lines;
-
-			// Token: 0x04006E1D RID: 28189
-			public Anchor xFormatting;
-
-			// Token: 0x04006E1E RID: 28190
-			public float offsetX;
-
-			// Token: 0x04006E1F RID: 28191
-			public float offsetY;
-
-			// Token: 0x04006E20 RID: 28192
-			public StringBuilder sb;
-
-			// Token: 0x04006E21 RID: 28193
-			public float pixelsPerUnit;
-
-			// Token: 0x04006E22 RID: 28194
-			private Vector2 pt;
-
-			// Token: 0x04006E23 RID: 28195
-			private float alignedX;
-
-			// Token: 0x04006E24 RID: 28196
-			private TextNode node;
-
-			// Token: 0x04006E25 RID: 28197
-			private float maxWidth;
-
-			// Token: 0x04006E26 RID: 28198
-			private float fHeight;
+			if (sb.Length != 0)
+			{
+				DrawCurrent(isnewLine: false, around);
+			}
+			if (node.d_bNewLine)
+			{
+				yline++;
+				x = 0f;
+			}
 		}
+	}
+
+	private Vector2 size = Vector2.zero;
+
+	private List<Element> d_widthList = new List<Element>();
+
+	public string d_text;
+
+	public Font d_font;
+
+	public int d_fontSize;
+
+	public FontStyle d_fontStyle;
+
+	public bool d_bUnderline;
+
+	public bool d_bStrickout;
+
+	public bool d_bDynUnderline;
+
+	public bool d_bDynStrickout;
+
+	public int d_dynSpeed;
+
+	public EffectType effectType;
+
+	public Color effectColor;
+
+	public Vector2 effectDistance;
+
+	public virtual Color currentColor => d_color;
+
+	public new long keyPrefix
+	{
+		get
+		{
+			long num = base.keyPrefix;
+			if (d_bDynStrickout)
+			{
+				num += 8192;
+			}
+			if (d_bDynUnderline)
+			{
+				num += 8192;
+			}
+			return num;
+		}
+	}
+
+	public bool isFontSame(TextNode n)
+	{
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)d_font == (Object)(object)n.d_font && d_fontSize == n.d_fontSize && d_fontStyle == n.d_fontStyle)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public override void Reset(Owner o, Anchor hf)
+	{
+		base.Reset(o, hf);
+		d_font = null;
+		d_bUnderline = false;
+		d_bStrickout = false;
+	}
+
+	protected virtual bool isUnderLine()
+	{
+		return d_bUnderline;
+	}
+
+	public override float getHeight()
+	{
+		return size.y;
+	}
+
+	public override float getWidth()
+	{
+		return size.x;
+	}
+
+	protected override void UpdateWidthList(out List<Element> widths, float pixelsPerUnit)
+	{
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		widths = d_widthList;
+		d_widthList.Clear();
+		if (d_text.Length == 0)
+		{
+			return;
+		}
+		float unitsPerPixel = 1f / pixelsPerUnit;
+		int fontsize = (int)((float)d_fontSize * pixelsPerUnit);
+		size.x = 0f;
+		size.y = (float)FontCache.GetLineHeight(d_font, fontsize, d_fontStyle) * unitsPerPixel;
+		Func<char, float> func = (char code) => (float)FontCache.GetAdvance(d_font, fontsize, d_fontStyle, code) * unitsPerPixel;
+		ElementSegment elementSegment = owner.elementSegment;
+		if (elementSegment == null)
+		{
+			for (int i = 0; i < d_text.Length; i++)
+			{
+				Element item = new Element(func(d_text[i]));
+				widths.Add(item);
+			}
+		}
+		else
+		{
+			elementSegment.Segment(d_text, widths, func);
+		}
+		for (int j = 0; j < d_widthList.Count; j++)
+		{
+			size.x += d_widthList[j].totalwidth;
+		}
+	}
+
+	public virtual bool IsHyText()
+	{
+		return false;
+	}
+
+	public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
+	{
+		if ((Object)(object)d_font == (Object)null)
+		{
+			return;
+		}
+		PD<StringBuilder> sB = Pool.GetSB();
+		try
+		{
+			Helper helper = new Helper(maxWidth, cache, x, yline, lines, formatting, offsetX, offsetY, sB.value);
+			helper.Draw(this);
+			x = helper.x;
+			yline = helper.yline;
+		}
+		finally
+		{
+			((IDisposable)sB).Dispose();
+		}
+	}
+
+	public override void SetConfig(TextParser.Config c)
+	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		base.SetConfig(c);
+		d_font = c.font;
+		d_bUnderline = c.isUnderline;
+		d_fontSize = c.fontSize;
+		d_fontStyle = c.fontStyle;
+		d_bStrickout = c.isStrickout;
+		d_bDynUnderline = c.isDyncUnderline;
+		d_bDynStrickout = c.isDyncStrickout;
+		d_dynSpeed = c.dyncSpeed;
+		effectType = c.effectType;
+		effectColor = c.effectColor;
+		effectDistance = c.effectDistance;
+	}
+
+	public void GetLineCharacterInfo(out CharacterInfo info)
+	{
+		if (!d_font.GetCharacterInfo('_', ref info, 20, (FontStyle)1))
+		{
+			d_font.RequestCharactersInTexture("_", 20, (FontStyle)1);
+			d_font.GetCharacterInfo('_', ref info, 20, (FontStyle)1);
+		}
+	}
+
+	public override void Release()
+	{
+		base.Release();
+		d_text = null;
+		d_font = null;
+		d_fontSize = 0;
+		d_bUnderline = false;
+		d_bDynUnderline = false;
+		d_bDynStrickout = false;
+		d_dynSpeed = 0;
 	}
 }

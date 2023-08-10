@@ -1,72 +1,62 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class SkillDatebase : MonoBehaviour
 {
-	// Token: 0x02000A6C RID: 2668
-	public class SkillDatebase : MonoBehaviour
+	public static SkillDatebase instence;
+
+	public List<Skill> skills = new List<Skill>();
+
+	public Dictionary<int, Skill> dicSkills = new Dictionary<int, Skill>();
+
+	public Dictionary<int, Dictionary<int, Skill>> Dict = new Dictionary<int, Dictionary<int, Skill>>();
+
+	public void Awake()
 	{
-		// Token: 0x06004AF9 RID: 19193 RVA: 0x001FE789 File Offset: 0x001FC989
-		public void Awake()
-		{
-			SkillDatebase.instence = this;
-		}
+		instence = this;
+	}
 
-		// Token: 0x06004AFA RID: 19194 RVA: 0x001FE791 File Offset: 0x001FC991
-		private void OnDestroy()
-		{
-			SkillDatebase.instence = null;
-		}
+	private void OnDestroy()
+	{
+		instence = null;
+	}
 
-		// Token: 0x06004AFB RID: 19195 RVA: 0x001FE799 File Offset: 0x001FC999
-		public void Preload(int taskID)
+	public void Preload(int taskID)
+	{
+		Loom.RunAsync(delegate
 		{
-			Loom.RunAsync(delegate
+			LoadAsync(taskID);
+		});
+	}
+
+	public void LoadAsync(int taskID)
+	{
+		try
+		{
+			foreach (JSONObject item in jsonData.instance._skillJsonData.list)
 			{
-				this.LoadAsync(taskID);
-			});
-		}
-
-		// Token: 0x06004AFC RID: 19196 RVA: 0x001FE7C0 File Offset: 0x001FC9C0
-		public void LoadAsync(int taskID)
-		{
-			try
-			{
-				foreach (JSONObject jsonobject in jsonData.instance._skillJsonData.list)
+				Skill skill = new Skill(item["id"].I, 0, 10);
+				skills.Add(skill);
+				dicSkills.Add(item["id"].I, skill);
+				if (!Dict.ContainsKey(skill.SkillID))
 				{
-					Skill skill = new Skill(jsonobject["id"].I, 0, 10);
-					this.skills.Add(skill);
-					this.dicSkills.Add(jsonobject["id"].I, skill);
-					if (!this.Dict.ContainsKey(skill.SkillID))
-					{
-						this.Dict.Add(skill.SkillID, new Dictionary<int, Skill>());
-					}
-					if (!this.Dict[skill.SkillID].ContainsKey(skill.Skill_Lv))
-					{
-						this.Dict[skill.SkillID].TryAdd(skill.Skill_Lv, skill, "");
-					}
+					Dict.Add(skill.SkillID, new Dictionary<int, Skill>());
 				}
-				PreloadManager.Inst.TaskDone(taskID);
+				if (!Dict[skill.SkillID].ContainsKey(skill.Skill_Lv))
+				{
+					ToolsEx.TryAdd(Dict[skill.SkillID], skill.Skill_Lv, skill);
+				}
 			}
-			catch (Exception arg)
-			{
-				PreloadManager.IsException = true;
-				PreloadManager.ExceptionData += string.Format("{0}\n", arg);
-				PreloadManager.Inst.TaskDone(taskID);
-			}
+			PreloadManager.Inst.TaskDone(taskID);
 		}
-
-		// Token: 0x04004A22 RID: 18978
-		public static SkillDatebase instence;
-
-		// Token: 0x04004A23 RID: 18979
-		public List<Skill> skills = new List<Skill>();
-
-		// Token: 0x04004A24 RID: 18980
-		public Dictionary<int, Skill> dicSkills = new Dictionary<int, Skill>();
-
-		// Token: 0x04004A25 RID: 18981
-		public Dictionary<int, Dictionary<int, Skill>> Dict = new Dictionary<int, Dictionary<int, Skill>>();
+		catch (Exception arg)
+		{
+			PreloadManager.IsException = true;
+			PreloadManager.ExceptionData += $"{arg}\n";
+			PreloadManager.Inst.TaskDone(taskID);
+		}
 	}
 }

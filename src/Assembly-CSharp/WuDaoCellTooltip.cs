@@ -1,120 +1,97 @@
-﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200050C RID: 1292
 public class WuDaoCellTooltip : MonoBehaviour
 {
-	// Token: 0x0600298A RID: 10634 RVA: 0x00004095 File Offset: 0x00002295
+	public int ID;
+
+	public TooltipItem tooltipItem;
+
+	public Text title;
+
+	public Text desc;
+
+	public Text seid;
+
+	public Text castText;
+
+	public Text qianzhiTemp;
+
+	public GameObject ContentParent;
+
+	public Image bgImage;
+
+	public UnityAction action;
+
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600298B RID: 10635 RVA: 0x0013D678 File Offset: 0x0013B878
 	public void open(int _id, Image icon)
 	{
-		base.gameObject.SetActive(true);
-		this.tooltipItem.Clear();
-		this.tooltipItem.wudao.SetActive(true);
-		if (this.tooltipItem.Slot != null)
+		((Component)this).gameObject.SetActive(true);
+		tooltipItem.Clear();
+		tooltipItem.wudao.SetActive(true);
+		if ((Object)(object)tooltipItem.Slot != (Object)null)
 		{
-			this.tooltipItem.Slot.SetActive(false);
+			tooltipItem.Slot.SetActive(false);
 		}
-		this.tooltipItem.wudao_Icon.sprite2D = icon.sprite;
-		this.ID = _id;
-		JSONObject jsonobject = jsonData.instance.WuDaoJson[_id.ToString()];
-		this.tooltipItem.Label4.text = "[ff744d]" + Tools.Code64(jsonobject["name"].str) + "[-]";
-		this.tooltipItem.Label5.text = "";
-		this.tooltipItem.pingji.SetActive(false);
-		this.tooltipItem.Label1.text = "[E0DDB4]" + Tools.Code64(jsonobject["xiaoguo"].str) + "[-]";
+		tooltipItem.wudao_Icon.sprite2D = icon.sprite;
+		ID = _id;
+		JSONObject jSONObject = jsonData.instance.WuDaoJson[_id.ToString()];
+		tooltipItem.Label4.text = "[ff744d]" + Tools.Code64(jSONObject["name"].str) + "[-]";
+		tooltipItem.Label5.text = "";
+		tooltipItem.pingji.SetActive(false);
+		tooltipItem.Label1.text = "[E0DDB4]" + Tools.Code64(jSONObject["xiaoguo"].str) + "[-]";
 		string text = "";
-		for (int i = 0; i < jsonobject["Type"].Count; i++)
+		for (int i = 0; i < jSONObject["Type"].Count; i++)
 		{
-			text += Tools.Code64(jsonData.instance.WuDaoAllTypeJson[jsonobject["Type"][i].I.ToString()]["name"].str);
-			if (i < jsonobject["Type"].Count - 1)
+			text += Tools.Code64(jsonData.instance.WuDaoAllTypeJson[jSONObject["Type"][i].I.ToString()]["name"].str);
+			if (i < jSONObject["Type"].Count - 1)
 			{
 				text += ",";
 			}
 		}
-		string text2 = Tools.Code64(jsonData.instance.WuDaoJinJieJson[jsonobject["Lv"].I.ToString()]["Text"].str);
-		this.tooltipItem.DownBtn.GetComponent<UIButton>().onClick.Clear();
-		this.tooltipItem.DownBtn.GetComponent<UIButton>().onClick.Add(new EventDelegate(new EventDelegate.Callback(this.Btn)));
-		this.tooltipItem.DownBtn.GetComponentInChildren<UILabel>().text = "感悟";
-		this.tooltipItem.DownBtn.SetActive(true);
-		this.tooltipItem.wuDaoCast.gameObject.SetActive(true);
-		this.tooltipItem.wudaoYaoQiu.gameObject.SetActive(true);
-		this.tooltipItem.setCenterTextTitle("[FDE52B]需求点数：[-]" + jsonobject["Cast"].I, "", "[FDE52B]领悟条件：[-]对" + text + "之道的感悟达到" + text2);
-		this.tooltipItem.Label7.gameObject.SetActive(false);
-		this.tooltipItem.Label8.gameObject.SetActive(false);
-		this.tooltipItem.Label9.gameObject.SetActive(false);
-		this.tooltipItem.CenterText1.gameObject.SetActive(false);
-		this.tooltipItem.CenterText2.gameObject.SetActive(false);
-		this.tooltipItem.CenterText3.gameObject.SetActive(false);
-		this.tooltipItem.wuDaoCast.text = "[ffb143]【需求点数】[-][E0DDB4]" + jsonobject["Cast"].I + "[-]";
-		this.tooltipItem.wudaoYaoQiu.text = string.Concat(new string[]
-		{
-			"[ffb143]【领悟条件】[-][E0DDB4]对",
-			text,
-			"之道的感悟达到",
-			text2,
-			"[-]"
-		});
-		this.tooltipItem.Label2.text = "[bfba7d]" + Tools.Code64(jsonobject["desc"].str) + "[-]";
-		this.tooltipItem.showTooltip = true;
-		this.tooltipItem.showType = 3;
+		string text2 = Tools.Code64(jsonData.instance.WuDaoJinJieJson[jSONObject["Lv"].I.ToString()]["Text"].str);
+		tooltipItem.DownBtn.GetComponent<UIButton>().onClick.Clear();
+		tooltipItem.DownBtn.GetComponent<UIButton>().onClick.Add(new EventDelegate(Btn));
+		tooltipItem.DownBtn.GetComponentInChildren<UILabel>().text = "感悟";
+		tooltipItem.DownBtn.SetActive(true);
+		((Component)tooltipItem.wuDaoCast).gameObject.SetActive(true);
+		((Component)tooltipItem.wudaoYaoQiu).gameObject.SetActive(true);
+		tooltipItem.setCenterTextTitle("[FDE52B]需求点数：[-]" + jSONObject["Cast"].I, "", "[FDE52B]领悟条件：[-]对" + text + "之道的感悟达到" + text2);
+		((Component)tooltipItem.Label7).gameObject.SetActive(false);
+		((Component)tooltipItem.Label8).gameObject.SetActive(false);
+		((Component)tooltipItem.Label9).gameObject.SetActive(false);
+		((Component)tooltipItem.CenterText1).gameObject.SetActive(false);
+		((Component)tooltipItem.CenterText2).gameObject.SetActive(false);
+		((Component)tooltipItem.CenterText3).gameObject.SetActive(false);
+		tooltipItem.wuDaoCast.text = "[ffb143]【需求点数】[-][E0DDB4]" + jSONObject["Cast"].I + "[-]";
+		tooltipItem.wudaoYaoQiu.text = "[ffb143]【领悟条件】[-][E0DDB4]对" + text + "之道的感悟达到" + text2 + "[-]";
+		tooltipItem.Label2.text = "[bfba7d]" + Tools.Code64(jSONObject["desc"].str) + "[-]";
+		tooltipItem.showTooltip = true;
+		tooltipItem.showType = 3;
 	}
 
-	// Token: 0x0600298C RID: 10636 RVA: 0x0013DA79 File Offset: 0x0013BC79
 	private void Update()
 	{
-		this.bgImage.rectTransform.sizeDelta = this.ContentParent.GetComponent<RectTransform>().sizeDelta;
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		((Graphic)bgImage).rectTransform.sizeDelta = ContentParent.GetComponent<RectTransform>().sizeDelta;
 	}
 
-	// Token: 0x0600298D RID: 10637 RVA: 0x0013DA9B File Offset: 0x0013BC9B
 	public void close()
 	{
-		base.gameObject.SetActive(false);
-		this.tooltipItem.showTooltip = false;
+		((Component)this).gameObject.SetActive(false);
+		tooltipItem.showTooltip = false;
 	}
 
-	// Token: 0x0600298E RID: 10638 RVA: 0x0013DAB5 File Offset: 0x0013BCB5
 	public void Btn()
 	{
-		if (this.action != null)
+		if (action != null)
 		{
-			this.action.Invoke();
+			action.Invoke();
 		}
-		this.close();
+		close();
 	}
-
-	// Token: 0x040025E6 RID: 9702
-	public int ID;
-
-	// Token: 0x040025E7 RID: 9703
-	public TooltipItem tooltipItem;
-
-	// Token: 0x040025E8 RID: 9704
-	public Text title;
-
-	// Token: 0x040025E9 RID: 9705
-	public Text desc;
-
-	// Token: 0x040025EA RID: 9706
-	public Text seid;
-
-	// Token: 0x040025EB RID: 9707
-	public Text castText;
-
-	// Token: 0x040025EC RID: 9708
-	public Text qianzhiTemp;
-
-	// Token: 0x040025ED RID: 9709
-	public GameObject ContentParent;
-
-	// Token: 0x040025EE RID: 9710
-	public Image bgImage;
-
-	// Token: 0x040025EF RID: 9711
-	public UnityAction action;
 }

@@ -1,97 +1,97 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x0200005B RID: 91
 [AddComponentMenu("NGUI/Interaction/Button Scale")]
 public class UIButtonScale : MonoBehaviour
 {
-	// Token: 0x060004C4 RID: 1220 RVA: 0x00019FF1 File Offset: 0x000181F1
-	private void Start()
-	{
-		if (!this.mStarted)
-		{
-			this.mStarted = true;
-			if (this.tweenTarget == null)
-			{
-				this.tweenTarget = base.transform;
-			}
-			this.mScale = this.tweenTarget.localScale;
-		}
-	}
-
-	// Token: 0x060004C5 RID: 1221 RVA: 0x0001A02D File Offset: 0x0001822D
-	private void OnEnable()
-	{
-		if (this.mStarted)
-		{
-			this.OnHover(UICamera.IsHighlighted(base.gameObject));
-		}
-	}
-
-	// Token: 0x060004C6 RID: 1222 RVA: 0x0001A048 File Offset: 0x00018248
-	private void OnDisable()
-	{
-		if (this.mStarted && this.tweenTarget != null)
-		{
-			TweenScale component = this.tweenTarget.GetComponent<TweenScale>();
-			if (component != null)
-			{
-				component.value = this.mScale;
-				component.enabled = false;
-			}
-		}
-	}
-
-	// Token: 0x060004C7 RID: 1223 RVA: 0x0001A094 File Offset: 0x00018294
-	private void OnPress(bool isPressed)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenScale.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? Vector3.Scale(this.mScale, this.pressed) : (UICamera.IsHighlighted(base.gameObject) ? Vector3.Scale(this.mScale, this.hover) : this.mScale)).method = UITweener.Method.EaseInOut;
-		}
-	}
-
-	// Token: 0x060004C8 RID: 1224 RVA: 0x0001A110 File Offset: 0x00018310
-	private void OnHover(bool isOver)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenScale.Begin(this.tweenTarget.gameObject, this.duration, isOver ? Vector3.Scale(this.mScale, this.hover) : this.mScale).method = UITweener.Method.EaseInOut;
-		}
-	}
-
-	// Token: 0x060004C9 RID: 1225 RVA: 0x0001A16B File Offset: 0x0001836B
-	private void OnSelect(bool isSelected)
-	{
-		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
-		{
-			this.OnHover(isSelected);
-		}
-	}
-
-	// Token: 0x040002E6 RID: 742
 	public Transform tweenTarget;
 
-	// Token: 0x040002E7 RID: 743
 	public Vector3 hover = new Vector3(1.1f, 1.1f, 1.1f);
 
-	// Token: 0x040002E8 RID: 744
 	public Vector3 pressed = new Vector3(1.05f, 1.05f, 1.05f);
 
-	// Token: 0x040002E9 RID: 745
 	public float duration = 0.2f;
 
-	// Token: 0x040002EA RID: 746
 	private Vector3 mScale;
 
-	// Token: 0x040002EB RID: 747
 	private bool mStarted;
+
+	private void Start()
+	{
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		if (!mStarted)
+		{
+			mStarted = true;
+			if ((Object)(object)tweenTarget == (Object)null)
+			{
+				tweenTarget = ((Component)this).transform;
+			}
+			mScale = tweenTarget.localScale;
+		}
+	}
+
+	private void OnEnable()
+	{
+		if (mStarted)
+		{
+			OnHover(UICamera.IsHighlighted(((Component)this).gameObject));
+		}
+	}
+
+	private void OnDisable()
+	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		if (mStarted && (Object)(object)tweenTarget != (Object)null)
+		{
+			TweenScale component = ((Component)tweenTarget).GetComponent<TweenScale>();
+			if ((Object)(object)component != (Object)null)
+			{
+				component.value = mScale;
+				((Behaviour)component).enabled = false;
+			}
+		}
+	}
+
+	private void OnPress(bool isPressed)
+	{
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
+		if (((Behaviour)this).enabled)
+		{
+			if (!mStarted)
+			{
+				Start();
+			}
+			TweenScale.Begin(((Component)tweenTarget).gameObject, duration, isPressed ? Vector3.Scale(mScale, pressed) : (UICamera.IsHighlighted(((Component)this).gameObject) ? Vector3.Scale(mScale, hover) : mScale)).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
+		if (((Behaviour)this).enabled)
+		{
+			if (!mStarted)
+			{
+				Start();
+			}
+			TweenScale.Begin(((Component)tweenTarget).gameObject, duration, isOver ? Vector3.Scale(mScale, hover) : mScale).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnSelect(bool isSelected)
+	{
+		if (((Behaviour)this).enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
+		{
+			OnHover(isSelected);
+		}
+	}
 }

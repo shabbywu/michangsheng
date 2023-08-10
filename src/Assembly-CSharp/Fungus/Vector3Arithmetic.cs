@@ -1,91 +1,95 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Vector3", "Arithmetic", "Vector3 add, sub, mul, div arithmetic", 0)]
+[AddComponentMenu("")]
+public class Vector3Arithmetic : Command
 {
-	// Token: 0x02000E59 RID: 3673
-	[CommandInfo("Vector3", "Arithmetic", "Vector3 add, sub, mul, div arithmetic", 0)]
-	[AddComponentMenu("")]
-	public class Vector3Arithmetic : Command
+	public enum Operation
 	{
-		// Token: 0x0600672D RID: 26413 RVA: 0x002899D4 File Offset: 0x00287BD4
-		public override void OnEnter()
+		Add,
+		Sub,
+		Mul,
+		Div
+	}
+
+	[SerializeField]
+	protected Vector3Data lhs;
+
+	[SerializeField]
+	protected Vector3Data rhs;
+
+	[SerializeField]
+	protected Vector3Data output;
+
+	[SerializeField]
+	protected Operation operation;
+
+	public override void OnEnter()
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 value;
+		switch (operation)
 		{
-			switch (this.operation)
-			{
-			case Vector3Arithmetic.Operation.Add:
-				this.output.Value = this.lhs.Value + this.rhs.Value;
-				break;
-			case Vector3Arithmetic.Operation.Sub:
-				this.output.Value = this.lhs.Value - this.rhs.Value;
-				break;
-			case Vector3Arithmetic.Operation.Mul:
-			{
-				Vector3 value = this.lhs.Value;
-				value.Scale(this.rhs.Value);
-				this.output.Value = value;
-				break;
-			}
-			case Vector3Arithmetic.Operation.Div:
-			{
-				Vector3 value = this.lhs.Value;
-				value.Scale(new Vector3(1f / this.rhs.Value.x, 1f / this.rhs.Value.y, 1f / this.rhs.Value.z));
-				this.output.Value = value;
-				break;
-			}
-			}
-			this.Continue();
+		case Operation.Add:
+			output.Value = lhs.Value + rhs.Value;
+			break;
+		case Operation.Sub:
+			output.Value = lhs.Value - rhs.Value;
+			break;
+		case Operation.Mul:
+			value = lhs.Value;
+			((Vector3)(ref value)).Scale(rhs.Value);
+			output.Value = value;
+			break;
+		case Operation.Div:
+			value = lhs.Value;
+			((Vector3)(ref value)).Scale(new Vector3(1f / rhs.Value.x, 1f / rhs.Value.y, 1f / rhs.Value.z));
+			output.Value = value;
+			break;
 		}
+		Continue();
+	}
 
-		// Token: 0x0600672E RID: 26414 RVA: 0x00289AF4 File Offset: 0x00287CF4
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)output.vector3Ref == (Object)null)
 		{
-			if (this.output.vector3Ref == null)
-			{
-				return "Error: no output set";
-			}
-			return this.operation.ToString() + ": stored in " + this.output.vector3Ref.Key;
+			return "Error: no output set";
 		}
+		return operation.ToString() + ": stored in " + output.vector3Ref.Key;
+	}
 
-		// Token: 0x0600672F RID: 26415 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
+	}
+
+	public override bool HasReference(Variable variable)
+	{
+		if ((Object)(object)lhs.vector3Ref == (Object)(object)variable || (Object)(object)rhs.vector3Ref == (Object)(object)variable || (Object)(object)output.vector3Ref == (Object)(object)variable)
 		{
-			return new Color32(235, 191, 217, byte.MaxValue);
+			return true;
 		}
-
-		// Token: 0x06006730 RID: 26416 RVA: 0x00289B45 File Offset: 0x00287D45
-		public override bool HasReference(Variable variable)
-		{
-			return this.lhs.vector3Ref == variable || this.rhs.vector3Ref == variable || this.output.vector3Ref == variable;
-		}
-
-		// Token: 0x04005846 RID: 22598
-		[SerializeField]
-		protected Vector3Data lhs;
-
-		// Token: 0x04005847 RID: 22599
-		[SerializeField]
-		protected Vector3Data rhs;
-
-		// Token: 0x04005848 RID: 22600
-		[SerializeField]
-		protected Vector3Data output;
-
-		// Token: 0x04005849 RID: 22601
-		[SerializeField]
-		protected Vector3Arithmetic.Operation operation;
-
-		// Token: 0x020016C7 RID: 5831
-		public enum Operation
-		{
-			// Token: 0x040073B3 RID: 29619
-			Add,
-			// Token: 0x040073B4 RID: 29620
-			Sub,
-			// Token: 0x040073B5 RID: 29621
-			Mul,
-			// Token: 0x040073B6 RID: 29622
-			Div
-		}
+		return false;
 	}
 }

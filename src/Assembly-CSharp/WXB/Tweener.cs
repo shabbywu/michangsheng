@@ -1,206 +1,164 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace WXB
+namespace WXB;
+
+public class Tweener
 {
-	// Token: 0x020006A4 RID: 1700
-	public class Tweener
+	public enum Method
 	{
-		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x060035AD RID: 13741 RVA: 0x001719B8 File Offset: 0x0016FBB8
-		public float amountPerDelta
+		Linear,
+		EaseIn,
+		EaseOut,
+		EaseInOut,
+		BounceIn,
+		BounceOut
+	}
+
+	public enum Style
+	{
+		Once,
+		Loop,
+		PingPong
+	}
+
+	public Method method;
+
+	public Style style;
+
+	public float duration = 1f;
+
+	private float mDuration;
+
+	private float mAmountPerDelta = 1000f;
+
+	private float mFactor;
+
+	public Action<float, bool> OnUpdate;
+
+	public float amountPerDelta
+	{
+		get
 		{
-			get
+			if (duration == 0f)
 			{
-				if (this.duration == 0f)
-				{
-					return 1000f;
-				}
-				if (this.mDuration != this.duration)
-				{
-					this.mDuration = this.duration;
-					this.mAmountPerDelta = Mathf.Abs(1f / this.duration) * Mathf.Sign(this.mAmountPerDelta);
-				}
-				return this.mAmountPerDelta;
+				return 1000f;
+			}
+			if (mDuration != duration)
+			{
+				mDuration = duration;
+				mAmountPerDelta = Mathf.Abs(1f / duration) * Mathf.Sign(mAmountPerDelta);
+			}
+			return mAmountPerDelta;
+		}
+	}
+
+	public float tweenFactor
+	{
+		get
+		{
+			return mFactor;
+		}
+		set
+		{
+			mFactor = Mathf.Clamp01(value);
+		}
+	}
+
+	public void Update(float delta)
+	{
+		mFactor += ((duration == 0f) ? 1f : (amountPerDelta * delta));
+		if (style == Style.Loop)
+		{
+			if (mFactor > 1f)
+			{
+				mFactor -= Mathf.Floor(mFactor);
 			}
 		}
-
-		// Token: 0x170004F5 RID: 1269
-		// (get) Token: 0x060035AE RID: 13742 RVA: 0x00171A1B File Offset: 0x0016FC1B
-		// (set) Token: 0x060035AF RID: 13743 RVA: 0x00171A23 File Offset: 0x0016FC23
-		public float tweenFactor
+		else if (style == Style.PingPong)
 		{
-			get
+			if (mFactor > 1f)
 			{
-				return this.mFactor;
+				mFactor = 1f - (mFactor - Mathf.Floor(mFactor));
+				mAmountPerDelta = 0f - mAmountPerDelta;
 			}
-			set
+			else if (mFactor < 0f)
 			{
-				this.mFactor = Mathf.Clamp01(value);
+				mFactor = 0f - mFactor;
+				mFactor -= Mathf.Floor(mFactor);
+				mAmountPerDelta = 0f - mAmountPerDelta;
 			}
 		}
-
-		// Token: 0x060035B0 RID: 13744 RVA: 0x00171A34 File Offset: 0x0016FC34
-		public void Update(float delta)
+		if (style == Style.Once && (duration == 0f || mFactor > 1f || mFactor < 0f))
 		{
-			this.mFactor += ((this.duration == 0f) ? 1f : (this.amountPerDelta * delta));
-			if (this.style == Tweener.Style.Loop)
-			{
-				if (this.mFactor > 1f)
-				{
-					this.mFactor -= Mathf.Floor(this.mFactor);
-				}
-			}
-			else if (this.style == Tweener.Style.PingPong)
-			{
-				if (this.mFactor > 1f)
-				{
-					this.mFactor = 1f - (this.mFactor - Mathf.Floor(this.mFactor));
-					this.mAmountPerDelta = -this.mAmountPerDelta;
-				}
-				else if (this.mFactor < 0f)
-				{
-					this.mFactor = -this.mFactor;
-					this.mFactor -= Mathf.Floor(this.mFactor);
-					this.mAmountPerDelta = -this.mAmountPerDelta;
-				}
-			}
-			if (this.style == Tweener.Style.Once && (this.duration == 0f || this.mFactor > 1f || this.mFactor < 0f))
-			{
-				this.mFactor = Mathf.Clamp01(this.mFactor);
-				this.Sample(this.mFactor, true);
-				return;
-			}
-			this.Sample(this.mFactor, false);
+			mFactor = Mathf.Clamp01(mFactor);
+			Sample(mFactor, isFinished: true);
 		}
-
-		// Token: 0x060035B1 RID: 13745 RVA: 0x00171B80 File Offset: 0x0016FD80
-		public void Sample(float factor, bool isFinished)
+		else
 		{
-			float num = Mathf.Clamp01(factor);
-			if (this.method == Tweener.Method.EaseIn)
-			{
-				num = 1f - Mathf.Sin(1.5707964f * (1f - num));
-			}
-			else if (this.method == Tweener.Method.EaseOut)
-			{
-				num = Mathf.Sin(1.5707964f * num);
-			}
-			else if (this.method == Tweener.Method.EaseInOut)
-			{
-				num -= Mathf.Sin(num * 6.2831855f) / 6.2831855f;
-			}
-			else if (this.method == Tweener.Method.BounceIn)
-			{
-				num = this.BounceLogic(num);
-			}
-			else if (this.method == Tweener.Method.BounceOut)
-			{
-				num = 1f - this.BounceLogic(1f - num);
-			}
-			if (this.OnUpdate != null)
-			{
-				this.OnUpdate(num, isFinished);
-			}
+			Sample(mFactor, isFinished: false);
 		}
+	}
 
-		// Token: 0x060035B2 RID: 13746 RVA: 0x00171C38 File Offset: 0x0016FE38
-		private float BounceLogic(float val)
+	public void Sample(float factor, bool isFinished)
+	{
+		float num = Mathf.Clamp01(factor);
+		if (method == Method.EaseIn)
 		{
-			if (val < 0.363636f)
-			{
-				val = 7.5685f * val * val;
-			}
-			else if (val < 0.727272f)
-			{
-				val = 7.5625f * (val -= 0.545454f) * val + 0.75f;
-			}
-			else if (val < 0.90909f)
-			{
-				val = 7.5625f * (val -= 0.818181f) * val + 0.9375f;
-			}
-			else
-			{
-				val = 7.5625f * (val -= 0.9545454f) * val + 0.984375f;
-			}
-			return val;
+			num = 1f - Mathf.Sin((float)Math.PI / 2f * (1f - num));
 		}
-
-		// Token: 0x060035B3 RID: 13747 RVA: 0x00171CBD File Offset: 0x0016FEBD
-		public void Play(bool forward)
+		else if (method == Method.EaseOut)
 		{
-			this.mAmountPerDelta = Mathf.Abs(this.amountPerDelta);
-			if (!forward)
-			{
-				this.mAmountPerDelta = -this.mAmountPerDelta;
-			}
+			num = Mathf.Sin((float)Math.PI / 2f * num);
 		}
-
-		// Token: 0x060035B4 RID: 13748 RVA: 0x00171CE0 File Offset: 0x0016FEE0
-		public void ResetToBeginning()
+		else if (method == Method.EaseInOut)
 		{
-			this.mFactor = ((this.amountPerDelta < 0f) ? 1f : 0f);
-			this.Sample(this.mFactor, false);
+			num -= Mathf.Sin(num * ((float)Math.PI * 2f)) / ((float)Math.PI * 2f);
 		}
-
-		// Token: 0x060035B5 RID: 13749 RVA: 0x00171D0E File Offset: 0x0016FF0E
-		public void Toggle()
+		else if (method == Method.BounceIn)
 		{
-			if (this.mFactor > 0f)
-			{
-				this.mAmountPerDelta = -this.amountPerDelta;
-				return;
-			}
-			this.mAmountPerDelta = Mathf.Abs(this.amountPerDelta);
+			num = BounceLogic(num);
 		}
-
-		// Token: 0x04002F15 RID: 12053
-		public Tweener.Method method;
-
-		// Token: 0x04002F16 RID: 12054
-		public Tweener.Style style;
-
-		// Token: 0x04002F17 RID: 12055
-		public float duration = 1f;
-
-		// Token: 0x04002F18 RID: 12056
-		private float mDuration;
-
-		// Token: 0x04002F19 RID: 12057
-		private float mAmountPerDelta = 1000f;
-
-		// Token: 0x04002F1A RID: 12058
-		private float mFactor;
-
-		// Token: 0x04002F1B RID: 12059
-		public Action<float, bool> OnUpdate;
-
-		// Token: 0x020014FF RID: 5375
-		public enum Method
+		else if (method == Method.BounceOut)
 		{
-			// Token: 0x04006DFE RID: 28158
-			Linear,
-			// Token: 0x04006DFF RID: 28159
-			EaseIn,
-			// Token: 0x04006E00 RID: 28160
-			EaseOut,
-			// Token: 0x04006E01 RID: 28161
-			EaseInOut,
-			// Token: 0x04006E02 RID: 28162
-			BounceIn,
-			// Token: 0x04006E03 RID: 28163
-			BounceOut
+			num = 1f - BounceLogic(1f - num);
 		}
-
-		// Token: 0x02001500 RID: 5376
-		public enum Style
+		if (OnUpdate != null)
 		{
-			// Token: 0x04006E05 RID: 28165
-			Once,
-			// Token: 0x04006E06 RID: 28166
-			Loop,
-			// Token: 0x04006E07 RID: 28167
-			PingPong
+			OnUpdate(num, isFinished);
+		}
+	}
+
+	private float BounceLogic(float val)
+	{
+		val = ((val < 0.363636f) ? (7.5685f * val * val) : ((val < 0.727272f) ? (7.5625f * (val -= 0.545454f) * val + 0.75f) : ((!(val < 0.90909f)) ? (7.5625f * (val -= 0.9545454f) * val + 63f / 64f) : (7.5625f * (val -= 0.818181f) * val + 0.9375f))));
+		return val;
+	}
+
+	public void Play(bool forward)
+	{
+		mAmountPerDelta = Mathf.Abs(amountPerDelta);
+		if (!forward)
+		{
+			mAmountPerDelta = 0f - mAmountPerDelta;
+		}
+	}
+
+	public void ResetToBeginning()
+	{
+		mFactor = ((amountPerDelta < 0f) ? 1f : 0f);
+		Sample(mFactor, isFinished: false);
+	}
+
+	public void Toggle()
+	{
+		if (mFactor > 0f)
+		{
+			mAmountPerDelta = 0f - amountPerDelta;
+		}
+		else
+		{
+			mAmountPerDelta = Mathf.Abs(amountPerDelta);
 		}
 	}
 }

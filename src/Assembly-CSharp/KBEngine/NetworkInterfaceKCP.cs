@@ -1,226 +1,193 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Deps;
 
-namespace KBEngine
+namespace KBEngine;
+
+public class NetworkInterfaceKCP : NetworkInterfaceBase
 {
-	// Token: 0x02000C51 RID: 3153
-	public class NetworkInterfaceKCP : NetworkInterfaceBase
+	private KCP kcp_;
+
+	public uint connID;
+
+	public uint nextTickKcpUpdate;
+
+	public EndPoint remoteEndPint;
+
+	protected override Socket createSocket()
 	{
-		// Token: 0x06005594 RID: 21908 RVA: 0x0023923A File Offset: 0x0023743A
-		protected override Socket createSocket()
-		{
-			return new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-		}
+		return new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+	}
 
-		// Token: 0x06005595 RID: 21909 RVA: 0x00239245 File Offset: 0x00237445
-		protected override PacketReceiverBase createPacketReceiver()
-		{
-			return new PacketReceiverKCP(this);
-		}
+	protected override PacketReceiverBase createPacketReceiver()
+	{
+		return new PacketReceiverKCP(this);
+	}
 
-		// Token: 0x06005596 RID: 21910 RVA: 0x0023924D File Offset: 0x0023744D
-		protected override PacketSenderBase createPacketSender()
-		{
-			return new PacketSenderKCP(this);
-		}
+	protected override PacketSenderBase createPacketSender()
+	{
+		return new PacketSenderKCP(this);
+	}
 
-		// Token: 0x06005597 RID: 21911 RVA: 0x00239255 File Offset: 0x00237455
-		public override void reset()
-		{
-			this.finiKCP();
-			base.reset();
-		}
+	public override void reset()
+	{
+		finiKCP();
+		base.reset();
+	}
 
-		// Token: 0x06005598 RID: 21912 RVA: 0x00239264 File Offset: 0x00237464
-		public override void close()
-		{
-			this.finiKCP();
-			base.close();
-		}
+	public override void close()
+	{
+		finiKCP();
+		base.close();
+	}
 
-		// Token: 0x06005599 RID: 21913 RVA: 0x00239273 File Offset: 0x00237473
-		public override bool valid()
+	public override bool valid()
+	{
+		if (kcp_ != null && _socket != null)
 		{
-			return this.kcp_ != null && this._socket != null && this.connected;
+			return connected;
 		}
+		return false;
+	}
 
-		// Token: 0x0600559A RID: 21914 RVA: 0x0023928D File Offset: 0x0023748D
-		protected void outputKCP(byte[] data, int size, object userData)
+	protected void outputKCP(byte[] data, int size, object userData)
+	{
+		if (!valid())
 		{
-			if (!this.valid())
-			{
-				throw new ArgumentException("invalid socket!");
-			}
-			if (this._packetSender == null)
-			{
-				this._packetSender = this.createPacketSender();
-			}
-			((PacketSenderKCP)this._packetSender).sendto(data, size);
+			throw new ArgumentException("invalid socket!");
 		}
-
-		// Token: 0x0600559B RID: 21915 RVA: 0x002392CC File Offset: 0x002374CC
-		private bool initKCP()
+		if (_packetSender == null)
 		{
-			this.kcp_ = new KCP(this.connID, this);
-			this.kcp_.SetOutput(new KCP.OutputDelegate(this.outputKCP));
-			this.kcp_.SetMTU(1400);
-			this.kcp_.WndSize(KBEngineApp.app.getInitArgs().getUDPSendBufferSize(), KBEngineApp.app.getInitArgs().getUDPRecvBufferSize());
-			this.kcp_.NoDelay(1, 10, 2, 1);
-			this.kcp_.SetMinRTO(10);
-			this.nextTickKcpUpdate = 0U;
-			return true;
+			_packetSender = createPacketSender();
 		}
+		((PacketSenderKCP)_packetSender).sendto(data, size);
+	}
 
-		// Token: 0x0600559C RID: 21916 RVA: 0x00239363 File Offset: 0x00237563
-		private bool finiKCP()
+	private bool initKCP()
+	{
+		kcp_ = new KCP(connID, this);
+		kcp_.SetOutput(outputKCP);
+		kcp_.SetMTU(1400);
+		kcp_.WndSize(KBEngineApp.app.getInitArgs().getUDPSendBufferSize(), KBEngineApp.app.getInitArgs().getUDPRecvBufferSize());
+		kcp_.NoDelay(1, 10, 2, 1);
+		kcp_.SetMinRTO(10);
+		nextTickKcpUpdate = 0u;
+		return true;
+	}
+
+	private bool finiKCP()
+	{
+		if (kcp_ != null)
 		{
-			if (this.kcp_ != null)
-			{
-				this.kcp_.SetOutput(null);
-				this.kcp_.Release();
-				this.kcp_ = null;
-			}
-			this.remoteEndPint = null;
-			this.connID = 0U;
-			this.nextTickKcpUpdate = 0U;
-			return true;
+			kcp_.SetOutput(null);
+			kcp_.Release();
+			kcp_ = null;
 		}
+		remoteEndPint = null;
+		connID = 0u;
+		nextTickKcpUpdate = 0u;
+		return true;
+	}
 
-		// Token: 0x0600559D RID: 21917 RVA: 0x002393A1 File Offset: 0x002375A1
-		public KCP kcp()
+	public KCP kcp()
+	{
+		return kcp_;
+	}
+
+	public override bool send(MemoryStream stream)
+	{
+		if (!valid())
 		{
-			return this.kcp_;
+			throw new ArgumentException("invalid socket!");
 		}
-
-		// Token: 0x0600559E RID: 21918 RVA: 0x002393AC File Offset: 0x002375AC
-		public override bool send(MemoryStream stream)
+		if (_filter != null)
 		{
-			if (!this.valid())
-			{
-				throw new ArgumentException("invalid socket!");
-			}
-			if (this._filter != null)
-			{
-				this._filter.encrypt(stream);
-			}
-			this.nextTickKcpUpdate = 0U;
-			return this.kcp_.Send(stream.data(), stream.rpos, (int)stream.length()) >= 0;
+			_filter.encrypt(stream);
 		}
+		nextTickKcpUpdate = 0u;
+		return kcp_.Send(stream.data(), stream.rpos, (int)stream.length()) >= 0;
+	}
 
-		// Token: 0x0600559F RID: 21919 RVA: 0x0023940C File Offset: 0x0023760C
-		public override void process()
+	public override void process()
+	{
+		if (valid())
 		{
-			if (!this.valid())
-			{
-				return;
-			}
 			uint num = KCP.TimeUtils.iclock();
-			if (num >= this.nextTickKcpUpdate)
+			if (num >= nextTickKcpUpdate)
 			{
-				this.kcp_.Update(num);
-				this.nextTickKcpUpdate = this.kcp_.Check(num);
+				kcp_.Update(num);
+				nextTickKcpUpdate = kcp_.Check(num);
 			}
-			if (this._packetReceiver != null)
+			if (_packetReceiver != null)
 			{
-				this._packetReceiver.process();
+				_packetReceiver.process();
 			}
 		}
+	}
 
-		// Token: 0x060055A0 RID: 21920 RVA: 0x00239462 File Offset: 0x00237662
-		protected override void onAsyncConnectCB(NetworkInterfaceBase.ConnectState state)
+	protected override void onAsyncConnectCB(ConnectState state)
+	{
+		if (state.error.Length <= 0 && initKCP())
 		{
-			if (state.error.Length > 0 || !this.initKCP())
-			{
-				return;
-			}
-			this.connected = true;
-			this.remoteEndPint = new IPEndPoint(IPAddress.Parse(state.connectIP), state.connectPort);
+			connected = true;
+			remoteEndPint = new IPEndPoint(IPAddress.Parse(state.connectIP), state.connectPort);
 		}
+	}
 
-		// Token: 0x060055A1 RID: 21921 RVA: 0x002394A0 File Offset: 0x002376A0
-		protected override void onAsyncConnect(NetworkInterfaceBase.ConnectState state)
+	protected override void onAsyncConnect(ConnectState state)
+	{
+		try
 		{
-			try
+			byte[] bytes = Encoding.ASCII.GetBytes("62a559f3fa7748bc22f8e0766019d498");
+			state.socket.SendTo(bytes, bytes.Length, SocketFlags.None, new IPEndPoint(IPAddress.Parse(state.connectIP), state.connectPort));
+			ArrayList obj = new ArrayList { state.socket };
+			Socket.Select(obj, null, null, 3000000);
+			if (obj.Count > 0)
 			{
-				byte[] bytes = Encoding.ASCII.GetBytes("62a559f3fa7748bc22f8e0766019d498");
-				state.socket.SendTo(bytes, bytes.Length, SocketFlags.None, new IPEndPoint(IPAddress.Parse(state.connectIP), state.connectPort));
-				ArrayList arrayList = new ArrayList();
-				arrayList.Add(state.socket);
-				Socket.Select(arrayList, null, null, 3000000);
-				if (arrayList.Count > 0)
+				byte[] array = new byte[1472];
+				int num = state.socket.Receive(array);
+				if (num <= 0)
 				{
-					byte[] array = new byte[1472];
-					int num = state.socket.Receive(array);
-					if (num <= 0)
-					{
-						Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{0}:{1}'! receive hello-ack error!", state.connectIP, state.connectPort));
-						state.error = "receive hello-ack error!";
-					}
-					else
-					{
-						MemoryStream memoryStream = new MemoryStream();
-						Array.Copy(array, 0, memoryStream.data(), memoryStream.wpos, num);
-						memoryStream.wpos = num;
-						string text = memoryStream.readString();
-						string text2 = memoryStream.readString();
-						uint num2 = memoryStream.readUint32();
-						if (text != "1432ad7c829170a76dd31982c3501eca")
-						{
-							Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{0}:{1}'! receive hello-ack({2}!={3}) mismatch!", new object[]
-							{
-								state.connectIP,
-								state.connectPort,
-								text,
-								"1432ad7c829170a76dd31982c3501eca"
-							}));
-							state.error = "hello-ack mismatch!";
-						}
-						else if (KBEngineApp.app.serverVersion != text2)
-						{
-							Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{0}:{1}'! version({2}!={3}) mismatch!", new object[]
-							{
-								state.connectIP,
-								state.connectPort,
-								text2,
-								KBEngineApp.app.serverVersion
-							}));
-							state.error = "version mismatch!";
-						}
-						else if (num2 == 0U)
-						{
-							Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{0}:{1}'! conv is 0!", state.connectIP, state.connectPort));
-							state.error = "kcp conv error!";
-						}
-						((NetworkInterfaceKCP)state.networkInterface).connID = num2;
-					}
+					Dbg.ERROR_MSG($"NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{state.connectIP}:{state.connectPort}'! receive hello-ack error!");
+					state.error = "receive hello-ack error!";
+					return;
 				}
-				else
+				MemoryStream memoryStream = new MemoryStream();
+				Array.Copy(array, 0, memoryStream.data(), memoryStream.wpos, num);
+				memoryStream.wpos = num;
+				string text = memoryStream.readString();
+				string text2 = memoryStream.readString();
+				uint num2 = memoryStream.readUint32();
+				if (text != "1432ad7c829170a76dd31982c3501eca")
 				{
-					Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), connect to '{0}:{1}' timeout!'", state.connectIP, state.connectPort));
-					state.error = "timeout!";
+					Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{0}:{1}'! receive hello-ack({2}!={3}) mismatch!", state.connectIP, state.connectPort, text, "1432ad7c829170a76dd31982c3501eca"));
+					state.error = "hello-ack mismatch!";
 				}
+				else if (KBEngineApp.app.serverVersion != text2)
+				{
+					Dbg.ERROR_MSG($"NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{state.connectIP}:{state.connectPort}'! version({text2}!={KBEngineApp.app.serverVersion}) mismatch!");
+					state.error = "version mismatch!";
+				}
+				else if (num2 == 0)
+				{
+					Dbg.ERROR_MSG($"NetworkInterfaceKCP::_asyncConnect(), failed to connect to '{state.connectIP}:{state.connectPort}'! conv is 0!");
+					state.error = "kcp conv error!";
+				}
+				((NetworkInterfaceKCP)state.networkInterface).connID = num2;
 			}
-			catch (Exception ex)
+			else
 			{
-				Dbg.ERROR_MSG(string.Format("NetworkInterfaceKCP::_asyncConnect(), connect to '{0}:{1}' fault! error = '{2}'", state.connectIP, state.connectPort, ex));
-				state.error = ex.ToString();
+				Dbg.ERROR_MSG($"NetworkInterfaceKCP::_asyncConnect(), connect to '{state.connectIP}:{state.connectPort}' timeout!'");
+				state.error = "timeout!";
 			}
 		}
-
-		// Token: 0x040050B6 RID: 20662
-		private KCP kcp_;
-
-		// Token: 0x040050B7 RID: 20663
-		public uint connID;
-
-		// Token: 0x040050B8 RID: 20664
-		public uint nextTickKcpUpdate;
-
-		// Token: 0x040050B9 RID: 20665
-		public EndPoint remoteEndPint;
+		catch (Exception ex)
+		{
+			Dbg.ERROR_MSG($"NetworkInterfaceKCP::_asyncConnect(), connect to '{state.connectIP}:{state.connectPort}' fault! error = '{ex}'");
+			state.error = ex.ToString();
+		}
 	}
 }

@@ -1,170 +1,160 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using GUIPackage;
 using JSONClass;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000347 RID: 839
 public class UIDuiHuanShop : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001CB0 RID: 7344 RVA: 0x000CD48B File Offset: 0x000CB68B
+	public static UIDuiHuanShop Inst;
+
+	public GameObject UIMenPaiShopItemPrefab;
+
+	public GameObject ScaleObj;
+
+	public RectTransform ShopRT;
+
+	public Image MoneyIcon;
+
+	public Text MoneyText;
+
+	private int ShopID;
+
 	private void Awake()
 	{
-		UIDuiHuanShop.Inst = this;
+		Inst = this;
 	}
 
-	// Token: 0x06001CB1 RID: 7345 RVA: 0x000CD493 File Offset: 0x000CB693
 	public void Show(int shopID)
 	{
-		this.ShopID = shopID;
-		this.ScaleObj.SetActive(true);
+		ShopID = shopID;
+		ScaleObj.SetActive(true);
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001CB2 RID: 7346 RVA: 0x000CD4B4 File Offset: 0x000CB6B4
 	public void RefreshUI()
 	{
-		string nowSceneName = SceneEx.NowSceneName;
-		List<jiaoHuanShopGoods> list = jiaoHuanShopGoods.DataList.FindAll((jiaoHuanShopGoods good) => good.ShopID == this.ShopID);
+		_ = SceneEx.NowSceneName;
+		List<jiaoHuanShopGoods> list = jiaoHuanShopGoods.DataList.FindAll((jiaoHuanShopGoods good) => good.ShopID == ShopID);
 		if (list.Count == 0)
 		{
-			Debug.LogError(string.Format("UIDuiHuanShop刷新UI异常，兑换商店{0}没有商品信息", this.ShopID));
+			Debug.LogError((object)$"UIDuiHuanShop刷新UI异常，兑换商店{ShopID}没有商品信息");
 			return;
 		}
-		int num = 0;
+		int num2 = 0;
 		PlayerEx.Player.getLevelType();
-		ItemDatebase component = jsonData.instance.GetComponent<ItemDatebase>();
-		this.ShopRT.DestoryAllChild();
-		using (List<jiaoHuanShopGoods>.Enumerator enumerator = list.GetEnumerator())
+		ItemDatebase component = ((Component)jsonData.instance).GetComponent<ItemDatebase>();
+		((Transform)(object)ShopRT).DestoryAllChild();
+		foreach (jiaoHuanShopGoods good2 in list)
 		{
-			while (enumerator.MoveNext())
+			if (num2 == 0)
 			{
-				UIDuiHuanShop.<>c__DisplayClass9_0 CS$<>8__locals1 = new UIDuiHuanShop.<>c__DisplayClass9_0();
-				CS$<>8__locals1.<>4__this = this;
-				CS$<>8__locals1.good = enumerator.Current;
-				if (num == 0)
+				num2 = good2.EXGoodsID;
+			}
+			_ItemJsonData item = _ItemJsonData.DataDict[good2.GoodsID];
+			UIMenPaiShopItem component2 = Object.Instantiate<GameObject>(UIMenPaiShopItemPrefab, (Transform)(object)ShopRT).GetComponent<UIMenPaiShopItem>();
+			int price = item.price;
+			if (good2.Money > 0)
+			{
+				price = good2.Money;
+			}
+			component2.PriceText.text = price.ToString();
+			component2.PriceIcon.sprite = component.items[good2.EXGoodsID].itemIconSprite;
+			component2.IconShow.SetItem(good2.GoodsID);
+			component2.IconShow.Count = 1;
+			UIIconShow iconShow = component2.IconShow;
+			iconShow.OnClick = (UnityAction<PointerEventData>)(object)Delegate.Combine((Delegate?)(object)iconShow.OnClick, (Delegate?)(object)(UnityAction<PointerEventData>)delegate
+			{
+				//IL_00db: Unknown result type (might be due to invalid IL or missing references)
+				//IL_00e6: Expected O, but got Unknown
+				int playerHas = 0;
+				if (good2.EXGoodsID == 10035)
 				{
-					num = CS$<>8__locals1.good.EXGoodsID;
+					playerHas = (int)PlayerEx.Player.money;
 				}
-				_ItemJsonData item = _ItemJsonData.DataDict[CS$<>8__locals1.good.GoodsID];
-				UIMenPaiShopItem component2 = Object.Instantiate<GameObject>(this.UIMenPaiShopItemPrefab, this.ShopRT).GetComponent<UIMenPaiShopItem>();
-				int price = item.price;
-				if (CS$<>8__locals1.good.Money > 0)
+				else
 				{
-					price = CS$<>8__locals1.good.Money;
+					playerHas = PlayerEx.Player.getItemNum(good2.EXGoodsID);
 				}
-				component2.PriceText.text = price.ToString();
-				component2.PriceIcon.sprite = component.items[CS$<>8__locals1.good.EXGoodsID].itemIconSprite;
-				component2.IconShow.SetItem(CS$<>8__locals1.good.GoodsID);
-				component2.IconShow.Count = 1;
-				UIIconShow iconShow = component2.IconShow;
-				iconShow.OnClick = (UnityAction<PointerEventData>)Delegate.Combine(iconShow.OnClick, new UnityAction<PointerEventData>(delegate(PointerEventData p)
+				int num3 = playerHas / price;
+				num3 = Mathf.Min(num3, item.maxNum);
+				switch (num3)
 				{
-					int playerHas = 0;
-					if (CS$<>8__locals1.good.EXGoodsID == 10035)
+				case 0:
+					UIPopTip.Inst.Pop(_ItemJsonData.DataDict[good2.EXGoodsID].name + "不足");
+					break;
+				case 1:
+					USelectBox.Show("是否兑换" + item.name + " x1", (UnityAction)delegate
 					{
-						playerHas = (int)PlayerEx.Player.money;
-					}
-					else
-					{
-						playerHas = PlayerEx.Player.getItemNum(CS$<>8__locals1.good.EXGoodsID);
-					}
-					int num2 = playerHas / price;
-					num2 = Mathf.Min(num2, item.maxNum);
-					if (num2 == 0)
-					{
-						UIPopTip.Inst.Pop(_ItemJsonData.DataDict[CS$<>8__locals1.good.EXGoodsID].name + "不足", PopTipIconType.叹号);
-						return;
-					}
-					if (num2 == 1)
-					{
-						USelectBox.Show("是否兑换" + item.name + " x1", delegate
+						if (playerHas >= price)
 						{
-							if (playerHas >= price)
+							if (good2.EXGoodsID == 10035)
 							{
-								if (CS$<>8__locals1.good.EXGoodsID == 10035)
-								{
-									PlayerEx.Player.AddMoney(-price);
-								}
-								else
-								{
-									PlayerEx.Player.removeItem(CS$<>8__locals1.good.EXGoodsID, price);
-								}
-								PlayerEx.Player.addItem(CS$<>8__locals1.good.GoodsID, 1, Tools.CreateItemSeid(CS$<>8__locals1.good.GoodsID), false);
-								CS$<>8__locals1.<>4__this.RefreshUI();
-								UIPopTip.Inst.Pop(string.Format("兑换了{0}x{1}", _ItemJsonData.DataDict[CS$<>8__locals1.good.GoodsID].name, 1), PopTipIconType.包裹);
-								return;
+								PlayerEx.Player.AddMoney(-price);
 							}
-							UIPopTip.Inst.Pop(_ItemJsonData.DataDict[CS$<>8__locals1.good.EXGoodsID].name + "不足", PopTipIconType.叹号);
-						}, null);
-						return;
-					}
-					USelectNum.Show("兑换数量 x{num}", 1, num2, delegate(int num)
+							else
+							{
+								PlayerEx.Player.removeItem(good2.EXGoodsID, price);
+							}
+							PlayerEx.Player.addItem(good2.GoodsID, 1, Tools.CreateItemSeid(good2.GoodsID));
+							RefreshUI();
+							UIPopTip.Inst.Pop($"兑换了{_ItemJsonData.DataDict[good2.GoodsID].name}x{1}", PopTipIconType.包裹);
+						}
+						else
+						{
+							UIPopTip.Inst.Pop(_ItemJsonData.DataDict[good2.EXGoodsID].name + "不足");
+						}
+					});
+					break;
+				default:
+					USelectNum.Show("兑换数量 x{num}", 1, num3, delegate(int num)
 					{
 						if (playerHas >= num * price)
 						{
-							if (CS$<>8__locals1.good.EXGoodsID == 10035)
+							if (good2.EXGoodsID == 10035)
 							{
 								PlayerEx.Player.AddMoney(-(num * price));
 							}
 							else
 							{
-								PlayerEx.Player.removeItem(CS$<>8__locals1.good.EXGoodsID, num * price);
+								PlayerEx.Player.removeItem(good2.EXGoodsID, num * price);
 							}
-							PlayerEx.Player.addItem(CS$<>8__locals1.good.GoodsID, num, Tools.CreateItemSeid(CS$<>8__locals1.good.GoodsID), false);
-							CS$<>8__locals1.<>4__this.RefreshUI();
-							UIPopTip.Inst.Pop(string.Format("兑换了{0}x{1}", _ItemJsonData.DataDict[CS$<>8__locals1.good.GoodsID].name, num), PopTipIconType.包裹);
-							return;
+							PlayerEx.Player.addItem(good2.GoodsID, num, Tools.CreateItemSeid(good2.GoodsID));
+							RefreshUI();
+							UIPopTip.Inst.Pop($"兑换了{_ItemJsonData.DataDict[good2.GoodsID].name}x{num}", PopTipIconType.包裹);
 						}
-						UIPopTip.Inst.Pop(_ItemJsonData.DataDict[CS$<>8__locals1.good.EXGoodsID].name + "不足", PopTipIconType.叹号);
-					}, null);
-				}));
-			}
+						else
+						{
+							UIPopTip.Inst.Pop(_ItemJsonData.DataDict[good2.EXGoodsID].name + "不足");
+						}
+					});
+					break;
+				}
+			});
 		}
-		this.MoneyIcon.sprite = component.items[num].itemIconSprite;
-		if (num == 10035)
+		MoneyIcon.sprite = component.items[num2].itemIconSprite;
+		if (num2 == 10035)
 		{
-			this.MoneyText.text = PlayerEx.Player.money.ToString();
-			return;
+			MoneyText.text = PlayerEx.Player.money.ToString();
 		}
-		this.MoneyText.text = PlayerEx.Player.getItemNum(num).ToString();
+		else
+		{
+			MoneyText.text = PlayerEx.Player.getItemNum(num2).ToString();
+		}
 	}
 
-	// Token: 0x06001CB3 RID: 7347 RVA: 0x000CD714 File Offset: 0x000CB914
 	public void Close()
 	{
-		this.ScaleObj.SetActive(false);
+		ScaleObj.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001CB4 RID: 7348 RVA: 0x000CD72D File Offset: 0x000CB92D
 	public bool TryEscClose()
 	{
-		this.Close();
+		Close();
 		return true;
 	}
-
-	// Token: 0x04001734 RID: 5940
-	public static UIDuiHuanShop Inst;
-
-	// Token: 0x04001735 RID: 5941
-	public GameObject UIMenPaiShopItemPrefab;
-
-	// Token: 0x04001736 RID: 5942
-	public GameObject ScaleObj;
-
-	// Token: 0x04001737 RID: 5943
-	public RectTransform ShopRT;
-
-	// Token: 0x04001738 RID: 5944
-	public Image MoneyIcon;
-
-	// Token: 0x04001739 RID: 5945
-	public Text MoneyText;
-
-	// Token: 0x0400173A RID: 5946
-	private int ShopID;
 }

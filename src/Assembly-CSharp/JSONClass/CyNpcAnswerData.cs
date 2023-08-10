@@ -1,78 +1,63 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class CyNpcAnswerData : IJSONClass
 {
-	// Token: 0x02000820 RID: 2080
-	public class CyNpcAnswerData : IJSONClass
+	public static Dictionary<int, CyNpcAnswerData> DataDict = new Dictionary<int, CyNpcAnswerData>();
+
+	public static List<CyNpcAnswerData> DataList = new List<CyNpcAnswerData>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int NPCActionID;
+
+	public int AnswerType;
+
+	public int IsPangBai;
+
+	public int AnswerAction;
+
+	public string DuiHua;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06003E92 RID: 16018 RVA: 0x001AB990 File Offset: 0x001A9B90
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.CyNpcAnswerData.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.CyNpcAnswerData.list)
+			try
 			{
-				try
+				CyNpcAnswerData cyNpcAnswerData = new CyNpcAnswerData();
+				cyNpcAnswerData.id = item["id"].I;
+				cyNpcAnswerData.NPCActionID = item["NPCActionID"].I;
+				cyNpcAnswerData.AnswerType = item["AnswerType"].I;
+				cyNpcAnswerData.IsPangBai = item["IsPangBai"].I;
+				cyNpcAnswerData.AnswerAction = item["AnswerAction"].I;
+				cyNpcAnswerData.DuiHua = item["DuiHua"].Str;
+				if (DataDict.ContainsKey(cyNpcAnswerData.id))
 				{
-					CyNpcAnswerData cyNpcAnswerData = new CyNpcAnswerData();
-					cyNpcAnswerData.id = jsonobject["id"].I;
-					cyNpcAnswerData.NPCActionID = jsonobject["NPCActionID"].I;
-					cyNpcAnswerData.AnswerType = jsonobject["AnswerType"].I;
-					cyNpcAnswerData.IsPangBai = jsonobject["IsPangBai"].I;
-					cyNpcAnswerData.AnswerAction = jsonobject["AnswerAction"].I;
-					cyNpcAnswerData.DuiHua = jsonobject["DuiHua"].Str;
-					if (CyNpcAnswerData.DataDict.ContainsKey(cyNpcAnswerData.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典CyNpcAnswerData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", cyNpcAnswerData.id));
-					}
-					else
-					{
-						CyNpcAnswerData.DataDict.Add(cyNpcAnswerData.id, cyNpcAnswerData);
-						CyNpcAnswerData.DataList.Add(cyNpcAnswerData);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典CyNpcAnswerData.DataDict添加数据时出现重复的键，Key:{cyNpcAnswerData.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典CyNpcAnswerData.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(cyNpcAnswerData.id, cyNpcAnswerData);
+				DataList.Add(cyNpcAnswerData);
 			}
-			if (CyNpcAnswerData.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				CyNpcAnswerData.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典CyNpcAnswerData.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06003E93 RID: 16019 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x040039F0 RID: 14832
-		public static Dictionary<int, CyNpcAnswerData> DataDict = new Dictionary<int, CyNpcAnswerData>();
-
-		// Token: 0x040039F1 RID: 14833
-		public static List<CyNpcAnswerData> DataList = new List<CyNpcAnswerData>();
-
-		// Token: 0x040039F2 RID: 14834
-		public static Action OnInitFinishAction = new Action(CyNpcAnswerData.OnInitFinish);
-
-		// Token: 0x040039F3 RID: 14835
-		public int id;
-
-		// Token: 0x040039F4 RID: 14836
-		public int NPCActionID;
-
-		// Token: 0x040039F5 RID: 14837
-		public int AnswerType;
-
-		// Token: 0x040039F6 RID: 14838
-		public int IsPangBai;
-
-		// Token: 0x040039F7 RID: 14839
-		public int AnswerAction;
-
-		// Token: 0x040039F8 RID: 14840
-		public string DuiHua;
+	private static void OnInitFinish()
+	{
 	}
 }

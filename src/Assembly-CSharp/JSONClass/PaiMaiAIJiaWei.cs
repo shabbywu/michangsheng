@@ -1,62 +1,51 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JSONClass
+namespace JSONClass;
+
+public class PaiMaiAIJiaWei : IJSONClass
 {
-	// Token: 0x020008BD RID: 2237
-	public class PaiMaiAIJiaWei : IJSONClass
+	public static Dictionary<int, PaiMaiAIJiaWei> DataDict = new Dictionary<int, PaiMaiAIJiaWei>();
+
+	public static List<PaiMaiAIJiaWei> DataList = new List<PaiMaiAIJiaWei>();
+
+	public static Action OnInitFinishAction = OnInitFinish;
+
+	public int id;
+
+	public int Jiawei;
+
+	public static void InitDataDict()
 	{
-		// Token: 0x06004107 RID: 16647 RVA: 0x001BD398 File Offset: 0x001BB598
-		public static void InitDataDict()
+		foreach (JSONObject item in jsonData.instance.PaiMaiAIJiaWei.list)
 		{
-			foreach (JSONObject jsonobject in jsonData.instance.PaiMaiAIJiaWei.list)
+			try
 			{
-				try
+				PaiMaiAIJiaWei paiMaiAIJiaWei = new PaiMaiAIJiaWei();
+				paiMaiAIJiaWei.id = item["id"].I;
+				paiMaiAIJiaWei.Jiawei = item["Jiawei"].I;
+				if (DataDict.ContainsKey(paiMaiAIJiaWei.id))
 				{
-					PaiMaiAIJiaWei paiMaiAIJiaWei = new PaiMaiAIJiaWei();
-					paiMaiAIJiaWei.id = jsonobject["id"].I;
-					paiMaiAIJiaWei.Jiawei = jsonobject["Jiawei"].I;
-					if (PaiMaiAIJiaWei.DataDict.ContainsKey(paiMaiAIJiaWei.id))
-					{
-						PreloadManager.LogException(string.Format("!!!错误!!!向字典PaiMaiAIJiaWei.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", paiMaiAIJiaWei.id));
-					}
-					else
-					{
-						PaiMaiAIJiaWei.DataDict.Add(paiMaiAIJiaWei.id, paiMaiAIJiaWei);
-						PaiMaiAIJiaWei.DataList.Add(paiMaiAIJiaWei);
-					}
+					PreloadManager.LogException($"!!!错误!!!向字典PaiMaiAIJiaWei.DataDict添加数据时出现重复的键，Key:{paiMaiAIJiaWei.id}，已跳过，请检查配表");
+					continue;
 				}
-				catch (Exception arg)
-				{
-					PreloadManager.LogException("!!!错误!!!向字典PaiMaiAIJiaWei.DataDict添加数据时出现异常，已跳过，请检查配表");
-					PreloadManager.LogException(string.Format("异常信息:\n{0}", arg));
-					PreloadManager.LogException(string.Format("数据序列化:\n{0}", jsonobject));
-				}
+				DataDict.Add(paiMaiAIJiaWei.id, paiMaiAIJiaWei);
+				DataList.Add(paiMaiAIJiaWei);
 			}
-			if (PaiMaiAIJiaWei.OnInitFinishAction != null)
+			catch (Exception arg)
 			{
-				PaiMaiAIJiaWei.OnInitFinishAction();
+				PreloadManager.LogException("!!!错误!!!向字典PaiMaiAIJiaWei.DataDict添加数据时出现异常，已跳过，请检查配表");
+				PreloadManager.LogException($"异常信息:\n{arg}");
+				PreloadManager.LogException($"数据序列化:\n{item}");
 			}
 		}
-
-		// Token: 0x06004108 RID: 16648 RVA: 0x00004095 File Offset: 0x00002295
-		private static void OnInitFinish()
+		if (OnInitFinishAction != null)
 		{
+			OnInitFinishAction();
 		}
+	}
 
-		// Token: 0x04003FE0 RID: 16352
-		public static Dictionary<int, PaiMaiAIJiaWei> DataDict = new Dictionary<int, PaiMaiAIJiaWei>();
-
-		// Token: 0x04003FE1 RID: 16353
-		public static List<PaiMaiAIJiaWei> DataList = new List<PaiMaiAIJiaWei>();
-
-		// Token: 0x04003FE2 RID: 16354
-		public static Action OnInitFinishAction = new Action(PaiMaiAIJiaWei.OnInitFinish);
-
-		// Token: 0x04003FE3 RID: 16355
-		public int id;
-
-		// Token: 0x04003FE4 RID: 16356
-		public int Jiawei;
+	private static void OnInitFinish()
+	{
 	}
 }

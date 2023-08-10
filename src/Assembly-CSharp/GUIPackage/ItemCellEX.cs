@@ -1,643 +1,647 @@
-﻿using System;
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace GUIPackage
+namespace GUIPackage;
+
+public class ItemCellEX : ItemCell
 {
-	// Token: 0x02000A4B RID: 2635
-	public class ItemCellEX : ItemCell
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
 	{
-		// Token: 0x06004852 RID: 18514 RVA: 0x001E8448 File Offset: 0x001E6648
-		private void Start()
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
+
+		public static UnityAction _003C_003E9__15_3;
+
+		public static UnityAction _003C_003E9__15_5;
+
+		internal void _003CmoveItem_003Eb__15_3()
 		{
-			this.Icon = base.transform.Find("Icon").gameObject;
-			this.Num = base.transform.Find("num").gameObject;
-			this.parentPlane = base.transform.parent.parent.parent.parent.parent;
-			if (this.inventory == null)
-			{
-				if (this.isFight)
-				{
-					this.inventory = GameObject.Find("FightUIRoot(Clone)/Texture/Inventory2").GetComponent<Inventory2>();
-					return;
-				}
-				if (this.isPlayer)
-				{
-					this.inventory = this.parentPlane.transform.Find("Panel/Inventory2").GetComponent<Inventory2>();
-					this.key = this.parentPlane.transform.Find("Panel/short cutEX/Key").GetComponent<Key>();
-					this.Item = this.inventory.inventory[int.Parse(base.name)];
-					return;
-				}
-				this.inventory = this.parentPlane.transform.Find("Panel/Inventory3").GetComponent<Inventory2>();
-				this.key = this.parentPlane.transform.Find("Panel/short cutEXAvatar/Key").GetComponent<Key>();
-				this.Item = this.inventory.inventory[int.Parse(base.name)];
-			}
+			JiaoYiManager.inst.canClick = true;
+			JiaoYiManager.inst.updateMoney();
 		}
 
-		// Token: 0x06004853 RID: 18515 RVA: 0x001E85AC File Offset: 0x001E67AC
-		private void OnDrop(GameObject obj)
+		internal void _003CmoveItem_003Eb__15_5()
 		{
-			if (Input.GetMouseButtonUp(0) && !this.JustShow)
-			{
-				if (this.Item.itemID > 0 && jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["CanSale"].I == 1)
-				{
-					UIPopTip.Inst.Pop("此物品无法交易", PopTipIconType.叹号);
-					return;
-				}
-				this.chengItemIcon();
-			}
+			JiaoYiManager.inst.canClick = true;
+			JiaoYiManager.inst.updateMoney();
 		}
+	}
 
-		// Token: 0x06004854 RID: 18516 RVA: 0x001E861F File Offset: 0x001E681F
-		public override int getItemPrice()
-		{
-			return this.getItemMoney(this.inventory.inventory[int.Parse(base.name)]);
-		}
+	public bool isFight;
 
-		// Token: 0x06004855 RID: 18517 RVA: 0x001E8642 File Offset: 0x001E6842
-		public override void MobilePress()
-		{
-			if (this.Item.itemID == -1)
-			{
-				return;
-			}
-			base.MobilePress();
-			Singleton.ToolTipsBackGround.UseAction = delegate()
-			{
-				if (this.Item.itemName != null && !this.inventory.draggingItem)
-				{
-					this.ClickChengItem();
-				}
-			};
-		}
+	private Key key;
 
-		// Token: 0x06004856 RID: 18518 RVA: 0x001E8670 File Offset: 0x001E6870
-		public override void PCOnPress()
-		{
-			if (JiaoYiManager.inst != null && !JiaoYiManager.inst.canClick)
-			{
-				return;
-			}
-			if (this.isFight)
-			{
-				return;
-			}
-			if (this.JustShow)
-			{
-				return;
-			}
-			this.Item = this.inventory.inventory[int.Parse(base.name)];
-			if (Input.GetMouseButtonDown(1) && this.Item.itemName != null && !this.inventory.draggingItem)
-			{
-				if (Input.GetKey(304))
-				{
-					Debug.Log("此处应买入卖出5个");
-					ItemCellEX.moveItemCount = 5;
-				}
-				else if (Input.GetKey(306))
-				{
-					Debug.Log("此处应买入卖出全部");
-					ItemCellEX.moveItemCount = -1;
-				}
-				else
-				{
-					Debug.Log("此处应买入卖出1个或数量选择");
-					ItemCellEX.moveItemCount = 1;
-				}
-				this.ClickChengItem();
-			}
-			if (Input.GetMouseButtonDown(0))
-			{
-				this.chengItemIcon();
-			}
-		}
+	private Transform parentPlane;
 
-		// Token: 0x06004857 RID: 18519 RVA: 0x001E874C File Offset: 0x001E694C
-		public void ClickChengItem()
+	public bool NotCheckMoney;
+
+	public int chaifenType;
+
+	private static int moveItemCount = 1;
+
+	private void Start()
+	{
+		Icon = ((Component)((Component)this).transform.Find("Icon")).gameObject;
+		Num = ((Component)((Component)this).transform.Find("num")).gameObject;
+		parentPlane = ((Component)this).transform.parent.parent.parent.parent.parent;
+		if ((Object)(object)inventory == (Object)null)
 		{
-			jsonData.InventoryNUM inventoryNUM = (jsonData.InventoryNUM)int.Parse(base.name);
-			this.chengItemIcon();
-			if (inventoryNUM < this.inventory.FanYeCount)
+			if (isFight)
 			{
-				ItemCellEX nullItemCell = this.getNullItemCell(1);
-				if (nullItemCell != null)
-				{
-					nullItemCell.chengItemIcon();
-				}
+				inventory = GameObject.Find("FightUIRoot(Clone)/Texture/Inventory2").GetComponent<Inventory2>();
+			}
+			else if (isPlayer)
+			{
+				inventory = ((Component)((Component)parentPlane).transform.Find("Panel/Inventory2")).GetComponent<Inventory2>();
+				key = ((Component)((Component)parentPlane).transform.Find("Panel/short cutEX/Key")).GetComponent<Key>();
+				Item = inventory.inventory[int.Parse(((Object)this).name)];
 			}
 			else
 			{
-				ItemCellEX nullItemCell2 = this.getNullItemCell(0);
-				if (nullItemCell2 != null)
-				{
-					nullItemCell2.chengItemIcon();
-				}
+				inventory = ((Component)((Component)parentPlane).transform.Find("Panel/Inventory3")).GetComponent<Inventory2>();
+				key = ((Component)((Component)parentPlane).transform.Find("Panel/short cutEXAvatar/Key")).GetComponent<Key>();
+				Item = inventory.inventory[int.Parse(((Object)this).name)];
 			}
-			this.inventory.BackItem();
-			this.inventory.showTooltip = false;
 		}
+	}
 
-		// Token: 0x06004858 RID: 18520 RVA: 0x001E87C0 File Offset: 0x001E69C0
-		public ItemCellEX getNullItemCell(int type)
+	private void OnDrop(GameObject obj)
+	{
+		if (Input.GetMouseButtonUp(0) && !JustShow)
 		{
-			int num;
-			int num2;
-			GameObject gameObject;
-			if (type == 1)
+			if (Item.itemID > 0 && jsonData.instance.ItemJsonData[Item.itemID.ToString()]["CanSale"].I == 1)
 			{
-				num = (int)this.inventory.FanYeCount;
-				num2 = (int)this.inventory.count;
-				gameObject = this.inventory.exchengkey;
+				UIPopTip.Inst.Pop("此物品无法交易");
 			}
 			else
 			{
-				num = 0;
-				num2 = (int)this.inventory.FanYeCount;
-				gameObject = this.inventory.InventoryUI.transform.Find("Win/item").gameObject;
+				chengItemIcon();
 			}
-			for (int i = 0; i < num2 - num; i++)
-			{
-				if (gameObject.transform.GetChild(i).GetComponent<ItemCellEX>().Item.itemID == -1)
-				{
-					return gameObject.transform.GetChild(i).GetComponent<ItemCellEX>();
-				}
-			}
-			return null;
 		}
+	}
 
-		// Token: 0x06004859 RID: 18521 RVA: 0x001E8868 File Offset: 0x001E6A68
-		public void chengItemIcon()
+	public override int getItemPrice()
+	{
+		return getItemMoney(inventory.inventory[int.Parse(((Object)this).name)]);
+	}
+
+	public override void MobilePress()
+	{
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002b: Expected O, but got Unknown
+		if (Item.itemID == -1)
 		{
-			if (this.Item.itemName == null)
+			return;
+		}
+		base.MobilePress();
+		Singleton.ToolTipsBackGround.UseAction = (UnityAction)delegate
+		{
+			if (Item.itemName != null && !inventory.draggingItem)
 			{
-				if (this.inventory.draggingItem)
-				{
-					this.moveItem();
-				}
+				ClickChengItem();
+			}
+		};
+	}
+
+	public override void PCOnPress()
+	{
+		if (((Object)(object)JiaoYiManager.inst != (Object)null && !JiaoYiManager.inst.canClick) || isFight || JustShow)
+		{
+			return;
+		}
+		Item = inventory.inventory[int.Parse(((Object)this).name)];
+		if (Input.GetMouseButtonDown(1) && Item.itemName != null && !inventory.draggingItem)
+		{
+			if (Input.GetKey((KeyCode)304))
+			{
+				Debug.Log((object)"此处应买入卖出5个");
+				moveItemCount = 5;
+			}
+			else if (Input.GetKey((KeyCode)306))
+			{
+				Debug.Log((object)"此处应买入卖出全部");
+				moveItemCount = -1;
+			}
+			else
+			{
+				Debug.Log((object)"此处应买入卖出1个或数量选择");
+				moveItemCount = 1;
+			}
+			ClickChengItem();
+		}
+		if (Input.GetMouseButtonDown(0))
+		{
+			chengItemIcon();
+		}
+	}
+
+	public void ClickChengItem()
+	{
+		int num = int.Parse(((Object)this).name);
+		chengItemIcon();
+		if (num < (int)inventory.FanYeCount)
+		{
+			ItemCellEX nullItemCell = getNullItemCell(1);
+			if ((Object)(object)nullItemCell != (Object)null)
+			{
+				nullItemCell.chengItemIcon();
+			}
+		}
+		else
+		{
+			ItemCellEX nullItemCell2 = getNullItemCell(0);
+			if ((Object)(object)nullItemCell2 != (Object)null)
+			{
+				nullItemCell2.chengItemIcon();
+			}
+		}
+		inventory.BackItem();
+		inventory.showTooltip = false;
+	}
+
+	public ItemCellEX getNullItemCell(int type)
+	{
+		GameObject val = null;
+		int num;
+		int num2;
+		if (type == 1)
+		{
+			num = (int)inventory.FanYeCount;
+			num2 = (int)inventory.count;
+			val = inventory.exchengkey;
+		}
+		else
+		{
+			num = 0;
+			num2 = (int)inventory.FanYeCount;
+			val = ((Component)inventory.InventoryUI.transform.Find("Win/item")).gameObject;
+		}
+		for (int i = 0; i < num2 - num; i++)
+		{
+			if (((Component)val.transform.GetChild(i)).GetComponent<ItemCellEX>().Item.itemID == -1)
+			{
+				return ((Component)val.transform.GetChild(i)).GetComponent<ItemCellEX>();
+			}
+		}
+		return null;
+	}
+
+	public void chengItemIcon()
+	{
+		if (Item.itemName != null)
+		{
+			if (!inventory.draggingItem)
+			{
+				inventory.dragedID = int.Parse(((Object)this).name);
+				inventory.draggingItem = true;
+				inventory.dragedItem = inventory.inventory[int.Parse(((Object)this).name)];
+				inventory.inventory[int.Parse(((Object)this).name)] = new item();
+			}
+			else
+			{
+				moveItem();
+				inventory.draggingItem = true;
+			}
+		}
+		else if (inventory.draggingItem)
+		{
+			moveItem();
+		}
+	}
+
+	public void setUI_chifen()
+	{
+		((Component)selectNum.instence).gameObject.GetComponent<UI_chaifen>().Item = inventory.dragedItem.Clone();
+		((Component)selectNum.instence).gameObject.GetComponent<UI_chaifen>().inputNum.value = string.Concat(1);
+	}
+
+	public void moveItem()
+	{
+		//IL_046c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050e: Expected O, but got Unknown
+		//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0502: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0508: Expected O, but got Unknown
+		//IL_021f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c4: Expected O, but got Unknown
+		//IL_02b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02be: Expected O, but got Unknown
+		if (inventory.isPaiMai && jsonData.instance.PaiMaiBiao[PaiMaiHang.inst.PaiMaiHangID.ToString()]["jimainum"].I < 1)
+		{
+			UIPopTip.Inst.Pop("本场拍卖不可寄卖");
+			return;
+		}
+		int num = 24;
+		if (inventory.isNewJiaoYi)
+		{
+			num = 15;
+			if (!JiaoYiManager.inst.canClick)
+			{
 				return;
 			}
-			if (!this.inventory.draggingItem)
-			{
-				this.inventory.dragedID = int.Parse(base.name);
-				this.inventory.draggingItem = true;
-				this.inventory.dragedItem = this.inventory.inventory[int.Parse(base.name)];
-				this.inventory.inventory[int.Parse(base.name)] = new item();
-				return;
-			}
-			this.moveItem();
-			this.inventory.draggingItem = true;
 		}
-
-		// Token: 0x0600485A RID: 18522 RVA: 0x001E8924 File Offset: 0x001E6B24
-		public void setUI_chifen()
+		if (int.Parse(((Object)this).name) >= num)
 		{
-			selectNum.instence.gameObject.GetComponent<UI_chaifen>().Item = this.inventory.dragedItem.Clone();
-			selectNum.instence.gameObject.GetComponent<UI_chaifen>().inputNum.value = string.Concat(1);
-		}
-
-		// Token: 0x0600485B RID: 18523 RVA: 0x001E897C File Offset: 0x001E6B7C
-		public void moveItem()
-		{
-			if (this.inventory.isPaiMai && jsonData.instance.PaiMaiBiao[PaiMaiHang.inst.PaiMaiHangID.ToString()]["jimainum"].I < 1)
+			if ((int)jsonData.instance.ItemJsonData[inventory.dragedItem.itemID.ToString()]["CanSale"].n == 1)
 			{
-				UIPopTip.Inst.Pop("本场拍卖不可寄卖", PopTipIconType.叹号);
-				return;
+				UIPopTip.Inst.Pop("该物品无法出售");
 			}
-			int num = 24;
-			if (this.inventory.isNewJiaoYi)
+			else
 			{
-				num = 15;
-				if (!JiaoYiManager.inst.canClick)
+				if (chaifenType != 0 && inventory.dragedID < (int)inventory.FanYeCount && inventory.inventory[int.Parse(((Object)this).name)].itemID != -1 && inventory.inventory[int.Parse(((Object)this).name)].UUID != inventory.dragedItem.UUID)
 				{
 					return;
 				}
-			}
-			if (int.Parse(base.name) >= num)
-			{
-				if ((int)jsonData.instance.ItemJsonData[this.inventory.dragedItem.itemID.ToString()]["CanSale"].n == 1)
+				if ((inventory.dragedItem.itemNum > 1 && inventory.dragedID < (int)inventory.FanYeCount) || (inventory.dragedID < (int)inventory.FanYeCount && inventory.HasUUIDItem((int)inventory.FanYeCount, (int)inventory.count, inventory.dragedItem.UUID)))
 				{
-					UIPopTip.Inst.Pop("该物品无法出售", PopTipIconType.叹号);
-					return;
-				}
-				if (this.chaifenType != 0 && this.inventory.dragedID < (int)this.inventory.FanYeCount && this.inventory.inventory[int.Parse(base.name)].itemID != -1 && this.inventory.inventory[int.Parse(base.name)].UUID != this.inventory.dragedItem.UUID)
-				{
-					return;
-				}
-				if ((this.inventory.dragedItem.itemNum <= 1 || this.inventory.dragedID >= (int)this.inventory.FanYeCount) && (this.inventory.dragedID >= (int)this.inventory.FanYeCount || !this.inventory.HasUUIDItem((int)this.inventory.FanYeCount, (int)this.inventory.count, this.inventory.dragedItem.UUID)))
-				{
-					this.hasDrawChanegItem();
-					return;
-				}
-				if (!this.inventory.isNewJiaoYi)
-				{
-					this.setUI_chifen();
-					selectNum.instence.setChoice(new EventDelegate(delegate()
+					if (inventory.isNewJiaoYi)
 					{
-						UI_chaifen component = selectNum.instence.gameObject.GetComponent<UI_chaifen>();
-						int num5 = int.Parse(selectNum.instence.gameObject.GetComponent<UI_chaifen>().inputNum.value);
-						component.Item.itemNum = num5;
-						if (this.chaifenType == 0)
+						if (moveItemCount == 1)
 						{
-							if (this.CanChaifen(component.Item, num5) && this.inventory.isFull(1, component.Item.UUID))
+							GameObject val = Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("SumSelect"), Singleton.ints.exchengePlan.UGUITransform);
+							val.transform.localScale = new Vector3(0.6f, 0.6f, 0f);
+							SumSelectManager sumSelectManager2 = val.GetComponent<SumSelectManager>();
+							sumSelectManager2.Item = inventory.dragedItem.Clone();
+							sumSelectManager2.isShowMask = false;
+							JiaoYiManager.inst.canClick = false;
+							SumSelectManager sumSelectManager3 = sumSelectManager2;
+							int itemID = sumSelectManager2.Item.itemID;
+							float maxSum = sumSelectManager2.Item.itemNum;
+							UnityAction val2 = delegate
 							{
-								this.inventory.exAddItem1(1, component.Item.UUID, num5, 0, -1);
-								this.inventory.reduceItem1(2, component.Item.UUID, num5);
+								JiaoYiManager.inst.canClick = true;
+								int num9 = (int)sumSelectManager2.itemSum;
+								if (num9 > 0)
+								{
+									sumSelectManager2.Item.itemNum = num9;
+									if (chaifenType != 0)
+									{
+										int num10 = int.Parse(((Object)this).name);
+										if (!LianDanMag.instence.itemCells[num10 - 24].JustShow)
+										{
+											if (inventory.inventory[num10].itemID == -1)
+											{
+												inventory.setInventoryIndexItem(num10, inventory.dragedID, num9, sumSelectManager2.Item.UUID);
+											}
+											else
+											{
+												inventory.inventory[num10].itemNum += num9;
+											}
+											inventory.reduceItem1(2, sumSelectManager2.Item.UUID, num9);
+										}
+									}
+									else
+									{
+										if (inventory.isFull(1, sumSelectManager2.Item.UUID))
+										{
+											inventory.exAddItem1(1, sumSelectManager2.Item.UUID, num9);
+											inventory.reduceItem1(2, sumSelectManager2.Item.UUID, num9);
+										}
+										JiaoYiManager.inst.updateMoney();
+									}
+								}
+							};
+							object obj = _003C_003Ec._003C_003E9__15_3;
+							if (obj == null)
+							{
+								UnityAction val3 = delegate
+								{
+									JiaoYiManager.inst.canClick = true;
+									JiaoYiManager.inst.updateMoney();
+								};
+								_003C_003Ec._003C_003E9__15_3 = val3;
+								obj = (object)val3;
 							}
-							return;
-						}
-						int num6 = int.Parse(base.name);
-						if (LianDanMag.instence.itemCells[num6 - 24].JustShow)
-						{
-							return;
-						}
-						if (this.inventory.inventory[num6].itemID == -1)
-						{
-							this.inventory.setInventoryIndexItem(num6, this.inventory.dragedID, num5, component.Item.UUID);
+							sumSelectManager3.showSelect("", itemID, maxSum, val2, (UnityAction)obj);
 						}
 						else
 						{
-							this.inventory.inventory[num6].itemNum += num5;
-						}
-						this.inventory.reduceItem1(2, component.Item.UUID, num5);
-					}), null, "选择数量");
-					return;
-				}
-				if (ItemCellEX.moveItemCount == 1)
-				{
-					GameObject gameObject = Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("SumSelect"), Singleton.ints.exchengePlan.UGUITransform);
-					gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0f);
-					SumSelectManager sumSelectManager = gameObject.GetComponent<SumSelectManager>();
-					sumSelectManager.Item = this.inventory.dragedItem.Clone();
-					sumSelectManager.isShowMask = false;
-					JiaoYiManager.inst.canClick = false;
-					sumSelectManager.showSelect("", sumSelectManager.Item.itemID, (float)sumSelectManager.Item.itemNum, delegate
-					{
-						JiaoYiManager.inst.canClick = true;
-						int num5 = (int)sumSelectManager.itemSum;
-						if (num5 <= 0)
-						{
-							return;
-						}
-						sumSelectManager.Item.itemNum = num5;
-						if (this.chaifenType == 0)
-						{
-							if (this.inventory.isFull(1, sumSelectManager.Item.UUID))
+							item item2 = inventory.dragedItem.Clone();
+							int num2 = 1;
+							num2 = ((moveItemCount != -1) ? ((moveItemCount < item2.itemNum) ? moveItemCount : item2.itemNum) : item2.itemNum);
+							if (inventory.isFull(1, item2.UUID))
 							{
-								this.inventory.exAddItem1(1, sumSelectManager.Item.UUID, num5, 0, -1);
-								this.inventory.reduceItem1(2, sumSelectManager.Item.UUID, num5);
+								inventory.BackItem();
+								inventory.exAddItem1(1, item2.UUID, num2);
+								inventory.reduceItem1(2, item2.UUID, num2);
 							}
 							JiaoYiManager.inst.updateMoney();
-							return;
 						}
-						int num6 = int.Parse(this.name);
-						if (LianDanMag.instence.itemCells[num6 - 24].JustShow)
-						{
-							return;
-						}
-						if (this.inventory.inventory[num6].itemID == -1)
-						{
-							this.inventory.setInventoryIndexItem(num6, this.inventory.dragedID, num5, sumSelectManager.Item.UUID);
-						}
-						else
-						{
-							this.inventory.inventory[num6].itemNum += num5;
-						}
-						this.inventory.reduceItem1(2, sumSelectManager.Item.UUID, num5);
-					}, delegate
+						return;
+					}
+					setUI_chifen();
+					selectNum.instence.setChoice(new EventDelegate(delegate
 					{
-						JiaoYiManager.inst.canClick = true;
-						JiaoYiManager.inst.updateMoney();
-					}, SumSelectManager.SpecialType.空);
-					return;
-				}
-				item item = this.inventory.dragedItem.Clone();
-				int num2;
-				if (ItemCellEX.moveItemCount == -1)
-				{
-					num2 = item.itemNum;
+						UI_chaifen component2 = ((Component)selectNum.instence).gameObject.GetComponent<UI_chaifen>();
+						int num7 = int.Parse(((Component)selectNum.instence).gameObject.GetComponent<UI_chaifen>().inputNum.value);
+						component2.Item.itemNum = num7;
+						if (chaifenType != 0)
+						{
+							int num8 = int.Parse(((Object)this).name);
+							if (!LianDanMag.instence.itemCells[num8 - 24].JustShow)
+							{
+								if (inventory.inventory[num8].itemID == -1)
+								{
+									inventory.setInventoryIndexItem(num8, inventory.dragedID, num7, component2.Item.UUID);
+								}
+								else
+								{
+									inventory.inventory[num8].itemNum += num7;
+								}
+								inventory.reduceItem1(2, component2.Item.UUID, num7);
+							}
+						}
+						else if (CanChaifen(component2.Item, num7) && inventory.isFull(1, component2.Item.UUID))
+						{
+							inventory.exAddItem1(1, component2.Item.UUID, num7);
+							inventory.reduceItem1(2, component2.Item.UUID, num7);
+						}
+					}), null);
 				}
 				else
 				{
-					num2 = ((ItemCellEX.moveItemCount < item.itemNum) ? ItemCellEX.moveItemCount : item.itemNum);
+					hasDrawChanegItem();
 				}
-				if (this.inventory.isFull(1, item.UUID))
-				{
-					this.inventory.BackItem();
-					this.inventory.exAddItem1(1, item.UUID, num2, 0, -1);
-					this.inventory.reduceItem1(2, item.UUID, num2);
-				}
-				JiaoYiManager.inst.updateMoney();
-				return;
 			}
-			else
+			return;
+		}
+		if ((inventory.dragedItem.itemNum > 1 && inventory.dragedID >= (int)inventory.FanYeCount) || (inventory.dragedID >= (int)inventory.FanYeCount && inventory.HasUUIDItem(0, (int)inventory.FanYeCount, inventory.dragedItem.UUID)))
+		{
+			if (inventory.isNewJiaoYi)
 			{
-				if ((this.inventory.dragedItem.itemNum <= 1 || this.inventory.dragedID < (int)this.inventory.FanYeCount) && (this.inventory.dragedID < (int)this.inventory.FanYeCount || !this.inventory.HasUUIDItem(0, (int)this.inventory.FanYeCount, this.inventory.dragedItem.UUID)))
+				if (moveItemCount == 1)
 				{
-					if (this.Item.itemID != -1)
-					{
-						int otherAllMoney = this.getOtherAllMoney();
-						int usedMoney = this.getUsedMoney();
-						int num3 = this.getItemMoney(this.Item) * this.Item.itemNum;
-						if (this.inventory.isNewJiaoYi)
-						{
-							this.exchengeItem();
-						}
-						else if (otherAllMoney - usedMoney - num3 < 0)
-						{
-							this.getMoneyText();
-						}
-						else
-						{
-							this.exchengeItem();
-						}
-					}
-					else
-					{
-						this.exchengeItem();
-					}
-					if (JiaoYiManager.inst != null)
-					{
-						JiaoYiManager.inst.updateMoney();
-					}
-					return;
-				}
-				if (!this.inventory.isNewJiaoYi)
-				{
-					this.setUI_chifen();
-					selectNum.instence.setChoice(new EventDelegate(delegate()
-					{
-						UI_chaifen component = selectNum.instence.gameObject.GetComponent<UI_chaifen>();
-						int num5 = int.Parse(selectNum.instence.gameObject.GetComponent<UI_chaifen>().inputNum.value);
-						component.Item.itemNum = num5;
-						if (this.chaifenType != 0)
-						{
-							int.Parse(base.name);
-							this.inventory.exAddItem1(2, component.Item.UUID, num5, 0, -1);
-							this.inventory.reduceItem(this.inventory.dragedID, num5);
-							return;
-						}
-						if (this.inventory.isFull(2, component.Item.UUID))
-						{
-							this.inventory.exAddItem1(2, component.Item.UUID, num5, 0, -1);
-							this.inventory.reduceItem1(1, component.Item.UUID, num5);
-						}
-					}), null, "选择数量");
-					return;
-				}
-				if (ItemCellEX.moveItemCount == 1)
-				{
-					GameObject gameObject2 = Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("SumSelect"), Singleton.ints.exchengePlan.UGUITransform);
+					GameObject val4 = Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("SumSelect"), Singleton.ints.exchengePlan.UGUITransform);
 					JiaoYiManager.inst.canClick = false;
-					gameObject2.transform.localScale = new Vector3(0.6f, 0.6f, 0f);
-					SumSelectManager sumSelectManager = gameObject2.GetComponent<SumSelectManager>();
-					sumSelectManager.Item = this.inventory.dragedItem.Clone();
+					val4.transform.localScale = new Vector3(0.6f, 0.6f, 0f);
+					SumSelectManager sumSelectManager = val4.GetComponent<SumSelectManager>();
+					sumSelectManager.Item = inventory.dragedItem.Clone();
 					sumSelectManager.isShowMask = false;
-					sumSelectManager.showSelect("", sumSelectManager.Item.itemID, (float)sumSelectManager.Item.itemNum, delegate
+					SumSelectManager sumSelectManager4 = sumSelectManager;
+					int itemID2 = sumSelectManager.Item.itemID;
+					float maxSum2 = sumSelectManager.Item.itemNum;
+					UnityAction val5 = delegate
 					{
-						int num5 = (int)sumSelectManager.itemSum;
+						int num6 = (int)sumSelectManager.itemSum;
 						JiaoYiManager.inst.canClick = true;
-						if (num5 <= 0)
+						if (num6 > 0)
 						{
-							return;
+							sumSelectManager.Item.itemNum = num6;
+							if (chaifenType != 0)
+							{
+								int.Parse(((Object)this).name);
+								inventory.exAddItem1(2, sumSelectManager.Item.UUID, num6);
+								inventory.reduceItem(inventory.dragedID, num6);
+							}
+							else
+							{
+								if (inventory.isFull(2, sumSelectManager.Item.UUID))
+								{
+									inventory.exAddItem1(2, sumSelectManager.Item.UUID, num6);
+									inventory.reduceItem1(1, sumSelectManager.Item.UUID, num6);
+								}
+								JiaoYiManager.inst.updateMoney();
+							}
 						}
-						sumSelectManager.Item.itemNum = num5;
-						if (this.chaifenType != 0)
-						{
-							int.Parse(this.name);
-							this.inventory.exAddItem1(2, sumSelectManager.Item.UUID, num5, 0, -1);
-							this.inventory.reduceItem(this.inventory.dragedID, num5);
-							return;
-						}
-						if (this.inventory.isFull(2, sumSelectManager.Item.UUID))
-						{
-							this.inventory.exAddItem1(2, sumSelectManager.Item.UUID, num5, 0, -1);
-							this.inventory.reduceItem1(1, sumSelectManager.Item.UUID, num5);
-						}
-						JiaoYiManager.inst.updateMoney();
-					}, delegate
+					};
+					object obj2 = _003C_003Ec._003C_003E9__15_5;
+					if (obj2 == null)
 					{
-						JiaoYiManager.inst.canClick = true;
-						JiaoYiManager.inst.updateMoney();
-					}, SumSelectManager.SpecialType.空);
-					return;
-				}
-				item item2 = this.inventory.dragedItem.Clone();
-				int num4;
-				if (ItemCellEX.moveItemCount == -1)
-				{
-					num4 = item2.itemNum;
+						UnityAction val6 = delegate
+						{
+							JiaoYiManager.inst.canClick = true;
+							JiaoYiManager.inst.updateMoney();
+						};
+						_003C_003Ec._003C_003E9__15_5 = val6;
+						obj2 = (object)val6;
+					}
+					sumSelectManager4.showSelect("", itemID2, maxSum2, val5, (UnityAction)obj2);
 				}
 				else
 				{
-					num4 = ((ItemCellEX.moveItemCount < item2.itemNum) ? ItemCellEX.moveItemCount : item2.itemNum);
+					item item3 = inventory.dragedItem.Clone();
+					int num3 = 1;
+					num3 = ((moveItemCount != -1) ? ((moveItemCount < item3.itemNum) ? moveItemCount : item3.itemNum) : item3.itemNum);
+					if (inventory.isFull(1, item3.UUID))
+					{
+						inventory.BackItem();
+						inventory.exAddItem1(2, item3.UUID, num3);
+						inventory.reduceItem1(1, item3.UUID, num3);
+					}
+					JiaoYiManager.inst.updateMoney();
 				}
-				if (this.inventory.isFull(1, item2.UUID))
+				return;
+			}
+			setUI_chifen();
+			selectNum.instence.setChoice(new EventDelegate(delegate
+			{
+				UI_chaifen component = ((Component)selectNum.instence).gameObject.GetComponent<UI_chaifen>();
+				int num5 = int.Parse(((Component)selectNum.instence).gameObject.GetComponent<UI_chaifen>().inputNum.value);
+				component.Item.itemNum = num5;
+				if (chaifenType != 0)
 				{
-					this.inventory.BackItem();
-					this.inventory.exAddItem1(2, item2.UUID, num4, 0, -1);
-					this.inventory.reduceItem1(1, item2.UUID, num4);
+					int.Parse(((Object)this).name);
+					inventory.exAddItem1(2, component.Item.UUID, num5);
+					inventory.reduceItem(inventory.dragedID, num5);
 				}
-				JiaoYiManager.inst.updateMoney();
-				return;
-			}
-		}
-
-		// Token: 0x0600485C RID: 18524 RVA: 0x001E8FE4 File Offset: 0x001E71E4
-		public bool CanChaifen(item item, int num)
-		{
-			return true;
-		}
-
-		// Token: 0x0600485D RID: 18525 RVA: 0x001E8FF4 File Offset: 0x001E71F4
-		public void hasDrawChanegItem()
-		{
-			int otherAllMoney = this.getOtherAllMoney();
-			int usedMoney = this.getUsedMoney();
-			int itemMoney = this.getItemMoney(this.inventory.dragedItem);
-			this.WatherExCheng(otherAllMoney, usedMoney, itemMoney);
-		}
-
-		// Token: 0x0600485E RID: 18526 RVA: 0x001E902A File Offset: 0x001E722A
-		public void WatherExCheng(int allMoney, int useMoney, int itemMoney)
-		{
-			if (this.inventory.isNewJiaoYi)
-			{
-				this.exchengeItem();
-				JiaoYiManager.inst.updateMoney();
-				return;
-			}
-			if (allMoney - useMoney - itemMoney < 0)
-			{
-				this.getMoneyText();
-				return;
-			}
-			this.exchengeItem();
-		}
-
-		// Token: 0x0600485F RID: 18527 RVA: 0x001E9060 File Offset: 0x001E7260
-		public ExchangePlan getecplan()
-		{
-			if (this.parentPlane.GetComponent<PaiMaiHang>() != null)
-			{
-				return this.parentPlane.GetComponent<PaiMaiHang>();
-			}
-			return this.parentPlane.GetComponent<ExchangePlan>();
-		}
-
-		// Token: 0x06004860 RID: 18528 RVA: 0x001E908C File Offset: 0x001E728C
-		public string getMoneyText()
-		{
-			ExchangePlan exchangePlan = this.getecplan();
-			string str;
-			if (this.isPlayer)
-			{
-				int num = jsonData.instance.getRandom() % 10;
-				str = Tools.getStr("exchengePlayer" + num);
-				exchangePlan.MonstarterSay(str);
-			}
-			else
-			{
-				int num2 = jsonData.instance.getRandom() % 10;
-				str = Tools.getStr("exchengeMonstar" + num2);
-				exchangePlan.MonstarterSay(str);
-			}
-			return str;
-		}
-
-		// Token: 0x06004861 RID: 18529 RVA: 0x001E9108 File Offset: 0x001E7308
-		public int getOtherAllMoney()
-		{
-			ExchangePlan exchangePlan = this.getecplan();
-			if (this.parentPlane.GetComponent<PaiMaiHang>() || this.NotCheckMoney)
-			{
-				return 1999999999;
-			}
-			int result;
-			if (this.isPlayer)
-			{
-				result = (int)jsonData.instance.AvatarBackpackJsonData[string.Concat(exchangePlan.MonstarID)]["money"].n;
-			}
-			else
-			{
-				result = (int)Tools.instance.getPlayer().money;
-			}
-			return result;
-		}
-
-		// Token: 0x06004862 RID: 18530 RVA: 0x001E918C File Offset: 0x001E738C
-		public int getUsedMoney()
-		{
-			ExchangePlan exchangePlan = this.getecplan();
-			if (this.parentPlane.GetComponent<PaiMaiHang>() || this.NotCheckMoney)
-			{
-				return 0;
-			}
-			int buyMoney;
-			if (this.isPlayer)
-			{
-				buyMoney = exchangePlan.GetBuyMoney(exchangePlan.inventoryPlayer, true);
-			}
-			else
-			{
-				buyMoney = exchangePlan.GetBuyMoney(exchangePlan.inventoryMonstar, false);
-			}
-			return buyMoney;
-		}
-
-		// Token: 0x06004863 RID: 18531 RVA: 0x001E91E8 File Offset: 0x001E73E8
-		public static float getItemNaiJiuPrice(item _item)
-		{
-			JSONObject jsonobject = jsonData.instance.ItemJsonData[_item.itemID.ToString()];
-			float result;
-			if (jsonobject["type"].I == 14 || jsonobject["type"].I == 9)
-			{
-				float num = 100f;
-				if (jsonobject["type"].I == 14)
+				else if (inventory.isFull(2, component.Item.UUID))
 				{
-					num = (float)jsonData.instance.LingZhouPinJie[jsonobject["quality"].I.ToString()]["Naijiu"];
+					inventory.exAddItem1(2, component.Item.UUID, num5);
+					inventory.reduceItem1(1, component.Item.UUID, num5);
 				}
-				result = (float)((int)_item.Seid["NaiJiu"].n) / num;
+			}), null);
+			return;
+		}
+		if (Item.itemID != -1)
+		{
+			int otherAllMoney = getOtherAllMoney();
+			int usedMoney = getUsedMoney();
+			int num4 = getItemMoney(Item) * Item.itemNum;
+			if (inventory.isNewJiaoYi)
+			{
+				exchengeItem();
+			}
+			else if (otherAllMoney - usedMoney - num4 < 0)
+			{
+				getMoneyText();
 			}
 			else
 			{
-				result = 1f;
+				exchengeItem();
 			}
-			return result;
 		}
-
-		// Token: 0x06004864 RID: 18532 RVA: 0x001E92B4 File Offset: 0x001E74B4
-		public int getItemMoney(item _item)
+		else
 		{
-			ExchangePlan exchangePlan = this.getecplan();
-			int npcid = -1;
-			if (exchangePlan != null)
-			{
-				npcid = exchangePlan.MonstarID;
-			}
-			return _item.GetJiaoYiPrice(npcid, this.isPlayer, false);
+			exchengeItem();
 		}
-
-		// Token: 0x06004865 RID: 18533 RVA: 0x001E92E8 File Offset: 0x001E74E8
-		public override int MoneyPercent(item _item)
+		if ((Object)(object)JiaoYiManager.inst != (Object)null)
 		{
-			ExchangePlan exchangePlan = this.getecplan();
-			if (exchangePlan == null)
-			{
-				return 0;
-			}
-			return _item.GetJiaCheng(exchangePlan.MonstarID);
+			JiaoYiManager.inst.updateMoney();
 		}
+	}
 
-		// Token: 0x06004866 RID: 18534 RVA: 0x001E9314 File Offset: 0x001E7514
-		public void exchengeItem()
+	public bool CanChaifen(item item, int num)
+	{
+		return true;
+	}
+
+	public void hasDrawChanegItem()
+	{
+		int otherAllMoney = getOtherAllMoney();
+		int usedMoney = getUsedMoney();
+		int itemMoney = getItemMoney(inventory.dragedItem);
+		WatherExCheng(otherAllMoney, usedMoney, itemMoney);
+	}
+
+	public void WatherExCheng(int allMoney, int useMoney, int itemMoney)
+	{
+		if (inventory.isNewJiaoYi)
 		{
-			this.inventory.ChangeItem(ref this.Item, ref this.inventory.dragedItem);
-			this.inventory.inventory[int.Parse(base.name)] = this.Item;
-			this.inventory.inventory[this.inventory.dragedID] = this.inventory.dragedItem;
-			this.inventory.Temp.GetComponent<UITexture>().mainTexture = this.inventory.dragedItem.itemIcon;
-			this.inventory.draggingItem = false;
+			exchengeItem();
+			JiaoYiManager.inst.updateMoney();
 		}
-
-		// Token: 0x06004867 RID: 18535 RVA: 0x001E93B8 File Offset: 0x001E75B8
-		public void Update()
+		else if (allMoney - useMoney - itemMoney < 0)
 		{
-			try
-			{
-				this.Icon.GetComponent<UITexture>().mainTexture = this.inventory.inventory[int.Parse(base.name)].itemIcon;
-				this.PingZhi.GetComponent<UITexture>().mainTexture = this.inventory.inventory[int.Parse(base.name)].itemPingZhi;
-			}
-			catch (Exception)
-			{
-				Debug.Log(int.Parse(base.name));
-				Debug.Log(this.inventory.inventory.Count);
-			}
-			this.Item = this.inventory.inventory[int.Parse(base.name)];
-			if (this.inventory.inventory[int.Parse(base.name)].itemNum > 1)
-			{
-				this.Num.GetComponent<UILabel>().text = this.inventory.inventory[int.Parse(base.name)].itemNum.ToString();
-			}
-			else
-			{
-				this.Num.GetComponent<UILabel>().text = "";
-			}
-			base.showYiWu();
-			base.ShowName();
+			getMoneyText();
 		}
+		else
+		{
+			exchengeItem();
+		}
+	}
 
-		// Token: 0x040048F1 RID: 18673
-		public bool isFight;
+	public ExchangePlan getecplan()
+	{
+		if ((Object)(object)((Component)parentPlane).GetComponent<PaiMaiHang>() != (Object)null)
+		{
+			return ((Component)parentPlane).GetComponent<PaiMaiHang>();
+		}
+		return ((Component)parentPlane).GetComponent<ExchangePlan>();
+	}
 
-		// Token: 0x040048F2 RID: 18674
-		private Key key;
+	public string getMoneyText()
+	{
+		ExchangePlan exchangePlan = getecplan();
+		string text = "";
+		if (isPlayer)
+		{
+			int num = jsonData.instance.getRandom() % 10;
+			text = Tools.getStr("exchengePlayer" + num);
+			exchangePlan.MonstarterSay(text);
+		}
+		else
+		{
+			int num2 = jsonData.instance.getRandom() % 10;
+			text = Tools.getStr("exchengeMonstar" + num2);
+			exchangePlan.MonstarterSay(text);
+		}
+		return text;
+	}
 
-		// Token: 0x040048F3 RID: 18675
-		private Transform parentPlane;
+	public int getOtherAllMoney()
+	{
+		ExchangePlan exchangePlan = getecplan();
+		if (Object.op_Implicit((Object)(object)((Component)parentPlane).GetComponent<PaiMaiHang>()) || NotCheckMoney)
+		{
+			return 1999999999;
+		}
+		int num = 0;
+		if (isPlayer)
+		{
+			return (int)jsonData.instance.AvatarBackpackJsonData[string.Concat(exchangePlan.MonstarID)]["money"].n;
+		}
+		return (int)Tools.instance.getPlayer().money;
+	}
 
-		// Token: 0x040048F4 RID: 18676
-		public bool NotCheckMoney;
+	public int getUsedMoney()
+	{
+		ExchangePlan exchangePlan = getecplan();
+		if (Object.op_Implicit((Object)(object)((Component)parentPlane).GetComponent<PaiMaiHang>()) || NotCheckMoney)
+		{
+			return 0;
+		}
+		int num = 0;
+		if (isPlayer)
+		{
+			return exchangePlan.GetBuyMoney(exchangePlan.inventoryPlayer, isPlayer: true);
+		}
+		return exchangePlan.GetBuyMoney(exchangePlan.inventoryMonstar, isPlayer: false);
+	}
 
-		// Token: 0x040048F5 RID: 18677
-		public int chaifenType;
+	public static float getItemNaiJiuPrice(item _item)
+	{
+		JSONObject jSONObject = jsonData.instance.ItemJsonData[_item.itemID.ToString()];
+		float num = 0f;
+		if (jSONObject["type"].I == 14 || jSONObject["type"].I == 9)
+		{
+			float num2 = 100f;
+			if (jSONObject["type"].I == 14)
+			{
+				num2 = (float)jsonData.instance.LingZhouPinJie[jSONObject["quality"].I.ToString()][(object)"Naijiu"];
+			}
+			return (float)(int)_item.Seid["NaiJiu"].n / num2;
+		}
+		return 1f;
+	}
 
-		// Token: 0x040048F6 RID: 18678
-		private static int moveItemCount = 1;
+	public int getItemMoney(item _item)
+	{
+		ExchangePlan exchangePlan = getecplan();
+		int npcid = -1;
+		if ((Object)(object)exchangePlan != (Object)null)
+		{
+			npcid = exchangePlan.MonstarID;
+		}
+		return _item.GetJiaoYiPrice(npcid, isPlayer);
+	}
+
+	public override int MoneyPercent(item _item)
+	{
+		ExchangePlan exchangePlan = getecplan();
+		if ((Object)(object)exchangePlan == (Object)null)
+		{
+			return 0;
+		}
+		return _item.GetJiaCheng(exchangePlan.MonstarID);
+	}
+
+	public void exchengeItem()
+	{
+		inventory.ChangeItem(ref Item, ref inventory.dragedItem);
+		inventory.inventory[int.Parse(((Object)this).name)] = Item;
+		inventory.inventory[inventory.dragedID] = inventory.dragedItem;
+		inventory.Temp.GetComponent<UITexture>().mainTexture = (Texture)(object)inventory.dragedItem.itemIcon;
+		inventory.draggingItem = false;
+	}
+
+	public void Update()
+	{
+		try
+		{
+			Icon.GetComponent<UITexture>().mainTexture = (Texture)(object)inventory.inventory[int.Parse(((Object)this).name)].itemIcon;
+			PingZhi.GetComponent<UITexture>().mainTexture = (Texture)(object)inventory.inventory[int.Parse(((Object)this).name)].itemPingZhi;
+		}
+		catch (Exception)
+		{
+			Debug.Log((object)int.Parse(((Object)this).name));
+			Debug.Log((object)inventory.inventory.Count);
+		}
+		Item = inventory.inventory[int.Parse(((Object)this).name)];
+		if (inventory.inventory[int.Parse(((Object)this).name)].itemNum > 1)
+		{
+			Num.GetComponent<UILabel>().text = inventory.inventory[int.Parse(((Object)this).name)].itemNum.ToString();
+		}
+		else
+		{
+			Num.GetComponent<UILabel>().text = "";
+		}
+		showYiWu();
+		ShowName();
 	}
 }

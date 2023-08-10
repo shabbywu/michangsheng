@@ -1,556 +1,458 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Facebook;
 using UnityEngine;
 
-// Token: 0x0200011F RID: 287
 public sealed class InteractiveConsole : MonoBehaviour
 {
-	// Token: 0x06000DAB RID: 3499 RVA: 0x00051788 File Offset: 0x0004F988
+	private bool isInit;
+
+	public string FriendSelectorTitle = "";
+
+	public string FriendSelectorMessage = "Derp";
+
+	public string FriendSelectorFilters = "[\"all\",\"app_users\",\"app_non_users\"]";
+
+	public string FriendSelectorData = "{}";
+
+	public string FriendSelectorExcludeIds = "";
+
+	public string FriendSelectorMax = "";
+
+	public string DirectRequestTitle = "";
+
+	public string DirectRequestMessage = "Herp";
+
+	private string DirectRequestTo = "";
+
+	public string FeedToId = "";
+
+	public string FeedLink = "";
+
+	public string FeedLinkName = "";
+
+	public string FeedLinkCaption = "";
+
+	public string FeedLinkDescription = "";
+
+	public string FeedPicture = "";
+
+	public string FeedMediaSource = "";
+
+	public string FeedActionName = "";
+
+	public string FeedActionLink = "";
+
+	public string FeedReference = "";
+
+	public bool IncludeFeedProperties;
+
+	private Dictionary<string, string[]> FeedProperties = new Dictionary<string, string[]>();
+
+	public string PayProduct = "";
+
+	public string ApiQuery = "";
+
+	public float PlayerLevel = 1f;
+
+	public string Width = "800";
+
+	public string Height = "600";
+
+	public bool CenterHorizontal = true;
+
+	public bool CenterVertical;
+
+	public string Top = "10";
+
+	public string Left = "10";
+
+	private string status = "Ready";
+
+	private string lastResponse = "";
+
+	public GUIStyle textStyle = new GUIStyle();
+
+	private Texture2D lastResponseTexture;
+
+	private Vector2 scrollPosition = Vector2.zero;
+
+	private int buttonHeight = 24;
+
+	private int mainWindowWidth = 500;
+
+	private int mainWindowFullWidth = 530;
+
+	private int TextWindowHeight => Screen.height;
+
 	private void CallFBInit()
 	{
-		FB.Init(new InitDelegate(this.OnInitComplete), new HideUnityDelegate(this.OnHideUnity), null);
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Expected O, but got Unknown
+		//IL_001e: Expected O, but got Unknown
+		FB.Init(new InitDelegate(OnInitComplete), new HideUnityDelegate(OnHideUnity));
 	}
 
-	// Token: 0x06000DAC RID: 3500 RVA: 0x000517A8 File Offset: 0x0004F9A8
 	private void OnInitComplete()
 	{
-		Debug.Log("FB.Init completed: Is user logged in? " + FB.IsLoggedIn.ToString());
-		this.isInit = true;
+		Debug.Log((object)("FB.Init completed: Is user logged in? " + FB.IsLoggedIn));
+		isInit = true;
 	}
 
-	// Token: 0x06000DAD RID: 3501 RVA: 0x000517D8 File Offset: 0x0004F9D8
 	private void OnHideUnity(bool isGameShown)
 	{
-		Debug.Log("Is game showing? " + isGameShown.ToString());
+		Debug.Log((object)("Is game showing? " + isGameShown));
 	}
 
-	// Token: 0x06000DAE RID: 3502 RVA: 0x000517F0 File Offset: 0x0004F9F0
 	private void CallFBLogin()
 	{
-		FB.Login("email,publish_actions", new FacebookDelegate(this.LoginCallback));
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Expected O, but got Unknown
+		FB.Login("email,publish_actions", new FacebookDelegate(LoginCallback));
 	}
 
-	// Token: 0x06000DAF RID: 3503 RVA: 0x00051808 File Offset: 0x0004FA08
 	private void LoginCallback(FBResult result)
 	{
 		if (result.Error != null)
 		{
-			this.lastResponse = "Error Response:\n" + result.Error;
-			return;
+			lastResponse = "Error Response:\n" + result.Error;
 		}
-		if (!FB.IsLoggedIn)
+		else if (!FB.IsLoggedIn)
 		{
-			this.lastResponse = "Login cancelled by Player";
-			return;
+			lastResponse = "Login cancelled by Player";
 		}
-		this.lastResponse = "Login was successful!";
+		else
+		{
+			lastResponse = "Login was successful!";
+		}
 	}
 
-	// Token: 0x06000DB0 RID: 3504 RVA: 0x00051847 File Offset: 0x0004FA47
 	private void CallFBLogout()
 	{
 		FB.Logout();
 	}
 
-	// Token: 0x06000DB1 RID: 3505 RVA: 0x0005184E File Offset: 0x0004FA4E
 	private void CallFBPublishInstall()
 	{
-		FB.PublishInstall(new FacebookDelegate(this.PublishComplete));
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Expected O, but got Unknown
+		FB.PublishInstall(new FacebookDelegate(PublishComplete));
 	}
 
-	// Token: 0x06000DB2 RID: 3506 RVA: 0x00051861 File Offset: 0x0004FA61
 	private void PublishComplete(FBResult result)
 	{
-		Debug.Log("publish response: " + result.Text);
+		Debug.Log((object)("publish response: " + result.Text));
 	}
 
-	// Token: 0x06000DB3 RID: 3507 RVA: 0x00051878 File Offset: 0x0004FA78
 	private void CallAppRequestAsFriendSelector()
 	{
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Expected O, but got Unknown
 		int? maxRecipients = null;
-		if (this.FriendSelectorMax != "")
+		if (FriendSelectorMax != "")
 		{
 			try
 			{
-				maxRecipients = new int?(int.Parse(this.FriendSelectorMax));
+				maxRecipients = int.Parse(FriendSelectorMax);
 			}
 			catch (Exception ex)
 			{
-				this.status = ex.Message;
+				status = ex.Message;
 			}
 		}
-		string[] excludeIds = (this.FriendSelectorExcludeIds == "") ? null : this.FriendSelectorExcludeIds.Split(new char[]
-		{
-			','
-		});
-		FB.AppRequest(this.FriendSelectorMessage, null, this.FriendSelectorFilters, excludeIds, maxRecipients, this.FriendSelectorData, this.FriendSelectorTitle, new FacebookDelegate(this.Callback));
+		string[] excludeIds = ((FriendSelectorExcludeIds == "") ? null : FriendSelectorExcludeIds.Split(new char[1] { ',' }));
+		FB.AppRequest(FriendSelectorMessage, null, FriendSelectorFilters, excludeIds, maxRecipients, FriendSelectorData, FriendSelectorTitle, new FacebookDelegate(Callback));
 	}
 
-	// Token: 0x06000DB4 RID: 3508 RVA: 0x0005192C File Offset: 0x0004FB2C
 	private void CallAppRequestAsDirectRequest()
 	{
-		if (this.DirectRequestTo == "")
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0069: Expected O, but got Unknown
+		if (DirectRequestTo == "")
 		{
 			throw new ArgumentException("\"To Comma Ids\" must be specificed", "to");
 		}
-		FB.AppRequest(this.DirectRequestMessage, this.DirectRequestTo.Split(new char[]
-		{
-			','
-		}), "", null, null, "", this.DirectRequestTitle, new FacebookDelegate(this.Callback));
+		FB.AppRequest(DirectRequestMessage, DirectRequestTo.Split(new char[1] { ',' }), "", null, null, "", DirectRequestTitle, new FacebookDelegate(Callback));
 	}
 
-	// Token: 0x06000DB5 RID: 3509 RVA: 0x000519A4 File Offset: 0x0004FBA4
 	private void CallFBFeed()
 	{
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Expected O, but got Unknown
 		Dictionary<string, string[]> properties = null;
-		if (this.IncludeFeedProperties)
+		if (IncludeFeedProperties)
 		{
-			properties = this.FeedProperties;
+			properties = FeedProperties;
 		}
-		FB.Feed(this.FeedToId, this.FeedLink, this.FeedLinkName, this.FeedLinkCaption, this.FeedLinkDescription, this.FeedPicture, this.FeedMediaSource, this.FeedActionName, this.FeedActionLink, this.FeedReference, properties, new FacebookDelegate(this.Callback));
+		FB.Feed(FeedToId, FeedLink, FeedLinkName, FeedLinkCaption, FeedLinkDescription, FeedPicture, FeedMediaSource, FeedActionName, FeedActionLink, FeedReference, properties, new FacebookDelegate(Callback));
 	}
 
-	// Token: 0x06000DB6 RID: 3510 RVA: 0x00051A10 File Offset: 0x0004FC10
 	private void CallFBPay()
 	{
-		FB.Canvas.Pay(this.PayProduct, "purchaseitem", 1, null, null, null, null, null, null);
+		FB.Canvas.Pay(PayProduct);
 	}
 
-	// Token: 0x06000DB7 RID: 3511 RVA: 0x00051A44 File Offset: 0x0004FC44
 	private void CallFBAPI()
 	{
-		FB.API(this.ApiQuery, HttpMethod.GET, new FacebookDelegate(this.Callback), null);
+		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001d: Expected O, but got Unknown
+		FB.API(ApiQuery, HttpMethod.GET, new FacebookDelegate(Callback));
 	}
 
-	// Token: 0x06000DB8 RID: 3512 RVA: 0x00051A63 File Offset: 0x0004FC63
 	private void CallFBGetDeepLink()
 	{
-		FB.GetDeepLink(new FacebookDelegate(this.Callback));
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Expected O, but got Unknown
+		FB.GetDeepLink(new FacebookDelegate(Callback));
 	}
 
-	// Token: 0x06000DB9 RID: 3513 RVA: 0x00051A78 File Offset: 0x0004FC78
 	public void CallAppEventLogEvent()
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary["fb_level"] = "Player Level";
-		FB.AppEvents.LogEvent("fb_mobile_level_achieved", new float?(this.PlayerLevel), dictionary);
-		this.PlayerLevel += 1f;
+		FB.AppEvents.LogEvent("fb_mobile_level_achieved", PlayerLevel, dictionary);
+		PlayerLevel += 1f;
 	}
 
-	// Token: 0x06000DBA RID: 3514 RVA: 0x00051AC4 File Offset: 0x0004FCC4
 	public void CallCanvasSetResolution()
 	{
-		int width;
-		if (!int.TryParse(this.Width, out width))
+		if (!int.TryParse(Width, out var result))
 		{
-			width = 800;
+			result = 800;
 		}
-		int height;
-		if (!int.TryParse(this.Height, out height))
+		if (!int.TryParse(Height, out var result2))
 		{
-			height = 600;
+			result2 = 600;
 		}
-		float amount;
-		if (!float.TryParse(this.Top, out amount))
+		if (!float.TryParse(Top, out var result3))
 		{
-			amount = 0f;
+			result3 = 0f;
 		}
-		float amount2;
-		if (!float.TryParse(this.Left, out amount2))
+		if (!float.TryParse(Left, out var result4))
 		{
-			amount2 = 0f;
+			result4 = 0f;
 		}
-		if (this.CenterHorizontal && this.CenterVertical)
+		if (CenterHorizontal && CenterVertical)
 		{
-			FB.Canvas.SetResolution(width, height, false, 0, new FBScreen.Layout[]
-			{
-				FBScreen.CenterVertical(),
-				FBScreen.CenterHorizontal()
-			});
-			return;
+			FB.Canvas.SetResolution(result, result2, false, 0, FBScreen.CenterVertical(), FBScreen.CenterHorizontal());
 		}
-		if (this.CenterHorizontal)
+		else if (CenterHorizontal)
 		{
-			FB.Canvas.SetResolution(width, height, false, 0, new FBScreen.Layout[]
-			{
-				FBScreen.Top(amount),
-				FBScreen.CenterHorizontal()
-			});
-			return;
+			FB.Canvas.SetResolution(result, result2, false, 0, FBScreen.Top(result3), FBScreen.CenterHorizontal());
 		}
-		if (this.CenterVertical)
+		else if (CenterVertical)
 		{
-			FB.Canvas.SetResolution(width, height, false, 0, new FBScreen.Layout[]
-			{
-				FBScreen.CenterVertical(),
-				FBScreen.Left(amount2)
-			});
-			return;
+			FB.Canvas.SetResolution(result, result2, false, 0, FBScreen.CenterVertical(), FBScreen.Left(result4));
 		}
-		FB.Canvas.SetResolution(width, height, false, 0, new FBScreen.Layout[]
+		else
 		{
-			FBScreen.Top(amount),
-			FBScreen.Left(amount2)
-		});
-	}
-
-	// Token: 0x170001EF RID: 495
-	// (get) Token: 0x06000DBB RID: 3515 RVA: 0x00051BC8 File Offset: 0x0004FDC8
-	private int TextWindowHeight
-	{
-		get
-		{
-			return Screen.height;
+			FB.Canvas.SetResolution(result, result2, false, 0, FBScreen.Top(result3), FBScreen.Left(result4));
 		}
 	}
 
-	// Token: 0x06000DBC RID: 3516 RVA: 0x00051BD0 File Offset: 0x0004FDD0
 	private void Awake()
 	{
-		this.textStyle.alignment = 0;
-		this.textStyle.wordWrap = true;
-		this.textStyle.padding = new RectOffset(10, 10, 10, 10);
-		this.textStyle.stretchHeight = true;
-		this.textStyle.stretchWidth = false;
-		this.FeedProperties.Add("key1", new string[]
-		{
-			"valueString1"
-		});
-		this.FeedProperties.Add("key2", new string[]
-		{
-			"valueString2",
-			"http://www.facebook.com"
-		});
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Expected O, but got Unknown
+		textStyle.alignment = (TextAnchor)0;
+		textStyle.wordWrap = true;
+		textStyle.padding = new RectOffset(10, 10, 10, 10);
+		textStyle.stretchHeight = true;
+		textStyle.stretchWidth = false;
+		FeedProperties.Add("key1", new string[1] { "valueString1" });
+		FeedProperties.Add("key2", new string[2] { "valueString2", "http://www.facebook.com" });
 	}
 
-	// Token: 0x06000DBD RID: 3517 RVA: 0x00051C6C File Offset: 0x0004FE6C
 	private void OnGUI()
 	{
-		if (this.IsHorizontalLayout())
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04be: Unknown result type (might be due to invalid IL or missing references)
+		if (IsHorizontalLayout())
 		{
 			GUILayout.BeginHorizontal(Array.Empty<GUILayoutOption>());
 			GUILayout.BeginVertical(Array.Empty<GUILayoutOption>());
 		}
 		GUILayout.Space(5f);
-		GUILayout.Box("Status: " + this.status, new GUILayoutOption[]
-		{
-			GUILayout.MinWidth((float)this.mainWindowWidth)
-		});
-		this.scrollPosition = GUILayout.BeginScrollView(this.scrollPosition, new GUILayoutOption[]
-		{
-			GUILayout.MinWidth((float)this.mainWindowFullWidth)
-		});
+		GUILayout.Box("Status: " + status, (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinWidth((float)mainWindowWidth) });
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition, (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinWidth((float)mainWindowFullWidth) });
 		GUILayout.BeginVertical(Array.Empty<GUILayoutOption>());
-		GUI.enabled = !this.isInit;
-		if (this.Button("FB.Init"))
+		GUI.enabled = !isInit;
+		if (Button("FB.Init"))
 		{
-			this.CallFBInit();
-			this.status = "FB.Init() called with " + FB.AppId;
+			CallFBInit();
+			status = "FB.Init() called with " + FB.AppId;
 		}
 		GUILayout.BeginHorizontal(Array.Empty<GUILayoutOption>());
-		GUI.enabled = this.isInit;
-		if (this.Button("Login"))
+		GUI.enabled = isInit;
+		if (Button("Login"))
 		{
-			this.CallFBLogin();
-			this.status = "Login called";
+			CallFBLogin();
+			status = "Login called";
 		}
 		GUILayout.EndHorizontal();
 		GUI.enabled = FB.IsLoggedIn;
 		GUILayout.Space(10f);
-		this.LabelAndTextField("Title (optional): ", ref this.FriendSelectorTitle);
-		this.LabelAndTextField("Message: ", ref this.FriendSelectorMessage);
-		this.LabelAndTextField("Exclude Ids (optional): ", ref this.FriendSelectorExcludeIds);
-		this.LabelAndTextField("Filters (optional): ", ref this.FriendSelectorFilters);
-		this.LabelAndTextField("Max Recipients (optional): ", ref this.FriendSelectorMax);
-		this.LabelAndTextField("Data (optional): ", ref this.FriendSelectorData);
-		if (this.Button("Open Friend Selector"))
+		LabelAndTextField("Title (optional): ", ref FriendSelectorTitle);
+		LabelAndTextField("Message: ", ref FriendSelectorMessage);
+		LabelAndTextField("Exclude Ids (optional): ", ref FriendSelectorExcludeIds);
+		LabelAndTextField("Filters (optional): ", ref FriendSelectorFilters);
+		LabelAndTextField("Max Recipients (optional): ", ref FriendSelectorMax);
+		LabelAndTextField("Data (optional): ", ref FriendSelectorData);
+		if (Button("Open Friend Selector"))
 		{
 			try
 			{
-				this.CallAppRequestAsFriendSelector();
-				this.status = "Friend Selector called";
+				CallAppRequestAsFriendSelector();
+				status = "Friend Selector called";
 			}
 			catch (Exception ex)
 			{
-				this.status = ex.Message;
+				status = ex.Message;
 			}
 		}
 		GUILayout.Space(10f);
-		this.LabelAndTextField("Title (optional): ", ref this.DirectRequestTitle);
-		this.LabelAndTextField("Message: ", ref this.DirectRequestMessage);
-		this.LabelAndTextField("To Comma Ids: ", ref this.DirectRequestTo);
-		if (this.Button("Open Direct Request"))
+		LabelAndTextField("Title (optional): ", ref DirectRequestTitle);
+		LabelAndTextField("Message: ", ref DirectRequestMessage);
+		LabelAndTextField("To Comma Ids: ", ref DirectRequestTo);
+		if (Button("Open Direct Request"))
 		{
 			try
 			{
-				this.CallAppRequestAsDirectRequest();
-				this.status = "Direct Request called";
+				CallAppRequestAsDirectRequest();
+				status = "Direct Request called";
 			}
 			catch (Exception ex2)
 			{
-				this.status = ex2.Message;
+				status = ex2.Message;
 			}
 		}
 		GUILayout.Space(10f);
-		this.LabelAndTextField("To Id (optional): ", ref this.FeedToId);
-		this.LabelAndTextField("Link (optional): ", ref this.FeedLink);
-		this.LabelAndTextField("Link Name (optional): ", ref this.FeedLinkName);
-		this.LabelAndTextField("Link Desc (optional): ", ref this.FeedLinkDescription);
-		this.LabelAndTextField("Link Caption (optional): ", ref this.FeedLinkCaption);
-		this.LabelAndTextField("Picture (optional): ", ref this.FeedPicture);
-		this.LabelAndTextField("Media Source (optional): ", ref this.FeedMediaSource);
-		this.LabelAndTextField("Action Name (optional): ", ref this.FeedActionName);
-		this.LabelAndTextField("Action Link (optional): ", ref this.FeedActionLink);
-		this.LabelAndTextField("Reference (optional): ", ref this.FeedReference);
+		LabelAndTextField("To Id (optional): ", ref FeedToId);
+		LabelAndTextField("Link (optional): ", ref FeedLink);
+		LabelAndTextField("Link Name (optional): ", ref FeedLinkName);
+		LabelAndTextField("Link Desc (optional): ", ref FeedLinkDescription);
+		LabelAndTextField("Link Caption (optional): ", ref FeedLinkCaption);
+		LabelAndTextField("Picture (optional): ", ref FeedPicture);
+		LabelAndTextField("Media Source (optional): ", ref FeedMediaSource);
+		LabelAndTextField("Action Name (optional): ", ref FeedActionName);
+		LabelAndTextField("Action Link (optional): ", ref FeedActionLink);
+		LabelAndTextField("Reference (optional): ", ref FeedReference);
 		GUILayout.BeginHorizontal(Array.Empty<GUILayoutOption>());
-		GUILayout.Label("Properties (optional)", new GUILayoutOption[]
-		{
-			GUILayout.Width(150f)
-		});
-		this.IncludeFeedProperties = GUILayout.Toggle(this.IncludeFeedProperties, "Include", Array.Empty<GUILayoutOption>());
+		GUILayout.Label("Properties (optional)", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(150f) });
+		IncludeFeedProperties = GUILayout.Toggle(IncludeFeedProperties, "Include", Array.Empty<GUILayoutOption>());
 		GUILayout.EndHorizontal();
-		if (this.Button("Open Feed Dialog"))
+		if (Button("Open Feed Dialog"))
 		{
 			try
 			{
-				this.CallFBFeed();
-				this.status = "Feed dialog called";
+				CallFBFeed();
+				status = "Feed dialog called";
 			}
 			catch (Exception ex3)
 			{
-				this.status = ex3.Message;
+				status = ex3.Message;
 			}
 		}
 		GUILayout.Space(10f);
-		this.LabelAndTextField("API: ", ref this.ApiQuery);
-		if (this.Button("Call API"))
+		LabelAndTextField("API: ", ref ApiQuery);
+		if (Button("Call API"))
 		{
-			this.status = "API called";
-			this.CallFBAPI();
+			status = "API called";
+			CallFBAPI();
 		}
 		GUILayout.Space(10f);
-		if (this.Button("Take & upload screenshot"))
+		if (Button("Take & upload screenshot"))
 		{
-			this.status = "Take screenshot";
-			base.StartCoroutine(this.TakeScreenshot());
+			status = "Take screenshot";
+			((MonoBehaviour)this).StartCoroutine(TakeScreenshot());
 		}
-		if (this.Button("Get Deep Link"))
+		if (Button("Get Deep Link"))
 		{
-			this.CallFBGetDeepLink();
+			CallFBGetDeepLink();
 		}
 		GUILayout.Space(10f);
 		GUILayout.EndVertical();
 		GUILayout.EndScrollView();
-		if (this.IsHorizontalLayout())
+		if (IsHorizontalLayout())
 		{
 			GUILayout.EndVertical();
 		}
 		GUI.enabled = true;
-		Rect rect = GUILayoutUtility.GetRect(640f, (float)this.TextWindowHeight);
-		GUI.TextArea(rect, string.Format(" AppId: {0} \n Facebook Dll: {1} \n UserId: {2}\n IsLoggedIn: {3}\n AccessToken: {4}\n AccessTokenExpiresAt: {5}\n {6}", new object[]
+		Rect rect = GUILayoutUtility.GetRect(640f, (float)TextWindowHeight);
+		GUI.TextArea(rect, string.Format(" AppId: {0} \n Facebook Dll: {1} \n UserId: {2}\n IsLoggedIn: {3}\n AccessToken: {4}\n AccessTokenExpiresAt: {5}\n {6}", FB.AppId, isInit ? "Loaded Successfully" : "Not Loaded", FB.UserId, FB.IsLoggedIn, FB.AccessToken, FB.AccessTokenExpiresAt, lastResponse), textStyle);
+		if ((Object)(object)lastResponseTexture != (Object)null)
 		{
-			FB.AppId,
-			this.isInit ? "Loaded Successfully" : "Not Loaded",
-			FB.UserId,
-			FB.IsLoggedIn,
-			FB.AccessToken,
-			FB.AccessTokenExpiresAt,
-			this.lastResponse
-		}), this.textStyle);
-		if (this.lastResponseTexture != null)
-		{
-			float num = rect.y + 200f;
-			if ((float)(Screen.height - this.lastResponseTexture.height) < num)
+			float num = ((Rect)(ref rect)).y + 200f;
+			if ((float)(Screen.height - ((Texture)lastResponseTexture).height) < num)
 			{
-				num = (float)(Screen.height - this.lastResponseTexture.height);
+				num = Screen.height - ((Texture)lastResponseTexture).height;
 			}
-			GUI.Label(new Rect(rect.x + 5f, num, (float)this.lastResponseTexture.width, (float)this.lastResponseTexture.height), this.lastResponseTexture);
+			GUI.Label(new Rect(((Rect)(ref rect)).x + 5f, num, (float)((Texture)lastResponseTexture).width, (float)((Texture)lastResponseTexture).height), (Texture)(object)lastResponseTexture);
 		}
-		if (this.IsHorizontalLayout())
+		if (IsHorizontalLayout())
 		{
 			GUILayout.EndHorizontal();
 		}
 	}
 
-	// Token: 0x06000DBE RID: 3518 RVA: 0x0005217C File Offset: 0x0005037C
 	private void Callback(FBResult result)
 	{
-		this.lastResponseTexture = null;
+		lastResponseTexture = null;
 		if (!string.IsNullOrEmpty(result.Error))
 		{
-			this.lastResponse = "Error Response:\n" + result.Error;
+			lastResponse = "Error Response:\n" + result.Error;
 			return;
 		}
-		if (!this.ApiQuery.Contains("/picture"))
+		if (!ApiQuery.Contains("/picture"))
 		{
-			this.lastResponse = "Success Response:\n" + result.Text;
+			lastResponse = "Success Response:\n" + result.Text;
 			return;
 		}
-		this.lastResponseTexture = result.Texture;
-		this.lastResponse = "Success Response:\n";
+		lastResponseTexture = result.Texture;
+		lastResponse = "Success Response:\n";
 	}
 
-	// Token: 0x06000DBF RID: 3519 RVA: 0x000521F4 File Offset: 0x000503F4
 	private IEnumerator TakeScreenshot()
 	{
-		yield return new WaitForEndOfFrame();
+		yield return (object)new WaitForEndOfFrame();
 		int width = Screen.width;
 		int height = Screen.height;
-		Texture2D texture2D = new Texture2D(width, height, 3, false);
-		texture2D.ReadPixels(new Rect(0f, 0f, (float)width, (float)height), 0, 0);
-		texture2D.Apply();
-		byte[] array = ImageConversion.EncodeToPNG(texture2D);
-		WWWForm wwwform = new WWWForm();
-		wwwform.AddBinaryData("image", array, "InteractiveConsole.png");
-		wwwform.AddField("message", "herp derp.  I did a thing!  Did I do this right?");
-		FB.API("me/photos", HttpMethod.POST, new FacebookDelegate(this.Callback), wwwform);
-		yield break;
+		Texture2D val = new Texture2D(width, height, (TextureFormat)3, false);
+		val.ReadPixels(new Rect(0f, 0f, (float)width, (float)height), 0, 0);
+		val.Apply();
+		byte[] array = ImageConversion.EncodeToPNG(val);
+		WWWForm val2 = new WWWForm();
+		val2.AddBinaryData("image", array, "InteractiveConsole.png");
+		val2.AddField("message", "herp derp.  I did a thing!  Did I do this right?");
+		FB.API("me/photos", HttpMethod.POST, new FacebookDelegate(Callback), val2);
 	}
 
-	// Token: 0x06000DC0 RID: 3520 RVA: 0x00052203 File Offset: 0x00050403
 	private bool Button(string label)
 	{
-		return GUILayout.Button(label, new GUILayoutOption[]
+		return GUILayout.Button(label, (GUILayoutOption[])(object)new GUILayoutOption[2]
 		{
-			GUILayout.MinHeight((float)this.buttonHeight),
-			GUILayout.MaxWidth((float)this.mainWindowWidth)
+			GUILayout.MinHeight((float)buttonHeight),
+			GUILayout.MaxWidth((float)mainWindowWidth)
 		});
 	}
 
-	// Token: 0x06000DC1 RID: 3521 RVA: 0x0005222F File Offset: 0x0005042F
 	private void LabelAndTextField(string label, ref string text)
 	{
 		GUILayout.BeginHorizontal(Array.Empty<GUILayoutOption>());
-		GUILayout.Label(label, new GUILayoutOption[]
-		{
-			GUILayout.MaxWidth(150f)
-		});
+		GUILayout.Label(label, (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MaxWidth(150f) });
 		text = GUILayout.TextField(text, Array.Empty<GUILayoutOption>());
 		GUILayout.EndHorizontal();
 	}
 
-	// Token: 0x06000DC2 RID: 3522 RVA: 0x00024C5F File Offset: 0x00022E5F
 	private bool IsHorizontalLayout()
 	{
 		return true;
 	}
-
-	// Token: 0x040009A3 RID: 2467
-	private bool isInit;
-
-	// Token: 0x040009A4 RID: 2468
-	public string FriendSelectorTitle = "";
-
-	// Token: 0x040009A5 RID: 2469
-	public string FriendSelectorMessage = "Derp";
-
-	// Token: 0x040009A6 RID: 2470
-	public string FriendSelectorFilters = "[\"all\",\"app_users\",\"app_non_users\"]";
-
-	// Token: 0x040009A7 RID: 2471
-	public string FriendSelectorData = "{}";
-
-	// Token: 0x040009A8 RID: 2472
-	public string FriendSelectorExcludeIds = "";
-
-	// Token: 0x040009A9 RID: 2473
-	public string FriendSelectorMax = "";
-
-	// Token: 0x040009AA RID: 2474
-	public string DirectRequestTitle = "";
-
-	// Token: 0x040009AB RID: 2475
-	public string DirectRequestMessage = "Herp";
-
-	// Token: 0x040009AC RID: 2476
-	private string DirectRequestTo = "";
-
-	// Token: 0x040009AD RID: 2477
-	public string FeedToId = "";
-
-	// Token: 0x040009AE RID: 2478
-	public string FeedLink = "";
-
-	// Token: 0x040009AF RID: 2479
-	public string FeedLinkName = "";
-
-	// Token: 0x040009B0 RID: 2480
-	public string FeedLinkCaption = "";
-
-	// Token: 0x040009B1 RID: 2481
-	public string FeedLinkDescription = "";
-
-	// Token: 0x040009B2 RID: 2482
-	public string FeedPicture = "";
-
-	// Token: 0x040009B3 RID: 2483
-	public string FeedMediaSource = "";
-
-	// Token: 0x040009B4 RID: 2484
-	public string FeedActionName = "";
-
-	// Token: 0x040009B5 RID: 2485
-	public string FeedActionLink = "";
-
-	// Token: 0x040009B6 RID: 2486
-	public string FeedReference = "";
-
-	// Token: 0x040009B7 RID: 2487
-	public bool IncludeFeedProperties;
-
-	// Token: 0x040009B8 RID: 2488
-	private Dictionary<string, string[]> FeedProperties = new Dictionary<string, string[]>();
-
-	// Token: 0x040009B9 RID: 2489
-	public string PayProduct = "";
-
-	// Token: 0x040009BA RID: 2490
-	public string ApiQuery = "";
-
-	// Token: 0x040009BB RID: 2491
-	public float PlayerLevel = 1f;
-
-	// Token: 0x040009BC RID: 2492
-	public string Width = "800";
-
-	// Token: 0x040009BD RID: 2493
-	public string Height = "600";
-
-	// Token: 0x040009BE RID: 2494
-	public bool CenterHorizontal = true;
-
-	// Token: 0x040009BF RID: 2495
-	public bool CenterVertical;
-
-	// Token: 0x040009C0 RID: 2496
-	public string Top = "10";
-
-	// Token: 0x040009C1 RID: 2497
-	public string Left = "10";
-
-	// Token: 0x040009C2 RID: 2498
-	private string status = "Ready";
-
-	// Token: 0x040009C3 RID: 2499
-	private string lastResponse = "";
-
-	// Token: 0x040009C4 RID: 2500
-	public GUIStyle textStyle = new GUIStyle();
-
-	// Token: 0x040009C5 RID: 2501
-	private Texture2D lastResponseTexture;
-
-	// Token: 0x040009C6 RID: 2502
-	private Vector2 scrollPosition = Vector2.zero;
-
-	// Token: 0x040009C7 RID: 2503
-	private int buttonHeight = 24;
-
-	// Token: 0x040009C8 RID: 2504
-	private int mainWindowWidth = 500;
-
-	// Token: 0x040009C9 RID: 2505
-	private int mainWindowFullWidth = 530;
 }

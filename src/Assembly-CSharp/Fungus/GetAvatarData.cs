@@ -1,136 +1,65 @@
-﻿using System;
+using System;
 using System.Reflection;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSNew/Get", "GetAvatarData", "通过制定字符串获取玩家数据", 0)]
+[AddComponentMenu("")]
+public class GetAvatarData : Command
 {
-	// Token: 0x02000F3C RID: 3900
-	[CommandInfo("YSNew/Get", "GetAvatarData", "通过制定字符串获取玩家数据", 0)]
-	[AddComponentMenu("")]
-	public class GetAvatarData : Command
+	[Tooltip("变量的名称")]
+	[SerializeField]
+	protected string StaticValueID = "";
+
+	[Tooltip("获取到的值存放位置")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable TempValue;
+
+	public void setHasVariable(string name, int num, Flowchart flowchart)
 	{
-		// Token: 0x06006E32 RID: 28210 RVA: 0x000E111A File Offset: 0x000DF31A
-		public void setHasVariable(string name, int num, Flowchart flowchart)
+		if (flowchart.HasVariable(name))
 		{
-			if (flowchart.HasVariable(name))
+			flowchart.SetIntegerVariable(name, num);
+		}
+	}
+
+	public override void OnEnter()
+	{
+		Avatar player = Tools.instance.getPlayer();
+		FieldInfo[] fields = player.GetType().GetFields();
+		for (int i = 0; i < fields.Length; i++)
+		{
+			switch (fields[i].FieldType.Name)
 			{
-				flowchart.SetIntegerVariable(name, num);
+			case "Int32":
+			case "Int64":
+			case "Int16":
+			case "UInt32":
+			case "UInt16":
+			case "UInt64":
+			case "Int":
+			case "uInt":
+				if (StaticValueID == fields[i].Name)
+				{
+					TempValue.Value = Convert.ToInt32(fields[i].GetValue(player));
+				}
+				break;
 			}
 		}
+		Continue();
+	}
 
-		// Token: 0x06006E33 RID: 28211 RVA: 0x002A46E4 File Offset: 0x002A28E4
-		public override void OnEnter()
-		{
-			Avatar player = Tools.instance.getPlayer();
-			FieldInfo[] fields = player.GetType().GetFields();
-			int i = 0;
-			while (i < fields.Length)
-			{
-				string name = fields[i].FieldType.Name;
-				uint num = <PrivateImplementationDetails>.ComputeStringHash(name);
-				if (num <= 1323747186U)
-				{
-					if (num <= 765439473U)
-					{
-						if (num != 697196164U)
-						{
-							if (num == 765439473U)
-							{
-								if (name == "Int16")
-								{
-									goto IL_12A;
-								}
-							}
-						}
-						else if (name == "Int64")
-						{
-							goto IL_12A;
-						}
-					}
-					else if (num != 815609665U)
-					{
-						if (num == 1323747186U)
-						{
-							if (name == "UInt16")
-							{
-								goto IL_12A;
-							}
-						}
-					}
-					else if (name == "uInt")
-					{
-						goto IL_12A;
-					}
-				}
-				else if (num <= 2711245919U)
-				{
-					if (num != 1324880019U)
-					{
-						if (num == 2711245919U)
-						{
-							if (name == "Int32")
-							{
-								goto IL_12A;
-							}
-						}
-					}
-					else if (name == "UInt64")
-					{
-						goto IL_12A;
-					}
-				}
-				else if (num != 3538687084U)
-				{
-					if (num == 4168357374U)
-					{
-						if (name == "Int")
-						{
-							goto IL_12A;
-						}
-					}
-				}
-				else if (name == "UInt32")
-				{
-					goto IL_12A;
-				}
-				IL_158:
-				i++;
-				continue;
-				IL_12A:
-				if (this.StaticValueID == fields[i].Name)
-				{
-					this.TempValue.Value = Convert.ToInt32(fields[i].GetValue(player));
-					goto IL_158;
-				}
-				goto IL_158;
-			}
-			this.Continue();
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x06006E34 RID: 28212 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x06006E35 RID: 28213 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
-
-		// Token: 0x04005B89 RID: 23433
-		[Tooltip("变量的名称")]
-		[SerializeField]
-		protected string StaticValueID = "";
-
-		// Token: 0x04005B8A RID: 23434
-		[Tooltip("获取到的值存放位置")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable TempValue;
+	public override void OnReset()
+	{
 	}
 }

@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using JSONClass;
 using KBEngine;
@@ -6,15 +5,34 @@ using UltimateSurvival;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x0200017C RID: 380
 public class AllMapManage : MonoBehaviour
 {
-	// Token: 0x06001039 RID: 4153 RVA: 0x0005F6F8 File Offset: 0x0005D8F8
+	public static AllMapManage instance;
+
+	public Dictionary<int, BaseMapCompont> mapIndex = new Dictionary<int, BaseMapCompont>();
+
+	[HideInInspector]
+	public MapPlayerController MapPlayerController;
+
+	public GameObject TaskFlag;
+
+	public Attempt backToLastInFuBenScene = new Attempt();
+
+	public bool canLoad = true;
+
+	public bool isPlayMove;
+
+	public GameObject LuXianGroup;
+
+	public GameObject AllNodeGameobjGroup;
+
+	public Dictionary<int, int> RandomFlag = new Dictionary<int, int>();
+
 	private void Awake()
 	{
-		AllMapManage.instance = this;
-		GameObject gameObject = Object.Instantiate<GameObject>(Resources.Load<GameObject>("MapPlayer"));
-		this.MapPlayerController = gameObject.GetComponent<MapPlayerController>();
+		instance = this;
+		GameObject val = Object.Instantiate<GameObject>(Resources.Load<GameObject>("MapPlayer"));
+		MapPlayerController = val.GetComponent<MapPlayerController>();
 		if (SceneEx.NowSceneName == "AllMaps")
 		{
 			PlayerEx.Player.AllMapSetNode();
@@ -22,117 +40,86 @@ public class AllMapManage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600103A RID: 4154 RVA: 0x0005F751 File Offset: 0x0005D951
 	private void Start()
 	{
-		this.backToLastInFuBenScene.SetTryer(new TryerDelegate(this.backFuBen));
-		base.Invoke("RefreshLuDian", 0.1f);
+		backToLastInFuBenScene.SetTryer(backFuBen);
+		((MonoBehaviour)this).Invoke("RefreshLuDian", 0.1f);
 	}
 
-	// Token: 0x0600103B RID: 4155 RVA: 0x0005F77C File Offset: 0x0005D97C
 	public void RefreshLuDian()
 	{
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
 		Avatar player = Tools.instance.getPlayer();
 		float shenShiArea = player.GetShenShiArea();
 		List<int> list = new List<int>();
-		foreach (KeyValuePair<int, BaseMapCompont> keyValuePair in this.mapIndex)
+		foreach (KeyValuePair<int, BaseMapCompont> item in mapIndex)
 		{
-			MapComponent mapComponent = keyValuePair.Value as MapComponent;
-			if (mapComponent == null)
+			MapComponent mapComponent = item.Value as MapComponent;
+			if ((Object)(object)mapComponent == (Object)null)
 			{
 				return;
 			}
-			if (AllMapLuDainType.DataDict.ContainsKey(mapComponent.NodeIndex) && AllMapLuDainType.DataDict[mapComponent.NodeIndex].MapType == 1 && mapComponent.NodeGroup != 0)
+			if (!AllMapLuDainType.DataDict.ContainsKey(mapComponent.NodeIndex) || AllMapLuDainType.DataDict[mapComponent.NodeIndex].MapType != 1 || mapComponent.NodeGroup == 0)
 			{
-				float num = Vector3.Distance(MapPlayerController.Inst.transform.position, mapComponent.transform.position);
-				bool flag = false;
-				if (this.mapIndex.ContainsKey(player.NowMapIndex))
+				continue;
+			}
+			float num = Vector3.Distance(((Component)MapPlayerController.Inst).transform.position, ((Component)mapComponent).transform.position);
+			bool flag = false;
+			if (mapIndex.ContainsKey(player.NowMapIndex))
+			{
+				MapComponent mapComponent2 = (MapComponent)mapIndex[player.NowMapIndex];
+				if (mapComponent.NodeGroup == mapComponent2.NodeGroup || num <= shenShiArea)
 				{
-					MapComponent mapComponent2 = (MapComponent)this.mapIndex[player.NowMapIndex];
-					if (mapComponent.NodeGroup == mapComponent2.NodeGroup || num <= shenShiArea)
-					{
-						flag = true;
-						list.Add(mapComponent.NodeGroup);
-						mapComponent.gameObject.SetActive(true);
-					}
-				}
-				if (!flag && mapComponent.gameObject.activeSelf)
-				{
-					mapComponent.gameObject.SetActive(false);
-					iTween.FadeTo(mapComponent.gameObject, 0f, 1f);
+					flag = true;
+					list.Add(mapComponent.NodeGroup);
+					((Component)mapComponent).gameObject.SetActive(true);
 				}
 			}
-		}
-		if (this.LuXianGroup != null)
-		{
-			foreach (AllMapsLuXian allMapsLuXian in this.LuXianGroup.GetComponentsInChildren<AllMapsLuXian>(true))
+			if (!flag && ((Component)mapComponent).gameObject.activeSelf)
 			{
-				bool flag2 = false;
-				if (this.mapIndex.ContainsKey(player.NowMapIndex))
+				((Component)mapComponent).gameObject.SetActive(false);
+				iTween.FadeTo(((Component)mapComponent).gameObject, 0f, 1f);
+			}
+		}
+		if (!((Object)(object)LuXianGroup != (Object)null))
+		{
+			return;
+		}
+		AllMapsLuXian[] componentsInChildren = LuXianGroup.GetComponentsInChildren<AllMapsLuXian>(true);
+		foreach (AllMapsLuXian allMapsLuXian in componentsInChildren)
+		{
+			bool flag2 = false;
+			if (mapIndex.ContainsKey(player.NowMapIndex))
+			{
+				MapComponent mapComponent3 = (MapComponent)mapIndex[player.NowMapIndex];
+				if (allMapsLuXian.NodeGroup == mapComponent3.NodeGroup || list.Contains(allMapsLuXian.NodeGroup))
 				{
-					MapComponent mapComponent3 = (MapComponent)this.mapIndex[player.NowMapIndex];
-					if (allMapsLuXian.NodeGroup == mapComponent3.NodeGroup || list.Contains(allMapsLuXian.NodeGroup))
-					{
-						flag2 = true;
-						allMapsLuXian.gameObject.SetActive(true);
-					}
+					flag2 = true;
+					((Component)allMapsLuXian).gameObject.SetActive(true);
 				}
-				if (!flag2 && allMapsLuXian.gameObject.activeSelf)
-				{
-					allMapsLuXian.gameObject.SetActive(false);
-					iTween.FadeTo(allMapsLuXian.gameObject, 0f, 1f);
-				}
+			}
+			if (!flag2 && ((Component)allMapsLuXian).gameObject.activeSelf)
+			{
+				((Component)allMapsLuXian).gameObject.SetActive(false);
+				iTween.FadeTo(((Component)allMapsLuXian).gameObject, 0f, 1f);
 			}
 		}
 	}
 
-	// Token: 0x0600103C RID: 4156 RVA: 0x0005F9D8 File Offset: 0x0005DBD8
 	public bool backFuBen()
 	{
-		bool result = true;
-		if (this.canLoad)
+		if (canLoad)
 		{
-			Tools.instance.getPlayer().fubenContorl.outFuBen(true);
-			this.canLoad = false;
+			Tools.instance.getPlayer().fubenContorl.outFuBen();
+			canLoad = false;
 		}
-		return result;
+		return true;
 	}
 
-	// Token: 0x0600103D RID: 4157 RVA: 0x0005F9FF File Offset: 0x0005DBFF
 	private void OnDestroy()
 	{
-		AllMapManage.instance = null;
+		instance = null;
 		YSFuncList.Ints.Clear();
 	}
-
-	// Token: 0x04000BC7 RID: 3015
-	public static AllMapManage instance;
-
-	// Token: 0x04000BC8 RID: 3016
-	public Dictionary<int, BaseMapCompont> mapIndex = new Dictionary<int, BaseMapCompont>();
-
-	// Token: 0x04000BC9 RID: 3017
-	[HideInInspector]
-	public MapPlayerController MapPlayerController;
-
-	// Token: 0x04000BCA RID: 3018
-	public GameObject TaskFlag;
-
-	// Token: 0x04000BCB RID: 3019
-	public Attempt backToLastInFuBenScene = new Attempt();
-
-	// Token: 0x04000BCC RID: 3020
-	public bool canLoad = true;
-
-	// Token: 0x04000BCD RID: 3021
-	public bool isPlayMove;
-
-	// Token: 0x04000BCE RID: 3022
-	public GameObject LuXianGroup;
-
-	// Token: 0x04000BCF RID: 3023
-	public GameObject AllNodeGameobjGroup;
-
-	// Token: 0x04000BD0 RID: 3024
-	public Dictionary<int, int> RandomFlag = new Dictionary<int, int>();
 }

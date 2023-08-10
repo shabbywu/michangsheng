@@ -1,56 +1,46 @@
-﻿using System;
+using System;
 using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YSTask", "GetNTaskReward", "获取任务奖励文字描述", 0)]
+[AddComponentMenu("")]
+public class GetNTaskReward : Command
 {
-	// Token: 0x02000F70 RID: 3952
-	[CommandInfo("YSTask", "GetNTaskReward", "获取任务奖励文字描述", 0)]
-	[AddComponentMenu("")]
-	public class GetNTaskReward : Command
+	[Tooltip("需要获取的任务ID")]
+	[VariableProperty(new Type[] { typeof(IntegerVariable) })]
+	[SerializeField]
+	protected IntegerVariable NTaskID;
+
+	[Tooltip("奖励描述")]
+	[VariableProperty(new Type[] { typeof(StringVariable) })]
+	[SerializeField]
+	protected StringVariable Desc;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006EF8 RID: 28408 RVA: 0x002A5EF8 File Offset: 0x002A40F8
-		public override void OnEnter()
+		Avatar player = Tools.instance.getPlayer();
+		int money = 0;
+		int menpaihuobi = 0;
+		player.nomelTaskMag.getReward(NTaskID.Value, ref money, ref menpaihuobi);
+		int i = jsonData.instance.NTaskAllType[NTaskID.Value.ToString()]["menpaihuobi"].I;
+		if (i == 0 && money > 0)
 		{
-			Avatar player = Tools.instance.getPlayer();
-			int num = 0;
-			int num2 = 0;
-			player.nomelTaskMag.getReward(this.NTaskID.Value, ref num, ref num2);
-			int i = jsonData.instance.NTaskAllType[this.NTaskID.Value.ToString()]["menpaihuobi"].I;
-			if (i == 0 && num > 0)
-			{
-				this.Desc.Value = num + "灵石";
-			}
-			if (i > 0 && num2 > 0)
-			{
-				this.Desc.Value = num2 + "枚" + _ItemJsonData.DataDict[i].name;
-			}
-			this.Continue();
+			Desc.Value = money + "灵石";
 		}
-
-		// Token: 0x06006EF9 RID: 28409 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		if (i > 0 && menpaihuobi > 0)
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			Desc.Value = menpaihuobi + "枚" + _ItemJsonData.DataDict[i].name;
 		}
+		Continue();
+	}
 
-		// Token: 0x04005BDC RID: 23516
-		[Tooltip("需要获取的任务ID")]
-		[VariableProperty(new Type[]
-		{
-			typeof(IntegerVariable)
-		})]
-		[SerializeField]
-		protected IntegerVariable NTaskID;
-
-		// Token: 0x04005BDD RID: 23517
-		[Tooltip("奖励描述")]
-		[VariableProperty(new Type[]
-		{
-			typeof(StringVariable)
-		})]
-		[SerializeField]
-		protected StringVariable Desc;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

@@ -1,24 +1,21 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
-{
-	// Token: 0x02000E19 RID: 3609
-	[CommandInfo("Flow", "Quit", "Quits the application. Does not work in Editor or Webplayer builds. Shouldn't generally be used on iOS.", 0)]
-	[AddComponentMenu("")]
-	public class Quit : Command
-	{
-		// Token: 0x060065D3 RID: 26067 RVA: 0x0028439E File Offset: 0x0028259E
-		public override void OnEnter()
-		{
-			Application.Quit();
-			this.Continue();
-		}
+namespace Fungus;
 
-		// Token: 0x060065D4 RID: 26068 RVA: 0x0027D3DB File Offset: 0x0027B5DB
-		public override Color GetButtonColor()
-		{
-			return new Color32(235, 191, 217, byte.MaxValue);
-		}
+[CommandInfo("Flow", "Quit", "Quits the application. Does not work in Editor or Webplayer builds. Shouldn't generally be used on iOS.", 0)]
+[AddComponentMenu("")]
+public class Quit : Command
+{
+	public override void OnEnter()
+	{
+		Application.Quit();
+		Continue();
+	}
+
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)235, (byte)191, (byte)217, byte.MaxValue));
 	}
 }

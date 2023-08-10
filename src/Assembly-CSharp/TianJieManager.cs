@@ -1,245 +1,210 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using JSONClass;
 using KBEngine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000487 RID: 1159
 public class TianJieManager : MonoBehaviour
 {
-	// Token: 0x0600246B RID: 9323 RVA: 0x000FB8FC File Offset: 0x000F9AFC
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
+
+		public static UnityAction _003C_003E9__3_0;
+
+		internal void _003COnAddTime_003Eb__3_0()
+		{
+			YSSaveGame.Reset();
+			KBEngineApp.app.entities[10] = null;
+			KBEngineApp.app.entities.Remove(10);
+			Tools.instance.loadOtherScenes("MainMenu");
+		}
+	}
+
+	public static Dictionary<string, string> LeiJieNames = new Dictionary<string, string>
+	{
+		{ "天雷劫", "tianlei" },
+		{ "阴阳劫", "yinyang" },
+		{ "风火劫", "fenghuo" },
+		{ "心魔劫", "xinmo" },
+		{ "罡雷劫", "ganglei" },
+		{ "造化劫", "zaohua" },
+		{ "混元劫", "hunyuan" },
+		{ "五行劫", "wuxing" },
+		{ "乾天劫", "qiantian" },
+		{ "生死劫", "shengsi" },
+		{ "天地劫", "tiandi" },
+		{ "灭世劫", "mieshi" }
+	};
+
+	public static TianJieManager Inst;
+
+	public TianJieEffectManager EffectManager;
+
+	public int LeiJieIndex;
+
+	public Text LeiJieNameText;
+
+	public Text LeiJieDamageText;
+
+	[HideInInspector]
+	public bool YiXuLi;
+
+	[HideInInspector]
+	public int LeiJieCount;
+
+	[HideInInspector]
+	public List<string> LeiJieList = new List<string>();
+
+	[HideInInspector]
+	public string NowLeiJie => LeiJieList[LeiJieIndex];
+
+	[HideInInspector]
+	public int XuLiCount => PlayerEx.Player.OtherAvatar.buffmag.GetBuffSum(3150) + 1;
+
 	public static void StartTianJieCD()
 	{
 		Avatar player = PlayerEx.Player;
 		player.TianJie.SetField("HuaShenTime", player.worldTimeMag.nowTime);
 		player.TianJie.SetField("JiaSuYear", 0);
-		TianJieManager.OnAddTime();
-		player.TianJie.SetField("ShowTianJieCD", true);
+		OnAddTime();
+		player.TianJie.SetField("ShowTianJieCD", val: true);
 	}
 
-	// Token: 0x0600246C RID: 9324 RVA: 0x000FB954 File Offset: 0x000F9B54
 	public static void TianJieJiaSu(int year)
 	{
 		int i = PlayerEx.Player.TianJie["JiaSuYear"].I;
 		PlayerEx.Player.TianJie.SetField("JiaSuYear", i + year);
-		TianJieManager.OnAddTime();
+		OnAddTime();
 	}
 
-	// Token: 0x0600246D RID: 9325 RVA: 0x000FB998 File Offset: 0x000F9B98
 	public static void OnAddTime()
 	{
+		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Expected O, but got Unknown
 		Avatar player = PlayerEx.Player;
-		if (player != null)
+		if (player == null)
 		{
-			DateTime nowTime = player.worldTimeMag.getNowTime();
-			DateTime t = DateTime.Parse(player.TianJie["HuaShenTime"].str).AddYears(1000 - player.TianJie["JiaSuYear"].I);
-			if (nowTime >= t)
+			return;
+		}
+		DateTime nowTime = player.worldTimeMag.getNowTime();
+		DateTime dateTime = DateTime.Parse(player.TianJie["HuaShenTime"].str).AddYears(1000 - player.TianJie["JiaSuYear"].I);
+		if (nowTime >= dateTime)
+		{
+			player.TianJie.SetField("ShengYuTime", "0年0月0日");
+			player.TianJie.SetField("ShowTianJieCD", val: false);
+			Debug.Log((object)"开始天劫");
+			ESCCloseManager.Inst.CloseAll();
+			object obj = _003C_003Ec._003C_003E9__3_0;
+			if (obj == null)
 			{
-				player.TianJie.SetField("ShengYuTime", "0年0月0日");
-				player.TianJie.SetField("ShowTianJieCD", false);
-				Debug.Log("开始天劫");
-				ESCCloseManager.Inst.CloseAll();
-				UCheckBox.Show("后续内容正在开发中，尚未开放\n确定后将返回主界面", delegate
+				UnityAction val = delegate
 				{
 					YSSaveGame.Reset();
 					KBEngineApp.app.entities[10] = null;
 					KBEngineApp.app.entities.Remove(10);
 					Tools.instance.loadOtherScenes("MainMenu");
-				});
-				return;
+				};
+				_003C_003Ec._003C_003E9__3_0 = val;
+				obj = (object)val;
 			}
-			int num = (int)(t.Subtract(nowTime).TotalDays / 365.0);
+			UCheckBox.Show("后续内容正在开发中，尚未开放\n确定后将返回主界面", (UnityAction)obj);
+		}
+		else
+		{
+			int num = (int)(dateTime.Subtract(nowTime).TotalDays / 365.0);
 			player.TianJie.SetField("ShengYuTimeValue", num);
 			if (num > 0)
 			{
-				player.TianJie.SetField("ShengYuTime", string.Format("{0}年", num));
-				return;
+				player.TianJie.SetField("ShengYuTime", $"{num}年");
 			}
-			player.TianJie.SetField("ShengYuTime", "不足1年");
+			else
+			{
+				player.TianJie.SetField("ShengYuTime", "不足1年");
+			}
 		}
 	}
 
-	// Token: 0x17000290 RID: 656
-	// (get) Token: 0x0600246E RID: 9326 RVA: 0x000FBAD4 File Offset: 0x000F9CD4
-	[HideInInspector]
-	public string NowLeiJie
-	{
-		get
-		{
-			return this.LeiJieList[this.LeiJieIndex];
-		}
-	}
-
-	// Token: 0x17000291 RID: 657
-	// (get) Token: 0x0600246F RID: 9327 RVA: 0x000FBAE7 File Offset: 0x000F9CE7
-	[HideInInspector]
-	public int XuLiCount
-	{
-		get
-		{
-			return PlayerEx.Player.OtherAvatar.buffmag.GetBuffSum(3150) + 1;
-		}
-	}
-
-	// Token: 0x06002470 RID: 9328 RVA: 0x000FBB04 File Offset: 0x000F9D04
 	private void Awake()
 	{
-		TianJieManager.Inst = this;
+		Inst = this;
 	}
 
-	// Token: 0x06002471 RID: 9329 RVA: 0x000FBB0C File Offset: 0x000F9D0C
 	private void OnDestroy()
 	{
-		TianJieManager.Inst = null;
+		Inst = null;
 	}
 
-	// Token: 0x06002472 RID: 9330 RVA: 0x000FBB14 File Offset: 0x000F9D14
 	private void OnGUI()
 	{
 		GUILayout.BeginVertical(GUI.skin.box, Array.Empty<GUILayoutOption>());
-		GUILayout.Label(string.Format("雷劫血量:{0}/{1}", PlayerEx.Player.OtherAvatar.HP, PlayerEx.Player.OtherAvatar.HP_Max), Array.Empty<GUILayoutOption>());
-		GUILayout.Label(string.Format("当前为第{0}回合", RoundManager.instance.StaticRoundNum), Array.Empty<GUILayoutOption>());
-		for (int i = 0; i < this.LeiJieList.Count; i++)
+		GUILayout.Label($"雷劫血量:{PlayerEx.Player.OtherAvatar.HP}/{PlayerEx.Player.OtherAvatar.HP_Max}", Array.Empty<GUILayoutOption>());
+		GUILayout.Label($"当前为第{RoundManager.instance.StaticRoundNum}回合", Array.Empty<GUILayoutOption>());
+		for (int i = 0; i < LeiJieList.Count; i++)
 		{
-			GUILayout.Label(string.Format("第{0}道雷劫:{1}", i + 1, this.LeiJieList[i]), Array.Empty<GUILayoutOption>());
+			GUILayout.Label($"第{i + 1}道雷劫:{LeiJieList[i]}", Array.Empty<GUILayoutOption>());
 		}
 		GUILayout.EndVertical();
 	}
 
-	// Token: 0x06002473 RID: 9331 RVA: 0x000FBBD8 File Offset: 0x000F9DD8
 	public void InitTianJieData()
 	{
-		this.EffectManager.Init();
-		this.LeiJieIndex = 0;
-		this.LeiJieCount = TianJieLeiJieShangHai.DataList.Count;
-		for (int i = 0; i < this.LeiJieCount; i++)
+		EffectManager.Init();
+		LeiJieIndex = 0;
+		LeiJieCount = TianJieLeiJieShangHai.DataList.Count;
+		for (int i = 0; i < LeiJieCount; i++)
 		{
-			this.LeiJieList.Add(this.RollLeiJie(i));
+			LeiJieList.Add(RollLeiJie(i));
 		}
-		this.EffectManager.SetLeiJieBG(this.LeiJieList[this.LeiJieIndex]);
-		this.EffectManager.SetLeiJieSprite(this.LeiJieList[this.LeiJieIndex]);
+		EffectManager.SetLeiJieBG(LeiJieList[LeiJieIndex]);
+		EffectManager.SetLeiJieSprite(LeiJieList[LeiJieIndex]);
 	}
 
-	// Token: 0x06002474 RID: 9332 RVA: 0x000FBC64 File Offset: 0x000F9E64
 	public string RollLeiJie(int leiJieIndex)
 	{
 		List<QuanZhongItem> list = new List<QuanZhongItem>();
-		foreach (TianJieLeiJieType tianJieLeiJieType in TianJieLeiJieType.DataList)
+		foreach (TianJieLeiJieType data in TianJieLeiJieType.DataList)
 		{
 			int num = 0;
-			if (tianJieLeiJieType.id == "心魔劫")
+			if (data.id == "心魔劫")
 			{
 				if (PlayerEx.Player.xinjin < 1000)
 				{
-					num = tianJieLeiJieType.QuanZhongTiSheng[leiJieIndex];
+					num = data.QuanZhongTiSheng[leiJieIndex];
 				}
 			}
-			else if (tianJieLeiJieType.id == "灭世劫")
+			else if (data.id == "灭世劫")
 			{
 				int ningZhouShengWang = PlayerEx.GetNingZhouShengWang();
 				int seaShengWang = PlayerEx.GetSeaShengWang();
 				if (ningZhouShengWang <= -1000 || seaShengWang <= -1000)
 				{
-					num = tianJieLeiJieType.QuanZhongTiSheng[leiJieIndex];
+					num = data.QuanZhongTiSheng[leiJieIndex];
 				}
 			}
-			int weight = tianJieLeiJieType.QuanZhong[leiJieIndex] + num;
-			QuanZhongItem item = new QuanZhongItem(tianJieLeiJieType, weight);
+			int weight = data.QuanZhong[leiJieIndex] + num;
+			QuanZhongItem item = new QuanZhongItem(data, weight);
 			list.Add(item);
 		}
-		return (QuanZhongItem.Roll(list, true).Obj as TianJieLeiJieType).id;
+		return (QuanZhongItem.Roll(list, log: true).Obj as TianJieLeiJieType).id;
 	}
 
-	// Token: 0x06002475 RID: 9333 RVA: 0x000FBD64 File Offset: 0x000F9F64
 	public void DuJieSuccess(bool win)
 	{
 		if (win)
 		{
-			Debug.Log("以战斗胜利方式渡劫成功");
-			return;
+			Debug.Log((object)"以战斗胜利方式渡劫成功");
 		}
-		Debug.Log("以抗住9道雷劫方式渡劫成功");
+		else
+		{
+			Debug.Log((object)"以抗住9道雷劫方式渡劫成功");
+		}
 	}
-
-	// Token: 0x04001D19 RID: 7449
-	public static Dictionary<string, string> LeiJieNames = new Dictionary<string, string>
-	{
-		{
-			"天雷劫",
-			"tianlei"
-		},
-		{
-			"阴阳劫",
-			"yinyang"
-		},
-		{
-			"风火劫",
-			"fenghuo"
-		},
-		{
-			"心魔劫",
-			"xinmo"
-		},
-		{
-			"罡雷劫",
-			"ganglei"
-		},
-		{
-			"造化劫",
-			"zaohua"
-		},
-		{
-			"混元劫",
-			"hunyuan"
-		},
-		{
-			"五行劫",
-			"wuxing"
-		},
-		{
-			"乾天劫",
-			"qiantian"
-		},
-		{
-			"生死劫",
-			"shengsi"
-		},
-		{
-			"天地劫",
-			"tiandi"
-		},
-		{
-			"灭世劫",
-			"mieshi"
-		}
-	};
-
-	// Token: 0x04001D1A RID: 7450
-	public static TianJieManager Inst;
-
-	// Token: 0x04001D1B RID: 7451
-	public TianJieEffectManager EffectManager;
-
-	// Token: 0x04001D1C RID: 7452
-	public int LeiJieIndex;
-
-	// Token: 0x04001D1D RID: 7453
-	public Text LeiJieNameText;
-
-	// Token: 0x04001D1E RID: 7454
-	public Text LeiJieDamageText;
-
-	// Token: 0x04001D1F RID: 7455
-	[HideInInspector]
-	public bool YiXuLi;
-
-	// Token: 0x04001D20 RID: 7456
-	[HideInInspector]
-	public int LeiJieCount;
-
-	// Token: 0x04001D21 RID: 7457
-	[HideInInspector]
-	public List<string> LeiJieList = new List<string>();
 }

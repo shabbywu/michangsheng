@@ -1,71 +1,65 @@
-﻿using System;
 using UnityEngine;
 using YSGame;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Audio", "Play Sound", "Plays a once-off sound effect. Multiple sound effects can be played at the same time.", 0)]
+[AddComponentMenu("")]
+public class PlaySound : Command
 {
-	// Token: 0x02000E0F RID: 3599
-	[CommandInfo("Audio", "Play Sound", "Plays a once-off sound effect. Multiple sound effects can be played at the same time.", 0)]
-	[AddComponentMenu("")]
-	public class PlaySound : Command
+	[Tooltip("Sound effect clip to play")]
+	[SerializeField]
+	protected AudioClip soundClip;
+
+	[Range(0f, 1f)]
+	[Tooltip("Volume level of the sound effect")]
+	[SerializeField]
+	protected float volume = 1f;
+
+	[Tooltip("Wait until the sound has finished playing before continuing execution.")]
+	[SerializeField]
+	protected bool waitUntilFinished;
+
+	protected virtual void DoWait()
 	{
-		// Token: 0x06006596 RID: 26006 RVA: 0x0005E3AF File Offset: 0x0005C5AF
-		protected virtual void DoWait()
+		Continue();
+	}
+
+	public override void OnEnter()
+	{
+		if ((Object)(object)soundClip == (Object)null)
 		{
-			this.Continue();
+			Continue();
+			return;
 		}
-
-		// Token: 0x06006597 RID: 26007 RVA: 0x00283900 File Offset: 0x00281B00
-		public override void OnEnter()
+		FungusManager.Instance.MusicManager.PlaySound(soundClip, volume);
+		if ((Object)(object)MusicMag.instance != (Object)null)
 		{
-			if (this.soundClip == null)
-			{
-				this.Continue();
-				return;
-			}
-			FungusManager.Instance.MusicManager.PlaySound(this.soundClip, this.volume);
-			if (MusicMag.instance != null)
-			{
-				MusicMag.instance.setFunguseMusice();
-			}
-			if (this.waitUntilFinished)
-			{
-				base.Invoke("DoWait", this.soundClip.length);
-				return;
-			}
-			this.Continue();
+			MusicMag.instance.setFunguseMusice();
 		}
-
-		// Token: 0x06006598 RID: 26008 RVA: 0x00283979 File Offset: 0x00281B79
-		public override string GetSummary()
+		if (waitUntilFinished)
 		{
-			if (this.soundClip == null)
-			{
-				return "Error: No sound clip selected";
-			}
-			return this.soundClip.name;
+			((MonoBehaviour)this).Invoke("DoWait", soundClip.length);
 		}
-
-		// Token: 0x06006599 RID: 26009 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(242, 209, 176, byte.MaxValue);
+			Continue();
 		}
+	}
 
-		// Token: 0x0400573F RID: 22335
-		[Tooltip("Sound effect clip to play")]
-		[SerializeField]
-		protected AudioClip soundClip;
+	public override string GetSummary()
+	{
+		if ((Object)(object)soundClip == (Object)null)
+		{
+			return "Error: No sound clip selected";
+		}
+		return ((Object)soundClip).name;
+	}
 
-		// Token: 0x04005740 RID: 22336
-		[Range(0f, 1f)]
-		[Tooltip("Volume level of the sound effect")]
-		[SerializeField]
-		protected float volume = 1f;
-
-		// Token: 0x04005741 RID: 22337
-		[Tooltip("Wait until the sound has finished playing before continuing execution.")]
-		[SerializeField]
-		protected bool waitUntilFinished;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)242, (byte)209, (byte)176, byte.MaxValue));
 	}
 }

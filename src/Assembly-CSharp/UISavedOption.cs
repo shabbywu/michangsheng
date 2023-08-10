@@ -1,115 +1,100 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x02000071 RID: 113
 [AddComponentMenu("NGUI/Interaction/Saved Option")]
 public class UISavedOption : MonoBehaviour
 {
-	// Token: 0x1700009B RID: 155
-	// (get) Token: 0x060005AD RID: 1453 RVA: 0x0001F556 File Offset: 0x0001D756
+	public string keyName;
+
+	private UIPopupList mList;
+
+	private UIToggle mCheck;
+
 	private string key
 	{
 		get
 		{
-			if (!string.IsNullOrEmpty(this.keyName))
+			if (!string.IsNullOrEmpty(keyName))
 			{
-				return this.keyName;
+				return keyName;
 			}
-			return "NGUI State: " + base.name;
+			return "NGUI State: " + ((Object)this).name;
 		}
 	}
 
-	// Token: 0x060005AE RID: 1454 RVA: 0x0001F57C File Offset: 0x0001D77C
 	private void Awake()
 	{
-		this.mList = base.GetComponent<UIPopupList>();
-		this.mCheck = base.GetComponent<UIToggle>();
+		mList = ((Component)this).GetComponent<UIPopupList>();
+		mCheck = ((Component)this).GetComponent<UIToggle>();
 	}
 
-	// Token: 0x060005AF RID: 1455 RVA: 0x0001F598 File Offset: 0x0001D798
 	private void OnEnable()
 	{
-		if (this.mList != null)
+		if ((Object)(object)mList != (Object)null)
 		{
-			EventDelegate.Add(this.mList.onChange, new EventDelegate.Callback(this.SaveSelection));
+			EventDelegate.Add(mList.onChange, SaveSelection);
 		}
-		if (this.mCheck != null)
+		if ((Object)(object)mCheck != (Object)null)
 		{
-			EventDelegate.Add(this.mCheck.onChange, new EventDelegate.Callback(this.SaveState));
+			EventDelegate.Add(mCheck.onChange, SaveState);
 		}
-		if (this.mList != null)
+		if ((Object)(object)mList != (Object)null)
 		{
-			string @string = PlayerPrefs.GetString(this.key);
+			string @string = PlayerPrefs.GetString(key);
 			if (!string.IsNullOrEmpty(@string))
 			{
-				this.mList.value = @string;
+				mList.value = @string;
 			}
 			return;
 		}
-		if (this.mCheck != null)
+		if ((Object)(object)mCheck != (Object)null)
 		{
-			this.mCheck.value = (PlayerPrefs.GetInt(this.key, 1) != 0);
+			mCheck.value = PlayerPrefs.GetInt(key, 1) != 0;
 			return;
 		}
-		string string2 = PlayerPrefs.GetString(this.key);
-		UIToggle[] componentsInChildren = base.GetComponentsInChildren<UIToggle>(true);
+		string string2 = PlayerPrefs.GetString(key);
+		UIToggle[] componentsInChildren = ((Component)this).GetComponentsInChildren<UIToggle>(true);
 		int i = 0;
-		int num = componentsInChildren.Length;
-		while (i < num)
+		for (int num = componentsInChildren.Length; i < num; i++)
 		{
-			UIToggle uitoggle = componentsInChildren[i];
-			uitoggle.value = (uitoggle.name == string2);
-			i++;
+			UIToggle obj = componentsInChildren[i];
+			obj.value = ((Object)obj).name == string2;
 		}
 	}
 
-	// Token: 0x060005B0 RID: 1456 RVA: 0x0001F690 File Offset: 0x0001D890
 	private void OnDisable()
 	{
-		if (this.mCheck != null)
+		if ((Object)(object)mCheck != (Object)null)
 		{
-			EventDelegate.Remove(this.mCheck.onChange, new EventDelegate.Callback(this.SaveState));
+			EventDelegate.Remove(mCheck.onChange, SaveState);
 		}
-		if (this.mList != null)
+		if ((Object)(object)mList != (Object)null)
 		{
-			EventDelegate.Remove(this.mList.onChange, new EventDelegate.Callback(this.SaveSelection));
+			EventDelegate.Remove(mList.onChange, SaveSelection);
 		}
-		if (this.mCheck == null && this.mList == null)
+		if (!((Object)(object)mCheck == (Object)null) || !((Object)(object)mList == (Object)null))
 		{
-			UIToggle[] componentsInChildren = base.GetComponentsInChildren<UIToggle>(true);
-			int i = 0;
-			int num = componentsInChildren.Length;
-			while (i < num)
+			return;
+		}
+		UIToggle[] componentsInChildren = ((Component)this).GetComponentsInChildren<UIToggle>(true);
+		int i = 0;
+		for (int num = componentsInChildren.Length; i < num; i++)
+		{
+			UIToggle uIToggle = componentsInChildren[i];
+			if (uIToggle.value)
 			{
-				UIToggle uitoggle = componentsInChildren[i];
-				if (uitoggle.value)
-				{
-					PlayerPrefs.SetString(this.key, uitoggle.name);
-					return;
-				}
-				i++;
+				PlayerPrefs.SetString(key, ((Object)uIToggle).name);
+				break;
 			}
 		}
 	}
 
-	// Token: 0x060005B1 RID: 1457 RVA: 0x0001F745 File Offset: 0x0001D945
 	public void SaveSelection()
 	{
-		PlayerPrefs.SetString(this.key, UIPopupList.current.value);
+		PlayerPrefs.SetString(key, UIPopupList.current.value);
 	}
 
-	// Token: 0x060005B2 RID: 1458 RVA: 0x0001F75C File Offset: 0x0001D95C
 	public void SaveState()
 	{
-		PlayerPrefs.SetInt(this.key, UIToggle.current.value ? 1 : 0);
+		PlayerPrefs.SetInt(key, UIToggle.current.value ? 1 : 0);
 	}
-
-	// Token: 0x040003C2 RID: 962
-	public string keyName;
-
-	// Token: 0x040003C3 RID: 963
-	private UIPopupList mList;
-
-	// Token: 0x040003C4 RID: 964
-	private UIToggle mCheck;
 }

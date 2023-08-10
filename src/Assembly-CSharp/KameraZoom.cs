@@ -1,65 +1,122 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D1 RID: 1233
 public class KameraZoom : MonoBehaviour
 {
-	// Token: 0x060027E8 RID: 10216 RVA: 0x00004095 File Offset: 0x00002295
+	public int speed = 4;
+
+	public Camera selectedCamera;
+
+	public float MINSCALE = 2f;
+
+	public float MAXSCALE = 5f;
+
+	public float minPinchSpeed = 5f;
+
+	public float varianceInDistances = 5f;
+
+	private float touchDelta;
+
+	private Vector2 prevDist = new Vector2(0f, 0f);
+
+	private Vector2 curDist = new Vector2(0f, 0f);
+
+	private float speedTouch0;
+
+	private float speedTouch1;
+
 	private void Start()
 	{
 	}
 
-	// Token: 0x060027E9 RID: 10217 RVA: 0x0012F00C File Offset: 0x0012D20C
 	private void Update()
 	{
-		if (Input.touchCount == 2 && Input.GetTouch(0).phase == 1 && Input.GetTouch(1).phase == 1)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Invalid comparison between Unknown and I4
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002e: Invalid comparison between Unknown and I4
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		if (Input.touchCount != 2)
 		{
-			this.curDist = Input.GetTouch(0).position - Input.GetTouch(1).position;
-			this.prevDist = Input.GetTouch(0).position - Input.GetTouch(0).deltaPosition - (Input.GetTouch(1).position - Input.GetTouch(1).deltaPosition);
-			this.touchDelta = this.curDist.magnitude - this.prevDist.magnitude;
-			this.speedTouch0 = Input.GetTouch(0).deltaPosition.magnitude / Input.GetTouch(0).deltaTime;
-			this.speedTouch1 = Input.GetTouch(1).deltaPosition.magnitude / Input.GetTouch(1).deltaTime;
-			if (this.touchDelta + this.varianceInDistances <= 1f && this.speedTouch0 > this.minPinchSpeed && this.speedTouch1 > this.minPinchSpeed)
+			return;
+		}
+		Touch touch = Input.GetTouch(0);
+		if ((int)((Touch)(ref touch)).phase != 1)
+		{
+			return;
+		}
+		touch = Input.GetTouch(1);
+		if ((int)((Touch)(ref touch)).phase == 1)
+		{
+			touch = Input.GetTouch(0);
+			Vector2 position = ((Touch)(ref touch)).position;
+			touch = Input.GetTouch(1);
+			curDist = position - ((Touch)(ref touch)).position;
+			touch = Input.GetTouch(0);
+			Vector2 position2 = ((Touch)(ref touch)).position;
+			touch = Input.GetTouch(0);
+			Vector2 val = position2 - ((Touch)(ref touch)).deltaPosition;
+			touch = Input.GetTouch(1);
+			Vector2 position3 = ((Touch)(ref touch)).position;
+			touch = Input.GetTouch(1);
+			prevDist = val - (position3 - ((Touch)(ref touch)).deltaPosition);
+			touchDelta = ((Vector2)(ref curDist)).magnitude - ((Vector2)(ref prevDist)).magnitude;
+			touch = Input.GetTouch(0);
+			Vector2 deltaPosition = ((Touch)(ref touch)).deltaPosition;
+			float magnitude = ((Vector2)(ref deltaPosition)).magnitude;
+			touch = Input.GetTouch(0);
+			speedTouch0 = magnitude / ((Touch)(ref touch)).deltaTime;
+			touch = Input.GetTouch(1);
+			deltaPosition = ((Touch)(ref touch)).deltaPosition;
+			float magnitude2 = ((Vector2)(ref deltaPosition)).magnitude;
+			touch = Input.GetTouch(1);
+			speedTouch1 = magnitude2 / ((Touch)(ref touch)).deltaTime;
+			if (touchDelta + varianceInDistances <= 1f && speedTouch0 > minPinchSpeed && speedTouch1 > minPinchSpeed)
 			{
-				this.selectedCamera.orthographicSize = Mathf.Clamp(this.selectedCamera.orthographicSize + (float)this.speed, 5f, 10f);
+				selectedCamera.orthographicSize = Mathf.Clamp(selectedCamera.orthographicSize + (float)speed, 5f, 10f);
 			}
-			if (this.touchDelta + this.varianceInDistances > 1f && this.speedTouch0 > this.minPinchSpeed && this.speedTouch1 > this.minPinchSpeed)
+			if (touchDelta + varianceInDistances > 1f && speedTouch0 > minPinchSpeed && speedTouch1 > minPinchSpeed)
 			{
-				this.selectedCamera.orthographicSize = Mathf.Clamp(this.selectedCamera.fieldOfView - (float)this.speed, 5f, 10f);
+				selectedCamera.orthographicSize = Mathf.Clamp(selectedCamera.fieldOfView - (float)speed, 5f, 10f);
 			}
 		}
 	}
-
-	// Token: 0x040022EC RID: 8940
-	public int speed = 4;
-
-	// Token: 0x040022ED RID: 8941
-	public Camera selectedCamera;
-
-	// Token: 0x040022EE RID: 8942
-	public float MINSCALE = 2f;
-
-	// Token: 0x040022EF RID: 8943
-	public float MAXSCALE = 5f;
-
-	// Token: 0x040022F0 RID: 8944
-	public float minPinchSpeed = 5f;
-
-	// Token: 0x040022F1 RID: 8945
-	public float varianceInDistances = 5f;
-
-	// Token: 0x040022F2 RID: 8946
-	private float touchDelta;
-
-	// Token: 0x040022F3 RID: 8947
-	private Vector2 prevDist = new Vector2(0f, 0f);
-
-	// Token: 0x040022F4 RID: 8948
-	private Vector2 curDist = new Vector2(0f, 0f);
-
-	// Token: 0x040022F5 RID: 8949
-	private float speedTouch0;
-
-	// Token: 0x040022F6 RID: 8950
-	private float speedTouch1;
 }

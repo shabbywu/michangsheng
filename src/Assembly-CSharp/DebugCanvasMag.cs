@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,36 +8,31 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000171 RID: 369
 public class DebugCanvasMag : MonoBehaviour
 {
-	// Token: 0x06000FA0 RID: 4000 RVA: 0x00004095 File Offset: 0x00002295
+	public InputField inputField;
+
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000FA1 RID: 4001 RVA: 0x0005D8C4 File Offset: 0x0005BAC4
 	public item getAvatarItem(ItemDatebase datebase, int itemID)
 	{
-		foreach (ITEM_INFO item_INFO in Tools.instance.getPlayer().itemList.values)
+		foreach (ITEM_INFO value in Tools.instance.getPlayer().itemList.values)
 		{
-			if (item_INFO.itemId == itemID)
+			if (value.itemId == itemID)
 			{
 				item item = datebase.items[itemID].Clone();
-				item.UUID = item_INFO.uuid;
+				item.UUID = value.uuid;
 				return item;
 			}
 		}
 		return null;
 	}
 
-	// Token: 0x06000FA2 RID: 4002 RVA: 0x0005D94C File Offset: 0x0005BB4C
 	public void TestLiandan(string text, string value)
 	{
-		string[] array = value.Split(new char[]
-		{
-			','
-		});
+		string[] array = value.Split(new char[1] { ',' });
 		Avatar player = Tools.instance.getPlayer();
 		player._HP_Max = 999999999;
 		player.setHP(999999999);
@@ -51,130 +46,87 @@ public class DebugCanvasMag : MonoBehaviour
 				list.Add(i);
 			}
 		}
-		ItemDatebase component = jsonData.instance.GetComponent<ItemDatebase>();
+		ItemDatebase component = ((Component)jsonData.instance).GetComponent<ItemDatebase>();
 		if (array[2] == "Nomel")
 		{
-			using (List<JSONObject>.Enumerator enumerator = jsonData.instance.LianDanDanFangBiao.list.GetEnumerator())
+			foreach (JSONObject item in jsonData.instance.LianDanDanFangBiao.list)
 			{
-				while (enumerator.MoveNext())
+				for (int j = 1; j <= 5; j++)
 				{
-					JSONObject jsonobject = enumerator.Current;
-					for (int j = 1; j <= 5; j++)
+					if (item["value" + j].I != 0)
 					{
-						if (jsonobject["value" + j].I != 0)
-						{
-							LianDanMag.instence.inventoryCaiLiao.inventory[23 + j] = this.getAvatarItem(component, jsonobject["value" + j].I);
-							LianDanMag.instence.inventoryCaiLiao.inventory[23 + j].itemNum = jsonobject["num" + j].I;
-						}
+						LianDanMag.instence.inventoryCaiLiao.inventory[23 + j] = getAvatarItem(component, item["value" + j].I);
+						LianDanMag.instence.inventoryCaiLiao.inventory[23 + j].itemNum = item["num" + j].I;
 					}
-					LianDanMag.instence.InventoryShowDanlu.inventory[0] = this.getAvatarItem(component, 11501);
-					LianDanMag.instence.InventoryShowDanlu.inventory[0].Seid = new JSONObject();
-					LianDanMag.instence.InventoryShowDanlu.inventory[0].Seid.SetField("NaiJiu", 1000);
-					LianDanMag.instence.getDanFang();
 				}
-				return;
+				LianDanMag.instence.InventoryShowDanlu.inventory[0] = getAvatarItem(component, 11501);
+				LianDanMag.instence.InventoryShowDanlu.inventory[0].Seid = new JSONObject();
+				LianDanMag.instence.InventoryShowDanlu.inventory[0].Seid.SetField("NaiJiu", 1000);
+				LianDanMag.instence.getDanFang();
 			}
+			return;
 		}
 		for (int k = 0; k < 100; k++)
 		{
 			for (int l = 1; l <= 5; l++)
 			{
-				LianDanMag.instence.inventoryCaiLiao.inventory[23 + l] = this.getAvatarItem(component, list[jsonData.GetRandom() % list.Count]);
+				LianDanMag.instence.inventoryCaiLiao.inventory[23 + l] = getAvatarItem(component, list[jsonData.GetRandom() % list.Count]);
 				LianDanMag.instence.inventoryCaiLiao.inventory[23 + l].itemNum = jsonData.GetRandom() % 3 + 1;
 			}
-			LianDanMag.instence.InventoryShowDanlu.inventory[0] = this.getAvatarItem(component, 11501);
+			LianDanMag.instence.InventoryShowDanlu.inventory[0] = getAvatarItem(component, 11501);
 			LianDanMag.instence.InventoryShowDanlu.inventory[0].Seid = new JSONObject();
 			LianDanMag.instence.InventoryShowDanlu.inventory[0].Seid.SetField("NaiJiu", 1000);
 			LianDanMag.instence.getDanFang();
 		}
 	}
 
-	// Token: 0x06000FA3 RID: 4003 RVA: 0x0005DC90 File Offset: 0x0005BE90
 	public void setjinhao(string text, string value)
 	{
 		Avatar player = Tools.instance.getPlayer();
-		string[] array = value.Split(new char[]
-		{
-			','
-		});
+		string[] array = value.Split(new char[1] { ',' });
 		try
 		{
-			uint num = <PrivateImplementationDetails>.ComputeStringHash(text);
-			if (num <= 2228299692U)
+			switch (text)
 			{
-				if (num != 91996362U)
-				{
-					if (num != 368483469U)
-					{
-						if (num == 2228299692U)
-						{
-							if (text == "TestLianDan")
-							{
-								this.TestLiandan(text, value);
-							}
-						}
-					}
-					else if (text == "LoadFuBen")
-					{
-						player.fubenContorl[array[0]].setFirstIndex(int.Parse(array[1]));
-						player.zulinContorl.kezhanLastScence = Tools.getScreenName();
-						player.lastFuBenScence = Tools.getScreenName();
-						player.NowFuBen = array[0];
-						Tools.instance.loadMapScenes(array[0], true);
-					}
-				}
-				else if (text == "resetSteamstat")
-				{
-					SteamChengJiu.ints.ResetStatt();
-				}
-			}
-			else if (num <= 3694102904U)
-			{
-				if (num != 2865688773U)
-				{
-					if (num == 3694102904U)
-					{
-						if (text == "LoadRandomFuBen")
-						{
-							Tools.instance.getPlayer().randomFuBenMag.GetInRandomFuBen(int.Parse(value), -1);
-						}
-					}
-				}
-				else if (text == "GetAchivement")
-				{
-					SteamChengJiu.ints.SetAchievement(value);
-				}
-			}
-			else if (num != 3846977133U)
-			{
-				if (num == 4111883381U)
-				{
-					if (text == "CreateLuanLiuMap")
-					{
-						player.seaNodeMag.CreateLuanLiuMap();
-					}
-				}
-			}
-			else if (text == "CreateMonstar")
-			{
-				EndlessSeaMag.Inst.CreateMonstar(int.Parse(array[0]), int.Parse(array[1]), array[2], int.Parse(array[3]), false);
+			case "resetSteamstat":
+				SteamChengJiu.ints.ResetStatt();
+				break;
+			case "GetAchivement":
+				SteamChengJiu.ints.SetAchievement(value);
+				break;
+			case "TestLianDan":
+				TestLiandan(text, value);
+				break;
+			case "LoadRandomFuBen":
+				Tools.instance.getPlayer().randomFuBenMag.GetInRandomFuBen(int.Parse(value));
+				break;
+			case "LoadFuBen":
+				player.fubenContorl[array[0]].setFirstIndex(int.Parse(array[1]));
+				player.zulinContorl.kezhanLastScence = Tools.getScreenName();
+				player.lastFuBenScence = Tools.getScreenName();
+				player.NowFuBen = array[0];
+				Tools.instance.loadMapScenes(array[0]);
+				break;
+			case "CreateLuanLiuMap":
+				player.seaNodeMag.CreateLuanLiuMap();
+				break;
+			case "CreateMonstar":
+				EndlessSeaMag.Inst.CreateMonstar(int.Parse(array[0]), int.Parse(array[1]), array[2], int.Parse(array[3]));
+				break;
 			}
 		}
 		catch (Exception ex)
 		{
-			Debug.Log(ex);
+			Debug.Log((object)ex);
 		}
 	}
 
-	// Token: 0x06000FA4 RID: 4004 RVA: 0x0005DE94 File Offset: 0x0005C094
 	public void run()
 	{
-		string[] array = this.inputField.text.Split(new char[]
-		{
-			'.'
-		});
+		string[] array = inputField.text.Split(new char[1] { '.' });
 		object obj = Tools.instance.getPlayer();
-		foreach (string text in array)
+		string[] array2 = array;
+		foreach (string text in array2)
 		{
 			if (Regex.Matches(text, "#").Count > 0)
 			{
@@ -184,109 +136,90 @@ public class DebugCanvasMag : MonoBehaviour
 				{
 					text2 = text2.Replace(matchCollection[0].Value, "");
 				}
-				this.setjinhao(text2, (matchCollection.Count > 0) ? matchCollection[0].Value.Replace("(", "").Replace(")", "") : "");
+				setjinhao(text2, (matchCollection.Count > 0) ? matchCollection[0].Value.Replace("(", "").Replace(")", "") : "");
+				continue;
 			}
-			else
+			MatchCollection matchCollection2 = Regex.Matches(text, "\\=.*");
+			if (matchCollection2.Count > 0)
 			{
-				MatchCollection matchCollection2 = Regex.Matches(text, "\\=.*");
-				if (matchCollection2.Count > 0)
+				string text3 = matchCollection2[0].Value.Replace("=", "");
+				FieldInfo[] fields = obj.GetType().GetFields();
+				string text4 = text.Replace(matchCollection2[0].Value, "");
+				for (int j = 0; j < fields.Length; j++)
 				{
-					string text3 = matchCollection2[0].Value.Replace("=", "");
-					FieldInfo[] fields = obj.GetType().GetFields();
-					string b = text.Replace(matchCollection2[0].Value, "");
-					for (int j = 0; j < fields.Length; j++)
+					if (!(fields[j].Name == text4))
 					{
-						if (fields[j].Name == b)
-						{
-							int num = 0;
-							if (int.TryParse(text3, out num))
-							{
-								fields[j].SetValue(obj, num);
-							}
-							else
-							{
-								int num2 = 0;
-								if (int.TryParse(text3, out num2))
-								{
-									fields[j].SetValue(obj, num2);
-								}
-								else
-								{
-									bool flag = false;
-									if (bool.TryParse(text3, out flag))
-									{
-										fields[j].SetValue(obj, flag);
-									}
-								}
-							}
-						}
+						continue;
+					}
+					int result = 0;
+					if (int.TryParse(text3, out result))
+					{
+						fields[j].SetValue(obj, result);
+						continue;
+					}
+					int result2 = 0;
+					if (int.TryParse(text3, out result2))
+					{
+						fields[j].SetValue(obj, result2);
+						continue;
+					}
+					bool result3 = false;
+					if (bool.TryParse(text3, out result3))
+					{
+						fields[j].SetValue(obj, result3);
 					}
 				}
-				else
+				continue;
+			}
+			MatchCollection matchCollection3 = Regex.Matches(text, "\\(.*\\)");
+			if (matchCollection3.Count > 0)
+			{
+				string[] array3 = matchCollection3[0].Value.Replace("(", "").Replace(")", "").Split(new char[1] { ',' });
+				object[] array4 = new object[array3.Length];
+				int num = -1;
+				string[] array5 = array3;
+				foreach (string text5 in array5)
 				{
-					MatchCollection matchCollection3 = Regex.Matches(text, "\\(.*\\)");
-					if (matchCollection3.Count > 0)
+					int result4 = 0;
+					num++;
+					if (int.TryParse(text5, out result4))
 					{
-						string[] array3 = matchCollection3[0].Value.Replace("(", "").Replace(")", "").Split(new char[]
-						{
-							','
-						});
-						object[] array4 = new object[array3.Length];
-						int num3 = -1;
-						foreach (string text4 in array3)
-						{
-							int num4 = 0;
-							num3++;
-							if (int.TryParse(text4, out num4))
-							{
-								array4[num3] = num4;
-							}
-							else
-							{
-								bool flag2 = false;
-								if (bool.TryParse(text4, out flag2))
-								{
-									array4[num3] = flag2;
-								}
-								else
-								{
-									array4[num3] = text4;
-								}
-							}
-						}
-						string methodName = text.Replace(matchCollection3[0].Value, "");
-						using (IEnumerator<MethodInfo> enumerator = (from x in obj.GetType().GetMethods()
-						where x.Name == methodName
-						select x).GetEnumerator())
-						{
-							while (enumerator.MoveNext())
-							{
-								MethodInfo methodInfo = enumerator.Current;
-								try
-								{
-									methodInfo.Invoke(obj, array4);
-								}
-								catch (Exception)
-								{
-								}
-							}
-							goto IL_344;
-						}
+						array4[num] = result4;
+						continue;
 					}
-					FieldInfo[] fields2 = obj.GetType().GetFields();
-					for (int l = 0; l < fields2.Length; l++)
+					bool result5 = false;
+					if (bool.TryParse(text5, out result5))
 					{
-						if (fields2[l].Name == text)
-						{
-							obj = fields2[l].GetValue(obj);
-						}
+						array4[num] = result5;
 					}
+					else
+					{
+						array4[num] = text5;
+					}
+				}
+				string methodName = text.Replace(matchCollection3[0].Value, "");
+				foreach (MethodInfo item in from x in obj.GetType().GetMethods()
+					where x.Name == methodName
+					select x)
+				{
+					try
+					{
+						item.Invoke(obj, array4);
+					}
+					catch (Exception)
+					{
+					}
+				}
+				continue;
+			}
+			FieldInfo[] fields2 = obj.GetType().GetFields();
+			for (int l = 0; l < fields2.Length; l++)
+			{
+				if (fields2[l].Name == text)
+				{
+					obj = fields2[l].GetValue(obj);
 				}
 			}
-			IL_344:;
 		}
 	}
-
-	// Token: 0x04000BBD RID: 3005
-	public InputField inputField;
 }

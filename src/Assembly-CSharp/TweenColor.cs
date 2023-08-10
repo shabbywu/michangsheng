@@ -1,153 +1,158 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x02000097 RID: 151
 [AddComponentMenu("NGUI/Tween/Tween Color")]
 public class TweenColor : UITweener
 {
-	// Token: 0x0600083A RID: 2106 RVA: 0x00031F08 File Offset: 0x00030108
-	private void Cache()
-	{
-		this.mCached = true;
-		this.mWidget = base.GetComponent<UIWidget>();
-		Renderer component = base.GetComponent<Renderer>();
-		if (component != null)
-		{
-			this.mMat = component.material;
-		}
-		this.mLight = base.GetComponent<Light>();
-		if (this.mWidget == null && this.mMat == null && this.mLight == null)
-		{
-			this.mWidget = base.GetComponentInChildren<UIWidget>();
-		}
-	}
+	public Color from = Color.white;
 
-	// Token: 0x17000119 RID: 281
-	// (get) Token: 0x0600083B RID: 2107 RVA: 0x00031F86 File Offset: 0x00030186
-	// (set) Token: 0x0600083C RID: 2108 RVA: 0x00031F8E File Offset: 0x0003018E
+	public Color to = Color.white;
+
+	private bool mCached;
+
+	private UIWidget mWidget;
+
+	private Material mMat;
+
+	private Light mLight;
+
 	[Obsolete("Use 'value' instead")]
 	public Color color
 	{
 		get
 		{
-			return this.value;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return value;
 		}
 		set
 		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			this.value = value;
 		}
 	}
 
-	// Token: 0x1700011A RID: 282
-	// (get) Token: 0x0600083D RID: 2109 RVA: 0x00031F98 File Offset: 0x00030198
-	// (set) Token: 0x0600083E RID: 2110 RVA: 0x00032008 File Offset: 0x00030208
 	public Color value
 	{
 		get
 		{
-			if (!this.mCached)
+			//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+			if (!mCached)
 			{
-				this.Cache();
+				Cache();
 			}
-			if (this.mWidget != null)
+			if ((Object)(object)mWidget != (Object)null)
 			{
-				return this.mWidget.color;
+				return mWidget.color;
 			}
-			if (this.mLight != null)
+			if ((Object)(object)mLight != (Object)null)
 			{
-				return this.mLight.color;
+				return mLight.color;
 			}
-			if (this.mMat != null)
+			if ((Object)(object)mMat != (Object)null)
 			{
-				return this.mMat.color;
+				return mMat.color;
 			}
 			return Color.black;
 		}
 		set
 		{
-			if (!this.mCached)
+			//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+			if (!mCached)
 			{
-				this.Cache();
+				Cache();
 			}
-			if (this.mWidget != null)
+			if ((Object)(object)mWidget != (Object)null)
 			{
-				this.mWidget.color = value;
+				mWidget.color = value;
 			}
-			if (this.mMat != null)
+			if ((Object)(object)mMat != (Object)null)
 			{
-				this.mMat.color = value;
+				mMat.color = value;
 			}
-			if (this.mLight != null)
+			if ((Object)(object)mLight != (Object)null)
 			{
-				this.mLight.color = value;
-				this.mLight.enabled = (value.r + value.g + value.b > 0.01f);
+				mLight.color = value;
+				((Behaviour)mLight).enabled = value.r + value.g + value.b > 0.01f;
 			}
 		}
 	}
 
-	// Token: 0x0600083F RID: 2111 RVA: 0x00032097 File Offset: 0x00030297
-	protected override void OnUpdate(float factor, bool isFinished)
+	private void Cache()
 	{
-		this.value = Color.Lerp(this.from, this.to, factor);
+		mCached = true;
+		mWidget = ((Component)this).GetComponent<UIWidget>();
+		Renderer component = ((Component)this).GetComponent<Renderer>();
+		if ((Object)(object)component != (Object)null)
+		{
+			mMat = component.material;
+		}
+		mLight = ((Component)this).GetComponent<Light>();
+		if ((Object)(object)mWidget == (Object)null && (Object)(object)mMat == (Object)null && (Object)(object)mLight == (Object)null)
+		{
+			mWidget = ((Component)this).GetComponentInChildren<UIWidget>();
+		}
 	}
 
-	// Token: 0x06000840 RID: 2112 RVA: 0x000320B4 File Offset: 0x000302B4
+	protected override void OnUpdate(float factor, bool isFinished)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		value = Color.Lerp(from, to, factor);
+	}
+
 	public static TweenColor Begin(GameObject go, float duration, Color color)
 	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
 		TweenColor tweenColor = UITweener.Begin<TweenColor>(go, duration);
 		tweenColor.from = tweenColor.value;
 		tweenColor.to = color;
 		if (duration <= 0f)
 		{
-			tweenColor.Sample(1f, true);
-			tweenColor.enabled = false;
+			tweenColor.Sample(1f, isFinished: true);
+			((Behaviour)tweenColor).enabled = false;
 		}
 		return tweenColor;
 	}
 
-	// Token: 0x06000841 RID: 2113 RVA: 0x000320F8 File Offset: 0x000302F8
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
-		this.from = this.value;
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		from = value;
 	}
 
-	// Token: 0x06000842 RID: 2114 RVA: 0x00032106 File Offset: 0x00030306
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
-		this.to = this.value;
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		to = value;
 	}
 
-	// Token: 0x06000843 RID: 2115 RVA: 0x00032114 File Offset: 0x00030314
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
-		this.value = this.from;
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		value = from;
 	}
 
-	// Token: 0x06000844 RID: 2116 RVA: 0x00032122 File Offset: 0x00030322
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{
-		this.value = this.to;
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		value = to;
 	}
-
-	// Token: 0x0400051B RID: 1307
-	public Color from = Color.white;
-
-	// Token: 0x0400051C RID: 1308
-	public Color to = Color.white;
-
-	// Token: 0x0400051D RID: 1309
-	private bool mCached;
-
-	// Token: 0x0400051E RID: 1310
-	private UIWidget mWidget;
-
-	// Token: 0x0400051F RID: 1311
-	private Material mMat;
-
-	// Token: 0x04000520 RID: 1312
-	private Light mLight;
 }

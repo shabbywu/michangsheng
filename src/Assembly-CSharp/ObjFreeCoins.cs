@@ -1,81 +1,71 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E1 RID: 1249
 public class ObjFreeCoins : MonoBehaviour
 {
-	// Token: 0x06002869 RID: 10345 RVA: 0x00131F7B File Offset: 0x0013017B
+	public static bool FreeCoins;
+
+	public SwipeControlFreeCoins swipeCtrl;
+
+	public Transform[] obj = (Transform[])(object)new Transform[0];
+
+	public float minXPos;
+
+	public float maxXPos = 115f;
+
+	private float xDist;
+
+	private float xDistFactor;
+
+	private float swipeSmoothFactor = 1f;
+
+	public float xPosReal = -11f;
+
+	private float rememberYPos;
+
 	private void Awake()
 	{
-		ObjFreeCoins.FreeCoins = false;
+		FreeCoins = false;
 		if (Application.loadedLevel != 1)
 		{
-			this.minXPos -= 94.2f;
-			this.maxXPos -= 94.2f;
-			this.xPosReal = -33.5f;
+			minXPos -= 94.2f;
+			maxXPos -= 94.2f;
+			xPosReal = -33.5f;
 		}
 	}
 
-	// Token: 0x0600286A RID: 10346 RVA: 0x00131FBC File Offset: 0x001301BC
 	private void Start()
 	{
-		this.xDist = this.maxXPos - this.minXPos;
-		this.xDistFactor = 1f / this.xDist;
-		if (!this.swipeCtrl)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		xDist = maxXPos - minXPos;
+		xDistFactor = 1f / xDist;
+		if (!Object.op_Implicit((Object)(object)swipeCtrl))
 		{
-			this.swipeCtrl = base.gameObject.AddComponent<SwipeControlFreeCoins>();
+			swipeCtrl = ((Component)this).gameObject.AddComponent<SwipeControlFreeCoins>();
 		}
-		this.swipeCtrl.skipAutoSetup = true;
-		this.swipeCtrl.clickEdgeToSwitch = false;
-		this.swipeCtrl.SetMouseRect(new Rect(0f, 0f, (float)Screen.width, (float)Screen.height));
-		this.swipeCtrl.maxValue = this.obj.Length - 1;
-		this.swipeCtrl.currentValue = this.obj.Length - 1;
-		this.swipeCtrl.startValue = this.obj.Length - 1;
-		this.swipeCtrl.partWidth = (float)(Screen.width / this.swipeCtrl.maxValue);
-		this.swipeCtrl.Setup();
-		this.swipeSmoothFactor = 1f / (float)this.swipeCtrl.maxValue;
-		this.rememberYPos = this.obj[0].position.y;
+		swipeCtrl.skipAutoSetup = true;
+		swipeCtrl.clickEdgeToSwitch = false;
+		swipeCtrl.SetMouseRect(new Rect(0f, 0f, (float)Screen.width, (float)Screen.height));
+		swipeCtrl.maxValue = obj.Length - 1;
+		swipeCtrl.currentValue = obj.Length - 1;
+		swipeCtrl.startValue = obj.Length - 1;
+		swipeCtrl.partWidth = Screen.width / swipeCtrl.maxValue;
+		swipeCtrl.Setup();
+		swipeSmoothFactor = 1f / (float)swipeCtrl.maxValue;
+		rememberYPos = obj[0].position.y;
 	}
 
-	// Token: 0x0600286B RID: 10347 RVA: 0x001320E4 File Offset: 0x001302E4
 	private void Update()
 	{
-		if (ObjFreeCoins.FreeCoins)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		if (FreeCoins)
 		{
-			for (int i = 0; i < this.obj.Length; i++)
+			for (int i = 0; i < obj.Length; i++)
 			{
-				this.obj[i].position = new Vector3(this.obj[i].position.x, this.minXPos - (float)i * (this.xDist * this.swipeSmoothFactor) - this.swipeCtrl.smoothValue * this.swipeSmoothFactor * this.xDist, this.obj[i].position.z);
+				obj[i].position = new Vector3(obj[i].position.x, minXPos - (float)i * (xDist * swipeSmoothFactor) - swipeCtrl.smoothValue * swipeSmoothFactor * xDist, obj[i].position.z);
 			}
 		}
 	}
-
-	// Token: 0x04002397 RID: 9111
-	public static bool FreeCoins;
-
-	// Token: 0x04002398 RID: 9112
-	public SwipeControlFreeCoins swipeCtrl;
-
-	// Token: 0x04002399 RID: 9113
-	public Transform[] obj = new Transform[0];
-
-	// Token: 0x0400239A RID: 9114
-	public float minXPos;
-
-	// Token: 0x0400239B RID: 9115
-	public float maxXPos = 115f;
-
-	// Token: 0x0400239C RID: 9116
-	private float xDist;
-
-	// Token: 0x0400239D RID: 9117
-	private float xDistFactor;
-
-	// Token: 0x0400239E RID: 9118
-	private float swipeSmoothFactor = 1f;
-
-	// Token: 0x0400239F RID: 9119
-	public float xPosReal = -11f;
-
-	// Token: 0x040023A0 RID: 9120
-	private float rememberYPos;
 }

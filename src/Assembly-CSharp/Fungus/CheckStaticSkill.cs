@@ -1,51 +1,43 @@
-﻿using System;
+using System;
 using KBEngine;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("YS", "CheckStaticSkill", "检测是否拥有该功法", 0)]
+[AddComponentMenu("")]
+public class CheckStaticSkill : Command
 {
-	// Token: 0x02000F1F RID: 3871
-	[CommandInfo("YS", "CheckStaticSkill", "检测是否拥有该功法", 0)]
-	[AddComponentMenu("")]
-	public class CheckStaticSkill : Command
+	[Tooltip("需要进行检测的功法ID")]
+	[SerializeField]
+	protected int SkillID;
+
+	[Tooltip("获取到的值存放位置")]
+	[VariableProperty(new Type[] { typeof(BooleanVariable) })]
+	[SerializeField]
+	protected BooleanVariable TempValue;
+
+	public override void OnEnter()
 	{
-		// Token: 0x06006DC0 RID: 28096 RVA: 0x002A3D20 File Offset: 0x002A1F20
-		public override void OnEnter()
+		if (Tools.instance.getPlayer().hasStaticSkillList.Find((SkillItem aa) => (aa.itemId == SkillID) ? true : false) == null)
 		{
-			if (Tools.instance.getPlayer().hasStaticSkillList.Find((SkillItem aa) => aa.itemId == this.SkillID) == null)
-			{
-				this.TempValue.Value = false;
-			}
-			else
-			{
-				this.TempValue.Value = true;
-			}
-			this.Continue();
+			TempValue.Value = false;
 		}
-
-		// Token: 0x06006DC1 RID: 28097 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
+		else
 		{
-			return new Color32(184, 210, 235, byte.MaxValue);
+			TempValue.Value = true;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006DC2 RID: 28098 RVA: 0x00004095 File Offset: 0x00002295
-		public override void OnReset()
-		{
-		}
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
+	}
 
-		// Token: 0x04005B50 RID: 23376
-		[Tooltip("需要进行检测的功法ID")]
-		[SerializeField]
-		protected int SkillID;
-
-		// Token: 0x04005B51 RID: 23377
-		[Tooltip("获取到的值存放位置")]
-		[VariableProperty(new Type[]
-		{
-			typeof(BooleanVariable)
-		})]
-		[SerializeField]
-		protected BooleanVariable TempValue;
+	public override void OnReset()
+	{
 	}
 }

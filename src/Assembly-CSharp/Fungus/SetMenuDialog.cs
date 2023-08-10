@@ -1,42 +1,37 @@
-﻿using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[CommandInfo("Narrative", "Set Menu Dialog", "Sets a custom menu dialog to use when displaying multiple choice menus", 0)]
+[AddComponentMenu("")]
+public class SetMenuDialog : Command
 {
-	// Token: 0x02000E3B RID: 3643
-	[CommandInfo("Narrative", "Set Menu Dialog", "Sets a custom menu dialog to use when displaying multiple choice menus", 0)]
-	[AddComponentMenu("")]
-	public class SetMenuDialog : Command
+	[Tooltip("The Menu Dialog to use for displaying menu buttons")]
+	[SerializeField]
+	protected MenuDialog menuDialog;
+
+	public override void OnEnter()
 	{
-		// Token: 0x0600668F RID: 26255 RVA: 0x00286AD2 File Offset: 0x00284CD2
-		public override void OnEnter()
+		if ((Object)(object)menuDialog != (Object)null)
 		{
-			if (this.menuDialog != null)
-			{
-				MenuDialog.ActiveMenuDialog = this.menuDialog;
-			}
-			this.Continue();
+			MenuDialog.ActiveMenuDialog = menuDialog;
 		}
+		Continue();
+	}
 
-		// Token: 0x06006690 RID: 26256 RVA: 0x00286AF3 File Offset: 0x00284CF3
-		public override string GetSummary()
+	public override string GetSummary()
+	{
+		if ((Object)(object)menuDialog == (Object)null)
 		{
-			if (this.menuDialog == null)
-			{
-				return "Error: No menu dialog selected";
-			}
-			return this.menuDialog.name;
+			return "Error: No menu dialog selected";
 		}
+		return ((Object)menuDialog).name;
+	}
 
-		// Token: 0x06006691 RID: 26257 RVA: 0x0005E228 File Offset: 0x0005C428
-		public override Color GetButtonColor()
-		{
-			return new Color32(184, 210, 235, byte.MaxValue);
-		}
-
-		// Token: 0x040057DB RID: 22491
-		[Tooltip("The Menu Dialog to use for displaying menu buttons")]
-		[SerializeField]
-		protected MenuDialog menuDialog;
+	public override Color GetButtonColor()
+	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		return Color32.op_Implicit(new Color32((byte)184, (byte)210, (byte)235, byte.MaxValue));
 	}
 }

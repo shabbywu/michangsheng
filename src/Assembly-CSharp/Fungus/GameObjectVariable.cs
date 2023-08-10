@@ -1,56 +1,49 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Fungus
+namespace Fungus;
+
+[Serializable]
+[VariableInfo("Other", "GameObject", 0)]
+[AddComponentMenu("")]
+public class GameObjectVariable : VariableBase<GameObject>
 {
-	// Token: 0x02000EDD RID: 3805
-	[VariableInfo("Other", "GameObject", 0)]
-	[AddComponentMenu("")]
-	[Serializable]
-	public class GameObjectVariable : VariableBase<GameObject>
+	public static readonly CompareOperator[] compareOperators = new CompareOperator[2]
 	{
-		// Token: 0x06006B41 RID: 27457 RVA: 0x0029604C File Offset: 0x0029424C
-		public virtual bool Evaluate(CompareOperator compareOperator, GameObject gameObjectValue)
+		CompareOperator.Equals,
+		CompareOperator.NotEquals
+	};
+
+	public static readonly SetOperator[] setOperators = new SetOperator[1];
+
+	public virtual bool Evaluate(CompareOperator compareOperator, GameObject gameObjectValue)
+	{
+		GameObject val = Value;
+		bool result = false;
+		switch (compareOperator)
 		{
-			GameObject value = this.Value;
-			bool result = false;
-			if (compareOperator != CompareOperator.Equals)
-			{
-				if (compareOperator != CompareOperator.NotEquals)
-				{
-					Debug.LogError("The " + compareOperator.ToString() + " comparison operator is not valid.");
-				}
-				else
-				{
-					result = (value != gameObjectValue);
-				}
-			}
-			else
-			{
-				result = (value == gameObjectValue);
-			}
-			return result;
+		case CompareOperator.Equals:
+			result = (Object)(object)val == (Object)(object)gameObjectValue;
+			break;
+		case CompareOperator.NotEquals:
+			result = (Object)(object)val != (Object)(object)gameObjectValue;
+			break;
+		default:
+			Debug.LogError((object)("The " + compareOperator.ToString() + " comparison operator is not valid."));
+			break;
 		}
+		return result;
+	}
 
-		// Token: 0x06006B42 RID: 27458 RVA: 0x002960A3 File Offset: 0x002942A3
-		public override void Apply(SetOperator setOperator, GameObject value)
+	public override void Apply(SetOperator setOperator, GameObject value)
+	{
+		if (setOperator == SetOperator.Assign)
 		{
-			if (setOperator == SetOperator.Assign)
-			{
-				this.Value = value;
-				return;
-			}
-			Debug.LogError("The " + setOperator.ToString() + " set operator is not valid.");
+			Value = value;
 		}
-
-		// Token: 0x04005A78 RID: 23160
-		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
+		else
 		{
-			CompareOperator.Equals,
-			CompareOperator.NotEquals
-		};
-
-		// Token: 0x04005A79 RID: 23161
-		public static readonly SetOperator[] setOperators = new SetOperator[1];
+			Debug.LogError((object)("The " + setOperator.ToString() + " set operator is not valid."));
+		}
 	}
 }

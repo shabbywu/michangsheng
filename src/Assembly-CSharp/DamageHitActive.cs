@@ -1,26 +1,23 @@
-﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F1 RID: 241
 public class DamageHitActive : MonoBehaviour
 {
-	// Token: 0x06000B88 RID: 2952 RVA: 0x0004667C File Offset: 0x0004487C
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == this.TagDamage)
-		{
-			if (this.explosiveObject)
-			{
-				Object.Instantiate<GameObject>(this.explosiveObject, base.transform.position, base.transform.rotation);
-				Object.Destroy(base.gameObject);
-			}
-			Object.Destroy(base.gameObject);
-		}
-	}
-
-	// Token: 0x040007BD RID: 1981
 	public GameObject explosiveObject;
 
-	// Token: 0x040007BE RID: 1982
 	public string TagDamage;
+
+	private void OnTriggerEnter(Collider other)
+	{
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		if (((Component)other).tag == TagDamage)
+		{
+			if (Object.op_Implicit((Object)(object)explosiveObject))
+			{
+				Object.Instantiate<GameObject>(explosiveObject, ((Component)this).transform.position, ((Component)this).transform.rotation);
+				Object.Destroy((Object)(object)((Component)this).gameObject);
+			}
+			Object.Destroy((Object)(object)((Component)this).gameObject);
+		}
+	}
 }

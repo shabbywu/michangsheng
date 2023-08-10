@@ -1,222 +1,239 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-// Token: 0x020000B3 RID: 179
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/NGUI Texture")]
 public class UITexture : UIBasicSprite
 {
-	// Token: 0x170001C0 RID: 448
-	// (get) Token: 0x06000A79 RID: 2681 RVA: 0x0003F8B7 File Offset: 0x0003DAB7
-	// (set) Token: 0x06000A7A RID: 2682 RVA: 0x0003F8E9 File Offset: 0x0003DAE9
+	[HideInInspector]
+	[SerializeField]
+	private Rect mRect = new Rect(0f, 0f, 1f, 1f);
+
+	[HideInInspector]
+	[SerializeField]
+	private Texture mTexture;
+
+	[HideInInspector]
+	[SerializeField]
+	private Material mMat;
+
+	[HideInInspector]
+	[SerializeField]
+	private Shader mShader;
+
+	[HideInInspector]
+	[SerializeField]
+	private Vector4 mBorder = Vector4.zero;
+
+	[NonSerialized]
+	private int mPMA = -1;
+
 	public override Texture mainTexture
 	{
 		get
 		{
-			if (this.mTexture != null)
+			if ((Object)(object)mTexture != (Object)null)
 			{
-				return this.mTexture;
+				return mTexture;
 			}
-			if (this.mMat != null)
+			if ((Object)(object)mMat != (Object)null)
 			{
-				return this.mMat.mainTexture;
+				return mMat.mainTexture;
 			}
 			return null;
 		}
 		set
 		{
-			if (this.mTexture != value)
+			if ((Object)(object)mTexture != (Object)(object)value)
 			{
-				base.RemoveFromPanel();
-				this.mTexture = value;
-				this.mPMA = -1;
-				this.MarkAsChanged();
+				RemoveFromPanel();
+				mTexture = value;
+				mPMA = -1;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170001C1 RID: 449
-	// (get) Token: 0x06000A7B RID: 2683 RVA: 0x0003F913 File Offset: 0x0003DB13
-	// (set) Token: 0x06000A7C RID: 2684 RVA: 0x0003F91B File Offset: 0x0003DB1B
 	public override Material material
 	{
 		get
 		{
-			return this.mMat;
+			return mMat;
 		}
 		set
 		{
-			if (this.mMat != value)
+			if ((Object)(object)mMat != (Object)(object)value)
 			{
-				base.RemoveFromPanel();
-				this.mShader = null;
-				this.mMat = value;
-				this.mPMA = -1;
-				this.MarkAsChanged();
+				RemoveFromPanel();
+				mShader = null;
+				mMat = value;
+				mPMA = -1;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170001C2 RID: 450
-	// (get) Token: 0x06000A7D RID: 2685 RVA: 0x0003F94C File Offset: 0x0003DB4C
-	// (set) Token: 0x06000A7E RID: 2686 RVA: 0x0003F98C File Offset: 0x0003DB8C
 	public override Shader shader
 	{
 		get
 		{
-			if (this.mMat != null)
+			if ((Object)(object)mMat != (Object)null)
 			{
-				return this.mMat.shader;
+				return mMat.shader;
 			}
-			if (this.mShader == null)
+			if ((Object)(object)mShader == (Object)null)
 			{
-				this.mShader = Shader.Find("Unlit/Transparent Colored");
+				mShader = Shader.Find("Unlit/Transparent Colored");
 			}
-			return this.mShader;
+			return mShader;
 		}
 		set
 		{
-			if (this.mShader != value)
+			if ((Object)(object)mShader != (Object)(object)value)
 			{
-				base.RemoveFromPanel();
-				this.mShader = value;
-				this.mPMA = -1;
-				this.mMat = null;
-				this.MarkAsChanged();
+				RemoveFromPanel();
+				mShader = value;
+				mPMA = -1;
+				mMat = null;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170001C3 RID: 451
-	// (get) Token: 0x06000A7F RID: 2687 RVA: 0x0003F9C0 File Offset: 0x0003DBC0
 	public override bool premultipliedAlpha
 	{
 		get
 		{
-			if (this.mPMA == -1)
+			if (mPMA == -1)
 			{
-				Material material = this.material;
-				this.mPMA = ((material != null && material.shader != null && material.shader.name.Contains("Premultiplied")) ? 1 : 0);
+				Material val = material;
+				mPMA = (((Object)(object)val != (Object)null && (Object)(object)val.shader != (Object)null && ((Object)val.shader).name.Contains("Premultiplied")) ? 1 : 0);
 			}
-			return this.mPMA == 1;
+			return mPMA == 1;
 		}
 	}
 
-	// Token: 0x170001C4 RID: 452
-	// (get) Token: 0x06000A80 RID: 2688 RVA: 0x0003FA1E File Offset: 0x0003DC1E
-	// (set) Token: 0x06000A81 RID: 2689 RVA: 0x0003FA26 File Offset: 0x0003DC26
 	public override Vector4 border
 	{
 		get
 		{
-			return this.mBorder;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mBorder;
 		}
 		set
 		{
-			if (this.mBorder != value)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			if (mBorder != value)
 			{
-				this.mBorder = value;
-				this.MarkAsChanged();
+				mBorder = value;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170001C5 RID: 453
-	// (get) Token: 0x06000A82 RID: 2690 RVA: 0x0003FA43 File Offset: 0x0003DC43
-	// (set) Token: 0x06000A83 RID: 2691 RVA: 0x0003FA4B File Offset: 0x0003DC4B
 	public Rect uvRect
 	{
 		get
 		{
-			return this.mRect;
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return mRect;
 		}
 		set
 		{
-			if (this.mRect != value)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+			if (mRect != value)
 			{
-				this.mRect = value;
-				this.MarkAsChanged();
+				mRect = value;
+				MarkAsChanged();
 			}
 		}
 	}
 
-	// Token: 0x170001C6 RID: 454
-	// (get) Token: 0x06000A84 RID: 2692 RVA: 0x0003FA68 File Offset: 0x0003DC68
 	public override Vector4 drawingDimensions
 	{
 		get
 		{
-			Vector2 pivotOffset = base.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			if (this.mTexture != null && this.mType != UIBasicSprite.Type.Tiled)
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0131: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0138: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0142: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0149: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
+			Vector2 val = base.pivotOffset;
+			float num = (0f - val.x) * (float)mWidth;
+			float num2 = (0f - val.y) * (float)mHeight;
+			float num3 = num + (float)mWidth;
+			float num4 = num2 + (float)mHeight;
+			if ((Object)(object)mTexture != (Object)null && mType != Type.Tiled)
 			{
-				int width = this.mTexture.width;
-				int height = this.mTexture.height;
-				int num5 = 0;
-				int num6 = 0;
-				float num7 = 1f;
-				float num8 = 1f;
-				if (width > 0 && height > 0 && (this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled))
+				int num5 = mTexture.width;
+				int num6 = mTexture.height;
+				int num7 = 0;
+				int num8 = 0;
+				float num9 = 1f;
+				float num10 = 1f;
+				if (num5 > 0 && num6 > 0 && (mType == Type.Simple || mType == Type.Filled))
 				{
-					if ((width & 1) != 0)
+					if (((uint)num5 & (true ? 1u : 0u)) != 0)
 					{
-						num5++;
+						num7++;
 					}
-					if ((height & 1) != 0)
+					if (((uint)num6 & (true ? 1u : 0u)) != 0)
 					{
-						num6++;
+						num8++;
 					}
-					num7 = 1f / (float)width * (float)this.mWidth;
-					num8 = 1f / (float)height * (float)this.mHeight;
+					num9 = 1f / (float)num5 * (float)mWidth;
+					num10 = 1f / (float)num6 * (float)mHeight;
 				}
-				if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+				if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
 				{
-					num += (float)num5 * num7;
+					num += (float)num7 * num9;
 				}
 				else
 				{
-					num3 -= (float)num5 * num7;
+					num3 -= (float)num7 * num9;
 				}
-				if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+				if (mFlip == Flip.Vertically || mFlip == Flip.Both)
 				{
-					num2 += (float)num6 * num8;
+					num2 += (float)num8 * num10;
 				}
 				else
 				{
-					num4 -= (float)num6 * num8;
+					num4 -= (float)num8 * num10;
 				}
 			}
-			Vector4 border = this.border;
-			float num9 = border.x + border.z;
-			float num10 = border.y + border.w;
-			float num11 = Mathf.Lerp(num, num3 - num9, this.mDrawRegion.x);
-			float num12 = Mathf.Lerp(num2, num4 - num10, this.mDrawRegion.y);
-			float num13 = Mathf.Lerp(num + num9, num3, this.mDrawRegion.z);
-			float num14 = Mathf.Lerp(num2 + num10, num4, this.mDrawRegion.w);
-			return new Vector4(num11, num12, num13, num14);
+			Vector4 val2 = border;
+			float num11 = val2.x + val2.z;
+			float num12 = val2.y + val2.w;
+			float num13 = Mathf.Lerp(num, num3 - num11, mDrawRegion.x);
+			float num14 = Mathf.Lerp(num2, num4 - num12, mDrawRegion.y);
+			float num15 = Mathf.Lerp(num + num11, num3, mDrawRegion.z);
+			float num16 = Mathf.Lerp(num2 + num12, num4, mDrawRegion.w);
+			return new Vector4(num13, num14, num15, num16);
 		}
 	}
 
-	// Token: 0x06000A85 RID: 2693 RVA: 0x0003FC30 File Offset: 0x0003DE30
 	public override void MakePixelPerfect()
 	{
 		base.MakePixelPerfect();
-		if (this.mType == UIBasicSprite.Type.Tiled)
+		if (mType == Type.Tiled)
 		{
 			return;
 		}
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
+		Texture val = mainTexture;
+		if (!((Object)(object)val == (Object)null) && (mType == Type.Simple || mType == Type.Filled || !base.hasBorder) && (Object)(object)val != (Object)null)
 		{
-			return;
-		}
-		if ((this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled || !base.hasBorder) && mainTexture != null)
-		{
-			int num = mainTexture.width;
-			int num2 = mainTexture.height;
+			int num = val.width;
+			int num2 = val.height;
 			if ((num & 1) == 1)
 			{
 				num++;
@@ -230,66 +247,45 @@ public class UITexture : UIBasicSprite
 		}
 	}
 
-	// Token: 0x06000A86 RID: 2694 RVA: 0x0003FCB0 File Offset: 0x0003DEB0
 	public override void OnFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
+		Texture val = mainTexture;
+		if (!((Object)(object)val == (Object)null))
 		{
-			return;
-		}
-		Rect rect;
-		rect..ctor(this.mRect.x * (float)mainTexture.width, this.mRect.y * (float)mainTexture.height, (float)mainTexture.width * this.mRect.width, (float)mainTexture.height * this.mRect.height);
-		Rect inner = rect;
-		Vector4 border = this.border;
-		inner.xMin += border.x;
-		inner.yMin += border.y;
-		inner.xMax -= border.z;
-		inner.yMax -= border.w;
-		float num = 1f / (float)mainTexture.width;
-		float num2 = 1f / (float)mainTexture.height;
-		rect.xMin *= num;
-		rect.xMax *= num;
-		rect.yMin *= num2;
-		rect.yMax *= num2;
-		inner.xMin *= num;
-		inner.xMax *= num;
-		inner.yMin *= num2;
-		inner.yMax *= num2;
-		int size = verts.size;
-		base.Fill(verts, uvs, cols, rect, inner);
-		if (this.onPostFill != null)
-		{
-			this.onPostFill(this, size, verts, uvs, cols);
+			Rect val2 = default(Rect);
+			((Rect)(ref val2))._002Ector(((Rect)(ref mRect)).x * (float)val.width, ((Rect)(ref mRect)).y * (float)val.height, (float)val.width * ((Rect)(ref mRect)).width, (float)val.height * ((Rect)(ref mRect)).height);
+			Rect inner = val2;
+			Vector4 val3 = border;
+			((Rect)(ref inner)).xMin = ((Rect)(ref inner)).xMin + val3.x;
+			((Rect)(ref inner)).yMin = ((Rect)(ref inner)).yMin + val3.y;
+			((Rect)(ref inner)).xMax = ((Rect)(ref inner)).xMax - val3.z;
+			((Rect)(ref inner)).yMax = ((Rect)(ref inner)).yMax - val3.w;
+			float num = 1f / (float)val.width;
+			float num2 = 1f / (float)val.height;
+			((Rect)(ref val2)).xMin = ((Rect)(ref val2)).xMin * num;
+			((Rect)(ref val2)).xMax = ((Rect)(ref val2)).xMax * num;
+			((Rect)(ref val2)).yMin = ((Rect)(ref val2)).yMin * num2;
+			((Rect)(ref val2)).yMax = ((Rect)(ref val2)).yMax * num2;
+			((Rect)(ref inner)).xMin = ((Rect)(ref inner)).xMin * num;
+			((Rect)(ref inner)).xMax = ((Rect)(ref inner)).xMax * num;
+			((Rect)(ref inner)).yMin = ((Rect)(ref inner)).yMin * num2;
+			((Rect)(ref inner)).yMax = ((Rect)(ref inner)).yMax * num2;
+			int size = verts.size;
+			Fill(verts, uvs, cols, val2, inner);
+			if (onPostFill != null)
+			{
+				onPostFill(this, size, verts, uvs, cols);
+			}
 		}
 	}
-
-	// Token: 0x04000674 RID: 1652
-	[HideInInspector]
-	[SerializeField]
-	private Rect mRect = new Rect(0f, 0f, 1f, 1f);
-
-	// Token: 0x04000675 RID: 1653
-	[HideInInspector]
-	[SerializeField]
-	private Texture mTexture;
-
-	// Token: 0x04000676 RID: 1654
-	[HideInInspector]
-	[SerializeField]
-	private Material mMat;
-
-	// Token: 0x04000677 RID: 1655
-	[HideInInspector]
-	[SerializeField]
-	private Shader mShader;
-
-	// Token: 0x04000678 RID: 1656
-	[HideInInspector]
-	[SerializeField]
-	private Vector4 mBorder = Vector4.zero;
-
-	// Token: 0x04000679 RID: 1657
-	[NonSerialized]
-	private int mPMA = -1;
 }
